@@ -1,0 +1,122 @@
+naruto.gui.options.title=Naruto Indstillinger
+naruto.gui.done=Færdig
+naruto.gui.firstPerson=Første Person
+naruto.gui.on=Tændt
+naruto.gui.off=Slukket
+naruto.gui.chakraGUIOffset=Forskudt
+naruto.gui.generalOptions=Generale Indstillinger
+naruto.gui.chakraGui=Chakra Menu
+naruto.gui.chakraGUICorner=Menu Hjørne
+
+
+item.Kunai.name=Kunai
+item.Shuriken.name=Shuriken
+
+item.record_FightingSpirit.name=Musikplade
+        
+item.record_NejiTheme=Musikplade
+        
+item.copper_ryo.name=Kan
+item.silver_ryo.name=Rin
+item.gold_ryo.name=Ryo     
+        
+item.Katana.name=Katana
+        
+item.ExplosiveTag.name=Papir Bombe
+        
+item.ExplosiveKunai.name=Eksplosiv Kunai
+
+item.Kubikiribocho.name=Kubikiribocho
+item.Kubikiribocho.desc.line1=Et gigantisk sværd der heler dig
+item.Kubikiribocho.desc.line2=med blodet fra dine fjender
+        
+item.Ramen.name=Ramen
+        
+item.gunbai.name=Gunbai
+item.gunbai.desc.line1=Sadly, this is just a cheap knock off
+item.gunbai.desc.line2=of the real legendary weapon.
+        
+item.Bokken.name=Bokken
+        
+item.Scroll.name=Tilkaldelses Skriftrulle(Wolf)
+        
+item.Noodles.name=Nudler
+        
+item.Samehada.name=Samehada
+        
+        
+item.military_pills.name=Militær Piller
+        
+item.Senbon.name=Senbon
+        
+item.gourd.name=Gourd
+
+item.Noodles.name=Noodles
+
+item.backScroll=Ryg skriftrulle
+
+item.backScroll.White.name=White skriftrulle
+item.backScroll.Yellow.name=Yellow skriftrulle
+item.backScroll.Purple.name=Purple skriftrulle
+item.backScroll.Blue.name=Blue skriftrulle
+item.backScroll.Green.name=Greens kriftrulle
+item.backScroll.Red.name=Red skriftrulle
+item.backScroll.Black.name=Black skriftrulle
+        
+item.backBokken.name=Beklædet Bokken
+        
+item.backKatana.name=Beklædet Katana
+        
+item.backStraps.name=Læder seler
+        
+item.fabric..name=Stof
+        
+item.fabric.reinforced.name=Forstærket stof
+        
+item.fabric.reinforcedBlack.name=Forstærket Black stof
+item.flakJacket.name=Flak Jakke
+item.kubikiribocho.name=Kubikiribocho
+item.madarasChestplate.name=Madara's Chestplate
+item.madarasLeggings.name=Madara's Leggings
+item.armourPlate.name=Armour Plate
+
+
+itemGroup.narutoWeapons=Naruto Våben
+
+itemGroup.narutoMaterials=Naruto Materialer
+Jutsus.Chakra_Control=Chakra Kontrol
+Jutsus.Chakra_Control.desc= Chakra kontrol er den basiske kontrol af alle jutsus undtagen Taijutsu. Den er passiv. Du kan holde C inde for at fokusere din chakra og regenere hurtigere.
+        
+Jutsus.Fire_Ball_Jutsu=Ild kugle Jutsu
+Jutsus.Fire_Ball_Jutsu.desc=Forvandl din chakra til ild og skyd det ud som en ild kugle. Kombo: C V C        
+Jutsus.Shadow_Clone_Jutsu=Skygge Klon Jutsu
+Jutsus.Shadow_Clone_Jutsu.desc=Forvir dine fjender med kloner! Combo: C B B V
+        
+Jutsus.Water_Walk=Water Walking
+Jutsus.Water_Walk.desc=Kontroler din Chakra ned til fødderne for at kunne gå på vandet! Kombo: B
+        
+Jutsus.Chakra_Dash=Chakra Storm
+Jutsus.Chakra_Dash.desc=Bliv hurtigere ved at cirkulere chakra rundt i kroppen. Combo: V
+        
+Jutsus.Substitution=Substitution
+Jutsus.Substitution.desc=Denne teknik erstatter dig selv med et objekt. Combo: C V
+
+naruto.jutsu.chakraDash.deactivate=Du har deaktiveret Chakra Storm!
+naruto.jutsu.chakraDash.activate=Du har aktiveret Chakra Storm!
+
+naruto.jutsu.waterWalk.deactivate=Du har deaktiveret Water Walking!
+naruto.jutsu.waterWalk.activate=Du har deaktiveret Water Walking!
+
+naruto.jutsu.substitution=Substitution!
+
+naruto.jutsu.chakraCharge.activate=Du lader chakra gå igennem kroppen!
+naruto.jutsu.chakraCharge.deactivate=Du stopper med at lade chakra gå igennem kroppen!
+
+naruto.jutsu.fireball=Fire Style - Ild kugle jutsu!
+naruto.jutsu.waterBullet=Water Style - Vand Kugle Jutsu!
+
+naruto.jutsu.shadowClone=Skygge Klon Jutsu!
+
+naruto.jutsu.unrecognised=Ugenkendelig jutsu!
+
+naruto.jutsu.nochakra=Du har ikke nok chakra!

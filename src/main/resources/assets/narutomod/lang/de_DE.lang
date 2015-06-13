@@ -1,0 +1,123 @@
+naruto.gui.options.title=Naruto Options Men�
+naruto.gui.done=Fertig
+naruto.gui.firstPerson=First Person
+naruto.gui.on=An
+naruto.gui.off=Aus
+naruto.gui.chakraGUIOffset=Offset
+naruto.gui.generalOptions=Allgemeine Optionen
+naruto.gui.chakraGui=Chakra GUI
+naruto.gui.chakraGUICorner=GUI Corner
+
+
+item.Kunai.name=Kunai
+item.Shuriken=Shuriken
+
+item.record_FightingSpirit.name=Schallplatte
+        
+item.record_NejiTheme=Schallplatte
+        
+item.copper_ryo.name=Kan
+item.silver_ryo.name=Rin
+item.gold_ryo.name=Ryo     
+        
+item.Katana.name=Katana
+        
+item.ExplosiveTag.name=Briefbombe
+        
+item.ExplosiveKunai.name=Explosives Kunai
+
+item.Kubikiribocho.name=Kubikiribocho
+item.Kubikiribocho.desc.line1=Ein gigantisches �berschwert ,welches mit
+item.Kubikiribocho.desc.line2=dem Blut deiner Gegner heilen kann.
+        
+item.Ramen.name=Ramen
+        
+item.gunbai.name=Gunbai
+item.gunbai.desc.line1=Sadly, this is just a cheap knock off
+item.gunbai.desc.line2=of the real legendary weapon.
+        
+item.Bokken.name=Bokken
+        
+item.Scroll.name= Beschw�rungsschriftrolle(Wolf)
+        
+item.Noodles.name=Nudeln
+        
+item.Samehada.name=Samehada
+        
+        
+item.military_pills.name=Milit�r Pillen
+        
+item.Senbon.name=Senbon
+        
+item.gourd.name=K�rbisflasche
+
+item.Noodles.name=Nudeln
+
+item.backScroll=tragbareSchriftrolle
+
+item.backScroll.White.name=Wei�e tragbare Schriftrolle
+item.backScroll.Yellow.name=Gelbe tragbare Schriftrolle
+item.backScroll.Purple.name=Violette tragbare Schriftrolle
+item.backScroll.Blue.name=Blaue tragbare Schriftrolle
+item.backScroll.Green.name=Gr�ne tragbare Schriftrolle
+item.backScroll.Red.name=Rote tragbare Schriftrolle
+item.backScroll.Black.name=Schwarze tragbare Schriftrolle
+        
+item.backBokken.name=Bokken Halterung
+        
+item.backKatana.name=Katana Halterung
+        
+item.backStraps.name=Ledergurte
+        
+item.fabric..name=Stoff
+        
+item.fabric.reinforced.name=Verst�rkter Stoff
+        
+item.fabric.reinforcedBlack.name=Verst�rkter schwarzer Stoff
+item.flakJacket.name=Flak Jacke
+item.kubikiribocho.name=Kubikiribocho
+item.madarasChestplate.name=Madara's Brustplatte 
+item.madarasLeggings.name=Madara's Beinschutz
+item.armourPlate.name=Panzerplatte
+
+
+itemGroup.narutoWeapons=Naruto Waffen
+
+itemGroup.narutoMaterials=Naruto Materialien
+Jutsus.Chakra_Control=Chakra Kontrolle
+Jutsus.Chakra_Control.desc=Die Basis von jeder Technik mit Ausnahme von Taijutsus. C can auch festgehalten werden ,um die Regeneration zu verschnellern.
+        
+Jutsus.Fire_Ball_Jutsu=Jutsu der flammenden Feuerkugel
+Jutsus.Fire_Ball_Jutsu.desc=Verwandle dein Chakra in Feuer und lasse es in Form eines Feuerballs frei. Combo: C V C
+        
+Jutsus.Shadow_Clone_Jutsu=Schattendoppelg�nger Jutsu
+Jutsus.Shadow_Clone_Jutsu.desc=Verwirre deinen Gegner mit Kopien von dir selbst! Combo: C B B V
+        
+Jutsus.Water_Walk=Wasserlaufen
+Jutsus.Water_Walk.desc=F�hre dein Chakra zu deinen F��en und erlaube dir selbst, auf dem Wasser zu stehen. Combo: B
+        
+Jutsus.Chakra_Dash=Chakra Lauf
+Jutsus.Chakra_Dash.desc=Ziehe Chakra �berall in deinen K�rper und erh�he die Geschwindigkeit deiner Bewegungen. Combo: V
+        
+Jutsus.Substitution=Substitution
+Jutsus.Substitution.desc=Diese Technik tauscht den K�rper des Benutzers mit einem Objekt. Combo: C V
+
+naruto.jutsu.chakraDash.deactivate=Du hast den Chakra Lauf deaktiviert!
+naruto.jutsu.chakraDash.activate= Du hast den Chakra Lauf aktiviert!
+
+naruto.jutsu.waterWalk.deactivate=Du hast das Wasserlaufen deaktiviert!
+naruto.jutsu.waterWalk.activate=Du hast das Wasserlaufen aktiviert!
+
+naruto.jutsu.substitution=Substitution!
+
+naruto.jutsu.chakraCharge.activate=Du beginnst dein Chakra aufzuladen!
+naruto.jutsu.chakraCharge.deactivate=Du hast das Aufladen deines Chakras gestoppt!
+
+naruto.jutsu.fireball=Feuerversteck � Jutsu der flammenden Feuerkugel!
+naruto.jutsu.waterBullet=Wasserversteck � Wassergeschoss-Technik!
+
+naruto.jutsu.shadowClone=Schattendoppelg�nger Jutsu!
+
+naruto.jutsu.unrecognised=Unbekanntes Jutsu!
+
+naruto.jutsu.nochakra=Nicht genug Chakra!

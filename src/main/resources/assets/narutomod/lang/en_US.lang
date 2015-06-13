@@ -1,0 +1,159 @@
+naruto.gui.options.title=Naruto Options Menu
+naruto.gui.done=Done
+naruto.gui.firstPerson=First Person
+naruto.gui.on=On
+naruto.gui.off=Off
+naruto.gui.jutsutoggle=Jutsu
+naruto.gui.chakraGUIOffset=Offset
+naruto.gui.generalOptions=General Options
+naruto.gui.chakraGui=Chakra GUI
+naruto.gui.chakraGUICorner=GUI Corner
+naruto.gui.jutsuSettings=Jutsu Settings
+naruto.gui.jutsuDelay=Delay(ticks)
+
+
+item.Kunai.name=Kunai
+item.Shuriken.name=Shuriken
+
+item.record_FightingSpirit.name=Music Disc
+        
+item.record_NejiTheme.name=Music Disc
+        
+item.copper_ryo.name=Kan
+item.silver_ryo.name=Rin
+item.gold_ryo.name=Ryo
+        
+item.Katana.name=Katana
+        
+item.ExplosiveTag.name=Paper Bomb
+        
+item.ExplosiveKunai.name=Explosive Kunai
+
+item.Kubikiribocho.name=Kubikiribocho
+item.Kubikiribocho.desc.line1=A giant baddass sword that heals
+item.Kubikiribocho.desc.line2=with the blood of your enemys.
+        
+item.Ramen.name=Ramen
+        
+item.gunbai.name=Gunbai
+item.gunbai.desc.line1=Sadly, this is just a cheap knock off
+item.gunbai.desc.line2=of the real legendary weapon.
+        
+item.Bokken.name=Bokken
+        
+item.Scroll.name=Summoning Scroll(Wolf)
+        
+item.Noodles.name=Noodles
+        
+item.Samehada.name=Samehada
+
+item.military_pills.name=Military Pills
+
+item.Senbon.name=Senbon
+
+item.gourd.name=Gourd
+
+item.Noodles.name=Noodles
+
+item.backScroll=backScroll
+
+item.backScroll.White.name=White Back Scroll
+item.backScroll.Yellow.name=Yellow Back Scroll
+item.backScroll.Purple.name=Purple Back Scroll
+item.backScroll.Blue.name=Blue Back Scroll
+item.backScroll.Green.name=Green Back Scroll
+item.backScroll.Red.name=Red Back Scroll
+item.backScroll.Black.name=Black Back Scroll
+
+item.headProtector=headband
+
+item.headProtector.HiddenInTheTrees.name=Hidden In The Trees Headband
+item.headProtector.Custard.name=Custard Headband
+
+item.backBokken.name=Sheathed Bokken
+        
+item.backKatana.name=Sheathed Katana
+        
+item.backStraps.name=Leather Straps
+        
+item.fabric..name=Fabric
+        
+item.fabric.reinforced.name=Reinforced Fabric
+        
+item.fabric.reinforcedBlack.name=Reinforced Black Fabric
+item.flakJacket.name=Flak Jacket
+item.kubikiribocho.name=Kubikiribocho
+item.madarasChestplate.name=Madara's Chestplate
+item.madarasLeggings.name=Madara's Leggings
+item.armourPlate.name=Armour Plate
+
+tile.sakuraleaves.name=Sakura Leaves
+tile.sakurasapling.name=Sakura Sapling
+tile.bonsaitree.name=BonsaiTree
+
+
+itemGroup.narutoWeapons=Naruto Weapons
+
+itemGroup.narutoMaterials=Naruto Materials
+Jutsus.Chakra_Control=Chakra Control
+Jutsus.Chakra_Control.desc=The basis of every technique with the exeption of taijutsu. Passive ability. C can also be held to focus your chakra and speed up regeneration.
+        
+Jutsus.Fire_Ball_Jutsu=Fire Ball Jutsu
+Jutsus.Fire_Ball_Jutsu.desc=Turn your chakra to fire and release it in the form of a fireball. Combo: C V C
+        
+Jutsus.Shadow_Clone_Jutsu=Shadow Clone Jutsu
+Jutsus.Shadow_Clone_Jutsu.desc=Confuse your enemy with copies of yourself! Combo: C B B V
+        
+Jutsus.Water_Walk=Water Walking
+Jutsus.Water_Walk.desc=Direct chakra to beneeth your feet and allow yourself to stand, run and jump on water. Combo: B
+        
+Jutsus.Chakra_Dash=Chakra Dash
+Jutsus.Chakra_Dash.desc=Infuse chakra throughout your body and increase the speed of your movements. Combo: V
+        
+Jutsus.Substitution=Substitution
+Jutsus.Substitution.desc=This technique replaces the users body with an object. Combo: C V
+
+Jutsus.Water_Bullet=Water Bullet Jutsu
+Jutsus.Water_Bullet.desc=Knead chakra in your stomach and expel it as 3 powerful water projectiles!           Combo: C B V
+
+naruto.jutsu.chakraDash.deactivate=You have deactivated Chakra Dash!
+naruto.jutsu.chakraDash.activate=You have activated Chakra Dash!
+naruto.jutsu.chakraDash.nochakra=You have deactivated Chakra Dash!
+
+naruto.jutsu.waterWalk.deactivate=You have deactivated Water Walking!
+naruto.jutsu.waterWalk.activate=You have activated Water Walking!
+
+naruto.jutsu.substitution=Substitution!
+
+naruto.jutsu.chakraCharge.activate=You begin to infuse your chakra!
+naruto.jutsu.chakraCharge.deactivate=You have stopped infusing your chakra!
+
+naruto.jutsu.fireball=Fire Style - Fireball jutsu!
+naruto.jutsu.waterBullet=Water Style - Water Bullet Jutsu!
+
+naruto.jutsu.shadowClone=Shadow Clone Jutsu!
+
+naruto.jutsu.unrecognised=Unrecognised jutsu!
+
+naruto.jutsu.comboLimit=You have reached the combo limit!
+
+naruto.jutsu.nochakra=Not enough chakra!
+
+
+entity.narutomod.Puppet.name=Puppet
+entity.narutomod.Rogue_Ninja.name=Rogue Ninja
+entity.narutomod.Ninja_Villager.name=Ninja Villager
+entity.narutomod.Ninja_VillagerAnbu.name=Anbu Ninja
+entity.narutomod.Bandit.name=Bandit
+entity.narutomod.Shadow_Clone.name=Shadow Clone
+entity.narutomod.Substitution.name=Substitution
+entity.narutomod.SubstitutionLog.name=Substitution Log
+
+narutomod.keys.category=Naruto Mod Controls
+naruto.keys.key1=Justsu Key 1
+naruto.keys.key2=Justsu Key 2
+naruto.keys.key3=Justsu Key 3
+naruto.keys.jutsumenu=Open Jutsu Menu
+naruto.keys.options=Open Naruto Options
+
+potion.chakraRestore=Chakra Restore
