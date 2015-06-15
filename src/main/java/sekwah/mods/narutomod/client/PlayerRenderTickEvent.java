@@ -12,6 +12,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.player.EntityPlayer;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.gui.GuiNarutoMainMenu;
@@ -44,6 +45,9 @@ public class PlayerRenderTickEvent {
             }
 
             EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
+            DataWatcher dw = playerMP.getDataWatcher();
+
+
 
             // TODO get if the game is paused
             //double nsPerTick = 1000000000D / 120D; change that number to increase the update rate.

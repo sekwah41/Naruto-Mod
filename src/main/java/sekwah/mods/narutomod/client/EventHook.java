@@ -1,5 +1,9 @@
 package sekwah.mods.narutomod.client;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
+import sekwah.mods.narutomod.settings.NarutoSettings;
+
 public class EventHook {
 
     /**@ForgeSubscribe
@@ -37,5 +41,15 @@ public class EventHook {
      EntityLiving attackedEnt = event.entityLiving;
      DamageSource attackSource = event.source;
      }*/
+
+
+    // First person and player render hooks.
+
+    @SubscribeEvent
+    public void tick(RenderHandEvent event) {
+        //System.out.println(NarutoSettings.experimentalFirstPerson);
+        event.setCanceled(NarutoSettings.experimentalFirstPerson);
+
+    }
 
 }

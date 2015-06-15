@@ -56,9 +56,9 @@ public class GuiOptionsMenu extends GuiScreen {
         this.buttonList.add(new GuiButton(1, this.width / 2 + 34, this.height / 2 + 54, 80, 20, I18n.format("naruto.gui.done")));
         if (NarutoSettings.settingsPage == 1) {
             GuiButton firstPersonButton = new GuiButton(4, guiX + 9, guiY + 20, 110, 20, I18n.format("naruto.gui.firstPerson") + ": " + I18n.format("naruto.gui.off"));
-            firstPersonButton.enabled = false;
+            //firstPersonButton.enabled = false;
             this.buttonList.add(firstPersonButton);
-            /**if(NarutoSettings.experimentalFirstPersonMode == 0){
+            if(NarutoSettings.experimentalFirstPersonMode == 0){
              this.buttonList.add(new GuiButton(4, guiX + 9, guiY + 20, 110, 20, I18n.format("naruto.gui.firstPerson") + ": " + I18n.format("naruto.gui.on")));
              }
              else if(NarutoSettings.experimentalFirstPersonMode == 1){
@@ -66,7 +66,7 @@ public class GuiOptionsMenu extends GuiScreen {
              }
              else if(NarutoSettings.experimentalFirstPersonMode == 2){
              this.buttonList.add(new GuiButton(4, guiX + 9, guiY + 20, 110, 20, I18n.format("naruto.gui.firstPerson") + ": " + I18n.format("naruto.gui.jutsutoggle")));
-             }*/
+             }
         } else if (NarutoSettings.settingsPage == 2) {
             this.buttonList.add(new GuiNarutoSlider(0, guiX + 9, guiY + 20, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETX, I18n.format("naruto.gui.chakraGUIOffset") + " X"));
             this.buttonList.add(new GuiNarutoSlider(0, guiX + 130, guiY + 20, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETY, I18n.format("naruto.gui.chakraGUIOffset") + " Y"));

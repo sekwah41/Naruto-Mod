@@ -14,6 +14,7 @@ public class CommonProxy {
     }
 
     public void addEventListener() {
+
     }
 
     public void addInGameGUIs() {

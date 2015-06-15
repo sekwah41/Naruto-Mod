@@ -94,7 +94,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void addEventListener() {
-        FMLCommonHandler.instance().bus().register(new EventHook());
+        MinecraftForge.EVENT_BUS.register(new EventHook());
 
         FMLCommonHandler.instance().bus().register(new PlayerClientTickEvent());
 

@@ -113,13 +113,13 @@ public class NarutoSettings {
             experimentalFirstPerson = true;
         } else if (experimentalFirstPersonMode == 1) {
             experimentalFirstPerson = false;
-        } else if (experimentalFirstPersonMode == 1) {
+        } else if (experimentalFirstPersonMode == 2) {
             experimentalFirstPerson = false;
         }
 
-        /**Property configExperimentalFirstPerson = config.get(Configuration.CATEGORY_GENERAL, "experimentalFirstPersonEnabled", true);
+        Property configExperimentalFirstPerson = config.get(Configuration.CATEGORY_GENERAL, "experimentalFirstPersonEnabled", true);
          experimentalFirstPerson = configExperimentalFirstPerson.getBoolean(true);
-         configExperimentalFirstPerson.comment = "If this is set to true then you can see your arms and legs in first person.";*/
+         configExperimentalFirstPerson.comment = "If this is set to true then you can see your arms and legs in first person.";
 
         chakraBarOffsetX = config.get(Configuration.CATEGORY_GENERAL, "chakraBarOffsetX", 2).getInt(2);
 
