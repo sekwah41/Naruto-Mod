@@ -37,7 +37,7 @@ item.Ramen.name=Рамен
         
 item.gunbai.name=Гунбай
 item.gunbai.desc.line1=К сожалению, это всего лишь дешевая
-item.gunbai.desc.line2=подделки легендарного оружия.
+item.gunbai.desc.line2=подделка легендарного оружия.
         
 item.Bokken.name=Шест Бо
         
@@ -58,12 +58,12 @@ item.Noodles.name=Лапша
 item.backScroll=Свиток
 
 item.backScroll.White.name=Белый Свиток
-item.backScroll.Yellow.name=Желтый Свиток
+item.backScroll.Yellow.name=Жёлтый Свиток
 item.backScroll.Purple.name=Фиолетовый Свиток
 item.backScroll.Blue.name=Синий Свиток
-item.backScroll.Green.name=Зеленый Свиток
+item.backScroll.Green.name=Зелёный Свиток
 item.backScroll.Red.name=Красный Свиток
-item.backScroll.Black.name=Черный Свиток
+item.backScroll.Black.name=Чёрный Свиток
 
 item.headProtector=Защитная Повязка
 
@@ -78,13 +78,13 @@ item.backStraps.name=Кожаные Ремни
         
 item.fabric..name=Ткань
         
-item.fabric.reinforced.name=Укрепленная Ткань
+item.fabric.reinforced.name=Укреплённая Ткань
         
-item.fabric.reinforcedBlack.name=Укрепленная Черная ткань
+item.fabric.reinforcedBlack.name=Укреплённая Черная ткань
 item.flakJacket.name=Защитный Жилет
 item.kubikiribocho.name=Кубикирибочо
-item.madarasChestplate.name=Укрепленный Нагрудник
-item.madarasLeggings.name=Укрепленные поножи
+item.madarasChestplate.name=Укреплённый Нагрудник
+item.madarasLeggings.name=Укреплённые поножи
 item.armourPlate.name=Железная Пластина
 
 tile.sakuraleaves.name=Листья Сакуры
@@ -92,9 +92,9 @@ tile.sakurasapling.name=Саженец Сакуры
 tile.bonsaitree.name=Бонсай
 
 
-itemGroup.narutoWeapons=Наруто-Оружие
+itemGroup.narutoWeapons=Наруто - Оружие
 
-itemGroup.narutoMaterials=Наруто-Материалы
+itemGroup.narutoMaterials=Наруто - Материалы
 Jutsus.Chakra_Control=Контроль Чакры
 Jutsus.Chakra_Control.desc=Основа любой техники, кроме тайдзюцу. Пассивное умение. Удерживайте C, чтобы регенерировать количество чакры.
         
@@ -114,7 +114,7 @@ Jutsus.Substitution=Техника Подмены
 Jutsus.Substitution.desc=Эта техника заменяет тело использовавшего её с объектом. Комбинация: C V
 
 Jutsus.Water_Bullet=Водяные Пули
-Jutsus.Water_Bullet.desc=Сконцентрируй чакру в своем животе и выпусти её в форме трех мощный снарядов. Комбинация: C B V
+Jutsus.Water_Bullet.desc=Сконцентрируй чакру в своем животе и выпусти её в форме трех мощных снарядов. Комбинация: C B V
 
 naruto.jutsu.chakraDash.deactivate=Вы прекратили технику Рывка Чакры!
 naruto.jutsu.chakraDash.activate=Вы активировали Рывок Чакры!
@@ -149,10 +149,10 @@ entity.narutomod.Shadow_Clone.name=теневой Клон
 entity.narutomod.Substitution.name=Подмена
 entity.narutomod.SubstitutionLog.name=Бревно
 
-narutomod.keys.category=Клавиши Управления Модом
+narutomod.keys.category=Клавиши Управление Модом
 naruto.keys.key1=Дзюцу Клавиша 1
-naruto.keys.key2=Дзюцу Клавива 2
-naruto.keys.key3=Дзюцу Клавива 3
+naruto.keys.key2=Дзюцу Клавиша 2
+naruto.keys.key3=Дзюцу Клавиша 3
 naruto.keys.jutsumenu=Меню Техник
 naruto.keys.options=Настройки Мода
 
