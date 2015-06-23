@@ -24,9 +24,11 @@ public class NarutoAnimator {
         playerPoses = new Pose[1];
         playerPoses[0] = new Pose("default");
     }
-    
+
+
     public static Pose[] sortAnimations(Pose[] poses) {
         for (int i = poses.length - 1; i >= 1; i--) {
+            int swaps = 0;
             for (int z = 0; z < i; z++) {
                 for (int j = 0; j < poses[z].poseName.length(); j++) {
                     if (j <= poses[z].poseName.length() - 1 && j <= poses[z + 1].poseName.length() - 1) {
@@ -36,6 +38,7 @@ public class NarutoAnimator {
                             Pose tempPose = poses[z];
                             poses[z] = poses[z + 1];
                             poses[z + 1] = tempPose;
+                            swaps++;
                             break;
                         } else if (animChar < poseChar) {
                             break;
@@ -44,9 +47,13 @@ public class NarutoAnimator {
                         Pose tempPose = poses[z];
                         poses[z] = poses[z + 1];
                         poses[z + 1] = tempPose;
+                        swaps++;
                         break;
                     }
                 }
+            }
+            if(swaps == 0){
+                break;
             }
         }
         return poses;
@@ -54,6 +61,7 @@ public class NarutoAnimator {
 
     public static PartData[] sortParts(PartData[] parts) {
         for (int i = parts.length - 1; i >= 1; i--) {
+            int swaps = 0;
             for (int z = 0; z < i; z++) {
                 for (int j = 0; j < parts[z].partName.length(); j++) {
                     if (j <= parts[z].partName.length() - 1 && j <= parts[z + 1].partName.length() - 1) {
@@ -63,6 +71,7 @@ public class NarutoAnimator {
                             PartData tempPart = parts[z];
                             parts[z] = parts[z + 1];
                             parts[z + 1] = tempPart;
+                            swaps++;
                             break;
                         } else if (animChar < poseChar) {
                             break;
@@ -71,9 +80,13 @@ public class NarutoAnimator {
                         PartData tempPart = parts[z];
                         parts[z] = parts[z + 1];
                         parts[z + 1] = tempPart;
+                        swaps++;
                         break;
                     }
                 }
+            }
+            if(swaps == 0){
+                break;
             }
         }
         return parts;
