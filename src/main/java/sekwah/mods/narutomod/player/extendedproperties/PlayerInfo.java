@@ -18,7 +18,11 @@ public class PlayerInfo implements IExtendedEntityProperties
 
     private int currentStamina, maxStamina;
 
-    //private int RACE_WATCHER = 21;
+    private int CLAN_WATCHER = 21;
+
+    private String clan = "Undefined";
+
+    public boolean hasAskedToSetClan = false;
 
     /*
     The default constructor takes no arguments, but I put in the Entity so I can initialize the above variable 'player'
@@ -31,6 +35,8 @@ public class PlayerInfo implements IExtendedEntityProperties
 
         // Load with max mana, maybe save the mana amount and load it to stop it messing with single player, also have stats and stuff change the max ki
         this.maxChakra = this.currentChakra = 50;
+
+        this.hasAskedToSetClan = false;
     }
 
     /**
@@ -43,16 +49,16 @@ public class PlayerInfo implements IExtendedEntityProperties
     }
 
     public void copyData(PlayerInfo info) {
-        /*this.race = info.race;
-        player.getDataWatcher().updateObject(RACE_WATCHER, race);*/
+        this.clan = info.clan;
+        player.getDataWatcher().updateObject(CLAN_WATCHER, clan);
     }
 
 
     public void reloadDW() {
-        /*player.getDataWatcher().updateObject(RACE_WATCHER, "Undefined");
+        player.getDataWatcher().updateObject(CLAN_WATCHER, "Undefined");
 
-        System.out.println("Race: " + race);
-        player.getDataWatcher().updateObject(RACE_WATCHER, race);*/
+        System.out.println("Clan: " + clan);
+        player.getDataWatcher().updateObject(CLAN_WATCHER, clan);
     }
 
     /**
@@ -70,9 +76,9 @@ public class PlayerInfo implements IExtendedEntityProperties
     {
         NBTTagCompound properties = new NBTTagCompound();
 
-        //properties.setString("Race", race);
-        properties.setInteger("CurrentKi", this.currentChakra);
-        properties.setInteger("MaxKi", this.maxChakra);// possibly calculate the maxKi when a player loads to stop potential cheating with nbt data
+        properties.setString("Clan", clan);
+        properties.setInteger("CurrentChakra", this.currentChakra);
+        properties.setInteger("MaxChakra", this.maxChakra);// possibly calculate the maxKi when a player loads to stop potential cheating with nbt data
 
         compound.setTag(IDENTIFIER, properties);
     }
@@ -82,11 +88,10 @@ public class PlayerInfo implements IExtendedEntityProperties
     public void loadNBTData(NBTTagCompound compound)
     {
         NBTTagCompound properties = (NBTTagCompound) compound.getTag(IDENTIFIER);
-        //this.race = properties.getString("Race");
-        this.currentChakra = properties.getInteger("CurrentKi");
-        this.maxChakra = properties.getInteger("MaxKi");
+        this.clan = properties.getString("Clan");
+        this.currentChakra = properties.getInteger("CurrentChakra");
+        this.maxChakra = properties.getInteger("MaxChakra");
         this.reloadDW();
-        //System.out.println("[Dragon Ball Z] Current Ki for player from NBT: " + this.currentChakra + "/" + this.maxKi);
     }
 
     @Override
@@ -130,7 +135,11 @@ public class PlayerInfo implements IExtendedEntityProperties
 ;
     }
 
-    /**public void setRace(String race) {
-        this.race = race;
-    }*/
+    public String getClan(){
+        return clan;
+    }
+
+    public void setClan(String clanName){
+        clan = clanName;
+    }
 }
