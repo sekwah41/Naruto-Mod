@@ -78,7 +78,7 @@ public class EventHook {
     public void renderHand(RenderHandEvent event) {
         //System.out.println(NarutoSettings.experimentalFirstPerson);
         //GL11.glTranslated(0,50F,0);
-        event.setCanceled(NarutoSettings.experimentalFirstPerson);
+        //event.setCanceled(NarutoSettings.experimentalFirstPerson);
 
     }
 
@@ -87,12 +87,12 @@ public class EventHook {
 
     // One of the events may be able to be used to change the camera position, also look at the player render event and other stuff
     // to see which is appropriate to render the player :)
-    @SubscribeEvent
-    public void tick(EntityViewRenderEvent event) {
+    //@SubscribeEvent
+    //public void tick(EntityViewRenderEvent event) {
         //System.out.println(NarutoSettings.experimentalFirstPerson);
         //GL11.glTranslated(0,50F,0);
         //event.setCanceled(NarutoSettings.experimentalFirstPerson);
 
-    }
+    //}
 
 }
