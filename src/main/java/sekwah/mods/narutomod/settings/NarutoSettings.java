@@ -24,6 +24,7 @@ public class NarutoSettings {
 
     public static int jutsuDelay = 10; // Delay time in ticks, from when the last button is presset till the jutsu casts
 
+    public static int usageReportMod = 0;
 
     public static void changeSetting() {
     }
@@ -136,6 +137,11 @@ public class NarutoSettings {
         else if(jutsuDelay < 0){
             jutsuDelay = 0;
         }
+
+        Property configUsageReportMod = config.get(Configuration.CATEGORY_GENERAL, "usageReportMod", 0);
+        usageReportMod = configExperimentalFirstPersonMode.getInt(0);
+        configUsageReportMod.comment = "This sets the usage report mode 0 = Enabled, 1 = No data sent but says its " +
+                "online, 2 = Disabled";
 
         //int randomBlockID = config.getBlock("RandomBlock", 200).getInt();
 

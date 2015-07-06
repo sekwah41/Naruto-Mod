@@ -22,6 +22,7 @@ import sekwah.mods.narutomod.generic.NarutoEffects;
 import sekwah.mods.narutomod.generic.PlayerCommonTickEvent;
 import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.network.UpdateChecker;
+import sekwah.mods.narutomod.network.UsageReport;
 import sekwah.mods.narutomod.packets.clientbound.ClientAnimationPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientJutsuPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientParticleEffectPacket;
@@ -57,6 +58,8 @@ public class NarutoMod {
 
     public static boolean isPreRelease = false;
 
+    public static UsageReport usageReport;
+
     @EventHandler
     public void init(FMLInitializationEvent event) {
 
@@ -88,6 +91,8 @@ public class NarutoMod {
         proxy.registerCustomItems();
 
         proxy.registerCustomBlocks();
+
+        proxy.startUsageReport();
 
         new UpdateChecker();
         //Thread updateChecker = new Thread(new UpdateChecker());

@@ -28,4 +28,7 @@ public class CommonProxy {
 
     public void registerCustomBlocks() {
     }
+
+    public void startUsageReport() {
+    }
 }

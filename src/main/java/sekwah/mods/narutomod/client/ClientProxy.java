@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.blocks.NarutoBlocks;
 import sekwah.mods.narutomod.blocks.itemrenderers.ItemRendererBonsaiTree;
 import sekwah.mods.narutomod.blocks.rendereres.TileEntityBonsaiRenderer;
@@ -29,6 +30,7 @@ import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemKubikiribocho;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemSamehada;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemScroll;
+import sekwah.mods.narutomod.network.UsageReport;
 import sekwah.mods.narutomod.player.RenderNinjaPlayer;
 
 public class ClientProxy extends CommonProxy {
@@ -134,6 +136,11 @@ public class ClientProxy extends CommonProxy {
         //for (String username : devs) {
         //	Minecraft.getMinecraft().renderEngine.loadTexture(new ResourceLocation("cloaks/" + username), (TextureObject) image);
         //}
+    }
+
+    public void startUsageReport() {
+        NarutoMod.usageReport = new UsageReport();
+        NarutoMod.usageReport.startUsageReport();
     }
 
 }
