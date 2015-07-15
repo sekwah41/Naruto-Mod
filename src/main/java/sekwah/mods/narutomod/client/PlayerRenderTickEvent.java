@@ -22,6 +22,8 @@ public class PlayerRenderTickEvent {
 
     public static float delta = 0;
     public static boolean hasFiredAnimationUpdate = false;
+    private static GuiScreen guiToShow = null;
+    private static int renderDelay = 0;
     private long lastTime;
 
     @SubscribeEvent
@@ -30,6 +32,18 @@ public class PlayerRenderTickEvent {
         if (guiscreen instanceof GuiMainMenu) {
             Minecraft.getMinecraft().displayGuiScreen(new GuiNarutoMainMenu());
         } else if (guiscreen == null || guiscreen instanceof GuiInventory || guiscreen instanceof GuiChat) {
+
+            if(guiToShow != null){
+                if(renderDelay <= 0){
+                    NarutoMod.LOGGER.info("Show gui");
+                    Minecraft.getMinecraft().displayGuiScreen(guiToShow);
+                    guiToShow = null;
+                    return;
+                }
+                else{
+                    renderDelay--;
+                }
+            }
 
             double nsPerTick = 1000000000D / 120D;
 
@@ -88,5 +102,11 @@ public class PlayerRenderTickEvent {
                 }
             }
         }
+    }
+
+    // Will show when there is no gui open
+    public static void showGUIScreen(GuiScreen guiShow) {
+        guiToShow = guiShow;
+        renderDelay = 5;
     }
 }

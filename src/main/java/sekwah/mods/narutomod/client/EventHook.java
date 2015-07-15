@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import sekwah.mods.narutomod.client.gui.GuiClanSelectionMenu;
 import sekwah.mods.narutomod.client.gui.GuiJutsuMenu;
 import sekwah.mods.narutomod.player.extendedproperties.PlayerInfo;
 import sekwah.mods.narutomod.settings.NarutoSettings;
@@ -58,29 +59,32 @@ public class EventHook {
 
     @SubscribeEvent
     public void onJoinWorld(EntityJoinWorldEvent event) {
-        // If you have any non-DataWatcher fields in your extended properties that
-        // need to be synced to the client, you must send a packet each time the
+        // If there are any non-DataWatcher fields in your extended properties that
+        // need to be synced to the client, they must be sent in a packet each time the
         // player joins the world; this takes care of dying, changing dimensions, etc.
-        if (event.entity instanceof EntityPlayerMP) {
+        if (event.entity instanceof EntityPlayer) {
 
             EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
             if((EntityPlayer) event.entity == (EntityPlayer) playerMP){
                 PlayerInfo playerInfo = PlayerInfo.get((EntityPlayer) event.entity);
                 if(!playerInfo.hasAskedToSetClan){
-                    Minecraft.getMinecraft().displayGuiScreen(new GuiJutsuMenu());
+                    // Store more about if asked this session and stuff ^.^
+                    playerInfo.hasAskedToSetClan = true;
+                    // Some sorta code to detect the first spawn in
+                    PlayerRenderTickEvent.showGUIScreen(new GuiClanSelectionMenu());
                 }
             }
 
         }
     }
 
-    @SubscribeEvent
-    public void renderHand(RenderHandEvent event) {
+    //@SubscribeEvent
+    //public void renderHand(RenderHandEvent event) {
         //System.out.println(NarutoSettings.experimentalFirstPerson);
         //GL11.glTranslated(0,50F,0);
         //event.setCanceled(NarutoSettings.experimentalFirstPerson);
 
-    }
+    //}
 
     //FogColors
     // FogDensity possibly for genjutsu
