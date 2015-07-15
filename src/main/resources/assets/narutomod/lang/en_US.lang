@@ -11,6 +11,9 @@ naruto.gui.chakraGUICorner=GUI Corner
 naruto.gui.jutsuSettings=Jutsu Settings
 naruto.gui.jutsuDelay=Delay(ticks)
 
+naruto.gui.clan.title=Clan Selection
+naruto.gui.clan.select=Select
+
 
 item.Kunai.name=Kunai
 item.Shuriken.name=Shuriken
@@ -31,7 +34,7 @@ item.ExplosiveKunai.name=Explosive Kunai
 
 item.Kubikiribocho.name=Kubikiribocho
 item.Kubikiribocho.desc.line1=A giant baddass sword that heals
-item.Kubikiribocho.desc.line2=with the blood of your enemys.
+item.Kubikiribocho.desc.line2=with the blood of your enemies.
         
 item.Ramen.name=Ramen
         
