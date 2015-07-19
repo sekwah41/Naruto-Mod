@@ -99,7 +99,7 @@ itemGroup.narutoWeapons=Naruto Weapons
 
 itemGroup.narutoMaterials=Naruto Materials
 Jutsus.Chakra_Control=Chakra Control
-Jutsus.Chakra_Control.desc=The basis of every technique with the exeption of taijutsu. Passive ability. C can also be held to focus your chakra and speed up regeneration.
+Jutsus.Chakra_Control.desc=The basis of every technique with the exception of taijutsu. Passive ability. C can also be held to focus your chakra and speed up regeneration.
         
 Jutsus.Fire_Ball_Jutsu=Fire Ball Jutsu
 Jutsus.Fire_Ball_Jutsu.desc=Turn your chakra to fire and release it in the form of a fireball. Combo: C V C
@@ -108,7 +108,7 @@ Jutsus.Shadow_Clone_Jutsu=Shadow Clone Jutsu
 Jutsus.Shadow_Clone_Jutsu.desc=Confuse your enemy with copies of yourself! Combo: C B B V
         
 Jutsus.Water_Walk=Water Walking
-Jutsus.Water_Walk.desc=Direct chakra to beneeth your feet and allow yourself to stand, run and jump on water. Combo: B
+Jutsus.Water_Walk.desc=Direct chakra to beneath your feet and allow yourself to stand, run and jump on water. Combo: B
         
 Jutsus.Chakra_Dash=Chakra Dash
 Jutsus.Chakra_Dash.desc=Infuse chakra throughout your body and increase the speed of your movements. Combo: V
