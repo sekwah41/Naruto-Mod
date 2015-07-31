@@ -1,5 +1,8 @@
 package sekwah.mods.narutomod.generic;
 
+import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.network.UsageReport;
+
 public class CommonProxy {
 
     public void addKeyBindings() {
@@ -27,8 +30,11 @@ public class CommonProxy {
     }
 
     public void registerCustomBlocks() {
+
     }
 
     public void startUsageReport() {
+        NarutoMod.usageReport = new UsageReport(false);
+        NarutoMod.usageReport.startUsageReport();
     }
 }

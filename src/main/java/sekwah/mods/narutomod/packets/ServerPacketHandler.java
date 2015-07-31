@@ -100,4 +100,7 @@ public class ServerPacketHandler {
         dw.updateObject(25, Float.valueOf(0));
     }
 
+    public static void handlePlayerDataPacket(byte[] packet) {
+
+    }
 }

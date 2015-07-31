@@ -2,17 +2,11 @@ package sekwah.mods.narutomod.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import sekwah.mods.narutomod.client.gui.GuiClanSelectionMenu;
-import sekwah.mods.narutomod.client.gui.GuiJutsuMenu;
 import sekwah.mods.narutomod.player.extendedproperties.PlayerInfo;
-import sekwah.mods.narutomod.settings.NarutoSettings;
 
 public class EventHook {
 
@@ -85,6 +79,10 @@ public class EventHook {
         //event.setCanceled(NarutoSettings.experimentalFirstPerson);
 
     //}
+
+    // so fog and stuffs
+    // Litteraly all usefull stuff for rendering this and possibly camera transformations can be found in the EntityRenderer
+    //  found at net.minecraft.client.renderer
 
     //FogColors
     // FogDensity possibly for genjutsu

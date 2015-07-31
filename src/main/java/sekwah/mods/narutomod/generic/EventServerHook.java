@@ -68,6 +68,8 @@ public class EventServerHook {
             DataWatcher dw = event.entity.getDataWatcher();
             dw.addObject(20, "default"); // jutsu pose id (such as charging)
             dw.addObject(21, "Undefined"); // current clan
+            // current player
+            dw.addObject(22, 50);
             //dw.addObject(22, 50); // max amount of stamina
             //dw.addObject(23, 50); // amount of chakra
             dw.addObject(24, 0); // amount of kunai in player
