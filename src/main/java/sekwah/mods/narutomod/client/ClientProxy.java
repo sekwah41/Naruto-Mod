@@ -46,7 +46,7 @@ public class ClientProxy extends CommonProxy {
 
     public void addTickHandelers() {
 
-        // TODO add the new tick handeler event things to replace these
+        // Has been readded, but in the lsiteners, remove this part soon and make sure its removed everywhere else
         /**TickRegistry.registerTickHandler(new PlayerRenderTickHandler(EnumSet.of(TickType.RENDER)), Side.CLIENT);
 
          TickRegistry.registerTickHandler(new PlayerClientTickHandler(EnumSet.of(TickType.CLIENT)), Side.CLIENT);*/
@@ -127,7 +127,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void addModderCapes() {
-
+        // Create a cape with your logo on for all stuff ;3 However it may be best to leave it out.
         //String capeURL = "http://i.imgur.com/sZ6wSBh.png"; // change!
         //String[] devs = {"SEKWAH41", "Orcwaagh"};
 
