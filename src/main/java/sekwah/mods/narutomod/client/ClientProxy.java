@@ -139,7 +139,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void startUsageReport() {
-        NarutoMod.usageReport = new UsageReport();
+        NarutoMod.usageReport = new UsageReport(true);
         NarutoMod.usageReport.startUsageReport();
     }
 

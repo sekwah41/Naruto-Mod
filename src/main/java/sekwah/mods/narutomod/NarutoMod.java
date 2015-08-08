@@ -43,9 +43,10 @@ public class NarutoMod {
     public static final Logger LOGGER = LogManager.getLogger("Sekwah41's Naruto Mod");
     @SidedProxy(clientSide = "sekwah.mods.narutomod.client.ClientProxy", serverSide = "sekwah.mods.narutomod.generic.CommonProxy")
     public static CommonProxy proxy;
-    public static final String version = "0.3.4";
 
     // TODO for the lang files possibly use the \u0007 character code thing and see if that works for accents
+
+    public static final String version = "0.3.4";
 
     // update data
     public static int mcversion = 1710; // e.g. 164 is 1.6.4

@@ -33,7 +33,7 @@ public final class UpdateChecker {
 
         try {
             NarutoMod.LOGGER.info("Checking for updates...");
-            URL url = new URL("https://www.dropbox.com/s/ablj3kgnp7bh2et/Naruto%20Mod%20Update%20Detector.txt?dl=1");
+            URL url = new URL("http://www.sekwah.com/naruto-mod/UpdateInfo.txt");
             URLConnection connection = url.openConnection();
             connection.setConnectTimeout(5000);
             Scanner s = new Scanner(connection.getInputStream());

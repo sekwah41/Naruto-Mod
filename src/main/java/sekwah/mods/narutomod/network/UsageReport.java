@@ -19,6 +19,8 @@ public class UsageReport {
 
     private final Map reportData = Maps.newHashMap(); // general data from mod, may include more or less
 
+    private final boolean isClient;
+
     private boolean optOut = false;
 
     private final Object syncLock = new Object();
@@ -26,9 +28,10 @@ public class UsageReport {
     private int reportCounter = 0;
 
     // Once this is complete there will be a lot more data complete
-    public UsageReport() {
+    public UsageReport(boolean isClient) {
+        this.isClient = isClient;
         try {
-            this.reportURL = new URL("http://report.sekwah.com/narutomod/");
+            this.reportURL = new URL("http://report.sekwah.com/naruto-mod/");
         } catch (MalformedURLException malformedurlexception) {
             throw new IllegalArgumentException();
         }
@@ -93,6 +96,7 @@ public class UsageReport {
     public void addBase(){
         this.addData("uuid", uniqueID);// not the players uuid but a randomly generated one, more like a session token
         this.addData("version", NarutoMod.version);
+        this.addData("isClient", isClient);
     }
 
     public void addStats() {

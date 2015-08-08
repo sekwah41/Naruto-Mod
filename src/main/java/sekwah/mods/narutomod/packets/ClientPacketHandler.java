@@ -72,4 +72,7 @@ public class ClientPacketHandler {
         SoundEffects.play(soundID,playerMP,x,y,z);
     }
 
+    public static void handlePlayerDataPacket(byte[] packet) {
+
+    }
 }

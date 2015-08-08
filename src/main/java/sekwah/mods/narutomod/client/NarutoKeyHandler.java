@@ -34,9 +34,9 @@ public class NarutoKeyHandler {
     /**
      * Key descriptions; use a language file to localize the description later
      */
-    public static final String[] keyDesc = {"naruto.keys.key1", "naruto.keys.key2", "naruto.keys.key3", "naruto.keys.jutsumenu", "naruto.keys.options", "naruto.keys.leap"};
+    public static final String[] keyDesc = {"naruto.keys.key1", "naruto.keys.key2", "naruto.keys.key3", "naruto.keys.jutsumenu", "naruto.keys.options", "naruto.keys.leap", "naruto.keys.sharingan"};
     public static final KeyBinding[] keys = new KeyBinding[keyDesc.length];
-    public static boolean[] ispressed = {false, false, false, false, false, false};
+    public static boolean[] ispressed = {false, false, false, false, false, false, false};
     //private static boolean[] repeat = {false, false, false, false, false/**, false*/};
 
     public static boolean[] isVanillaPressed = {false, false};
@@ -44,7 +44,7 @@ public class NarutoKeyHandler {
     /**
      * Default key values
      */
-    private final int[] keyButtons = {Keyboard.KEY_C, Keyboard.KEY_V, Keyboard.KEY_B, Keyboard.KEY_J, Keyboard.KEY_O, Keyboard.KEY_X};
+    private final int[] keyButtons = {Keyboard.KEY_C, Keyboard.KEY_V, Keyboard.KEY_B, Keyboard.KEY_J, Keyboard.KEY_O, Keyboard.KEY_X, Keyboard.KEY_NUMPAD1};
 
     public NarutoKeyHandler() {
         for (int i = 0; i < keyDesc.length; ++i) {
@@ -112,6 +112,11 @@ public class NarutoKeyHandler {
                         PlayerClientTickEvent.useChakra(10F);
                     }
                     playerMP.setVelocity(playerMP.motionX + playerMP.getLookVec().xCoord * 1.5F, (playerMP.getLookVec().yCoord + 0.8F) * 0.7F /*1.2F*/, playerMP.motionZ + playerMP.getLookVec().zCoord * 1.5F);
+                }
+            } else if(keys[keyID].getKeyDescription().equals("naruto.keys.sharingan")){
+                EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
+                if(playerMP.getCommandSenderName().endsWith("liam3011") || playerMP.getCommandSenderName().endsWith("sekwah41")){
+
                 }
             }
             //else if(keys[keyID].getKeyDescription().equals("Naruto Emotes")){

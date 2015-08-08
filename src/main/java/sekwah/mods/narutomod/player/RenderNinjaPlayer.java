@@ -606,7 +606,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
             }
         }
 
-        String[] MaskUsers = {"SEKWAH41", "Praneeth98", "Orcwaagh"};
+        String[] MaskUsers = {"sekwah41", "Praneeth98", "Orcwaagh"};
         for (int mask = 0; mask < MaskUsers.length; ++mask) {
             if (p_77029_1_.getCommandSenderName().endsWith(MaskUsers[mask]) && p_77029_1_.func_152123_o()) {
                 this.bindTexture(p_77029_1_.getLocationSkin());

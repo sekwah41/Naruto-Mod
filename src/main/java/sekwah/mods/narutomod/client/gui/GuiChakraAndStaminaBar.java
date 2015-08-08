@@ -16,6 +16,8 @@ import org.lwjgl.opengl.GL11;
 public class GuiChakraAndStaminaBar extends Gui {
     private static final ResourceLocation BARSTEXTURE = new ResourceLocation("narutomod", "textures/gui/newChakraBars.png");
 
+    private static final ResourceLocation DEFAULTTEXTURE = new ResourceLocation("narutomod", "textures/gui/defaultBars.png");
+
     private Minecraft mc;
     public GuiChakraAndStaminaBar(Minecraft mc) {
         super();
@@ -71,13 +73,24 @@ public class GuiChakraAndStaminaBar extends Gui {
             OffsetY = scaledresolution.getScaledHeight() - NarutoSettings.chakraBarOffsetY - 100;
         }*/
 
-        //drawTexturedModalRect(0, scaledresolution.getScaledHeight() - 97, 0, 159, 12, 97);
+        // Hiro base charka bar
 
-        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 189, scaledresolution.getScaledHeight() - 12, 0, 244, 97, 12);
-        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 169, scaledresolution.getScaledHeight() - 9, 20, 237, 74, 6);
+        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 190, scaledresolution.getScaledHeight() - 12, 0, 244, 96, 7);
+        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 190, scaledresolution.getScaledHeight() - 9, 20, 237, 74, 6);
 
         drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 + 92, scaledresolution.getScaledHeight() - 12, 159, 244, 97, 12);
         drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 + 95, scaledresolution.getScaledHeight() - 9, 162, 237, 74, 6);
+
+
+        // my old terrible texture
+
+        //drawTexturedModalRect(0, scaledresolution.getScaledHeight() - 97, 0, 159, 12, 97);
+
+        /*drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 189, scaledresolution.getScaledHeight() - 12, 0, 244, 97, 12);
+        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 169, scaledresolution.getScaledHeight() - 9, 20, 237, 74, 6);
+
+        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 + 92, scaledresolution.getScaledHeight() - 12, 159, 244, 97, 12);
+        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 + 95, scaledresolution.getScaledHeight() - 9, 162, 237, 74, 6);*/
 
         //drawTexturedModalRect(scaledresolution.getScaledWidth() - 12, scaledresolution.getScaledHeight() - 97, 244, 159, 12, 97);
 
