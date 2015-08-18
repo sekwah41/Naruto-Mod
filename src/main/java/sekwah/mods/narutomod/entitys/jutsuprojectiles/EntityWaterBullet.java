@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.generic.NarutoDamageSources;
 
 import java.util.List;
 
@@ -114,7 +115,8 @@ public class EntityWaterBullet extends Entity // TODO actually code the water bu
                  this.setDead();
                  }*/
 
-                par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, shootingEntity), 4.0F);
+                //par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, shootingEntity), 4.0F);
+                par1MovingObjectPosition.entityHit.attackEntityFrom(NarutoDamageSources.causeWaterBullet(this, shootingEntity), 4.0F);
                 par1MovingObjectPosition.entityHit.extinguish();
             }
 
@@ -126,7 +128,7 @@ public class EntityWaterBullet extends Entity // TODO actually code the water bu
                         double differenceY = this.posY - entity.posY;
                         double differenceZ = this.posZ - entity.posZ;
                         double distance = Math.sqrt(differenceX * differenceX + differenceY * differenceY + differenceZ * differenceZ);
-                        entity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, shootingEntity), (int) (8 / ((distance * 2) + 1)));
+                        entity.attackEntityFrom(NarutoDamageSources.causeWaterBullet(this, shootingEntity), (int) (8 / ((distance * 2) + 1)));
                         entity.extinguish();
                     }
                 }

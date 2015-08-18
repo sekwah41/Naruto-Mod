@@ -160,3 +160,5 @@ naruto.keys.jutsumenu=Open Jutsu Menu
 naruto.keys.options=Open Naruto Options
 
 potion.chakraRestore=Chakra Restore
+
+death.attack.waterBullet=%1$s was killed by %2$s using water bullets

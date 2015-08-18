@@ -33,7 +33,7 @@ public class PlayerClientTickEvent {
 
     public static boolean ChargingChakra = false;
 
-    public static int[] doubleTapTime = {0,0};
+    public static int[] doubleTapTime = {0,0,0};
 
 
     public static boolean chakraDash = false;

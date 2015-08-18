@@ -36,6 +36,7 @@ import sekwah.mods.narutomod.worldgeneration.NarutoWorldGeneration;
 
 import java.io.InputStream;
 
+// --username sekwah41
 @Mod(modid = NarutoMod.modid, name = "Naruto Mod", version = NarutoMod.version)
 public class NarutoMod {
 

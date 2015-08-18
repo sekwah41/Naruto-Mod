@@ -73,6 +73,7 @@ public class EventServerHook {
             //dw.addObject(22, 50); // max amount of stamina
             //dw.addObject(23, 50); // amount of chakra
             dw.addObject(24, 0); // amount of kunai in player
+            // Float.valueOf(0)
             dw.addObject(25, Float.valueOf(0)); // animationTick (used to add smooth animation for players to different poses, is currently edited by the client :P)
             dw.addObject(26, "default"); // lastpose (so the smooth animation works between poses)
             dw.addObject(27, "default"); // lastposeClient (the last pose the client updated(so it can change the animationTick back to 0))

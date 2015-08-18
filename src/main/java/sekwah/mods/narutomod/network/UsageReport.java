@@ -77,8 +77,6 @@ public class UsageReport {
     }
 
     public void addData(String dataName, Object data) {
-        Object object1 = this.syncLock;
-
         synchronized (this.syncLock) {
             this.reportData.put(dataName, data);
         }
@@ -86,8 +84,6 @@ public class UsageReport {
 
     // Not used atm but may be needed
     public void removeData(String dataName) {
-        Object object1 = this.syncLock;
-
         synchronized (this.syncLock) {
             this.reportData.remove(dataName);
         }

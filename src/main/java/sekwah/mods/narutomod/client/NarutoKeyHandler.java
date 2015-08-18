@@ -168,6 +168,23 @@ public class NarutoKeyHandler {
                     }
                 }
             }
+            else if(keyDesc.equals("key.back")) {
+                // TODO add leap code and change the fall distance with a packet, also find why going backwards isnt working
+                if(PlayerClientTickEvent.doubleTapTime[2] == 0){
+                    PlayerClientTickEvent.doubleTapTime[2] = 10;
+                }
+                else{
+                    PlayerClientTickEvent.doubleTapTime[2] = 0;
+                    if(playerMP.onGround){
+                        if(PlayerClientTickEvent.onWater){
+                            PlayerClientTickEvent.useChakra(5F);
+                        }
+                        Vec3 lookVector = playerMP.getLookVec();
+                        lookVector.rotateAroundY((float) (Math.PI));
+                        playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.1F);
+                    }
+                }
+            }
         }
     }
 

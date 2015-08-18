@@ -15,27 +15,21 @@ public class NarutoEntitys {
 
     public static void addEntitys(NarutoMod narutoMod) {
 
-        EntityRegistry.registerModEntity(EntityKunai.class, "Kunai", 200, narutoMod, 64, 1, true);
-        EntityList.IDtoClassMapping.put(200, EntityKunai.class);
+        EntityRegistry.registerModEntity(EntityKunai.class, "Kunai", 1, narutoMod, 64, 1, true);
 
-        EntityRegistry.registerModEntity(EntityShuriken.class, "Shuriken", 201, narutoMod, 64, 1, true);
-        EntityList.IDtoClassMapping.put(201, EntityShuriken.class);
+        EntityRegistry.registerModEntity(EntityShuriken.class, "Shuriken", 2, narutoMod, 64, 1, true);
 
-        EntityRegistry.registerModEntity(EntityPaperBomb.class, "PaperBomb", 202, narutoMod, 64, 1, true);
-        EntityList.IDtoClassMapping.put(202, EntityPaperBomb.class);
+        EntityRegistry.registerModEntity(EntityPaperBomb.class, "PaperBomb", 3, narutoMod, 64, 1, true);
 
-        EntityRegistry.registerModEntity(EntitySenbon.class, "Senbon", 203, narutoMod, 64, 1, true);
-        EntityList.IDtoClassMapping.put(203, EntitySenbon.class);
+        EntityRegistry.registerModEntity(EntitySenbon.class, "Senbon", 4, narutoMod, 64, 1, true);
 
-        EntityRegistry.registerModEntity(EntityExplosiveKunai.class, "Explosive Kunai", 204, narutoMod, 64, 1, true);
-        EntityList.IDtoClassMapping.put(204, EntityExplosiveKunai.class);
+        EntityRegistry.registerModEntity(EntityExplosiveKunai.class, "Explosive Kunai", 5, narutoMod, 64, 1, true);
 
-        EntityRegistry.registerModEntity(EntityFlameFireball.class, "Fireball", 205, narutoMod, 64, 1, true);
-        EntityList.IDtoClassMapping.put(205, EntityFlameFireball.class);
+        EntityRegistry.registerModEntity(EntityFlameFireball.class, "Fireball", 6, narutoMod, 64, 1, true);
 
-        EntityRegistry.registerModEntity(EntityWaterBullet.class, "WaterBullet", 206, narutoMod, 64, 1, true);
-        EntityList.IDtoClassMapping.put(206, EntityWaterBullet.class);
+        EntityRegistry.registerModEntity(EntityWaterBullet.class, "WaterBullet", 7, narutoMod, 64, 1, true);
 
+        // TODO make a custom egg for entities
         EntityRegistry.registerModEntity(EntityPuppet.class, "Puppet", 73, narutoMod, 80, 5, true);
         EntityList.IDtoClassMapping.put(73, EntityPuppet.class);
         EntityList.entityEggs.put(73, new EntityList.EntityEggInfo(73, (new Color(50, 50, 50)).getRGB(), (new Color(195, 173, 169)).getRGB()));
@@ -60,11 +54,10 @@ public class NarutoEntitys {
         EntityList.IDtoClassMapping.put(75, EntityShadowClone.class);
         EntityList.entityEggs.put(75, new EntityList.EntityEggInfo(75, (new Color(40, 40, 40)).getRGB(), (new Color(149, 94, 39)).getRGB()));
 
-        EntityRegistry.registerModEntity(EntitySubstitution.class, "Substitution", 76, narutoMod, 80, 1, true);
-        EntityList.IDtoClassMapping.put(76, EntitySubstitution.class);
 
-        EntityRegistry.registerModEntity(EntitySubstitutionLog.class, "SubstitutionLog", 77, narutoMod, 80, 1, true);
-        EntityList.IDtoClassMapping.put(77, EntitySubstitutionLog.class);
+        EntityRegistry.registerModEntity(EntitySubstitution.class, "Substitution", 14, narutoMod, 80, 1, true);
+
+        EntityRegistry.registerModEntity(EntitySubstitutionLog.class, "SubstitutionLog", 15, narutoMod, 80, 1, true);
 
     }
 

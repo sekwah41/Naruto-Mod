@@ -310,13 +310,11 @@ public class NarutoAnimator {
             dw.updateObject(27, dw.getWatchableObjectString(20));
         }
 
-        if (dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27)) && getPose(dw.getWatchableObjectString(20), poseArray) != null && getPose(dw.getWatchableObjectString(20), poseArray).animLength > dw.getWatchableObjectInt(25)) {
+        if (dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27)) && getPose(dw.getWatchableObjectString(20), poseArray) != null && getPose(dw.getWatchableObjectString(20), poseArray).animLength > dw.getWatchableObjectFloat(25)) {
             float delta = PlayerRenderTickEvent.delta;
-            while (delta-- >= 1) {
-                if (getPose(dw.getWatchableObjectString(20), poseArray).animLength > dw.getWatchableObjectInt(25)) {
-                    dw.updateObject(25, Float.valueOf(dw.getWatchableObjectFloat(25) + 1));
+                if (getPose(dw.getWatchableObjectString(20), poseArray).animLength > dw.getWatchableObjectFloat(25)) {
+                    dw.updateObject(25, Float.valueOf(dw.getWatchableObjectFloat(25) + delta));
                 }
-            }
         } else {
             dw.updateObject(26, dw.getWatchableObjectString(20));
         }
