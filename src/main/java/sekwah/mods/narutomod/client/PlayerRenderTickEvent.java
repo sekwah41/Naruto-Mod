@@ -55,7 +55,7 @@ public class PlayerRenderTickEvent {
                 lastTime = now;
             } else if (delta < 0) {
                 lastTime = now;
-                NarutoMod.LOGGER.error("[Naruto Mod] Your computer seems to have traveled back in time :O");
+                NarutoMod.LOGGER.error(" Your computer seems to have traveled back in time :O");
             }
 
             EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;

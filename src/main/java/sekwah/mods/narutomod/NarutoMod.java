@@ -78,7 +78,7 @@ public class NarutoMod {
         InputStream fileStreamJson = NarutoMod.class.getResourceAsStream("/assets/narutomod/mod/poseData.json");
         entityAnimator.playerPoses = entityAnimator.addPoses(fileStreamJson, entityAnimator.playerPoses);
 
-        NarutoEntitys.addEntitys(this);
+        NarutoEntitys.addEntities(this);
 
         NarutoWorldGeneration.registerWorldGenerators();
 

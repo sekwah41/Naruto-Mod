@@ -13,7 +13,12 @@ import java.awt.*;
 
 public class NarutoEntitys {
 
-    public static void addEntitys(NarutoMod narutoMod) {
+    public static void addEntities(NarutoMod narutoMod) {
+        // Check when you have internet/are back if the entity list is needed and also if the id's are global or
+        // if the same ids can be shared across different mods. Its registering a mod id so it may not be like modloader
+        // they may be able to start at 1 for each mod and work their way up(would be pretty useful rather than always
+        // looking at different ids and being unnecessarily odd... (however it does say mod specific id so its
+        // pointing towards being good)
 
         EntityRegistry.registerModEntity(EntityKunai.class, "Kunai", 1, narutoMod, 64, 1, true);
 
