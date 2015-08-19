@@ -56,7 +56,7 @@ public class ItemArmourGourd extends ItemArmor {
                         DataWatcher dw = entityLiving.getDataWatcher();
                         armorModel.animationID = dw.getWatchableObjectString(20);
                         armorModel.animationlastID = dw.getWatchableObjectString(26);
-                        armorModel.animationTick = dw.getWatchableObjectInt(25);
+                        armorModel.animationTick = dw.getWatchableObjectFloat(25);
                     }
                 }
             }
