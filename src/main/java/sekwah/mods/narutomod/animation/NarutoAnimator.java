@@ -25,8 +25,8 @@ public class NarutoAnimator {
         playerPoses[0] = new Pose("default");
     }
 
-
-    public static Pose[] sortAnimations(Pose[] poses) {
+    // bubblesort
+    /*public static Pose[] sortAnimations(Pose[] poses) {
         for (int i = poses.length - 1; i >= 1; i--) {
             int swaps = 0;
             for (int z = 0; z < i; z++) {
@@ -56,6 +56,12 @@ public class NarutoAnimator {
                 break;
             }
         }
+        return poses;
+    }*/
+
+    // quicksort
+    public static Pose[] sortAnimations(Pose[] poses) {
+
         return poses;
     }
 
