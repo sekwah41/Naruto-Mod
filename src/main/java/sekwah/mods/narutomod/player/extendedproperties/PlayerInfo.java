@@ -14,15 +14,27 @@ public class PlayerInfo implements IExtendedEntityProperties
     // could be usefull but not currently used, also this will only exist on a player and will not change so its reasonably safe
     private final EntityPlayer player;
 
-    private int currentChakra, maxChakra;
+    private int chakra, maxChakra;
 
-    private int currentStamina, maxStamina;
+    private int stamina, maxStamina;
 
     private int CLAN_WATCHER = 21;
 
-    private String clan = "Undefined";
+    private String clan = "Undefined"; // Start storing custom objects like what jutsus are learnt and make a special saver for those objects and loader for those objects
 
     public boolean hasAskedToSetClan = false;
+
+    private int levelXP, level;
+
+    private int health, maxHealth; // will potentially be used to overwrite the current health or if another way is found it may be good.
+
+
+    private String rpFirstName, rpLastName; // May be used for role playing names rather than usernames.
+
+
+    // Individual stats
+
+    private int strengthStat, jutsuStat, intStat, defStat, luckStat, speedStat, dexStat, fortitudeStat, willpowerStat;
 
     /*
     The default constructor takes no arguments, but I put in the Entity so I can initialize the above variable 'player'
@@ -34,7 +46,7 @@ public class PlayerInfo implements IExtendedEntityProperties
         this.player = player;
 
         // Load with max mana, maybe save the mana amount and load it to stop it messing with single player, also have stats and stuff change the max ki
-        this.maxChakra = this.currentChakra = 50;
+        this.maxChakra = this.chakra = 50;
 
         this.hasAskedToSetClan = false;
     }
@@ -77,7 +89,7 @@ public class PlayerInfo implements IExtendedEntityProperties
         NBTTagCompound properties = new NBTTagCompound();
 
         properties.setString("Clan", clan);
-        properties.setInteger("CurrentChakra", this.currentChakra);
+        properties.setInteger("CurrentChakra", this.chakra);
         properties.setInteger("MaxChakra", this.maxChakra);// possibly calculate the maxKi when a player loads to stop potential cheating with nbt data
 
         compound.setTag(IDENTIFIER, properties);
@@ -89,7 +101,7 @@ public class PlayerInfo implements IExtendedEntityProperties
     {
         NBTTagCompound properties = (NBTTagCompound) compound.getTag(IDENTIFIER);
         this.clan = properties.getString("Clan");
-        this.currentChakra = properties.getInteger("CurrentChakra");
+        this.chakra = properties.getInteger("CurrentChakra");
         this.maxChakra = properties.getInteger("MaxChakra");
         this.reloadDW();
     }
@@ -109,10 +121,10 @@ public class PlayerInfo implements IExtendedEntityProperties
     public boolean consumeChakra(int amount)
     {
         // Does the player have enough chakra?
-        boolean sufficient = amount <= this.currentChakra;
+        boolean sufficient = amount <= this.chakra;
         // Consume the amount anyway; if it's more than the player's current chakra,
         // chakra will be set to 0
-        this.currentChakra -= (sufficient ? amount : 0); // false, take away no mana
+        this.chakra -= (sufficient ? amount : 0); // false, take away no mana
         // Return true if the player had enough ki
         return sufficient;
     }
@@ -120,10 +132,10 @@ public class PlayerInfo implements IExtendedEntityProperties
     public void rechargeChakra(int amount)
     {
         // Does the player have enough ki?
-        boolean sufficient = amount <= this.currentChakra;
+        boolean sufficient = amount <= this.chakra;
         // Consume the amount anyway; if it's more than the player's current ki,
         // ki will be set to 0
-        this.currentChakra += (amount < this.currentChakra ? amount : this.maxChakra);
+        this.chakra += (amount < this.chakra ? amount : this.maxChakra);
     }
 
     /**
@@ -131,7 +143,7 @@ public class PlayerInfo implements IExtendedEntityProperties
      */
     public void replenishChakra()
     {
-        this.currentChakra = this.maxChakra;
+        this.chakra = this.maxChakra;
 ;
     }
 

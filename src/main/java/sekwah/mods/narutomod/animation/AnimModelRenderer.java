@@ -9,6 +9,7 @@ import net.minecraft.client.model.TextureOffset;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.Tessellator;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
 
 import java.util.ArrayList;
 
@@ -43,6 +44,14 @@ public class AnimModelRenderer extends ModelRenderer {
     public AnimModelRenderer(ModelBase p_i1174_1_, int p_i1174_2_, int p_i1174_3_, String boxName) {
         this(p_i1174_1_, boxName);
         this.setTextureOffset(p_i1174_2_, p_i1174_3_);
+    }
+
+    public AnimModelRenderer(ModelNinjaBiped modelNinjaBiped, int textureX, int textureY, String boxName, AnimModelRenderer prevModel) {
+        this(modelNinjaBiped, textureX, textureY, boxName);
+        if(prevModel != null) {
+            this.isHidden = prevModel.isHidden;
+            this.showModel = prevModel.showModel;
+        }
     }
 
     /**

@@ -185,29 +185,31 @@ public class ModelNinjaBiped extends ModelBiped
         // Example of what all animated parts may look like.
         // this.bipedRightArmUpper = new AnimModelRenderer(this, 16, 22, "rightArmUpper");
 
+        // TODO it may be something to do with this which is cauzing the problem
+
         // Arms
-        this.bipedRightArmUpper = new AnimModelRenderer(this, 40, 16, "rightArmUpper");
+        this.bipedRightArmUpper = new AnimModelRenderer(this, 40, 16, "rightArmUpper", bipedRightArmUpper);
         upperRightArmBox = new ModelRetexturedBoxSharpBend(this.bipedRightArmUpper, 40, 16, -3.0F, -2.0F, -2.0F, 4, 6, 4, p_i1149_1_, 44, 16, 44, 26);
         this.bipedRightArmUpper.cubeList.add(upperRightArmBox);
         //this.bipedRightArmUpper.addRetexturedBox(-3.0F, -2.0F, -2.0F, 4, 6, 4, p_i1149_1_, 44, 16, 44, 26);
         this.bipedRightArmUpper.setRotationPoint(-5.0F, 2.0F + p_i1149_2_, 0.0F);
 
 
-        this.bipedRightArmLower = new AnimModelRenderer(this, 40, 22, "rightArmLower");
+        this.bipedRightArmLower = new AnimModelRenderer(this, 40, 22, "rightArmLower", bipedRightArmLower);
         lowerRightArmBox = new ModelRetexturedBoxSharpBend(this.bipedRightArmLower, 40, 22, -2F, 0F, -2F, 4, 6, 4, p_i1149_1_, 44, 26, 48, 16);
         this.bipedRightArmLower.cubeList.add(lowerRightArmBox);
         this.bipedRightArmLower.setRotationPoint(-1.0F, 4F + p_i1149_2_, 0.0F);
 
         this.bipedRightArmUpper.addChild(this.bipedRightArmLower);
 
-        this.bipedLeftArmUpper = new AnimModelRenderer(this, 40, 16, "leftArmUpper");
+        this.bipedLeftArmUpper = new AnimModelRenderer(this, 40, 16, "leftArmUpper", bipedLeftArmUpper);
         this.bipedLeftArmUpper.mirror = true;
         upperLeftArmBox = new ModelRetexturedBoxSharpBend(this.bipedLeftArmUpper, 40, 16, -1.0F, -2.0F, -2.0F, 4, 6, 4, p_i1149_1_, 44, 16, 44, 26);
         this.bipedLeftArmUpper.cubeList.add(upperLeftArmBox);
         this.bipedLeftArmUpper.setRotationPoint(5.0F, 2.0F, 0.0F);
 
 
-        this.bipedLeftArmLower = new AnimModelRenderer(this, 40, 22, "leftArmLower");
+        this.bipedLeftArmLower = new AnimModelRenderer(this, 40, 22, "leftArmLower", bipedLeftArmLower);
         this.bipedLeftArmLower.mirror = true;
         lowerLeftArmBox = new ModelRetexturedBoxSharpBend(this.bipedLeftArmLower, 40, 22, -2F, 0F, -2F, 4, 6, 4, p_i1149_1_, 44, 26, 48, 16);
         this.bipedLeftArmLower.cubeList.add(lowerLeftArmBox);
@@ -332,14 +334,14 @@ public class ModelNinjaBiped extends ModelBiped
         this.animatedParts.remove(this.bipedRightArmUpper);
 
         this.boxList.remove(bipedRightArmLower);
-        this.bipedRightArmLower = new AnimModelRenderer(this, 40, 22,"rightArmLower");
+        this.bipedRightArmLower = new AnimModelRenderer(this, 40, 22,"rightArmLower", bipedRightArmLower);
         this.boxList.remove(bipedLeftArmUpper);
-        this.bipedLeftArmUpper = new AnimModelRenderer(this, 16, 22,"leftArmUpper");
+        this.bipedLeftArmUpper = new AnimModelRenderer(this, 16, 22,"leftArmUpper", bipedLeftArmUpper);
         this.bipedLeftArmUpper.mirror = true;
         this.boxList.remove(bipedLeftArmLower);
-        this.bipedLeftArmLower = new AnimModelRenderer(this, 40, 22,"leftArmLower");
+        this.bipedLeftArmLower = new AnimModelRenderer(this, 40, 22,"leftArmLower", bipedLeftArmLower);
         this.boxList.remove(bipedRightArmUpper);
-        this.bipedRightArmUpper = new AnimModelRenderer(this, 16, 22,"rightArmUpper");
+        this.bipedRightArmUpper = new AnimModelRenderer(this, 16, 22,"rightArmUpper", bipedRightArmUpper);
 
         this.bipedLeftArmLower.setRotationPoint(1.0F, 4F, 0.0F);
 
@@ -359,14 +361,14 @@ public class ModelNinjaBiped extends ModelBiped
         this.animatedParts.remove(this.bipedRightLegUpper);
 
         this.boxList.remove(bipedRightLegLower);
-        this.bipedRightLegLower = new AnimModelRenderer(this, 0, 22,"rightLegLower");
+        this.bipedRightLegLower = new AnimModelRenderer(this, 0, 22,"rightLegLower", bipedRightLegLower);
         this.boxList.remove(bipedLeftLegUpper);
-        this.bipedLeftLegUpper = new AnimModelRenderer(this, 0, 22,"leftLegUpper");
+        this.bipedLeftLegUpper = new AnimModelRenderer(this, 0, 22,"leftLegUpper", bipedLeftLegUpper);
         this.bipedLeftLegUpper.mirror = true;
         this.boxList.remove(bipedLeftLegLower);
-        this.bipedLeftLegLower = new AnimModelRenderer(this, 0, 22,"leftLegLower");
+        this.bipedLeftLegLower = new AnimModelRenderer(this, 0, 22,"leftLegLower", bipedLeftLegLower);
         this.boxList.remove(bipedRightLegUpper);
-        this.bipedRightLegUpper = new AnimModelRenderer(this, 0, 22,"rightLegUpper");
+        this.bipedRightLegUpper = new AnimModelRenderer(this, 0, 22,"rightLegUpper", bipedRightLegUpper);
 
         this.bipedLeftLegLower.setRotationPoint(0F, 6F, 0.0F);
 
