@@ -85,7 +85,7 @@ public class NarutoAnimator {
         ArrayList<Pose> afterPoseList = new ArrayList<Pose>();
 
         for(Pose pose: poses){
-                for (int i = 0; i < pose.poseName.length(); i++) {
+                for (int i = 0; i <= pose.poseName.length(); i++) {
                     if (i < pose.poseName.length() && i < centerPose.poseName.length()) {
                         char animChar = pose.poseName.charAt(i);
                         char centerAnimChar = centerPose.poseName.charAt(i);
@@ -96,7 +96,7 @@ public class NarutoAnimator {
                             beforePoseList.add(pose);
                             break;
                         }
-                    } else if (centerPose.poseName.length() < pose.poseName.length()) {
+                    } else if (i < pose.poseName.length()) {
                         afterPoseList.add(pose);
                         break;
                     }
@@ -148,8 +148,8 @@ public class NarutoAnimator {
         ArrayList<PartData> afterPartDataList = new ArrayList<PartData>();
 
         for(PartData part: poses){
-                for (int i = 0; i < part.partName.length(); i++) {
-                    if (i <= part.partName.length() - 1 && i <= centerPartData.partName.length() - 1) {
+                for (int i = 0; i <= part.partName.length(); i++) {
+                    if (i < part.partName.length() && i < centerPartData.partName.length()) {
                         char animChar = part.partName.charAt(i);
                         char centerAnimChar = centerPartData.partName.charAt(i);
                         if (animChar > centerAnimChar) {
@@ -161,6 +161,10 @@ public class NarutoAnimator {
                         }
                     } else if (i >= part.partName.length() - 1) {
                         afterPartDataList.add(part);
+                        break;
+                    }
+                    else {
+                        beforePartDataList.add(part);
                         break;
                     }
                 }
