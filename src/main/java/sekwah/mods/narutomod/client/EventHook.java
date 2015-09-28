@@ -5,7 +5,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import sekwah.mods.narutomod.client.gui.GuiClanSelectionMenu;
 import sekwah.mods.narutomod.player.extendedproperties.PlayerInfo;
 
 public class EventHook {
@@ -65,7 +64,8 @@ public class EventHook {
                     // Store more about if asked this session and stuff ^.^
                     playerInfo.hasAskedToSetClan = true;
                     // Some sorta code to detect the first spawn in
-                    PlayerRenderTickEvent.showGUIScreen(new GuiClanSelectionMenu());
+                    // TODO finish clan thing
+                    //PlayerRenderTickEvent.showGUIScreen(new GuiClanSelectionMenu());
                 }
             }
 

@@ -25,7 +25,7 @@ public class NarutoAnimator {
         playerPoses[0] = new Pose("default");
     }
 
-    // bubblesort
+    // old bubblesort algorithm
     /*public static Pose[] sortAnimations(Pose[] poses) {
         for (int i = poses.length - 1; i >= 1; i--) {
             int swaps = 0;
@@ -59,13 +59,130 @@ public class NarutoAnimator {
         return poses;
     }*/
 
-    // quicksort
-    public static Pose[] sortAnimations(Pose[] poses) {
-
-        return poses;
+    public static Pose[] quickSortAnimations(Pose[] poses) {
+        ArrayList<Pose> poseList = new ArrayList<Pose>();
+        for(int i = 0; i < poses.length; i++){
+            poseList.add(poses[i]);
+        }
+        poseList = quickSortAnimations(poseList);
+        Pose[] newPoses = new Pose[poseList.size()];
+        for(int i = 0; i < poseList.size(); i++){
+            newPoses[i] = poseList.get(i);
+        }
+        return newPoses;
     }
 
-    public static PartData[] sortParts(PartData[] parts) {
+    // quicksort
+    public static ArrayList<Pose> quickSortAnimations(ArrayList<Pose> poses) {
+
+        ArrayList<Pose> finalPoseList = new ArrayList<Pose>();
+
+        Pose centerPose = poses.get(poses.size() / 2);
+
+        poses.remove(centerPose);
+
+        ArrayList<Pose> beforePoseList = new ArrayList<Pose>();
+        ArrayList<Pose> afterPoseList = new ArrayList<Pose>();
+
+        for(Pose pose: poses){
+                for (int i = 0; i < pose.poseName.length(); i++) {
+                    if (i < pose.poseName.length() && i < centerPose.poseName.length()) {
+                        char animChar = pose.poseName.charAt(i);
+                        char centerAnimChar = centerPose.poseName.charAt(i);
+                        if (animChar > centerAnimChar) {
+                            afterPoseList.add(pose);
+                            break;
+                        } else if (animChar < centerAnimChar) {
+                            beforePoseList.add(pose);
+                            break;
+                        }
+                    } else if (centerPose.poseName.length() < pose.poseName.length()) {
+                        afterPoseList.add(pose);
+                        break;
+                    }
+                    else{
+                        beforePoseList.add(pose);
+                        break;
+                    }
+                }
+        }
+
+        if(beforePoseList.size() > 0){
+            beforePoseList = quickSortAnimations(beforePoseList);
+        }
+
+        if(afterPoseList.size() > 0){
+            afterPoseList = quickSortAnimations(afterPoseList);
+        }
+
+        finalPoseList.addAll(beforePoseList);
+        finalPoseList.add(centerPose);
+        finalPoseList.addAll(afterPoseList);
+
+        return finalPoseList;
+    }
+
+    public static PartData[] quickSortParts(PartData[] parts) {
+        ArrayList<PartData> partList = new ArrayList<PartData>();
+        for(int i = 0; i < parts.length; i++){
+            partList.add(parts[i]);
+        }
+        partList = quickSortParts(partList);
+        PartData[] newParts = new PartData[partList.size()];
+        for(int i = 0; i < partList.size(); i++){
+            newParts[i] = partList.get(i);
+        }
+        return newParts;
+    }
+
+    // quicksort
+    public static ArrayList<PartData> quickSortParts(ArrayList<PartData> poses) {
+
+        ArrayList<PartData> finalPartDataList = new ArrayList<PartData>();
+
+        PartData centerPartData = poses.get(poses.size() / 2);
+
+        poses.remove(centerPartData);
+
+        ArrayList<PartData> beforePartDataList = new ArrayList<PartData>();
+        ArrayList<PartData> afterPartDataList = new ArrayList<PartData>();
+
+        for(PartData part: poses){
+                for (int i = 0; i < part.partName.length(); i++) {
+                    if (i <= part.partName.length() - 1 && i <= centerPartData.partName.length() - 1) {
+                        char animChar = part.partName.charAt(i);
+                        char centerAnimChar = centerPartData.partName.charAt(i);
+                        if (animChar > centerAnimChar) {
+                            afterPartDataList.add(part);
+                            break;
+                        } else if (animChar < centerAnimChar) {
+                            beforePartDataList.add(part);
+                            break;
+                        }
+                    } else if (i >= part.partName.length() - 1) {
+                        afterPartDataList.add(part);
+                        break;
+                    }
+                }
+        }
+
+        if(beforePartDataList.size() > 0){
+            beforePartDataList = quickSortParts(beforePartDataList);
+        }
+
+        if(afterPartDataList.size() > 0){
+            afterPartDataList = quickSortParts(afterPartDataList);
+        }
+
+        finalPartDataList.addAll(beforePartDataList);
+        finalPartDataList.add(centerPartData);
+        finalPartDataList.addAll(afterPartDataList);
+
+        return finalPartDataList;
+    }
+
+    // Old bubble sort for parts
+    /*public static PartData[] sortParts(PartData[] parts) {
         for (int i = parts.length - 1; i >= 1; i--) {
             int swaps = 0;
             for (int z = 0; z < i; z++) {
@@ -96,7 +213,7 @@ public class NarutoAnimator {
             }
         }
         return parts;
-    }
+    }*/
 
     public static boolean animationExists(String animationID, Pose[] poseArray) {
         if (getPose(animationID, poseArray) != null) {
@@ -318,9 +435,9 @@ public class NarutoAnimator {
 
         if (dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27)) && getPose(dw.getWatchableObjectString(20), poseArray) != null && getPose(dw.getWatchableObjectString(20), poseArray).animLength > dw.getWatchableObjectFloat(25)) {
             float delta = PlayerRenderTickEvent.delta;
-                if (getPose(dw.getWatchableObjectString(20), poseArray).animLength > dw.getWatchableObjectFloat(25)) {
-                    dw.updateObject(25, Float.valueOf(dw.getWatchableObjectFloat(25) + delta));
-                }
+            if (getPose(dw.getWatchableObjectString(20), poseArray).animLength > dw.getWatchableObjectFloat(25)) {
+                dw.updateObject(25, Float.valueOf(dw.getWatchableObjectFloat(25) + delta));
+            }
         } else {
             dw.updateObject(26, dw.getWatchableObjectString(20));
         }
@@ -475,7 +592,7 @@ public class NarutoAnimator {
                     partArray[n] = currentPart;
                 }
 
-                Pose currentPose = new Pose(currentPoseName, sortParts(partArray));
+                Pose currentPose = new Pose(currentPoseName, quickSortParts(partArray));
 
                 currentPose.poseName = currentPoseName;
 
@@ -498,7 +615,12 @@ public class NarutoAnimator {
             e.printStackTrace();
         }
 
-        poseArray = sortAnimations(poseArray);
+        /*poseArray = sortAnimations(poseArray);*/
+        poseArray = quickSortAnimations(poseArray);
+
+        for(Pose pose: poseArray){
+            NarutoMod.LOGGER.info(pose.poseName);
+        }
 
         return poseArray;
     }

@@ -39,7 +39,7 @@ public class NarutoKeyHandler {
     public static boolean[] ispressed = {false, false, false, false, false, false, false};
     //private static boolean[] repeat = {false, false, false, false, false/**, false*/};
 
-    public static boolean[] isVanillaPressed = {false, false};
+    public static boolean[] isVanillaPressed = {false, false, false};
 
     /**
      * Default key values
@@ -108,10 +108,14 @@ public class NarutoKeyHandler {
                 // TODO add leap code and change the fall distance with a packet
                 EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
                 if(playerMP.onGround){
-                    if(PlayerClientTickEvent.onWater){
-                        PlayerClientTickEvent.useChakra(10F);
+                    // TODO add some falling damage stuff so you take some damage
+                    if(PlayerClientTickEvent.stamina >= 20) {
+                        if (PlayerClientTickEvent.onWater) {
+                            PlayerClientTickEvent.useChakra(10F);
+                        }
+                        PlayerClientTickEvent.stamina -= 20;
+                        playerMP.setVelocity(playerMP.motionX + playerMP.getLookVec().xCoord * 1.5F, (playerMP.getLookVec().yCoord + 0.8F) * 0.7F /*1.2F*/, playerMP.motionZ + playerMP.getLookVec().zCoord * 1.5F);
                     }
-                    playerMP.setVelocity(playerMP.motionX + playerMP.getLookVec().xCoord * 1.5F, (playerMP.getLookVec().yCoord + 0.8F) * 0.7F /*1.2F*/, playerMP.motionZ + playerMP.getLookVec().zCoord * 1.5F);
                 }
             } else if(keys[keyID].getKeyDescription().equals("naruto.keys.sharingan")){
                 EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
@@ -141,13 +145,16 @@ public class NarutoKeyHandler {
                 }
                 else{
                     PlayerClientTickEvent.doubleTapTime[0] = 0;
-                    if(playerMP.onGround){
-                        if(PlayerClientTickEvent.onWater){
-                            PlayerClientTickEvent.useChakra(5F);
+                    if(PlayerClientTickEvent.stamina >= 20){
+                        if(playerMP.onGround){
+                            if(PlayerClientTickEvent.onWater){
+                                PlayerClientTickEvent.useChakra(5F);
+                            }
+                            Vec3 lookVector = playerMP.getLookVec();
+                            lookVector.rotateAroundY((float) (Math.PI / 2F));
+                            playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.5F);
+                            PlayerClientTickEvent.stamina -= 20;
                         }
-                        Vec3 lookVector = playerMP.getLookVec();
-                        lookVector.rotateAroundY((float) (Math.PI / 2F));
-                        playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.5F);
                     }
                 }
             }
@@ -158,13 +165,16 @@ public class NarutoKeyHandler {
                 }
                 else{
                     PlayerClientTickEvent.doubleTapTime[1] = 0;
-                    if(playerMP.onGround){
-                        if(PlayerClientTickEvent.onWater){
-                            PlayerClientTickEvent.useChakra(5F);
+                    if(PlayerClientTickEvent.stamina >= 20) {
+                        if (playerMP.onGround) {
+                            if (PlayerClientTickEvent.onWater) {
+                                PlayerClientTickEvent.useChakra(5F);
+                            }
+                            Vec3 lookVector = playerMP.getLookVec();
+                            lookVector.rotateAroundY((float) (-Math.PI / 2F));
+                            playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.1F);
+                            PlayerClientTickEvent.stamina -= 20;
                         }
-                        Vec3 lookVector = playerMP.getLookVec();
-                        lookVector.rotateAroundY((float) (-Math.PI / 2F));
-                        playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.1F);
                     }
                 }
             }
@@ -175,13 +185,16 @@ public class NarutoKeyHandler {
                 }
                 else{
                     PlayerClientTickEvent.doubleTapTime[2] = 0;
-                    if(playerMP.onGround){
-                        if(PlayerClientTickEvent.onWater){
-                            PlayerClientTickEvent.useChakra(5F);
+                    if(PlayerClientTickEvent.stamina >= 20) {
+                        if (playerMP.onGround) {
+                            if (PlayerClientTickEvent.onWater) {
+                                PlayerClientTickEvent.useChakra(5F);
+                            }
+                            Vec3 lookVector = playerMP.getLookVec();
+                            lookVector.rotateAroundY((float) (Math.PI));
+                            playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.1F);
+                            PlayerClientTickEvent.stamina -= 20;
                         }
-                        Vec3 lookVector = playerMP.getLookVec();
-                        lookVector.rotateAroundY((float) (Math.PI));
-                        playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.1F);
                     }
                 }
             }

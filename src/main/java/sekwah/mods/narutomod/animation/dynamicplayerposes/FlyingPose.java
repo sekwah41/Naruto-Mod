@@ -22,6 +22,7 @@ public class FlyingPose extends DynamicPose {
     private final PartData leftLegUpper;
     private final PartData leftLegLower;
 
+    // This is just a debug animation from the DBZ mod
     public FlyingPose() {
         super("flying");
 
@@ -55,7 +56,7 @@ public class FlyingPose extends DynamicPose {
         rotateAngleY = 0;
         rotateAngleZ = 0;
 
-        partData = NarutoAnimator.sortParts(partData);
+        partData = NarutoAnimator.quickSortParts(partData);
     }
 
     public void updatePose(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity, float... args) {

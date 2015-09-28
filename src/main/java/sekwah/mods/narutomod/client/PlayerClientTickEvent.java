@@ -41,6 +41,10 @@ public class PlayerClientTickEvent {
     public static boolean waterWalking = false;
     public static float chakra = 100;
     public static float maxChakra = 100;
+
+    public static float stamina = 100;
+    public static float maxStamina = 100;
+
     public static int chakraCooldown;
     public static boolean isChakraFocus;
     public static String jutsuPoseID = "default"; // finish this so it is set by the different jutsu, for chakra charge it when its turned off and on. and for other jutsus set a delay untill its changed back
@@ -75,6 +79,14 @@ public class PlayerClientTickEvent {
         GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
         if (guiscreen == null || guiscreen instanceof GuiInventory || guiscreen instanceof GuiChat) {
 
+            // TEMP ADDITION FOR GINGERS SHITTY STUFF
+            stamina += 0.22;
+
+            if(stamina > maxStamina){
+                stamina = maxStamina;
+            }
+
+            //NarutoMod.LOGGER.info(stamina);
 
             boolean ChakraFocus = false;
 

@@ -3,6 +3,54 @@
       "chakraCharging" :{
           "animDuration": -1,
           "animLength": 19,
+          "locData": {
+              "leftArmUpper": {
+                  "posY": 4.099999904632568,
+                  "posX": 5,
+                  "posZ": -4.699999809265137,
+                  "rotX": "1.44513267"
+              },
+              "upperBody": {
+                  "posY": 3.200000047683716,
+                  "posX": 0,
+                  "posZ": -5.400000095367432,
+                  "rotX": "0.62831853"
+              },
+              "rightLegUpper": {
+                  "posY": 13.100000381469727,
+                  "posX": -2,
+                  "posZ": 0,
+                  "rotX": "-0.62831853"
+              },
+              "lowerBody": {
+                  "posY": 7.599999904632568,
+                  "posX": 0,
+                  "posZ": -2.0999999046325684,
+                  "rotX": "0.37699113"
+              },
+              "head": {
+                  "posY": 4.099999904632568,
+                  "posX": 0,
+                  "posZ": -5.800000190734863,
+                  "rotX": "0.12566370"
+              },
+              "leftLegUpper": {
+                  "posY": 12.699999809265137,
+                  "posX": 2,
+                  "posZ": 0,
+                  "rotX": "0.50265481"
+              },
+              "rightArmUpper": {
+                  "posY": 4.099999904632568,
+                  "posX": -5,
+                  "posZ": -4.699999809265137,
+                  "rotX": "1.44513267"
+              }
+          }
+      },
+      "chakraCharging2" :{
+          "animDuration": -1,
+          "animLength": 19,
           "locData" :{
               "rightArmUpper":{
                   "rotX": -1.375616,
@@ -14,7 +62,7 @@
                   "rotY": 0,
                   "rotZ": 0
               },
-			  "leftArmLower":{
+              "leftArmLower":{
                   "rotX": 0,
                   "rotY": 0,
                   "rotZ": 0

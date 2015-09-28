@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 
 //
 // GuiBuffBar implements a simple status bar at the top of the screen which 
@@ -53,7 +54,6 @@ public class GuiChakraAndStaminaBar extends Gui {
         GL11.glPushMatrix();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-        this.mc.renderEngine.bindTexture(BARSTEXTURE);
 
         GL11.glEnable(GL11.GL_ALPHA_TEST);
 
@@ -75,9 +75,18 @@ public class GuiChakraAndStaminaBar extends Gui {
 
         // Hiro base charka bar
 
-        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 190, scaledresolution.getScaledHeight() - 12, 0, 244, 96, 7);
-        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 190, scaledresolution.getScaledHeight() - 9, 20, 237, 74, 6);
 
+        // need to add hue but yea here is sumulating blue.
+
+        this.mc.renderEngine.bindTexture(DEFAULTTEXTURE);
+
+        int chakraWidth = (int) ((1 - PlayerClientTickEvent.chakra / PlayerClientTickEvent.maxChakra) * 94);
+        GL11.glColor3f(1F, 1F, 1F);
+        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 190, scaledresolution.getScaledHeight() - 12, 0, 246, 96, 7);
+        GL11.glColor3f(0.08F, 0.7F, 1F);
+        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 189 + chakraWidth, scaledresolution.getScaledHeight() - 11, 1 + chakraWidth, 238, 94 - chakraWidth, 5);
+
+        GL11.glColor3f(1F, 1F, 1F);
         drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 + 92, scaledresolution.getScaledHeight() - 12, 159, 244, 97, 12);
         drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 + 95, scaledresolution.getScaledHeight() - 9, 162, 237, 74, 6);
 

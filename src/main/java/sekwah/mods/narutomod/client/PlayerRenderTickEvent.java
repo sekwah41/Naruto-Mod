@@ -95,6 +95,11 @@ public class PlayerRenderTickEvent {
                 NarutoKeyHandler.keyVanillaPressed("key.right", NarutoKeyHandler.isVanillaPressed[1]);
             }
 
+            if(NarutoKeyHandler.isVanillaPressed[2] != Minecraft.getMinecraft().gameSettings.keyBindBack.getIsKeyPressed()){
+                NarutoKeyHandler.isVanillaPressed[2] = Minecraft.getMinecraft().gameSettings.keyBindBack.getIsKeyPressed();
+                NarutoKeyHandler.keyVanillaPressed("key.back", NarutoKeyHandler.isVanillaPressed[2]);
+            }
+
             for (int i = 0; i < NarutoKeyHandler.keys.length; i++) {
                 if (NarutoKeyHandler.ispressed[i] != NarutoKeyHandler.keys[i].getIsKeyPressed()) {
                     NarutoKeyHandler.ispressed[i] = NarutoKeyHandler.keys[i].getIsKeyPressed();
