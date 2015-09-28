@@ -241,7 +241,7 @@ public class EntityShadowClone extends EntityMob {
     public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
         par1EntityLivingData = super.onSpawnWithEgg(par1EntityLivingData);
 
-        this.setCustomNameTag("SEKWAH41");
+        this.setCustomNameTag("sekwah41");
 
         return par1EntityLivingData;
     }
