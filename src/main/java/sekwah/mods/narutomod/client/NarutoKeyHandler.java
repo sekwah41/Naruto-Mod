@@ -113,8 +113,10 @@ public class NarutoKeyHandler {
                         if (PlayerClientTickEvent.onWater) {
                             PlayerClientTickEvent.useChakra(10F);
                         }
+                        playerMP.setVelocity(playerMP.motionX + playerMP.getLookVec().xCoord * 1.5F, (playerMP.getLookVec().yCoord + 0.8F) * 0.7F
+                         /*1.2F*/, playerMP.motionZ + playerMP.getLookVec().zCoord * 1.5F);
                         PlayerClientTickEvent.stamina -= 20;
-                        playerMP.setVelocity(playerMP.motionX + playerMP.getLookVec().xCoord * 1.5F, (playerMP.getLookVec().yCoord + 0.8F) * 0.7F /*1.2F*/, playerMP.motionZ + playerMP.getLookVec().zCoord * 1.5F);
+                        PlayerClientTickEvent.setStaminaCooldown(80);
                     }
                 }
             } else if(keys[keyID].getKeyDescription().equals("naruto.keys.sharingan")){
@@ -154,6 +156,7 @@ public class NarutoKeyHandler {
                             lookVector.rotateAroundY((float) (Math.PI / 2F));
                             playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.5F);
                             PlayerClientTickEvent.stamina -= 20;
+                            PlayerClientTickEvent.setStaminaCooldown(80);
                         }
                     }
                 }
@@ -174,6 +177,7 @@ public class NarutoKeyHandler {
                             lookVector.rotateAroundY((float) (-Math.PI / 2F));
                             playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.1F);
                             PlayerClientTickEvent.stamina -= 20;
+                            PlayerClientTickEvent.setStaminaCooldown(80);
                         }
                     }
                 }
@@ -194,6 +198,7 @@ public class NarutoKeyHandler {
                             lookVector.rotateAroundY((float) (Math.PI));
                             playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.1F);
                             PlayerClientTickEvent.stamina -= 20;
+                            PlayerClientTickEvent.setStaminaCooldown(80);
                         }
                     }
                 }

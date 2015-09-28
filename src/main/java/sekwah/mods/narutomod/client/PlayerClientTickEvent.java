@@ -44,6 +44,7 @@ public class PlayerClientTickEvent {
 
     public static float stamina = 100;
     public static float maxStamina = 100;
+    public static int staminaCooldown;
 
     public static int chakraCooldown;
     public static boolean isChakraFocus;
@@ -79,13 +80,11 @@ public class PlayerClientTickEvent {
         GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
         if (guiscreen == null || guiscreen instanceof GuiInventory || guiscreen instanceof GuiChat) {
 
-            // TEMP ADDITION FOR GINGERS SHITTY STUFF
-            stamina += 0.22;
-
-            if(stamina > maxStamina){
-                stamina = maxStamina;
+            if (this.staminaCooldown > 0) {
+                this.staminaCooldown--;
+            } else if (this.stamina < this.maxStamina) {
+                this.stamina += 0.3;
             }
-
             //NarutoMod.LOGGER.info(stamina);
 
             boolean ChakraFocus = false;
@@ -94,21 +93,23 @@ public class PlayerClientTickEvent {
 
             EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
 
-            if (PlayerClientTickEvent.chakraCooldown > 0) {
-                PlayerClientTickEvent.chakraCooldown--;
-            } else if (PlayerClientTickEvent.chakra < PlayerClientTickEvent.maxChakra) {
-                PlayerClientTickEvent.chakra += 0.025;
+            //PlayerInfo playerInfo = PlayerInfo.get(playerMP); // Possibly move all data over to this
+
+            if (this.chakraCooldown > 0) {
+                this.chakraCooldown--;
+            } else if (this.chakra < this.maxChakra) {
+                this.chakra += 0.025;
             }
 
             // Create a potion with an image using custom forge code.
             // Not activating for some reason
-            if(playerMP.isPotionActive(NarutoEffects.chakraRestore) && PlayerClientTickEvent.chakra < PlayerClientTickEvent.maxChakra){
+            if(playerMP.isPotionActive(NarutoEffects.chakraRestore) && this.chakra < this.maxChakra){
                 int regenMultiplyer = playerMP.getActivePotionEffect(NarutoEffects.chakraRestore).getAmplifier();
                 if(regenMultiplyer > 10){
-                    PlayerClientTickEvent.chakra += 0.1 + 0.1 * 10;
+                    this.chakra += 0.1 + 0.1 * 10;
                 }
                 else{
-                    PlayerClientTickEvent.chakra += 0.1 + 0.1 * regenMultiplyer;
+                    this.chakra += 0.1 + 0.1 * regenMultiplyer;
                 }
              }
 
@@ -151,8 +152,8 @@ public class PlayerClientTickEvent {
 
                 } else {
 
-                    if (PlayerClientTickEvent.chakra < PlayerClientTickEvent.maxChakra) {
-                        PlayerClientTickEvent.chakra += 0.15;
+                    if (this.chakra < this.maxChakra) {
+                        this.chakra += 0.15;
                     }
                     ChakraFocus = true;
 
@@ -203,9 +204,9 @@ public class PlayerClientTickEvent {
                 }
             }
 
-            if (PlayerClientTickEvent.chakraDash) {
-                if (PlayerClientTickEvent.chakra > 0.5F) {
-                    PlayerClientTickEvent.chakraCooldown = 30;
+            if (this.chakraDash) {
+                if (this.chakra > 0.5F) {
+                    this.setChakraCooldown(30);
 
                     double possibility = Math.random();
                     if (possibility >= 0.2F) {
@@ -217,14 +218,24 @@ public class PlayerClientTickEvent {
                             }
                     }
                 } else {
-                    PlayerClientTickEvent.chakraDash = false;
-                    playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + I18n.format("naruto.jutsu.chakraDash.nochakra")));
+                    this.chakraDash = false;
+                    playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + I18n.format("naruto.jutsu.chakraDash.deactivate")));
+                }
+            }
+            if (this.chakraDash) {
+                if(this.stamina > 0.5f){
+                    this.setStaminaCooldown(80);
+                }
+                else{
+                    this.chakraDash = false;
+                    playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + I18n.format("naruto.jutsu.chakraDash.deactivate")));
                 }
             }
 
-            if (PlayerClientTickEvent.waterWalking) {
-                if (PlayerClientTickEvent.chakra > 0.1F) {
-                    PlayerClientTickEvent.chakraCooldown = 30;
+
+            if (this.waterWalking) {
+                if (this.chakra > 0.1F) {
+                    this.chakraCooldown = 30;
 
                     int i = (int) Math.round(playerMP.posY - 0.4);
                     Block j = playerMP.worldObj.getBlock((int) playerMP.posX, i - 2, (int) playerMP.posZ);
@@ -240,7 +251,7 @@ public class PlayerClientTickEvent {
                     onWater = false;
 
                     if (k == Blocks.water || k == Blocks.flowing_water) {
-                        PlayerClientTickEvent.chakra -= 1F;
+                        this.chakra -= 1F;
                         playerMP.motionY += 0.2D;
                         if (playerMP.motionY > 0.7D) {
                             playerMP.motionY = 0.7D;
@@ -248,7 +259,7 @@ public class PlayerClientTickEvent {
                         }
                     } else if ((j == Blocks.water || j == Blocks.flowing_water) && playerMP.motionY < 0.0D) {
                         useChakra(0.12F);
-                        //PlayerClientTickEvent.chakra -= 0.12F;
+                        //this.chakra -= 0.12F;
                         playerMP.motionY = 0.0D;
                         playerMP.onGround = true;
 
@@ -277,19 +288,22 @@ public class PlayerClientTickEvent {
                         }
                     }
                 } else {
-                    PlayerClientTickEvent.waterWalking = false;
+                    this.waterWalking = false;
                     playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You do not have enough chakra so Water Walking was disabled!"));
                 }
             }
 
-            PlayerClientTickEvent.isChakraFocus = ChakraFocus;
+            this.isChakraFocus = ChakraFocus;
 
-            if (PlayerClientTickEvent.chakraDash) {
-                useChakra(0.1F);
-                //PlayerClientTickEvent.chakra -= 0.1;
+            if (this.chakraDash) {
+                if(playerMoved){
+                    useChakra(0.05F);
+                    useStamina(0.3f);
+                }
+                //this.chakra -= 0.1;
             }
 
-            if (PlayerClientTickEvent.chakraDash) {
+            if (this.chakraDash) {
                 if (playerMP.onGround) {
                     if (!playerMP.isInWater()) {
                         int i = (int) Math.round(playerMP.posY - 0.4);
@@ -314,15 +328,18 @@ public class PlayerClientTickEvent {
                 doubleJumpReady = false;
             } else if (!Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && !hasDoubleJumped && !doubleJumpReady) {
                 doubleJumpReady = true;
-            } else if (Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && !hasDoubleJumped && playerMP.isAirBorne && doubleJumpReady && useChakra(3F) /**PlayerClientTickEvent.chakra >= 5F*/) {
+            } else if (Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && !hasDoubleJumped && playerMP.isAirBorne && doubleJumpReady
+                    && /*useChakra(3F)*/ this.chakra >= 3F && this.stamina >= 15F) {
 
                 playerMP.setVelocity(playerMP.motionX, 0.5F, playerMP.motionZ);
                 hasDoubleJumped = true;
                 doubleJumpReady = false;
                 playerMP.fallDistance = 0.0F;
                 ParticleEffects.addEffect(3, playerMP);
-                //PlayerClientTickEvent.chakra -= 3F;
-                PlayerClientTickEvent.chakraCooldown = 30;
+                this.chakra -= 3F;
+                this.setChakraCooldown(30);
+                this.stamina -= 15F;
+                this.setStaminaCooldown(80);
 
                 ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
                 DataOutputStream outputStream = new DataOutputStream(bos);
@@ -347,7 +364,7 @@ public class PlayerClientTickEvent {
 
                 PacketDispatcher.sendPacketToServer(new ServerSoundPacket(bos.toByteArray()));
 
-            } else if (Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && !hasDoubleJumped && PlayerClientTickEvent.chakra <= 5F && doubleJumpReady) {
+            } else if (Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && !hasDoubleJumped && this.chakra <= 5F && doubleJumpReady) {
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You do not have enough chakra to double jump."));
                 doubleJumpReady = false;
             }
@@ -356,8 +373,11 @@ public class PlayerClientTickEvent {
             lastY = playerMP.posY;
             lastZ = playerMP.posZ;
 
-            if (PlayerClientTickEvent.chakra > PlayerClientTickEvent.maxChakra) {
-                PlayerClientTickEvent.chakra = PlayerClientTickEvent.maxChakra;
+            if (this.chakra > this.maxChakra) {
+                this.chakra = this.maxChakra;
+            }
+            if(this.stamina > this.maxStamina){
+                this.stamina = this.maxStamina;
             }
         }
     }
@@ -375,6 +395,34 @@ public class PlayerClientTickEvent {
         else{
             chakra -= chakraUse;
             return true;
+        }
+    }
+
+    // Takes seeing as most of where this is used takes away chakra, only charging adds, so put it as a -
+    public static boolean useStamina(float staminaUse) {
+        if(stamina - staminaUse < 0){
+            stamina = 0;
+            return false;
+        }
+        else if(stamina - staminaUse > maxStamina){
+            stamina = maxStamina;
+            return false;
+        }
+        else{
+            stamina -= staminaUse;
+            return true;
+        }
+    }
+
+    public static void setStaminaCooldown(int cooldown){
+        if(staminaCooldown < cooldown){
+            staminaCooldown = cooldown;
+        }
+    }
+
+    public static void setChakraCooldown(int cooldown){
+        if(chakraCooldown < cooldown){
+            chakraCooldown = cooldown;
         }
     }
 }

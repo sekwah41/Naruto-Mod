@@ -9,6 +9,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.client.PlayerClientTickEvent;
+import sekwah.mods.narutomod.generic.NarutoEffects;
 
 //
 // GuiBuffBar implements a simple status bar at the top of the screen which 
@@ -83,12 +84,20 @@ public class GuiChakraAndStaminaBar extends Gui {
         int chakraWidth = (int) ((1 - PlayerClientTickEvent.chakra / PlayerClientTickEvent.maxChakra) * 94);
         GL11.glColor3f(1F, 1F, 1F);
         drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 190, scaledresolution.getScaledHeight() - 12, 0, 246, 96, 7);
-        GL11.glColor3f(0.08F, 0.7F, 1F);
+
+        if (mc.thePlayer.isPotionActive(NarutoEffects.chakraRestore)) {
+            GL11.glColor3f(1F, 0.5F, 0.1F);
+        }
+        else{
+            GL11.glColor3f(0.08F, 0.7F, 1F);
+        }
         drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 189 + chakraWidth, scaledresolution.getScaledHeight() - 11, 1 + chakraWidth, 238, 94 - chakraWidth, 5);
 
+        int staminaWidth = (int) ((PlayerClientTickEvent.stamina / PlayerClientTickEvent.maxStamina) * 94);
         GL11.glColor3f(1F, 1F, 1F);
-        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 + 92, scaledresolution.getScaledHeight() - 12, 159, 244, 97, 12);
-        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 + 95, scaledresolution.getScaledHeight() - 9, 162, 237, 74, 6);
+        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 + 94, scaledresolution.getScaledHeight() - 12, 159, 246, 97, 7);
+        GL11.glColor3f(0F, 0.73F, 0F);
+        drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 + 95, scaledresolution.getScaledHeight() - 11, 160, 238, staminaWidth, 5);
 
 
         // my old terrible texture

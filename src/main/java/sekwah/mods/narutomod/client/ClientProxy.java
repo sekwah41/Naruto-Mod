@@ -16,7 +16,6 @@ import sekwah.mods.narutomod.blocks.itemrenderers.ItemRendererBonsaiTree;
 import sekwah.mods.narutomod.blocks.rendereres.TileEntityBonsaiRenderer;
 import sekwah.mods.narutomod.blocks.tileentity.TileEntityBase;
 import sekwah.mods.narutomod.client.gui.GuiChakraAndStaminaBar;
-import sekwah.mods.narutomod.client.gui.GuiChakraBar;
 import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
 import sekwah.mods.narutomod.entitys.*;
 import sekwah.mods.narutomod.entitys.jutsuprojectiles.EntityFlameFireball;
@@ -105,7 +104,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void addInGameGUIs() {
-        MinecraftForge.EVENT_BUS.register(new GuiChakraBar(Minecraft.getMinecraft()));
+        //MinecraftForge.EVENT_BUS.register(new GuiChakraBar(Minecraft.getMinecraft()));
 
         MinecraftForge.EVENT_BUS.register(new GuiChakraAndStaminaBar(Minecraft.getMinecraft()));
 

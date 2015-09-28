@@ -68,11 +68,17 @@ public class GuiOptionsMenu extends GuiScreen {
              this.buttonList.add(new GuiButton(4, guiX + 9, guiY + 20, 110, 20, I18n.format("naruto.gui.firstPerson") + ": " + I18n.format("naruto.gui.jutsutoggle")));
              }*/
         } else if (NarutoSettings.settingsPage == 2) {
-            this.buttonList.add(new GuiNarutoSlider(0, guiX + 9, guiY + 20, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETX, I18n.format("naruto.gui.chakraGUIOffset") + " X"));
-            this.buttonList.add(new GuiNarutoSlider(0, guiX + 130, guiY + 20, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETY, I18n.format("naruto.gui.chakraGUIOffset") + " Y"));
+            GuiNarutoSlider offsetSliderX = new GuiNarutoSlider(0, guiX + 9, guiY + 20, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETX, I18n.format("naruto.gui.chakraGUIOffset") + " X");
+            offsetSliderX.enabled = false;
+            this.buttonList.add(offsetSliderX);
+            GuiNarutoSlider offsetSliderY = new GuiNarutoSlider(0, guiX + 130, guiY + 20, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETY, I18n.format("naruto.gui.chakraGUIOffset") + " Y");
+            offsetSliderY.enabled = false;
+            this.buttonList.add(offsetSliderY);
 
             // TODO Finish the damn thing you dirty scrub, noone will love you unless you actually do your work. T_T (I really love myself don't I?)
-            this.buttonList.add(new GuiButton(6, guiX + 9, guiY + 43, 110, 20, I18n.format("naruto.gui.chakraGUICorner") + ": " + NarutoSettings.chakraGUICorner));
+            GuiButton guiCorner = new GuiButton(6, guiX + 9, guiY + 43, 110, 20, I18n.format("naruto.gui.chakraGUICorner") + ": " + NarutoSettings.chakraGUICorner);
+            guiCorner.enabled = false;
+            this.buttonList.add(guiCorner);
         } else if (NarutoSettings.settingsPage == 3) {
             this.buttonList.add(new GuiNarutoSlider(0, guiX + 9, guiY + 20, 110, EnumNarutoOptions.JUTSU_DELAY, I18n.format("naruto.gui.jutsuDelay")));
         }

@@ -14,9 +14,15 @@ public class PlayerInfo implements IExtendedEntityProperties
     // could be usefull but not currently used, also this will only exist on a player and will not change so its reasonably safe
     private final EntityPlayer player;
 
-    private int chakra, maxChakra;
+    private int chakra;
+    private int maxChakra;
+    private int chakraRegenCooldown;
+    private double chakraRegenRate;
 
-    private int stamina, maxStamina;
+    private int stamina;
+    private int maxStamina;
+    private int staminaRegenCooldown;
+    private double staminaRegenRate;
 
     private int CLAN_WATCHER = 21;
 
@@ -46,7 +52,12 @@ public class PlayerInfo implements IExtendedEntityProperties
         this.player = player;
 
         // Load with max mana, maybe save the mana amount and load it to stop it messing with single player, also have stats and stuff change the max ki
-        this.maxChakra = this.chakra = 50;
+        this.maxChakra = this.chakra = 100;
+        this.maxStamina = this.stamina = 100;
+
+        this.staminaRegenRate = 0.22;
+
+        this.chakraRegenRate = 0.025;
 
         this.hasAskedToSetClan = false;
     }
@@ -91,7 +102,8 @@ public class PlayerInfo implements IExtendedEntityProperties
         properties.setString("Clan", clan);
         properties.setInteger("CurrentChakra", this.chakra);
         properties.setInteger("MaxChakra", this.maxChakra);// possibly calculate the maxKi when a player loads to stop potential cheating with nbt data
-
+        properties.setInteger("CurrentStamina", this.stamina);
+        properties.setInteger("MaxStamina", this.maxStamina);
         compound.setTag(IDENTIFIER, properties);
     }
 
@@ -102,7 +114,9 @@ public class PlayerInfo implements IExtendedEntityProperties
         NBTTagCompound properties = (NBTTagCompound) compound.getTag(IDENTIFIER);
         this.clan = properties.getString("Clan");
         this.chakra = properties.getInteger("CurrentChakra");
-        this.maxChakra = properties.getInteger("MaxChakra");
+        this.maxChakra = properties.getInteger("MaxChakra"); // Soon change max to be calculated by stats
+        this.stamina = properties.getInteger("CurrentStamina");
+        this.maxStamina = properties.getInteger("MaxStamina");
         this.reloadDW();
     }
 
@@ -153,5 +167,13 @@ public class PlayerInfo implements IExtendedEntityProperties
 
     public void setClan(String clanName){
         clan = clanName;
+    }
+
+    public void chakraRegenTick() {
+        if (chakraRegenCooldown > 0) {
+            chakraRegenCooldown--;
+        } else if (chakra < maxChakra) {
+            chakra += chakraRegenRate;
+        }
     }
 }

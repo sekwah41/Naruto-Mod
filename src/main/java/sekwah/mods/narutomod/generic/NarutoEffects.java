@@ -47,7 +47,7 @@ public class NarutoEffects {
      */
     public static void addEffects(){
 
-        chakraRestore = (new PotionChakraRestore(32, false, (new Color(20, 180, 255)).getRGB())).setIconIndex(2, 2).setPotionName("potion.chakraRestore");
+        chakraRestore = (new PotionChakraRestore(32, false, (new Color(255, 129, 26)).getRGB())).setIconIndex(2, 2).setPotionName("potion.chakraRestore");
     }
 
 }

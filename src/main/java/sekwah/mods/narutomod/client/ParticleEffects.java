@@ -25,7 +25,7 @@ public class ParticleEffects {
             double particleX = Math.random() - 0.5;
             double particleY = (Math.random()) * 2 - 1.8F;
             double particleZ = Math.random() - 0.5;
-            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityColouredSmokeFX(playerMP.worldObj, posX + particleX, posY + particleY, posZ + particleZ, 0, 0, 0, 1F, 0.3F, 0.3F));
+            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityColouredSmokeFX(playerMP.worldObj, posX + particleX, posY + particleY, posZ + particleZ, 0, 0, 0, 1F, 0.5F, 0.1F));
         } else if (effectID == 3) {
             for (int i = 1; i < 30; i++) {
                 double particleX = Math.random();

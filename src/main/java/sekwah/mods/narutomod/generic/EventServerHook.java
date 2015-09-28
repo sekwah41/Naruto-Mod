@@ -11,9 +11,11 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.blocks.BlockSakuraSapling;
 import sekwah.mods.narutomod.blocks.NarutoBlocks;
 import sekwah.mods.narutomod.player.extendedproperties.PlayerInfo;
@@ -88,6 +90,26 @@ public class EventServerHook {
         }
         // May be for whenever the player first joins
 
+    }
+
+    // Takes damage after 3
+    @SubscribeEvent
+    public void livingFall(LivingFallEvent event)
+    {
+        if (event.entityLiving instanceof EntityPlayer){
+            EntityPlayer player = (EntityPlayer) event.entityLiving;
+            NarutoMod.LOGGER.info(event.distance);
+            if(event.distance < 9){
+                event.distance /= 3;
+            }
+            if(event.distance > 3){
+                event.distance -= 3f;
+                event.distance *= 0.7f;
+                event.distance += 3f;
+            }
+
+
+        }
     }
 
     @SubscribeEvent
