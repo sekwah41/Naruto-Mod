@@ -9,7 +9,8 @@ public enum EnumNarutoOptions {
     CHAKRA_BAR_OFFSETX("naruto.gui.chakraGUIOffset", true, false),
     CHAKRA_BAR_CORNER("naruto.gui.chakraGUICorner", true, false),
     FIRSTPERSON("naruto.gui.firstPerson", false, true),
-    JUTSU_DELAY("naruto.gui.jutsuDelay",true,false);
+    JUTSU_DELAY("naruto.gui.jutsuDelay",true,false),
+    CHAKRA_HUE("naruto.gui.chakraColour",true,false); // TODO change to not in settings
 
     private final boolean enumFloat;
     private final boolean enumBoolean;

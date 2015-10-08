@@ -9,7 +9,7 @@ import sekwah.mods.narutomod.client.gui.EnumNarutoOptions;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
 @SideOnly(Side.CLIENT)
-public class GuiNarutoSlider extends GuiButton {
+public class GuiNarutoOptionsSlider extends GuiButton {
     /**
      * The value of this slider control.
      */
@@ -28,7 +28,7 @@ public class GuiNarutoSlider extends GuiButton {
     private String settingString;
 
 
-    public GuiNarutoSlider(int par1, int par2, int par3, int par4, EnumNarutoOptions par4EnumOptions, String par5Str) {
+    public GuiNarutoOptionsSlider(int par1, int par2, int par3, int par4, EnumNarutoOptions par4EnumOptions, String par5Str) {
         super(par1, par2, par3, par4 /**150*/, 20, par5Str);
         this.idFloat = par4EnumOptions;
         this.settingString = par5Str;

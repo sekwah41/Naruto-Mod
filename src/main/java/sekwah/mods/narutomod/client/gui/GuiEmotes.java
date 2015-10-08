@@ -5,7 +5,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import sekwah.mods.narutomod.client.gui.components.GuiNarutoSlider;
+import sekwah.mods.narutomod.client.gui.components.GuiNarutoOptionsSlider;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
 //
@@ -60,8 +60,8 @@ public class GuiEmotes extends GuiScreen {
                 this.buttonList.add(new GuiButton(4, guiX + 9, guiY + 20, 110, 20, I18n.format("naruto.gui.firstPerson") + ": " + I18n.format("naruto.gui.off")));
             }
         } else if (NarutoSettings.settingsPage == 2) {
-            this.buttonList.add(new GuiNarutoSlider(0, guiX + 9, guiY + 20, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETX, I18n.format("naruto.gui.chakraGUIOffset") + " X"));
-            this.buttonList.add(new GuiNarutoSlider(0, guiX + 130, guiY + 20, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETY, I18n.format("naruto.gui.chakraGUIOffset") + " Y"));
+            this.buttonList.add(new GuiNarutoOptionsSlider(0, guiX + 9, guiY + 20, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETX, I18n.format("naruto.gui.chakraGUIOffset") + " X"));
+            this.buttonList.add(new GuiNarutoOptionsSlider(0, guiX + 130, guiY + 20, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETY, I18n.format("naruto.gui.chakraGUIOffset") + " Y"));
 
             // TODO Finish the damn thing you dirty scrub, noone will love you unless you actually do your work. T_T (I really love myself don't I?)
             this.buttonList.add(new GuiButton(6, guiX + 9, guiY + 43, 110, 20, I18n.format("naruto.gui.chakraGUICorner") + ": " + NarutoSettings.chakraGUICorner));

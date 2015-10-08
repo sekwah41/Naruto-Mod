@@ -68,6 +68,9 @@ public class NarutoSettings {
             jutsuDelay = (int) (sliderValue * 20) + 5;
             config.get(Configuration.CATEGORY_GENERAL, "jutsuDelay", 10).set(jutsuDelay);
         }
+        else if( setting == EnumNarutoOptions.CHAKRA_BAR_OFFSETY){
+            // sliderValue is from 0 to 1
+        }
 
 
         NarutoSettings.saveConfig();

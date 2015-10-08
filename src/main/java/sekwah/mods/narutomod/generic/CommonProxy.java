@@ -8,6 +8,10 @@ public class CommonProxy {
     public void addKeyBindings() {
     }
 
+    public boolean isClient(){
+        return false;
+    }
+
     public void registerRenderers() {
     }
 

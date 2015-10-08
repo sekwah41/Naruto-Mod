@@ -11,6 +11,8 @@ naruto.gui.chakraGUICorner=GUI Corner
 naruto.gui.jutsuSettings=Jutsu Settings
 naruto.gui.jutsuDelay=Delay(ticks)
 
+naruto.gui.chakraColour=Chakra Colour
+
 naruto.gui.clan.title=Clan Selection
 naruto.gui.clan.select=Select
 

@@ -4,7 +4,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import org.lwjgl.opengl.GL11;
-import sekwah.mods.narutomod.client.gui.components.GuiNarutoSlider;
 
 import java.awt.*;
 
