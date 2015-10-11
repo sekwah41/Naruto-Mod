@@ -26,6 +26,8 @@ public class ItemArmourHeadband extends ItemArmor {
 	
 	@SideOnly(Side.CLIENT)
 	private IIcon[] Icons;
+
+    // TODO add extra data so that way people can dye the headbands different colours. That will be epix :3
 	
 	public ItemArmourHeadband(ArmorMaterial par2EnumArmorMaterial,
 			int par3, int par4) {
@@ -41,8 +43,8 @@ public class ItemArmourHeadband extends ItemArmor {
 		// change for headband icons
 		Icons[0] = par1IconRegister.registerIcon(NarutoMod.modid + ":headProtector");
 		Icons[1] = par1IconRegister.registerIcon(NarutoMod.modid + ":custardHeadband");
-		Icons[2] = par1IconRegister.registerIcon(NarutoMod.modid + ":backScrollPurple");
-		Icons[3] = par1IconRegister.registerIcon(NarutoMod.modid + ":backScrollBlue");
+		Icons[2] = par1IconRegister.registerIcon(NarutoMod.modid + ":headProtectorLava");
+		Icons[3] = par1IconRegister.registerIcon(NarutoMod.modid + ":headProtectorYoutube");
 		Icons[4] = par1IconRegister.registerIcon(NarutoMod.modid + ":backScrollGreen");
 		Icons[5] = par1IconRegister.registerIcon(NarutoMod.modid + ":backScrollRed");
 		Icons[6] = par1IconRegister.registerIcon(NarutoMod.modid + ":backScrollBlack");
@@ -53,7 +55,7 @@ public class ItemArmourHeadband extends ItemArmor {
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tabs, List list) {
             // You can also take a more direct approach and do each one individual but I prefer the lazy / right way
-            for(int i = 0; i < 2; ++i){
+            for(int i = 0; i < 4; ++i){
                     list.add(new ItemStack(item, 1, i));
              }
      }
@@ -64,7 +66,7 @@ public class ItemArmourHeadband extends ItemArmor {
 	}
 
 
-	public static final String[] names = new String[] {"HiddenInTheTrees", "Custard", "Purple", "Blue", "Green", "Red", "Black"};
+	public static final String[] names = new String[] {"HiddenInTheTrees", "Custard", "Lava", "Youtube", "Green", "Red", "Black"};
 
 	public String getUnlocalizedName(ItemStack par1ItemStack)
 	{
@@ -87,10 +89,10 @@ public class ItemArmourHeadband extends ItemArmor {
             return NarutoMod.modid + ":textures/armour/custard_headband.png";
         }
         else if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 2 && slot == 0) {
-            return NarutoMod.modid + ":textures/armour/back_scroll_purple.png";
+            return NarutoMod.modid + ":textures/armour/lavavillage_headband.png";
         }
         else if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 3 && slot == 0) {
-            return NarutoMod.modid + ":textures/armour/back_scroll_blue.png";
+            return NarutoMod.modid + ":textures/armour/youtube_headband.png";
         }
         else if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 4 && slot == 0) {
             return NarutoMod.modid + ":textures/armour/back_scroll_green.png";
