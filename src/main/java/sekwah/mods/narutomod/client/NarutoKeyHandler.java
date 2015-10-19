@@ -13,6 +13,7 @@ import org.lwjgl.input.Keyboard;
 import sekwah.mods.narutomod.client.gui.GuiJutsuMenu;
 import sekwah.mods.narutomod.client.gui.GuiOptionsMenu;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
+import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 import sekwah.mods.narutomod.packets.serverbound.ServerSoundPacket;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
@@ -34,9 +35,9 @@ public class NarutoKeyHandler {
     /**
      * Key descriptions; use a language file to localize the description later
      */
-    public static final String[] keyDesc = {"naruto.keys.key1", "naruto.keys.key2", "naruto.keys.key3", "naruto.keys.jutsumenu", "naruto.keys.options", "naruto.keys.leap", "naruto.keys.sharingan"};
+    public static final String[] keyDesc = {"naruto.keys.key1", "naruto.keys.key2", "naruto.keys.key3", "naruto.keys.jutsumenu", "naruto.keys.options", "naruto.keys.leap"/*, "naruto.keys.sharingan"*/};
     public static final KeyBinding[] keys = new KeyBinding[keyDesc.length];
-    public static boolean[] ispressed = {false, false, false, false, false, false, false};
+    public static boolean[] ispressed = {false, false, false, false, false, false/*, false*/};
     //private static boolean[] repeat = {false, false, false, false, false/**, false*/};
 
     public static boolean[] isVanillaPressed = {false, false, false};
@@ -44,7 +45,7 @@ public class NarutoKeyHandler {
     /**
      * Default key values
      */
-    private final int[] keyButtons = {Keyboard.KEY_C, Keyboard.KEY_V, Keyboard.KEY_B, Keyboard.KEY_J, Keyboard.KEY_O, Keyboard.KEY_X, Keyboard.KEY_NUMPAD1};
+    private final int[] keyButtons = {Keyboard.KEY_C, Keyboard.KEY_V, Keyboard.KEY_B, Keyboard.KEY_J, Keyboard.KEY_O, Keyboard.KEY_X/*, Keyboard.KEY_NUMPAD1*/};
 
     public NarutoKeyHandler() {
         for (int i = 0; i < keyDesc.length; ++i) {
@@ -109,22 +110,34 @@ public class NarutoKeyHandler {
                 EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
                 if(playerMP.onGround){
                     // TODO add some falling damage stuff so you take some damage
-                    if(PlayerClientTickEvent.stamina >= 20) {
+                    /*if(PlayerClientTickEvent.stamina >= 20) {
                         if (PlayerClientTickEvent.onWater) {
                             PlayerClientTickEvent.useChakra(10F);
                         }
                         playerMP.setVelocity(playerMP.motionX + playerMP.getLookVec().xCoord * 1.5F, (playerMP.getLookVec().yCoord + 0.8F) * 0.7F
-                         /*1.2F*/, playerMP.motionZ + playerMP.getLookVec().zCoord * 1.5F);
+                         *//*1.2F*//*, playerMP.motionZ + playerMP.getLookVec().zCoord * 1.5F);
                         PlayerClientTickEvent.stamina -= 20;
                         PlayerClientTickEvent.setStaminaCooldown(80);
+                    }*/
+                    if (PlayerClientTickEvent.stamina >= 20) {
+                        ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+                        DataOutputStream outputStream = new DataOutputStream(bos);
+                        try {
+                            outputStream.writeInt(401);
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+
+                        PacketDispatcher.sendPacketToServer(new ServerJutsuPacket(bos.toByteArray()));
+
                     }
                 }
-            } else if(keys[keyID].getKeyDescription().equals("naruto.keys.sharingan")){
+            }/* else if(keys[keyID].getKeyDescription().equals("naruto.keys.sharingan")){
                 EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
                 if(playerMP.getCommandSenderName().endsWith("liam3011") || playerMP.getCommandSenderName().endsWith("sekwah41")){
 
                 }
-            }
+            }*/
             //else if(keys[keyID].getKeyDescription().equals("Naruto Emotes")){
             //Minecraft.getMinecraft().displayGuiScreen(new GuiEmotes());
             //EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;

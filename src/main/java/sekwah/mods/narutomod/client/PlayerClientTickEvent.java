@@ -11,11 +11,13 @@ import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.DataWatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.input.Keyboard;
 import sekwah.mods.narutomod.generic.NarutoEffects;
+import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 import sekwah.mods.narutomod.packets.serverbound.ServerSoundPacket;
@@ -62,6 +64,8 @@ public class PlayerClientTickEvent {
 
     public int animationUpdate; // use at some point to update animations after they have been set.
     public static boolean onWater = false;
+    private boolean firedChangeBack = false;
+    private int animTime = 0; // checks how long the pose has been active for for certain poses(stops early change back)
 
     public static String getJutsuPoseID() {
         if (jutsuPoseID == "default") {
@@ -118,6 +122,30 @@ public class PlayerClientTickEvent {
             } else {
                 playerMoved = true;
             }
+
+            // Sorts out temp anims
+            // Ends the gliding in air pose(possibly make a more efficient system or nicer looking one
+            DataWatcher dw = playerMP.getDataWatcher();
+            //NarutoMod.LOGGER.info("20:" + dw.getWatchableObjectString(20) + " 27:" + dw.getWatchableObjectString(20));
+            if(dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27)) && dw.getWatchableObjectString(20).equals("leapingforwardglide") ){
+                animTime++;
+                if(animTime > 10){
+                    if(!firedChangeBack){
+                        if(playerMP.onGround){
+                            PacketAnimationUpdate.animationUpdate("default", playerMP);
+                            firedChangeBack = true;
+                        }
+
+                    }
+                }
+
+
+            }
+            else{
+                firedChangeBack = false;
+                animTime = 0;
+            }
+
 
             if (ChargingChakra) {
                 if (ChakraChargeDelay >= 0) {

@@ -35,6 +35,18 @@ public class JutsuClient {
                 break;
             case 4:
                 break;
+            case 401:
+                if (PlayerClientTickEvent.onWater) {
+                    PlayerClientTickEvent.useChakra(10F);
+                }
+                PlayerClientTickEvent.stamina -= 20;
+                PlayerClientTickEvent.setStaminaCooldown(80);
+                PacketAnimationUpdate.animationUpdate("leapforward", playerMP);
+                break;
+            case 411:
+                playerMP.setVelocity(playerMP.motionX + playerMP.getLookVec().xCoord * 1.5F, (playerMP.getLookVec().yCoord + 0.8F) * 0.7F
+                        , playerMP.motionZ + playerMP.getLookVec().zCoord * 1.5F);
+                break;
             case 12:// change the combo at some point and make sure its the same as in jutsu common
                 // add code to execute client side  here!
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.substitution")));
@@ -90,7 +102,7 @@ public class JutsuClient {
 
     }
 
-    public static boolean canCast(int jutsuCombo, EntityClientPlayerMP playerMP) {
+    public static boolean canCast(int jutsuCombo, EntityClientPlayerMP playerMP /*  add int to say if its chakra, stamina or both. or add a new method*/) {
         NarutoMod.LOGGER.debug("Can Cast: " + jutsuCombo);
         switch (jutsuCombo) {
             case 1:

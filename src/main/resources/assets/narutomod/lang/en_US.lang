@@ -143,6 +143,8 @@ naruto.jutsu.comboLimit=You have reached the combo limit!
 
 naruto.jutsu.nochakra=Not enough chakra!
 
+naruto.jutsu.nostamina=Not enough stamina!
+
 
 entity.narutomod.Puppet.name=Puppet
 entity.narutomod.Rogue_Ninja.name=Rogue Ninja

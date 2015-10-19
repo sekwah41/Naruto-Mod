@@ -40,6 +40,10 @@ public class JutsuCommon {
                 //playerMP.attackEntityFrom(DamageSource.fall, playerMP.fallDistance / 10);
                 playerMP.fallDistance = 0.0F;
                 return true;
+            case 401:
+                return true;
+            case 411:
+                return true;
             case 12:
                 playerMP.addPotionEffect((new PotionEffect(Potion.invisibility.getId(), 10, 0)));
 
