@@ -1,19 +1,19 @@
-naruto.gui.options.title=Menu de Opções do Naruto
+naruto.gui.options.title=Menu de Opcoes do Naruto
 naruto.gui.done=Pronto
 naruto.gui.firstPerson=Primeira Pessoa
 naruto.gui.on=Ligado
 naruto.gui.off=Desligado
 naruto.gui.jutsutoggle=Jutsu
 naruto.gui.chakraGUIOffset=Equilibrio
-naruto.gui.generalOptions=Opções Gerais
+naruto.gui.generalOptions=Opcoes Gerais
 naruto.gui.chakraGui=Chakra GUI
 naruto.gui.chakraGUICorner=Canto da GUI
-naruto.gui.jutsuSettings=Configurações de Jutsu
+naruto.gui.jutsuSettings=Configuracoes de Jutsu
 naruto.gui.jutsuDelay=Demora (Momentos)
 
 naruto.gui.chakraColour=Cor do Chakra
 
-naruto.gui.clan.title=Seleção de Clã
+naruto.gui.clan.title=Selecao de Cla
 naruto.gui.clan.select=Selecionar
 
 
@@ -41,22 +41,22 @@ item.Kubikiribocho.desc.line2=Com o Sangue de Seus Inimigos.
 item.Ramen.name=Ramen
         
 item.gunbai.name=Gunbai
-item.gunbai.desc.line1=Infelizmente, essa é apenas uma cópa barata
-item.gunbai.desc.line2=da verdadeira arma lendária.
+item.gunbai.desc.line1=Infelizmente, essa e apenas uma copia barata
+item.gunbai.desc.line2=da verdadeira arma lendaria.
         
 item.Bokken.name=Bokken
         
-item.Scroll.name=Pergaminho de Invocação (Lobo)
+item.Scroll.name=Pergaminho de Invocacao (Lobo)
         
 item.Noodles.name=Noodles
         
 item.Samehada.name=Samehada
 
-item.military_pills.name=Pílulas Militares
+item.military_pills.name=Pilulas Militares
 
 item.Senbon.name=Senbon
 
-item.gourd.name=Cabaça
+item.gourd.name=Cabaca
 
 item.Noodles.name=Noodles
 
@@ -72,7 +72,7 @@ item.backScroll.Black.name=Pergaminho nas Costas Preto
 
 item.headProtector=Bandana
 
-item.headProtector.HiddenInTheTrees.name=Bandana Escondida nas Árvores
+item.headProtector.HiddenInTheTrees.name=Bandana Ninja
 item.headProtector.Custard.name=Bandana de Rosquinha
 
 item.backBokken.name=Bokken com Bainha
@@ -83,63 +83,63 @@ item.backStraps.name=Correias de Couro
         
 item.fabric..name=Tecido
         
-item.fabric.reinforced.name=Tecido Reforçado
+item.fabric.reinforced.name=Tecido Reforcado
         
-item.fabric.reinforcedBlack.name=Tecido Preto Reforçado
+item.fabric.reinforcedBlack.name=Tecido Preto Reforcado
 item.flakJacket.name=Colete
 item.kubikiribocho.name=Kubikiribocho
 item.madarasChestplate.name=Peitoral de Madara
-item.madarasLeggings.name=Calças de Madara
+item.madarasLeggings.name=Calcas de Madara
 item.armourPlate.name=Placa de Armadura
 
 tile.sakuraleaves.name=Folhas de Sakura
 tile.sakurasapling.name=Muda de Sakura
-tile.bonsaitree.name=Árvore Bonsai
+tile.bonsaitree.name=Arvore Bonsai
 
 
 itemGroup.narutoWeapons=Armas de Naruto
 
 itemGroup.narutoMaterials=Materiais do Naruto
 Jutsus.Chakra_Control=Controle de Chakra
-Jutsus.Chakra_Control.desc=A Base de Toda Técnica, com Exceção do Taijutsu. Habilidade Passiva. C Também Pode ser Pressionado para Carregar o Chakra.
+Jutsus.Chakra_Control.desc=A Base de Toda Tecnica, com Excecao do Taijutsu. Habilidade Passiva. C Tambem Pode ser Pressionado para Carregar o Chakra.
         
 Jutsus.Fire_Ball_Jutsu=Katon: Goukakyu no Jutsu
 Jutsus.Fire_Ball_Jutsu.desc=Cria, a partir de seu Chakra, uma Gigante Bola de Fogo. Combo: C V C
         
 Jutsus.Shadow_Clone_Jutsu=Kage Bunshin no Jutsu
-Jutsus.Shadow_Clone_Jutsu.desc=Confunda seus Inimigos com Cópias Suas! Combo: C B B V
+Jutsus.Shadow_Clone_Jutsu.desc=Confunda seus Inimigos com Copias Suas! Combo: C B B V
         
-Jutsus.Water_Walk=Caminhada Aquática
-Jutsus.Water_Walk.desc=Direciona o Chakra à Seus Pés, Permitindo Andar, Correr e Pular na Água. Combo: B
+Jutsus.Water_Walk=Caminhada Aquatica
+Jutsus.Water_Walk.desc=Direciona o Chakra para os Seus Pes, Permitindo Andar, Correr e Pular na agua. Combo: B
         
 Jutsus.Chakra_Dash=Corrida Chakra
 Jutsus.Chakra_Dash.desc=Infunda chakra por todo o corpo e aumente a velocidade de seus movimentos. Combo: V
         
-Jutsus.Substitution=Substituição
-Jutsus.Substitution.desc=Essa Técnica Troca Seu Corpo Com um Objeto. Combo: C V
+Jutsus.Substitution=Substituicao
+Jutsus.Substitution.desc=Essa Tecnica Troca Seu Corpo Com um Objeto. Combo: C V
 
 Jutsus.Water_Bullet=Suiton: Suidan no Jutsu
-Jutsus.Water_Bullet.desc=Canaliza Chakra em Seu Estômago e Dispara-o Em Forma de Projéteis Aquáticos! Combo: C B V
+Jutsus.Water_Bullet.desc=Canaliza Chakra em Seu Estomago e Dispara-o Em Forma de Projeteis Aquaticos! Combo: C B V
 
-naruto.jutsu.chakraDash.deactivate=Você Desativou a Corrida Chakra!
-naruto.jutsu.chakraDash.activate=Você Ativou a Corrida Chakra!
+naruto.jutsu.chakraDash.deactivate=Voce Desativou a Corrida Chakra!
+naruto.jutsu.chakraDash.activate=Voce Ativou a Corrida Chakra!
 
-naruto.jutsu.waterWalk.deactivate=Você Desativou a Caminhada Aquática!
-naruto.jutsu.waterWalk.activate=Você Ativou a Caminhada Aquática!
+naruto.jutsu.waterWalk.deactivate=Voce Desativou a Caminhada Aquatica!
+naruto.jutsu.waterWalk.activate=Voce Ativou a Caminhada Aquatica!
 
-naruto.jutsu.substitution=Substituição!
+naruto.jutsu.substitution=Substituicao!
 
-naruto.jutsu.chakraCharge.activate=Você Começou a Carregar Chakra!
-naruto.jutsu.chakraCharge.deactivate=Você Parou de Carregar Chakra!
+naruto.jutsu.chakraCharge.activate=Voce Comecou a Carregar Chakra!
+naruto.jutsu.chakraCharge.deactivate=Voce Parou de Carregar Chakra!
 
 naruto.jutsu.fireball=Fire Katon - Goukakyu no Jutsu!
 naruto.jutsu.waterBullet=Suiton - Suidan no Jutsu!
 
 naruto.jutsu.shadowClone=Kage Bunshin no Jutsu!
 
-naruto.jutsu.unrecognised=Técnica Deconhecida!
+naruto.jutsu.unrecognised=Tecnica Deconhecida!
 
-naruto.jutsu.comboLimit=Você Chegou ao Limite do Combo!
+naruto.jutsu.comboLimit=Voce Chegou ao Limite do Combo!
 
 naruto.jutsu.nochakra=Sem Chakra Suficiente!
 
@@ -148,20 +148,20 @@ naruto.jutsu.nostamina=Sem Estamina Suficiente!
 
 entity.narutomod.Puppet.name=Marionetete
 entity.narutomod.Rogue_Ninja.name=Nukenin
-entity.narutomod.Ninja_Villager.name=Ninja Aldeão
+entity.narutomod.Ninja_Villager.name=Ninja Aldeao
 entity.narutomod.Ninja_VillagerAnbu.name=Ninja Anbu
 entity.narutomod.Bandit.name=Bandido
 entity.narutomod.Shadow_Clone.name=Kage Bunshin
-entity.narutomod.Substitution.name=Substituição
-entity.narutomod.SubstitutionLog.name=Tronco de Substituição
+entity.narutomod.Substitution.name=Substituicao
+entity.narutomod.SubstitutionLog.name=Tronco de Substituicao
 
 narutomod.keys.category=Controle do Naruto Mod
 naruto.keys.key1=Justsu 1
 naruto.keys.key2=Justsu 2
 naruto.keys.key3=Justsu 3
 naruto.keys.jutsumenu=Abrir Menu de Jutsus
-naruto.keys.options=Open Opções do Mod
+naruto.keys.options=Open Opcoes do Mod
 
 potion.chakraRestore=Carga de Chakra
 
-death.attack.waterBullet=%1$s Foi morto por %2$s usando Balas d'Água
+death.attack.waterBullet=%1$s Foi morto por %2$s usando Balas d'Agua
