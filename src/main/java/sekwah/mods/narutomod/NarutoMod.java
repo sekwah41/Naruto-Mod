@@ -61,6 +61,7 @@ public class NarutoMod {
     public static boolean isPreRelease = false;
 
     public static UsageReport usageReport;
+    private UpdateChecker updateChecker;
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
@@ -96,8 +97,9 @@ public class NarutoMod {
 
         proxy.startUsageReport();
 
-        new UpdateChecker();
-        //Thread updateChecker = new Thread(new UpdateChecker());
+        updateChecker = new UpdateChecker();
+        updateChecker.startUpdateChecker();
+        //Thread updateChecker = new Thread(new UpdateCheckerOld());
         //updateChecker.run();
 
         /** ticks are now an event so use an event listener like the bonemeal one or the data watcher one

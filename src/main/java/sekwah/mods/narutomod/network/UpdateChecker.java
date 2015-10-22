@@ -2,13 +2,23 @@ package sekwah.mods.narutomod.network;
 
 import net.minecraft.util.EnumChatFormatting;
 import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public final class UpdateChecker {
+/**
+ * Created by sekwah on 22/10/2015.
+ */
+public class UpdateChecker {
 
     public static String updatestatus = "checking";
     public static String updatetext = EnumChatFormatting.YELLOW + " - Checking for update...";
@@ -18,29 +28,41 @@ public final class UpdateChecker {
 
     public static String servertext = "Join Naruto Server";
 
+    private final Timer threadTrigger = new Timer("Update Checker", true);
+
+    private final URL updateURL;
+
+    // Once this is complete there will be a lot more data complete
     public UpdateChecker() {
-        updatestatus = "checking";
-        checkUpdate();
+        try {
+            this.updateURL = new URL("http://report.sekwah.com/naruto-mod/updateCheck.php");
+        } catch (MalformedURLException malformedurlexception) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    /**
-     * @return
-     * @Override public void run() {
-     */
-    public void checkUpdate() {
+    public void startUpdateChecker() {
 
-        String narutoversion = NarutoMod.version;
+            this.threadTrigger.schedule(new TimerTask() {
 
+                public void run() {
+                    NarutoMod.LOGGER.info("Checking for updates");
+                    checkUpdate(updateURL);
+                }
+            }, 0L); // Shorter than 15 mins by 10 seconds just to make sure its not on the border and online
+
+            // players are missed
+
+    }
+
+    public void checkUpdate(URL url) {
         try {
-            NarutoMod.LOGGER.info("Checking for updates...");
-            URL url = new URL("http://www.sekwah.com/naruto-mod/UpdateInfo.txt");
-            URLConnection connection = url.openConnection();
-            connection.setConnectTimeout(5000);
-            Scanner s = new Scanner(connection.getInputStream());
-            int mcversion = Integer.parseInt(s.nextLine());
-            int modversion = Integer.parseInt(s.nextLine());
-            String newestdownloadlink = s.nextLine();
-            s.close();
+            InputStream in = url.openStream();
+            String json = readJSONFileStream(in);
+            JSONObject updateFile = new JSONObject(json);
+            int mcversion = updateFile.getInt("mcversion");
+            int modversion = updateFile.getInt("modversion");
+            String newestDownload = updateFile.getString("updateLink");
 
             if (mcversion == NarutoMod.mcversion && modversion == NarutoMod.modversion) {
                 if (NarutoMod.isPreRelease) {
@@ -61,15 +83,14 @@ public final class UpdateChecker {
                 updatestatus = "update";
                 NarutoMod.LOGGER.info("Update found.");
             }
-        } catch (IOException ex) {
-            updatetext = EnumChatFormatting.RED + " - Could not connect to the update info file :(";
-        } catch (NumberFormatException ex) {
-            updatetext = EnumChatFormatting.RED + " - Something is wrong with the update file.";
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         try {
-            URL url = new URL("https://www.dropbox.com/s/staineiwde1azr8/Current%20Server%20IP.txt?dl=1");
-            URLConnection connection = url.openConnection();
+            URL urlServer = new URL("https://www.dropbox.com/s/staineiwde1azr8/Current%20Server%20IP.txt?dl=1");
+            URLConnection connection = urlServer.openConnection();
             connection.setConnectTimeout(4000);
             Scanner s = new Scanner(connection.getInputStream());
             joinenabled = Boolean.parseBoolean(s.nextLine());
@@ -82,7 +103,23 @@ public final class UpdateChecker {
         } catch (NumberFormatException ex) {
             joinenabled = false;
         }
-
     }
 
+    private String readJSONFileStream(InputStream filestreamJson) throws IOException {
+        InputStreamReader inr = new InputStreamReader(filestreamJson, "ASCII");
+        BufferedReader br = new BufferedReader(inr);
+        StringBuffer sb = new StringBuffer();
+        while (true) {
+            String line = br.readLine();
+            if (line == null)
+                break;
+            sb.append(line);
+            sb.append("\n");
+        }
+
+        br.close();
+        inr.close();
+
+        return sb.toString();
+    }
 }

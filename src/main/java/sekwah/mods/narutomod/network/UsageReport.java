@@ -45,8 +45,6 @@ public class UsageReport {
             }
 
             this.threadTrigger.schedule(new TimerTask() {
-                private static final String __OBFID = "CL_00001516";
-
 
                 public void run() {
 
