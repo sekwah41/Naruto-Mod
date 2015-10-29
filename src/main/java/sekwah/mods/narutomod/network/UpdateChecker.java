@@ -89,7 +89,7 @@ public class UpdateChecker {
         }
 
         try {
-            URL urlServer = new URL("https://www.dropbox.com/s/staineiwde1azr8/Current%20Server%20IP.txt?dl=1");
+            URL urlServer = new URL("http://www.sekwah.com/naruto-mod/OfficialServerInfo.txt");
             URLConnection connection = urlServer.openConnection();
             connection.setConnectTimeout(4000);
             Scanner s = new Scanner(connection.getInputStream());

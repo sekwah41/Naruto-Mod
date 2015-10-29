@@ -20,7 +20,6 @@ import sekwah.mods.narutomod.generic.NarutoEffects;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
-import sekwah.mods.narutomod.packets.serverbound.ServerSoundPacket;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -379,18 +378,7 @@ public class PlayerClientTickEvent {
 
                 PacketDispatcher.sendPacketToServer(new ServerJutsuPacket(bos.toByteArray()));
 
-                bos = new ByteArrayOutputStream(8);
-                outputStream = new DataOutputStream(bos);
-                try {
-                    outputStream.writeInt(7);
-                    outputStream.writeDouble(playerMP.posX);
-                    outputStream.writeDouble(playerMP.posY);
-                    outputStream.writeDouble(playerMP.posZ);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-
-                PacketDispatcher.sendPacketToServer(new ServerSoundPacket(bos.toByteArray()));
+                SoundEffects.sendSound(playerMP, 7);
 
             } else if (Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && !hasDoubleJumped && this.chakra <= 5F && doubleJumpReady) {
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You do not have enough chakra to double jump."));

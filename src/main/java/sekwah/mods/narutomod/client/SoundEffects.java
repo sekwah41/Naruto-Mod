@@ -2,6 +2,11 @@ package sekwah.mods.narutomod.client;
 
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
+import sekwah.mods.narutomod.packets.PacketDispatcher;
+import sekwah.mods.narutomod.packets.serverbound.ServerSoundPacket;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 
 public class SoundEffects {
 
@@ -26,11 +31,30 @@ public class SoundEffects {
 			playerMP.worldObj.playSound(posX, posY, posZ, "narutomod:jutsusounds.clone_poof", 0.5F, 1F, false);
 		}
 		else if(soundID == 7){
-			playerMP.worldObj.playSound(posX, posY, posZ, "narutomod:jutsusounds.whoosh", 0.5F, 1F, false);
+			playerMP.worldObj.playSound(posX, posY, posZ, "narutomod:jutsusounds.jump_air", 0.5F, 1F, false);
+		}
+		else if(soundID == 8){
+			playerMP.worldObj.playSound(posX, posY, posZ, "narutomod:jutsusounds.leap", 0.5F, 1F, false);
 		}
 		else if(soundID == 20){
 			playerMP.worldObj.playSound(posX, posY, posZ, "narutomod:eventsounds.MissionComplete", 0.5F, 1F, false);
 		}
+	}
+
+	public static void sendSound(EntityClientPlayerMP playerEntity, int soundID){
+
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+		DataOutputStream outputStream = new DataOutputStream(bos);
+		try {
+			outputStream.writeInt(soundID);
+			outputStream.writeDouble(playerEntity.posX);
+			outputStream.writeDouble(playerEntity.posY);
+			outputStream.writeDouble(playerEntity.posZ);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		PacketDispatcher.sendPacketToServer(new ServerSoundPacket(bos.toByteArray()));
 	}
 	
 }

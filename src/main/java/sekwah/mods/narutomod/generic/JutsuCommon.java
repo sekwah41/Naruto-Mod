@@ -43,6 +43,7 @@ public class JutsuCommon {
             case 401:
                 return true;
             case 411:
+                jutsuSound(8, playerMP);
                 return true;
             case 12:
                 playerMP.addPotionEffect((new PotionEffect(Potion.invisibility.getId(), 10, 0)));
