@@ -138,19 +138,19 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
 
         /** Checks if the naruto mod is up to date */
 
-        narutoversion = NarutoMod.version;
+        this.narutoversion = NarutoMod.version;
 
         //repeats = 1 + rand.nextInt(2);
 
-        joinenabled = UpdateChecker.joinenabled;
+        this.joinenabled = UpdateChecker.joinenabled;
 
-        updatetext = UpdateChecker.updatetext;
+        this.updatetext = UpdateChecker.updatetext;
 
-        joinbuttonText = UpdateChecker.servertext;
+        this.joinbuttonText = UpdateChecker.servertext;
 
-        serverip = UpdateChecker.serverip;
+        this.serverip = UpdateChecker.serverip;
 
-        serverport = UpdateChecker.serverport;
+        this.serverport = UpdateChecker.serverport;
 
         this.updateCounter = rand.nextFloat();
         this.field_92025_p = "";
@@ -572,7 +572,8 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
             String brd = brandings.get(i);
             if (!Strings.isNullOrEmpty(brd)) {
                 if (brd.equals("Naruto Mod")) {
-                    brd = "Naruto Mod v" + narutoversion + updatetext;
+
+                    brd = "Naruto Mod v" + this.narutoversion + this.updatetext;
                 }
                 this.drawString(this.fontRendererObj, brd, 2, this.height - (10 + i * (this.fontRendererObj.FONT_HEIGHT + 1)), 16777215);
             }

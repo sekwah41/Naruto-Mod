@@ -1,6 +1,6 @@
 {
   "poses": {
-      "leapingforwardglide" :{
+      "leapingforwardglide1" :{
           "animDuration": -1,
           "animLength": 20,
           "locData": {
@@ -74,10 +74,10 @@
               }
           }
       },
-      "leapforward" :{
+      "leapforward1" :{
           "animDuration": -1,
           "animLength": 20,
-          "nextPose": "leapingforwardglide",
+          "nextPose": "leapingforwardglide1",
           "completeAction": "411",
           "locData": {
               "head": {
@@ -151,34 +151,14 @@
               }
           }
       },
-      "leapforward2" :{
+      "leapingforwardglide2" :{
           "animDuration": -1,
-          "animLength": 10,
-          "nextPose": "leapingforwardglide",
-          "completeAction": "411",
+          "animLength": 20,
           "locData": {
-              "rightLegLower": {
-                  "posY": "6.00000000",
-                  "posX": "0.00000000",
-                  "posZ": "0.00000000",
-                  "rotX": "0.43982298"
-              },
-              "leftArmUpper": {
-                  "posY": "4.09999990",
-                  "posX": "5.00000000",
-                  "posZ": "-4.69999981",
-                  "rotX": "1.44513267"
-              },
               "upperBody": {
                   "posY": "3.20000005",
                   "posX": "0.00000000",
                   "posZ": "-5.40000010",
-                  "rotX": "0.62831853"
-              },
-              "rightLegUpper": {
-                  "posY": "13.10000038",
-                  "posX": "-2.00000000",
-                  "posZ": "0.00000000",
                   "rotX": "0.62831853"
               },
               "lowerBody": {
@@ -187,16 +167,17 @@
                   "posZ": "-2.09999990",
                   "rotX": "0.37699113"
               },
-              "leftArmLower": {
-                  "posY": "4.00000000",
-                  "posX": "1.00000000",
-                  "posZ": "0.00000000"
+              "rightLegLower": {
+                  "posY": "6.00000000",
+                  "posX": "0.00000000",
+                  "posZ": "0.00000000",
+                  "rotX": "1.57079633"
               },
               "leftLegLower": {
                   "posY": "6.00000000",
                   "posX": "0.00000000",
                   "posZ": "0.00000000",
-                  "rotX": "1.57079633"
+                  "rotX": "0.43982298"
               },
               "helmet": {
                   "posY": "0.00000000",
@@ -211,19 +192,117 @@
               "rightArmLower": {
                   "posY": "4.00000000",
                   "posX": "-1.00000000",
-                  "posZ": "0.00000000"
+                  "posZ": "0.00000000",
+                  "rotX": "1.57079633"
+              },
+              "leftArmLower": {
+                  "posY": "4.00000000",
+                  "posX": "1.00000000",
+                  "posZ": "0.00000000",
+                  "rotX": "1.57079633"
+              },
+              "rightLegUpper": {
+                  "posY": "13.10000038",
+                  "posX": "-2.00000000",
+                  "posZ": "0.00000000",
+                  "rotX": "-0.87964597"
               },
               "leftLegUpper": {
                   "posY": "12.69999981",
                   "posX": "2.00000000",
                   "posZ": "0.00000000",
-                  "rotX": "-0.87964597"
+                  "rotX": "0.62831853"
               },
               "rightArmUpper": {
                   "posY": "4.09999990",
                   "posX": "-5.00000000",
                   "posZ": "-4.69999981",
                   "rotX": "1.44513267"
+              },
+              "leftArmUpper": {
+                  "posY": "4.09999990",
+                  "posX": "5.00000000",
+                  "posZ": "-4.69999981",
+                  "rotX": "1.44513267"
+              }
+          }
+      },
+      "leapforward2" :{
+          "animDuration": -1,
+          "animLength": 20,
+          "nextPose": "leapingforwardglide2",
+          "completeAction": "411",
+          "locData": {
+              "head": {
+                  "posX": "0.00000000",
+                  "posY": "4.69999981",
+                  "posZ": "-9.80000019",
+                  "rotX": "0.31415927"
+              },
+              "lowerBody": {
+                  "posX": "0.00000000",
+                  "posY": "8.60000038",
+                  "posZ": "-6.09999990",
+                  "rotX": "0.37699113"
+              },
+              "upperBody": {
+                  "posX": "0.00000000",
+                  "posY": "4.19999981",
+                  "posZ": "-9.39999962",
+                  "rotX": "0.62831853"
+              },
+              "helmet": {
+                  "posX": "0.00000000",
+                  "posY": "0.00000000",
+                  "posZ": "0.00000000"
+              },
+              "rightArmUpper": {
+                  "posX": "-5.00000000",
+                  "posY": "5.09999990",
+                  "posZ": "-8.69999981",
+                  "rotX": "1.57079633"
+              },
+              "leftArmUpper": {
+                  "posX": "5.00000000",
+                  "posY": "5.09999990",
+                  "posZ": "-8.69999981",
+                  "rotX": "1.57079633"
+              },
+              "rightArmLower": {
+                  "posX": "-1.00000000",
+                  "posY": "4.00000000",
+                  "posZ": "0.00000000",
+                  "rotX":"0.00000000"
+              },
+              "leftArmLower": {
+                  "posX": "1.00000000",
+                  "posY": "4.00000000",
+                  "posZ": "0.00000000",
+                  "rotX":"0.00000000"
+              },
+              "rightLegLower": {
+                  "posX": "0.00000000",
+                  "posY": "6.00000000",
+                  "posZ": "0.00000000",
+                  "rotX": "0.31415927"
+              },
+              "leftLegLower": {
+                  "posX": "0.00000000",
+                  "posY": "6.00000000",
+                  "posZ": "0.00000000",
+                  "rotX": "1.00530962"
+              },
+              "rightLegUpper": {
+                  "posX": "-2.00000000",
+                  "posY": "14.10000038",
+                  "posZ": "-4.00000000",
+                  "rotX": "0.56548670"
+              },
+              "leftLegUpper": {
+                  "posX": "2.00000000",
+                  "posY": "13.69999981",
+                  "posZ": "-5.00000000",
+                  "rotX": "-0.81681408"
               }
           }
       },

@@ -160,7 +160,7 @@ public class EntityNinjaVillagerAnbu extends EntityGolem {
         if (this.getAttackTarget() != null) {
             EntityLivingBase attackEntity = this.getAttackTarget();
             double distanceToEntity = Math.sqrt((this.posX * this.posX - attackEntity.posX * attackEntity.posX) + (this.posY * this.posY - attackEntity.posY * attackEntity.posY) + (this.posZ * this.posZ - attackEntity.posZ * attackEntity.posZ));
-            if (distanceToEntity > 2 && distanceToEntity < 32) {
+            if (distanceToEntity > 2 && distanceToEntity < 32 && this.getEquipmentInSlot(0) != null) {
 
                 double var3 = attackEntity.posX - this.posX;
                 double var5 = attackEntity.boundingBox.minY + (double) (attackEntity.height / 2.0F) - (this.posY + (double) (this.height / 2.0F));

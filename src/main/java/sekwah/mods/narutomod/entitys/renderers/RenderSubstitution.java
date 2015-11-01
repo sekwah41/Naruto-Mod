@@ -40,6 +40,12 @@ public class RenderSubstitution extends RendererLivingEntity {
 
     private static final ResourceLocation sharinganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/sharingan.png");
 
+    private static final ResourceLocation rinneganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/rinnegan2x2.png");
+
+    private static final ResourceLocation motherFuckingDEMONSOverlay = new ResourceLocation("narutomod:textures/skinOverlays/demonEyes2x2.png");
+
+    private static final ResourceLocation sharingan1eye2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2x2.png");
+
     private static final ResourceLocation hiroCurseMark = new ResourceLocation("narutomod:textures/skinOverlays/hiro_cursemark.png");
 
     private ModelNinjaBiped modelBipedMain;
@@ -260,7 +266,7 @@ public class RenderSubstitution extends RendererLivingEntity {
             }
         }
 
-        String[] MaskUsers = {"SEKWAH41", "Praneeth98", "Orcwaagh"};
+        String[] MaskUsers = {"sekwah41", "Praneeth98", "Orcwaagh"};
         for (String MaskUser : MaskUsers) {
             if (MaskUser.endsWith(par1EntitySubstitution.getCustomNameTag())) {
                 ResourceLocation locationSkin = AbstractClientPlayer.locationStevePng;
@@ -407,7 +413,22 @@ public class RenderSubstitution extends RendererLivingEntity {
             GL11.glPopMatrix();
         }
 
-        if (par1EntitySubstitution.getCustomNameTag().endsWith("liam3011")) {
+        ResourceLocation overlay = null;
+
+        if (par1EntitySubstitution.getCustomNameTag().endsWith("Zaromaru")) {
+            overlay = this.rinneganOverlay;
+        }
+        else if(par1EntitySubstitution.getCustomNameTag().endsWith("Gingershadow")){
+            overlay = this.motherFuckingDEMONSOverlay;
+        }
+        else if(par1EntitySubstitution.getCustomNameTag().endsWith("owTreyalP")){
+            overlay = this.sharingan1eye2x2;
+        }
+        /*else if(par1EntitySubstitution.getCustomNameTag().endsWith("SSJHiro11")){
+            overlay = this.hiroCurseMark;
+        }*/
+
+        if (overlay != null) {
 
             //GL11.glEnable(GL11.GL_BLEND);
             //GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -416,7 +437,7 @@ public class RenderSubstitution extends RendererLivingEntity {
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDepthMask(true);
 
-            this.bindTexture(sharinganOverlay);
+            this.bindTexture(overlay);
             // TODO BLAH BLAH BLAH add some shit here
             this.modelSkinOverlay.bipedHead.rotateAngleX = this.modelBipedMain.bipedHead.rotateAngleX;
             this.modelSkinOverlay.bipedHead.rotateAngleY = this.modelBipedMain.bipedHead.rotateAngleY;
@@ -436,7 +457,7 @@ public class RenderSubstitution extends RendererLivingEntity {
             int k = c0 / 65536;
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
 
-            GL11.glColor4f(1.0F, 0.0F, 0.0F, 1.0F);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             this.modelSkinOverlay.bipedHead.render(0.0625F);
 
@@ -447,7 +468,6 @@ public class RenderSubstitution extends RendererLivingEntity {
             this.bindTexture(func_110817_a(par1EntitySubstitution));
 
         }
-
     }
 
     protected void renderPlayerScale(EntitySubstitution par1EntitySubstitution, float par2) {

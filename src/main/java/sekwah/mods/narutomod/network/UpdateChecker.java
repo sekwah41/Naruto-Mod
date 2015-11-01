@@ -21,7 +21,7 @@ import java.util.TimerTask;
 public class UpdateChecker {
 
     public static String updatestatus = "checking";
-    public static String updatetext = EnumChatFormatting.YELLOW + " - Checking for update...";
+    public static String updatetext = EnumChatFormatting.YELLOW + " - Checking for update";
     public static boolean joinenabled = false;
     public static String serverip = "localhost";
     public static int serverport = 25565;
@@ -86,6 +86,8 @@ public class UpdateChecker {
 
         } catch (IOException e) {
             e.printStackTrace();
+            updatestatus = "failed";
+            updatetext = EnumChatFormatting.RED + " - Could not connect to the update info file :(";
         }
 
         try {

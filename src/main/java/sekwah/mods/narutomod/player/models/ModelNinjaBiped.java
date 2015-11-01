@@ -11,6 +11,7 @@ import sekwah.mods.narutomod.animation.AnimModelRenderer;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.animation.Pose;
 import sekwah.mods.narutomod.animation.dynamicplayerposes.DynamicPose;
+import sekwah.mods.narutomod.animation.modelparts.ModelRetexturedBox;
 import sekwah.mods.narutomod.animation.modelparts.ModelRetexturedBoxSharpBend;
 import sekwah.mods.narutomod.client.PlayerRenderTickEvent;
 
@@ -117,6 +118,7 @@ public class ModelNinjaBiped extends ModelBiped
 
     public ModelNinjaBiped(float p_i1149_1_, float p_i1149_2_, int p_i1149_3_, int p_i1149_4_)
     {
+
         this.isSneak = false;
         this.aimedBow = false;
         this.isThrowing = false;
@@ -133,7 +135,8 @@ public class ModelNinjaBiped extends ModelBiped
         this.bipedHeadwear.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, p_i1149_1_ + 0.5F);
         this.bipedHeadwear.setRotationPoint(0.0F, 0.0F + p_i1149_2_, 0.0F);
         this.bipedBody = new AnimModelRenderer(this, 16, 16,"upperBody");
-        this.bipedBody.addBox(-4F, 0F, -2F, 8, 6, 4, p_i1149_1_);
+        //this.bipedBody.addBox(-4F, 0F, -2F, 8, 6, 4, p_i1149_1_);
+        this.bipedBody.cubeList.add(new ModelRetexturedBox(this.bipedBody, 16, 16, -4F, 0F, -2F, 8, 6, 4, p_i1149_1_, 20, 16, 28,24));
         this.bipedBody.setRotationPoint(0.0F, 0.0F + p_i1149_2_, 0.0F);
 
         this.bipedRightArm = new AnimModelRenderer(this, 40, 16,"rightArm");
@@ -153,8 +156,11 @@ public class ModelNinjaBiped extends ModelBiped
         this.bipedLeftLeg.setRotationPoint(2F, 12.0F, 0.0F);
 
         this.bipedLowerBody = new AnimModelRenderer(this, 16, 22,"lowerBody");
-        this.bipedLowerBody.addBox(-4F, 0F, -2F, 8, 6, 4, p_i1149_1_);
+        this.bipedLowerBody.cubeList.add(new ModelRetexturedBox(this.bipedLowerBody, 16, 22, -4F, 0F, -2F, 8, 6, 4, p_i1149_1_, 28, 24, 28,16));
         this.bipedLowerBody.setRotationPoint(0F, 6F, 0F);
+
+        //this.bipedLowerBody.addBox(-4F, 0F, -2F, 8, 6, 4, p_i1149_1_);
+        //this.bipedLowerBody.cubeList.add(new ModelRetexturedBox(this.bipedLowerBody, 16, 22, -4F, 0F, -2F, 8, 6, 4, p_i1149_1_));
 
         this.bipedMask = new AnimModelRenderer(this, 24, 0,"head");
         this.bipedMask.addBox(-2F, -3F, -6F, 4, 3, 2, p_i1149_1_);
@@ -306,7 +312,7 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedLowerBody.render(p_78088_7_);
             //this.bipedRightArm.render(p_78088_7_);
             //this.bipedLeftArm.render(p_78088_7_);
-           // this.bipedRightLeg.render(p_78088_7_);
+            // this.bipedRightLeg.render(p_78088_7_);
             //this.bipedLeftLeg.render(p_78088_7_);
             this.bipedHeadwear.render(p_78088_7_);
 
@@ -328,6 +334,7 @@ public class ModelNinjaBiped extends ModelBiped
      */
     public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity)
     {
+        //long timeTaken = System.nanoTime();
         this.animatedParts.remove(this.bipedRightArmLower);
         this.animatedParts.remove(this.bipedLeftArmUpper);
         this.animatedParts.remove(this.bipedLeftArmLower);
@@ -641,9 +648,9 @@ public class ModelNinjaBiped extends ModelBiped
         this.animatedParts.add(this.bipedLeftLegLower);
         this.animatedParts.add(this.bipedRightLegUpper);
 
-        /**if(!this.animationID.equals("default") || !this.animationlastID.equals("default")){
-         PlayerPoseAnimator.animate(this, this.animationID, this.animationlastID, this.animationTick);
-         }*/
+        /*if(!this.animationID.equals("default") || !this.animationlastID.equals("default")){
+            PlayerPoseAnimator.animate(this, this.animationID, this.animationlastID, this.animationTick);
+        }*/
 
         if(this.animationID.equals(this.animationlastID)){
             Pose pose = NarutoAnimator.getPose(animationID, NarutoAnimator.playerPoses);
@@ -736,6 +743,8 @@ public class ModelNinjaBiped extends ModelBiped
         this.bipedLeftLegLower.cubeList.add(lowerLeftLegBox);
 
         this.bipedLeftLegUpper.addChild(this.bipedLeftLegLower);
+
+        //NarutoMod.LOGGER.info("Time to recalculate:" + (System.nanoTime() - timeTaken) + " (nanoseconds)");
     }
 
     /**

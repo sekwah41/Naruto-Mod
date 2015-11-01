@@ -39,7 +39,15 @@ public class RenderShadowClone extends RendererLivingEntity {
 
     private static final ResourceLocation steveTextures = new ResourceLocation("textures/entity/steve.png");
 
+    private static final ResourceLocation sharingan2Overlay = new ResourceLocation("narutomod:textures/skinOverlays/mongekyo.png");
+
     private static final ResourceLocation sharinganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/sharingan.png");
+
+    private static final ResourceLocation rinneganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/rinnegan2x2.png");
+
+    private static final ResourceLocation motherFuckingDEMONSOverlay = new ResourceLocation("narutomod:textures/skinOverlays/demonEyes2x2.png");
+
+    private static final ResourceLocation sharingan1eye2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2x2.png");
 
     private static final ResourceLocation hiroCurseMark = new ResourceLocation("narutomod:textures/skinOverlays/hiro_cursemark.png");
 
@@ -262,7 +270,7 @@ public class RenderShadowClone extends RendererLivingEntity {
             }
         }
 
-        String[] MaskUsers = {"SEKWAH41", "Praneeth98", "Orcwaagh"};
+        String[] MaskUsers = {"sekwah41", "Praneeth98", "Orcwaagh"};
         for (String MaskUser : MaskUsers) {
             if (MaskUser.endsWith(par1EntityShadowClone.getCustomNameTag())) {
                 this.modelBipedMain.renderMask(0.0625F);
@@ -407,7 +415,22 @@ public class RenderShadowClone extends RendererLivingEntity {
             GL11.glPopMatrix();
         }
 
-        if (par1EntityShadowClone.getCustomNameTag().endsWith("liam3011")) {
+        ResourceLocation overlay = null;
+
+        if (par1EntityShadowClone.getCustomNameTag().endsWith("Zaromaru")) {
+            overlay = this.rinneganOverlay;
+        }
+        else if(par1EntityShadowClone.getCustomNameTag().endsWith("Gingershadow")){
+            overlay = this.motherFuckingDEMONSOverlay;
+        }
+        else if(par1EntityShadowClone.getCustomNameTag().endsWith("owTreyalP")){
+            overlay = this.sharingan1eye2x2;
+        }
+        /*else if(par1EntityShadowClone.getCustomNameTag().endsWith("SSJHiro11")){
+            overlay = this.hiroCurseMark;
+        }*/
+
+        if (overlay != null) {
 
             //GL11.glEnable(GL11.GL_BLEND);
             //GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -416,7 +439,7 @@ public class RenderShadowClone extends RendererLivingEntity {
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDepthMask(true);
 
-            this.bindTexture(sharinganOverlay);
+            this.bindTexture(overlay);
             // TODO BLAH BLAH BLAH add some shit here
             this.modelSkinOverlay.bipedHead.rotateAngleX = this.modelBipedMain.bipedHead.rotateAngleX;
             this.modelSkinOverlay.bipedHead.rotateAngleY = this.modelBipedMain.bipedHead.rotateAngleY;
@@ -436,17 +459,11 @@ public class RenderShadowClone extends RendererLivingEntity {
             int k = c0 / 65536;
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
 
-            GL11.glColor4f(1.0F, 0.0F, 0.0F, 1.0F);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             this.modelSkinOverlay.bipedHead.render(0.0625F);
 
             GL11.glEnable(GL11.GL_LIGHTING);
-
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-
-            GL11.glEnable(GL11.GL_BLEND);
-
-            //GL11.glDisable(GL11.GL_ALPHA_TEST);
 
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lastBrightnessX, lastBrightnessY);
 

@@ -94,7 +94,7 @@ public class ServerPacketHandler {
             e.printStackTrace();
         }
         DataWatcher dw = playerEntity.getDataWatcher();
-        System.out.println(jutsuPose);
+        //NarutoMod.LOGGER.info(jutsuPose);
 
         dw.updateObject(20, jutsuPose);
         dw.updateObject(25, Float.valueOf(0));

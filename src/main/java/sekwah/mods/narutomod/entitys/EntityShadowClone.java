@@ -15,6 +15,9 @@ import net.minecraft.world.World;
 import sekwah.mods.narutomod.entitys.ai.EntityAIFollowMaster;
 import sekwah.mods.narutomod.entitys.ai.EntityAIOwnerHurtByTarget;
 import sekwah.mods.narutomod.entitys.ai.EntityAIOwnerHurtTarget;
+import sekwah.mods.narutomod.entitys.projectiles.EntityKunai;
+import sekwah.mods.narutomod.entitys.projectiles.EntityShuriken;
+import sekwah.mods.narutomod.items.NarutoItems;
 
 public class EntityShadowClone extends EntityMob {
 
@@ -175,6 +178,36 @@ public class EntityShadowClone extends EntityMob {
         }
         if (this.worldObj.isDaytime() && !this.worldObj.isRemote && !this.isChild()) {
             float var1 = this.getBrightness(1.0F);
+        }
+
+        // Add some simple raytracing or something to try and detect other entities in the way
+        if (this.getAttackTarget() != null) {
+            EntityLivingBase attackEntity = this.getAttackTarget();
+            double distanceToEntity = Math.sqrt((this.posX * this.posX - attackEntity.posX * attackEntity.posX) + (this.posY * this.posY - attackEntity.posY * attackEntity.posY) + (this.posZ * this.posZ - attackEntity.posZ * attackEntity.posZ));
+            if (distanceToEntity > 2 && distanceToEntity < 32 && this.getEquipmentInSlot(0) != null) {
+
+                double var3 = attackEntity.posX - this.posX;
+                double var5 = attackEntity.boundingBox.minY + (double) (attackEntity.height / 2.0F) - (this.posY + (double) (this.height / 2.0F));
+                double var7 = attackEntity.posZ - this.posZ;
+
+                if (this.attackTime <= 0) {
+                    this.attackTime = (int) (30 + Math.round(60 * this.rand.nextDouble()));
+
+                    if (this.getEquipmentInSlot(0).getItem() == NarutoItems.Kunai) {
+                        this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+                        EntityKunai var11 = new EntityKunai(this.worldObj, this, attackEntity, 1.6F, (float) (14 - this.worldObj.difficultySetting.getDifficultyId() * 4));
+                        var11.posY = this.posY + (double) (this.height / 2.0F) + 0.5D;
+                        this.worldObj.spawnEntityInWorld(var11);
+                    } else if (this.getEquipmentInSlot(0).getItem() == NarutoItems.Shuriken) {
+                        this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+                        EntityShuriken var11 = new EntityShuriken(this.worldObj, this, attackEntity, 1.6F, (float) (14 - this.worldObj.difficultySetting.getDifficultyId() * 4));
+                        var11.posY = this.posY + (double) (this.height / 2.0F) + 0.5D;
+                        this.worldObj.spawnEntityInWorld(var11);
+                    }
+                    this.rotationYaw = (float) (Math.atan2(var7, var3) * 180.0D / Math.PI) - 90.0F;
+                    this.hasAttacked = true;
+                }
+            }
         }
 
         super.onLivingUpdate();

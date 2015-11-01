@@ -43,9 +43,19 @@ import java.util.UUID;
 @SideOnly(Side.CLIENT)
 public class RenderNinjaPlayer extends RenderPlayer {
     public static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+
     private static final ResourceLocation steveTextures = new ResourceLocation("textures/entity/steve.png");
+
     private static final ResourceLocation sharingan2Overlay = new ResourceLocation("narutomod:textures/skinOverlays/mongekyo.png");
+
     private static final ResourceLocation sharinganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/sharingan.png");
+
+    private static final ResourceLocation rinneganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/rinnegan2x2.png");
+
+    private static final ResourceLocation motherFuckingDEMONSOverlay = new ResourceLocation("narutomod:textures/skinOverlays/demonEyes2x2.png");
+
+    private static final ResourceLocation sharingan1eye2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2x2.png");
+
     private static final ResourceLocation hiroCurseMark = new ResourceLocation("narutomod:textures/skinOverlays/hiro_cursemark.png");
 
     private static final ResourceLocation susanooRibs = new ResourceLocation("narutomod:textures/otherStuff/susanoo.png");
@@ -758,7 +768,83 @@ public class RenderNinjaPlayer extends RenderPlayer {
             GL11.glPopMatrix();
         }
 
-        if (p_77029_1_.getCommandSenderName().endsWith("liam3011")) {
+        ResourceLocation overlay = null;
+
+        if (p_77029_1_.getCommandSenderName().endsWith("Zaromaru")) {
+            overlay = this.rinneganOverlay;
+        }
+        else if(p_77029_1_.getCommandSenderName().endsWith("Gingershadow")){
+            overlay = this.motherFuckingDEMONSOverlay;
+        }
+        else if(p_77029_1_.getCommandSenderName().endsWith("owTreyalP")){
+            overlay = this.sharingan1eye2x2;
+        }
+        /*else if(p_77029_1_.getCommandSenderName().endsWith("SSJHiro11")){
+            overlay = this.hiroCurseMark;
+        }*/
+
+        if (overlay != null) {
+
+            //if(p_76986_1_.getEntityData().getBoolean("showEyes")){
+
+            //GL11.glEnable(GL11.GL_BLEND);
+            //GL11.glDisable(GL11.GL_ALPHA_TEST);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            GL11.glDisable(GL11.GL_LIGHTING);
+
+            GL11.glDepthMask(true);
+
+            this.bindTexture(overlay);
+            //this.bindTexture(sharinganOverlay);
+
+            this.modelSkinOverlay.bipedHead.rotateAngleX = this.modelBipedMain.bipedHead.rotateAngleX;
+            this.modelSkinOverlay.bipedHead.rotateAngleY = this.modelBipedMain.bipedHead.rotateAngleY;
+            this.modelSkinOverlay.bipedHead.rotateAngleZ = this.modelBipedMain.bipedHead.rotateAngleZ;
+
+            this.modelSkinOverlay.bipedHead.rotationPointX = this.modelBipedMain.bipedHead.rotationPointX;
+            this.modelSkinOverlay.bipedHead.rotationPointY = this.modelBipedMain.bipedHead.rotationPointY;
+            this.modelSkinOverlay.bipedHead.rotationPointZ = this.modelBipedMain.bipedHead.rotationPointZ;
+
+            //this.modelSkinOverlay.bipedHead.render(0.0625F);
+
+            float lastBrightnessX = OpenGlHelper.lastBrightnessX;
+            float lastBrightnessY = OpenGlHelper.lastBrightnessY;
+
+            char c0 = 61680;
+            int j = c0 % 65536;
+            int k = c0 / 65536;
+
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
+
+
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+            this.modelSkinOverlay.bipedHead.render(0.0625F);
+
+
+            //this.bindTexture(new ResourceLocation("narutomod:textures/particles/sakuraParticle.png"));
+            //Tessellator tessellator = Tessellator.instance;
+
+            //this.modelBipedMain.bipedHead.postRender(0.0625F);
+
+            /**tessellator.startDrawingQuads();
+            tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
+            tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
+            tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
+            tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
+            tessellator.draw();*/
+
+            GL11.glEnable(GL11.GL_ALPHA_TEST);
+
+            GL11.glEnable(GL11.GL_LIGHTING);
+
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lastBrightnessX, lastBrightnessY);
+
+            this.bindTexture(p_77029_1_.getLocationSkin());
+
+        }
+
+        /*if (p_77029_1_.getCommandSenderName().endsWith("liam3011")) {
             //if(p_76986_1_.getEntityData().getBoolean("showEyes")){
 
             //GL11.glEnable(GL11.GL_BLEND);
@@ -801,12 +887,12 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
             //this.modelBipedMain.bipedHead.postRender(0.0625F);
 
-            /**tessellator.startDrawingQuads();
+            *//**tessellator.startDrawingQuads();
              tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
              tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
              tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
              tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
-             tessellator.draw();*/
+             tessellator.draw();*//*
 
             GL11.glEnable(GL11.GL_ALPHA_TEST);
 
@@ -816,9 +902,11 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
             this.bindTexture(p_77029_1_.getLocationSkin());
 
-        }
+        }*/
 
-        if (p_77029_1_.getCommandSenderName().endsWith("SSJHiro11")) {
+
+
+        /*if (p_77029_1_.getCommandSenderName().endsWith("SSJHiro11")) {
             //if(par1AbstractClientPlayer.getEntityData().getBoolean("showEyes")){
 
             //GL11.glEnable(GL11.GL_BLEND);
@@ -860,12 +948,12 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
             //this.modelBipedMain.bipedHead.postRender(0.0625F);
 
-            /**tessellator.startDrawingQuads();
+            *//**tessellator.startDrawingQuads();
              tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
              tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
              tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
              tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
-             tessellator.draw();*/
+             tessellator.draw();*//*
 
             GL11.glEnable(GL11.GL_ALPHA_TEST);
 
@@ -875,7 +963,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
             this.bindTexture(p_77029_1_.getLocationSkin());
 
-        }
+        }*/
 
         MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderPlayerEvent.Specials.Post(p_77029_1_, this, p_77029_2_));
     }

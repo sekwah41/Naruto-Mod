@@ -28,6 +28,20 @@ public class PlayerRenderTickEvent {
 
     @SubscribeEvent
     public void tick(RenderTickEvent event) {
+        // add code to get if the game is paused and keeps setting to 0(else could cause problems in singleplayer
+        double nsPerTick = 1000000000D / 120D;
+
+        delta = 0;
+
+        long now = System.nanoTime();
+        delta += (now - lastTime) / nsPerTick;
+        if (delta >= 1) {
+            lastTime = now;
+        } else if (delta < 0) {
+            lastTime = now;
+            NarutoMod.LOGGER.error(" Your computer seems to have traveled back in time :O");
+        }
+
         GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
         if (guiscreen instanceof GuiMainMenu) {
             Minecraft.getMinecraft().displayGuiScreen(new GuiNarutoMainMenu());
@@ -45,23 +59,12 @@ public class PlayerRenderTickEvent {
                 }
             }
 
-            double nsPerTick = 1000000000D / 120D;
-
-            delta = 0;
-
-            long now = System.nanoTime();
-            delta += (now - lastTime) / nsPerTick;
-            if (delta >= 1) {
-                lastTime = now;
-            } else if (delta < 0) {
-                lastTime = now;
-                NarutoMod.LOGGER.error(" Your computer seems to have traveled back in time :O");
-            }
+            // Time code used to be here
 
             EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
             DataWatcher dw = playerMP.getDataWatcher();
 
-
+            //
 
             // TODO get if the game is paused
             //double nsPerTick = 1000000000D / 120D; change that number to increase the update rate.

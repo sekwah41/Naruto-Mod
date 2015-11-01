@@ -2,7 +2,7 @@ package sekwah.mods.narutomod.assets;
 
 public class JutsuData {
 
-    public static int substitutionCost = 10;
+    public static int substitutionCost = 15;
 
     public static int fireballCost = 30;
 

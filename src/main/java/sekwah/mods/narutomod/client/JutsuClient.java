@@ -8,7 +8,11 @@ import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.assets.JutsuData;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 
+import java.util.Random;
+
 public class JutsuClient {
+
+    private static Random rand = new Random();
 
     public static void execute(int jutsuCombo, EntityClientPlayerMP playerMP) {
 
@@ -41,7 +45,7 @@ public class JutsuClient {
                 }
                 PlayerClientTickEvent.stamina -= 20;
                 PlayerClientTickEvent.setStaminaCooldown(80);
-                PacketAnimationUpdate.animationUpdate("leapforward", playerMP);
+                PacketAnimationUpdate.animationUpdate("leapforward" + (rand.nextInt(2) + 1), playerMP);
                 break;
             case 411:
                 playerMP.setVelocity(playerMP.motionX + playerMP.getLookVec().xCoord * 1.5F, (playerMP.getLookVec().yCoord + 0.8F) * 0.7F

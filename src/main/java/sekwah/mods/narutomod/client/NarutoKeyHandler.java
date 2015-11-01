@@ -134,7 +134,7 @@ public class NarutoKeyHandler {
                 }
             }/* else if(keys[keyID].getKeyDescription().equals("naruto.keys.sharingan")){
                 EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
-                if(playerMP.getCommandSenderName().endsWith("liam3011") || playerMP.getCommandSenderName().endsWith("sekwah41")){
+                if(playerMP.getCommandSenderName().endsWith("sekwah41")){
 
                 }
             }*/

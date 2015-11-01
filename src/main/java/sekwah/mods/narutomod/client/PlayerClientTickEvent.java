@@ -126,11 +126,11 @@ public class PlayerClientTickEvent {
             // Ends the gliding in air pose(possibly make a more efficient system or nicer looking one
             DataWatcher dw = playerMP.getDataWatcher();
             //NarutoMod.LOGGER.info("20:" + dw.getWatchableObjectString(20) + " 27:" + dw.getWatchableObjectString(20));
-            if(dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27)) && dw.getWatchableObjectString(20).equals("leapingforwardglide") ){
+            if(dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27)) && (dw.getWatchableObjectString(20).equals("leapingforwardglide1") || dw.getWatchableObjectString(20).equals("leapingforwardglide2")) ){
                 animTime++;
                 if(animTime > 10){
                     if(!firedChangeBack){
-                        if(playerMP.onGround){
+                        if(playerMP.onGround || playerMP.isInWater()){
                             PacketAnimationUpdate.animationUpdate("default", playerMP);
                             firedChangeBack = true;
                         }
