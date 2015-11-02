@@ -38,6 +38,8 @@ import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3
 public class RenderSubstitution extends RendererLivingEntity {
     private static final ResourceLocation steveTextures = new ResourceLocation("textures/entity/steve.png");
 
+    private static final ResourceLocation sharingan2Overlay = new ResourceLocation("narutomod:textures/skinOverlays/mongekyo.png");
+
     private static final ResourceLocation sharinganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/sharingan.png");
 
     private static final ResourceLocation rinneganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/rinnegan2x2.png");
@@ -423,6 +425,9 @@ public class RenderSubstitution extends RendererLivingEntity {
         }
         else if(par1EntitySubstitution.getCustomNameTag().endsWith("owTreyalP")){
             overlay = this.sharingan1eye2x2;
+        }
+        else if(par1EntitySubstitution.getCustomNameTag().endsWith("liam3011")){
+            overlay = this.sharingan2Overlay;
         }
         /*else if(par1EntitySubstitution.getCustomNameTag().endsWith("SSJHiro11")){
             overlay = this.hiroCurseMark;

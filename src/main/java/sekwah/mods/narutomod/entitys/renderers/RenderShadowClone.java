@@ -426,6 +426,9 @@ public class RenderShadowClone extends RendererLivingEntity {
         else if(par1EntityShadowClone.getCustomNameTag().endsWith("owTreyalP")){
             overlay = this.sharingan1eye2x2;
         }
+        else if(par1EntityShadowClone.getCustomNameTag().endsWith("liam3011")){
+            overlay = this.sharingan2Overlay;;
+        }
         /*else if(par1EntityShadowClone.getCustomNameTag().endsWith("SSJHiro11")){
             overlay = this.hiroCurseMark;
         }*/

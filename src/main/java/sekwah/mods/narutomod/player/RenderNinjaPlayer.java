@@ -779,6 +779,9 @@ public class RenderNinjaPlayer extends RenderPlayer {
         else if(p_77029_1_.getCommandSenderName().endsWith("owTreyalP")){
             overlay = this.sharingan1eye2x2;
         }
+        else if(p_77029_1_.getCommandSenderName().endsWith("liam3011")){
+            overlay = this.sharingan2Overlay;
+        }
         /*else if(p_77029_1_.getCommandSenderName().endsWith("SSJHiro11")){
             overlay = this.hiroCurseMark;
         }*/
