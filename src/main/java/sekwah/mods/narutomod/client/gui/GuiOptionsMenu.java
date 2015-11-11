@@ -76,7 +76,7 @@ public class GuiOptionsMenu extends GuiScreen {
             this.buttonList.add(offsetSliderY);
 
             // TODO add hue slider
-            GuiNarutoOptionsSlider chakraBarSlider = new GuiNarutoOptionsSlider(0, guiX + 130, guiY + 43, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETY, I18n.format("naruto.gui.chakraColour") + " Y");
+            GuiNarutoOptionsSlider chakraBarSlider = new GuiNarutoOptionsSlider(0, guiX + 9, guiY + 89, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETY, I18n.format("naruto.gui.chakraColour"));
             //offsetSliderY.enabled = false;
             this.buttonList.add(chakraBarSlider);
 

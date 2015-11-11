@@ -122,6 +122,10 @@ public class NarutoMod {
 
         proxy.registerRenderers();
 
+        while(true){
+            LOGGER.info("SEKWAH IS AN IDIOT!");
+        }
+
         /**if (Loader.isModLoaded("shadersmod")) { // a way to detect other mods
          throw new NullPointerException("A lighting error has been detected, another mod seems to be overwriting one of the core classes!");
          }*/

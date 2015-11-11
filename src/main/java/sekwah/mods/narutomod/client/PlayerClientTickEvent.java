@@ -190,7 +190,8 @@ public class PlayerClientTickEvent {
                             ParticleEffects.addEffect(2, playerMP);
                         }
                         else{
-                            ParticleEffects.addEffect(1, playerMP);
+                            //ParticleEffects.addEffect(1, playerMP);
+                            ParticleEffects.addPlayersColouredSmoke(playerMP);
                         }
                     }
                     // add code for chakra charging such as the animation
@@ -241,7 +242,7 @@ public class PlayerClientTickEvent {
                                 ParticleEffects.addEffect(2, playerMP);
                             }
                             else{
-                                ParticleEffects.addEffect(1, playerMP);
+                                ParticleEffects.addPlayersColouredSmoke(playerMP);
                             }
                     }
                 } else {
@@ -311,7 +312,7 @@ public class PlayerClientTickEvent {
                             ParticleEffects.addEffect(2, playerMP);
                         }
                         else{
-                            ParticleEffects.addEffect(1, playerMP);
+                            ParticleEffects.addPlayersColouredSmoke(playerMP);
                         }
                     }
                 } else {

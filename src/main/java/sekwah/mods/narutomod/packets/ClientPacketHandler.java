@@ -30,7 +30,7 @@ public class ClientPacketHandler {
     public static void handleParticleEffect(byte[] packet) {
         ByteArrayInputStream bais = new ByteArrayInputStream(packet);
         DataInputStream dis = new DataInputStream(bais);
-        int effectID = 0;
+        /*int effectID = 0;
         double x = -1.0D;
         double y = -1.0D;
         double z = -1.0D;
@@ -43,9 +43,9 @@ public class ClientPacketHandler {
             dimension = dis.readInt();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
-        ParticleEffects.execute(effectID, playerMP, x, y, z);
+        ParticleEffects.execute(dis, playerMP);
     }
 
     public static void handleAnimationData(byte[] packet) {
