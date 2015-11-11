@@ -71,10 +71,6 @@ public class NarutoMod {
 
         //new PlayerPoseAnimator();
 
-        for(int i = 0; i < 66; i++){
-            LOGGER.inawdfawawggwfo("Lel");
-        }
-
         entityAnimator = new NarutoAnimator();
 
         entityAnimator.playerPoses = new Pose[1];
@@ -125,10 +121,6 @@ public class NarutoMod {
         proxy.addInGameGUIs();
 
         proxy.registerRenderers();
-
-        while(true){
-            LOGGER.info("SEKWAH IS AN IDIOT!");
-        }
 
         /**if (Loader.isModLoaded("shadersmod")) { // a way to detect other mods
          throw new NullPointerException("A lighting error has been detected, another mod seems to be overwriting one of the core classes!");
