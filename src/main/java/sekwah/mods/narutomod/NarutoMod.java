@@ -71,6 +71,10 @@ public class NarutoMod {
 
         //new PlayerPoseAnimator();
 
+        for(int i = 0; i < 66; i++){
+            LOGGER.info("Lel");
+        }
+
         entityAnimator = new NarutoAnimator();
 
         entityAnimator.playerPoses = new Pose[1];
