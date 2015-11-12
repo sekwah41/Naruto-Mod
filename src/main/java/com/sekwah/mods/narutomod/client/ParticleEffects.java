@@ -1,0 +1,228 @@
+package com.sekwah.mods.narutomod.client;
+
+import com.sekwah.mods.narutomod.entitys.particles.EntityColouredSmokeFX;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.entity.player.EntityPlayerMP;
+import com.sekwah.mods.narutomod.packets.PacketDispatcher;
+import com.sekwah.mods.narutomod.packets.serverbound.ServerParticleEffectPacket;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+
+public class ParticleEffects {
+
+    /*public static void execute(int effectID, EntityClientPlayerMP playerMP, double posX, double posY, double posZ) {
+
+        //NarutoMod.LOGGER.debug(effectID);
+
+        if (effectID == 1) {
+            double particleX = Math.random() - 0.5;
+            double particleY = (Math.random()) * 2 - 1.8F;
+            double particleZ = Math.random() - 0.5;
+            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityColouredSmokeFX(playerMP.worldObj, posX + particleX, posY + particleY, posZ + particleZ, 0, 0, 0, 0.08F, 0.7F, 1F));
+        } else if (effectID == 2) {
+            double particleX = Math.random() - 0.5;
+            double particleY = (Math.random()) * 2 - 1.8F;
+            double particleZ = Math.random() - 0.5;
+            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityColouredSmokeFX(playerMP.worldObj, posX + particleX, posY + particleY, posZ + particleZ, 0, 0, 0, 1F, 0.5F, 0.1F));
+        } else if (effectID == 3) {
+            for (int i = 1; i < 30; i++) {
+                double particleX = Math.random();
+                double particleZ = Math.random();
+                double speedX = Math.random();
+                double speedZ = Math.random();
+                playerMP.worldObj.spawnParticle("cloud", posX - 0.5 + particleX, posY - 1.3F, posZ - 0.5 + particleZ, speedX - 0.5D, 0.0D, speedZ - 0.5D);
+            }
+        } else if (effectID == 4) {
+            for (int i = 1; i < 25; i++) {
+                // fix the spawn position
+                double particleX = Math.random() - 0.5;
+                double particleY = (Math.random()) * 2.5 - 2.5F;
+                double particleZ = Math.random() - 0.5;
+                playerMP.worldObj.spawnParticle("explode", posX + particleX, posY + particleY, posZ + particleZ, 0, 0, 0);
+            }
+        } else {
+
+        }
+
+    }*/
+
+
+    public static void execute(DataInputStream dis, EntityClientPlayerMP playerMP) {
+
+        int effectID = 0;
+        double posX = -1.0D;
+        double posY = -1.0D;
+        double posZ = -1.0D;
+        int dimension = 0;
+        try {
+            effectID = dis.readInt();
+            posX = dis.readDouble();
+            posY = dis.readDouble();
+            posZ = dis.readDouble();
+            dimension = dis.readInt();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (effectID == 1) {
+            double particleX = Math.random() - 0.5;
+            double particleY = (Math.random()) * 2 - 1.8F;
+            double particleZ = Math.random() - 0.5;
+            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityColouredSmokeFX(playerMP.worldObj, posX + particleX, posY + particleY, posZ + particleZ, 0, 0, 0, 0.08F, 0.7F, 1F));
+        } else if (effectID == 2) {
+            double particleX = Math.random() - 0.5;
+            double particleY = (Math.random()) * 2 - 1.8F;
+            double particleZ = Math.random() - 0.5;
+            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityColouredSmokeFX(playerMP.worldObj, posX + particleX, posY + particleY, posZ + particleZ, 0, 0, 0, 1F, 0.5F, 0.1F));
+        } else if (effectID == 3) {
+            for (int i = 1; i < 30; i++) {
+                double particleX = Math.random();
+                double particleZ = Math.random();
+                double speedX = Math.random();
+                double speedZ = Math.random();
+                playerMP.worldObj.spawnParticle("cloud", posX - 0.5 + particleX, posY - 1.3F, posZ - 0.5 + particleZ, speedX - 0.5D, 0.0D, speedZ - 0.5D);
+            }
+        } else if (effectID == 4) {
+            for (int i = 1; i < 25; i++) {
+                // fix the spawn position
+                double particleX = Math.random() - 0.5;
+                double particleY = (Math.random()) * 2.5 - 2.5F;
+                double particleZ = Math.random() - 0.5;
+                playerMP.worldObj.spawnParticle("explode", posX + particleX, posY + particleY, posZ + particleZ, 0, 0, 0);
+            }
+        }
+        else if (effectID == 5) {
+            double particleX = Math.random() - 0.5;
+            double particleY = (Math.random()) * 2 - 1.8F;
+            double particleZ = Math.random() - 0.5;
+            float red = 1f;
+            float green = 1f;
+            float blue = 1f;
+            try {
+                red = dis.readFloat();
+                green = dis.readFloat();
+                blue = dis.readFloat();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityColouredSmokeFX(playerMP.worldObj, posX + particleX, posY + particleY, posZ + particleZ, 0, 0, 0, red, green, blue));
+        }
+        else {
+
+        }
+
+    }
+
+    /**
+     * Used to spawn chakra particles of the colour set for the characters
+     * @param playerEntity
+     */
+    public static void addPlayersColouredSmoke(EntityClientPlayerMP playerEntity){
+        ByteArrayOutputStream bos = new ByteArrayOutputStream(16);
+        DataOutputStream outputStream = new DataOutputStream(bos);
+        try {
+            outputStream.writeInt(5);
+            outputStream.writeDouble(playerEntity.posX);
+            outputStream.writeDouble(playerEntity.posY);
+            outputStream.writeDouble(playerEntity.posZ);
+            outputStream.writeInt(playerEntity.dimension);
+            outputStream.writeFloat(0.08F);
+            outputStream.writeFloat(0.7F);
+            outputStream.writeFloat(1F);
+            double fullCircle = Math.PI * 2;
+            double hue = Math.random() * fullCircle;
+            double sixth = Math.PI / 3d;
+            double gradient = 3d / Math.PI;
+            float red = 0;
+            float blue = 0;
+            float green = 0;
+            if(hue == (fullCircle / 3D)){
+                red = 1;
+
+            }
+            else
+            if(hue == 3d * (fullCircle / 3D)){
+                blue = 1;
+            }
+            if(hue == 3d * (fullCircle / 3D)){
+                green = 1;
+            }
+            if(red > 1) red = 1;
+            if(blue > 1) blue = 1;
+            if(green > 1) green = 1;
+            if(red < 0) red = 0;
+            if(blue < 0) blue = 0;
+            if(green < 0) green = 0;
+            outputStream.writeFloat(red);
+            outputStream.writeFloat(blue);
+            outputStream.writeFloat(green);
+            /*outputStream.writeFloat(1F);
+            outputStream.writeFloat(0.5F);
+            outputStream.writeFloat(0.9F);*/
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        PacketDispatcher.sendPacketToServer(new ServerParticleEffectPacket(bos.toByteArray()));
+    }
+
+    public static void addColouredSmoke(float red, float green, float blue, EntityClientPlayerMP playerEntity){
+        ByteArrayOutputStream bos = new ByteArrayOutputStream(16);
+        DataOutputStream outputStream = new DataOutputStream(bos);
+        try {
+            outputStream.writeInt(5);
+            outputStream.writeDouble(playerEntity.posX);
+            outputStream.writeDouble(playerEntity.posY);
+            outputStream.writeDouble(playerEntity.posZ);
+            outputStream.writeInt(playerEntity.dimension);
+            outputStream.writeFloat(red);
+            outputStream.writeFloat(green);
+            outputStream.writeFloat(blue);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        PacketDispatcher.sendPacketToServer(new ServerParticleEffectPacket(bos.toByteArray()));
+    }
+
+    public static void addEffect(int i, EntityPlayerMP playerEntity) {
+
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream(16);
+        DataOutputStream outputStream = new DataOutputStream(bos);
+        try {
+            outputStream.writeInt(i);
+            outputStream.writeDouble(playerEntity.posX);
+            outputStream.writeDouble(playerEntity.posY);
+            outputStream.writeDouble(playerEntity.posZ);
+            outputStream.writeInt(playerEntity.dimension);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        PacketDispatcher.sendPacketToServer(new ServerParticleEffectPacket(bos.toByteArray()));
+
+    }
+
+    public static void addEffect(int i, EntityClientPlayerMP playerEntity) {
+
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream(16);
+        DataOutputStream outputStream = new DataOutputStream(bos);
+        try {
+            outputStream.writeInt(i);
+            outputStream.writeDouble(playerEntity.posX);
+            outputStream.writeDouble(playerEntity.posY);
+            outputStream.writeDouble(playerEntity.posZ);
+            outputStream.writeInt(playerEntity.dimension);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        PacketDispatcher.sendPacketToServer(new ServerParticleEffectPacket(bos.toByteArray()));
+
+    }
+}
