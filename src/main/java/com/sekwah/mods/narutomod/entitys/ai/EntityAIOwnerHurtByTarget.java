@@ -19,7 +19,7 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget {
      * Returns whether the EntityAIBase should begin execution.
      */
     public boolean shouldExecute() {
-        EntityLivingBase entitylivingbase = this.theDefendingClone.func_130012_q();
+        EntityLivingBase entitylivingbase = this.theDefendingClone.getMaster();
 
         if (entitylivingbase == null) {
             return false;
@@ -35,7 +35,7 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget {
      */
     public void startExecuting() {
         this.taskOwner.setAttackTarget(this.theOwnerAttacker);
-        EntityLivingBase entitylivingbase = this.theDefendingClone.func_130012_q();
+        EntityLivingBase entitylivingbase = this.theDefendingClone.getMaster();
 
         if (entitylivingbase != null) {
             this.field_142051_e = entitylivingbase.func_142015_aE();
