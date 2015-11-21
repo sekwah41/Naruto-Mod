@@ -5,6 +5,8 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import com.sekwah.mods.narutomod.client.gui.EnumNarutoOptions;
 
+import java.util.UUID;
+
 public class NarutoSettings {
 
 
@@ -25,6 +27,7 @@ public class NarutoSettings {
     public static int jutsuDelay = 10; // Delay time in ticks, from when the last button is presset till the jutsu casts
 
     public static int usageReportMod = 0;
+    public static String usageUUID = null;
 
     public static void changeSetting() {
     }
@@ -146,7 +149,14 @@ public class NarutoSettings {
         configUsageReportMod.comment = "This sets the usage report mode 0 = Enabled, 1 = No data sent but says its " +
                 "online, 2 = Disabled (please leave this on 1 at least just for me :3 the data is anonymous and it " +
                 "lets me see how many people are playing. If you dont like data being sent about your pc such as " +
-                "operaing system and cores then please set it to 1 so we have a usage count)";
+                "operaing system and cores then please set it to 1 so we have a usage count) also may make some fun " +
+                "stats such as how many fireballs have been shot and other things.";
+
+
+        Property configUsageUUID = config.get(Configuration.CATEGORY_GENERAL, "usageReportMod", UUID.randomUUID().toString());
+        usageUUID = configUsageReportMod.getString();
+        configUsageUUID.comment = "Used to stop duplicates of users and used to make data completely anonymous. Specific data " +
+                "is kept on the database for a max of 30 mins and a min of 15 mins after logout.";
 
         //int randomBlockID = config.getBlock("RandomBlock", 200).getInt();
 
