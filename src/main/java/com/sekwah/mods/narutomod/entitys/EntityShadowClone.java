@@ -80,7 +80,7 @@ public class EntityShadowClone extends EntityMob {
         this.getDataWatcher().addObject(14, Byte.valueOf((byte) 0));
     }
 
-    public EntityLivingBase func_130012_q() {
+    public EntityLivingBase getMaster() {
         return this.worldObj.getPlayerEntityByName(this.getCustomNameTag());
     }
 

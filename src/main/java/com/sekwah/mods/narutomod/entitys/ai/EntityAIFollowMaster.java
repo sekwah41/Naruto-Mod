@@ -32,7 +32,7 @@ public class EntityAIFollowMaster extends EntityAIBase {
      * Returns whether the EntityAIBase should begin execution.
      */
     public boolean shouldExecute() {
-        EntityLivingBase entitylivingbase = this.theClone.func_130012_q();
+        EntityLivingBase entitylivingbase = this.theClone.getMaster();
 
         if (entitylivingbase == null) {
             return false;
