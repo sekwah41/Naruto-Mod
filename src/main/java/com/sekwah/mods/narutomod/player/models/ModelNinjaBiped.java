@@ -389,8 +389,16 @@ public class ModelNinjaBiped extends ModelBiped
         this.bipedLeftLegLower.rotateAngleY = 0;
         this.bipedLeftLegLower.rotateAngleZ = 0;
 
+        // Stops animations being wrong when changed back from a pose
+        this.bipedLowerBody.rotateAngleY = 0F;
+        this.bipedLowerBody.rotateAngleZ = 0F;
+
+        this.bipedBody.rotateAngleY = 0F;
+        this.bipedBody.rotateAngleZ = 0F;
+
         this.bipedHead.rotateAngleY = par4 / (180F / (float)Math.PI);
         this.bipedHead.rotateAngleX = par5 / (180F / (float)Math.PI);
+        this.bipedHead.rotateAngleZ = 0F;
         this.bipedHeadwear.rotateAngleY = this.bipedHead.rotateAngleY;
         this.bipedHeadwear.rotateAngleX = this.bipedHead.rotateAngleX;
         this.bipedRightArmUpper.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 2.0F * par2 * 0.5F;

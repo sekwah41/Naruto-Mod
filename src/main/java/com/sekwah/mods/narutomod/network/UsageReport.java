@@ -44,9 +44,9 @@ public class UsageReport {
     }
 
     public void startUsageReport() {
-        if(NarutoSettings.usageReportMod == 0 || NarutoSettings.usageReportMod == 1){
+        if(NarutoSettings.usageReportMode == 0 || NarutoSettings.usageReportMode == 1){
             addBase();
-            if(NarutoSettings.usageReportMod == 0){
+            if(NarutoSettings.usageReportMode == 0){
                 addStats();
             }
 
@@ -57,7 +57,7 @@ public class UsageReport {
                     HashMap hashmap;
                     synchronized (UsageReport.this.syncLock) {
 
-                        if(NarutoSettings.usageReportMod == 0){
+                        if(NarutoSettings.usageReportMode == 0){
                             addMemoryStats();
                         }
 

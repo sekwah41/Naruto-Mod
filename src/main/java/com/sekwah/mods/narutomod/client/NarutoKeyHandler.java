@@ -1,7 +1,9 @@
 package com.sekwah.mods.narutomod.client;
 
+import com.sekwah.mods.narutomod.client.gui.GuiJutsuMenu;
 import com.sekwah.mods.narutomod.client.gui.GuiOptionsMenu;
 import com.sekwah.mods.narutomod.packets.PacketDispatcher;
+import com.sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 import com.sekwah.mods.narutomod.packets.serverbound.ServerSoundPacket;
 import com.sekwah.mods.narutomod.settings.NarutoSettings;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -12,10 +14,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.Vec3;
 import org.lwjgl.input.Keyboard;
-import com.sekwah.mods.narutomod.client.gui.GuiJutsuMenu;
-import com.sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -120,16 +119,10 @@ public class NarutoKeyHandler {
                         PlayerClientTickEvent.setStaminaCooldown(80);
                     }*/
                     if (PlayerClientTickEvent.stamina >= 20) {
-                        ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-                        DataOutputStream outputStream = new DataOutputStream(bos);
-                        try {
-                            outputStream.writeInt(401);
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
+                        if (PlayerClientTickEvent.onWater) {
+                            PlayerClientTickEvent.useChakra(10F);
                         }
-
-                        PacketDispatcher.sendPacketToServer(new ServerJutsuPacket(bos.toByteArray()));
-
+                        sendJutsuPacket(401);
                     }
                 }
             }/* else if(keys[keyID].getKeyDescription().equals("naruto.keys.sharingan")){
@@ -150,6 +143,18 @@ public class NarutoKeyHandler {
         }
     }
 
+    private static void sendJutsuPacket(int i) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+        DataOutputStream outputStream = new DataOutputStream(bos);
+        try {
+            outputStream.writeInt(i);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        PacketDispatcher.sendPacketToServer(new ServerJutsuPacket(bos.toByteArray()));
+    }
+
     static void keyVanillaPressed(String keyDesc, boolean pressedDown) {
         if(pressedDown){
             EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
@@ -160,18 +165,24 @@ public class NarutoKeyHandler {
                 }
                 else{
                     PlayerClientTickEvent.doubleTapTime[0] = 0;
-                    if(PlayerClientTickEvent.stamina >= 20){
+                    if (playerMP.onGround && PlayerClientTickEvent.stamina >= 20) {
+                        if (PlayerClientTickEvent.onWater) {
+                            PlayerClientTickEvent.useChakra(10F);
+                        }
+                        sendJutsuPacket(403);
+                    }
+                    /*if(PlayerClientTickEvent.stamina >= 20){
                         if(playerMP.onGround){
                             if(PlayerClientTickEvent.onWater){
                                 PlayerClientTickEvent.useChakra(5F);
                             }
                             Vec3 lookVector = playerMP.getLookVec();
                             lookVector.rotateAroundY((float) (Math.PI / 2F));
-                            playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.5F);
+                            playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F *//*1.2F*//*, playerMP.motionZ + lookVector.zCoord * 1.5F);
                             PlayerClientTickEvent.stamina -= 20;
                             PlayerClientTickEvent.setStaminaCooldown(80);
                         }
-                    }
+                    }*/
                 }
             }
             else if(keyDesc.equals("key.right")) {
@@ -181,18 +192,24 @@ public class NarutoKeyHandler {
                 }
                 else{
                     PlayerClientTickEvent.doubleTapTime[1] = 0;
-                    if(PlayerClientTickEvent.stamina >= 20) {
+                    if (playerMP.onGround && PlayerClientTickEvent.stamina >= 20) {
+                        if (PlayerClientTickEvent.onWater) {
+                            PlayerClientTickEvent.useChakra(10F);
+                        }
+                        sendJutsuPacket(404);
+                    }
+                    /*if(PlayerClientTickEvent.stamina >= 20) {
                         if (playerMP.onGround) {
                             if (PlayerClientTickEvent.onWater) {
                                 PlayerClientTickEvent.useChakra(5F);
                             }
                             Vec3 lookVector = playerMP.getLookVec();
                             lookVector.rotateAroundY((float) (-Math.PI / 2F));
-                            playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.1F);
+                            playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F *//*1.2F*//*, playerMP.motionZ + lookVector.zCoord * 1.1F);
                             PlayerClientTickEvent.stamina -= 20;
                             PlayerClientTickEvent.setStaminaCooldown(80);
                         }
-                    }
+                    }*/
                 }
             }
             else if(keyDesc.equals("key.back")) {
@@ -202,18 +219,24 @@ public class NarutoKeyHandler {
                 }
                 else{
                     PlayerClientTickEvent.doubleTapTime[2] = 0;
-                    if(PlayerClientTickEvent.stamina >= 20) {
+                    if (playerMP.onGround && PlayerClientTickEvent.stamina >= 20) {
+                        if (PlayerClientTickEvent.onWater) {
+                            PlayerClientTickEvent.useChakra(10F);
+                        }
+                        sendJutsuPacket(402);
+                    }
+                    /*if(PlayerClientTickEvent.stamina >= 20) {
                         if (playerMP.onGround) {
                             if (PlayerClientTickEvent.onWater) {
                                 PlayerClientTickEvent.useChakra(5F);
                             }
                             Vec3 lookVector = playerMP.getLookVec();
                             lookVector.rotateAroundY((float) (Math.PI));
-                            playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F /*1.2F*/, playerMP.motionZ + lookVector.zCoord * 1.1F);
+                            playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F 1.2F, playerMP.motionZ + lookVector.zCoord * 1.1F);
                             PlayerClientTickEvent.stamina -= 20;
                             PlayerClientTickEvent.setStaminaCooldown(80);
                         }
-                    }
+                    }*/
                 }
             }
         }
