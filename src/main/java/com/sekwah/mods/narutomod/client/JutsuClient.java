@@ -7,6 +7,7 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.Vec3;
 
 import java.util.Random;
 
@@ -16,7 +17,10 @@ public class JutsuClient {
 
     public static void execute(int jutsuCombo, EntityClientPlayerMP playerMP) {
 
+        Vec3 lookVector;
+
         switch (jutsuCombo) {
+
             case 1:
                 break;
             case 2:
@@ -40,16 +44,46 @@ public class JutsuClient {
             case 4:
                 break;
             case 401:
-                if (PlayerClientTickEvent.onWater) {
-                    PlayerClientTickEvent.useChakra(10F);
-                }
                 PlayerClientTickEvent.stamina -= 20;
                 PlayerClientTickEvent.setStaminaCooldown(80);
                 PacketAnimationUpdate.animationUpdate("leapforward" + (rand.nextInt(2) + 1), playerMP);
                 break;
+            case 402:
+                PlayerClientTickEvent.stamina -= 20;
+                PlayerClientTickEvent.setStaminaCooldown(80);
+                PacketAnimationUpdate.animationUpdate("leapback" + (rand.nextInt(2) + 1), playerMP);
+                break;
+            case 403:
+                PlayerClientTickEvent.stamina -= 20;
+                PlayerClientTickEvent.setStaminaCooldown(80);
+                PacketAnimationUpdate.animationUpdate("leapleft", playerMP);
+                break;
+            case 404:
+                PlayerClientTickEvent.stamina -= 20;
+                PlayerClientTickEvent.setStaminaCooldown(80);
+                PacketAnimationUpdate.animationUpdate("leapright", playerMP);
+                break;
             case 411:
-                playerMP.setVelocity(playerMP.motionX + playerMP.getLookVec().xCoord * 1.5F, (playerMP.getLookVec().yCoord + 0.8F) * 0.7F
-                        , playerMP.motionZ + playerMP.getLookVec().zCoord * 1.5F);
+                lookVector = playerMP.getLookVec();
+                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, (lookVector.yCoord + 0.8F) * 0.7F
+                        , playerMP.motionZ + lookVector.zCoord * 1.5F);
+                break;
+            case 412:
+                lookVector = playerMP.getLookVec();
+                lookVector.rotateAroundY((float) (Math.PI));
+                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.1F);
+                /*playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, (lookVector.yCoord + 0.8F) * 0.7F
+                        , playerMP.motionZ + lookVector.zCoord * 1.5F);*/
+                break;
+            case 413:
+                lookVector = playerMP.getLookVec();
+                lookVector.rotateAroundY((float) (Math.PI / 2F));
+                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.5F);
+                break;
+            case 414:
+                lookVector = playerMP.getLookVec();
+                lookVector.rotateAroundY((float) (-Math.PI / 2F));
+                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.5F);
                 break;
             case 12:// change the combo at some point and make sure its the same as in jutsu common
                 // add code to execute client side  here!

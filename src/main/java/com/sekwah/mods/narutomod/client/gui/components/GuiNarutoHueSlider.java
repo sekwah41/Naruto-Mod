@@ -1,12 +1,13 @@
 package com.sekwah.mods.narutomod.client.gui.components;
 
+import com.sekwah.mods.narutomod.client.gui.EnumNarutoOptions;
+import com.sekwah.mods.narutomod.settings.NarutoSettings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import org.lwjgl.opengl.GL11;
-import sekwah.mods.narutomod.client.gui.EnumNarutoOptions;
-import sekwah.mods.narutomod.settings.NarutoSettings;
+
 
 @SideOnly(Side.CLIENT)
 public class GuiNarutoHueSlider extends GuiButton {

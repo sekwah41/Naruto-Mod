@@ -42,7 +42,22 @@ public class JutsuCommon {
                 return true;
             case 401:
                 return true;
+            case 402:
+                return true;
+            case 403:
+                return true;
+            case 404:
+                return true;
             case 411:
+                jutsuSound(8, playerMP);
+                return true;
+            case 412:
+                jutsuSound(8, playerMP);
+                return true;
+            case 413:
+                jutsuSound(8, playerMP);
+                return true;
+            case 414:
                 jutsuSound(8, playerMP);
                 return true;
             case 12:
