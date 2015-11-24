@@ -1,6 +1,7 @@
 package com.sekwah.mods.narutomod.client;
 
 import com.sekwah.mods.narutomod.entitys.particles.EntityColouredSmokeFX;
+import com.sekwah.mods.narutomod.settings.NarutoSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -129,10 +130,13 @@ public class ParticleEffects {
             outputStream.writeDouble(playerEntity.posY);
             outputStream.writeDouble(playerEntity.posZ);
             outputStream.writeInt(playerEntity.dimension);
-            outputStream.writeFloat(0.08F);
+            outputStream.writeFloat(NarutoSettings.chakraRedFloat());
+            outputStream.writeFloat(NarutoSettings.chakraGreenFloat());
+            outputStream.writeFloat(NarutoSettings.chakraBlueFloat());
+            /*outputStream.writeFloat(0.08F);
             outputStream.writeFloat(0.7F);
-            outputStream.writeFloat(1F);
-            double fullCircle = Math.PI * 2;
+            outputStream.writeFloat(1F);*/
+            /*double fullCircle = Math.PI * 2;
             double hue = Math.random() * fullCircle;
             double sixth = Math.PI / 3d;
             double gradient = 3d / Math.PI;
@@ -158,7 +162,7 @@ public class ParticleEffects {
             if(green < 0) green = 0;
             outputStream.writeFloat(red);
             outputStream.writeFloat(blue);
-            outputStream.writeFloat(green);
+            outputStream.writeFloat(green);*/
             /*outputStream.writeFloat(1F);
             outputStream.writeFloat(0.5F);
             outputStream.writeFloat(0.9F);*/

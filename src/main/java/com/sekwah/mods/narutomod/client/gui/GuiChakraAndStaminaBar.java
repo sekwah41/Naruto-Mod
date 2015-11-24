@@ -2,6 +2,7 @@ package com.sekwah.mods.narutomod.client.gui;
 
 import com.sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import com.sekwah.mods.narutomod.generic.NarutoEffects;
+import com.sekwah.mods.narutomod.settings.NarutoSettings;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -89,7 +90,8 @@ public class GuiChakraAndStaminaBar extends Gui {
             GL11.glColor3f(1F, 0.5F, 0.1F);
         }
         else{
-            GL11.glColor3f(0.08F, 0.7F, 1F);
+            //GL11.glColor3f(0.08F, 0.7F, 1F);
+            GL11.glColor3f(NarutoSettings.chakraRedFloat(), NarutoSettings.chakraGreenFloat(), NarutoSettings.chakraBlueFloat());
         }
         drawTexturedModalRect(scaledresolution.getScaledWidth() / 2 - 189 + chakraWidth, scaledresolution.getScaledHeight() - 11, 1 + chakraWidth, 238, 94 - chakraWidth, 5);
 

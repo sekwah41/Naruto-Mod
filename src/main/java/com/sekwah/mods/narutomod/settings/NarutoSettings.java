@@ -26,6 +26,12 @@ public class NarutoSettings {
 
     public static int usageReportMode = 0;
 
+    public static float chakraRed = 20;
+
+    public static float chakraGreen = 179;
+
+    public static float chakraBlue = 255;
+
     public static void changeSetting() {
     }
 
@@ -71,6 +77,15 @@ public class NarutoSettings {
         else if( setting == EnumNarutoOptions.CHAKRA_BAR_OFFSETY){
             // sliderValue is from 0 to 1
         }
+        else if( setting == EnumNarutoOptions.CHAKRA_RED){
+            chakraRed = (int) (sliderValue * 255);
+        }
+        else if( setting == EnumNarutoOptions.CHAKRA_GREEN){
+            chakraGreen = (int) (sliderValue * 255);
+        }
+        else if( setting == EnumNarutoOptions.CHAKRA_BLUE){
+            chakraBlue = (int) (sliderValue * 255);
+        }
 
 
         NarutoSettings.saveConfig();
@@ -84,6 +99,12 @@ public class NarutoSettings {
             return Integer.toString(chakraBarOffsetY);
         } else if (setting == EnumNarutoOptions.JUTSU_DELAY) {
             return Integer.toString(jutsuDelay);
+        } else if (setting == EnumNarutoOptions.CHAKRA_RED) {
+            return Float.toString(chakraRed);
+        } else if (setting == EnumNarutoOptions.CHAKRA_GREEN) {
+            return Float.toString(chakraGreen);
+        } else if (setting == EnumNarutoOptions.CHAKRA_BLUE) {
+            return Float.toString(chakraBlue);
         }
         return null;
     }
@@ -95,7 +116,14 @@ public class NarutoSettings {
             return (float) (chakraBarOffsetY) / 300F;
         } else if (setting == EnumNarutoOptions.JUTSU_DELAY) {
             return (float) (jutsuDelay - 5) / 20F;
+        } else if (setting == EnumNarutoOptions.CHAKRA_RED) {
+            return chakraRed / 255F;
+        } else if (setting == EnumNarutoOptions.CHAKRA_GREEN) {
+            return chakraGreen / 255F;
+        } else if (setting == EnumNarutoOptions.CHAKRA_BLUE) {
+            return chakraBlue / 255F;
         }
+
         return 1F;
     }
 
@@ -171,4 +199,15 @@ public class NarutoSettings {
 
     }
 
+    public static float chakraRedFloat() {
+        return chakraRed / 255F;
+    }
+
+    public static float chakraGreenFloat() {
+        return chakraGreen / 255F;
+    }
+
+    public static float chakraBlueFloat() {
+        return chakraBlue / 255F;
+    }
 }

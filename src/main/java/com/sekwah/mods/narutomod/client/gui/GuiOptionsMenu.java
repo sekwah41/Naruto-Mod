@@ -75,10 +75,19 @@ public class GuiOptionsMenu extends GuiScreen {
             offsetSliderY.enabled = false;
             this.buttonList.add(offsetSliderY);
 
-            // TODO add hue slider
-            GuiNarutoOptionsSlider chakraBarSlider = new GuiNarutoOptionsSlider(0, guiX + 9, guiY + 89, 110, EnumNarutoOptions.CHAKRA_BAR_OFFSETY, I18n.format("naruto.gui.chakraColour"));
+            // TODO render the bar on the menu to show what it will look like and have it being drained and then completely refilled :)
+            // TODO add hue slider instead possibly
+            GuiNarutoOptionsSlider chakraBarSliderR = new GuiNarutoOptionsSlider(0, guiX + 9, guiY + 89, 110, EnumNarutoOptions.CHAKRA_RED, I18n.format("naruto.gui.chakraRed"));
             //offsetSliderY.enabled = false;
-            this.buttonList.add(chakraBarSlider);
+            this.buttonList.add(chakraBarSliderR);
+
+            GuiNarutoOptionsSlider chakraBarSliderG = new GuiNarutoOptionsSlider(0, guiX + 130, guiY + 89, 110, EnumNarutoOptions.CHAKRA_GREEN, I18n.format("naruto.gui.chakraGreen"));
+            //offsetSliderY.enabled = false;
+            this.buttonList.add(chakraBarSliderG);
+
+            GuiNarutoOptionsSlider chakraBarSliderB = new GuiNarutoOptionsSlider(0, guiX + 9, guiY + 112, 110, EnumNarutoOptions.CHAKRA_BLUE, I18n.format("naruto.gui.chakraBlue"));
+            //offsetSliderY.enabled = false;
+            this.buttonList.add(chakraBarSliderB);
 
             // TODO Finish the damn thing you dirty scrub, noone will love you unless you actually do your work. T_T (I really love myself don't I?)
             GuiButton guiCorner = new GuiButton(6, guiX + 9, guiY + 43, 110, 20, I18n.format("naruto.gui.chakraGUICorner") + ": " + NarutoSettings.chakraGUICorner);

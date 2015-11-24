@@ -10,6 +10,9 @@ public enum EnumNarutoOptions {
     CHAKRA_BAR_CORNER("naruto.gui.chakraGUICorner", true, false),
     FIRSTPERSON("naruto.gui.firstPerson", false, true),
     JUTSU_DELAY("naruto.gui.jutsuDelay",true,false),
+    CHAKRA_RED("naruto.gui.chakraRed",true,false), // will only be temporary, the colour and other stuff may be saved server side :3
+    CHAKRA_GREEN("naruto.gui.chakraGreen",true,false),
+    CHAKRA_BLUE("naruto.gui.chakraBlue",true,false),
     CHAKRA_HUE("naruto.gui.chakraColour",true,false); // TODO change to not in settings
 
     private final boolean enumFloat;
