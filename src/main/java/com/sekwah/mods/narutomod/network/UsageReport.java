@@ -15,7 +15,8 @@ public class UsageReport {
 
     private final URL reportURL;
 
-    private final String uniqueID = UUID.randomUUID().toString();
+    // Store this in the config so that way if the user restarts they are not shown as 2 different users.
+    private final String uniqueID;
 
     private final Map reportData = Maps.newHashMap(); // general data from mod, may include more or less
 
@@ -27,14 +28,19 @@ public class UsageReport {
 
     private int reportCounter = 0;
 
-    // Once this is complete there will be a lot more data complete
-    public UsageReport(boolean isClient) {
+    public UsageReport(boolean isClient, String uniqueID) {
+        this.uniqueID = uniqueID;
         this.isClient = isClient;
         try {
             this.reportURL = new URL("http://report.sekwah.com/naruto-mod/");
         } catch (MalformedURLException malformedurlexception) {
             throw new IllegalArgumentException();
         }
+    }
+
+    // Once this is complete there will be a lot more data complete
+    public UsageReport(boolean isClient) {
+        this(isClient, NarutoSettings.usageUUID /*UUID.randomUUID().toString()*/);
     }
 
     public void startUsageReport() {
@@ -110,7 +116,8 @@ public class UsageReport {
 
     // Will contain stuff like fireballs shot and all sorts just for fun o3o
     public void addOtherData() {
-
+        // Would be stuff like fireballs shot since the last connection to the database
+        /*this.addData("fireballs_shot", 0);*/
     }
 
     public String buildPostString(Map map){
