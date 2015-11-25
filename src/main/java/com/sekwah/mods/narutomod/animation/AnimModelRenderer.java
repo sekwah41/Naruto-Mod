@@ -13,7 +13,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 
-public class AnimModelRenderer2 extends ModelRenderer {
+public class AnimModelRenderer extends ModelRenderer {
     public final String boxName;
     /**
      * The X offset into the texture used for displaying this model
@@ -30,7 +30,7 @@ public class AnimModelRenderer2 extends ModelRenderer {
     private int displayList;
     private ModelBase baseModel;
 
-    public AnimModelRenderer2(ModelBase p_i1172_1_, String boxName) {
+    public AnimModelRenderer(ModelBase p_i1172_1_, String boxName) {
         super(p_i1172_1_, boxName);
         this.textureWidth = 64.0F;
         this.textureHeight = 32.0F;
@@ -41,12 +41,12 @@ public class AnimModelRenderer2 extends ModelRenderer {
         this.setTextureSize(p_i1172_1_.textureWidth, p_i1172_1_.textureHeight);
     }
 
-    public AnimModelRenderer2(ModelBase p_i1174_1_, int p_i1174_2_, int p_i1174_3_, String boxName) {
+    public AnimModelRenderer(ModelBase p_i1174_1_, int p_i1174_2_, int p_i1174_3_, String boxName) {
         this(p_i1174_1_, boxName);
         this.setTextureOffset(p_i1174_2_, p_i1174_3_);
     }
 
-    public AnimModelRenderer2(ModelNinjaBiped modelNinjaBiped, int textureX, int textureY, String boxName, AnimModelRenderer2 prevModel) {
+    public AnimModelRenderer(ModelNinjaBiped modelNinjaBiped, int textureX, int textureY, String boxName, AnimModelRenderer prevModel) {
         this(modelNinjaBiped, textureX, textureY, boxName);
         if(prevModel != null) {
             this.isHidden = prevModel.isHidden;
