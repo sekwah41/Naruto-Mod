@@ -324,7 +324,7 @@
               }
           }
       },
-      "leapleft" :{
+      "leapright" :{
           "animDuration": -1,
           "animLength": 20,
           "nextPose": "leapingleftglide",
@@ -482,7 +482,7 @@
               }
           }
       },
-      "leapright" :{
+      "leapleft" :{
           "animDuration": -1,
           "animLength": 20,
           "nextPose": "leapingrightglide",
