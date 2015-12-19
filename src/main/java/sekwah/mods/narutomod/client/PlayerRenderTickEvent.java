@@ -39,7 +39,7 @@ public class PlayerRenderTickEvent {
             lastTime = now;
         } else if (delta < 0) {
             lastTime = now;
-            NarutoMod.LOGGER.error(" Your computer seems to have traveled back in time :O");
+            NarutoMod.logger.error(" Your computer seems to have traveled back in time :O");
         }
 
         GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
@@ -49,7 +49,7 @@ public class PlayerRenderTickEvent {
 
             if(guiToShow != null){
                 if(renderDelay <= 0){
-                    NarutoMod.LOGGER.info("Show gui");
+                    NarutoMod.logger.info("Show gui");
                     Minecraft.getMinecraft().displayGuiScreen(guiToShow);
                     guiToShow = null;
                     return;

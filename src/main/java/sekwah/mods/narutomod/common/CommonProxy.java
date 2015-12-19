@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.generic;
+package sekwah.mods.narutomod.common;
 
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.network.UsageReport;

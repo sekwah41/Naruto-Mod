@@ -1,9 +1,5 @@
 package sekwah.mods.narutomod.client;
 
-import sekwah.mods.narutomod.generic.NarutoEffects;
-import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
-import sekwah.mods.narutomod.packets.PacketDispatcher;
-import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
@@ -19,6 +15,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.input.Keyboard;
+import sekwah.mods.narutomod.common.NarutoEffects;
+import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
+import sekwah.mods.narutomod.packets.PacketDispatcher;
+import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -89,7 +89,7 @@ public class PlayerClientTickEvent {
             } else if (this.stamina < this.maxStamina) {
                 this.stamina += 0.3;
             }
-            //NarutoMod.LOGGER.info(stamina);
+            //NarutoMod.logger.info(stamina);
 
             boolean ChakraFocus = false;
 
@@ -126,7 +126,7 @@ public class PlayerClientTickEvent {
             // Sorts out temp anims
             // Ends the gliding in air pose(possibly make a more efficient system or nicer looking one
             DataWatcher dw = playerMP.getDataWatcher();
-            //NarutoMod.LOGGER.info("20:" + dw.getWatchableObjectString(20) + " 27:" + dw.getWatchableObjectString(20));
+            //NarutoMod.logger.info("20:" + dw.getWatchableObjectString(20) + " 27:" + dw.getWatchableObjectString(20));
             if(dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27)) && (dw.getWatchableObjectString(20).startsWith("leapingforwardglide")
                     || dw.getWatchableObjectString(20).startsWith("leapingbackglide") || dw.getWatchableObjectString(20).equals("leapingleftglide") || dw.getWatchableObjectString(20).equals("leapingrightglide")) ){
                 animTime++;
@@ -266,26 +266,35 @@ public class PlayerClientTickEvent {
             if (this.waterWalking) {
                 if (this.chakra > 0.1F) {
                     this.chakraCooldown = 30;
+                    //NarutoMod.logger.info(playerMP.getYOffset());
+                    int i = (int) Math.round(playerMP.posY - playerMP.getYOffset() - 0.96f);
+                    Block j = playerMP.worldObj.getBlock((int) playerMP.posX, i, (int) playerMP.posZ);
 
-                    int i = (int) Math.round(playerMP.posY - 0.4);
-                    Block j = playerMP.worldObj.getBlock((int) playerMP.posX, i - 2, (int) playerMP.posZ);
 
+                    int c = (int) Math.round(playerMP.posY - playerMP.getYOffset() - 0.4f);
+                    Block k = playerMP.worldObj.getBlock((int) playerMP.posX, c, (int) playerMP.posZ);
 
-                    int c = (int) Math.round(playerMP.posY - 0.4);
-                    Block k = playerMP.worldObj.getBlock((int) playerMP.posX, c - 1, (int) playerMP.posZ);
+                    int h = (int) Math.round(playerMP.posY - playerMP.getYOffset() - 0.87f);
+                    Block n = playerMP.worldObj.getBlock((int) playerMP.posX, h, (int) playerMP.posZ);
 
                     if (!((j == Blocks.water || j == Blocks.flowing_water) && playerMP.motionY < 0.0D) && onWater && Keyboard.isKeyDown(spaceKeyCode)) {
-                        useChakra(5F);
+                        useChakra(3F);
                     }
 
                     onWater = false;
 
                     if (k == Blocks.water || k == Blocks.flowing_water) {
-                        this.chakra -= 1F;
+                        useChakra(1F);
                         playerMP.motionY += 0.2D;
-                        if (playerMP.motionY > 0.7D) {
-                            playerMP.motionY = 0.7D;
-
+                        if (playerMP.motionY > 0.6D) {
+                            playerMP.motionY = 0.6D;
+                        }
+                    }
+                    else if (n == Blocks.water || n == Blocks.flowing_water) {
+                        useChakra(0.2F);
+                        playerMP.motionY += 0.1D;
+                        if (playerMP.motionY > 0.2D) {
+                            playerMP.motionY = 0.2D;
                         }
                     } else if ((j == Blocks.water || j == Blocks.flowing_water) && playerMP.motionY < 0.0D) {
                         useChakra(0.12F);
@@ -334,8 +343,8 @@ public class PlayerClientTickEvent {
             }
 
             if (this.chakraDash) {
-                if (playerMP.onGround) {
-                    if((Math.pow(playerMP.motionX,2) + Math.pow(playerMP.motionZ,2)) < 1.5f){
+                if (playerMP.onGround && !playerMP.isInWater()) {
+                    if((Math.pow(playerMP.motionX,2) + Math.pow(playerMP.motionZ,2)) < 1.3f){
                         playerMP.motionX *= 1.18F;
                         playerMP.motionZ *= 1.18F;
                     }

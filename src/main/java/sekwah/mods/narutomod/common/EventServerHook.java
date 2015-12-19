@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.generic;
+package sekwah.mods.narutomod.common;
 
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.blocks.BlockSakuraSapling;
@@ -98,7 +98,7 @@ public class EventServerHook {
     {
         if (event.entityLiving instanceof EntityPlayer){
             EntityPlayer player = (EntityPlayer) event.entityLiving;
-            NarutoMod.LOGGER.info(event.distance);
+            NarutoMod.logger.info(event.distance);
             if(event.distance < 9){
                 event.distance /= 3;
             }

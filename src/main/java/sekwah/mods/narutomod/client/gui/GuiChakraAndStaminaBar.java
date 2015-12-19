@@ -1,7 +1,7 @@
 package sekwah.mods.narutomod.client.gui;
 
 import sekwah.mods.narutomod.client.PlayerClientTickEvent;
-import sekwah.mods.narutomod.generic.NarutoEffects;
+import sekwah.mods.narutomod.common.NarutoEffects;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;

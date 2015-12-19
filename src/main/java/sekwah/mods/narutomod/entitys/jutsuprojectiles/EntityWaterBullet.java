@@ -1,6 +1,6 @@
 package sekwah.mods.narutomod.entitys.jutsuprojectiles;
 
-import sekwah.mods.narutomod.generic.NarutoDamageSources;
+import sekwah.mods.narutomod.common.NarutoDamageSources;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;

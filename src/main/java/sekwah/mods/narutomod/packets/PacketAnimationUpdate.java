@@ -14,7 +14,7 @@ public class PacketAnimationUpdate {
     public static void animationUpdate(String animationID, EntityPlayerMP playerEntity) {
 
         if (NarutoMod.entityAnimator.getPose(animationID, NarutoMod.entityAnimator.playerPoses) == null) {
-            NarutoMod.LOGGER.error("[NarutoMod] PoseData not found for: " + animationID);
+            NarutoMod.logger.error("[NarutoMod] PoseData not found for: " + animationID);
             throw new NullPointerException("PoseData not found for: " + animationID + ". Either the data is missing or an there is something wrong.");
         }
 
@@ -35,7 +35,7 @@ public class PacketAnimationUpdate {
 
     public static void animationUpdate(String animationID, EntityClientPlayerMP playerEntity) {
         if (NarutoMod.entityAnimator.getPose(animationID, NarutoMod.entityAnimator.playerPoses) == null) {
-            NarutoMod.LOGGER.error("[NarutoMod] PoseData not found for: " + animationID);
+            NarutoMod.logger.error("[NarutoMod] PoseData not found for: " + animationID);
             throw new NullPointerException("PoseData not found for: " + animationID + ". Either the data is missing or an there is something wrong.");
         }
 

@@ -3,10 +3,10 @@ package sekwah.mods.narutomod;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.blocks.NarutoBlocks;
 import sekwah.mods.narutomod.entitys.NarutoEntitys;
-import sekwah.mods.narutomod.generic.CommonProxy;
-import sekwah.mods.narutomod.generic.EventServerHook;
-import sekwah.mods.narutomod.generic.NarutoEffects;
-import sekwah.mods.narutomod.generic.PlayerCommonTickEvent;
+import sekwah.mods.narutomod.common.CommonProxy;
+import sekwah.mods.narutomod.common.EventServerHook;
+import sekwah.mods.narutomod.common.NarutoEffects;
+import sekwah.mods.narutomod.common.PlayerCommonTickEvent;
 import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.network.UpdateChecker;
 import sekwah.mods.narutomod.network.UsageReport;
@@ -40,13 +40,13 @@ import java.io.InputStream;
 public class NarutoMod {
 
     public static final String modid = "narutomod";
-    public static final Logger LOGGER = LogManager.getLogger("Sekwah41's Naruto Mod");
-    @SidedProxy(clientSide = "sekwah.mods.narutomod.client.ClientProxy", serverSide = "sekwah.mods.narutomod.generic.CommonProxy")
+    public static final Logger logger = LogManager.getLogger("Sekwah41's Naruto Mod");
+    @SidedProxy(clientSide = "sekwah.mods.narutomod.client.ClientProxy", serverSide = "sekwah.mods.narutomod.common.CommonProxy")
     public static CommonProxy proxy;
 
     // TODO for the lang files possibly use the \u0007 character code thing and see if that works for accents
 
-    public static final String version = "0.3.4b4";
+    public static final String version = "0.3.4b5";
 
     // update data
     public static int mcversion = 1710; // e.g. 164 is 1.6.4

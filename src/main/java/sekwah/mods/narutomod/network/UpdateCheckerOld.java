@@ -32,7 +32,7 @@ public final class UpdateCheckerOld {
         String narutoversion = NarutoMod.version;
 
         try {
-            NarutoMod.LOGGER.info("Checking for updates...");
+            NarutoMod.logger.info("Checking for updates...");
             URL url = new URL("http://www.sekwah.com/naruto-mod/UpdateInfo.txt");
             URLConnection connection = url.openConnection();
             connection.setConnectTimeout(5000);
@@ -46,20 +46,20 @@ public final class UpdateCheckerOld {
                 if (NarutoMod.isPreRelease) {
                     updatetext = EnumChatFormatting.YELLOW + " - The official release is now available!";
                     updatestatus = "updated";
-                    NarutoMod.LOGGER.info("Current copy is up to date.");
+                    NarutoMod.logger.info("Current copy is up to date.");
                 } else {
                     updatetext = EnumChatFormatting.GREEN + " - The Naruto mod is up to date.";
                     updatestatus = "updated";
-                    NarutoMod.LOGGER.info("Current copy is up to date.");
+                    NarutoMod.logger.info("Current copy is up to date.");
                 }
             } else if (mcversion <= NarutoMod.mcversion && modversion <= NarutoMod.modversion) {
                 updatetext = EnumChatFormatting.AQUA + " - This is a pre release!";
                 updatestatus = "updated";
-                NarutoMod.LOGGER.info("Current copy is a pre-release.");
+                NarutoMod.logger.info("Current copy is a pre-release.");
             } else {
                 updatetext = EnumChatFormatting.GOLD + " - An update is available!";
                 updatestatus = "update";
-                NarutoMod.LOGGER.info("Update found.");
+                NarutoMod.logger.info("Update found.");
             }
         } catch (IOException ex) {
             updatetext = EnumChatFormatting.RED + " - Could not connect to the update info file :(";

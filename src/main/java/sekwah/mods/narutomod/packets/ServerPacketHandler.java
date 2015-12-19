@@ -1,6 +1,6 @@
 package sekwah.mods.narutomod.packets;
 
-import sekwah.mods.narutomod.generic.JutsuCommon;
+import sekwah.mods.narutomod.common.JutsuCommon;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -94,7 +94,7 @@ public class ServerPacketHandler {
             e.printStackTrace();
         }
         DataWatcher dw = playerEntity.getDataWatcher();
-        //NarutoMod.LOGGER.info(jutsuPose);
+        //NarutoMod.logger.info(jutsuPose);
 
         dw.updateObject(20, jutsuPose);
         dw.updateObject(25, Float.valueOf(0));

@@ -75,6 +75,9 @@ public class GuiOptionsMenu extends GuiScreen {
             offsetSliderY.enabled = false;
             this.buttonList.add(offsetSliderY);
 
+            // TODO add a left and right arrow like the page number section to go through the bar types.
+            // That or add a slider which increases in integer values :)
+
             // TODO render the bar on the menu to show what it will look like and have it being drained and then completely refilled :)
             // TODO add hue slider instead possibly
             GuiNarutoOptionsSlider chakraBarSliderR = new GuiNarutoOptionsSlider(0, guiX + 9, guiY + 89, 110, EnumNarutoOptions.CHAKRA_RED, I18n.format("naruto.gui.chakraRed"));

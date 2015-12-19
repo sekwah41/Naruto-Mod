@@ -141,7 +141,7 @@ public class JutsuClient {
     }
 
     public static boolean canCast(int jutsuCombo, EntityClientPlayerMP playerMP /*  add int to say if its chakra, stamina or both. or add a new method*/) {
-        NarutoMod.LOGGER.debug("Can Cast: " + jutsuCombo);
+        NarutoMod.logger.debug("Can Cast: " + jutsuCombo);
         switch (jutsuCombo) {
             case 1:
                 return true;

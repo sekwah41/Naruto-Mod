@@ -50,7 +50,7 @@ import java.util.*;
  * default value instead of throwing an exception, and so is useful for
  * obtaining optional values.
  * <p/>
- * The generic <code>get()</code> and <code>opt()</code> methods return an
+ * The common <code>get()</code> and <code>opt()</code> methods return an
  * object, which you can cast or query for type. There are also typed
  * <code>get</code> and <code>opt</code> methods that do type checking and type
  * coercion for you. The opt methods differ from the get methods in that they

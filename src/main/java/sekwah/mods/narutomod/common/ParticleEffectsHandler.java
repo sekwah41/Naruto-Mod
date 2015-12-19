@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.generic;
+package sekwah.mods.narutomod.common;
 
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;

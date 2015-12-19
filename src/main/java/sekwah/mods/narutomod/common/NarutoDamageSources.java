@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.generic;
+package sekwah.mods.narutomod.common;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;

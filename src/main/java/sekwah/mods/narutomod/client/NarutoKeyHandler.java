@@ -41,7 +41,7 @@ public class NarutoKeyHandler {
 
     public static boolean[] isVanillaPressed = {false, false, false};
 
-    private static final int leapDelay = 20;
+    private static final int leapDelay = 10;
 
     /**
      * Default key values

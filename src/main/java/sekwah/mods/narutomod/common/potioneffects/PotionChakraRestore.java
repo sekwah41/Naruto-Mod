@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.generic.potioneffects;
+package sekwah.mods.narutomod.common.potioneffects;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

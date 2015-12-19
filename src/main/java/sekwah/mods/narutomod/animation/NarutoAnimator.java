@@ -324,7 +324,7 @@ public class NarutoAnimator {
                     // Old format    if(locData.has("rightArmUpper")){animPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"), animLength - animationTick, animLength);}
                 }
             } else {
-                NarutoMod.LOGGER.error("PoseData not found for: " + animationID);
+                NarutoMod.logger.error("PoseData not found for: " + animationID);
                 throw new NullPointerException("PoseData not found for: " + animationID + ". Either the data is missing or an there is something wrong.");
             }
         } else if (!animationlastID.equals("default")) {
@@ -340,7 +340,7 @@ public class NarutoAnimator {
 
                 // Old format    if(locData.has("rightArmUpper")){setPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"));}
             } else {
-                NarutoMod.LOGGER.error("PoseData not found for: " + animationID);
+                NarutoMod.logger.error("PoseData not found for: " + animationID);
                 throw new NullPointerException("PoseData not found for: " + animationID + ". Either the data is missing or an there is something wrong.");
             }
         }
@@ -370,7 +370,7 @@ public class NarutoAnimator {
                     // Old format    if(locData.has("rightArmUpper")){setPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"));}
                 }
             } else {
-                //  NarutoMod.LOGGER.error("PoseData not found for: " + animationID);
+                //  NarutoMod.logger.error("PoseData not found for: " + animationID);
                 throw new NullPointerException("PoseData not found for: " + animationID + ". Either the data is missing or an there is something wrong.");
             }
         }
@@ -536,7 +536,7 @@ public class NarutoAnimator {
             String json = readJSONFileStream(filestreamJson);
             poseFile = new JSONObject(json);
             poseData = poseFile.getJSONObject("poses");
-            NarutoMod.LOGGER.info(poseFile.getNames("poses"));
+            NarutoMod.logger.info(poseFile.getNames("poses"));
             String[] poseNames = JSONObject.getNames(poseData);
 
             Pose[] oldPoses = poseArray;
@@ -553,7 +553,7 @@ public class NarutoAnimator {
 
                 String currentPoseName = poseNames[i - oldPoses.length];
 
-                NarutoMod.LOGGER.info("Adding pose: " + currentPoseName);
+                NarutoMod.logger.info("Adding pose: " + currentPoseName);
 
                 JSONObject poseInfo = poseData.getJSONObject(currentPoseName);
 
@@ -564,9 +564,9 @@ public class NarutoAnimator {
 
                 for (int n = 0; n < positionNames.length; n++) {
                     // body parts
-                    //NarutoMod.LOGGER.info("Pose data: " + positionNames[n]);
+                    //NarutoMod.logger.info("Pose data: " + positionNames[n]);
                     JSONObject partData = locData.getJSONObject(positionNames[n]);
-                    //  NarutoMod.LOGGER.info(positionNames[n]);
+                    //  NarutoMod.logger.info(positionNames[n]);
                     //String[] partNames = poseFile.getNames(partData);
 
                     PartData currentPart = new PartData(positionNames[n]);
@@ -618,7 +618,7 @@ public class NarutoAnimator {
             }
 
         } catch (IOException e) {
-            NarutoMod.LOGGER.error("Error loading poseData");
+            NarutoMod.logger.error("Error loading poseData");
             e.printStackTrace();
         }
 
@@ -626,7 +626,7 @@ public class NarutoAnimator {
         poseArray = quickSortAnimations(poseArray);
 
         for(Pose pose: poseArray){
-            NarutoMod.LOGGER.info(pose.poseName);
+            NarutoMod.logger.info(pose.poseName);
         }
 
         return poseArray;

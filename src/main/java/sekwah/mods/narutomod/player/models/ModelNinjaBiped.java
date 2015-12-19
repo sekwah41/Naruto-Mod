@@ -752,7 +752,7 @@ public class ModelNinjaBiped extends ModelBiped
 
         this.bipedLeftLegUpper.addChild(this.bipedLeftLegLower);
 
-        //NarutoMod.LOGGER.info("Time to recalculate:" + (System.nanoTime() - timeTaken) + " (nanoseconds)");
+        //NarutoMod.logger.info("Time to recalculate:" + (System.nanoTime() - timeTaken) + " (nanoseconds)");
     }
 
     /**

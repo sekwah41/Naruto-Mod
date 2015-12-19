@@ -46,7 +46,7 @@ public class UpdateChecker {
             this.threadTrigger.schedule(new TimerTask() {
 
                 public void run() {
-                    NarutoMod.LOGGER.info("Checking for updates");
+                    NarutoMod.logger.info("Checking for updates");
                     checkUpdate(updateURL);
                 }
             }, 0L); // Shorter than 15 mins by 10 seconds just to make sure its not on the border and online
@@ -68,20 +68,20 @@ public class UpdateChecker {
                 if (NarutoMod.isPreRelease) {
                     updatetext = EnumChatFormatting.YELLOW + " - The official release is now available!";
                     updatestatus = "updated";
-                    NarutoMod.LOGGER.info("Current copy is up to date.");
+                    NarutoMod.logger.info("Current copy is up to date.");
                 } else {
                     updatetext = EnumChatFormatting.GREEN + " - The Naruto mod is up to date.";
                     updatestatus = "updated";
-                    NarutoMod.LOGGER.info("Current copy is up to date.");
+                    NarutoMod.logger.info("Current copy is up to date.");
                 }
             } else if (mcversion <= NarutoMod.mcversion && modversion <= NarutoMod.modversion) {
                 updatetext = EnumChatFormatting.AQUA + " - This is a pre release!";
                 updatestatus = "updated";
-                NarutoMod.LOGGER.info("Current copy is a pre-release.");
+                NarutoMod.logger.info("Current copy is a pre-release.");
             } else {
                 updatetext = EnumChatFormatting.GOLD + " - An update is available!";
                 updatestatus = "update";
-                NarutoMod.LOGGER.info("Update found.");
+                NarutoMod.logger.info("Update found.");
             }
 
         } catch (IOException e) {

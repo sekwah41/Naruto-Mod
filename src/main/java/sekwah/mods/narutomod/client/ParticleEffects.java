@@ -16,7 +16,7 @@ public class ParticleEffects {
 
     /*public static void execute(int effectID, EntityClientPlayerMP playerMP, double posX, double posY, double posZ) {
 
-        //NarutoMod.LOGGER.debug(effectID);
+        //NarutoMod.logger.debug(effectID);
 
         if (effectID == 1) {
             double particleX = Math.random() - 0.5;

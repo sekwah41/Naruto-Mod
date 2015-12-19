@@ -69,7 +69,7 @@ public class RenderNinjaBiped extends RenderLiving {
     }
 
     /**
-     * More generic ForgeHook version of the above function, it allows for items to have more control over what texture they provide.
+     * More common ForgeHook version of the above function, it allows for items to have more control over what texture they provide.
      *
      * @param entity Entity wearing the armor
      * @param stack  ItemStack for the armor
@@ -168,7 +168,7 @@ public class RenderNinjaBiped extends RenderLiving {
 
     /**
      * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
+     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is common
      * (Render<T extends Entity) and this method has signature public void func_76986_a(T entity, double d, double d1,
      * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
      */
@@ -345,7 +345,7 @@ public class RenderNinjaBiped extends RenderLiving {
 
     /**
      * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
+     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is common
      * (Render<T extends Entity) and this method has signature public void func_76986_a(T entity, double d, double d1,
      * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
      */
@@ -364,7 +364,7 @@ public class RenderNinjaBiped extends RenderLiving {
 
     /**
      * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
+     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is common
      * (Render<T extends Entity) and this method has signature public void func_76986_a(T entity, double d, double d1,
      * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
      */

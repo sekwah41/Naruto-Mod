@@ -25,7 +25,7 @@ import sekwah.mods.narutomod.entitys.jutsuprojectiles.EntityFlameFireball;
 import sekwah.mods.narutomod.entitys.jutsuprojectiles.EntityWaterBullet;
 import sekwah.mods.narutomod.entitys.renderers.jutsuprojectiles.RenderFireball;
 import sekwah.mods.narutomod.entitys.renderers.jutsuprojectiles.RenderWaterBullet;
-import sekwah.mods.narutomod.generic.CommonProxy;
+import sekwah.mods.narutomod.common.CommonProxy;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemKubikiribocho;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemSamehada;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemScroll;
@@ -100,6 +100,8 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void addEventListener() {
+        // TODO change common stuff to be in the common proxy but activate it with
+        // super.addEventListener(); // much tidier
         MinecraftForge.EVENT_BUS.register(new EventHook());
 
         FMLCommonHandler.instance().bus().register(new PlayerClientTickEvent());

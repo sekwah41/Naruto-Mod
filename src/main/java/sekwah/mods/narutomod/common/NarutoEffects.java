@@ -1,8 +1,8 @@
-package sekwah.mods.narutomod.generic;
+package sekwah.mods.narutomod.common;
 
 import sekwah.mods.narutomod.NarutoMod;
 import net.minecraft.potion.Potion;
-import sekwah.mods.narutomod.generic.potioneffects.PotionChakraRestore;
+import sekwah.mods.narutomod.common.potioneffects.PotionChakraRestore;
 
 import java.awt.*;
 import java.lang.reflect.Field;
@@ -36,8 +36,8 @@ public class NarutoEffects {
             }
             catch (Exception e) {
                 // Replace with the logger and do the error stuff
-                NarutoMod.LOGGER.error("Severe error, please report this:");
-                NarutoMod.LOGGER.error(e);
+                NarutoMod.logger.error("Severe error, please report this:");
+                NarutoMod.logger.error(e);
             }
         }
     }
