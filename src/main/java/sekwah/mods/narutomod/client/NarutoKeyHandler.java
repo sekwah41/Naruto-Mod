@@ -36,7 +36,7 @@ public class NarutoKeyHandler {
      */
     public static final String[] keyDesc = {"naruto.keys.key1", "naruto.keys.key2", "naruto.keys.key3", "naruto.keys.jutsumenu", "naruto.keys.options", "naruto.keys.leap"/*, "naruto.keys.sharingan"*/};
     public static final KeyBinding[] keys = new KeyBinding[keyDesc.length];
-    public static boolean[] ispressed = {false, false, false, false, false, false/*, false*/};
+    public static boolean[] isPressed = {false, false, false, false, false, false/*, false*/};
     //private static boolean[] repeat = {false, false, false, false, false/**, false*/};
 
     public static boolean[] isVanillaPressed = {false, false, false};
@@ -270,8 +270,8 @@ public class NarutoKeyHandler {
 
             }
             for (int i = 0; i < keys.length; i++) {
-                if (ispressed[i] != keys[i].getIsKeyPressed()) {
-                    ispressed[i] = keys[i].getIsKeyPressed();
+                if (isPressed[i] != keys[i].getIsKeyPressed()) {
+                    isPressed[i] = keys[i].getIsKeyPressed();
                     keyPressed(i);
                 }
             }

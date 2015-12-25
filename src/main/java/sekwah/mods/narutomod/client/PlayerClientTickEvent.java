@@ -386,7 +386,7 @@ public class PlayerClientTickEvent {
                 ParticleEffects.addEffect(3, playerMP);
                 this.chakra -= 3F;
                 this.setChakraCooldown(30);
-                this.stamina -= 15F;
+                this.stamina -= 10F;
                 this.setStaminaCooldown(80);
 
                 ByteArrayOutputStream bos = new ByteArrayOutputStream(8);

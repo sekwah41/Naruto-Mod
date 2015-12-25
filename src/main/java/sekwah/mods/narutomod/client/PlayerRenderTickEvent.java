@@ -104,8 +104,8 @@ public class PlayerRenderTickEvent {
             }
 
             for (int i = 0; i < NarutoKeyHandler.keys.length; i++) {
-                if (NarutoKeyHandler.ispressed[i] != NarutoKeyHandler.keys[i].getIsKeyPressed()) {
-                    NarutoKeyHandler.ispressed[i] = NarutoKeyHandler.keys[i].getIsKeyPressed();
+                if (NarutoKeyHandler.isPressed[i] != NarutoKeyHandler.keys[i].getIsKeyPressed()) {
+                    NarutoKeyHandler.isPressed[i] = NarutoKeyHandler.keys[i].getIsKeyPressed();
                     NarutoKeyHandler.keyPressed(i);
                 }
             }

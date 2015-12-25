@@ -60,7 +60,7 @@ public class ItemArmourShinobiLeggings extends ItemArmor {
         }
 
         if (armorModel != null) {
-            armorModel.bipedBody.showModel = armorSlot == 1;
+            //armorModel.bipedBody.showModel = armorSlot == 1;
 
             armorModel.isSneak = entityLiving.isSneaking();
             armorModel.isRiding = entityLiving.isRiding();

@@ -4,6 +4,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import sekwah.mods.narutomod.client.gui.EnumNarutoOptions;
+import sekwah.mods.narutomod.client.gui.GuiChakraAndStaminaBar;
 
 import java.util.UUID;
 
@@ -12,9 +13,17 @@ public class NarutoSettings {
 
     public static Configuration config = null;
 
+
+    // need to readd when possible, if it becomes possible wall walk and stuf should become also possible :)
     public static boolean experimentalFirstPerson = false;
 
     public static int experimentalFirstPersonMode = 0;
+
+    /**
+     * Switch between using the new arms and sticking to the normal. Possibly even make the lower arms slightly smaller
+     * so they can bend back like captain sparkles old videos(e.g.  but plan to change it back to yours once its more efficient :3
+     */
+    public static boolean betterArms = true;
 
     public static int settingsPage = 1;
 
@@ -27,13 +36,17 @@ public class NarutoSettings {
     public static int jutsuDelay = 10; // Delay time in ticks, from when the last button is presset till the jutsu casts
 
     public static int usageReportMode = 0;
+
     public static String usageUUID = null;
 
+    // TODO change chakra to hue rather than individual sliders :)
     public static float chakraRed = 20;
 
     public static float chakraGreen = 179;
 
     public static float chakraBlue = 255;
+
+    public static int chakraBarDesign = 1;
 
     public static void changeSetting() {
     }
@@ -52,7 +65,11 @@ public class NarutoSettings {
             chakraGUICorner = value;
             config.get(Configuration.CATEGORY_GENERAL, "chakraGUICorner", 1).set(value);
         }
-        if (setting == EnumNarutoOptions.FIRSTPERSON) {
+        else if (setting == EnumNarutoOptions.CHAKRA_BAR_DESIGN) {
+            chakraBarDesign = value;
+            config.get(Configuration.CATEGORY_GENERAL, "chakraBarDesign", 1).set(value);
+        }
+        else if (setting == EnumNarutoOptions.FIRSTPERSON) {
             experimentalFirstPersonMode = value;
             if (value == 0) {
                 experimentalFirstPerson = true;
@@ -160,7 +177,7 @@ public class NarutoSettings {
 
         chakraBarOffsetY = config.get(Configuration.CATEGORY_GENERAL, "chakraBarOffsetY", 2).getInt(2);
 
-        chakraGUICorner = config.get(Configuration.CATEGORY_GENERAL, "chakraGUICorner", 1).getInt(2);
+        chakraGUICorner = config.get(Configuration.CATEGORY_GENERAL, "chakraGUICorner", 1).getInt(1);
 
         Property configJutsuDelay = config.get(Configuration.CATEGORY_GENERAL, "jutsuDelay", 10);
         jutsuDelay = configJutsuDelay.getInt(10);
@@ -182,7 +199,7 @@ public class NarutoSettings {
 
 
         Property configUsageUUID = config.get(Configuration.CATEGORY_GENERAL, "usageReportUUID", UUID.randomUUID().toString());
-        usageUUID = configUsageReportMod.getString();
+        usageUUID = configUsageUUID.getString();
         configUsageUUID.comment = "Used to stop duplicates of users and used to make data completely anonymous. Specific data " +
                 "is kept on the database for a max of 30 mins and a min of 15 mins after logout.";
 
@@ -204,6 +221,18 @@ public class NarutoSettings {
         // int someInt = someProperty.getInt();
         // boolean someBoolean = someProperty.getBoolean(true);
 
+        Property configBetterArms = config.get(Configuration.CATEGORY_GENERAL, "betterArms", true);
+        betterArms = configBetterArms.getBoolean();
+        // (or possibly changed to be like captain sparkles old videos if changed)
+        configBetterArms.comment = "Can't be changed in game as the corners would be stuck at angles. True = uses new arms like general blender models. False = corners like the old versions of the mod";
+
+        chakraBarDesign = config.get(Configuration.CATEGORY_GENERAL, "chakraBarDesign", 1).getInt(1);
+        // Stop out of bounds exceptions.
+        if(event.getSide().isClient()){
+            if(chakraBarDesign > GuiChakraAndStaminaBar.getDesignCount()){
+                chakraBarDesign = GuiChakraAndStaminaBar.getDesignCount();
+            }
+        }
 
         config.save();
 

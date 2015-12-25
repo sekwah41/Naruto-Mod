@@ -8,6 +8,7 @@ public enum EnumNarutoOptions {
     CHAKRA_BAR_OFFSETY("naruto.gui.chakraGUIOffset", true, false),
     CHAKRA_BAR_OFFSETX("naruto.gui.chakraGUIOffset", true, false),
     CHAKRA_BAR_CORNER("naruto.gui.chakraGUICorner", true, false),
+    CHAKRA_BAR_DESIGN("naruto.gui.chakraGUIDesign", true, false),
     FIRSTPERSON("naruto.gui.firstPerson", false, true),
     JUTSU_DELAY("naruto.gui.jutsuDelay",true,false),
     CHAKRA_RED("naruto.gui.chakraRed",true,false), // will only be temporary, the colour and other stuff may be saved server side :3
