@@ -108,6 +108,8 @@ public class GuiOptionsMenu extends GuiScreen {
             // TODO render the bar on the menu to show what it will look like and have it being drained and then completely refilled :)
             // TODO add hue slider instead possibly
             // TODO also possibly add a default button to reset all the values :)
+
+            // TODO change to a hue bar slider
             int offsetY = 80;
             GuiNarutoOptionsSlider chakraBarSliderR = new GuiNarutoOptionsSlider(0, guiX + 9, guiY + offsetY + 9, 110, EnumNarutoOptions.CHAKRA_RED, I18n.format("naruto.gui.chakraRed"));
             //offsetSliderY.enabled = false;

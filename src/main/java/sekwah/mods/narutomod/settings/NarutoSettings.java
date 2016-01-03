@@ -23,7 +23,7 @@ public class NarutoSettings {
      * Switch between using the new arms and sticking to the normal. Possibly even make the lower arms slightly smaller
      * so they can bend back like captain sparkles old videos(e.g.  but plan to change it back to yours once its more efficient :3
      */
-    public static boolean betterArms = true;
+    public static boolean betterArms = false;
 
     public static int settingsPage = 1;
 
@@ -221,7 +221,7 @@ public class NarutoSettings {
         // int someInt = someProperty.getInt();
         // boolean someBoolean = someProperty.getBoolean(true);
 
-        Property configBetterArms = config.get(Configuration.CATEGORY_GENERAL, "betterArms", true);
+        Property configBetterArms = config.get(Configuration.CATEGORY_GENERAL, "betterArms", false);
         betterArms = configBetterArms.getBoolean();
         // (or possibly changed to be like captain sparkles old videos if changed)
         configBetterArms.comment = "Can't be changed in game as the corners would be stuck at angles. True = uses new arms like general blender models. False = corners like the old versions of the mod";

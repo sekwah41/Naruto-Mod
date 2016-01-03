@@ -410,6 +410,7 @@ public class ModelNinjaBiped extends ModelBiped
         this.bipedHead.rotateAngleZ = 0F;
         this.bipedHeadwear.rotateAngleY = this.bipedHead.rotateAngleY;
         this.bipedHeadwear.rotateAngleX = this.bipedHead.rotateAngleX;
+        this.bipedHeadwear.rotateAngleZ = this.bipedHead.rotateAngleZ;
         this.bipedRightArmUpper.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 2.0F * par2 * 0.5F;
         this.bipedLeftArmUpper.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 2.0F * par2 * 0.5F;
         this.bipedRightArmUpper.rotateAngleZ = 0.0F;
