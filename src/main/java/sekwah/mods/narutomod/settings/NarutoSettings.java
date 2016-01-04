@@ -40,11 +40,13 @@ public class NarutoSettings {
     public static String usageUUID = null;
 
     // TODO change chakra to hue rather than individual sliders :)
-    public static float chakraRed = 20;
+    public static int chakraRed = 20;
 
-    public static float chakraGreen = 179;
+    public static int chakraGreen = 179;
 
-    public static float chakraBlue = 255;
+    public static int chakraBlue = 255;
+
+    public static int chakraHue = 255;
 
     public static int chakraBarDesign = 1;
 
@@ -106,9 +108,18 @@ public class NarutoSettings {
         else if( setting == EnumNarutoOptions.CHAKRA_BLUE){
             chakraBlue = (int) (sliderValue * 255);
         }
+        // TODO once hue slider complete remove the red blue and green and have it calculate the values whenever hue changed or loaded.
+        else if( setting == EnumNarutoOptions.CHAKRA_HUE){
+            chakraHue = (int) (sliderValue * 360); // from red to red
+            recalculateHue();
+        }
 
 
         NarutoSettings.saveConfig();
+    }
+
+    private static void recalculateHue() {
+
     }
 
 
