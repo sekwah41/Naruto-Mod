@@ -107,13 +107,9 @@ public class ItemArmourBokken extends ItemArmor {
             }
         }
         if (entityLiving.getHeldItem() != null) {
-            if (entityLiving.getHeldItem().getItem() == NarutoItems.bokken) {
-                //armorModel.blade.isHidden = true;
-                armorModel.handle.isHidden = true;
-            } else {
-                //armorModel.blade.isHidden = false;
-                armorModel.handle.isHidden = false;
-            }
+            //armorModel.blade.isHidden = true;
+//armorModel.blade.isHidden = false;
+            armorModel.handle.isHidden = entityLiving.getHeldItem().getItem() == NarutoItems.bokken;
         } else {
             //armorModel.blade.isHidden = false;
             armorModel.handle.isHidden = false;

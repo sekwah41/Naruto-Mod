@@ -34,11 +34,10 @@ import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.player.models.extras.ModelRibs;
-
-import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 public class RenderNinjaPlayer extends RenderPlayer {
@@ -258,7 +257,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
         EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
 
         if (p_76986_1_ != playerMP) {
-            NarutoMod.entityAnimator.updateEntity(dw, playerMP, NarutoMod.entityAnimator.playerPoses);
+            NarutoAnimator.updateEntity(dw, playerMP, NarutoAnimator.playerPoses);
         }
 
 
@@ -274,7 +273,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
             d3 -= 0.125D;
         }
 
-        this.doFinalRender((EntityLivingBase) p_76986_1_, p_76986_2_, d3, p_76986_6_, p_76986_8_, p_76986_9_);
+        this.doFinalRender(p_76986_1_, p_76986_2_, d3, p_76986_6_, p_76986_8_, p_76986_9_);
         this.modelArmorChestplate.aimedBow = this.modelArmor.aimedBow = this.modelBipedMain.aimedBow = false;
         this.modelArmorChestplate.isSprinting = this.modelArmor.isSprinting = this.modelBipedMain.isSprinting = false;
         this.modelArmorChestplate.isSneak = this.modelArmor.isSneak = this.modelBipedMain.isSneak = false;
@@ -293,7 +292,6 @@ public class RenderNinjaPlayer extends RenderPlayer {
         float f3;
 
         for (f3 = p_77034_2_ - p_77034_1_; f3 < -180.0F; f3 += 360.0F) {
-            ;
         }
 
         while (f3 >= 180.0F) {
@@ -585,7 +583,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
                     if (nbttagcompound.hasKey("SkullOwner", 10)) {
                         gameprofile = NBTUtil.func_152459_a(nbttagcompound.getCompoundTag("SkullOwner"));
                     } else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner"))) {
-                        gameprofile = new GameProfile((UUID) null, nbttagcompound.getString("SkullOwner"));
+                        gameprofile = new GameProfile(null, nbttagcompound.getString("SkullOwner"));
                     }
                 }
 
@@ -771,16 +769,16 @@ public class RenderNinjaPlayer extends RenderPlayer {
         ResourceLocation overlay = null;
 
         if (p_77029_1_.getCommandSenderName().endsWith("Zaromaru")) {
-            overlay = this.rinneganOverlay;
+            overlay = rinneganOverlay;
         }
         else if(p_77029_1_.getCommandSenderName().endsWith("Gingershadow")){
-            overlay = this.motherFuckingDEMONSOverlay;
+            overlay = motherFuckingDEMONSOverlay;
         }
         else if(p_77029_1_.getCommandSenderName().endsWith("owTreyalP")){
-            overlay = this.sharingan1eye2x2;
+            overlay = sharingan1eye2x2;
         }
         else if(p_77029_1_.getCommandSenderName().endsWith("liam3011")){
-            overlay = this.sharingan2Overlay;
+            overlay = sharingan2Overlay;
         }
         /*else if(p_77029_1_.getCommandSenderName().endsWith("SSJHiro11")){
             overlay = this.hiroCurseMark;

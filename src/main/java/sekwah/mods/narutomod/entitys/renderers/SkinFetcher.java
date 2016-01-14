@@ -27,7 +27,7 @@ public class SkinFetcher {
         Object object = texturemanager.getTexture(p_110304_0_);
 
         if (object == null) {
-            object = new ThreadDownloadImageData((File) null, String.format("http://skins.minecraft.net/MinecraftSkins/%s.png", new Object[]{StringUtils.stripControlCodes(p_110304_1_)}), locationStevePng, new ImageBufferDownload());
+            object = new ThreadDownloadImageData(null, String.format("http://skins.minecraft.net/MinecraftSkins/%s.png", StringUtils.stripControlCodes(p_110304_1_)), locationStevePng, new ImageBufferDownload());
             texturemanager.loadTexture(p_110304_0_, (ITextureObject) object);
         }
 
@@ -39,7 +39,7 @@ public class SkinFetcher {
         Object object = texturemanager.getTexture(p_110304_0_);
 
         if (object == null) {
-            object = new ThreadDownloadImageData((File) null, String.format("http://skins.minecraft.net/MinecraftCloaks/%s.png", new Object[]{StringUtils.stripControlCodes(p_110304_1_)}), locationStevePng, new ImageBufferDownload());
+            object = new ThreadDownloadImageData(null, String.format("http://skins.minecraft.net/MinecraftCloaks/%s.png", StringUtils.stripControlCodes(p_110304_1_)), locationStevePng, new ImageBufferDownload());
             texturemanager.loadTexture(p_110304_0_, (ITextureObject) object);
         }
 

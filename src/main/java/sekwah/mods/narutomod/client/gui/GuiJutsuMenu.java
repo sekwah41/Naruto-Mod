@@ -108,7 +108,7 @@ public class GuiJutsuMenu extends GuiScreen {
      */
     protected void actionPerformed(GuiButton par1GuiButton) {
         if (par1GuiButton.id == 1) {
-            this.mc.displayGuiScreen((GuiScreen) null);
+            this.mc.displayGuiScreen(null);
             this.mc.setIngameFocus();
         }
 
@@ -120,7 +120,7 @@ public class GuiJutsuMenu extends GuiScreen {
      */
     protected void keyTyped(char par1, int par2) {
         if (par2 == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
-            this.mc.displayGuiScreen((GuiScreen) null);
+            this.mc.displayGuiScreen(null);
             this.mc.setIngameFocus();
         } else {
             super.keyTyped(par1, par2);
@@ -316,7 +316,7 @@ public class GuiJutsuMenu extends GuiScreen {
         int i5;
 
         for (k3 = 0; k3 < jutsuList.size(); ++k3) {
-            Jutsus jutsu2 = (Jutsus) jutsuList.get(k3);
+            Jutsus jutsu2 = jutsuList.get(k3);
             j4 = jutsu2.displayColumn * 24 - k;
             l3 = jutsu2.displayRow * 24 - l;
 

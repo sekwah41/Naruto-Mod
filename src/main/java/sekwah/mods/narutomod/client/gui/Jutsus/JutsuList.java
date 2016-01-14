@@ -32,7 +32,7 @@ public class JutsuList {
      */
     public static List JutsusList = new ArrayList();
 
-    public static Jutsus chakraControl = (new Jutsus("Jutsu.Chakra_Control", "Chakra_Control", 0, 0, new ItemStack(NarutoItems.narutoIcons, 1, 0), (Jutsus) null)).setIndependent().registerJutsus();
+    public static Jutsus chakraControl = (new Jutsus("Jutsu.Chakra_Control", "Chakra_Control", 0, 0, new ItemStack(NarutoItems.narutoIcons, 1, 0), null)).setIndependent().registerJutsus();
 
     public static Jutsus fireBallJutsu = (new Jutsus("Jutsu.Shadow_Clone_Jutsu", "Shadow_Clone_Jutsu", 2, 1, new ItemStack(NarutoItems.narutoIcons, 1, 1), chakraControl)).setIndependent().registerJutsus();
 

@@ -1,6 +1,6 @@
 package sekwah.mods.narutomod.client.gui.components;
 
-import sekwah.mods.narutomod.client.gui.EnumNarutoOptions;
+import sekwah.mods.narutomod.settings.EnumNarutoOptions;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

@@ -1,7 +1,6 @@
 package sekwah.mods.narutomod.client;
 
 import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.entity.player.EntityPlayer;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.serverbound.ServerSoundPacket;
 
@@ -25,7 +24,7 @@ public class SoundEffects {
 			playerMP.worldObj.playSound(posX, posY, posZ, "narutomod:jutsusounds.bunshin_seal", 0.5F, 1F, false);
 		}
 		else if(soundID == 5){ // Fireball sound
-			playerMP.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, (int)posX, (int)posY, (int)posZ, 0);
+			playerMP.worldObj.playAuxSFXAtEntity(null, 1009, (int)posX, (int)posY, (int)posZ, 0);
 		}
 		else if(soundID == 6){
 			playerMP.worldObj.playSound(posX, posY, posZ, "narutomod:jutsusounds.clone_poof", 0.5F, 1F, false);

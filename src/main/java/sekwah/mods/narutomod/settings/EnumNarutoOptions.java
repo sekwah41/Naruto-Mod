@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.client.gui;
+package sekwah.mods.narutomod.settings;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -11,16 +11,17 @@ public enum EnumNarutoOptions {
     CHAKRA_BAR_DESIGN("naruto.gui.chakraGUIDesign", true, false),
     FIRSTPERSON("naruto.gui.firstPerson", false, true),
     JUTSU_DELAY("naruto.gui.jutsuDelay",true,false),
+    BETTER_ARMS("naruto.gui.betterArms",false,true),
     CHAKRA_RED("naruto.gui.chakraRed",true,false), // will only be temporary, the colour and other stuff may be saved server side :3
     CHAKRA_GREEN("naruto.gui.chakraGreen",true,false),
     CHAKRA_BLUE("naruto.gui.chakraBlue",true,false),
-    CHAKRA_HUE("naruto.gui.chakraColour",true,false); // TODO change to not in settings
+    CHAKRA_HUE("naruto.gui.chakraHue",true,false); // TODO change to not in settings
 
     private final boolean enumFloat;
     private final boolean enumBoolean;
     private final String enumString;
 
-    private EnumNarutoOptions(String par3Str, boolean par4, boolean par5) {
+    EnumNarutoOptions(String par3Str, boolean par4, boolean par5) {
         this.enumString = par3Str;
         this.enumFloat = par4;
         this.enumBoolean = par5;

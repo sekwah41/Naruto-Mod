@@ -69,7 +69,7 @@ public class ItemBlockPlacer extends Item {
         } else if (par1ItemStack.stackSize == 0) {
             return false;
         } else {
-            if (par3World.canPlaceEntityOnSide(this.spawnBlock, par4, par5, par6, false, par7, (Entity) null, par1ItemStack)) {
+            if (par3World.canPlaceEntityOnSide(this.spawnBlock, par4, par5, par6, false, par7, null, par1ItemStack)) {
                 Block block = this.spawnBlock;
                 int j1 = block.onBlockPlaced(par3World, par4, par5, par6, par7, par8, par9, par10, 0);
 

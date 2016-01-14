@@ -323,7 +323,7 @@ public class EntityNinjaVillager extends EntityAgeable implements INpc, IMerchan
                     var2 = -3;
                 }
 
-                this.villageObj.setReputationForPlayer(((EntityPlayer) par1EntityLivingBase).getCommandSenderName(), var2);
+                this.villageObj.setReputationForPlayer(par1EntityLivingBase.getCommandSenderName(), var2);
 
                 if (this.isEntityAlive()) {
                     this.worldObj.setEntityState(this, (byte) 13);
@@ -341,7 +341,7 @@ public class EntityNinjaVillager extends EntityAgeable implements INpc, IMerchan
 
             if (var2 != null) {
                 if (var2 instanceof EntityPlayer) {
-                    this.villageObj.setReputationForPlayer(((EntityPlayer) var2).getCommandSenderName(), -2);
+                    this.villageObj.setReputationForPlayer(var2.getCommandSenderName(), -2);
                 } else if (var2 instanceof IMob) {
                     this.villageObj.endMatingSeason();
                 }

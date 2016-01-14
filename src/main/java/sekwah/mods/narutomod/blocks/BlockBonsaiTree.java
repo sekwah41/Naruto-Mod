@@ -41,7 +41,7 @@ public class BlockBonsaiTree extends BlockContainer {
      * note: This checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
      */
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-        return par3 >= 255 ? false : par1World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4);
+        return par3 >= 255 ? false : World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4);
     }
 
     public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack) {
@@ -62,7 +62,7 @@ public class BlockBonsaiTree extends BlockContainer {
      * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
      */
     public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
-        return par3 >= 255 ? false : par1World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4);
+        return par3 >= 255 ? false : World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4);
     }
 
     /**

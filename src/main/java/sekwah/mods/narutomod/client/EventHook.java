@@ -58,7 +58,7 @@ public class EventHook {
         if (event.entity instanceof EntityPlayer) {
 
             EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
-            if((EntityPlayer) event.entity == (EntityPlayer) playerMP){
+            if(event.entity == playerMP){
                 PlayerInfo playerInfo = PlayerInfo.get((EntityPlayer) event.entity);
                 if(!playerInfo.hasAskedToSetClan){
                     // Store more about if asked this session and stuff ^.^

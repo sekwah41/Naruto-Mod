@@ -55,7 +55,7 @@ public class Jutsus extends StatBase {
     }
 
     public Jutsus(String par1Str, String par2Str, int par3, int par4, ItemStack par5ItemStack, Jutsus par6Jutsus) {
-        super(par1Str, new ChatComponentTranslation("Jutsus." + par2Str, new Object[0]));
+        super(par1Str, new ChatComponentTranslation("Jutsus." + par2Str));
         this.theItemStack = par5ItemStack;
         this.JutsusDescription = "Jutsus." + par2Str + ".desc";
         this.displayColumn = par3;

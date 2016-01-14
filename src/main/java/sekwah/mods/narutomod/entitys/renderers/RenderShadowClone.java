@@ -1,9 +1,6 @@
 package sekwah.mods.narutomod.entitys.renderers;
 
 import com.mojang.authlib.GameProfile;
-import sekwah.mods.narutomod.client.PlayerClientTickEvent;
-import sekwah.mods.narutomod.entitys.EntityShadowClone;
-import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,8 +25,9 @@ import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
-
-import java.util.UUID;
+import sekwah.mods.narutomod.client.PlayerClientTickEvent;
+import sekwah.mods.narutomod.entitys.EntityShadowClone;
+import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
 
 import static net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED;
 import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D;
@@ -234,7 +232,7 @@ public class RenderShadowClone extends RendererLivingEntity {
                     if (nbttagcompound.hasKey("SkullOwner", 10)) {
                         gameprofile = NBTUtil.func_152459_a(nbttagcompound.getCompoundTag("SkullOwner"));
                     } else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner"))) {
-                        gameprofile = new GameProfile((UUID) null, nbttagcompound.getString("SkullOwner"));
+                        gameprofile = new GameProfile(null, nbttagcompound.getString("SkullOwner"));
                     }
                 }
 
@@ -418,16 +416,16 @@ public class RenderShadowClone extends RendererLivingEntity {
         ResourceLocation overlay = null;
 
         if (par1EntityShadowClone.getCustomNameTag().endsWith("Zaromaru")) {
-            overlay = this.rinneganOverlay;
+            overlay = rinneganOverlay;
         }
         else if(par1EntityShadowClone.getCustomNameTag().endsWith("Gingershadow")){
-            overlay = this.motherFuckingDEMONSOverlay;
+            overlay = motherFuckingDEMONSOverlay;
         }
         else if(par1EntityShadowClone.getCustomNameTag().endsWith("owTreyalP")){
-            overlay = this.sharingan1eye2x2;
+            overlay = sharingan1eye2x2;
         }
         else if(par1EntityShadowClone.getCustomNameTag().endsWith("liam3011")){
-            overlay = this.sharingan2Overlay;;
+            overlay = sharingan2Overlay;
         }
         /*else if(par1EntityShadowClone.getCustomNameTag().endsWith("SSJHiro11")){
             overlay = this.hiroCurseMark;

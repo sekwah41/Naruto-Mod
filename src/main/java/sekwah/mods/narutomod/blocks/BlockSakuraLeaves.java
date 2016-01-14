@@ -158,7 +158,7 @@ public class BlockSakuraLeaves extends BlockLeavesBase implements IShearable {
      * A randomly called display update to be able to add particles or other items for display
      */
     public void randomDisplayTick(World par1World, int x, int y, int z, Random par5Random) {
-        if (par1World.canLightningStrikeAt(x, y + 1, z) && !par1World.doesBlockHaveSolidTopSurface(par1World, x, y - 1, z) && par5Random.nextInt(15) == 1) {
+        if (par1World.canLightningStrikeAt(x, y + 1, z) && !World.doesBlockHaveSolidTopSurface(par1World, x, y - 1, z) && par5Random.nextInt(15) == 1) {
             double d0 = (double) ((float) x + par5Random.nextFloat());
             double d1 = (double) y - 0.05D;
             double d2 = (double) ((float) z + par5Random.nextFloat());

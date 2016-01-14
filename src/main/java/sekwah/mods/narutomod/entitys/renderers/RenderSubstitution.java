@@ -232,7 +232,7 @@ public class RenderSubstitution extends RendererLivingEntity {
                     if (nbttagcompound.hasKey("SkullOwner", 10)) {
                         gameprofile = NBTUtil.func_152459_a(nbttagcompound.getCompoundTag("SkullOwner"));
                     } else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner"))) {
-                        gameprofile = new GameProfile((UUID) null, nbttagcompound.getString("SkullOwner"));
+                        gameprofile = new GameProfile(null, nbttagcompound.getString("SkullOwner"));
                     }
                 }
 
@@ -418,16 +418,16 @@ public class RenderSubstitution extends RendererLivingEntity {
         ResourceLocation overlay = null;
 
         if (par1EntitySubstitution.getCustomNameTag().endsWith("Zaromaru")) {
-            overlay = this.rinneganOverlay;
+            overlay = rinneganOverlay;
         }
         else if(par1EntitySubstitution.getCustomNameTag().endsWith("Gingershadow")){
-            overlay = this.motherFuckingDEMONSOverlay;
+            overlay = motherFuckingDEMONSOverlay;
         }
         else if(par1EntitySubstitution.getCustomNameTag().endsWith("owTreyalP")){
-            overlay = this.sharingan1eye2x2;
+            overlay = sharingan1eye2x2;
         }
         else if(par1EntitySubstitution.getCustomNameTag().endsWith("liam3011")){
-            overlay = this.sharingan2Overlay;
+            overlay = sharingan2Overlay;
         }
         /*else if(par1EntitySubstitution.getCustomNameTag().endsWith("SSJHiro11")){
             overlay = this.hiroCurseMark;

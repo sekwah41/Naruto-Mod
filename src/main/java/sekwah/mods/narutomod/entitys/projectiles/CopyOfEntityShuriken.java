@@ -383,7 +383,6 @@ public class CopyOfEntityShuriken extends Entity implements IProjectile {
             this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
             for (this.rotationPitch = (float) (Math.atan2(this.motionY, (double) f2) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
-                ;
             }
 
             while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {

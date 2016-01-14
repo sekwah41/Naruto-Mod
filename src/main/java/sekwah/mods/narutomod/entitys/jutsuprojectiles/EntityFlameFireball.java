@@ -96,7 +96,7 @@ public class EntityFlameFireball extends EntityFireball {
                 }
             }
 
-            this.worldObj.newExplosion((Entity) null, this.posX, this.posY, this.posZ, explosionPower, true, false);
+            this.worldObj.newExplosion(null, this.posX, this.posY, this.posZ, explosionPower, true, false);
             this.setDead();
         }
     }

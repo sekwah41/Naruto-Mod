@@ -138,7 +138,7 @@ public class EntityBandit extends EntityMob {
 
                         if (var3.getItemDamageForDisplay() >= var3.getMaxDamage()) {
                             this.renderBrokenItemStack(var3);
-                            this.setCurrentItemOrArmor(4, (ItemStack) null);
+                            this.setCurrentItemOrArmor(4, null);
                         }
                     }
 
@@ -289,7 +289,7 @@ public class EntityBandit extends EntityMob {
             }
 
             if (var2.stackSize <= 0) {
-                par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, (ItemStack) null);
+                par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, null);
             }
 
             return true;

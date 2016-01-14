@@ -7,6 +7,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.client.gui.components.GuiNarutoOptionsSlider;
+import sekwah.mods.narutomod.settings.EnumNarutoOptions;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
 //
@@ -111,7 +112,10 @@ public class GuiOptionsMenu extends GuiScreen {
 
             // TODO change to a hue bar slider
             int offsetY = 80;
-            GuiNarutoOptionsSlider chakraBarSliderR = new GuiNarutoOptionsSlider(0, guiX + 9, guiY + offsetY + 9, 110, EnumNarutoOptions.CHAKRA_RED, I18n.format("naruto.gui.chakraRed"));
+            GuiNarutoOptionsSlider chakraBarSliderHue = new GuiNarutoOptionsSlider(0, guiX + 9, guiY + offsetY + 9, 231, EnumNarutoOptions.CHAKRA_HUE, I18n.format(EnumNarutoOptions.CHAKRA_HUE.getEnumString()));
+            //offsetSliderY.enabled = false;
+            this.buttonList.add(chakraBarSliderHue);
+            /*GuiNarutoOptionsSlider chakraBarSliderHue = new GuiNarutoOptionsSlider(0, guiX + 9, guiY + offsetY + 9, 110, EnumNarutoOptions.CHAKRA_RED, I18n.format("naruto.gui.chakraRed"));
             //offsetSliderY.enabled = false;
             this.buttonList.add(chakraBarSliderR);
 
@@ -121,7 +125,7 @@ public class GuiOptionsMenu extends GuiScreen {
 
             GuiNarutoOptionsSlider chakraBarSliderB = new GuiNarutoOptionsSlider(0, guiX + 9, guiY + offsetY + 32, 110, EnumNarutoOptions.CHAKRA_BLUE, I18n.format("naruto.gui.chakraBlue"));
             //offsetSliderY.enabled = false;
-            this.buttonList.add(chakraBarSliderB);
+            this.buttonList.add(chakraBarSliderB);*/
 
             GuiButton guiBarDesign = new GuiButton(6, guiX + 130, guiY + offsetY + 32, 110, 20, I18n.format("naruto.gui.chakraBarDesign") + ": " + NarutoSettings.chakraBarDesign);
             //guiBarDesign.enabled = false;
@@ -145,7 +149,7 @@ public class GuiOptionsMenu extends GuiScreen {
      */
     protected void actionPerformed(GuiButton par1GuiButton) {
         if (par1GuiButton.id == 1) {
-            this.mc.displayGuiScreen((GuiScreen) null);
+            this.mc.displayGuiScreen(null);
             this.mc.setIngameFocus();
         }
         if (par1GuiButton.id == 2) {
@@ -240,6 +244,7 @@ public class GuiOptionsMenu extends GuiScreen {
             int chakraX = 76;
             int chakraY = 47;
 
+            // Possibly make the bar slided and fill up or drain constantly and instantly reset to show the change.
             GL11.glColor3f(1F, 1F, 1F);
             drawTexture(guiX + chakraX, guiY + chakraY, 0, 22, 100, 22);
             GL11.glColor3f(NarutoSettings.chakraRedFloat(), NarutoSettings.chakraGreenFloat(), NarutoSettings.chakraBlueFloat());

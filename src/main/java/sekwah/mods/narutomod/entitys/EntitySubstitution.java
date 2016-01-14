@@ -155,7 +155,7 @@ public class EntitySubstitution extends EntityMob {
 
                         if (var3.getItemDamageForDisplay() >= var3.getMaxDamage()) {
                             this.renderBrokenItemStack(var3);
-                            this.setCurrentItemOrArmor(4, (ItemStack) null);
+                            this.setCurrentItemOrArmor(4, null);
                         }
                     }
 

@@ -3,6 +3,7 @@ package sekwah.mods.narutomod.packets;
 import sekwah.mods.narutomod.NarutoMod;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayerMP;
+import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.packets.serverbound.ServerAnimationPacket;
 
@@ -13,7 +14,7 @@ public class PacketAnimationUpdate {
 
     public static void animationUpdate(String animationID, EntityPlayerMP playerEntity) {
 
-        if (NarutoMod.entityAnimator.getPose(animationID, NarutoMod.entityAnimator.playerPoses) == null) {
+        if (NarutoAnimator.getPose(animationID, NarutoAnimator.playerPoses) == null) {
             NarutoMod.logger.error("[NarutoMod] PoseData not found for: " + animationID);
             throw new NullPointerException("PoseData not found for: " + animationID + ". Either the data is missing or an there is something wrong.");
         }
@@ -34,7 +35,7 @@ public class PacketAnimationUpdate {
     }
 
     public static void animationUpdate(String animationID, EntityClientPlayerMP playerEntity) {
-        if (NarutoMod.entityAnimator.getPose(animationID, NarutoMod.entityAnimator.playerPoses) == null) {
+        if (NarutoAnimator.getPose(animationID, NarutoAnimator.playerPoses) == null) {
             NarutoMod.logger.error("[NarutoMod] PoseData not found for: " + animationID);
             throw new NullPointerException("PoseData not found for: " + animationID + ". Either the data is missing or an there is something wrong.");
         }

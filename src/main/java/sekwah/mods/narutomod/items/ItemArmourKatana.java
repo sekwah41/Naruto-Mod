@@ -90,13 +90,9 @@ public class ItemArmourKatana extends ItemArmor {
             }
         }
         if (entityLiving.getHeldItem() != null) {
-            if (entityLiving.getHeldItem().getItem() == NarutoItems.Katana) {
-                //armorModel.blade.isHidden = true;
-                armorModel.handle.isHidden = true;
-            } else {
-                //armorModel.blade.isHidden = false;
-                armorModel.handle.isHidden = false;
-            }
+            //armorModel.blade.isHidden = true;
+//armorModel.blade.isHidden = false;
+            armorModel.handle.isHidden = entityLiving.getHeldItem().getItem() == NarutoItems.Katana;
         } else {
             //armorModel.blade.isHidden = false;
             armorModel.handle.isHidden = false;

@@ -223,11 +223,7 @@ public class NarutoAnimator {
     }*/
 
     public static boolean animationExists(String animationID, Pose[] poseArray) {
-        if (getPose(animationID, poseArray) != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return getPose(animationID, poseArray) != null;
     }
 
     public static Pose getPose(String animationID, Pose[] poseArray) {
@@ -536,7 +532,7 @@ public class NarutoAnimator {
             String json = readJSONFileStream(filestreamJson);
             poseFile = new JSONObject(json);
             poseData = poseFile.getJSONObject("poses");
-            NarutoMod.logger.info(poseFile.getNames("poses"));
+            NarutoMod.logger.info(JSONObject.getNames("poses"));
             String[] poseNames = JSONObject.getNames(poseData);
 
             Pose[] oldPoses = poseArray;

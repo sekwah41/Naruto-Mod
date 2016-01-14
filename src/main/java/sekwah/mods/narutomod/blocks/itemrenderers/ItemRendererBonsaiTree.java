@@ -38,11 +38,11 @@ public class ItemRendererBonsaiTree implements IItemRenderer {
         //GL11.glTranslatef(0.4F, 0.1F, -0.5F);
         //TileEntityRenderer.instance.renderEngine.bindTexture(new ResourceLocation("narutomod:textures/blocks/bonsaitree.png"));
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("narutomod:textures/blocks/bonsaitreeTexture.png"));
-        if (type == type.ENTITY) {
+        if (type == ItemRenderType.ENTITY) {
             GL11.glTranslatef(0.0F, 0.2F, 0.0F);
-        } else if (type == type.INVENTORY) {
+        } else if (type == ItemRenderType.INVENTORY) {
             GL11.glTranslatef(0.0F, 0.45F, 0.0F);
-        } else if (type == type.EQUIPPED_FIRST_PERSON || type == type.EQUIPPED) {
+        } else if (type == ItemRenderType.EQUIPPED_FIRST_PERSON || type == ItemRenderType.EQUIPPED) {
             GL11.glTranslatef(0.40F, -0.2F, -0.50F);
         }
         this.model.render();

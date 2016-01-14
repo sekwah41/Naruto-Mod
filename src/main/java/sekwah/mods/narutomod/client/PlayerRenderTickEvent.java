@@ -1,6 +1,7 @@
 package sekwah.mods.narutomod.client;
 
 import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.player.RenderNinjaPlayer;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -74,7 +75,7 @@ public class PlayerRenderTickEvent {
                 RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderNinjaPlayer());
             }
 
-            NarutoMod.entityAnimator.updateClient(playerMP, NarutoMod.entityAnimator.playerPoses);
+            NarutoAnimator.updateClient(playerMP, NarutoAnimator.playerPoses);
 
             // TODO finish this code so it works with the morph mod
             // also make sure that if the first person is set to false in the config it igores this completely

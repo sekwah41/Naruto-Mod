@@ -158,7 +158,6 @@ public class PlayerInfo implements IExtendedEntityProperties
     public void replenishChakra()
     {
         this.chakra = this.maxChakra;
-;
     }
 
     public String getClan(){

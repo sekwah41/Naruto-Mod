@@ -118,17 +118,17 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void registerCustomItems() {
-        MinecraftForgeClient.registerItemRenderer(NarutoItems.Samehada, (IItemRenderer) new RenderItemSamehada());
+        MinecraftForgeClient.registerItemRenderer(NarutoItems.Samehada, new RenderItemSamehada());
 
-        MinecraftForgeClient.registerItemRenderer(NarutoItems.Summon_Scroll, (IItemRenderer) new RenderItemScroll());
+        MinecraftForgeClient.registerItemRenderer(NarutoItems.Summon_Scroll, new RenderItemScroll());
 
-        MinecraftForgeClient.registerItemRenderer(NarutoItems.kubikiribocho, (IItemRenderer) new RenderItemKubikiribocho());
+        MinecraftForgeClient.registerItemRenderer(NarutoItems.kubikiribocho, new RenderItemKubikiribocho());
     }
 
     public void registerCustomBlocks() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBase.class, new TileEntityBonsaiRenderer());
 
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(NarutoBlocks.bonsaiTree), (IItemRenderer) new ItemRendererBonsaiTree());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(NarutoBlocks.bonsaiTree), new ItemRendererBonsaiTree());
 
     }
 

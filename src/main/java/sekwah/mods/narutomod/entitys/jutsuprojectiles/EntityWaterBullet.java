@@ -283,7 +283,6 @@ public class EntityWaterBullet extends Entity // TODO actually code the water bu
             this.rotationYaw = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) + 90.0F;
 
             for (this.rotationPitch = (float) (Math.atan2((double) f1, this.motionY) * 180.0D / Math.PI) - 90.0F; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
-                ;
             }
 
             while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
@@ -338,7 +337,7 @@ public class EntityWaterBullet extends Entity // TODO actually code the water bu
         par1NBTTagCompound.setShort("zTile", (short) this.zTile);
         par1NBTTagCompound.setByte("inTile", (byte) Block.getIdFromBlock(this.inTile));
         par1NBTTagCompound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
-        par1NBTTagCompound.setTag("direction", this.newDoubleNBTList(new double[]{this.motionX, this.motionY, this.motionZ}));
+        par1NBTTagCompound.setTag("direction", this.newDoubleNBTList(this.motionX, this.motionY, this.motionZ));
     }
 
     /**

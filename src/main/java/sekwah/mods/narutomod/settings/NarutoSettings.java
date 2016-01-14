@@ -3,7 +3,6 @@ package sekwah.mods.narutomod.settings;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import sekwah.mods.narutomod.client.gui.EnumNarutoOptions;
 import sekwah.mods.narutomod.client.gui.GuiChakraAndStaminaBar;
 
 import java.util.UUID;
@@ -46,7 +45,9 @@ public class NarutoSettings {
 
     public static int chakraBlue = 255;
 
-    public static int chakraHue = 255;
+    // Create brightness slider, use linear equation to darken and lighten, below 50 is making it a fraction
+    // above 50 is reversing it and making a fraction so its pulled up instead.
+    public static int chakraHue = 187;
 
     public static int chakraBarDesign = 1;
 
@@ -112,14 +113,20 @@ public class NarutoSettings {
         else if( setting == EnumNarutoOptions.CHAKRA_HUE){
             chakraHue = (int) (sliderValue * 360); // from red to red
             recalculateHue();
+            config.get(Configuration.CATEGORY_GENERAL, "chakraColourHue", 187).set(chakraHue);
+            // Save hue value
         }
-
-
+        // maybe save only when closing the menu... or add a save button.
         NarutoSettings.saveConfig();
     }
 
     private static void recalculateHue() {
-
+        // check
+        // http://stackoverflow.com/questions/25713206/calculate-hue-rotation-from-color-a-to-color-b
+        double radiansHue = Math.toRadians(chakraHue);
+        chakraRed = (int) (Math.sqrt(Math.cos(radiansHue)+1/2) * 255);
+        chakraGreen = (int) (Math.sqrt(Math.cos(radiansHue-(Math.PI+1)/2)+1/2) * 255);
+        chakraBlue = (int) (Math.sqrt(Math.cos(radiansHue+(Math.PI+1)/2)+1/2) * 255);
     }
 
 
@@ -136,6 +143,8 @@ public class NarutoSettings {
             return Float.toString(chakraGreen);
         } else if (setting == EnumNarutoOptions.CHAKRA_BLUE) {
             return Float.toString(chakraBlue);
+        } else if (setting == EnumNarutoOptions.CHAKRA_HUE) {
+            return Float.toString(chakraHue);
         }
         return null;
     }
@@ -153,6 +162,8 @@ public class NarutoSettings {
             return chakraGreen / 255F;
         } else if (setting == EnumNarutoOptions.CHAKRA_BLUE) {
             return chakraBlue / 255F;
+        } else if (setting == EnumNarutoOptions.CHAKRA_HUE) {
+            return chakraHue / 360F;
         }
 
         return 1F;
@@ -244,6 +255,9 @@ public class NarutoSettings {
                 chakraBarDesign = GuiChakraAndStaminaBar.getDesignCount();
             }
         }
+
+        chakraHue = config.get(Configuration.CATEGORY_GENERAL, "chakraColourHue", 187).getInt(187);
+        recalculateHue();
 
         config.save();
 

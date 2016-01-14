@@ -125,13 +125,11 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
                 while (this.splashText.hashCode() == 125780783);
             }
         } catch (IOException ioexception1) {
-            ;
         } finally {
             if (bufferedreader != null) {
                 try {
                     bufferedreader.close();
                 } catch (IOException ioexception) {
-                    ;
                 }
             }
         }
@@ -156,8 +154,8 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
         this.field_92025_p = "";
 
         if (!GLContext.getCapabilities().OpenGL20 && !OpenGlHelper.func_153193_b()) {
-            this.field_92025_p = I18n.format("title.oldgl1", new Object[0]);
-            this.field_146972_A = I18n.format("title.oldgl2", new Object[0]);
+            this.field_92025_p = I18n.format("title.oldgl1");
+            this.field_146972_A = I18n.format("title.oldgl2");
             this.field_104024_v = "https://help.mojang.com/customer/portal/articles/325948?ref=game";
         }
     }
@@ -252,8 +250,8 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
         joinbutton.enabled = joinenabled;
         this.buttonList.add(new GuiButton(102, this.width / 2 - 100, i + 62, 98, 20, "Mod Page"));
 
-        this.buttonList.add(new GuiButton(0, this.width / 2 - 100, i + 72 + 12, 98, 20, I18n.format("menu.options", new Object[0])));
-        this.buttonList.add(new GuiButton(4, this.width / 2 + 2, i + 72 + 12, 98, 20, I18n.format("menu.quit", new Object[0])));
+        this.buttonList.add(new GuiButton(0, this.width / 2 - 100, i + 72 + 12, 98, 20, I18n.format("menu.options")));
+        this.buttonList.add(new GuiButton(4, this.width / 2 + 2, i + 72 + 12, 98, 20, I18n.format("menu.quit")));
         this.buttonList.add(new GuiButtonLanguage(5, this.width / 2 - 124, i + 72 + 12));
         Object object = this.field_104025_t;
 
@@ -272,8 +270,8 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
      * Adds Singleplayer and Multiplayer buttons on Main Menu for players who have bought the game.
      */
     private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_) {
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_ - 6, I18n.format("menu.singleplayer", new Object[0])));
-        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1 - 6, I18n.format("menu.multiplayer", new Object[0])));
+        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_ - 6, I18n.format("menu.singleplayer")));
+        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1 - 6, I18n.format("menu.multiplayer")));
         //GuiButton realmsButton = new GuiButton(14, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, I18n.format("menu.online", new Object[0]));
         GuiButton fmlModButton = new GuiButton(6, this.width / 2 - 100, p_73969_1_ + 52 + 10, "Mods");
         fmlModButton.xPosition = this.width / 2 + 2;
@@ -287,8 +285,8 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
      * Adds Demo buttons on Main Menu for players who are playing Demo.
      */
     private void addDemoButtons(int p_73972_1_, int p_73972_2_) {
-        this.buttonList.add(new GuiButton(11, this.width / 2 - 100, p_73972_1_, I18n.format("menu.playdemo", new Object[0])));
-        this.buttonList.add(this.buttonResetDemo = new GuiButton(12, this.width / 2 - 100, p_73972_1_ + p_73972_2_ * 1, I18n.format("menu.resetdemo", new Object[0])));
+        this.buttonList.add(new GuiButton(11, this.width / 2 - 100, p_73972_1_, I18n.format("menu.playdemo")));
+        this.buttonList.add(this.buttonResetDemo = new GuiButton(12, this.width / 2 - 100, p_73972_1_ + p_73972_2_ * 1, I18n.format("menu.resetdemo")));
         ISaveFormat isaveformat = this.mc.getSaveLoader();
         WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
 
@@ -370,8 +368,8 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
             if (p_73878_1_) {
                 try {
                     Class oclass = Class.forName("java.awt.Desktop");
-                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke((Object) null, new Object[0]);
-                    oclass.getMethod("browse", new Class[]{URI.class}).invoke(object, new Object[]{new URI(this.field_104024_v)});
+                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke(null);
+                    oclass.getMethod("browse", new Class[]{URI.class}).invoke(object, new URI(this.field_104024_v));
                 } catch (Throwable throwable) {
                     logger.error("Couldn\'t open link", throwable);
                 }

@@ -74,7 +74,7 @@ public class BlockPaperBomb extends Block {
     }
 
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-        return par1World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4) || par1World.getBlock(par2, par3 - 1, par4) == Blocks.glowstone;
+        return World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4) || par1World.getBlock(par2, par3 - 1, par4) == Blocks.glowstone;
     }
 
     public boolean renderAsNormalBlock() {
@@ -146,7 +146,7 @@ public class BlockPaperBomb extends Block {
             damage = 0;
         }
         par1World.setBlock(par2, par3, par4, Blocks.air);
-        EntityPaperBomb var6 = new EntityPaperBomb(par1World, (double) ((float) par2 + 0.5F), (double) ((float) par3 + 0.5F), (double) ((float) par4 + 0.5F), (EntityLivingBase) null);
+        EntityPaperBomb var6 = new EntityPaperBomb(par1World, (double) ((float) par2 + 0.5F), (double) ((float) par3 + 0.5F), (double) ((float) par4 + 0.5F), null);
         var6.setRotation(damage);
         var6.fuse = 60;
         Side side = FMLCommonHandler.instance().getEffectiveSide();
@@ -177,7 +177,7 @@ public class BlockPaperBomb extends Block {
         boolean var6 = false;
         float var7 = 0.125F;
         List var8 = null;
-        var8 = par1World.getEntitiesWithinAABBExcludingEntity((Entity) null, this.getSensitiveAABB(par2, par3, par4));
+        var8 = par1World.getEntitiesWithinAABBExcludingEntity(null, this.getSensitiveAABB(par2, par3, par4));
 
         if (!var8.isEmpty()) {
             Iterator var9 = var8.iterator();
@@ -199,7 +199,7 @@ public class BlockPaperBomb extends Block {
             } else {
                 damage = 0;
             }
-            EntityPaperBomb bomb = new EntityPaperBomb(par1World, (double) ((float) par2 + 0.5F), (double) ((float) par3 + 0.5F), (double) ((float) par4 + 0.5F), (EntityLivingBase) null);
+            EntityPaperBomb bomb = new EntityPaperBomb(par1World, (double) ((float) par2 + 0.5F), (double) ((float) par3 + 0.5F), (double) ((float) par4 + 0.5F), null);
             bomb.fuse = 3;
             Side side = FMLCommonHandler.instance().getEffectiveSide();
             if (side == Side.SERVER) {
@@ -217,7 +217,7 @@ public class BlockPaperBomb extends Block {
             } else {
                 damage = 0;
             }
-            EntityPaperBomb bomb = new EntityPaperBomb(par1World, (double) ((float) par2 + 0.5F), (double) ((float) par3 + 0.5F), (double) ((float) par4 + 0.5F), (EntityLivingBase) null);
+            EntityPaperBomb bomb = new EntityPaperBomb(par1World, (double) ((float) par2 + 0.5F), (double) ((float) par3 + 0.5F), (double) ((float) par4 + 0.5F), null);
             bomb.fuse = 3;
             Side side = FMLCommonHandler.instance().getEffectiveSide();
             if (side == Side.SERVER) {
@@ -240,7 +240,7 @@ public class BlockPaperBomb extends Block {
             } else {
                 damage = 0;
             }
-            EntityPaperBomb bomb = new EntityPaperBomb(par1World, (double) ((float) par2 + 0.5F), (double) ((float) par3 + 0.5F), (double) ((float) par4 + 0.5F), (EntityLivingBase) null);
+            EntityPaperBomb bomb = new EntityPaperBomb(par1World, (double) ((float) par2 + 0.5F), (double) ((float) par3 + 0.5F), (double) ((float) par4 + 0.5F), null);
             bomb.fuse = 3;
             Side side = FMLCommonHandler.instance().getEffectiveSide();
             if (side == Side.SERVER) {

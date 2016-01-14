@@ -1,5 +1,6 @@
 package sekwah.mods.narutomod.client.gui;
 
+import sekwah.mods.narutomod.settings.EnumNarutoOptions;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -81,7 +82,7 @@ public class GuiEmotes extends GuiScreen {
      */
     protected void actionPerformed(GuiButton par1GuiButton) {
         if (par1GuiButton.id == 1) {
-            this.mc.displayGuiScreen((GuiScreen) null);
+            this.mc.displayGuiScreen(null);
             this.mc.setIngameFocus();
         }
         if (par1GuiButton.id == 2) {

@@ -45,7 +45,7 @@ public class GuiClanSelectionMenu extends GuiScreen {
      */
     protected void actionPerformed(GuiButton par1GuiButton) {
         if (par1GuiButton.id == 1) {
-            this.mc.displayGuiScreen((GuiScreen) null);
+            this.mc.displayGuiScreen(null);
             this.mc.setIngameFocus();
         }
 
@@ -57,7 +57,7 @@ public class GuiClanSelectionMenu extends GuiScreen {
      */
     protected void keyTyped(char par1, int par2) {
         if (par2 == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
-            this.mc.displayGuiScreen((GuiScreen) null);
+            this.mc.displayGuiScreen(null);
             this.mc.setIngameFocus();
         } else {
             super.keyTyped(par1, par2);

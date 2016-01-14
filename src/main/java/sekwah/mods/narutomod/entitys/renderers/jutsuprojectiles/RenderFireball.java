@@ -131,7 +131,7 @@ public class RenderFireball extends Render {
         }
         par1EntityFireball.fireballRotation += delta;
         // float f2 = (float)par1EntityFireball.innerRotation + par9;
-        float f2 = (float) par1EntityFireball.fireballRotation + par9;
+        float f2 = par1EntityFireball.fireballRotation + par9;
         GL11.glPushMatrix();
         GL11.glTranslatef((float) par2, (float) par4 + par1EntityFireball.height / 2, (float) par6);
         this.bindTexture(entityTexture);

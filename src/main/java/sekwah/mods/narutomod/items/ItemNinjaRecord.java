@@ -86,7 +86,7 @@ public class ItemNinjaRecord extends ItemRecord {
             else
             {
                 ((BlockJukebox)Blocks.jukebox).func_149926_b(p_77648_3_, p_77648_4_, p_77648_5_, p_77648_6_, p_77648_1_);
-                p_77648_3_.playAuxSFXAtEntity((EntityPlayer)null, 1005, p_77648_4_, p_77648_5_, p_77648_6_, Item.getIdFromItem(this));
+                p_77648_3_.playAuxSFXAtEntity(null, 1005, p_77648_4_, p_77648_5_, p_77648_6_, Item.getIdFromItem(this));
                 --p_77648_1_.stackSize;
                 return true;
             }

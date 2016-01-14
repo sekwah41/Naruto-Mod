@@ -52,12 +52,12 @@ public class RenderVanillaBiped extends RenderLiving {
 
     @Deprecated //Use the more sensitive version getArmorResource below
     public static ResourceLocation func_110857_a(ItemArmor p_110857_0_, int p_110857_1_) {
-        return func_110858_a(p_110857_0_, p_110857_1_, (String) null);
+        return func_110858_a(p_110857_0_, p_110857_1_, null);
     }
 
     @Deprecated //Use the more sensitive version getArmorResource below
     public static ResourceLocation func_110858_a(ItemArmor p_110858_0_, int p_110858_1_, String p_110858_2_) {
-        String s1 = String.format("textures/models/armor/%s_layer_%d%s.png", new Object[]{bipedArmorFilenamePrefix[p_110858_0_.renderIndex], Integer.valueOf(p_110858_1_ == 2 ? 2 : 1), p_110858_2_ == null ? "" : String.format("_%s", new Object[]{p_110858_2_})});
+        String s1 = String.format("textures/models/armor/%s_layer_%d%s.png", bipedArmorFilenamePrefix[p_110858_0_.renderIndex], Integer.valueOf(p_110858_1_ == 2 ? 2 : 1), p_110858_2_ == null ? "" : String.format("_%s", p_110858_2_));
         ResourceLocation resourcelocation = (ResourceLocation) field_110859_k.get(s1);
 
         if (resourcelocation == null) {
@@ -236,7 +236,7 @@ public class RenderVanillaBiped extends RenderLiving {
                     if (nbttagcompound.hasKey("SkullOwner", 10)) {
                         gameprofile = NBTUtil.func_152459_a(nbttagcompound.getCompoundTag("SkullOwner"));
                     } else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner"))) {
-                        gameprofile = new GameProfile((UUID) null, nbttagcompound.getString("SkullOwner"));
+                        gameprofile = new GameProfile(null, nbttagcompound.getString("SkullOwner"));
                     }
                 }
 

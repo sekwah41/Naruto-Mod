@@ -42,6 +42,6 @@ public class EntityAINinjaTradePlayer extends EntityAIBase {
      * Resets the task
      */
     public void resetTask() {
-        this.villager.setCustomer((EntityPlayer) null);
+        this.villager.setCustomer(null);
     }
 }
