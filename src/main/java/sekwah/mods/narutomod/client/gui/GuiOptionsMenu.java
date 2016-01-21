@@ -4,9 +4,11 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.client.gui.components.GuiNarutoOptionsSlider;
+import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.settings.EnumNarutoOptions;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
@@ -80,6 +82,13 @@ public class GuiOptionsMenu extends GuiScreen {
             GuiButton firstPersonButton = new GuiButton(4, guiX + 9, guiY + 20, 110, 20, I18n.format("naruto.gui.firstPerson") + ": " + I18n.format("naruto.gui.off"));
             firstPersonButton.enabled = false;
             this.buttonList.add(firstPersonButton);
+            String toggleMessage = NarutoSettings.dodgesEnabled ? "naruto.gui.on" : I18n.format("naruto.gui.off");
+            GuiButton dodgesButton = new GuiButton(7, guiX + 130, guiY + 20, 110, 20, I18n.format("naruto.gui.dodges") + ": " + I18n.format(toggleMessage));
+            this.buttonList.add(dodgesButton);
+
+            toggleMessage = NarutoSettings.betterArms ? "naruto.gui.on" : I18n.format("naruto.gui.off");
+            GuiButton betterArms = new GuiButton(8, guiX + 9, guiY + 43, 110, 20, I18n.format("naruto.gui.betterArms") + ": " + I18n.format(toggleMessage));
+            this.buttonList.add(betterArms);
             /*if(NarutoSettings.experimentalFirstPersonMode == 0){
              this.buttonList.add(new GuiButton(4, guiX + 9, guiY + 20, 110, 20, I18n.format("naruto.gui.firstPerson") + ": " + I18n.format("naruto.gui.on")));
              }
@@ -127,6 +136,10 @@ public class GuiOptionsMenu extends GuiScreen {
             //offsetSliderY.enabled = false;
             this.buttonList.add(chakraBarSliderB);*/
 
+            GuiNarutoOptionsSlider chakraBarSliderBrightness = new GuiNarutoOptionsSlider(0, guiX + 9, guiY + offsetY + 32, 110, EnumNarutoOptions.CHAKRA_BRIGHTNESS, I18n.format(EnumNarutoOptions.CHAKRA_BRIGHTNESS.getEnumString()));
+            //offsetSliderY.enabled = false;
+            this.buttonList.add(chakraBarSliderBrightness);
+
             GuiButton guiBarDesign = new GuiButton(6, guiX + 130, guiY + offsetY + 32, 110, 20, I18n.format("naruto.gui.chakraBarDesign") + ": " + NarutoSettings.chakraBarDesign);
             //guiBarDesign.enabled = false;
             this.buttonList.add(guiBarDesign);
@@ -149,6 +162,12 @@ public class GuiOptionsMenu extends GuiScreen {
      */
     protected void actionPerformed(GuiButton par1GuiButton) {
         if (par1GuiButton.id == 1) {
+            NarutoSettings.saveConfig();
+
+            GuiNotificationUpdate.queueNotification(I18n.format("naruto.gui.settings"),
+                    I18n.format("naruto.gui.settingsSaved"),
+                    new ItemStack(NarutoItems.Kunai));
+
             this.mc.displayGuiScreen(null);
             this.mc.setIngameFocus();
         }
@@ -179,6 +198,21 @@ public class GuiOptionsMenu extends GuiScreen {
             } else {
                 NarutoSettings.changeSettingInt(EnumNarutoOptions.CHAKRA_BAR_DESIGN, ++NarutoSettings.chakraBarDesign);
             }
+            this.needsUpdate = true;
+        }
+        if (par1GuiButton.id == 7) {
+            NarutoSettings.dodgesEnabled = !NarutoSettings.dodgesEnabled;
+            NarutoSettings.booleanChange();
+            this.needsUpdate = true;
+        }
+        if (par1GuiButton.id == 8) {
+            if(NarutoSettings.betterArms){
+                GuiNotificationUpdate.queueNotification(I18n.format("naruto.gui.settings"),
+                        I18n.format("naruto.gui.restartMinecraft"),
+                        new ItemStack(NarutoItems.Kunai));
+            }
+            NarutoSettings.betterArms = !NarutoSettings.betterArms;
+            NarutoSettings.booleanChange();
             this.needsUpdate = true;
         }
         /*if (par1GuiButton.id == 6) {

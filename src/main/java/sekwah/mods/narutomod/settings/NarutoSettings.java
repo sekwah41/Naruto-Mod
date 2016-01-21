@@ -38,6 +38,8 @@ public class NarutoSettings {
 
     public static String usageUUID = null;
 
+    public static boolean rainbowChakra = false;
+
     // TODO change chakra to hue rather than individual sliders :)
     public static int chakraRed = 20;
 
@@ -49,7 +51,11 @@ public class NarutoSettings {
     // above 50 is reversing it and making a fraction so its pulled up instead.
     public static int chakraHue = 187;
 
+    public static int chakraBrightness = 50;
+
     public static int chakraBarDesign = 1;
+
+    public static boolean dodgesEnabled = true;
 
     public static void changeSetting() {
     }
@@ -83,7 +89,12 @@ public class NarutoSettings {
             }
             config.get(Configuration.CATEGORY_GENERAL, "experimentalFirstPersonMode", 0).set(value);
         }
-        NarutoSettings.saveConfig();
+        //NarutoSettings.saveConfig();
+    }
+
+    public static void booleanChange() {
+        config.get(Configuration.CATEGORY_GENERAL, "betterArms", betterArms).set(betterArms);
+        config.get(Configuration.CATEGORY_GENERAL, "dodgesEnabled", dodgesEnabled).set(dodgesEnabled);
     }
 
     public static void changeSettingFromSlider(EnumNarutoOptions setting, float sliderValue) {
@@ -97,18 +108,6 @@ public class NarutoSettings {
             jutsuDelay = (int) (sliderValue * 20) + 5;
             config.get(Configuration.CATEGORY_GENERAL, "jutsuDelay", 10).set(jutsuDelay);
         }
-        else if( setting == EnumNarutoOptions.CHAKRA_BAR_OFFSETY){
-            // sliderValue is from 0 to 1
-        }
-        else if( setting == EnumNarutoOptions.CHAKRA_RED){
-            chakraRed = (int) (sliderValue * 255);
-        }
-        else if( setting == EnumNarutoOptions.CHAKRA_GREEN){
-            chakraGreen = (int) (sliderValue * 255);
-        }
-        else if( setting == EnumNarutoOptions.CHAKRA_BLUE){
-            chakraBlue = (int) (sliderValue * 255);
-        }
         // TODO once hue slider complete remove the red blue and green and have it calculate the values whenever hue changed or loaded.
         else if( setting == EnumNarutoOptions.CHAKRA_HUE){
             chakraHue = (int) (sliderValue * 360); // from red to red
@@ -116,17 +115,39 @@ public class NarutoSettings {
             config.get(Configuration.CATEGORY_GENERAL, "chakraColourHue", 187).set(chakraHue);
             // Save hue value
         }
+        else if( setting == EnumNarutoOptions.CHAKRA_BRIGHTNESS){
+            chakraBrightness = (int) (sliderValue * 100); // from red to red
+            recalculateHue();
+            config.get(Configuration.CATEGORY_GENERAL, "chakraColourBrightness", 50).set(chakraBrightness);
+            // Save hue value
+        }
         // maybe save only when closing the menu... or add a save button.
-        NarutoSettings.saveConfig();
+        //NarutoSettings.saveConfig();
     }
 
-    private static void recalculateHue() {
+    public static void recalculateHue() {
         // check
         // http://stackoverflow.com/questions/25713206/calculate-hue-rotation-from-color-a-to-color-b
         double radiansHue = Math.toRadians(chakraHue);
         chakraRed = (int) (Math.sqrt(Math.cos(radiansHue)+1/2) * 255);
         chakraGreen = (int) (Math.sqrt(Math.cos(radiansHue-(Math.PI+1)/2)+1/2) * 255);
         chakraBlue = (int) (Math.sqrt(Math.cos(radiansHue+(Math.PI+1)/2)+1/2) * 255);
+        if(chakraBrightness > 50){
+            float multiValue = (float) (chakraBrightness - 50) / 50f;
+            chakraRed = (int) ((255 - chakraRed) * multiValue + chakraRed);
+            chakraGreen = (int) ((255 - chakraGreen) * multiValue + chakraGreen);
+            chakraBlue = (int) ((255 - chakraBlue) * multiValue + chakraBlue);
+        }
+        else if(chakraBrightness < 50){
+            float multiValue = (float) chakraBrightness / 50f;
+            chakraRed *= multiValue;
+            chakraGreen *= multiValue;
+            chakraBlue *= multiValue;
+        }
+
+
+        // TODO add code to apply percentage values to the colours based on the lightness
+
     }
 
 
@@ -145,6 +166,8 @@ public class NarutoSettings {
             return Float.toString(chakraBlue);
         } else if (setting == EnumNarutoOptions.CHAKRA_HUE) {
             return Float.toString(chakraHue);
+        } else if (setting == EnumNarutoOptions.CHAKRA_BRIGHTNESS) {
+            return Float.toString(chakraBrightness);
         }
         return null;
     }
@@ -164,6 +187,8 @@ public class NarutoSettings {
             return chakraBlue / 255F;
         } else if (setting == EnumNarutoOptions.CHAKRA_HUE) {
             return chakraHue / 360F;
+        } else if (setting == EnumNarutoOptions.CHAKRA_BRIGHTNESS) {
+            return chakraBrightness / 100F;
         }
 
         return 1F;
@@ -245,6 +270,10 @@ public class NarutoSettings {
 
         Property configBetterArms = config.get(Configuration.CATEGORY_GENERAL, "betterArms", false);
         betterArms = configBetterArms.getBoolean();
+
+        Property configDodges = config.get(Configuration.CATEGORY_GENERAL, "dodgesEnabled", true);
+        dodgesEnabled = configDodges.getBoolean();
+
         // (or possibly changed to be like captain sparkles old videos if changed)
         configBetterArms.comment = "Can't be changed in game as the corners would be stuck at angles. True = uses new arms like general blender models. False = corners like the old versions of the mod";
 
@@ -257,6 +286,7 @@ public class NarutoSettings {
         }
 
         chakraHue = config.get(Configuration.CATEGORY_GENERAL, "chakraColourHue", 187).getInt(187);
+        chakraBrightness = config.get(Configuration.CATEGORY_GENERAL, "chakraColourBrightness", 50).getInt(50);
         recalculateHue();
 
         config.save();

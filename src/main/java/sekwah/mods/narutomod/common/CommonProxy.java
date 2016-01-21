@@ -3,6 +3,7 @@ package sekwah.mods.narutomod.common;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.network.UsageReport;
 
+// TODO start moving more code into here and use super.function to register both sides. Itll make stuff more organised.
 public class CommonProxy {
 
     public void addKeyBindings() {

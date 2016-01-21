@@ -55,6 +55,8 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
     private static final ResourceLocation sharingan1eye2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2x2.png");
 
+    private static final ResourceLocation byakugan = new ResourceLocation("narutomod:textures/skinOverlays/byakugan_2x2.png");
+
     private static final ResourceLocation hiroCurseMark = new ResourceLocation("narutomod:textures/skinOverlays/hiro_cursemark.png");
 
     private static final ResourceLocation susanooRibs = new ResourceLocation("narutomod:textures/otherStuff/susanoo.png");
@@ -89,14 +91,14 @@ public class RenderNinjaPlayer extends RenderPlayer {
         this.modelBipedMain.bipedHead.isHidden = this.modelBipedMain.bipedHead.isHidden = this.modelArmorChestplate.bipedHead.isHidden = true;
         this.modelBipedMain.bipedHeadwear.isHidden = this.modelBipedMain.bipedHeadwear.isHidden = this.modelArmorChestplate.bipedHeadwear.isHidden = true;
         this.modelBipedMain.bipedMask.isHidden = true;
-        this.modelBipedMain.bipedMaskmed.isHidden = true;
-        this.modelBipedMain.bipedMasksmall.isHidden = true;
+        this.modelBipedMain.bipedMaskMed.isHidden = true;
+        this.modelBipedMain.bipedMaskSmall.isHidden = true;
 
         this.modelSkinOverlay.bipedHead.isHidden = this.modelSkinOverlay.bipedHead.isHidden = this.modelArmorChestplate.bipedHead.isHidden = true;
         this.modelSkinOverlay.bipedHeadwear.isHidden = this.modelSkinOverlay.bipedHeadwear.isHidden = this.modelArmorChestplate.bipedHeadwear.isHidden = true;
         this.modelSkinOverlay.bipedMask.isHidden = true;
-        this.modelSkinOverlay.bipedMaskmed.isHidden = true;
-        this.modelSkinOverlay.bipedMasksmall.isHidden = true;
+        this.modelSkinOverlay.bipedMaskMed.isHidden = true;
+        this.modelSkinOverlay.bipedMaskSmall.isHidden = true;
 
         this.isRenderingFirstPerson = true;
     }
@@ -106,14 +108,14 @@ public class RenderNinjaPlayer extends RenderPlayer {
         this.modelBipedMain.bipedHead.isHidden = this.modelBipedMain.bipedHead.isHidden = this.modelArmorChestplate.bipedHead.isHidden = false;
         this.modelBipedMain.bipedHeadwear.isHidden = this.modelBipedMain.bipedHeadwear.isHidden = this.modelArmorChestplate.bipedHeadwear.isHidden = false;
         this.modelBipedMain.bipedMask.isHidden = false;
-        this.modelBipedMain.bipedMaskmed.isHidden = false;
-        this.modelBipedMain.bipedMasksmall.isHidden = false;
+        this.modelBipedMain.bipedMaskMed.isHidden = false;
+        this.modelBipedMain.bipedMaskSmall.isHidden = false;
 
         this.modelSkinOverlay.bipedHead.isHidden = this.modelSkinOverlay.bipedHead.isHidden = this.modelArmorChestplate.bipedHead.isHidden = false;
         this.modelSkinOverlay.bipedHeadwear.isHidden = this.modelSkinOverlay.bipedHeadwear.isHidden = this.modelArmorChestplate.bipedHeadwear.isHidden = false;
         this.modelSkinOverlay.bipedMask.isHidden = false;
-        this.modelSkinOverlay.bipedMaskmed.isHidden = false;
-        this.modelSkinOverlay.bipedMasksmall.isHidden = false;
+        this.modelSkinOverlay.bipedMaskMed.isHidden = false;
+        this.modelSkinOverlay.bipedMaskSmall.isHidden = false;
 
         this.isRenderingFirstPerson = false;
     }
@@ -776,6 +778,13 @@ public class RenderNinjaPlayer extends RenderPlayer {
         }
         else if(p_77029_1_.getCommandSenderName().endsWith("owTreyalP")){
             overlay = sharingan1eye2x2;
+        }
+        else if(p_77029_1_.getCommandSenderName().endsWith("owTreyalP")){
+            overlay = sharingan1eye2x2;
+        }
+        // add miches name
+        else if(p_77029_1_.getCommandSenderName().endsWith("CrazyMtch42")){
+            overlay = byakugan;
         }
         else if(p_77029_1_.getCommandSenderName().endsWith("liam3011")){
             overlay = sharingan2Overlay;

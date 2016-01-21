@@ -12,13 +12,17 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.input.Keyboard;
+import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
 import sekwah.mods.narutomod.common.NarutoEffects;
+import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -103,6 +107,13 @@ public class PlayerClientTickEvent {
                 chakraCooldown--;
             } else if (chakra < maxChakra) {
                 chakra += 0.025;
+            }
+
+            if(NarutoSettings.rainbowChakra){
+                if(++NarutoSettings.chakraHue > 360){
+                    NarutoSettings.chakraHue = 1;
+                }
+                NarutoSettings.recalculateHue();
             }
 
             // Create a potion with an image using custom forge code.
@@ -212,7 +223,20 @@ public class PlayerClientTickEvent {
             if (JutsuCasting) {
                 if (JutsuKeyDelay <= 0) {
                     JutsuCasting = false;
-                    if (JutsuClient.canCast(Integer.parseInt(JutsuCombo), playerMP)) {
+                    if(JutsuCombo.equals("1333223")){
+                        NarutoSettings.rainbowChakra = !NarutoSettings.rainbowChakra;
+                        if(NarutoSettings.rainbowChakra){
+                            GuiNotificationUpdate.queueNotification(I18n.format("naruto.gui.settings"),
+                                    "Rainbow chakra!! :D ",
+                                    new ItemStack(NarutoItems.Kunai));
+                        }
+                        else{
+                            GuiNotificationUpdate.queueNotification(I18n.format("naruto.gui.settings"),
+                                    "Awww :(",
+                                    new ItemStack(NarutoItems.Kunai));
+                        }
+                    }
+                    else if (JutsuClient.canCast(Integer.parseInt(JutsuCombo), playerMP)) {
                         ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
                         DataOutputStream outputStream = new DataOutputStream(bos);
                         try {

@@ -46,8 +46,8 @@ public class ModelNinjaBiped extends ModelBiped
     public AnimModelRenderer bipedLeftLegLower;
 
     public AnimModelRenderer bipedMask;
-    public AnimModelRenderer bipedMasksmall;
-    public AnimModelRenderer bipedMaskmed;
+    public AnimModelRenderer bipedMaskSmall;
+    public AnimModelRenderer bipedMaskMed;
 
     // Used to edit the rotation value
     private ModelRetexturedBoxSharpBend lowerRightArmBox;
@@ -166,12 +166,12 @@ public class ModelNinjaBiped extends ModelBiped
         this.bipedMask = new AnimModelRenderer(this, 24, 0,"head");
         this.bipedMask.addBox(-2F, -3F, -6F, 4, 3, 2, p_i1149_1_);
         this.bipedMask.setRotationPoint(0F, 0F, 0F);
-        this.bipedMaskmed = new AnimModelRenderer(this, 56, 26,"head");
-        this.bipedMaskmed.addBox(-4F, -3F, -5.6F, 1, 2, 1, p_i1149_1_);
-        this.bipedMaskmed.setRotationPoint(0F, 0F, 0F);
-        this.bipedMasksmall = new AnimModelRenderer(this, 56, 29,"head");
-        this.bipedMasksmall.addBox(-3F, -2F, -6F, 1, 1, 1, p_i1149_1_);
-        this.bipedMasksmall.setRotationPoint(0F, 0F, 0F);
+        this.bipedMaskMed = new AnimModelRenderer(this, 56, 26,"head");
+        this.bipedMaskMed.addBox(-4F, -3F, -5.6F, 1, 2, 1, p_i1149_1_);
+        this.bipedMaskMed.setRotationPoint(0F, 0F, 0F);
+        this.bipedMaskSmall = new AnimModelRenderer(this, 56, 29,"head");
+        this.bipedMaskSmall.addBox(-3F, -2F, -6F, 1, 1, 1, p_i1149_1_);
+        this.bipedMaskSmall.setRotationPoint(0F, 0F, 0F);
 
         // use this code to potentially add the retextured boxes instead of normal ones
         //this.bipedLowerBody.cubeList.add(new ModelRetexturedBox(this.bipedLowerBody, 16, 22, -4F, 0F, -2F, 8, 6, 4, p_i1149_1_));
@@ -260,8 +260,8 @@ public class ModelNinjaBiped extends ModelBiped
         this.animatedParts.add(this.bipedHeadwear);
         this.animatedParts.add(this.bipedLowerBody);
         this.animatedParts.add(this.bipedMask);
-        this.animatedParts.add(this.bipedMaskmed);
-        this.animatedParts.add(this.bipedMasksmall);
+        this.animatedParts.add(this.bipedMaskMed);
+        this.animatedParts.add(this.bipedMaskSmall);
 
         this.animatedParts.add(this.bipedRightArmLower);
         this.animatedParts.add(this.bipedLeftArmUpper);
@@ -419,6 +419,8 @@ public class ModelNinjaBiped extends ModelBiped
         this.bipedLeftLegUpper.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 1.4F * par2;
         this.bipedRightLegUpper.rotateAngleY = 0.0F;
         this.bipedLeftLegUpper.rotateAngleY = 0.0F;
+        this.bipedRightLegUpper.rotateAngleZ = 0.0F;
+        this.bipedLeftLegUpper.rotateAngleZ = 0.0F;
 
         if (this.isRiding)
         {
@@ -490,8 +492,8 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedRightArmUpper.setRotationPoint(-5.0F, 2.0F + par2, 0.0F);
             this.bipedLeftArmUpper.setRotationPoint(5.0F, 2.0F + par2, 0.0F);
             this.bipedMask.setRotationPoint(0.0F, 0.0F + par2, 0.0F);
-            this.bipedMasksmall.setRotationPoint(0.0F, 0.0F + par2, 0.0F);
-            this.bipedMaskmed.setRotationPoint(0.0F, 0.0F + par2, 0.0F);
+            this.bipedMaskSmall.setRotationPoint(0.0F, 0.0F + par2, 0.0F);
+            this.bipedMaskMed.setRotationPoint(0.0F, 0.0F + par2, 0.0F);
             this.bipedRightLegUpper.setRotationPoint(-2F, 9.0F + par2, 4.0F);
             this.bipedLeftLegUpper.setRotationPoint(2F, 9.0F + par2, 4.0F);
 
@@ -528,8 +530,8 @@ public class ModelNinjaBiped extends ModelBiped
         this.bipedRightArmUpper.rotateAngleX += MathHelper.sin(par3 * 0.067F) * 0.05F;
         this.bipedLeftArmUpper.rotateAngleX -= MathHelper.sin(par3 * 0.067F) * 0.05F;
         this.bipedMask.setRotationPoint(0.0F, 0.0F + par2, 0.0F);
-        this.bipedMasksmall.setRotationPoint(0.0F, 0.0F + par2, 0.0F);
-        this.bipedMaskmed.setRotationPoint(0.0F, 0.0F + par2, 0.0F);
+        this.bipedMaskSmall.setRotationPoint(0.0F, 0.0F + par2, 0.0F);
+        this.bipedMaskMed.setRotationPoint(0.0F, 0.0F + par2, 0.0F);
         this.bipedCloak.setRotationPoint(0F, 0F, 0F);
 
         if (this.aimedBow)
@@ -640,8 +642,8 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedHeadwear.rotateAngleX = 0F;
             this.bipedHead.setRotationPoint(0F, 3.133333F, -5F);
             this.bipedMask.setRotationPoint(0F, 3.133333F, -5F);
-            this.bipedMaskmed.setRotationPoint(0F, 3.133333F, -5F);
-            this.bipedMasksmall.setRotationPoint(0F, 3.133333F, -5F);
+            this.bipedMaskMed.setRotationPoint(0F, 3.133333F, -5F);
+            this.bipedMaskSmall.setRotationPoint(0F, 3.133333F, -5F);
             this.bipedHeadwear.setRotationPoint(0F, 3.133333F, -5F);
             this.bipedBody.setRotationPoint(0F, 3F, -3.5F);
             this.bipedLowerBody.setRotationPoint(0F, 6F, 0F);
@@ -791,21 +793,20 @@ public class ModelNinjaBiped extends ModelBiped
 
     public void renderMask(float par1)
     {
-        this.bipedMask.rotateAngleY = this.bipedHead.rotateAngleY;
-        this.bipedMask.rotateAngleX = this.bipedHead.rotateAngleX;
-        this.bipedMask.rotationPointX = this.bipedHead.rotationPointX;
-        this.bipedMask.rotationPointY = this.bipedHead.rotationPointY;
-        this.bipedMasksmall.rotateAngleY = this.bipedHead.rotateAngleY;
-        this.bipedMasksmall.rotateAngleX = this.bipedHead.rotateAngleX;
-        this.bipedMasksmall.rotationPointX = this.bipedHead.rotationPointX;
-        this.bipedMasksmall.rotationPointY = this.bipedHead.rotationPointY;
-        this.bipedMaskmed.rotateAngleY = this.bipedHead.rotateAngleY;
-        this.bipedMaskmed.rotateAngleX = this.bipedHead.rotateAngleX + 0.175F;
-        this.bipedMaskmed.rotationPointX = this.bipedHead.rotationPointX;
-        this.bipedMaskmed.rotationPointY = this.bipedHead.rotationPointY;
+        this.trackToPart(this.bipedMask, this.bipedHead);
+        this.trackToPart(this.bipedMaskSmall, this.bipedHead);
+        this.trackToPart(this.bipedMaskMed, this.bipedHead);
+        this.bipedMaskMed.rotateAngleX += 0.175F;
         this.bipedMask.render(par1);
-        this.bipedMasksmall.render(par1);
-        this.bipedMaskmed.render(par1);
+        this.bipedMaskSmall.render(par1);
+        this.bipedMaskMed.render(par1);
+    }
+
+
+    private void trackToPart(AnimModelRenderer part, AnimModelRenderer tracker) {
+        part.rotateAngleX = tracker.rotateAngleX;
+        part.rotateAngleY = tracker.rotateAngleY;
+        part.rotateAngleZ = tracker.rotateAngleZ;
     }
 
     /**

@@ -41,7 +41,6 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
      * Holds a instance of RenderItem, used to draw the achievement icons on screen (is based on ItemStack)
      */
     private RenderItem itemRender;
-    private boolean haveAchiement;
 
     public GuiNotificationUpdate(Minecraft mc) {
         this.itemRender = new RenderItem();
@@ -57,7 +56,7 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
     //  also attack it to certain events ( will most likely be server side controlled by plugins.
 
     // GuiNotificationUpdate.queueTakenAchievement("Mission Progress", "20/30 bandits killed!", new ItemStack(NarutoItems.Kunai,1,0));
-    public static void queueTakenAchievement(String title, String name, ItemStack itemIcon) {
+    public static void queueNotification(String title, String name, ItemStack itemIcon) {
         GuiNotificationUpdate.achievementGetLocalText = title;
         GuiNotificationUpdate.achievementStatName = name;
         GuiNotificationUpdate.achievementTime = Minecraft.getSystemTime();
@@ -69,7 +68,7 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
      */
 
     // possible use for displaying info for longer!
-    public static void queueTakenAchievement(String title, String name, ItemStack itemIcon, int duration) {
+    public static void queueNotification(String title, String name, ItemStack itemIcon, int duration) {
         GuiNotificationUpdate.achievementGetLocalText = title;
         GuiNotificationUpdate.achievementStatName = name;
         GuiNotificationUpdate.achievementTime = Minecraft.getSystemTime() - duration;
@@ -104,56 +103,49 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
      */
     //public void updateAchievementWindow() old starting
     @SubscribeEvent
-    public void onRenderExperienceBar(RenderGameOverlayEvent event) {
+    public void onRenderNotification(RenderGameOverlayEvent event) {
         if (achievementGetLocalText != null && achievementTime != 0L) {
             double d0 = (double) (Minecraft.getSystemTime() - achievementTime) / 3000.0D;
 
-            if (!this.haveAchiement && (d0 < 0.0D || d0 > 1.0D)) {
-                achievementTime = 0L;
-            } else {
-                this.updateAchievementWindowScale();
-                GL11.glDisable(GL11.GL_DEPTH_TEST);
-                GL11.glDepthMask(false);
-                double d1 = d0 * 2.0D;
+            this.updateAchievementWindowScale();
+            GL11.glDisable(GL11.GL_DEPTH_TEST);
+            GL11.glDepthMask(false);
+            double d1 = d0 * 2.0D;
 
-                if (d1 > 1.0D) {
-                    d1 = 2.0D - d1;
-                }
-
-                d1 *= 4.0D;
-                d1 = 1.0D - d1;
-
-                if (d1 < 0.0D) {
-                    d1 = 0.0D;
-                }
-
-                d1 *= d1;
-                d1 *= d1;
-                int i = this.achievementWindowWidth - 160;
-                int j = 0 - (int) (d1 * 36.0D);
-                GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-                GL11.glEnable(GL11.GL_TEXTURE_2D);
-                this.mc.renderEngine.bindTexture(achievementTextures);
-                GL11.glDisable(GL11.GL_LIGHTING);
-                this.drawTexturedModalRect(i, j, 96, 202, 160, 32);
-
-                if (this.haveAchiement) {
-                    this.mc.fontRenderer.drawSplitString(achievementStatName, i + 30, j + 7, 120, -1);
-                } else {
-                    this.mc.fontRenderer.drawString(achievementGetLocalText, i + 30, j + 7, -256);
-                    this.mc.fontRenderer.drawString(achievementStatName, i + 30, j + 18, -1);
-                }
-
-                RenderHelper.enableGUIStandardItemLighting();
-                GL11.glDisable(GL11.GL_LIGHTING);
-                GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-                GL11.glEnable(GL11.GL_COLOR_MATERIAL);
-                GL11.glEnable(GL11.GL_LIGHTING);
-                this.itemRender.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.getTextureManager(), itemIcon, i + 8, j + 8);
-                GL11.glDisable(GL11.GL_LIGHTING);
-                GL11.glDepthMask(true);
-                GL11.glEnable(GL11.GL_DEPTH_TEST);
+            if (d1 > 1.0D) {
+                d1 = 2.0D - d1;
             }
+
+            d1 *= 4.0D;
+            d1 = 1.0D - d1;
+
+            if (d1 < 0.0D) {
+                d1 = 0.0D;
+            }
+
+            d1 *= d1;
+            d1 *= d1;
+            int i = this.achievementWindowWidth - 160;
+            int j = 0 - (int) (d1 * 36.0D);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            GL11.glEnable(GL11.GL_TEXTURE_2D);
+            this.mc.renderEngine.bindTexture(achievementTextures);
+            GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glEnable(GL11.GL_ALPHA_TEST);
+            this.drawTexturedModalRect(i, j, 96, 202, 160, 32);
+
+            this.mc.fontRenderer.drawString(achievementGetLocalText, i + 30, j + 7, -256);
+            this.mc.fontRenderer.drawString(achievementStatName, i + 30, j + 18, -1);
+
+            RenderHelper.enableGUIStandardItemLighting();
+            GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+            GL11.glEnable(GL11.GL_COLOR_MATERIAL);
+            GL11.glEnable(GL11.GL_LIGHTING);
+            this.itemRender.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.getTextureManager(), itemIcon, i + 8, j + 8);
+            GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glDepthMask(true);
+            GL11.glEnable(GL11.GL_DEPTH_TEST);
         }
         this.mc.renderEngine.bindTexture(new ResourceLocation("textures/gui/icons.png"));
     }

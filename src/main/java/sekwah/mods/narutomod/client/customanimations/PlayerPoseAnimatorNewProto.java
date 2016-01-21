@@ -103,11 +103,11 @@ public class PlayerPoseAnimatorNewProto {
                     }
 
                     if (locData.has("head")) {
-                        animPosePart(modelBiped.bipedMaskmed, locData.getJSONObject("head"), animLength - animationTick, animLength);
+                        animPosePart(modelBiped.bipedMaskMed, locData.getJSONObject("head"), animLength - animationTick, animLength);
                     }
 
                     if (locData.has("head")) {
-                        animPosePart(modelBiped.bipedMasksmall, locData.getJSONObject("head"), animLength - animationTick, animLength);
+                        animPosePart(modelBiped.bipedMaskSmall, locData.getJSONObject("head"), animLength - animationTick, animLength);
                     }
                 }
             } else {
@@ -164,11 +164,11 @@ public class PlayerPoseAnimatorNewProto {
                 }
 
                 if (locData.has("head")) {
-                    setPosePart(modelBiped.bipedMaskmed, locData.getJSONObject("head"));
+                    setPosePart(modelBiped.bipedMaskMed, locData.getJSONObject("head"));
                 }
 
                 if (locData.has("head")) {
-                    setPosePart(modelBiped.bipedMasksmall, locData.getJSONObject("head"));
+                    setPosePart(modelBiped.bipedMaskSmall, locData.getJSONObject("head"));
                 }
             } else {
                 System.out.println("[NarutoMod] PoseData not found for: " + animationID);
@@ -228,11 +228,11 @@ public class PlayerPoseAnimatorNewProto {
                     }
 
                     if (locData.has("head")) {
-                        animPosePart(modelBiped.bipedMasksmall, locData.getJSONObject("head"), animationTick, animLength);
+                        animPosePart(modelBiped.bipedMaskSmall, locData.getJSONObject("head"), animationTick, animLength);
                     }
 
                     if (locData.has("head")) {
-                        animPosePart(modelBiped.bipedMaskmed, locData.getJSONObject("head"), animationTick, animLength);
+                        animPosePart(modelBiped.bipedMaskMed, locData.getJSONObject("head"), animationTick, animLength);
                     }
                 } else {
                     if (locData.has("rightArmUpper")) {
@@ -280,11 +280,11 @@ public class PlayerPoseAnimatorNewProto {
                     }
 
                     if (locData.has("head")) {
-                        setPosePart(modelBiped.bipedMaskmed, locData.getJSONObject("head"));
+                        setPosePart(modelBiped.bipedMaskMed, locData.getJSONObject("head"));
                     }
 
                     if (locData.has("head")) {
-                        setPosePart(modelBiped.bipedMasksmall, locData.getJSONObject("head"));
+                        setPosePart(modelBiped.bipedMaskSmall, locData.getJSONObject("head"));
                     }
                 }
             } else {

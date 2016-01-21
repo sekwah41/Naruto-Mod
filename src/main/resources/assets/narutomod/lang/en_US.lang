@@ -74,6 +74,9 @@ item.headProtector=headband
 
 item.headProtector.HiddenInTheTrees.name=Hidden In The Trees Headband
 item.headProtector.Custard.name=Custard Headband
+item.headProtector.Youtube.name=Youtuber Headband
+item.headProtector.Youtube.desc=Village hidden in le memes :3
+item.headProtector.Lava.name=Lava Headband
 
 item.backBokken.name=Sheathed Bokken
         
@@ -171,3 +174,20 @@ naruto.gui.chakraGreen=Chakra Green
 naruto.gui.chakraBlue=Chakra Blue
 
 naruto.gui.chakraBarDesign=Bar Design
+
+naruto.gui.chakraHue=Hue
+naruto.gui.chakraBrightness=Brightness
+
+naruto.keys.toggledodges=Toggle Dodges
+naruto.gui.dodges=Dodges
+
+naruto.gui.settings=Settings
+
+naruto.gui.dodges.disabled=Dodges disabled
+naruto.gui.dodges.enabled=Dodges enabled
+
+naruto.gui.betterArms=Better Arms
+
+naruto.gui.restartMinecraft=Restart minecraft
+
+naruto.gui.settingsSaved=Settings saved

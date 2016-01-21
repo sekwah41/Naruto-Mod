@@ -1,7 +1,10 @@
 package sekwah.mods.narutomod.client;
 
+import net.minecraft.item.ItemStack;
 import sekwah.mods.narutomod.client.gui.GuiJutsuMenu;
+import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
 import sekwah.mods.narutomod.client.gui.GuiOptionsMenu;
+import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 import sekwah.mods.narutomod.packets.serverbound.ServerSoundPacket;
@@ -34,9 +37,9 @@ public class NarutoKeyHandler {
     /**
      * Key descriptions; use a language file to localize the description later
      */
-    public static final String[] keyDesc = {"naruto.keys.key1", "naruto.keys.key2", "naruto.keys.key3", "naruto.keys.jutsumenu", "naruto.keys.options", "naruto.keys.leap"/*, "naruto.keys.sharingan"*/};
+    public static final String[] keyDesc = {"naruto.keys.key1", "naruto.keys.key2", "naruto.keys.key3", "naruto.keys.jutsumenu", "naruto.keys.options", "naruto.keys.leap", "naruto.keys.toggledodges"/*, "naruto.keys.sharingan"*/};
     public static final KeyBinding[] keys = new KeyBinding[keyDesc.length];
-    public static boolean[] isPressed = {false, false, false, false, false, false/*, false*/};
+    public static boolean[] isPressed = {false, false, false, false, false, false, false/*, false*/};
     //private static boolean[] repeat = {false, false, false, false, false/**, false*/};
 
     public static boolean[] isVanillaPressed = {false, false, false};
@@ -46,7 +49,7 @@ public class NarutoKeyHandler {
     /**
      * Default key values
      */
-    private final int[] keyButtons = {Keyboard.KEY_C, Keyboard.KEY_V, Keyboard.KEY_B, Keyboard.KEY_J, Keyboard.KEY_O, Keyboard.KEY_X/*, Keyboard.KEY_NUMPAD1*/};
+    private final int[] keyButtons = {Keyboard.KEY_C, Keyboard.KEY_V, Keyboard.KEY_B, Keyboard.KEY_J, Keyboard.KEY_O, Keyboard.KEY_X, Keyboard.KEY_Z /*, Keyboard.KEY_NUMPAD1*/};
 
     public NarutoKeyHandler() {
         for (int i = 0; i < keyDesc.length; ++i) {
@@ -130,6 +133,14 @@ public class NarutoKeyHandler {
                         }
                     }
                 }
+            } else if(keys[keyID].getKeyDescription().equals("naruto.keys.toggledodges")){
+                if(NarutoSettings.dodgesEnabled){
+                    GuiNotificationUpdate.queueNotification(I18n.format("naruto.gui.settings"),I18n.format("naruto.gui.dodges.disabled"), new ItemStack(NarutoItems.Kunai));
+                }else{
+                    GuiNotificationUpdate.queueNotification(I18n.format("naruto.gui.settings"),I18n.format("naruto.gui.dodges.enabled"), new ItemStack(NarutoItems.Kunai));
+                }
+                NarutoSettings.dodgesEnabled = !NarutoSettings.dodgesEnabled;
+
             }/* else if(keys[keyID].getKeyDescription().equals("naruto.keys.sharingan")){
                 EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
                 if(playerMP.getCommandSenderName().endsWith("sekwah41")){
@@ -163,21 +174,21 @@ public class NarutoKeyHandler {
     static void keyVanillaPressed(String keyDesc, boolean pressedDown) {
         if(pressedDown){
             EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
-            if(keyDesc.equals("key.left")) {
-                // TODO add leap code and change the fall distance with a packet
-                if(PlayerClientTickEvent.doubleTapTime[0] <= 0){
-                    PlayerClientTickEvent.doubleTapTime[0] = 10;
-                }
-                else{
-                    if(PlayerClientTickEvent.leapCooldown <= 0){
-                        PlayerClientTickEvent.doubleTapTime[0] = 0;
-                        if (playerMP.onGround && PlayerClientTickEvent.stamina >= 20) {
-                            if (PlayerClientTickEvent.onWater) {
-                                PlayerClientTickEvent.useChakra(10F);
+            if(NarutoSettings.dodgesEnabled) {
+                if (keyDesc.equals("key.left")) {
+                    // TODO add leap code and change the fall distance with a packet
+                    if (PlayerClientTickEvent.doubleTapTime[0] <= 0) {
+                        PlayerClientTickEvent.doubleTapTime[0] = 10;
+                    } else {
+                        if (PlayerClientTickEvent.leapCooldown <= 0) {
+                            PlayerClientTickEvent.doubleTapTime[0] = 0;
+                            if (playerMP.onGround && PlayerClientTickEvent.stamina >= 20) {
+                                if (PlayerClientTickEvent.onWater) {
+                                    PlayerClientTickEvent.useChakra(10F);
+                                }
+                                sendJutsuPacket(403);
                             }
-                            sendJutsuPacket(403);
                         }
-                    }
 
                     /*if(PlayerClientTickEvent.stamina >= 20){
                         if(playerMP.onGround){
@@ -191,23 +202,21 @@ public class NarutoKeyHandler {
                             PlayerClientTickEvent.setStaminaCooldown(80);
                         }
                     }*/
-                }
-            }
-            else if(keyDesc.equals("key.right")) {
-                // TODO add leap code and change the fall distance with a packet
-                if(PlayerClientTickEvent.doubleTapTime[1] <= 0){
-                    PlayerClientTickEvent.doubleTapTime[1] = 10;
-                }
-                else{
-                    if(PlayerClientTickEvent.leapCooldown <= 0) {
-                        PlayerClientTickEvent.doubleTapTime[1] = 0;
-                        if (playerMP.onGround && PlayerClientTickEvent.stamina >= 20) {
-                            if (PlayerClientTickEvent.onWater) {
-                                PlayerClientTickEvent.useChakra(10F);
-                            }
-                            sendJutsuPacket(404);
-                        }
                     }
+                } else if (keyDesc.equals("key.right")) {
+                    // TODO add leap code and change the fall distance with a packet
+                    if (PlayerClientTickEvent.doubleTapTime[1] <= 0) {
+                        PlayerClientTickEvent.doubleTapTime[1] = 10;
+                    } else {
+                        if (PlayerClientTickEvent.leapCooldown <= 0) {
+                            PlayerClientTickEvent.doubleTapTime[1] = 0;
+                            if (playerMP.onGround && PlayerClientTickEvent.stamina >= 20) {
+                                if (PlayerClientTickEvent.onWater) {
+                                    PlayerClientTickEvent.useChakra(10F);
+                                }
+                                sendJutsuPacket(404);
+                            }
+                        }
                     /*if(PlayerClientTickEvent.stamina >= 20) {
                         if (playerMP.onGround) {
                             if (PlayerClientTickEvent.onWater) {
@@ -220,23 +229,21 @@ public class NarutoKeyHandler {
                             PlayerClientTickEvent.setStaminaCooldown(80);
                         }
                     }*/
-                }
-            }
-            else if(keyDesc.equals("key.back")) {
-                // TODO add leap code and change the fall distance with a packet, also find why going backwards isnt working
-                if(PlayerClientTickEvent.doubleTapTime[2] <= 0){
-                    PlayerClientTickEvent.doubleTapTime[2] = 10;
-                }
-                else{
-                    if(PlayerClientTickEvent.leapCooldown <= 0) {
-                        PlayerClientTickEvent.doubleTapTime[2] = 0;
-                        if (playerMP.onGround && PlayerClientTickEvent.stamina >= 20) {
-                            if (PlayerClientTickEvent.onWater) {
-                                PlayerClientTickEvent.useChakra(10F);
-                            }
-                            sendJutsuPacket(402);
-                        }
                     }
+                } else if (keyDesc.equals("key.back")) {
+                    // TODO add leap code and change the fall distance with a packet, also find why going backwards isnt working
+                    if (PlayerClientTickEvent.doubleTapTime[2] <= 0) {
+                        PlayerClientTickEvent.doubleTapTime[2] = 10;
+                    } else {
+                        if (PlayerClientTickEvent.leapCooldown <= 0) {
+                            PlayerClientTickEvent.doubleTapTime[2] = 0;
+                            if (playerMP.onGround && PlayerClientTickEvent.stamina >= 20) {
+                                if (PlayerClientTickEvent.onWater) {
+                                    PlayerClientTickEvent.useChakra(10F);
+                                }
+                                sendJutsuPacket(402);
+                            }
+                        }
                     /*if(PlayerClientTickEvent.stamina >= 20) {
                         if (playerMP.onGround) {
                             if (PlayerClientTickEvent.onWater) {
@@ -249,6 +256,7 @@ public class NarutoKeyHandler {
                             PlayerClientTickEvent.setStaminaCooldown(80);
                         }
                     }*/
+                    }
                 }
             }
         }

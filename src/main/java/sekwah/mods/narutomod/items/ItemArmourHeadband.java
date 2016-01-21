@@ -1,5 +1,6 @@
 package sekwah.mods.narutomod.items;
 
+import net.minecraft.client.resources.I18n;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.items.itemmodels.ModelHeadband;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -49,6 +50,12 @@ public class ItemArmourHeadband extends ItemArmor {
 		Icons[5] = par1IconRegister.registerIcon(NarutoMod.modid + ":backScrollRed");
 		Icons[6] = par1IconRegister.registerIcon(NarutoMod.modid + ":backScrollBlack");
 	}
+
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4) {
+        if(par1ItemStack.getItemDamage() == 2){
+            par2List.add("\u00a77" + I18n.format("item.headProtector.Youtube.desc"));
+        }
+    }
 	
 	
 	

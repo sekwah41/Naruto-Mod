@@ -60,8 +60,10 @@ public class ItemKubikiribocho extends Item {
      * the damage on the stack.
      */
     public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase) {
-
-        par1ItemStack.damageItem(1, par3EntityLivingBase);
+        if(par1ItemStack.getMaxDamage() > par1ItemStack.getItemDamage()){
+            par1ItemStack.setItemDamage(par1ItemStack.getItemDamage() - 1);
+        }
+        //par1ItemStack.damageItem(1, par3EntityLivingBase);
         return true;
     }
 
