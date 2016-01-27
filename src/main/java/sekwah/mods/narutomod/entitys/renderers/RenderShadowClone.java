@@ -268,6 +268,8 @@ public class RenderShadowClone extends RendererLivingEntity {
             }
         }
 
+        this.bindTexture(func_110817_a(par1EntityShadowClone));
+
         String[] MaskUsers = {"sekwah41", "Praneeth98", "Orcwaagh"};
         for (String MaskUser : MaskUsers) {
             if (MaskUser.endsWith(par1EntityShadowClone.getCustomNameTag())) {

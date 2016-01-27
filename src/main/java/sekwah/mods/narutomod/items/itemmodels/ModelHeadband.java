@@ -100,12 +100,14 @@ public class ModelHeadband extends ModelNinjaBiped
 	private void renderWithLock(ModelRenderer bipedBody, ModelRenderer lockblock, float f5) {
 		double scale = 1.1D;
 		GL11.glPushMatrix();
-		
-		GL11.glScaled(scale, scale, scale);
-		
+
 		setRotation(lockblock, bipedBody.rotateAngleX, bipedBody.rotateAngleY, bipedBody.rotateAngleZ);
 
-		lockblock.setRotationPoint(bipedBody.rotationPointX, bipedBody.rotationPointY, bipedBody.rotationPointZ);
+		lockblock.setRotationPoint(0,0,0);
+
+		GL11.glTranslatef(bipedBody.rotationPointX / 16, bipedBody.rotationPointY / 16, bipedBody.rotationPointZ / 16);
+
+		GL11.glScaled(scale, scale, scale);
 
 		lockblock.render(f5);
 		

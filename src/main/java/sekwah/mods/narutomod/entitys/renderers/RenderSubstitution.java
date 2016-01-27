@@ -268,6 +268,8 @@ public class RenderSubstitution extends RendererLivingEntity {
             }
         }
 
+        this.bindTexture(func_110817_a(par1EntitySubstitution));
+
         String[] MaskUsers = {"sekwah41", "Praneeth98", "Orcwaagh"};
         for (String MaskUser : MaskUsers) {
             if (MaskUser.endsWith(par1EntitySubstitution.getCustomNameTag())) {

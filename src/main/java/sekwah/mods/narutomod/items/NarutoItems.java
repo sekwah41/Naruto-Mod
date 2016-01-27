@@ -55,6 +55,7 @@ public class NarutoItems {
 	public static Item flakJacket;
 	public static Item shinobiChestplate;
 	public static Item shinobiLeggings;
+	public static Item redAnbuMask;
 	// TODO Finish adding the code and complete tomorrow(tomorrow has passed, get yo lazy ass to work you bum)
 	//  recipe needed
 	public static Item armourPlate;
@@ -62,7 +63,8 @@ public class NarutoItems {
 	// Armour materials
 	private static ArmorMaterial flakArmour = EnumHelper.addArmorMaterial("FLAK", 35, new int[]{2, 7, 5, 2}, 10);
 	private static ArmorMaterial shinobiArmour = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 10);
-    private static ArmorMaterial headbandArmour = EnumHelper.addArmorMaterial("HEADBAND", 35, new int[]{2, 8, 5, 2}, 10);
+    // Same as iron atm
+	private static ArmorMaterial headbandArmour = EnumHelper.addArmorMaterial("HEADBAND", 35, new int[]{2, 8, 5, 2}, 10);
 	// Weapon and tool materials
 	private static ToolMaterial gunbaiTool = EnumHelper.addToolMaterial("GUNBAI", 0, 100, 2.0F, 0, 15);
 	private static ToolMaterial samehadaTool = EnumHelper.addToolMaterial("SAMEHADA", 0, 3000, 8.0F, 4, 3);
@@ -133,6 +135,8 @@ public class NarutoItems {
 
 		armourPlate = (new BaseItem()).setUnlocalizedName("armourPlate").setCreativeTab(ninjaMaterials).setMaxStackSize(32);
 
+		redAnbuMask = (new ItemArmourAnbuMask(headbandArmour, 4, 0)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("redAnbuMask");
+
 		// TODO add the masks from the anbu and rouge
 
 		// TODO update gunbai
@@ -184,6 +188,8 @@ public class NarutoItems {
 		GameRegistry.registerItem(fabric, "fabric");
 
 		GameRegistry.registerItem(narutoIcons, "naruto_icons");
+
+		GameRegistry.registerItem(redAnbuMask, "redAnbuMask");
 
 	}
 

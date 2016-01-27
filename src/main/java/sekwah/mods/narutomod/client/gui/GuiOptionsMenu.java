@@ -19,21 +19,8 @@ import sekwah.mods.narutomod.settings.NarutoSettings;
 public class GuiOptionsMenu extends GuiScreen {
     private static final ResourceLocation guiBackground = new ResourceLocation("narutomod:textures/gui/blankGui.png");
 
-    private static final int barTextureWidth = 100;
 
-    private static final int barTextureHeight = 44;
 
-    private static final NarutoResource DEFAULTTEXTURE = new NarutoResource("textures/gui/chakrabars/DefaultBar.png", barTextureWidth, barTextureHeight);
-    private static final NarutoResource KATANATEXTURE = new NarutoResource("textures/gui/chakrabars/Katana.png", barTextureWidth, barTextureHeight);
-    private static final NarutoResource KUBITEXTURE = new NarutoResource("textures/gui/chakrabars/Kubi.png", barTextureWidth, barTextureHeight);
-    private static final NarutoResource KUNAITEXTURE = new NarutoResource("textures/gui/chakrabars/Kunai.png", barTextureWidth, barTextureHeight);
-    private static final NarutoResource SCEPTERTEXTURE = new NarutoResource("textures/gui/chakrabars/Scepter.png", barTextureWidth, barTextureHeight);
-    private static final NarutoResource SCROLLTEXTURE = new NarutoResource("textures/gui/chakrabars/Scroll.png", barTextureWidth, barTextureHeight);
-    private static final NarutoResource UNNAMEDTEXTURE = new NarutoResource("textures/gui/chakrabars/unnamedbar.png", barTextureWidth, barTextureHeight);
-    // Just to check where the full squares are
-    /*private static final NarutoResource NULLTEXTURE = new NarutoResource("textures/gui/chakrabars/null.png", barTextureWidth, barTextureHeight);*/
-
-    private static final NarutoResource[] barDesigns = {DEFAULTTEXTURE, KATANATEXTURE, KUBITEXTURE, KUNAITEXTURE, SCEPTERTEXTURE, SCROLLTEXTURE, UNNAMEDTEXTURE/*, NULLTEXTURE*/};
 
     private int guiWidth = 248;
     private int guiHeight = 166;
@@ -273,7 +260,7 @@ public class GuiOptionsMenu extends GuiScreen {
 
 
         if(NarutoSettings.settingsPage == 2){
-            bindTexture(barDesigns[NarutoSettings.chakraBarDesign - 1]);
+            bindTexture(GuiChakraAndStaminaBar.barDesigns[NarutoSettings.chakraBarDesign - 1]);
 
             int chakraX = 76;
             int chakraY = 47;

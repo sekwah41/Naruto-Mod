@@ -17,8 +17,10 @@ import java.util.TimerTask;
 
 /**
  * Created by sekwah on 22/10/2015.
+ *
+ * TODO Change back to a thread
  */
-public class UpdateChecker {
+public class UpdateChecker/* extends Thread*/ {
 
     public static String updatestatus = "checking";
     public static String updatetext = EnumChatFormatting.YELLOW + " - Checking for update";
@@ -39,6 +41,8 @@ public class UpdateChecker {
         } catch (MalformedURLException malformedurlexception) {
             throw new IllegalArgumentException();
         }
+        //this.setName("Naruto Mod Update Detector");
+        //this.setDaemon(true);
     }
 
     public void startUpdateChecker() {

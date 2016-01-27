@@ -38,18 +38,19 @@ public class GuiChakraAndStaminaBar extends /*Gui*/NarutoGui {
     private static final NarutoResource KATANATEXTURE = new NarutoResource("textures/gui/chakrabars/Katana.png", barTextureWidth, barTextureHeight);
     private static final NarutoResource KUBITEXTURE = new NarutoResource("textures/gui/chakrabars/Kubi.png", barTextureWidth, barTextureHeight);
     private static final NarutoResource KUNAITEXTURE = new NarutoResource("textures/gui/chakrabars/Kunai.png", barTextureWidth, barTextureHeight);
+    private static final NarutoResource LAMPSHADETEXTURE = new NarutoResource("textures/gui/chakrabars/Lampshade.png", barTextureWidth, barTextureHeight);
     private static final NarutoResource SCEPTERTEXTURE = new NarutoResource("textures/gui/chakrabars/Scepter.png", barTextureWidth, barTextureHeight);
     private static final NarutoResource SCROLLTEXTURE = new NarutoResource("textures/gui/chakrabars/Scroll.png", barTextureWidth, barTextureHeight);
     private static final NarutoResource UNNAMEDTEXTURE = new NarutoResource("textures/gui/chakrabars/unnamedbar.png", barTextureWidth, barTextureHeight);
     // Just to check where the full squares are
     /*private static final NarutoResource NULLTEXTURE = new NarutoResource("textures/gui/chakrabars/null.png", barTextureWidth, barTextureHeight);*/
 
-    private static final NarutoResource[] barDesigns = {DEFAULTTEXTURE, KATANATEXTURE, KUBITEXTURE, KUNAITEXTURE, SCEPTERTEXTURE, SCROLLTEXTURE, UNNAMEDTEXTURE/*, NULLTEXTURE*/};
+    public static final NarutoResource[] barDesigns = {DEFAULTTEXTURE, KATANATEXTURE, KUBITEXTURE, KUNAITEXTURE, LAMPSHADETEXTURE, SCEPTERTEXTURE, SCROLLTEXTURE, UNNAMEDTEXTURE/*, NULLTEXTURE*/};
 
     // These are needed so that 0 and 100% chakra are at either end of the bar
-    private static final int[] barWidths = {86,94,86,86,86,86,74};
+    private static final int[] barWidths = {86,94,86,86,86,86,86,74};
 
-    private static final int[] barXOffset = {6,5,3,5,5,6,3};
+    private static final int[] barXOffset = {6,5,3,9,8,5,6,3};
 
     //private final Minecraft mc;
 
