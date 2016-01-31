@@ -317,10 +317,6 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
                         if (movingobjectposition.entityHit instanceof EntityLivingBase) {
                             EntityLivingBase entitylivingbase = (EntityLivingBase) movingobjectposition.entityHit;
 
-                            if (!this.worldObj.isRemote) {
-                                entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
-                            }
-
                             if (this.knockbackStrength > 0) {
                                 f4 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
