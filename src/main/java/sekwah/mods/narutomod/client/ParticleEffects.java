@@ -1,6 +1,9 @@
 package sekwah.mods.narutomod.client;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
 import sekwah.mods.narutomod.entitys.particles.EntityColouredSmokeFX;
+import sekwah.mods.narutomod.entitys.particles.EntityColouredSmokeTrackingFX;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -50,7 +53,18 @@ public class ParticleEffects {
 
     }*/
 
+    // One of the client side only activated methods.
+    public static void addTrackingParticle(Particle particle, World worldObj, double x, double y, double z, Entity entity, float... args) {
+        switch(particle){
+            case COLOURED_SMOKE:
+                Minecraft.getMinecraft().effectRenderer.addEffect(new EntityColouredSmokeTrackingFX(worldObj, x,y,z,args[0], args[1],args[2], args[3], args[4], args[5],  entity));
+                return;
+        }
+    }
 
+
+
+    // TODO add an enum class with ids and stuff to track effect ids easier and add a simple case statement
     public static void execute(DataInputStream dis, EntityClientPlayerMP playerMP) {
 
         int effectID = 0;
