@@ -770,14 +770,18 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         ResourceLocation overlay = null;
 
+        // TODO add more colour values, this makes it so it can only be 1 colour and also makes it render nicer
+        // in SEUS, if anything the eyes should be grayscale with this enabled. But it would screw up eyes which have
+        // multiple colours...
+        float[] glColor = {1,1,1};
+
+
+        // TODO readd
         if (p_77029_1_.getCommandSenderName().endsWith("Zaromaru")) {
             overlay = rinneganOverlay;
         }
         else if(p_77029_1_.getCommandSenderName().endsWith("Gingershadow")){
             overlay = motherFuckingDEMONSOverlay;
-        }
-        else if(p_77029_1_.getCommandSenderName().endsWith("owTreyalP")){
-            overlay = sharingan1eye2x2;
         }
         else if(p_77029_1_.getCommandSenderName().endsWith("owTreyalP")){
             overlay = sharingan1eye2x2;
@@ -788,6 +792,8 @@ public class RenderNinjaPlayer extends RenderPlayer {
         }
         else if(p_77029_1_.getCommandSenderName().endsWith("liam3011")){
             overlay = sharingan2Overlay;
+            glColor[1] = 0;
+            glColor[2] = 0;
         }
         /*else if(p_77029_1_.getCommandSenderName().endsWith("SSJHiro11")){
             overlay = this.hiroCurseMark;
@@ -826,8 +832,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
 
-
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            GL11.glColor4f(glColor[0], glColor[1], glColor[2], 1.0F);
 
             this.modelSkinOverlay.bipedHead.render(0.0625F);
 
@@ -843,6 +848,8 @@ public class RenderNinjaPlayer extends RenderPlayer {
             tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
             tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
             tessellator.draw();*/
+
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             GL11.glEnable(GL11.GL_ALPHA_TEST);
 

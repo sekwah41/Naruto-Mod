@@ -30,16 +30,17 @@ public class PlayerRenderTickEvent {
     @SubscribeEvent
     public void tick(RenderTickEvent event) {
         // add code to get if the game is paused and keeps setting to 0(else could cause problems in singleplayer
+        // there are 1000000000D nanoseconds in a second. This divides the value to be a double in reguards to 1 second as 1
+        // And then multiplies by 120 so 120 delta values pass each second :)
         double nsPerTick = 1000000000D / 120D;
 
-        delta = 0;
 
         long now = System.nanoTime();
-        delta += (now - lastTime) / nsPerTick;
-        if (delta >= 1) {
+        delta = (float) ((now - lastTime) / nsPerTick);
+        lastTime = now;
+        if (delta < 0) {
             lastTime = now;
-        } else if (delta < 0) {
-            lastTime = now;
+            delta = 0;
             NarutoMod.logger.error(" Your computer seems to have traveled back in time :O");
         }
 

@@ -45,6 +45,8 @@ public class RenderShadowClone extends RendererLivingEntity {
 
     private static final ResourceLocation motherFuckingDEMONSOverlay = new ResourceLocation("narutomod:textures/skinOverlays/demonEyes2x2.png");
 
+    private static final ResourceLocation byakugan = new ResourceLocation("narutomod:textures/skinOverlays/byakugan_2x2.png");
+
     private static final ResourceLocation sharingan1eye2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2x2.png");
 
     private static final ResourceLocation hiroCurseMark = new ResourceLocation("narutomod:textures/skinOverlays/hiro_cursemark.png");
@@ -415,19 +417,29 @@ public class RenderShadowClone extends RendererLivingEntity {
             GL11.glPopMatrix();
         }
 
+
         ResourceLocation overlay = null;
 
-        if (par1EntityShadowClone.getCustomNameTag().endsWith("Zaromaru")) {
+        float[] glColor = {1,1,1};
+
+        // TODO readd
+        if (par1EntityShadowClone.getCommandSenderName().endsWith("Zaromaru")) {
             overlay = rinneganOverlay;
         }
-        else if(par1EntityShadowClone.getCustomNameTag().endsWith("Gingershadow")){
+        else if(par1EntityShadowClone.getCommandSenderName().endsWith("Gingershadow")){
             overlay = motherFuckingDEMONSOverlay;
         }
-        else if(par1EntityShadowClone.getCustomNameTag().endsWith("owTreyalP")){
+        else if(par1EntityShadowClone.getCommandSenderName().endsWith("owTreyalP")){
             overlay = sharingan1eye2x2;
         }
-        else if(par1EntityShadowClone.getCustomNameTag().endsWith("liam3011")){
+        // add miches name
+        else if(par1EntityShadowClone.getCommandSenderName().endsWith("CrazyMtch42")){
+            overlay = byakugan;
+        }
+        else if(par1EntityShadowClone.getCommandSenderName().endsWith("liam3011")){
             overlay = sharingan2Overlay;
+            glColor[1] = 0;
+            glColor[2] = 0;
         }
         /*else if(par1EntityShadowClone.getCustomNameTag().endsWith("SSJHiro11")){
             overlay = this.hiroCurseMark;
@@ -462,9 +474,11 @@ public class RenderShadowClone extends RendererLivingEntity {
             int k = c0 / 65536;
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
 
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            GL11.glColor4f(glColor[0], glColor[1], glColor[2], 1.0F);
 
             this.modelSkinOverlay.bipedHead.render(0.0625F);
+
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             GL11.glEnable(GL11.GL_LIGHTING);
 
