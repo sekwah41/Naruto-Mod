@@ -98,7 +98,7 @@ public class EventServerHook {
     {
         if (event.entityLiving instanceof EntityPlayer){
             EntityPlayer player = (EntityPlayer) event.entityLiving;
-            NarutoMod.logger.info(event.distance);
+            //NarutoMod.logger.info(event.distance);
             if(event.distance < 9){
                 event.distance /= 3;
             }

@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "0.3.4b9"
+version = "0.4.0b1"
 group= "sekwah.mods.narutomod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "narutomod"
 

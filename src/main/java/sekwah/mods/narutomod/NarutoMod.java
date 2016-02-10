@@ -46,12 +46,12 @@ public class NarutoMod {
 
     // TODO for the lang files possibly use the \u0007 character code thing and see if that works for accents
 
-    public static final String version = "0.3.4b8";
+    public static final String version = "0.3.4b9";
 
     // update data
-    public static int mcversion = 1710; // e.g. 164 is 1.6.4
+    public static int[] mcversion = {1,7,10}; // e.g. 164 is 1.6.4
 
-    public static int modversion = 34; // e.g. 030 is 0.3.1
+    public static int[] modversion = {0,4,0}; // e.g. 030 is 0.3.1
 
     public static SimpleNetworkWrapper packetNetwork;
 

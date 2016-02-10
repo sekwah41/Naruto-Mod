@@ -263,7 +263,8 @@ public class RenderNinjaPlayer extends RenderPlayer {
         }
 
 
-        this.modelArmorChestplate.animationID = this.modelArmor.animationID = this.modelBipedMain.animationID = dw.getWatchableObjectString(20);
+        // 20 is current animation, 27 is last client animation. Using 27 as it is set to the value of 20 when 25 is set back to 0.
+        this.modelArmorChestplate.animationID = this.modelArmor.animationID = this.modelBipedMain.animationID = dw.getWatchableObjectString(27);
         this.modelArmorChestplate.animationlastID = this.modelArmor.animationlastID = this.modelBipedMain.animationlastID = dw.getWatchableObjectString(26);
         this.modelArmorChestplate.animationTick = this.modelArmor.animationTick = this.modelBipedMain.animationTick = dw.getWatchableObjectFloat(25);
 

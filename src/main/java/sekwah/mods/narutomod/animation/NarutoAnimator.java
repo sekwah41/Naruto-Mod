@@ -304,70 +304,54 @@ public class NarutoAnimator {
 
     public static void animate(String animationID, String animationlastID, float animationTick, ArrayList<AnimModelRenderer> animatedParts, Pose[] poseArray) {
 
+        Pose lastPose = null;
+        Pose currentPose = null;
+        if(!animationID.equals("default") || !animationlastID.equals("default")){
+            lastPose = getPose(animationlastID, poseArray);
+            currentPose = getPose(animationID, poseArray);
+            if(currentPose == null){
+                NarutoMod.logger.error("PoseData not found for: " + animationID);
+                return;
+            }
+            if(lastPose == null){
+                NarutoMod.logger.error("PoseData not found for: " + animationlastID);
+                return;
+            }
+        }
+
         if (animationID.equals("default") && !animationlastID.equals("default")) { // add animation to default too!
             // TODO Switch code to get poses from the pose array
-            Pose lastPose = getPose(animationlastID, poseArray);
-            if (lastPose != null) {
-                /**JSONObject poseInfo = poses.getJSONObject(animationlastID);
-                 JSONObject locData = poseInfo.getJSONObject("locData");*/
-                int animLength = lastPose.animLength;
-
-                if (animLength > animationTick) {
-                    for (AnimModelRenderer part : animatedParts) {
-                        PartData partData = getPart(part.boxName, lastPose.partData);
-                        animPosePart(part, partData, animLength - animationTick, animLength);
-                    }
-                    // Old format    if(locData.has("rightArmUpper")){animPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"), animLength - animationTick, animLength);}
-                }
-            } else {
-                NarutoMod.logger.error("PoseData not found for: " + animationID);
-                throw new NullPointerException("PoseData not found for: " + animationID + ". Either the data is missing or an there is something wrong.");
-            }
-        } else if (!animationlastID.equals("default")) {
-            Pose lastPose = getPose(animationlastID, poseArray);
-            if (lastPose != null) {
-                //JSONObject lastPoseInfo = poses.getJSONObject(animationlastID);
-                //JSONObject locData = lastPoseInfo.getJSONObject("locData");
-
+            if (currentPose.animLength >= animationTick) {
                 for (AnimModelRenderer part : animatedParts) {
                     PartData partData = getPart(part.boxName, lastPose.partData);
-                    setPosePart(part, partData);
+                    animPosePart(part, partData, currentPose.animLength - animationTick, currentPose.animLength);
                 }
-
-                // Old format    if(locData.has("rightArmUpper")){setPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"));}
-            } else {
-                NarutoMod.logger.error("PoseData not found for: " + animationID);
-                throw new NullPointerException("PoseData not found for: " + animationID + ". Either the data is missing or an there is something wrong.");
+                // Old format    if(locData.has("rightArmUpper")){animPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"), animLength - animationTick, animLength);}
+            }
+        } else if (!animationlastID.equals("default")) {
+            for (AnimModelRenderer part : animatedParts) {
+                PartData partData = getPart(part.boxName, lastPose.partData);
+                setPosePart(part, partData);
             }
         }
 
 
         if (!animationID.equals("default")) { // add animation to default too!
-            Pose currentPose = getPose(animationID, poseArray);
-            if (currentPose != null) {
-                //JSONObject poseInfo = poses.getJSONObject(animationID);
-                //JSONObject locData = poseInfo.getJSONObject("locData");
-                int animLength = currentPose.animLength;
 
-                if (animLength > animationTick) {
-                    for (AnimModelRenderer part : animatedParts) {
-                        PartData partData = getPart(part.boxName, currentPose.partData);
-                        animPosePart(part, partData, animationTick, animLength);
-                    }
-
-                    // Old format    if(locData.has("rightArmUpper")){animPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"), animationTick, animLength);}
-                } else {
-
-                    for (AnimModelRenderer part : animatedParts) {
-                        PartData partData = getPart(part.boxName, currentPose.partData);
-                        setPosePart(part, partData);
-                    }
-
-                    // Old format    if(locData.has("rightArmUpper")){setPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"));}
+            if (currentPose.animLength >= animationTick) {
+                for (AnimModelRenderer part : animatedParts) {
+                    PartData partData = getPart(part.boxName, currentPose.partData);
+                    animPosePart(part, partData, animationTick, currentPose.animLength);
                 }
+
+                // Old format    if(locData.has("rightArmUpper")){animPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"), animationTick, animLength);}
             } else {
-                //  NarutoMod.logger.error("PoseData not found for: " + animationID);
-                throw new NullPointerException("PoseData not found for: " + animationID + ". Either the data is missing or an there is something wrong.");
+                for (AnimModelRenderer part : animatedParts) {
+                    PartData partData = getPart(part.boxName, currentPose.partData);
+                    setPosePart(part, partData);
+                }
+
+                // Old format    if(locData.has("rightArmUpper")){setPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"));}
             }
         }
 

@@ -7,6 +7,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.animation.AnimModelRenderer;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.animation.Pose;

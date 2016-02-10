@@ -30,7 +30,7 @@ public class PlayerRenderTickEvent {
     @SubscribeEvent
     public void tick(RenderTickEvent event) {
         // add code to get if the game is paused and keeps setting to 0(else could cause problems in singleplayer
-        // there are 1000000000D nanoseconds in a second. This divides the value to be a double in reguards to 1 second as 1
+        // there are 1000000000D nanoseconds in a second 1ns = 1x10^-9 s. This divides the value to be a double in reguards to 1 second as 1
         // And then multiplies by 120 so 120 delta values pass each second :)
         double nsPerTick = 1000000000D / 120D;
 

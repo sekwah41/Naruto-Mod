@@ -2,6 +2,7 @@ package sekwah.mods.narutomod.network;
 
 import sekwah.mods.narutomod.NarutoMod;
 import net.minecraft.util.EnumChatFormatting;
+import sekwah.mods.narutomod.json.JSONException;
 import sekwah.mods.narutomod.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -87,7 +88,9 @@ public class UpdateChecker/* extends Thread*/ {
                 updatestatus = "update";
                 NarutoMod.logger.info("Update found.");
             }
-
+        } catch (JSONException e) {
+            updatestatus = "failed";
+            updatetext = EnumChatFormatting.RED + " - Error reading update file :(";
         } catch (IOException e) {
             e.printStackTrace();
             updatestatus = "failed";
