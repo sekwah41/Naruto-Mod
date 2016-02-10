@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import sekwah.mods.narutomod.client.Particle;
 import sekwah.mods.narutomod.client.ParticleEffects;
 
-public class EntityFlyingNimbus extends Entity {
+public class EntityThunderCloud extends Entity {
  //   private static final String __OBFID = "CL_00001667";
     /**
      * true if no player in boat
@@ -35,7 +35,7 @@ public class EntityFlyingNimbus extends Entity {
     @SideOnly(Side.CLIENT)
     private double velocityZ;
 
-    public EntityFlyingNimbus(World p_i1704_1_) {
+    public EntityThunderCloud(World p_i1704_1_) {
         super(p_i1704_1_);
         this.isBoatEmpty = true;
         this.speedMultiplier = 0.07D;
@@ -71,7 +71,7 @@ public class EntityFlyingNimbus extends Entity {
         return false;
     } **/
 
-    public EntityFlyingNimbus(World p_i1705_1_, double p_i1705_2_, double p_i1705_4_, double p_i1705_6_) {
+    public EntityThunderCloud(World p_i1705_1_, double p_i1705_2_, double p_i1705_4_, double p_i1705_6_) {
         this(p_i1705_1_);
         this.setPosition(p_i1705_2_, p_i1705_4_ + (double) this.yOffset, p_i1705_6_);
         this.motionX = 0.0D;

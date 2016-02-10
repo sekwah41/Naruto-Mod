@@ -23,7 +23,7 @@ import java.util.TimerTask;
  */
 public class UpdateChecker/* extends Thread*/ {
 
-    public static String updatestatus = "checking";
+    //public static String updatestatus = "checking";
     public static String updatetext = EnumChatFormatting.YELLOW + " - Checking for update";
     public static boolean joinenabled = false;
     public static String serverip = "localhost";
@@ -65,11 +65,52 @@ public class UpdateChecker/* extends Thread*/ {
             InputStream in = url.openStream();
             String json = readJSONFileStream(in);
             JSONObject updateFile = new JSONObject(json);
-            int mcversion = updateFile.getInt("mcversion");
-            int modversion = updateFile.getInt("modversion");
+            JSONObject mcVersion = updateFile.getJSONObject("mc");
+            int mcMajor = mcVersion.getInt("major");
+            int mcMinor = mcVersion.getInt("minor");
+            int mcPatch = mcVersion.getInt("patch");
+            JSONObject modVersion = updateFile.getJSONObject("mod");
+            int modMajor = modVersion.getInt("major");
+            int modMinor = modVersion.getInt("minor");
+            int modPatch = modVersion.getInt("patch");
+            //int mcVersion = updateFile.getInt("mcVersion");
+            //int modVersion = updateFile.getInt("modVersion");
             String newestDownload = updateFile.getString("updateLink");
 
-            if (mcversion == NarutoMod.mcversion && modversion == NarutoMod.modversion) {
+            if(mcMajor == NarutoMod.mcVersion[0] && mcMinor == NarutoMod.mcVersion[1] && mcPatch == NarutoMod.mcVersion[2]
+                    && modMajor == NarutoMod.modVersion[0] && modMinor == NarutoMod.modVersion[1] && modPatch == NarutoMod.modVersion[2]){
+                if (NarutoMod.isPreRelease) {
+                    updatetext = EnumChatFormatting.YELLOW + " - The official release is now available!";
+                } else {
+                    updatetext = EnumChatFormatting.GREEN + " - The Naruto mod is up to date.";
+                }
+                NarutoMod.logger.info("Current copy is up to date.");
+            }
+            else if(mcMajor == NarutoMod.mcVersion[0] && mcMinor == NarutoMod.mcVersion[1] && mcPatch == NarutoMod.mcVersion[2]){
+                if(modMajor > NarutoMod.modVersion[0]){
+
+                    updatetext = EnumChatFormatting.GOLD + " - A major update is available!";
+                    NarutoMod.logger.info("Update found.");
+                }
+                else if(modMinor > NarutoMod.modVersion[1]){
+                    updatetext = EnumChatFormatting.GOLD + " - An update is available!";
+                    NarutoMod.logger.info("Update found.");
+                }
+                else if(modPatch > NarutoMod.modVersion[2]){
+                    updatetext = EnumChatFormatting.GOLD + " - A bugfix is available!";
+                    NarutoMod.logger.info("Update found.");
+                }
+            }
+            else{
+                if(mcMajor > NarutoMod.mcVersion[0]
+                        || (mcMajor == NarutoMod.mcVersion[0] && mcMinor > NarutoMod.mcVersion[1])
+                        || (mcMajor == NarutoMod.mcVersion[0] && mcMinor == NarutoMod.mcVersion[1] && mcPatch > NarutoMod.mcVersion[2])){
+                    updatetext = EnumChatFormatting.GOLD + " - Now available for " + mcMajor + "." + mcMinor + "." + mcPatch + "!";
+                    NarutoMod.logger.info("Update found.");
+                }
+            }
+
+            /*if (mcVersion == NarutoMod.mcVersion && modversion == NarutoMod.modVersion) {
                 if (NarutoMod.isPreRelease) {
                     updatetext = EnumChatFormatting.YELLOW + " - The official release is now available!";
                     updatestatus = "updated";
@@ -79,7 +120,7 @@ public class UpdateChecker/* extends Thread*/ {
                     updatestatus = "updated";
                     NarutoMod.logger.info("Current copy is up to date.");
                 }
-            } else if (mcversion <= NarutoMod.mcversion && modversion <= NarutoMod.modversion) {
+            } else if (mcVersion <= NarutoMod.mcVersion && modversion <= NarutoMod.modVersion) {
                 updatetext = EnumChatFormatting.AQUA + " - This is a pre release!";
                 updatestatus = "updated";
                 NarutoMod.logger.info("Current copy is a pre-release.");
@@ -87,13 +128,12 @@ public class UpdateChecker/* extends Thread*/ {
                 updatetext = EnumChatFormatting.GOLD + " - An update is available!";
                 updatestatus = "update";
                 NarutoMod.logger.info("Update found.");
-            }
+            }*/
+
         } catch (JSONException e) {
-            updatestatus = "failed";
             updatetext = EnumChatFormatting.RED + " - Error reading update file :(";
         } catch (IOException e) {
             e.printStackTrace();
-            updatestatus = "failed";
             updatetext = EnumChatFormatting.RED + " - Could not connect to the update info file :(";
         }
 

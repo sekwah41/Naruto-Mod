@@ -49,9 +49,9 @@ public class NarutoMod {
     public static final String version = "0.3.4b9";
 
     // update data
-    public static int[] mcversion = {1,7,10}; // e.g. 164 is 1.6.4
+    public static int[] mcVersion = {1,7,10}; // e.g. 164 is 1.6.4
 
-    public static int[] modversion = {0,4,0}; // e.g. 030 is 0.3.1
+    public static int[] modVersion = {0,4,0}; // e.g. 030 is 0.3.1
 
     public static SimpleNetworkWrapper packetNetwork;
 
@@ -65,7 +65,7 @@ public class NarutoMod {
     @EventHandler
     public void init(FMLInitializationEvent event) {
 
-        // TODO look into the mod hooks for the in game gui so i can change it to a number
+        // TODO look into the mod hooks for the in game gui so i can change (hp) to a number
         //  also so i can change the chakra back
 
         //new PlayerPoseAnimator();

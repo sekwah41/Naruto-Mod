@@ -174,6 +174,7 @@ public class NarutoKeyHandler {
     static void keyVanillaPressed(String keyDesc, boolean pressedDown) {
         if(pressedDown){
             EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
+            // TODO for dodges try to make it so it snaps the body into place / keeps the whole body looking the correct forwards :)
             if(NarutoSettings.dodgesEnabled) {
                 if (keyDesc.equals("key.left")) {
                     // TODO add leap code and change the fall distance with a packet
@@ -231,7 +232,6 @@ public class NarutoKeyHandler {
                     }*/
                     }
                 } else if (keyDesc.equals("key.back")) {
-                    // TODO add leap code and change the fall distance with a packet, also find why going backwards isnt working
                     if (PlayerClientTickEvent.doubleTapTime[2] <= 0) {
                         PlayerClientTickEvent.doubleTapTime[2] = 10;
                     } else {

@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderFlyingNimbus extends Render {
+public class RenderThunderCloud extends Render {
 
     @Override
     public void doRender(Entity p_76986_1_, double p_76986_2_,
@@ -16,7 +16,6 @@ public class RenderFlyingNimbus extends Render {
 
     @Override
     protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
-        // TODO Auto-generated method stub
         return null;
     }
 
