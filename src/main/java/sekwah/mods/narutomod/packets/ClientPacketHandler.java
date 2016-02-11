@@ -49,8 +49,6 @@ public class ClientPacketHandler {
     }
 
     public static void handleAnimationData(byte[] packet) {
-        // TODO Auto-generated method stub
-
     }
 
     public static void handleSoundData(byte[] packet) {

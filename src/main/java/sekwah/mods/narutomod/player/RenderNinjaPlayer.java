@@ -169,7 +169,6 @@ public class RenderNinjaPlayer extends RenderPlayer {
                 modelbiped.bipedLeftLegUpper.showModel = p_77032_2_ == 2 || p_77032_2_ == 3;
                 modelbiped.bipedRightLegLower.showModel = p_77032_2_ == 2 || p_77032_2_ == 3;
                 modelbiped.bipedLeftLegLower.showModel = p_77032_2_ == 2 || p_77032_2_ == 3;
-                // TODO find why the armour is glitched
                 modelbiped = (ModelNinjaBiped) net.minecraftforge.client.ForgeHooksClient.getArmorModel(p_77032_1_, itemstack, p_77032_2_, modelbiped);
                 this.setRenderPassModel(modelbiped);
                 modelbiped.onGround = this.mainModel.onGround;
@@ -777,7 +776,6 @@ public class RenderNinjaPlayer extends RenderPlayer {
         float[] glColor = {1,1,1};
 
 
-        // TODO readd
         if (p_77029_1_.getCommandSenderName().endsWith("Zaromaru")) {
             overlay = rinneganOverlay;
         }

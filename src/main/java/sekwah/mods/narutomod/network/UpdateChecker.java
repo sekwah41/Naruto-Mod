@@ -19,6 +19,8 @@ import java.util.TimerTask;
 /**
  * Created by sekwah on 22/10/2015.
  *
+ * TODO change update detector to gson library and also the animations to gson and remove the json library.
+ *
  * TODO Change back to a thread
  */
 public class UpdateChecker/* extends Thread*/ {

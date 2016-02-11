@@ -40,7 +40,6 @@ public class NarutoSettings {
 
     public static boolean rainbowChakra = false;
 
-    // TODO change chakra to hue rather than individual sliders :)
     public static int chakraRed = 20;
 
     public static int chakraGreen = 179;
@@ -144,9 +143,6 @@ public class NarutoSettings {
             chakraGreen *= multiValue;
             chakraBlue *= multiValue;
         }
-
-
-        // TODO add code to apply percentage values to the colours based on the lightness
 
     }
 

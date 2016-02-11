@@ -90,7 +90,6 @@ public class ServerPacketHandler {
         try {
             jutsuPose = inputStream.readUTF();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         DataWatcher dw = playerEntity.getDataWatcher();
