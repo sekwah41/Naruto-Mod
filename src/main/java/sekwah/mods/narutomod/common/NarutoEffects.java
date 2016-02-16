@@ -36,7 +36,7 @@ public class NarutoEffects {
 
                     potionStart = potionTypes.length;
                     int newLength = potionTypes.length + potionCountToAdd;
-                    NarutoMod.logger.error("Extending length of potion array from " +
+                    NarutoMod.logger.info("Extending length of potion array from " +
                             potionTypes.length + " to " + newLength);
                     final Potion[] newPotionTypes = new Potion[newLength];
                     // Gets all current potions and makes a larger array with the current potions in them, should not interfear with other mods
