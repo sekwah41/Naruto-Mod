@@ -73,7 +73,7 @@ public class ItemArmourHeadband extends ItemArmor {
 	}
 
 
-	public static final String[] names = new String[] {"HiddenInTheTrees", "Custard", "Lava", "Youtube", "Green", "Red", "Black"};
+	public static final String[] names = new String[] {"HiddenInTheLeaves"/*"HiddenInTheTrees"*/, "Custard", "Lava", "Youtube", "Green", "Red", "Black"};
 
 	public String getUnlocalizedName(ItemStack par1ItemStack)
 	{
@@ -90,7 +90,7 @@ public class ItemArmourHeadband extends ItemArmor {
                                   String type) {
 
         if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 0 && slot == 0) {
-            return NarutoMod.modid + ":textures/armour/3011village_headband.png";
+            return NarutoMod.modid + ":textures/armour/leafvillage_headband.png";
         }
         else if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 1 && slot == 0) {
             return NarutoMod.modid + ":textures/armour/custard_headband.png";

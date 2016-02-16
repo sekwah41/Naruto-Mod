@@ -15,15 +15,36 @@ buildscript {
     }
 }
 
+def root = project.projectDir.parentFile
+
 apply plugin: 'forge'
 
-version = "0.4.0b1"
+version = "0.4.0"
 group= "sekwah.mods.narutomod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "narutomod"
 
 minecraft {
     version = "1.7.10-10.13.0.1160"
     assetDir = "eclipse/assets"
+}
+
+task devJar(type: Jar) {
+    description 'Creates a compiled version for other developers to use in their workspaces.'
+    from sourceSets.main.output
+    classifier = 'dev'
+}
+
+task sourceJar(type: Jar) {
+    description 'Outputs the source code into a jar file.'
+    from sourceSets.main.java
+    from new File(root, "dev")
+    classifier = 'src'
+}
+
+task buildAll(type: GradleBuild) {
+    description "Runs all compile tasks(Doesn't build the fully compiled yet)"
+    devJar.execute()
+    sourceJar.execute()
 }
 
 dependencies {

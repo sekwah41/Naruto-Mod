@@ -73,9 +73,10 @@ item.backScroll.Black.name=Black Back Scroll
 item.headProtector=headband
 
 item.headProtector.HiddenInTheTrees.name=Hidden In The Trees Headband
+item.headProtector.HiddenInTheLeaves.name=Hidden In The Leaves Headband
 item.headProtector.Custard.name=Custard Headband
 item.headProtector.Youtube.name=Youtuber Headband
-item.headProtector.Youtube.desc=Village hidden in le memes :3
+item.headProtector.Youtube.desc=Village hidden in the memes
 item.headProtector.Lava.name=Lava Headband
 
 item.backBokken.name=Sheathed Bokken

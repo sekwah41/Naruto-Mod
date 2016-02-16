@@ -121,6 +121,8 @@ public class NarutoItems {
 
 		backStraps = (new BaseItem()).setUnlocalizedName("backStraps").setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1);
 
+		// TODO add durability onto the headbands and back scroll so register as seperate items or look how leather has a colour value
+		// TODO change liams hidden in the tress to hidden in the leaf and add other village headbands.
 		headBand = (new ItemArmourHeadband(headbandArmour, 4, 0)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("headProtector");
 
 		fabric = (new ItemFabric()).setUnlocalizedName("fabric").setCreativeTab(ninjaMaterials);

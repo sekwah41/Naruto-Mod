@@ -776,6 +776,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
         float[] glColor = {1,1,1};
 
 
+        // DrBlastrider other guy working on textures atm
         if (p_77029_1_.getCommandSenderName().endsWith("Zaromaru")) {
             overlay = rinneganOverlay;
         }

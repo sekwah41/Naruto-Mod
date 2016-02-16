@@ -90,6 +90,8 @@ public class GuiChakraAndStaminaBar extends /*Gui*/NarutoGui {
 
         GL11.glEnable(GL11.GL_ALPHA_TEST);
 
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
         //GL11.glEnable(GL11.GL_LIGHTING);
 
         /*int OffsetX = NarutoSettings.chakraBarOffsetX;

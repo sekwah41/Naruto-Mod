@@ -4,7 +4,7 @@
   "authorList": [ "SEKWAH41", "Orkz" ],
   "description": "A mod that adds new items and other features to the game that are from/based on the Naturo manga.",
   "version": "${version}",
-  "mcversion": "${mcversion}",
+  "mcversion": "${mcVersion}",
   "name": "SEKWAH41's Naruto Mod",
   "url": "http://www.planetminecraft.com/mod/naruto-mod-1750133/",
   "updateUrl": "http://www.planetminecraft.com/mod/naruto-mod-1750133/",
