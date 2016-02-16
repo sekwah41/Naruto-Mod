@@ -53,11 +53,11 @@ public class NarutoMod {
 
     public static int[] modVersion = {0,4,1}; // e.g. 030 is 0.3.1
 
+    public static boolean isPreRelease = true;
+
     public static SimpleNetworkWrapper packetNetwork;
 
     public static NarutoAnimator entityAnimator;
-
-    public static boolean isPreRelease = true;
 
     public static UsageReport usageReport;
     private UpdateChecker updateChecker;

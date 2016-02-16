@@ -63,6 +63,7 @@ public class UpdateChecker/* extends Thread*/ {
     }
 
     public void checkUpdate(URL url) {
+        NarutoMod.logger.info("Checking for update");
         try {
             InputStream in = url.openStream();
             String json = readJSONFileStream(in);
@@ -102,6 +103,16 @@ public class UpdateChecker/* extends Thread*/ {
                     updatetext = EnumChatFormatting.GOLD + " - A bugfix is available!";
                     NarutoMod.logger.info("Update found.");
                 }
+                else{
+                    if (NarutoMod.isPreRelease) {
+                        updatetext = EnumChatFormatting.AQUA + " - This is a pre-release";
+                        NarutoMod.logger.info("Pre release?");
+                    }
+                    else{
+                        updatetext = EnumChatFormatting.AQUA + " - This seems to be the next update";
+                        NarutoMod.logger.info("Possibly next update");
+                    }
+                }
             }
             else{
                 if(mcMajor > NarutoMod.mcVersion[0]
@@ -133,6 +144,7 @@ public class UpdateChecker/* extends Thread*/ {
             }*/
 
         } catch (JSONException e) {
+            e.printStackTrace();
             updatetext = EnumChatFormatting.RED + " - Error reading update file :(";
         } catch (IOException e) {
             e.printStackTrace();
