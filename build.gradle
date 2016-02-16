@@ -19,13 +19,17 @@ def root = project.projectDir.parentFile
 
 apply plugin: 'forge'
 
-version = "0.4.1"
+version = "0.4.1b1"
 group= "sekwah.mods.narutomod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "narutomod"
 
 minecraft {
     version = "1.7.10-10.13.0.1160"
     assetDir = "eclipse/assets"
+}
+
+jar {
+    classifier = 'universal'
 }
 
 task devJar(type: Jar) {

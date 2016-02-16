@@ -1,0 +1,195 @@
+naruto.gui.options.title=Naruto Menu Option
+naruto.gui.done=Terminé
+naruto.gui.firstPerson=Première Personne
+naruto.gui.on=On
+naruto.gui.off=Off
+naruto.gui.jutsutoggle=Jutsu
+naruto.gui.chakraGUIOffset=Offset
+naruto.gui.generalOptions=Options Générale
+naruto.gui.chakraGui=Chakra GUI
+naruto.gui.chakraGUICorner=Coin GUI
+naruto.gui.jutsuSettings=Réglage Jutsu
+naruto.gui.jutsuDelay=Retard(tiques)
+
+naruto.gui.chakraColour=Couleur du Chakra
+
+naruto.gui.clan.title=Sélection du Clan
+naruto.gui.clan.select=Sélectionner
+
+
+item.Kunai.name=Kunai
+item.Shuriken.name=Shuriken
+
+item.record_FightingSpirit.name=Disque de Musique
+        
+item.record_NejiTheme.name=Disques de Musique
+        Naruto
+item.copper_ryo.name=Kan
+item.silver_ryo.name=Rin
+item.gold_ryo.name=Ryo
+        
+item.Katana.name=Katana
+        
+item.ExplosiveTag.name=Bombe de Papier
+        
+item.ExplosiveKunai.name=Kunai Explosife
+
+item.Kubikiribocho.name=Kubikiribocho
+item.Kubikiribocho.desc.line1=Une épée Baddass géant qui guérit
+item.Kubikiribocho.desc.line2=avec le sang de vos ennemis.
+        
+item.Ramen.name=Ramen
+        
+item.gunbai.name=Gunbai
+item.gunbai.desc.line1=Malheuresement, ceci est un coup qui ne fait pas mal
+item.gunbai.desc.line2=hors du réel ce'st une arme légendaire.
+        
+item.Bokken.name=Bokken
+        
+item.Scroll.name=Rouleau d'Invocation(Loup)
+        
+item.Noodles.name=Nouilles
+        
+item.Samehada.name=Samehada
+
+item.military_pills.name=Pilules militaires
+
+item.Senbon.name=Senbon
+
+item.gourd.name=Gourde
+
+item.Noodles.name=Nouilles
+
+item.backScroll=Rouleau de Dos
+
+item.backScroll.White.name=Rouleau de Dos Blanc
+item.backScroll.Yellow.name=Rouleau de Dos Jaune
+item.backScroll.Purple.name=Rouleau de Dos Violet
+item.backScroll.Blue.name=Rouleau de Dos Bleu
+item.backScroll.Green.name=Rouleau de Dos Vert
+item.backScroll.Red.name=Rouleau de Dos Rouge
+item.backScroll.Black.name=Rouleau de Dos Noir
+
+item.headProtector=headband
+
+item.headProtector.HiddenInTheTrees.name=Cachés dans les Arbres Bandeau
+item.headProtector.Custard.name=Bandeau Crème
+item.headProtector.Youtube.name=Bandeau Youtubeur
+item.headProtector.Youtube.desc=Village Caché dans Le Mèmes :3
+item.headProtector.Lava.name=Bandeau Lave
+
+item.backBokken.name=Bokken Gainés
+        
+item.backKatana.name=Katana Gainés
+        
+item.backStraps.name=Lanière de Cuir
+        
+item.fabric..name=Tissu
+        
+item.fabric.reinforced.name=Tissu Renforcé
+        
+item.fabric.reinforcedBlack.name=Tissu Noir Renforcé
+item.flakJacket.name=Gilet pare-balles
+item.kubikiribocho.name=Kubikiribocho
+item.madarasChestplate.name=Plastron de madara
+item.madarasLeggings.name=Jambière de Madara
+item.armourPlate.name=Blindage
+
+tile.sakuraleaves.name=Feuilles de Sakura
+tile.sakurasapling.name=Pousse de Sakura
+tile.bonsaitree.name=Arbre Bonsai
+
+
+itemGroup.narutoWeapons=Armes Naruto
+
+itemGroup.narutoMaterials=Materiel Naruto
+Jutsus.Chakra_Control=Contrôle du Chakra
+Jutsus.Chakra_Control.desc=La base de toutes les tachniques à l'exeption du taijutsu. Capacité passive. La touche C permet de concentrer votre chakra et d'accélérer la régénération.
+        
+Jutsus.Fire_Ball_Jutsu=Jutsu Boule de Feu
+Jutsus.Fire_Ball_Jutsu.desc=Transformez votre chakra en feu et le libere sous forme d'une boule de feu. Combo: C V C
+        
+Jutsus.Shadow_Clone_Jutsu=Jutsu Clone d'Ombre
+Jutsus.Shadow_Clone_Jutsu.desc=Faites confondre votre ennemi avec des copies de vous-même ! Combo: C B B V
+        
+Jutsus.Water_Walk=Marche de l'Eau
+Jutsus.Water_Walk.desc=Mettez votre charkra sous vos pieds et laissez-vous tenir debout, vous pouvez courir et sauter sur l'eau. Combo: B
+        
+Jutsus.Chakra_Dash=Lancement de Chakra
+Jutsus.Chakra_Dash.desc=Infuser le chakra dans tout votre corps pour augmenter la vitesse de vos mouvements. Combo: V
+        
+Jutsus.Substitution=Substitution
+Jutsus.Substitution.desc=Cette technique remplace le corps de l'utilisateur avec un objet. Combo: C V
+
+Jutsus.Water_Bullet=Jutsu Boule d'Eau
+Jutsus.Water_Bullet.desc=Malaxer votre chakra dans votre estomac et expulser 3 puissants projectiles d'eau !           Combo: C B V
+
+naruto.jutsu.chakraDash.deactivate=Vous avez desactivé le lancement du chakra !
+naruto.jutsu.chakraDash.activate=Vous avez activé le lancement du chakra !
+
+naruto.jutsu.waterWalk.deactivate=Vous avez désactivé la marche de l'eau !
+naruto.jutsu.waterWalk.activate=Vous avez activé la marche de l'eau !
+
+naruto.jutsu.substitution=Substitution !
+
+naruto.jutsu.chakraCharge.activate=Vous commencez à infusr votre chakra !
+naruto.jutsu.chakraCharge.deactivate=Vous avez arrêté l'infusion de votre chakra !
+
+naruto.jutsu.fireball=Style de Feu - Jutsu Boule de Feu !
+naruto.jutsu.waterBullet=Style de l'Eau - Jutsu Boule d'Eau
+
+naruto.jutsu.shadowClone=Jutsu Clone d'Ombre !
+
+naruto.jutsu.unrecognised=Jutsu incorrect !
+
+naruto.jutsu.comboLimit=Vous avez atteint la limite de combo !
+
+naruto.jutsu.nochakra=Pas assez de chakra !
+
+naruto.jutsu.nostamina=Pas assez d'endurance !
+
+
+entity.narutomod.Puppet.name=Pantin
+entity.narutomod.Rogue_Ninja.name=Ninja Solitaire
+entity.narutomod.Ninja_Villager.name=Ninja Villageois
+entity.narutomod.Ninja_VillagerAnbu.name=Ninja Sombre
+entity.narutomod.Bandit.name=Bandit
+entity.narutomod.Shadow_Clone.name=Clone d'Ombre
+entity.narutomod.Substitution.name=Substitution
+entity.narutomod.SubstitutionLog.name=Bûche de Substitution
+
+narutomod.keys.category=Contrôles du Mod Naruto
+naruto.keys.key1=Justsu Touche 1
+naruto.keys.key2=Justsu Touche 2
+naruto.keys.key3=Justsu Touche 3
+naruto.keys.jutsumenu=Ouvrir le Menu Jutsu
+naruto.keys.options=Ouvrir les Options de Naruto
+
+potion.chakraRestore=Restoration du Chakra
+
+death.attack.waterBullet=%1$s a été tué par %2$s en utilisant des boules d'eau
+
+naruto.gui.chakraRed=Chakra Rouge
+naruto.gui.chakraGreen=Chakra Vert
+naruto.gui.chakraBlue=Chakra Bleu
+
+naruto.gui.chakraBarDesign=Design de la Barre
+
+naruto.gui.chakraHue=Teinte
+naruto.gui.chakraBrightness=Luminosité
+
+naruto.keys.toggledodges=Esquive Bascule
+naruto.gui.dodges=Esquive
+
+naruto.gui.settings=Réglages
+
+naruto.gui.dodges.disabled=Esquive désactivée
+naruto.gui.dodges.enabled=Esquive activée
+
+naruto.gui.betterArms=Meilleures Armes
+
+naruto.gui.restartMinecraft=Redémarrage de Minecraft
+
+naruto.gui.settingsSaved=Paramètre sauvegardés
+
+item.redAnbuMask.name=Masque Sombre Rouge
