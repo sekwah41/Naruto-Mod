@@ -19,7 +19,7 @@ def root = project.projectDir.parentFile
 
 apply plugin: 'forge'
 
-version = "0.4.0"
+version = "0.4.1"
 group= "sekwah.mods.narutomod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "narutomod"
 

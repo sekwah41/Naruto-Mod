@@ -15,6 +15,12 @@ public class NarutoEffects {
 
     public static Potion chakraRestore;
 
+    private static int potionStart = 0;
+
+    // TODO add some way of registering them then adding them
+    private static int potionCountToAdd = 1;
+
+
     public static void editBasePotion(){
         Potion[] potionTypes = null;
 
@@ -27,7 +33,12 @@ public class NarutoEffects {
                     modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
 
                     potionTypes = (Potion[])f.get(null);
-                    final Potion[] newPotionTypes = new Potion[256];
+
+                    potionStart = potionTypes.length;
+                    int newLength = potionTypes.length + potionCountToAdd;
+                    NarutoMod.logger.error("Extending length of potion array from " +
+                            potionTypes.length + " to " + newLength);
+                    final Potion[] newPotionTypes = new Potion[newLength];
                     // Gets all current potions and makes a larger array with the current potions in them, should not interfear with other mods
                     //  unless there are clashing potion id's
                     System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
@@ -46,8 +57,10 @@ public class NarutoEffects {
      * Potion effects and stuff
      */
     public static void addEffects(){
+        int currentID = potionStart;
+        NarutoMod.logger.info("Chakra restore ID: " + currentID);
+        chakraRestore = (new PotionChakraRestore(currentID++, false, (new Color(255, 129, 26)).getRGB())).setIconIndex(2, 2).setPotionName("potion.chakraRestore");
 
-        chakraRestore = (new PotionChakraRestore(32, false, (new Color(255, 129, 26)).getRGB())).setIconIndex(2, 2).setPotionName("potion.chakraRestore");
     }
 
 }
