@@ -605,9 +605,9 @@ public class NarutoAnimator {
         /*poseArray = sortAnimations(poseArray);*/
         poseArray = quickSortAnimations(poseArray);
 
-        for(Pose pose: poseArray){
+        /*for(Pose pose: poseArray){
             NarutoMod.logger.info(pose.poseName);
-        }
+        }*/
 
         return poseArray;
     }

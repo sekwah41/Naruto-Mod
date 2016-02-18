@@ -21,8 +21,9 @@ item.Kunai.name=Kunai
 item.Shuriken.name=Shuriken
 
 item.record_FightingSpirit.name=Music Disc
-        
+item.record_FightingSpirit.desc=Naruto - Fighting Spirit
 item.record_NejiTheme.name=Music Disc
+item.record_NejiTheme.desc=Naruto - Neji Theme
         
 item.copper_ryo.name=Kan
 item.silver_ryo.name=Rin
