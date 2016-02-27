@@ -105,13 +105,13 @@ public class UsageReport {
         this.addData("os_version", System.getProperty("os.version"));
         this.addData("os_architecture", System.getProperty("os.arch"));
         this.addData("java_version", System.getProperty("java.version"));
+        this.addData("cpu_cores", Runtime.getRuntime().availableProcessors());
     }
 
     public void addMemoryStats() {
         this.addData("memory_total", Runtime.getRuntime().totalMemory());
         this.addData("memory_max", Runtime.getRuntime().maxMemory());
         this.addData("memory_free", Runtime.getRuntime().freeMemory());
-        this.addData("cpu_cores", Runtime.getRuntime().availableProcessors());
     }
 
     // Will contain stuff like fireballs shot and all sorts just for fun o3o
