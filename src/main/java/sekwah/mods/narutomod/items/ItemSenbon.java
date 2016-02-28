@@ -1,5 +1,8 @@
 package sekwah.mods.narutomod.items;
 
+import com.google.common.collect.Multimap;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import sekwah.mods.narutomod.NarutoMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -14,11 +17,16 @@ import net.minecraft.world.World;
 import sekwah.mods.narutomod.entitys.projectiles.EntitySenbon;
 
 public class ItemSenbon extends Item {
+
+    private float weaponDamage;
+
     public ItemSenbon() {
         super();
         this.maxStackSize = 32;
         this.setMaxDamage(-1);
         this.setCreativeTab(NarutoItems.ninjaWeapons);
+
+        this.weaponDamage = 1.0F;
     }
 
     @SideOnly(Side.CLIENT)
@@ -112,4 +120,15 @@ public class ItemSenbon extends Item {
     public int getItemEnchantability() {
         return 1;
     }
+
+
+    /**
+     * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
+     */
+    public Multimap getAttributeModifiers(ItemStack stack) {
+        Multimap multimap = super.getAttributeModifiers(stack);
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double) this.weaponDamage, 0));
+        return multimap;
+    }
+
 }
