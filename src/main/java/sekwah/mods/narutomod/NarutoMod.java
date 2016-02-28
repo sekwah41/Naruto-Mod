@@ -70,13 +70,6 @@ public class NarutoMod {
 
         //new PlayerPoseAnimator();
 
-        entityAnimator = new NarutoAnimator();
-
-        InputStream fileStreamJson = NarutoMod.class.getResourceAsStream("/assets/narutomod/mod/poseData.json");
-        NarutoAnimator.playerPoses = entityAnimator.addPoses(fileStreamJson, NarutoAnimator.playerPoses);
-
-        NarutoEntitys.addEntities(this);
-
         NarutoWorldGeneration.registerWorldGenerators();
 
         proxy.addEventListener();
@@ -128,6 +121,13 @@ public class NarutoMod {
     public void preInit(FMLPreInitializationEvent event) {
 
         this.packetNetwork();
+
+        entityAnimator = new NarutoAnimator();
+
+        InputStream fileStreamJson = NarutoMod.class.getResourceAsStream("/assets/narutomod/mod/poseData.json");
+        NarutoAnimator.playerPoses = entityAnimator.addPoses(fileStreamJson, NarutoAnimator.playerPoses);
+
+        NarutoEntitys.addEntities(this);
 
         NarutoEffects.editBasePotion();
 

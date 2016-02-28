@@ -1,5 +1,6 @@
 package sekwah.mods.narutomod.client;
 
+import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.entitys.projectiles.*;
 import sekwah.mods.narutomod.entitys.renderers.projectiles.*;
 import sekwah.mods.narutomod.items.NarutoItems;
@@ -91,8 +92,9 @@ public class ClientProxy extends CommonProxy {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityWaterBullet.class, new RenderWaterBullet());
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderNinjaPlayer());
+        NarutoAnimator.playerRenderer = new RenderNinjaPlayer();
 
+        RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, NarutoAnimator.playerRenderer);
 
         // Register the custom block renderers
         GameRegistry.registerTileEntity(TileEntityBase.class, "bonsaitree");

@@ -9,19 +9,23 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.DataWatcher;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.input.Keyboard;
+import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
 import sekwah.mods.narutomod.common.NarutoEffects;
 import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
+import sekwah.mods.narutomod.player.RenderNinjaPlayer;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.io.ByteArrayOutputStream;
@@ -69,6 +73,9 @@ public class PlayerClientTickEvent {
     public int animationUpdate; // use at some point to update animations after they have been set.
     public static boolean onWater = false;
     private boolean firedChangeBack = false;
+
+    private boolean rendersToReset = false;
+
     private int animTime = 0; // checks how long the pose has been active for for certain poses(stops early change back)
 
     public static String getJutsuPoseID() {
@@ -85,6 +92,12 @@ public class PlayerClientTickEvent {
 
     @SubscribeEvent
     public void tick(ClientTickEvent event) {
+
+        if (!(RenderManager.instance.entityRenderMap.get(EntityPlayer.class) instanceof RenderNinjaPlayer)) {
+            RenderManager.instance.entityRenderMap.put(EntityPlayer.class, NarutoAnimator.playerRenderer);
+            NarutoAnimator.playerRenderer.setRenderManager(RenderManager.instance);
+        }
+
         GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
         if (guiscreen == null || guiscreen instanceof GuiInventory || guiscreen instanceof GuiChat) {
 

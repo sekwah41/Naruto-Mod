@@ -35,6 +35,7 @@ public class PlayerRenderTickEvent {
         double nsPerTick = 1000000000D / 120D;
 
 
+
         long now = System.nanoTime();
         delta = (float) ((now - lastTime) / nsPerTick);
         lastTime = now;
@@ -71,10 +72,10 @@ public class PlayerRenderTickEvent {
             // TODO get if the game is paused
             //double nsPerTick = 1000000000D / 120D; change that number to increase the update rate.
 
-            Render renderer = RenderManager.instance.getEntityClassRenderObject(EntityPlayer.class);
+            /*Render renderer = RenderManager.instance.getEntityClassRenderObject(EntityPlayer.class);
             if (!(renderer instanceof RenderNinjaPlayer)) {
-                RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderNinjaPlayer());
-            }
+                RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, NarutoAnimator.playerRenderer);
+            }*/
 
             NarutoAnimator.updateClient(playerMP, NarutoAnimator.playerPoses);
 

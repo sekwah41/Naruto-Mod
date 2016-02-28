@@ -10,6 +10,7 @@ import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import sekwah.mods.narutomod.json.JSONObject;
+import sekwah.mods.narutomod.player.RenderNinjaPlayer;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -21,12 +22,16 @@ public class NarutoAnimator {
 
     public static Pose[] playerPoses = {new Pose("default")};
 
+    public static RenderNinjaPlayer playerRenderer;
+
     // If you think its nessasary, change it so there is an animator for the player and one for all other mobs(if you think itll create a significant difference)
     public NarutoAnimator() {
         // Setup the default pose, used as a placeholder to stop crashes or potentially replace the playerModels default pose to reduce lag.
         /*playerPoses = new Pose[1];
         playerPoses[0] = new Pose("default");*/
     }
+
+
 
     // old bubblesort algorithm
     /*public static Pose[] sortAnimations(Pose[] poses) {
