@@ -1,5 +1,8 @@
 package sekwah.mods.narutomod.items;
 
+import com.google.common.collect.Multimap;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import sekwah.mods.narutomod.NarutoMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,11 +18,15 @@ import net.minecraft.world.World;
 import sekwah.mods.narutomod.entitys.projectiles.EntityExplosiveKunai;
 
 public class ItemExplosiveKunai extends Item {
+
+    private float weaponDamage;
+
     public ItemExplosiveKunai() {
         super();
         this.maxStackSize = 16;
         this.setMaxDamage(-1);
         this.setCreativeTab(NarutoItems.ninjaWeapons);
+        this.weaponDamage = 3.0F;
     }
 
 
@@ -97,6 +104,15 @@ public class ItemExplosiveKunai extends Item {
         }
 
         return par1ItemStack;
+    }
+
+    /**
+     * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
+     */
+    public Multimap getAttributeModifiers(ItemStack stack) {
+        Multimap multimap = super.getAttributeModifiers(stack);
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double) this.weaponDamage, 0));
+        return multimap;
     }
 
     /**

@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemShuriken extends Item {
+
     private float weaponDamage;
 
     public ItemShuriken() {
@@ -25,7 +26,7 @@ public class ItemShuriken extends Item {
         this.maxStackSize = 16;
         this.setMaxDamage(-1);
         this.setCreativeTab(NarutoItems.ninjaWeapons);
-        this.weaponDamage = 2.0F;
+        this.weaponDamage = 4.0F;
     }
 
     @SideOnly(Side.CLIENT)

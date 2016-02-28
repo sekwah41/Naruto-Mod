@@ -211,7 +211,7 @@ public class NarutoItems {
 		//Kunai
 		GameRegistry.addRecipe(new ItemStack(Kunai, 8), " I", "S ", 'I', Items.iron_ingot, 'S', Items.stick);
 		//Shuriken
-		GameRegistry.addRecipe(new ItemStack(Shuriken, 8), " F ", "FSF", " F ", 'S', Items.iron_ingot, 'F', Items.flint);
+		GameRegistry.addRecipe(new ItemStack(Shuriken, 16), " F ", "FSF", " F ", 'S', Items.iron_ingot, 'F', Items.flint);
 		//Katana
 		GameRegistry.addRecipe(new ItemStack(Katana, 1), "  I", " I ", "S  ", 'I', Items.iron_ingot, 'S', Items.stick);
 		//Katana
