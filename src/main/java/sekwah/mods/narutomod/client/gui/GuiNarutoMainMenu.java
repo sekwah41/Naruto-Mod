@@ -566,11 +566,21 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
         }
 
         List<String> brandings = Lists.reverse(FMLCommonHandler.instance().getBrandings(true));
+        List<String> trueBrandings = new ArrayList<String>();
+
         for (int i = 0; i < brandings.size(); i++) {
             String brd = brandings.get(i);
             if (!Strings.isNullOrEmpty(brd)) {
+                if (brd.startsWith("Optifine")) {
+                    trueBrandings.add("Naruto Mod");
+                }
+                trueBrandings.add(brd);
+            }
+        }
+        for (int i = 0; i < trueBrandings.size(); i++) {
+            String brd = trueBrandings.get(i);
+            if (!Strings.isNullOrEmpty(brd)) {
                 if (brd.equals("Naruto Mod")) {
-
                     brd = "Naruto Mod v" + this.narutoversion + this.updatetext;
                 }
                 this.drawString(this.fontRendererObj, brd, 2, this.height - (10 + i * (this.fontRendererObj.FONT_HEIGHT + 1)), 16777215);
