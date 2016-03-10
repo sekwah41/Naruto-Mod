@@ -418,7 +418,7 @@ public class NarutoAnimator {
      */
     public static void updateEntity(DataWatcher dw, Entity entity, Pose[] poseArray) { // this is for client updates
 
-        NBTTagCompound data = entity.getEntityData();
+        //NBTTagCompound data = entity.getEntityData();
 
         if (!dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27))) {
             dw.updateObject(25, Float.valueOf(0));
@@ -430,9 +430,9 @@ public class NarutoAnimator {
             if (getPose(dw.getWatchableObjectString(20), poseArray).animLength > dw.getWatchableObjectFloat(25)) {
                 dw.updateObject(25, Float.valueOf(dw.getWatchableObjectFloat(25) + delta));
             }
-        } else {
+        }/* else {
             dw.updateObject(26, dw.getWatchableObjectString(20));
-        }
+        }*/
     }
 
     public static void updateClient(EntityClientPlayerMP playerMP, Pose[] poseArray) {

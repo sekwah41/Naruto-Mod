@@ -1,5 +1,6 @@
 package sekwah.mods.narutomod.client;
 
+import cpw.mods.fml.common.gameevent.TickEvent;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.player.RenderNinjaPlayer;
@@ -32,84 +33,86 @@ public class PlayerRenderTickEvent {
         // add code to get if the game is paused and keeps setting to 0(else could cause problems in singleplayer
         // there are 1000000000D nanoseconds in a second 1ns = 1x10^-9 s. This divides the value to be a double in reguards to 1 second as 1
         // And then multiplies by 120 so 120 delta values pass each second :)
-        double nsPerTick = 1000000000D / 120D;
+        if(event.phase == TickEvent.Phase.START){
+            double nsPerTick = 1000000000D / 120D;
 
 
 
-        long now = System.nanoTime();
-        delta = (float) ((now - lastTime) / nsPerTick);
-        lastTime = now;
-        if (delta < 0) {
+            long now = System.nanoTime();
+            delta = (float) ((now - lastTime) / nsPerTick);
             lastTime = now;
-            delta = 0;
-            NarutoMod.logger.error(" Your computer seems to have traveled back in time :O");
-        }
-
-        GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
-        if (guiscreen instanceof GuiMainMenu) {
-            Minecraft.getMinecraft().displayGuiScreen(new GuiNarutoMainMenu());
-        } else if (guiscreen == null || guiscreen instanceof GuiInventory || guiscreen instanceof GuiChat) {
-
-            if(guiToShow != null){
-                if(renderDelay <= 0){
-                    NarutoMod.logger.info("Show gui");
-                    Minecraft.getMinecraft().displayGuiScreen(guiToShow);
-                    guiToShow = null;
-                    return;
-                }
-                else{
-                    renderDelay--;
-                }
+            if (delta < 0) {
+                lastTime = now;
+                delta = 0;
+                NarutoMod.logger.error(" Your computer seems to have traveled back in time :O");
             }
 
-            // Time code used to be here
+            GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
+            if (guiscreen instanceof GuiMainMenu) {
+                Minecraft.getMinecraft().displayGuiScreen(new GuiNarutoMainMenu());
+            } else if (guiscreen == null || guiscreen instanceof GuiInventory || guiscreen instanceof GuiChat) {
 
-            EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
-            DataWatcher dw = playerMP.getDataWatcher();
+                if(guiToShow != null){
+                    if(renderDelay <= 0){
+                        NarutoMod.logger.info("Show gui");
+                        Minecraft.getMinecraft().displayGuiScreen(guiToShow);
+                        guiToShow = null;
+                        return;
+                    }
+                    else{
+                        renderDelay--;
+                    }
+                }
 
-            //
+                // Time code used to be here
 
-            // TODO get if the game is paused
-            //double nsPerTick = 1000000000D / 120D; change that number to increase the update rate.
+                EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
+                DataWatcher dw = playerMP.getDataWatcher();
+
+                //
+
+                // TODO get if the game is paused
+                //double nsPerTick = 1000000000D / 120D; change that number to increase the update rate.
 
             /*Render renderer = RenderManager.instance.getEntityClassRenderObject(EntityPlayer.class);
             if (!(renderer instanceof RenderNinjaPlayer)) {
                 RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, NarutoAnimator.playerRenderer);
             }*/
 
-            NarutoAnimator.updateClient(playerMP, NarutoAnimator.playerPoses);
+                NarutoAnimator.updateClient(playerMP, NarutoAnimator.playerPoses);
 
-            // TODO finish this code so it works with the morph mod
-            // also make sure that if the first person is set to false in the config it igores this completely
-            //Render renderer = RenderManager.instance.getEntityRenderObject(playerMP);
-            //if(renderer instanceof RenderPlayer){
-            //	NarutoMod.experimentalFirstPerson = true;
-            //}
-            //else{
-            //	NarutoMod.experimentalFirstPerson = false;
-            //}
+                // TODO finish this code so it works with the morph mod
+                // also make sure that if the first person is set to false in the config it igores this completely
+                //Render renderer = RenderManager.instance.getEntityRenderObject(playerMP);
+                //if(renderer instanceof RenderPlayer){
+                //	NarutoMod.experimentalFirstPerson = true;
+                //}
+                //else{
+                //	NarutoMod.experimentalFirstPerson = false;
+                //}
 
-            //GL11.glTranslatef(0F, 0F, 0F);
-        }
-        if (guiscreen == null) {
-            if(NarutoKeyHandler.isVanillaPressed[0] != Minecraft.getMinecraft().gameSettings.keyBindLeft.getIsKeyPressed()){
-                NarutoKeyHandler.isVanillaPressed[0] = Minecraft.getMinecraft().gameSettings.keyBindLeft.getIsKeyPressed();
-                NarutoKeyHandler.keyVanillaPressed("key.left", NarutoKeyHandler.isVanillaPressed[0]);
+                //GL11.glTranslatef(0F, 0F, 0F);
             }
-            if(NarutoKeyHandler.isVanillaPressed[1] != Minecraft.getMinecraft().gameSettings.keyBindRight.getIsKeyPressed()){
-                NarutoKeyHandler.isVanillaPressed[1] = Minecraft.getMinecraft().gameSettings.keyBindRight.getIsKeyPressed();
-                NarutoKeyHandler.keyVanillaPressed("key.right", NarutoKeyHandler.isVanillaPressed[1]);
-            }
+            if (guiscreen == null) {
+                if(NarutoKeyHandler.isVanillaPressed[0] != Minecraft.getMinecraft().gameSettings.keyBindLeft.getIsKeyPressed()){
+                    NarutoKeyHandler.isVanillaPressed[0] = Minecraft.getMinecraft().gameSettings.keyBindLeft.getIsKeyPressed();
+                    NarutoKeyHandler.keyVanillaPressed("key.left", NarutoKeyHandler.isVanillaPressed[0]);
+                }
+                if(NarutoKeyHandler.isVanillaPressed[1] != Minecraft.getMinecraft().gameSettings.keyBindRight.getIsKeyPressed()){
+                    NarutoKeyHandler.isVanillaPressed[1] = Minecraft.getMinecraft().gameSettings.keyBindRight.getIsKeyPressed();
+                    NarutoKeyHandler.keyVanillaPressed("key.right", NarutoKeyHandler.isVanillaPressed[1]);
+                }
 
-            if(NarutoKeyHandler.isVanillaPressed[2] != Minecraft.getMinecraft().gameSettings.keyBindBack.getIsKeyPressed()){
-                NarutoKeyHandler.isVanillaPressed[2] = Minecraft.getMinecraft().gameSettings.keyBindBack.getIsKeyPressed();
-                NarutoKeyHandler.keyVanillaPressed("key.back", NarutoKeyHandler.isVanillaPressed[2]);
-            }
+                if(NarutoKeyHandler.isVanillaPressed[2] != Minecraft.getMinecraft().gameSettings.keyBindBack.getIsKeyPressed()){
+                    NarutoKeyHandler.isVanillaPressed[2] = Minecraft.getMinecraft().gameSettings.keyBindBack.getIsKeyPressed();
+                    NarutoKeyHandler.keyVanillaPressed("key.back", NarutoKeyHandler.isVanillaPressed[2]);
+                }
 
-            for (int i = 0; i < NarutoKeyHandler.keys.length; i++) {
-                if (NarutoKeyHandler.isPressed[i] != NarutoKeyHandler.keys[i].getIsKeyPressed()) {
-                    NarutoKeyHandler.isPressed[i] = NarutoKeyHandler.keys[i].getIsKeyPressed();
-                    NarutoKeyHandler.keyPressed(i);
+                for (int i = 0; i < NarutoKeyHandler.keys.length; i++) {
+                    if (NarutoKeyHandler.isPressed[i] != NarutoKeyHandler.keys[i].getIsKeyPressed()) {
+                        NarutoKeyHandler.isPressed[i] = NarutoKeyHandler.keys[i].getIsKeyPressed();
+                        NarutoKeyHandler.keyPressed(i);
+                    }
                 }
             }
         }

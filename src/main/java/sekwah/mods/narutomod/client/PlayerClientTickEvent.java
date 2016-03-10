@@ -152,7 +152,7 @@ public class PlayerClientTickEvent {
                 animTime++;
                 if(animTime > 10){
                     if(!firedChangeBack){
-                        if(playerMP.onGround || playerMP.isInWater()){
+                        if(playerMP.onGround || playerMP.isInWater() || playerMP.capabilities.isFlying){
                             PacketAnimationUpdate.animationUpdate("default", playerMP);
                             firedChangeBack = true;
                         }

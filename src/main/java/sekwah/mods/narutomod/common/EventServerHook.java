@@ -78,7 +78,7 @@ public class EventServerHook {
             // Float.valueOf(0)
             dw.addObject(25, Float.valueOf(0)); // animationTick (used to add smooth animation for players to different poses, is currently edited by the client :P)
             dw.addObject(26, "default"); // lastpose (so the smooth animation works between poses)
-            dw.addObject(27, "default"); // lastposeClient (the last pose the client updated(so it can change the animationTick back to 0))
+            dw.addObject(27, "default"); // poseClient (the last pose the client updated(so it can change the animationTick back to 0))
             //dw.addObject(27, 0); // could also possibly add a kunai throw tick.
 
             event.entity.registerExtendedProperties(PlayerInfo.IDENTIFIER, new PlayerInfo((EntityPlayer) event.entity));

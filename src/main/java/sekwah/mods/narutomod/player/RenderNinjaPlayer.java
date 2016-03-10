@@ -55,6 +55,8 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
     private static final ResourceLocation sharingan1eye2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2x2.png");
 
+    private static final ResourceLocation sharingan1eye2_2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2_2x2.png");
+
     private static final ResourceLocation byakugan = new ResourceLocation("narutomod:textures/skinOverlays/byakugan_2x2.png");
 
     private static final ResourceLocation hiroCurseMark = new ResourceLocation("narutomod:textures/skinOverlays/hiro_cursemark.png");
@@ -785,6 +787,10 @@ public class RenderNinjaPlayer extends RenderPlayer {
         }
         else if(p_77029_1_.getCommandSenderName().endsWith("owTreyalP")){
             overlay = sharingan1eye2x2;
+        }
+        // TODO add rae to the rest of them
+        else if(p_77029_1_.getCommandSenderName().endsWith("KawaiiRae")){
+            overlay = sharingan1eye2_2x2;
         }
         // add miches name
         else if(p_77029_1_.getCommandSenderName().endsWith("CrazyMtch42")){

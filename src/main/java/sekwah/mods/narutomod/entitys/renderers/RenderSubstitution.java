@@ -52,6 +52,8 @@ public class RenderSubstitution extends RendererLivingEntity {
 
     private static final ResourceLocation hiroCurseMark = new ResourceLocation("narutomod:textures/skinOverlays/hiro_cursemark.png");
 
+    private static final ResourceLocation sharingan1eye2_2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2_2x2.png");
+
     private ModelNinjaBiped modelBipedMain;
     private ModelNinjaBiped modelArmorChestplate;
     private ModelNinjaBiped modelArmor;
@@ -432,6 +434,9 @@ public class RenderSubstitution extends RendererLivingEntity {
         }
         else if(par1EntitySubstitution.getCommandSenderName().endsWith("owTreyalP")){
             overlay = sharingan1eye2x2;
+        }
+        else if(par1EntitySubstitution.getCommandSenderName().endsWith("KawaiiRae")){
+            overlay = sharingan1eye2_2x2;
         }
         // add miches name
         else if(par1EntitySubstitution.getCommandSenderName().endsWith("CrazyMtch42")){

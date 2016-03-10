@@ -95,8 +95,9 @@ public class ServerPacketHandler {
         DataWatcher dw = playerEntity.getDataWatcher();
         //NarutoMod.logger.info(jutsuPose);
 
+        dw.updateObject(26, dw.getWatchableObjectString(20));
         dw.updateObject(20, jutsuPose);
-        dw.updateObject(25, Float.valueOf(0));
+        //dw.updateObject(25, Float.valueOf(0));
     }
 
     public static void handlePlayerDataPacket(byte[] packet) {
