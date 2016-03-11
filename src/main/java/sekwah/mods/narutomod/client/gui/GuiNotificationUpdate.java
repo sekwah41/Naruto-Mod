@@ -20,10 +20,10 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
 {
     // change it so text is shown, not an achievement
 
-    private static final ResourceLocation achievementTextures = new ResourceLocation("textures/gui/achievement/achievement_background.png");
-    private static String achievementGetLocalText;
-    private static String achievementStatName;
-    private static long achievementTime;
+    private static final ResourceLocation notificationTextures = new ResourceLocation("textures/gui/achievement/achievement_background.png");
+    private static String notificationGetLocalText;
+    private static String notificationStatName;
+    private static long notificationTime;
     private static ItemStack itemIcon;
     /**
      * Holds the instance of the game (Minecraft)
@@ -32,11 +32,11 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
     /**
      * Holds the latest width scaled to fit the game window.
      */
-    private int achievementWindowWidth;
+    private int notificationWindowWidth;
     /**
      * Holds the latest height scaled to fit the game window.
      */
-    private int achievementWindowHeight;
+    private int notificationWindowHeight;
     /**
      * Holds a instance of RenderItem, used to draw the achievement icons on screen (is based on ItemStack)
      */
@@ -57,9 +57,9 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
 
     // GuiNotificationUpdate.queueTakenAchievement("Mission Progress", "20/30 bandits killed!", new ItemStack(NarutoItems.Kunai,1,0));
     public static void queueNotification(String title, String name, ItemStack itemIcon) {
-        GuiNotificationUpdate.achievementGetLocalText = title;
-        GuiNotificationUpdate.achievementStatName = name;
-        GuiNotificationUpdate.achievementTime = Minecraft.getSystemTime();
+        GuiNotificationUpdate.notificationGetLocalText = title;
+        GuiNotificationUpdate.notificationStatName = name;
+        GuiNotificationUpdate.notificationTime = Minecraft.getSystemTime();
         GuiNotificationUpdate.itemIcon = itemIcon;
     }
 
@@ -69,9 +69,9 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
 
     // possible use for displaying info for longer!
     public static void queueNotification(String title, String name, ItemStack itemIcon, int duration) {
-        GuiNotificationUpdate.achievementGetLocalText = title;
-        GuiNotificationUpdate.achievementStatName = name;
-        GuiNotificationUpdate.achievementTime = Minecraft.getSystemTime() - duration;
+        GuiNotificationUpdate.notificationGetLocalText = title;
+        GuiNotificationUpdate.notificationStatName = name;
+        GuiNotificationUpdate.notificationTime = Minecraft.getSystemTime() - duration;
         GuiNotificationUpdate.itemIcon = itemIcon;
     }
 
@@ -84,15 +84,15 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
         GL11.glLoadIdentity();
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         GL11.glLoadIdentity();
-        this.achievementWindowWidth = this.mc.displayWidth;
-        this.achievementWindowHeight = this.mc.displayHeight;
+        this.notificationWindowWidth = this.mc.displayWidth;
+        this.notificationWindowHeight = this.mc.displayHeight;
         ScaledResolution scaledresolution = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
-        this.achievementWindowWidth = scaledresolution.getScaledWidth();
-        this.achievementWindowHeight = scaledresolution.getScaledHeight();
+        this.notificationWindowWidth = scaledresolution.getScaledWidth();
+        this.notificationWindowHeight = scaledresolution.getScaledHeight();
         GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GL11.glOrtho(0.0D, (double) this.achievementWindowWidth, (double) this.achievementWindowHeight, 0.0D, 1000.0D, 3000.0D);
+        GL11.glOrtho(0.0D, (double) this.notificationWindowWidth, (double) this.notificationWindowHeight, 0.0D, 1000.0D, 3000.0D);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         GL11.glLoadIdentity();
         GL11.glTranslatef(0.0F, 0.0F, -2000.0F);
@@ -104,8 +104,8 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
     //public void updateAchievementWindow() old starting
     @SubscribeEvent
     public void onRenderNotification(RenderGameOverlayEvent event) {
-        if (achievementGetLocalText != null && achievementTime != 0L) {
-            double d0 = (double) (Minecraft.getSystemTime() - achievementTime) / 3000.0D;
+        if (notificationGetLocalText != null && notificationTime != 0L) {
+            double d0 = (double) (Minecraft.getSystemTime() - notificationTime) / 3000.0D;
 
             this.updateAchievementWindowScale();
             GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -125,17 +125,17 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
 
             d1 *= d1;
             d1 *= d1;
-            int i = this.achievementWindowWidth - 160;
+            int i = this.notificationWindowWidth - 160;
             int j = 0 - (int) (d1 * 36.0D);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             GL11.glEnable(GL11.GL_TEXTURE_2D);
-            this.mc.renderEngine.bindTexture(achievementTextures);
+            this.mc.renderEngine.bindTexture(notificationTextures);
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_ALPHA_TEST);
             this.drawTexturedModalRect(i, j, 96, 202, 160, 32);
 
-            this.mc.fontRenderer.drawString(achievementGetLocalText, i + 30, j + 7, -256);
-            this.mc.fontRenderer.drawString(achievementStatName, i + 30, j + 18, -1);
+            this.mc.fontRenderer.drawString(notificationGetLocalText, i + 30, j + 7, -256);
+            this.mc.fontRenderer.drawString(notificationStatName, i + 30, j + 18, -1);
 
             RenderHelper.enableGUIStandardItemLighting();
             GL11.glDisable(GL11.GL_LIGHTING);
@@ -147,6 +147,10 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
             GL11.glDepthMask(true);
             GL11.glEnable(GL11.GL_DEPTH_TEST);
             this.mc.renderEngine.bindTexture(new ResourceLocation("textures/gui/icons.png"));
+
+            if(d1 > 2){
+                notificationGetLocalText = null;
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ public class NarutoMod {
 
     // TODO for the lang files possibly use the \u0007 character code thing and see if that works for accents
 
-    public static final String version = "0.4.2b1";
+    public static final String version = "0.4.2b3";
 
     // update data
     public static int[] mcVersion = {1,7,10}; // e.g. 164 is 1.6.4
