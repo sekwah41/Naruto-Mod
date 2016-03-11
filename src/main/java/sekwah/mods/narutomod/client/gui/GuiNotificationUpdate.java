@@ -146,7 +146,7 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDepthMask(true);
             GL11.glEnable(GL11.GL_DEPTH_TEST);
+            this.mc.renderEngine.bindTexture(new ResourceLocation("textures/gui/icons.png"));
         }
-        this.mc.renderEngine.bindTexture(new ResourceLocation("textures/gui/icons.png"));
     }
 }

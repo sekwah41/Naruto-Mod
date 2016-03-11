@@ -81,6 +81,8 @@ public class EntityShadowClone extends EntityMob {
         this.getDataWatcher().addObject(14, Byte.valueOf((byte) 0));
     }
 
+    // TODO store master and the display name seperately and take into account the user's team and other stuff
+    // to render on the nametags :)
     public EntityLivingBase getMaster() {
         return this.worldObj.getPlayerEntityByName(this.getCustomNameTag());
     }
