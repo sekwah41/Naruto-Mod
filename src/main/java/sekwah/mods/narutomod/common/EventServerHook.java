@@ -40,7 +40,7 @@ public class EventServerHook {
 
         Side side = FMLCommonHandler.instance().getEffectiveSide();
 
-        Block block = event.world.getBlock(event.x, event.y, event.z);
+        Block block = event.block; //event.world.getBlock(event.x, event.y, event.z);
 
         if (side == Side.SERVER) {
             if (block == NarutoBlocks.Sakura_Sapling) {

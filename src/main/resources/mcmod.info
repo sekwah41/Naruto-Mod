@@ -1,7 +1,7 @@
 [
 {
   "modid": "narutomod",
-  "authorList": [ "SEKWAH41", "Orkz" ],
+  "authorList": [ "sekwah41" ],
   "description": "A mod that adds new items and other features to the game that are from/based on the Naturo manga.",
   "version": "${version}",
   "mcversion": "${mcVersion}",
