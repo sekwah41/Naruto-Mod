@@ -1,159 +1,159 @@
-naruto.gui.options.title=Настройка Мода
-naruto.gui.done=Применить
-naruto.gui.firstPerson=Вид От Первого Лица
-naruto.gui.on=Включить
-naruto.gui.off=Выключить
-naruto.gui.jutsutoggle=Дзюцу
-naruto.gui.chakraGUIOffset=Смещение
-naruto.gui.generalOptions=Главные Настройки
-naruto.gui.chakraGui=Показатель Чакры
-naruto.gui.chakraGUICorner=GUI угол
-naruto.gui.jutsuSettings=Настройки Дзюцу
-naruto.gui.jutsuDelay=Задержка Печатей
+naruto.gui.options.title=РќР°СЃС‚СЂРѕР№РєР° РњРѕРґР°
+naruto.gui.done=РџСЂРёРјРµРЅРёС‚СЊ
+naruto.gui.firstPerson=Р’РёРґ РћС‚ РџРµСЂРІРѕРіРѕ Р›РёС†Р°
+naruto.gui.on=Р’РєР»СЋС‡РёС‚СЊ
+naruto.gui.off=Р’С‹РєР»СЋС‡РёС‚СЊ
+naruto.gui.jutsutoggle=Р”Р·СЋС†Сѓ
+naruto.gui.chakraGUIOffset=РЎРјРµС‰РµРЅРёРµ
+naruto.gui.generalOptions=Р“Р»Р°РІРЅС‹Рµ РќР°СЃС‚СЂРѕР№РєРё
+naruto.gui.chakraGui=РџРѕРєР°Р·Р°С‚РµР»СЊ Р§Р°РєСЂС‹
+naruto.gui.chakraGUICorner=GUI СѓРіРѕР»
+naruto.gui.jutsuSettings=РќР°СЃС‚СЂРѕР№РєРё Р”Р·СЋС†Сѓ
+naruto.gui.jutsuDelay=Р—Р°РґРµСЂР¶РєР° РџРµС‡Р°С‚РµР№
 
 
-item.Kunai.name=Кунай
-item.Shuriken.name=Сюрикен
+item.Kunai.name=РљСѓРЅР°Р№
+item.Shuriken.name=РЎСЋСЂРёРєРµРЅ
 
-item.record_FightingSpirit.name=Музыкальная Пластинка
+item.record_FightingSpirit.name=РњСѓР·С‹РєР°Р»СЊРЅР°СЏ РџР»Р°СЃС‚РёРЅРєР°
         
-item.record_NejiTheme.name=Музыкальная Пластинка
+item.record_NejiTheme.name=РњСѓР·С‹РєР°Р»СЊРЅР°СЏ РџР»Р°СЃС‚РёРЅРєР°
         
-item.copper_ryo.name=Кан
-item.silver_ryo.name=Рин
-item.gold_ryo.name=Рю
+item.copper_ryo.name=РљР°РЅ
+item.silver_ryo.name=Р РёРЅ
+item.gold_ryo.name=Р СЋ
         
-item.Katana.name=Катана
+item.Katana.name=РљР°С‚Р°РЅР°
         
-item.ExplosiveTag.name=Взрывная Печать
+item.ExplosiveTag.name=Р’Р·СЂС‹РІРЅР°СЏ РџРµС‡Р°С‚СЊ
         
-item.ExplosiveKunai.name=Кунай Со Взрывной Печатью
+item.ExplosiveKunai.name=РљСѓРЅР°Р№ РЎРѕ Р’Р·СЂС‹РІРЅРѕР№ РџРµС‡Р°С‚СЊСЋ
 
-item.Kubikiribocho.name=Кубикирибочо
-item.Kubikiribocho.desc.line1=Легендарное оружие. Становится
-item.Kubikiribocho.desc.line2=сильнее с каждым убитым врагом.
+item.Kubikiribocho.name=РљСѓР±РёРєРёСЂРёР±РѕС‡Рѕ
+item.Kubikiribocho.desc.line1=Р›РµРіРµРЅРґР°СЂРЅРѕРµ РѕСЂСѓР¶РёРµ. РЎС‚Р°РЅРѕРІРёС‚СЃСЏ
+item.Kubikiribocho.desc.line2=СЃРёР»СЊРЅРµРµ СЃ РєР°Р¶РґС‹Рј СѓР±РёС‚С‹Рј РІСЂР°РіРѕРј.
         
-item.Ramen.name=Рамен
+item.Ramen.name=Р Р°РјРµРЅ
         
-item.gunbai.name=Гунбай
-item.gunbai.desc.line1=К сожалению, это всего лишь дешевая
-item.gunbai.desc.line2=подделка легендарного оружия.
+item.gunbai.name=Р“СѓРЅР±Р°Р№
+item.gunbai.desc.line1=Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, СЌС‚Рѕ РІСЃРµРіРѕ Р»РёС€СЊ РґРµС€РµРІР°СЏ
+item.gunbai.desc.line2=РїРѕРґРґРµР»РєР° Р»РµРіРµРЅРґР°СЂРЅРѕРіРѕ РѕСЂСѓР¶РёСЏ.
         
-item.Bokken.name=Шест Бо
+item.Bokken.name=РЁРµСЃС‚ Р‘Рѕ
         
-item.Scroll.name=Свиток Призыва(Волк)
+item.Scroll.name=РЎРІРёС‚РѕРє РџСЂРёР·С‹РІР°(Р’РѕР»Рє)
         
-item.Noodles.name=Лапша
+item.Noodles.name=Р›Р°РїС€Р°
         
-item.Samehada.name=Самехада
+item.Samehada.name=РЎР°РјРµС…Р°РґР°
 
-item.military_pills.name=Военные Пилюли
+item.military_pills.name=Р’РѕРµРЅРЅС‹Рµ РџРёР»СЋР»Рё
 
-item.Senbon.name=Игла
+item.Senbon.name=РРіР»Р°
 
-item.gourd.name=Тыква
+item.gourd.name=РўС‹РєРІР°
 
-item.Noodles.name=Лапша
+item.Noodles.name=Р›Р°РїС€Р°
 
-item.backScroll=Свиток
+item.backScroll=РЎРІРёС‚РѕРє
 
-item.backScroll.White.name=Белый Свиток
-item.backScroll.Yellow.name=Жёлтый Свиток
-item.backScroll.Purple.name=Фиолетовый Свиток
-item.backScroll.Blue.name=Синий Свиток
-item.backScroll.Green.name=Зелёный Свиток
-item.backScroll.Red.name=Красный Свиток
-item.backScroll.Black.name=Чёрный Свиток
+item.backScroll.White.name=Р‘РµР»С‹Р№ РЎРІРёС‚РѕРє
+item.backScroll.Yellow.name=Р–С‘Р»С‚С‹Р№ РЎРІРёС‚РѕРє
+item.backScroll.Purple.name=Р¤РёРѕР»РµС‚РѕРІС‹Р№ РЎРІРёС‚РѕРє
+item.backScroll.Blue.name=РЎРёРЅРёР№ РЎРІРёС‚РѕРє
+item.backScroll.Green.name=Р—РµР»С‘РЅС‹Р№ РЎРІРёС‚РѕРє
+item.backScroll.Red.name=РљСЂР°СЃРЅС‹Р№ РЎРІРёС‚РѕРє
+item.backScroll.Black.name=Р§С‘СЂРЅС‹Р№ РЎРІРёС‚РѕРє
 
-item.headProtector=Защитная Повязка
+item.headProtector=Р—Р°С‰РёС‚РЅР°СЏ РџРѕРІСЏР·РєР°
 
-item.headProtector.HiddenInTheTrees.name=Деревня Скрытая В Лесах
-item.headProtector.Custard.name=Повязка С Кремом
+item.headProtector.HiddenInTheTrees.name=Р”РµСЂРµРІРЅСЏ РЎРєСЂС‹С‚Р°СЏ Р’ Р›РµСЃР°С…
+item.headProtector.Custard.name=РџРѕРІСЏР·РєР° РЎ РљСЂРµРјРѕРј
 
-item.backBokken.name=Прикрепленный Шест Бо
+item.backBokken.name=РџСЂРёРєСЂРµРїР»РµРЅРЅС‹Р№ РЁРµСЃС‚ Р‘Рѕ
         
-item.backKatana.name=Прикрепленная Катана
+item.backKatana.name=РџСЂРёРєСЂРµРїР»РµРЅРЅР°СЏ РљР°С‚Р°РЅР°
         
-item.backStraps.name=Кожаные Ремни
+item.backStraps.name=РљРѕР¶Р°РЅС‹Рµ Р РµРјРЅРё
         
-item.fabric..name=Ткань
+item.fabric..name=РўРєР°РЅСЊ
         
-item.fabric.reinforced.name=Укреплённая Ткань
+item.fabric.reinforced.name=РЈРєСЂРµРїР»С‘РЅРЅР°СЏ РўРєР°РЅСЊ
         
-item.fabric.reinforcedBlack.name=Укреплённая Черная ткань
-item.flakJacket.name=Защитный Жилет
-item.kubikiribocho.name=Кубикирибочо
-item.madarasChestplate.name=Укреплённый Нагрудник
-item.madarasLeggings.name=Укреплённые поножи
-item.armourPlate.name=Железная Пластина
+item.fabric.reinforcedBlack.name=РЈРєСЂРµРїР»С‘РЅРЅР°СЏ Р§РµСЂРЅР°СЏ С‚РєР°РЅСЊ
+item.flakJacket.name=Р—Р°С‰РёС‚РЅС‹Р№ Р–РёР»РµС‚
+item.kubikiribocho.name=РљСѓР±РёРєРёСЂРёР±РѕС‡Рѕ
+item.madarasChestplate.name=РЈРєСЂРµРїР»С‘РЅРЅС‹Р№ РќР°РіСЂСѓРґРЅРёРє
+item.madarasLeggings.name=РЈРєСЂРµРїР»С‘РЅРЅС‹Рµ РїРѕРЅРѕР¶Рё
+item.armourPlate.name=Р–РµР»РµР·РЅР°СЏ РџР»Р°СЃС‚РёРЅР°
 
-tile.sakuraleaves.name=Листья Сакуры
-tile.sakurasapling.name=Саженец Сакуры
-tile.bonsaitree.name=Бонсай
+tile.sakuraleaves.name=Р›РёСЃС‚СЊСЏ РЎР°РєСѓСЂС‹
+tile.sakurasapling.name=РЎР°Р¶РµРЅРµС† РЎР°РєСѓСЂС‹
+tile.bonsaitree.name=Р‘РѕРЅСЃР°Р№
 
 
-itemGroup.narutoWeapons=Наруто - Оружие
+itemGroup.narutoWeapons=РќР°СЂСѓС‚Рѕ - РћСЂСѓР¶РёРµ
 
-itemGroup.narutoMaterials=Наруто - Материалы
-Jutsus.Chakra_Control=Контроль Чакры
-Jutsus.Chakra_Control.desc=Основа любой техники, кроме тайдзюцу. Пассивное умение. Удерживайте C, чтобы регенерировать количество чакры.
+itemGroup.narutoMaterials=РќР°СЂСѓС‚Рѕ - РњР°С‚РµСЂРёР°Р»С‹
+Jutsus.Chakra_Control=РљРѕРЅС‚СЂРѕР»СЊ Р§Р°РєСЂС‹
+Jutsus.Chakra_Control.desc=РћСЃРЅРѕРІР° Р»СЋР±РѕР№ С‚РµС…РЅРёРєРё, РєСЂРѕРјРµ С‚Р°Р№РґР·СЋС†Сѓ. РџР°СЃСЃРёРІРЅРѕРµ СѓРјРµРЅРёРµ. РЈРґРµСЂР¶РёРІР°Р№С‚Рµ C, С‡С‚РѕР±С‹ СЂРµРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ С‡Р°РєСЂС‹.
         
-Jutsus.Fire_Ball_Jutsu=Огненный Шар
-Jutsus.Fire_Ball_Jutsu.desc=Преврати свою чакру в огонь и сформируй её в форме шара. Комбинация: C V C
+Jutsus.Fire_Ball_Jutsu=РћРіРЅРµРЅРЅС‹Р№ РЁР°СЂ
+Jutsus.Fire_Ball_Jutsu.desc=РџСЂРµРІСЂР°С‚Рё СЃРІРѕСЋ С‡Р°РєСЂСѓ РІ РѕРіРѕРЅСЊ Рё СЃС„РѕСЂРјРёСЂСѓР№ РµС‘ РІ С„РѕСЂРјРµ С€Р°СЂР°. РљРѕРјР±РёРЅР°С†РёСЏ: C V C
         
-Jutsus.Shadow_Clone_Jutsu=Техника Теневого Клонирования
-Jutsus.Shadow_Clone_Jutsu.desc=Ошеломи врага копиями Себя! Комбинация: C B B V
+Jutsus.Shadow_Clone_Jutsu=РўРµС…РЅРёРєР° РўРµРЅРµРІРѕРіРѕ РљР»РѕРЅРёСЂРѕРІР°РЅРёСЏ
+Jutsus.Shadow_Clone_Jutsu.desc=РћС€РµР»РѕРјРё РІСЂР°РіР° РєРѕРїРёСЏРјРё РЎРµР±СЏ! РљРѕРјР±РёРЅР°С†РёСЏ: C B B V
         
-Jutsus.Water_Walk=Техника хождения по воде
-Jutsus.Water_Walk.desc=Сконцентрируй чакру в ногах. Это позволит тебе свободно передвигаться по воде. Комбинация: B
+Jutsus.Water_Walk=РўРµС…РЅРёРєР° С…РѕР¶РґРµРЅРёСЏ РїРѕ РІРѕРґРµ
+Jutsus.Water_Walk.desc=РЎРєРѕРЅС†РµРЅС‚СЂРёСЂСѓР№ С‡Р°РєСЂСѓ РІ РЅРѕРіР°С…. Р­С‚Рѕ РїРѕР·РІРѕР»РёС‚ С‚РµР±Рµ СЃРІРѕР±РѕРґРЅРѕ РїРµСЂРµРґРІРёРіР°С‚СЊСЃСЏ РїРѕ РІРѕРґРµ. РљРѕРјР±РёРЅР°С†РёСЏ: B
         
-Jutsus.Chakra_Dash=Рывок Чакры
-Jutsus.Chakra_Dash.desc=Пропусти чакру сквозь своё тело и увеличь скорость передвижения. Комбинация: V
+Jutsus.Chakra_Dash=Р С‹РІРѕРє Р§Р°РєСЂС‹
+Jutsus.Chakra_Dash.desc=РџСЂРѕРїСѓСЃС‚Рё С‡Р°РєСЂСѓ СЃРєРІРѕР·СЊ СЃРІРѕС‘ С‚РµР»Рѕ Рё СѓРІРµР»РёС‡СЊ СЃРєРѕСЂРѕСЃС‚СЊ РїРµСЂРµРґРІРёР¶РµРЅРёСЏ. РљРѕРјР±РёРЅР°С†РёСЏ: V
         
-Jutsus.Substitution=Техника Подмены
-Jutsus.Substitution.desc=Эта техника заменяет тело использовавшего её с объектом. Комбинация: C V
+Jutsus.Substitution=РўРµС…РЅРёРєР° РџРѕРґРјРµРЅС‹
+Jutsus.Substitution.desc=Р­С‚Р° С‚РµС…РЅРёРєР° Р·Р°РјРµРЅСЏРµС‚ С‚РµР»Рѕ РёСЃРїРѕР»СЊР·РѕРІР°РІС€РµРіРѕ РµС‘ СЃ РѕР±СЉРµРєС‚РѕРј. РљРѕРјР±РёРЅР°С†РёСЏ: C V
 
-Jutsus.Water_Bullet=Водяные Пули
-Jutsus.Water_Bullet.desc=Сконцентрируй чакру в своем животе и выпусти её в форме трех мощных снарядов. Комбинация: C B V
+Jutsus.Water_Bullet=Р’РѕРґСЏРЅС‹Рµ РџСѓР»Рё
+Jutsus.Water_Bullet.desc=РЎРєРѕРЅС†РµРЅС‚СЂРёСЂСѓР№ С‡Р°РєСЂСѓ РІ СЃРІРѕРµРј Р¶РёРІРѕС‚Рµ Рё РІС‹РїСѓСЃС‚Рё РµС‘ РІ С„РѕСЂРјРµ С‚СЂРµС… РјРѕС‰РЅС‹С… СЃРЅР°СЂСЏРґРѕРІ. РљРѕРјР±РёРЅР°С†РёСЏ: C B V
 
-naruto.jutsu.chakraDash.deactivate=Вы прекратили технику Рывка Чакры!
-naruto.jutsu.chakraDash.activate=Вы активировали Рывок Чакры!
-naruto.jutsu.chakraDash.nochakra=недостаточно Чакры!
+naruto.jutsu.chakraDash.deactivate=Р’С‹ РїСЂРµРєСЂР°С‚РёР»Рё С‚РµС…РЅРёРєСѓ Р С‹РІРєР° Р§Р°РєСЂС‹!
+naruto.jutsu.chakraDash.activate=Р’С‹ Р°РєС‚РёРІРёСЂРѕРІР°Р»Рё Р С‹РІРѕРє Р§Р°РєСЂС‹!
+naruto.jutsu.chakraDash.nochakra=РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р§Р°РєСЂС‹!
 
-naruto.jutsu.waterWalk.deactivate=Вы прекратили технику Хождения По Воде!
-naruto.jutsu.waterWalk.activate=Вы активировали технику Хождения По Воде!
+naruto.jutsu.waterWalk.deactivate=Р’С‹ РїСЂРµРєСЂР°С‚РёР»Рё С‚РµС…РЅРёРєСѓ РҐРѕР¶РґРµРЅРёСЏ РџРѕ Р’РѕРґРµ!
+naruto.jutsu.waterWalk.activate=Р’С‹ Р°РєС‚РёРІРёСЂРѕРІР°Р»Рё С‚РµС…РЅРёРєСѓ РҐРѕР¶РґРµРЅРёСЏ РџРѕ Р’РѕРґРµ!
 
-naruto.jutsu.substitution=Техника Подмены!
+naruto.jutsu.substitution=РўРµС…РЅРёРєР° РџРѕРґРјРµРЅС‹!
 
-naruto.jutsu.chakraCharge.activate=Вы регенерируете чакру!
-naruto.jutsu.chakraCharge.deactivate=Вы прекратили регенерацию чакры!
+naruto.jutsu.chakraCharge.activate=Р’С‹ СЂРµРіРµРЅРµСЂРёСЂСѓРµС‚Рµ С‡Р°РєСЂСѓ!
+naruto.jutsu.chakraCharge.deactivate=Р’С‹ РїСЂРµРєСЂР°С‚РёР»Рё СЂРµРіРµРЅРµСЂР°С†РёСЋ С‡Р°РєСЂС‹!
 
-naruto.jutsu.fireball=Элемент Огня - Огненный Шар!
-naruto.jutsu.waterBullet=Элемент Воды - Водяные Пули!
+naruto.jutsu.fireball=Р­Р»РµРјРµРЅС‚ РћРіРЅСЏ - РћРіРЅРµРЅРЅС‹Р№ РЁР°СЂ!
+naruto.jutsu.waterBullet=Р­Р»РµРјРµРЅС‚ Р’РѕРґС‹ - Р’РѕРґСЏРЅС‹Рµ РџСѓР»Рё!
 
-naruto.jutsu.shadowClone=Техника Теневого Клонирования!
+naruto.jutsu.shadowClone=РўРµС…РЅРёРєР° РўРµРЅРµРІРѕРіРѕ РљР»РѕРЅРёСЂРѕРІР°РЅРёСЏ!
 
-naruto.jutsu.unrecognised=Неопределенное дзюцу!
+naruto.jutsu.unrecognised=РќРµРѕРїСЂРµРґРµР»РµРЅРЅРѕРµ РґР·СЋС†Сѓ!
 
-naruto.jutsu.comboLimit=Вы превысили количество комбинаций!
+naruto.jutsu.comboLimit=Р’С‹ РїСЂРµРІС‹СЃРёР»Рё РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР±РёРЅР°С†РёР№!
 
-naruto.jutsu.nochakra=Недостаточно чакры!
+naruto.jutsu.nochakra=РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ С‡Р°РєСЂС‹!
 
 
-entity.narutomod.Puppet.name=Кукла
-entity.narutomod.Rogue_Ninja.name=Шиноби-Разбойник
-entity.narutomod.Ninja_Villager.name=Житель Шиноби
-entity.narutomod.Ninja_VillagerAnbu.name=Анбу
-entity.narutomod.Bandit.name=Бандит
-entity.narutomod.Shadow_Clone.name=теневой Клон
-entity.narutomod.Substitution.name=Подмена
-entity.narutomod.SubstitutionLog.name=Бревно
+entity.narutomod.Puppet.name=РљСѓРєР»Р°
+entity.narutomod.Rogue_Ninja.name=РЁРёРЅРѕР±Рё-Р Р°Р·Р±РѕР№РЅРёРє
+entity.narutomod.Ninja_Villager.name=Р–РёС‚РµР»СЊ РЁРёРЅРѕР±Рё
+entity.narutomod.Ninja_VillagerAnbu.name=РђРЅР±Сѓ
+entity.narutomod.Bandit.name=Р‘Р°РЅРґРёС‚
+entity.narutomod.Shadow_Clone.name=С‚РµРЅРµРІРѕР№ РљР»РѕРЅ
+entity.narutomod.Substitution.name=РџРѕРґРјРµРЅР°
+entity.narutomod.SubstitutionLog.name=Р‘СЂРµРІРЅРѕ
 
-narutomod.keys.category=Клавиши Управление Модом
-naruto.keys.key1=Дзюцу Клавиша 1
-naruto.keys.key2=Дзюцу Клавиша 2
-naruto.keys.key3=Дзюцу Клавиша 3
-naruto.keys.jutsumenu=Меню Техник
-naruto.keys.options=Настройки Мода
+narutomod.keys.category=РљР»Р°РІРёС€Рё РЈРїСЂР°РІР»РµРЅРёРµ РњРѕРґРѕРј
+naruto.keys.key1=Р”Р·СЋС†Сѓ РљР»Р°РІРёС€Р° 1
+naruto.keys.key2=Р”Р·СЋС†Сѓ РљР»Р°РІРёС€Р° 2
+naruto.keys.key3=Р”Р·СЋС†Сѓ РљР»Р°РІРёС€Р° 3
+naruto.keys.jutsumenu=РњРµРЅСЋ РўРµС…РЅРёРє
+naruto.keys.options=РќР°СЃС‚СЂРѕР№РєРё РњРѕРґР°
 
-potion.chakraRestore=Регенерация Чакры
+potion.chakraRestore=Р РµРіРµРЅРµСЂР°С†РёСЏ Р§Р°РєСЂС‹
