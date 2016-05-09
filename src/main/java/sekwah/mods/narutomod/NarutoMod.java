@@ -1,5 +1,6 @@
 package sekwah.mods.narutomod;
 
+import org.lwjgl.opengl.Display;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.blocks.NarutoBlocks;
 import sekwah.mods.narutomod.entitys.NarutoEntitys;
