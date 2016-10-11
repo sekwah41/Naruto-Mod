@@ -87,8 +87,8 @@ public class AnimModelRenderer extends ModelRenderer {
     /**
      * Creates a textured box. Args: originX, originY, originZ, width, height, depth, scaleFactor.
      */
-    public void addBox(float p_78790_1_, float p_78790_2_, float p_78790_3_, int p_78790_4_, int p_78790_5_, int p_78790_6_, float p_78790_7_) {
-        this.cubeList.add(new ModelBox(this, this.textureOffsetX, this.textureOffsetY, p_78790_1_, p_78790_2_, p_78790_3_, p_78790_4_, p_78790_5_, p_78790_6_, p_78790_7_));
+    public void addBox(float originX, float originY, float originZ, int width, int height, int depth, float p_78790_7_) {
+        this.cubeList.add(new ModelBox(this, this.textureOffsetX, this.textureOffsetY, originX, originY, originZ, width, height, depth, p_78790_7_));
     }
 
     public void setRotationPoint(float p_78793_1_, float p_78793_2_, float p_78793_3_) {

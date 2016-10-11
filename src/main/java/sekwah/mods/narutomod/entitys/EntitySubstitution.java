@@ -63,6 +63,8 @@ public class EntitySubstitution extends EntityMob {
         this.getDataWatcher().addObject(13, Byte.valueOf((byte) 0));
         this.getDataWatcher().addObject(14, Byte.valueOf((byte) 0));
 
+        this.getDataWatcher().addObject(23, 0);
+
         this.getDataWatcher().addObject(18, 0F);
         this.getDataWatcher().addObject(19, 0F);
     }

@@ -54,11 +54,19 @@ public class RenderItemKubikiribocho implements IItemRenderer {
                 GL11.glTranslatef(-0.55F, 0.35F, 0F);
 
 
-                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/models/Kubikiribocho.png"));
+                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/models/Kubi.png"));
 
-                weaponModel.render((Entity) data[1], 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
+                Entity entity = (Entity) data[1];
+
+                if(entity != null && entity.isSprinting()){
+                    GL11.glRotatef(-110F, 0F, 0F, 1F);
+                    GL11.glTranslatef(-0.1F, -0.25F, 0);
+                }
+
+                weaponModel.render(entity, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
 
                 GL11.glPopMatrix();
+                break;
             }
             case EQUIPPED_FIRST_PERSON: {
                 GL11.glPushMatrix();
@@ -74,11 +82,12 @@ public class RenderItemKubikiribocho implements IItemRenderer {
 
                 GL11.glTranslatef(-0.55F, 0.35F, 0F);
 
-                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/models/Kubikiribocho.png"));
+                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/models/Kubi.png"));
 
                 weaponModel.render((Entity) data[1], 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
 
                 GL11.glPopMatrix();
+                break;
             }
             default:
                 break;

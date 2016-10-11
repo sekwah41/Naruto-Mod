@@ -1,6 +1,8 @@
 package sekwah.mods.narutomod.entitys.renderers;
 
 import com.mojang.authlib.GameProfile;
+import net.minecraft.entity.DataWatcher;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.entitys.EntitySubstitution;
 import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
@@ -423,30 +425,39 @@ public class RenderSubstitution extends RendererLivingEntity {
 
         ResourceLocation overlay = null;
 
-        float[] glColor = {1,1,1};
+        DataWatcher dw = par1EntitySubstitution.getDataWatcher();
+
+        int eyeStatus = dw.getWatchableObjectInt(23);
+
+        overlay = NarutoMod.instance.sharinganHandler.getEyes(par1EntitySubstitution.getCommandSenderName(), eyeStatus);
+
+        // TODO add more colour values, this makes it so it can only be 1 colour and also makes it render nicer
+        // in SEUS, if anything the eyes should be grayscale with this enabled. But it would screw up eyes which have
+        // multiple colours...
+        float[] glColor = NarutoMod.instance.sharinganHandler.getColor(par1EntitySubstitution.getCommandSenderName(), eyeStatus);
 
         // TODO readd
-        if (par1EntitySubstitution.getCommandSenderName().endsWith("Zaromaru")) {
-            overlay = rinneganOverlay;
-        }
-        else if(par1EntitySubstitution.getCommandSenderName().endsWith("Gingershadow")){
-            overlay = motherFuckingDEMONSOverlay;
-        }
-        else if(par1EntitySubstitution.getCommandSenderName().endsWith("owTreyalP")){
-            overlay = sharingan1eye2x2;
-        }
-        else if(par1EntitySubstitution.getCommandSenderName().endsWith("KawaiiRae")){
-            overlay = sharingan1eye2_2x2;
-        }
-        // add miches name
-        else if(par1EntitySubstitution.getCommandSenderName().endsWith("CrazyMtch42")){
-            overlay = byakugan;
-        }
-        else if(par1EntitySubstitution.getCommandSenderName().endsWith("liam3011")){
-            overlay = sharingan2Overlay;
-            glColor[1] = 0;
-            glColor[2] = 0;
-        }
+//        if (par1EntitySubstitution.getCommandSenderName().endsWith("Zaromaru")) {
+//            overlay = rinneganOverlay;
+//        }
+//        else if(par1EntitySubstitution.getCommandSenderName().endsWith("Gingershadow")){
+//            overlay = motherFuckingDEMONSOverlay;
+//        }
+//        else if(par1EntitySubstitution.getCommandSenderName().endsWith("owTreyalP")){
+//            overlay = sharingan1eye2x2;
+//        }
+//        else if(par1EntitySubstitution.getCommandSenderName().endsWith("KawaiiRae")){
+//            overlay = sharingan1eye2_2x2;
+//        }
+//        // add miches name
+//        else if(par1EntitySubstitution.getCommandSenderName().endsWith("CrazyMtch42")){
+//            overlay = byakugan;
+//        }
+//        else if(par1EntitySubstitution.getCommandSenderName().endsWith("liam3011")){
+//            overlay = sharingan2Overlay;
+//            glColor[1] = 0;
+//            glColor[2] = 0;
+//        }
         /*else if(par1EntitySubstitution.getCustomNameTag().endsWith("SSJHiro11")){
             overlay = this.hiroCurseMark;
         }*/

@@ -1,9 +1,11 @@
 package sekwah.mods.narutomod.client;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.gameevent.InputEvent;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.player.RenderNinjaPlayer;
 import sekwah.mods.narutomod.player.extendedproperties.PlayerInfo;

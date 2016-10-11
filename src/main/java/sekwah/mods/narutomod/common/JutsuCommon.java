@@ -22,6 +22,7 @@ public class JutsuCommon {
 
     public static boolean execute(int jutsuCombo, EntityPlayerMP playerMP) {
         Vec3 looking = playerMP.getLookVec();
+        int eyeStatus = 0;
         switch (jutsuCombo) {
             case 1: // chakra restore
                 return true;
@@ -60,6 +61,9 @@ public class JutsuCommon {
                 jutsuSound(8, playerMP);
                 return true;
             case 12:
+
+                eyeStatus = playerMP.getDataWatcher().getWatchableObjectInt(23);
+
                 playerMP.addPotionEffect((new PotionEffect(Potion.invisibility.getId(), 10, 0)));
 
                 EntitySubstitution substitution = new EntitySubstitution(playerMP.worldObj);
@@ -73,6 +77,8 @@ public class JutsuCommon {
                 substitution.setCurrentItemOrArmor(2, playerMP.getCurrentArmor(2));
                 substitution.setCurrentItemOrArmor(3, playerMP.getCurrentArmor(1));
                 substitution.setCurrentItemOrArmor(4, playerMP.getCurrentArmor(0));
+
+                substitution.getDataWatcher().updateObject(23, eyeStatus);
 
                 if (playerMP.isSprinting()) {
                     substitution.setMovement((float) (Math.cos(Math.toRadians(playerMP.rotationYaw - 90)) * -0.3F), (float) (Math.sin(Math.toRadians(playerMP.rotationYaw - 90)) * -0.3F));
@@ -156,6 +162,8 @@ public class JutsuCommon {
             case 1332:
                 jutsuSound(4, playerMP);
 
+                eyeStatus = playerMP.getDataWatcher().getWatchableObjectInt(23);
+
                 EntityShadowClone shadowClone = new EntityShadowClone(playerMP.worldObj);
 
                 shadowClone.setLocationAndAngles(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
@@ -167,6 +175,8 @@ public class JutsuCommon {
                 shadowClone.setCurrentItemOrArmor(2, playerMP.getCurrentArmor(2));
                 shadowClone.setCurrentItemOrArmor(3, playerMP.getCurrentArmor(1));
                 shadowClone.setCurrentItemOrArmor(4, playerMP.getCurrentArmor(0));
+
+                shadowClone.getDataWatcher().updateObject(23, eyeStatus);
 
                 shadowClone.setVelocity((Math.random() - 0.5D) / 3, 0, (Math.random() - 0.5D) / 3);
 
@@ -186,6 +196,8 @@ public class JutsuCommon {
                     shadowClone.setCurrentItemOrArmor(3, playerMP.getCurrentArmor(1));
                     shadowClone.setCurrentItemOrArmor(4, playerMP.getCurrentArmor(0));
 
+                    shadowClone.getDataWatcher().updateObject(23, eyeStatus);
+
                     shadowClone.setVelocity((Math.random() - 0.5D) / 3, 0, (Math.random() - 0.5D) / 3);
 
                     playerMP.worldObj.spawnEntityInWorld(shadowClone);
@@ -202,6 +214,8 @@ public class JutsuCommon {
                         shadowClone.setCurrentItemOrArmor(2, playerMP.getCurrentArmor(2));
                         shadowClone.setCurrentItemOrArmor(3, playerMP.getCurrentArmor(1));
                         shadowClone.setCurrentItemOrArmor(4, playerMP.getCurrentArmor(0));
+
+                        shadowClone.getDataWatcher().updateObject(23, eyeStatus);
 
                         shadowClone.setVelocity((Math.random() - 0.5D) / 3, 0, (Math.random() - 0.5D) / 3);
 

@@ -100,6 +100,19 @@ public class ServerPacketHandler {
         //dw.updateObject(25, Float.valueOf(0));
     }
 
+    public static void handleEyePacket(byte[] packet, EntityPlayerMP playerEntity) {
+        DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet));
+        int eyeThing = 0;
+        try {
+            eyeThing = inputStream.readInt();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DataWatcher dw = playerEntity.getDataWatcher();
+
+        dw.updateObject(23, eyeThing);
+    }
+
     public static void handlePlayerDataPacket(byte[] packet) {
 
     }

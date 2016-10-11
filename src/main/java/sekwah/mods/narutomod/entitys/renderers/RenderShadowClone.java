@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
+import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,6 +26,7 @@ import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.entitys.EntityShadowClone;
 import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
@@ -422,30 +424,40 @@ public class RenderShadowClone extends RendererLivingEntity {
 
         ResourceLocation overlay = null;
 
-        float[] glColor = {1,1,1};
+
+        DataWatcher dw = par1EntityShadowClone.getDataWatcher();
+
+        int eyeStatus = dw.getWatchableObjectInt(23);
+
+        overlay = NarutoMod.instance.sharinganHandler.getEyes(par1EntityShadowClone.getCommandSenderName(), eyeStatus);
+
+        // TODO add more colour values, this makes it so it can only be 1 colour and also makes it render nicer
+        // in SEUS, if anything the eyes should be grayscale with this enabled. But it would screw up eyes which have
+        // multiple colours...
+        float[] glColor = NarutoMod.instance.sharinganHandler.getColor(par1EntityShadowClone.getCommandSenderName(), eyeStatus);
 
         // TODO readd
-        if (par1EntityShadowClone.getCommandSenderName().endsWith("Zaromaru")) {
-            overlay = rinneganOverlay;
-        }
-        else if(par1EntityShadowClone.getCommandSenderName().endsWith("Gingershadow")){
-            overlay = motherFuckingDEMONSOverlay;
-        }
-        else if(par1EntityShadowClone.getCommandSenderName().endsWith("owTreyalP")){
-            overlay = sharingan1eye2x2;
-        }
-        else if(par1EntityShadowClone.getCommandSenderName().endsWith("KawaiiRae")){
-            overlay = sharingan1eye2_2x2;
-        }
-        // add miches name
-        else if(par1EntityShadowClone.getCommandSenderName().endsWith("CrazyMtch42")){
-            overlay = byakugan;
-        }
-        else if(par1EntityShadowClone.getCommandSenderName().endsWith("liam3011")){
-            overlay = sharingan2Overlay;
-            glColor[1] = 0;
-            glColor[2] = 0;
-        }
+//        if (par1EntityShadowClone.getCommandSenderName().endsWith("Zaromaru")) {
+//            overlay = rinneganOverlay;
+//        }
+//        else if(par1EntityShadowClone.getCommandSenderName().endsWith("Gingershadow")){
+//            overlay = motherFuckingDEMONSOverlay;
+//        }
+//        else if(par1EntityShadowClone.getCommandSenderName().endsWith("owTreyalP")){
+//            overlay = sharingan1eye2x2;
+//        }
+//        else if(par1EntityShadowClone.getCommandSenderName().endsWith("KawaiiRae")){
+//            overlay = sharingan1eye2_2x2;
+//        }
+//        // add miches name
+//        else if(par1EntityShadowClone.getCommandSenderName().endsWith("CrazyMtch42")){
+//            overlay = byakugan;
+//        }
+//        else if(par1EntityShadowClone.getCommandSenderName().endsWith("liam3011")){
+//            overlay = sharingan2Overlay;
+//            glColor[1] = 0;
+//            glColor[2] = 0;
+//        }
         /*else if(par1EntityShadowClone.getCustomNameTag().endsWith("SSJHiro11")){
             overlay = this.hiroCurseMark;
         }*/

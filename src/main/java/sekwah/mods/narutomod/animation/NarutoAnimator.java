@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import sekwah.mods.narutomod.json.JSONObject;
 import sekwah.mods.narutomod.player.RenderNinjaPlayer;
+import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -68,6 +69,11 @@ public class NarutoAnimator {
     }*/
 
     public static Pose[] quickSortAnimations(Pose[] poses) {
+
+        AnimModelRenderer anim = new AnimModelRenderer(new ModelNinjaBiped(), "");
+
+        anim.addBox(5,5,5,5,5,5,5);
+
         ArrayList<Pose> poseList = new ArrayList<Pose>();
         for(int i = 0; i < poses.length; i++){
             poseList.add(poses[i]);

@@ -128,7 +128,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void registerCustomBlocks() {
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBase.class, new TileEntityBonsaiRenderer());
+        ClientRegistry.registerTileEntity(TileEntityBase.class, "test_radio", new TileEntityBonsaiRenderer());
 
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(NarutoBlocks.bonsaiTree), new ItemRendererBonsaiTree());
 

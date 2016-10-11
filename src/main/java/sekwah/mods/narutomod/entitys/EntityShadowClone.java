@@ -79,6 +79,8 @@ public class EntityShadowClone extends EntityMob {
         this.getDataWatcher().addObject(12, Byte.valueOf((byte) 0));
         this.getDataWatcher().addObject(13, Byte.valueOf((byte) 0));
         this.getDataWatcher().addObject(14, Byte.valueOf((byte) 0));
+
+        this.getDataWatcher().addObject(23, 0);
     }
 
     // TODO store master and the display name seperately and take into account the user's team and other stuff

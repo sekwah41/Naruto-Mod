@@ -1,11 +1,15 @@
 package sekwah.mods.narutomod.client;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.InputEvent;
 import net.minecraft.item.ItemStack;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.gui.GuiJutsuMenu;
 import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
 import sekwah.mods.narutomod.client.gui.GuiOptionsMenu;
 import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
+import sekwah.mods.narutomod.packets.serverbound.ServerEyePacket;
 import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 import sekwah.mods.narutomod.packets.serverbound.ServerSoundPacket;
 import sekwah.mods.narutomod.settings.NarutoSettings;
@@ -37,9 +41,9 @@ public class NarutoKeyHandler {
     /**
      * Key descriptions; use a language file to localize the description later
      */
-    public static final String[] keyDesc = {"naruto.keys.key1", "naruto.keys.key2", "naruto.keys.key3", "naruto.keys.jutsumenu", "naruto.keys.options", "naruto.keys.leap", "naruto.keys.toggledodges"/*, "naruto.keys.sharingan"*/};
+    public static final String[] keyDesc = {"naruto.keys.key1", "naruto.keys.key2", "naruto.keys.key3", "naruto.keys.jutsumenu", "naruto.keys.options", "naruto.keys.leap", "naruto.keys.toggledodges", "naruto.keys.overlay", "naruto.keys.overlay1", "naruto.keys.overlay2", "naruto.keys.overlay3"};
     public static final KeyBinding[] keys = new KeyBinding[keyDesc.length];
-    public static boolean[] isPressed = {false, false, false, false, false, false, false/*, false*/};
+    public static boolean[] isPressed = {false, false, false, false, false, false, false, false, false, false, false};
     //private static boolean[] repeat = {false, false, false, false, false/**, false*/};
 
     public static boolean[] isVanillaPressed = {false, false, false};
@@ -49,7 +53,7 @@ public class NarutoKeyHandler {
     /**
      * Default key values
      */
-    private final int[] keyButtons = {Keyboard.KEY_C, Keyboard.KEY_V, Keyboard.KEY_B, Keyboard.KEY_J, Keyboard.KEY_O, Keyboard.KEY_X, Keyboard.KEY_Z /*, Keyboard.KEY_NUMPAD1*/};
+    private final int[] keyButtons = {Keyboard.KEY_C, Keyboard.KEY_V, Keyboard.KEY_B, Keyboard.KEY_J, Keyboard.KEY_O, Keyboard.KEY_X, Keyboard.KEY_Z, Keyboard.KEY_NUMPAD0, Keyboard.KEY_NUMPAD1, Keyboard.KEY_NUMPAD2, Keyboard.KEY_NUMPAD3};
 
     public NarutoKeyHandler() {
         for (int i = 0; i < keyDesc.length; ++i) {
@@ -63,23 +67,24 @@ public class NarutoKeyHandler {
     static void keyPressed(int keyID) {
         KeyBinding keyPressed = keys[keyID];
         boolean keyDown = keys[keyID].getIsKeyPressed();
+        String keyDesc = keys[keyID].getKeyDescription();
 
         if (keyDown) {
-            if (keys[keyID].getKeyDescription().equals("naruto.keys.key1") || keys[keyID].getKeyDescription().equals("naruto.keys.key2") || keys[keyID].getKeyDescription().equals("naruto.keys.key3")) {
-                if (keys[keyID].getKeyDescription().equals("naruto.keys.key1")) {
+            if (keyDesc.equals("naruto.keys.key1") || keyDesc.equals("naruto.keys.key2") || keyDesc.equals("naruto.keys.key3")) {
+                if (keyDesc.equals("naruto.keys.key1")) {
                     PlayerClientTickEvent.ChargingChakra = true;
                 }
                 if (PlayerClientTickEvent.JutsuCombo.length() < 9) {
                     EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
 
                     int jutsuSound = 0;
-                    if (keys[keyID].getKeyDescription().equals("naruto.keys.key1")) {
+                    if (keyDesc.equals("naruto.keys.key1")) {
                         PlayerClientTickEvent.JutsuCombo += "1";
                         jutsuSound = 1;
-                    } else if (keys[keyID].getKeyDescription().equals("naruto.keys.key2")) {
+                    } else if (keyDesc.equals("naruto.keys.key2")) {
                         PlayerClientTickEvent.JutsuCombo += "2";
                         jutsuSound = 2;
-                    } else if (keys[keyID].getKeyDescription().equals("naruto.keys.key3")) {
+                    } else if (keyDesc.equals("naruto.keys.key3")) {
                         PlayerClientTickEvent.JutsuCombo += "3";
                         jutsuSound = 3;
                     }
@@ -103,13 +108,13 @@ public class NarutoKeyHandler {
                     EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
                     playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + I18n.format("naruto.jutsu.comboLimit")));
                 }
-            } else if (keys[keyID].getKeyDescription().equals("naruto.keys.jutsumenu")) {
+            } else if (keyDesc.equals("naruto.keys.jutsumenu")) {
                 Minecraft.getMinecraft().displayGuiScreen(new GuiJutsuMenu());
-            } else if (keys[keyID].getKeyDescription().equals("naruto.keys.options")) {
+            } else if (keyDesc.equals("naruto.keys.options")) {
                 Minecraft.getMinecraft().displayGuiScreen(new GuiOptionsMenu());
                 //NarutoMod.experimentalFirstPerson = !NarutoMod.experimentalFirstPerson;
                 //System.out.println(NarutoMod.experimentalFirstPerson);
-            } else if(keys[keyID].getKeyDescription().equals("naruto.keys.leap")) {
+            } else if(keyDesc.equals("naruto.keys.leap")) {
                 // TODO add leap code and change the fall distance with a packet
                 EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
                 if(playerMP.onGround){
@@ -133,7 +138,7 @@ public class NarutoKeyHandler {
                         }
                     }
                 }
-            } else if(keys[keyID].getKeyDescription().equals("naruto.keys.toggledodges")){
+            } else if(keyDesc.equals("naruto.keys.toggledodges")){
                 if(NarutoSettings.dodgesEnabled){
                     GuiNotificationUpdate.queueNotification(I18n.format("naruto.gui.settings"),I18n.format("naruto.gui.dodges.disabled"), new ItemStack(NarutoItems.Kunai));
                 }else{
@@ -141,19 +146,43 @@ public class NarutoKeyHandler {
                 }
                 NarutoSettings.dodgesEnabled = !NarutoSettings.dodgesEnabled;
 
-            }/* else if(keys[keyID].getKeyDescription().equals("naruto.keys.sharingan")){
-                EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
-                if(playerMP.getCommandSenderName().endsWith("sekwah41")){
+            } else if(keyDesc.startsWith("naruto.keys.overlay")){
 
+                EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
+//                if(!playerMP.getCommandSenderName().endsWith("liam3011")){
+//                    return;
+//                }
+                int shittyEyeSelection = 0;
+
+                if(keyDesc.endsWith("1")){
+                    shittyEyeSelection = 1;
                 }
-            }*/
-            //else if(keys[keyID].getKeyDescription().equals("Naruto Emotes")){
+                if(keyDesc.endsWith("2")){
+                    shittyEyeSelection = 2;
+                }
+                if(keyDesc.endsWith("3")){
+                    shittyEyeSelection = 3;
+                }
+
+                ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+                DataOutputStream outputStream = new DataOutputStream(bos);
+                try {
+                    outputStream.writeInt(shittyEyeSelection);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+                PacketDispatcher.sendPacketToServer(new ServerEyePacket(bos.toByteArray()));
+
+
+            }
+            //else if(keyDesc.equals("Naruto Emotes")){
             //Minecraft.getMinecraft().displayGuiScreen(new GuiEmotes());
             //EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
             //PacketAnimationUpdate.animationUpdate("waveEmote",playerMP);
             //}
         } else {
-            if (keys[keyID].getKeyDescription().equals("naruto.keys.key1")) {
+            if (keyDesc.equals("naruto.keys.key1")) {
                 PlayerClientTickEvent.ChargingChakra = false;
             }
         }
@@ -271,9 +300,11 @@ public class NarutoKeyHandler {
     }
 
     /*@SubscribeEvent
-    public void onKeyInput(KeyInputEvent event) {
+    public void onKeyInput(InputEvent.KeyInputEvent event) {
         // This disables keypresses when in menus or the character can't be controlled
-        if (FMLClientHandler.instance().getClient().inGameHasFocus) {
+
+        NarutoMod.logger.info(event.getListenerList());
+        *//*if (FMLClientHandler.instance().getClient().inGameHasFocus) {
             if(Minecraft.getMinecraft().gameSettings.keyBindLeft.getIsKeyPressed()){
 
             }
@@ -283,7 +314,7 @@ public class NarutoKeyHandler {
                     keyPressed(i);
                 }
             }
-        }
+        }*//*
         // if (!FMLClientHandler.instance().isGUIOpen(GuiChat.class)) {
         //if (keys[CUSTOM_INV].getIsKeyPressed()) {
         //TutorialMain.packetPipeline.sendToServer(new OpenGuiPacket(TutorialMain.GUI_CUSTOM_INV));

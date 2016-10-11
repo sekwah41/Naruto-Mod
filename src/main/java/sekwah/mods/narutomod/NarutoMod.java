@@ -14,10 +14,8 @@ import sekwah.mods.narutomod.packets.clientbound.ClientAnimationPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientJutsuPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientParticleEffectPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
-import sekwah.mods.narutomod.packets.serverbound.ServerAnimationPacket;
-import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
-import sekwah.mods.narutomod.packets.serverbound.ServerParticleEffectPacket;
-import sekwah.mods.narutomod.packets.serverbound.ServerSoundPacket;
+import sekwah.mods.narutomod.packets.serverbound.*;
+import sekwah.mods.narutomod.player.SharinganHandler;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 import sekwah.mods.narutomod.worldgeneration.NarutoWorldGeneration;
 import cpw.mods.fml.common.Mod;
@@ -46,7 +44,13 @@ public class NarutoMod {
 
     // TODO for the lang files possibly use the \u0007 character code thing and see if that works for accents
 
-    public static final String version = "0.4.2b3";
+    public static final String version = "0.4.2b5";
+
+    /**
+     * Need to start using instances more.
+     */
+    @Mod.Instance
+	public static NarutoMod instance;
 
     // update data
     public static int[] mcVersion = {1,7,10}; // e.g. 164 is 1.6.4
@@ -61,6 +65,8 @@ public class NarutoMod {
 
     public static UsageReport usageReport;
     private UpdateChecker updateChecker;
+
+    public SharinganHandler sharinganHandler;
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
@@ -88,6 +94,9 @@ public class NarutoMod {
 
         updateChecker = new UpdateChecker();
         updateChecker.startUpdateChecker();
+
+        sharinganHandler = new SharinganHandler();
+
         //Thread updateChecker = new Thread(new UpdateCheckerOld());
         //updateChecker.run();
 
@@ -152,10 +161,11 @@ public class NarutoMod {
         packetNetwork.registerMessage(ClientSoundPacket.class, ClientSoundPacket.class, 2, Side.CLIENT);
         packetNetwork.registerMessage(ClientAnimationPacket.class, ClientAnimationPacket.class, 3, Side.CLIENT);
 
-        packetNetwork.registerMessage(ServerParticleEffectPacket.class, ServerParticleEffectPacket.class, 4, Side.SERVER);
-        packetNetwork.registerMessage(ServerJutsuPacket.class, ServerJutsuPacket.class, 5, Side.SERVER);
-        packetNetwork.registerMessage(ServerAnimationPacket.class, ServerAnimationPacket.class, 6, Side.SERVER);
-        packetNetwork.registerMessage(ServerSoundPacket.class, ServerSoundPacket.class, 7, Side.SERVER);
+        packetNetwork.registerMessage(ServerParticleEffectPacket.class, ServerParticleEffectPacket.class, 100, Side.SERVER);
+        packetNetwork.registerMessage(ServerJutsuPacket.class, ServerJutsuPacket.class, 101, Side.SERVER);
+        packetNetwork.registerMessage(ServerAnimationPacket.class, ServerAnimationPacket.class, 102, Side.SERVER);
+        packetNetwork.registerMessage(ServerSoundPacket.class, ServerSoundPacket.class, 103, Side.SERVER);
+        packetNetwork.registerMessage(ServerEyePacket.class, ServerEyePacket.class, 104, Side.SERVER);
 
     }
 

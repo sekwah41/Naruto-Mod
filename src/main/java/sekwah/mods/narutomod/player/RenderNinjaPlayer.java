@@ -45,22 +45,6 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
     private static final ResourceLocation steveTextures = new ResourceLocation("textures/entity/steve.png");
 
-    private static final ResourceLocation sharingan2Overlay = new ResourceLocation("narutomod:textures/skinOverlays/mongekyo.png");
-
-    private static final ResourceLocation sharinganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/sharingan.png");
-
-    private static final ResourceLocation rinneganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/rinnegan2x2.png");
-
-    private static final ResourceLocation motherFuckingDEMONSOverlay = new ResourceLocation("narutomod:textures/skinOverlays/demonEyes2x2.png");
-
-    private static final ResourceLocation sharingan1eye2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2x2.png");
-
-    private static final ResourceLocation sharingan1eye2_2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2_2x2.png");
-
-    private static final ResourceLocation byakugan = new ResourceLocation("narutomod:textures/skinOverlays/byakugan_2x2.png");
-
-    private static final ResourceLocation hiroCurseMark = new ResourceLocation("narutomod:textures/skinOverlays/hiro_cursemark.png");
-
     private static final ResourceLocation susanooRibs = new ResourceLocation("narutomod:textures/otherStuff/susanoo.png");
 
     private static final String __OBFID = "CL_00001020";
@@ -772,38 +756,16 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         ResourceLocation overlay = null;
 
+        DataWatcher dw = p_77029_1_.getDataWatcher();
+
+        int eyeStatus = dw.getWatchableObjectInt(23);
+
+        overlay = NarutoMod.instance.sharinganHandler.getEyes(p_77029_1_.getCommandSenderName(), eyeStatus);
+
         // TODO add more colour values, this makes it so it can only be 1 colour and also makes it render nicer
         // in SEUS, if anything the eyes should be grayscale with this enabled. But it would screw up eyes which have
         // multiple colours...
-        float[] glColor = {1,1,1};
-
-
-        // DrBlastrider other guy working on textures atm
-        if (p_77029_1_.getCommandSenderName().endsWith("Zaromaru")) {
-            overlay = rinneganOverlay;
-        }
-        else if(p_77029_1_.getCommandSenderName().endsWith("Gingershadow")){
-            overlay = motherFuckingDEMONSOverlay;
-        }
-        else if(p_77029_1_.getCommandSenderName().endsWith("owTreyalP")){
-            overlay = sharingan1eye2x2;
-        }
-        // TODO add rae to the rest of them
-        else if(p_77029_1_.getCommandSenderName().endsWith("KawaiiRae")){
-            overlay = sharingan1eye2_2x2;
-        }
-        // add miches name
-        else if(p_77029_1_.getCommandSenderName().endsWith("CrazyMtch42")){
-            overlay = byakugan;
-        }
-        else if(p_77029_1_.getCommandSenderName().endsWith("liam3011")){
-            overlay = sharingan2Overlay;
-            glColor[1] = 0;
-            glColor[2] = 0;
-        }
-        /*else if(p_77029_1_.getCommandSenderName().endsWith("SSJHiro11")){
-            overlay = this.hiroCurseMark;
-        }*/
+        float[] glColor = NarutoMod.instance.sharinganHandler.getColor(p_77029_1_.getCommandSenderName(), eyeStatus);
 
         if (overlay != null) {
 

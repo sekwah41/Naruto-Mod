@@ -33,6 +33,7 @@ public class UsageReport {
         this.isClient = isClient;
         try {
             this.reportURL = new URL("http://report.sekwah.com/naruto-mod/");
+            //this.reportURL = new URL("http://localhost:8080/naruto-mod/");
         } catch (MalformedURLException malformedurlexception) {
             throw new IllegalArgumentException();
         }
@@ -72,6 +73,7 @@ public class UsageReport {
                     }
 
                     NarutoMod.logger.info("Sending UsageReport data");
+                    //NarutoMod.logger.info(reportURL);
                     NarutoMod.logger.info(sendData(reportURL, buildPostString(reportData)));
                 }
             }, 0L, 890000L); // Shorter than 15 mins by 10 seconds just to make sure its not on the border and online

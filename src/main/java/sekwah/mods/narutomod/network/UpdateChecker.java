@@ -62,6 +62,10 @@ public class UpdateChecker/* extends Thread*/ {
 
     }
 
+    /**
+     * Recode to use gson
+     * @param url
+     */
     public void checkUpdate(URL url) {
         NarutoMod.logger.info("Checking for update");
         try {
