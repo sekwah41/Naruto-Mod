@@ -20,6 +20,8 @@ public class SharinganHandler {
 
     private static final ResourceLocation hiroCurseMark = new ResourceLocation("narutomod:textures/skinOverlays/hiro_cursemark.png");
 
+    private static final ResourceLocation smove = new ResourceLocation("narutomod:textures/skinOverlays/smove.png");
+
 
     public ResourceLocation getEyes(String username, int eyeStatus){
 
@@ -40,13 +42,13 @@ public class SharinganHandler {
         else if(username.endsWith("CrazyMtch42")){
             return byakugan;
         }
-        else if(username.endsWith("GohanPlays_") && eyeStatus == 1){
+        else if(username.endsWith("GohanPlays_") && eyeStatus != 0){
             return sharinganOverlay;
         }
-        else if(username.endsWith("liam3011") && eyeStatus != 0){
+        else if(username.endsWith("Smove33") && eyeStatus != 0){
             switch(eyeStatus){
                 case 1: return sharinganOverlay;
-                case 2: return sharingan2Overlay;
+                case 2: return smove;
             }
         }
         return null;

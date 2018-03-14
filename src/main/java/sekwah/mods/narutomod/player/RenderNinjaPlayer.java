@@ -509,23 +509,26 @@ public class RenderNinjaPlayer extends RenderPlayer {
         } else {
             this.mainModel.setRotationAngles(p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_, p_77036_1_);
         }
-
-        /*this.bindTexture(susanooRibs);
-        GL11.glPushMatrix();
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.6F);
-        GL11.glScalef(1.1F, 1.1F, 1.1F);
-        GL11.glTranslatef(0,-0.1F,0);
-        GL11.glDepthMask(false);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
-        modelRibs.render(p_77036_1_, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-        GL11.glPopMatrix();
-        GL11.glDepthMask(true);
-        this.bindEntityTexture(p_77036_1_);*/
-
+        int eyeStatus = p_77036_1_.getDataWatcher().getWatchableObjectInt(23);
+        if(p_77036_1_ instanceof AbstractClientPlayer) {
+            if(eyeStatus == 2) {
+                this.bindTexture(susanooRibs);
+                GL11.glPushMatrix();
+                GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.6F);
+                GL11.glScalef(1.1F, 1.1F, 1.1F);
+                GL11.glTranslatef(0,-0.1F,0);
+                GL11.glDepthMask(false);
+                GL11.glEnable(GL11.GL_BLEND);
+                GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
+                modelRibs.render(p_77036_1_, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+                GL11.glDisable(GL11.GL_BLEND);
+                GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
+                GL11.glPopMatrix();
+                GL11.glDepthMask(true);
+                this.bindEntityTexture(p_77036_1_);
+            }
+        }
     }
 
     /**
@@ -811,11 +814,11 @@ public class RenderNinjaPlayer extends RenderPlayer {
             //this.modelBipedMain.bipedHead.postRender(0.0625F);
 
             /**tessellator.startDrawingQuads();
-            tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
-            tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
-            tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
-            tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
-            tessellator.draw();*/
+             tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
+             tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
+             tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
+             tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
+             tessellator.draw();*/
 
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
@@ -873,11 +876,11 @@ public class RenderNinjaPlayer extends RenderPlayer {
             //this.modelBipedMain.bipedHead.postRender(0.0625F);
 
             *//**tessellator.startDrawingQuads();
-             tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
-             tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
-             tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
-             tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
-             tessellator.draw();*//*
+         tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
+         tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
+         tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
+         tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
+         tessellator.draw();*//*
 
             GL11.glEnable(GL11.GL_ALPHA_TEST);
 
@@ -934,11 +937,11 @@ public class RenderNinjaPlayer extends RenderPlayer {
             //this.modelBipedMain.bipedHead.postRender(0.0625F);
 
             *//**tessellator.startDrawingQuads();
-             tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
-             tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
-             tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
-             tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
-             tessellator.draw();*//*
+         tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
+         tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
+         tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
+         tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
+         tessellator.draw();*//*
 
             GL11.glEnable(GL11.GL_ALPHA_TEST);
 
@@ -985,12 +988,12 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
     public void renderFirstPersonArm(EntityPlayer p_82441_1_) {
         /**if (!NarutoSettings.experimentalFirstPerson) {
-            float f = 1.0F;
-            GL11.glColor3f(f, f, f);
-            this.modelBipedMain.onGround = 0.0F;
-            this.modelBipedMain.setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, p_82441_1_);
-            this.modelBipedMain.bipedRightArm.render(0.0625F);
-        }*/
+         float f = 1.0F;
+         GL11.glColor3f(f, f, f);
+         this.modelBipedMain.onGround = 0.0F;
+         this.modelBipedMain.setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, p_82441_1_);
+         this.modelBipedMain.bipedRightArm.render(0.0625F);
+         }*/
 
         float f = 1.0F;
         GL11.glColor3f(f, f, f);

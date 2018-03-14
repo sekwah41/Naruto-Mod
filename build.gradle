@@ -21,7 +21,7 @@ apply plugin: 'forge'
 
 def mod_file = getModFile()
 version = getVersion("version", mod_file)
-//version = "0.4.2b3"
+//version = "0.4.2b4"
 group= "sekwah.mods.narutomod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "narutomod"
 
