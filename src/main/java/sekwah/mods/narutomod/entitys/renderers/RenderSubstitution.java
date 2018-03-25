@@ -430,6 +430,10 @@ public class RenderSubstitution extends RendererLivingEntity {
         int eyeStatus = dw.getWatchableObjectInt(23);
 
         overlay = NarutoMod.instance.sharinganHandler.getEyes(par1EntitySubstitution.getCommandSenderName(), eyeStatus);
+        if(overlay == null) {
+            eyeStatus = 0;
+            dw.updateObject(23,0);
+        }
 
         // TODO add more colour values, this makes it so it can only be 1 colour and also makes it render nicer
         // in SEUS, if anything the eyes should be grayscale with this enabled. But it would screw up eyes which have

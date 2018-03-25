@@ -159,6 +159,10 @@ public class JutsuCommon {
                 return true;
             case 312: // TODO set the combo for the earth style
                 return true;
+            case 333:
+                return true;
+            case 3330:
+                return true;
             case 1332:
                 jutsuSound(4, playerMP);
 

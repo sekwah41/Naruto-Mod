@@ -43,7 +43,7 @@ import sekwah.mods.narutomod.player.models.extras.ModelRibs;
 public class RenderNinjaPlayer extends RenderPlayer {
     public static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
 
-    private static final ResourceLocation steveTextures = new ResourceLocation("textures/entity/steve.png");
+    //private static final ResourceLocation steveTextures = new ResourceLocation("textures/entity/steve.png");
 
     private static final ResourceLocation susanooRibs = new ResourceLocation("narutomod:textures/otherStuff/susanoo.png");
 
@@ -224,11 +224,11 @@ public class RenderNinjaPlayer extends RenderPlayer {
                 this.modelArmorChestplate.aimedBow = this.modelArmor.aimedBow = this.modelBipedMain.aimedBow = true;
             } else if (enumaction == NarutoItems.Throw) {
                 //this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = true;
-                if (FMLClientHandler.instance().getClient().thePlayer == p_76986_1_) {
+                /*if (FMLClientHandler.instance().getClient().thePlayer == p_76986_1_) {
                     this.modelArmorChestplate.isClientThrowing = this.modelArmor.isClientThrowing = this.modelBipedMain.isClientThrowing = true;
                 } else {
                     this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = true;
-                }
+                }*/
             }
         }
 
@@ -265,8 +265,8 @@ public class RenderNinjaPlayer extends RenderPlayer {
         this.modelArmorChestplate.aimedBow = this.modelArmor.aimedBow = this.modelBipedMain.aimedBow = false;
         this.modelArmorChestplate.isSprinting = this.modelArmor.isSprinting = this.modelBipedMain.isSprinting = false;
         this.modelArmorChestplate.isSneak = this.modelArmor.isSneak = this.modelBipedMain.isSneak = false;
-        this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = false;
-        this.modelArmorChestplate.isClientThrowing = this.modelArmor.isClientThrowing = this.modelBipedMain.isClientThrowing = false;
+        /*this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = false;
+        this.modelArmorChestplate.isClientThrowing = this.modelArmor.isClientThrowing = this.modelBipedMain.isClientThrowing = false;*/
         this.modelArmorChestplate.heldItemRight = this.modelArmor.heldItemRight = this.modelBipedMain.heldItemRight = 0;
         MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderPlayerEvent.Post(p_76986_1_, this, p_76986_9_));
     }
@@ -510,8 +510,12 @@ public class RenderNinjaPlayer extends RenderPlayer {
             this.mainModel.setRotationAngles(p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_, p_77036_1_);
         }
         int eyeStatus = p_77036_1_.getDataWatcher().getWatchableObjectInt(23);
+        if(NarutoMod.instance.sharinganHandler.getEyes(p_77036_1_.getCommandSenderName(), eyeStatus) == null) {
+            eyeStatus = 0;
+            p_77036_1_.getDataWatcher().updateObject(23,0);
+        }
         if(p_77036_1_ instanceof AbstractClientPlayer) {
-            if(eyeStatus == 2) {
+            if(eyeStatus == 3) {
                 this.bindTexture(susanooRibs);
                 GL11.glPushMatrix();
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.6F);
@@ -764,6 +768,10 @@ public class RenderNinjaPlayer extends RenderPlayer {
         int eyeStatus = dw.getWatchableObjectInt(23);
 
         overlay = NarutoMod.instance.sharinganHandler.getEyes(p_77029_1_.getCommandSenderName(), eyeStatus);
+        if(overlay == null) {
+            eyeStatus = 0;
+            dw.updateObject(23,0);
+        }
 
         // TODO add more colour values, this makes it so it can only be 1 colour and also makes it render nicer
         // in SEUS, if anything the eyes should be grayscale with this enabled. But it would screw up eyes which have

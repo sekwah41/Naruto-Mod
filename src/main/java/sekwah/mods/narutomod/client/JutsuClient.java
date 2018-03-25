@@ -116,10 +116,13 @@ public class JutsuClient {
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
             case 311: // TODO possibly the toggle for liams eyes
-
                 break;
             case 312: // TODO set the combo for the earth style
-
+                break;
+            case 333:
+                PacketAnimationUpdate.animationUpdate("sexyjutsu1", playerMP);
+                break;
+            case 3330:
                 break;
             case 1320:
                 // Doesnt do anything
@@ -166,6 +169,8 @@ public class JutsuClient {
                 return false;// TODO possibly the toggle for liams eyes, will be true once done
             case 312:
                 return true; // TODO set the combo for the earth style
+            case 333:
+                return true;
             case 1332:
                 if (PlayerClientTickEvent.chakra >= JutsuData.shadowCloneCost) return true;
                 break;

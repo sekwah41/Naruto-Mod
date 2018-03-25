@@ -190,6 +190,7 @@ public class RenderShadowClone extends RendererLivingEntity {
 
     protected ResourceLocation func_110817_a(EntityShadowClone par1EntityShadowClone) {
         ResourceLocation locationSkin = AbstractClientPlayer.locationStevePng;
+        //System.out.println("I WANT THIS SKIN");
 
         if (par1EntityShadowClone.getCustomNameTag() != null && par1EntityShadowClone.getCustomNameTag().length() > 0) {
             locationSkin = AbstractClientPlayer.getLocationSkin(par1EntityShadowClone.getCustomNameTag());
@@ -430,6 +431,10 @@ public class RenderShadowClone extends RendererLivingEntity {
         int eyeStatus = dw.getWatchableObjectInt(23);
 
         overlay = NarutoMod.instance.sharinganHandler.getEyes(par1EntityShadowClone.getCommandSenderName(), eyeStatus);
+        if(overlay == null) {
+            eyeStatus = 0;
+            dw.updateObject(23,0);
+        }
 
         // TODO add more colour values, this makes it so it can only be 1 colour and also makes it render nicer
         // in SEUS, if anything the eyes should be grayscale with this enabled. But it would screw up eyes which have

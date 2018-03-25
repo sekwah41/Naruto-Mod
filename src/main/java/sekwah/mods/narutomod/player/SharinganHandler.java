@@ -45,10 +45,18 @@ public class SharinganHandler {
         else if(username.endsWith("GohanPlays_") && eyeStatus != 0){
             return sharinganOverlay;
         }
+        else if(username.endsWith("liam3011") && eyeStatus != 0){
+            switch(eyeStatus){
+                case 1: return sharinganOverlay;
+                case 2: return sharingan2Overlay;
+                case 3: return sharingan2Overlay;
+            }
+        }
         else if(username.endsWith("Smove33") && eyeStatus != 0){
             switch(eyeStatus){
                 case 1: return sharinganOverlay;
                 case 2: return smove;
+                case 3: return smove;
             }
         }
         return null;
@@ -58,6 +66,10 @@ public class SharinganHandler {
     public float[] getColor(String username, int eyeStatus){
         float[] colors = {1f,1f,1f};
         if(username.endsWith("GohanPlays_") && eyeStatus == 1){
+            colors[1] = 0;
+            colors[2] = 0;
+        }
+        else if(username.endsWith("Smove33") && eyeStatus != 0){
             colors[1] = 0;
             colors[2] = 0;
         }
