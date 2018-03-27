@@ -270,7 +270,7 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
      * Adds Singleplayer and Multiplayer buttons on Main Menu for players who have bought the game.
      */
     private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_) {
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_ - 6, I18n.format("menu.singleplayer")));
+        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_ - 4, I18n.format("menu.singleplayer")));
         this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1 - 6, I18n.format("menu.multiplayer")));
         //GuiButton realmsButton = new GuiButton(14, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, I18n.format("menu.online", new Object[0]));
         GuiButton fmlModButton = new GuiButton(6, this.width / 2 - 100, p_73969_1_ + 52 + 10, "Mods");

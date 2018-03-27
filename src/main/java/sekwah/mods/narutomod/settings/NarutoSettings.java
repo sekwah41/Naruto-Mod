@@ -36,7 +36,7 @@ public class NarutoSettings {
 
     public static int usageReportMode = 0;
 
-    public static String usageUUID = null;
+    //public static String usageUUID = null;
 
     public static boolean rainbowChakra = false;
 
@@ -241,10 +241,10 @@ public class NarutoSettings {
                 "stats such as how many fireballs have been shot and other things.";
 
 
-        Property configUsageUUID = config.get(Configuration.CATEGORY_GENERAL, "usageReportUUID", UUID.randomUUID().toString());
+        /*Property configUsageUUID = config.get(Configuration.CATEGORY_GENERAL, "usageReportUUID", UUID.randomUUID().toString());
         usageUUID = configUsageUUID.getString();
         configUsageUUID.comment = "Used to stop duplicates of users and used to make data completely anonymous. Specific data " +
-                "is kept on the database for a max of 30 mins and a min of 15 mins after logout.";
+                "is kept on the database for a max of 30 mins and a min of 15 mins after logout.";*/
 
         //int randomBlockID = config.getBlock("RandomBlock", 200).getInt();
 

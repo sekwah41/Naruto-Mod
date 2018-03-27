@@ -8,6 +8,10 @@ public class JutsuData {
 
     public static int waterBulletCost = 30;
 
-    public static int shadowCloneCost = 40;
+    public static int wallCost = 30;
+
+    public static int shadowCloneCost = 20;
+
+    public static int multiShadowCloneCost = 60;
 
 }

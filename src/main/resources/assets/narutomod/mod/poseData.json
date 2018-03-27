@@ -1,49 +1,41 @@
 {
     "poses": {
-        "sexyjutsu1" : {
+        "earthWall": {
             "animDuration": -1,
-            "animLength":45,
-            "nextPose":"sexyjutsu2",
-            "locData":{
+            "animLength": 30,
+            "nextPose": "earthWall2",
+            "locData": {
                 "head": {
-                    "posX": "-0.50000000",
-                    "posY": "0.50000000",
-                    "posZ": "0.00000000",
-                    "rotX": "0.06283185",
-                    "rotZ": "0.25132741",
-                    "rotY": "-0.12566370"
+                    "posX": "0.00000000",
+                    "posY": "0.20000000",
+                    "posZ": "0.10000000",
+                    "rotX": "0.06283185"
                 },
                 "rightArmUpper": {
                     "posX": "-5.00000000",
                     "posY": "2.00000000",
                     "posZ": "0.00000000",
-                    "rotX": "-2.63893778",
-                    "rotZ": "-0.06283185",
-                    "rotY": "0.25132741"
+                    "rotX": "0.18849556",
+                    "rotZ": "1.19380523",
+                    "rotY": "0.56548670"
                 },
                 "lowerBody": {
-                    "posX": "-0.50000000",
-                    "posY": "6.09999990",
-                    "posZ": "-0.50000000",
-                    "rotX": "0.06283185",
-                    "rotZ": "-0.06283185",
-                    "rotY": "0.06283185"
+                    "posX": "0.00000000",
+                    "posY": "6.00000000",
+                    "posZ": "-0.20000000",
+                    "rotX": "-0.12566369"
                 },
                 "rightLegUpper": {
                     "posX": "-2.00000000",
                     "posY": "12.00000000",
-                    "posZ": "0.00000000",
-                    "rotX": "0.12566370",
-                    "rotZ": "-0.06283185",
-                    "rotY": "0.18849556"
+                    "posZ": "-0.89999998",
+                    "rotX": "-1.38230071"
                 },
                 "upperBody": {
                     "posX": "0.00000000",
-                    "posY": "0.50000000",
-                    "posZ": "-0.30000001",
-                    "rotX": "-0.06283185",
-                    "rotZ": "0.06283185",
-                    "rotY": "0.12566370"
+                    "posY": "0.40000001",
+                    "posZ": "-0.50000000",
+                    "rotX": "0.06283185"
                 },
                 "helmet": {
                     "posX": "0.00000000",
@@ -54,85 +46,78 @@
                     "posX": "-1.00000000",
                     "posY": "4.00000000",
                     "posZ": "0.00000000",
-                    "rotX": "-1.44513267"
+                    "rotX": "-1.57079633"
                 },
                 "rightLegLower": {
                     "posX": "0.00000000",
                     "posY": "6.00000000",
-                    "posZ": "0.00000000"
+                    "posZ": "0.00000000",
+                    "rotX": "1.50796450"
                 },
                 "leftArmUpper": {
                     "posX": "5.00000000",
                     "posY": "2.00000000",
-                    "posZ": "-0.50000000",
-                    "rotX": "0.25132741",
-                    "rotY": "0.56548670"
+                    "posZ": "0.00000000",
+                    "rotX": "0.18849556",
+                    "rotZ": "-1.25663706",
+                    "rotY": "-0.56548670"
                 },
                 "leftArmLower": {
                     "posX": "1.00000000",
                     "posY": "4.00000000",
-                    "posZ": "0.00000000"
+                    "posZ": "0.00000000",
+                    "rotX": "-1.57079633"
                 },
                 "leftLegLower": {
                     "posX": "0.00000000",
                     "posY": "6.00000000",
                     "posZ": "0.00000000",
-                    "rotX": "1.63362815"
+                    "rotX": "0.12566369"
                 },
                 "leftLegUpper": {
                     "posX": "2.00000000",
                     "posY": "12.00000000",
-                    "posZ": "0.00000000",
-                    "rotX": "0.25132741",
-                    "rotZ": "-0.25132741",
-                    "rotY": "-0.12566370"
+                    "posZ": "-1.10000002",
+                    "rotX": "0.06283185"
                 }
             }
         },
-        "sexyjutsu2" : {
+        "earthWall2": {
             "animDuration": -1,
-            "animLength":35,
-            "nextPose": "sexyjutsu3",
-            "locData":{
+            "animLength": 13,
+            "nextPose": "earthWall3",
+            "locData": {
                 "head": {
-                    "posX": "-0.50000000",
+                    "posX": "0.00000000",
                     "posY": "0.50000000",
-                    "posZ": "0.00000000",
-                    "rotX": "0.06283185",
-                    "rotZ": "0.25132741",
-                    "rotY": "-0.12566370"
+                    "posZ": "-1.50999999",
+                    "rotX": "-0.12566369"
                 },
                 "rightArmUpper": {
                     "posX": "-5.00000000",
                     "posY": "2.00000000",
-                    "posZ": "0.00000000",
-                    "rotX": "-2.63893778",
-                    "rotZ": "-0.06283185",
-                    "rotY": "0.25132741"
+                    "posZ": "-1.39999998",
+                    "rotX": "0.12566369",
+                    "rotZ": "1.19380523",
+                    "rotY": "0.56548670"
                 },
                 "lowerBody": {
-                    "posX": "-0.50000000",
-                    "posY": "6.09999990",
-                    "posZ": "-0.50000000",
-                    "rotX": "0.06283185",
-                    "rotZ": "-0.06283185",
-                    "rotY": "0.06283185"
+                    "posX": "0.00000000",
+                    "posY": "6.00000000",
+                    "posZ": "-1.50000000",
+                    "rotX": "-0.25132739"
                 },
                 "rightLegUpper": {
                     "posX": "-2.00000000",
                     "posY": "12.00000000",
-                    "posZ": "0.00000000",
-                    "rotX": "0.12566370",
-                    "rotZ": "-0.06283185",
-                    "rotY": "0.18849556"
+                    "posZ": "-2.09999990",
+                    "rotX": "-1.88495573"
                 },
                 "upperBody": {
                     "posX": "0.00000000",
                     "posY": "0.50000000",
-                    "posZ": "-0.30000001",
-                    "rotX": "-0.06283185",
-                    "rotZ": "0.06283185",
-                    "rotY": "0.12566370"
+                    "posZ": "-1.21000004",
+                    "rotX": "-0.06283185"
                 },
                 "helmet": {
                     "posX": "0.00000000",
@@ -143,46 +128,390 @@
                     "posX": "-1.00000000",
                     "posY": "4.00000000",
                     "posZ": "0.00000000",
-                    "rotX": "-1.44513267"
+                    "rotX": "-1.57079633"
                 },
                 "rightLegLower": {
                     "posX": "0.00000000",
                     "posY": "6.00000000",
-                    "posZ": "0.00000000"
+                    "posZ": "0.00000000",
+                    "rotX": "1.19380523"
                 },
                 "leftArmUpper": {
                     "posX": "5.00000000",
                     "posY": "2.00000000",
-                    "posZ": "-0.50000000",
+                    "posZ": "-1.50000000",
                     "rotX": "0.25132741",
-                    "rotY": "0.56548670"
+                    "rotZ": "-1.25663706",
+                    "rotY": "-0.56548670"
                 },
                 "leftArmLower": {
                     "posX": "1.00000000",
                     "posY": "4.00000000",
-                    "posZ": "0.00000000"
+                    "posZ": "0.00000000",
+                    "rotX": "-1.57079633"
                 },
                 "leftLegLower": {
                     "posX": "0.00000000",
                     "posY": "6.00000000",
                     "posZ": "0.00000000",
-                    "rotX": "1.63362815"
+                    "rotX": "0.12566370"
                 },
                 "leftLegUpper": {
                     "posX": "2.00000000",
                     "posY": "12.00000000",
-                    "posZ": "0.00000000",
-                    "rotX": "0.25132741",
-                    "rotZ": "-0.25132741",
-                    "rotY": "-0.12566370"
+                    "posZ": "-3.09999990",
+                    "rotX": "0.18849556"
                 }
             }
         },
-        "sexyjutsu5" : {
+        "earthWall3": {
             "animDuration": -1,
-            "animLength":55,
+            "animLength": 39,
+            "completeAction": "3120",
+            "nextPose": "earthWall4",
+            "locData": {
+                "head": {
+                    "posX": "0.00000000",
+                    "posY": "12.60000038",
+                    "posZ": "-14.40999985",
+                    "rotX": "1.44513267"
+                },
+                "rightArmUpper": {
+                    "posX": "-5.00000000",
+                    "posY": "14.19999981",
+                    "posZ": "-11.60000038",
+                    "rotX": "-0.25132741",
+                    "rotZ": "0.62831853",
+                    "rotY": "-1.50796450"
+                },
+                "lowerBody": {
+                    "posX": "0.00000000",
+                    "posY": "11.89999962",
+                    "posZ": "-9.89999962",
+                    "rotX": "0.94247786"
+                },
+                "rightLegUpper": {
+                    "posX": "-2.00000000",
+                    "posY": "15.80000019",
+                    "posZ": "-5.19999981",
+                    "rotX": "-1.19380523"
+                },
+                "upperBody": {
+                    "posX": "0.00000000",
+                    "posY": "13.00000000",
+                    "posZ": "-14.44999981",
+                    "rotX": "1.69646011"
+                },
+                "helmet": {
+                    "posX": "0.00000000",
+                    "posY": "0.00000000",
+                    "posZ": "0.00000000"
+                },
+                "rightArmLower": {
+                    "posX": "-1.00000000",
+                    "posY": "4.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "-0.50265481"
+                },
+                "rightLegLower": {
+                    "posX": "0.00000000",
+                    "posY": "6.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "1.19380523"
+                },
+                "leftArmUpper": {
+                    "posX": "5.00000000",
+                    "posY": "14.19999981",
+                    "posZ": "-11.60000038",
+                    "rotX": "-0.25132741",
+                    "rotZ": "-0.50265481",
+                    "rotY": "1.44513267"
+                },
+                "leftArmLower": {
+                    "posX": "1.00000000",
+                    "posY": "4.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "-0.37699113"
+                },
+                "leftLegLower": {
+                    "posX": "0.00000000",
+                    "posY": "6.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "1.25663706"
+                },
+                "leftLegUpper": {
+                    "posX": "2.00000000",
+                    "posY": "15.72999954",
+                    "posZ": "-5.69999981",
+                    "rotX": "0.18849556"
+                }
+            }
+        },
+        "earthWall4": {
+            "animDuration": -1,
+            "animLength": 79,
             "nextPose": "default",
-            "locData":{
+            "locData": {
+                "head": {
+                    "posX": "0.00000000",
+                    "posY": "12.60000038",
+                    "posZ": "-14.40999985",
+                    "rotX": "1.44513267"
+                },
+                "rightArmUpper": {
+                    "posX": "-5.00000000",
+                    "posY": "14.19999981",
+                    "posZ": "-11.60000038",
+                    "rotX": "-0.25132741",
+                    "rotZ": "0.62831853",
+                    "rotY": "-1.50796450"
+                },
+                "lowerBody": {
+                    "posX": "0.00000000",
+                    "posY": "11.89999962",
+                    "posZ": "-9.89999962",
+                    "rotX": "0.94247786"
+                },
+                "rightLegUpper": {
+                    "posX": "-2.00000000",
+                    "posY": "15.80000019",
+                    "posZ": "-5.19999981",
+                    "rotX": "-1.19380523"
+                },
+                "upperBody": {
+                    "posX": "0.00000000",
+                    "posY": "13.00000000",
+                    "posZ": "-14.44999981",
+                    "rotX": "1.69646011"
+                },
+                "helmet": {
+                    "posX": "0.00000000",
+                    "posY": "0.00000000",
+                    "posZ": "0.00000000"
+                },
+                "rightArmLower": {
+                    "posX": "-1.00000000",
+                    "posY": "4.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "-0.50265481"
+                },
+                "rightLegLower": {
+                    "posX": "0.00000000",
+                    "posY": "6.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "1.19380523"
+                },
+                "leftArmUpper": {
+                    "posX": "5.00000000",
+                    "posY": "14.19999981",
+                    "posZ": "-11.60000038",
+                    "rotX": "-0.25132741",
+                    "rotZ": "-0.50265481",
+                    "rotY": "1.44513267"
+                },
+                "leftArmLower": {
+                    "posX": "1.00000000",
+                    "posY": "4.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "-0.37699113"
+                },
+                "leftLegLower": {
+                    "posX": "0.00000000",
+                    "posY": "6.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "1.25663706"
+                },
+                "leftLegUpper": {
+                    "posX": "2.00000000",
+                    "posY": "15.72999954",
+                    "posZ": "-5.69999981",
+                    "rotX": "0.18849556"
+                }
+            }
+        },
+        "sexyjutsu1": {
+            "animDuration": -1,
+            "animLength": 45,
+            "nextPose": "sexyjutsu2",
+            "locData": {
+                "head": {
+                    "posX": "-0.50000000",
+                    "posY": "0.50000000",
+                    "posZ": "0.00000000",
+                    "rotX": "0.06283185",
+                    "rotZ": "0.25132741",
+                    "rotY": "-0.12566370"
+                },
+                "rightArmUpper": {
+                    "posX": "-5.00000000",
+                    "posY": "2.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "-2.63893778",
+                    "rotZ": "-0.06283185",
+                    "rotY": "0.25132741"
+                },
+                "lowerBody": {
+                    "posX": "-0.50000000",
+                    "posY": "6.09999990",
+                    "posZ": "-0.50000000",
+                    "rotX": "0.06283185",
+                    "rotZ": "-0.06283185",
+                    "rotY": "0.06283185"
+                },
+                "rightLegUpper": {
+                    "posX": "-2.00000000",
+                    "posY": "12.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "0.12566370",
+                    "rotZ": "-0.06283185",
+                    "rotY": "0.18849556"
+                },
+                "upperBody": {
+                    "posX": "0.00000000",
+                    "posY": "0.50000000",
+                    "posZ": "-0.30000001",
+                    "rotX": "-0.06283185",
+                    "rotZ": "0.06283185",
+                    "rotY": "0.12566370"
+                },
+                "helmet": {
+                    "posX": "0.00000000",
+                    "posY": "0.00000000",
+                    "posZ": "0.00000000"
+                },
+                "rightArmLower": {
+                    "posX": "-1.00000000",
+                    "posY": "4.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "-1.44513267"
+                },
+                "rightLegLower": {
+                    "posX": "0.00000000",
+                    "posY": "6.00000000",
+                    "posZ": "0.00000000"
+                },
+                "leftArmUpper": {
+                    "posX": "5.00000000",
+                    "posY": "2.00000000",
+                    "posZ": "-0.50000000",
+                    "rotX": "0.25132741",
+                    "rotY": "0.56548670"
+                },
+                "leftArmLower": {
+                    "posX": "1.00000000",
+                    "posY": "4.00000000",
+                    "posZ": "0.00000000"
+                },
+                "leftLegLower": {
+                    "posX": "0.00000000",
+                    "posY": "6.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "1.63362815"
+                },
+                "leftLegUpper": {
+                    "posX": "2.00000000",
+                    "posY": "12.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "0.25132741",
+                    "rotZ": "-0.25132741",
+                    "rotY": "-0.12566370"
+                }
+            }
+        },
+        "sexyjutsu2": {
+            "animDuration": -1,
+            "animLength": 35,
+            "nextPose": "sexyjutsu3",
+            "locData": {
+                "head": {
+                    "posX": "-0.50000000",
+                    "posY": "0.50000000",
+                    "posZ": "0.00000000",
+                    "rotX": "0.06283185",
+                    "rotZ": "0.25132741",
+                    "rotY": "-0.12566370"
+                },
+                "rightArmUpper": {
+                    "posX": "-5.00000000",
+                    "posY": "2.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "-2.63893778",
+                    "rotZ": "-0.06283185",
+                    "rotY": "0.25132741"
+                },
+                "lowerBody": {
+                    "posX": "-0.50000000",
+                    "posY": "6.09999990",
+                    "posZ": "-0.50000000",
+                    "rotX": "0.06283185",
+                    "rotZ": "-0.06283185",
+                    "rotY": "0.06283185"
+                },
+                "rightLegUpper": {
+                    "posX": "-2.00000000",
+                    "posY": "12.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "0.12566370",
+                    "rotZ": "-0.06283185",
+                    "rotY": "0.18849556"
+                },
+                "upperBody": {
+                    "posX": "0.00000000",
+                    "posY": "0.50000000",
+                    "posZ": "-0.30000001",
+                    "rotX": "-0.06283185",
+                    "rotZ": "0.06283185",
+                    "rotY": "0.12566370"
+                },
+                "helmet": {
+                    "posX": "0.00000000",
+                    "posY": "0.00000000",
+                    "posZ": "0.00000000"
+                },
+                "rightArmLower": {
+                    "posX": "-1.00000000",
+                    "posY": "4.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "-1.44513267"
+                },
+                "rightLegLower": {
+                    "posX": "0.00000000",
+                    "posY": "6.00000000",
+                    "posZ": "0.00000000"
+                },
+                "leftArmUpper": {
+                    "posX": "5.00000000",
+                    "posY": "2.00000000",
+                    "posZ": "-0.50000000",
+                    "rotX": "0.25132741",
+                    "rotY": "0.56548670"
+                },
+                "leftArmLower": {
+                    "posX": "1.00000000",
+                    "posY": "4.00000000",
+                    "posZ": "0.00000000"
+                },
+                "leftLegLower": {
+                    "posX": "0.00000000",
+                    "posY": "6.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "1.63362815"
+                },
+                "leftLegUpper": {
+                    "posX": "2.00000000",
+                    "posY": "12.00000000",
+                    "posZ": "0.00000000",
+                    "rotX": "0.25132741",
+                    "rotZ": "-0.25132741",
+                    "rotY": "-0.12566370"
+                }
+            }
+        },
+        "sexyjutsu5": {
+            "animDuration": -1,
+            "animLength": 55,
+            "nextPose": "default",
+            "locData": {
                 "head": {
                     "posX": "4.40000010",
                     "posY": "1.22000003",
@@ -266,11 +595,11 @@
                 }
             }
         },
-        "sexyjutsu3" : {
+        "sexyjutsu3": {
             "animDuration": -1,
-            "animLength":35,
+            "animLength": 35,
             "nextPose": "sexyjutsu4",
-            "locData":{
+            "locData": {
                 "head": {
                     "posX": "4.40000010",
                     "posY": "1.22000003",
@@ -355,11 +684,11 @@
                 }
             }
         },
-        "sexyjutsu4" : {
+        "sexyjutsu4": {
             "animDuration": -1,
-            "animLength":45,
+            "animLength": 45,
             "nextPose": "sexyjutsu5",
-            "locData":{
+            "locData": {
                 "head": {
                     "posX": "4.40000010",
                     "posY": "1.22000003",
@@ -444,7 +773,7 @@
                 }
             }
         },
-        "leapback1" :{
+        "leapback1": {
             "animDuration": -1,
             "animLength": 20,
             "nextPose": "leapingbackglide1",
@@ -521,7 +850,7 @@
                 }
             }
         },
-        "leapingbackglide1" :{
+        "leapingbackglide1": {
             "animDuration": -1,
             "animLength": 20,
             "locData": {
@@ -596,7 +925,7 @@
                 }
             }
         },
-        "leapback2" :{
+        "leapback2": {
             "animDuration": -1,
             "animLength": 20,
             "nextPose": "leapingbackglide2",
@@ -673,7 +1002,7 @@
                 }
             }
         },
-        "leapingbackglide2" :{
+        "leapingbackglide2": {
             "animDuration": -1,
             "animLength": 20,
             "locData": {
@@ -748,7 +1077,7 @@
                 }
             }
         },
-        "leapleft" :{
+        "leapleft": {
             "animDuration": -1,
             "animLength": 20,
             "nextPose": "leapingleftglide",
@@ -835,7 +1164,7 @@
                 }
             }
         },
-        "leapingleftglide" :{
+        "leapingleftglide": {
             "animDuration": -1,
             "animLength": 20,
             "locData": {
@@ -923,7 +1252,7 @@
                 }
             }
         },
-        "leapright" :{
+        "leapright": {
             "animDuration": -1,
             "animLength": 20,
             "nextPose": "leapingrightglide",
@@ -1011,7 +1340,7 @@
                 }
             }
         },
-        "leapingrightglide" :{
+        "leapingrightglide": {
             "animDuration": -1,
             "animLength": 20,
             "locData": {
@@ -1095,7 +1424,7 @@
                 }
             }
         },
-        "leapingforwardglide1" :{
+        "leapingforwardglide1": {
             "animDuration": -1,
             "animLength": 20,
             "locData": {
@@ -1165,7 +1494,7 @@
                 }
             }
         },
-        "leapforward1" :{
+        "leapforward1": {
             "animDuration": -1,
             "animLength": 20,
             "nextPose": "leapingforwardglide1",
@@ -1237,7 +1566,7 @@
                 }
             }
         },
-        "leapingforwardglide2" :{
+        "leapingforwardglide2": {
             "animDuration": -1,
             "animLength": 20,
             "locData": {
@@ -1314,7 +1643,7 @@
                 }
             }
         },
-        "leapforward2" :{
+        "leapforward2": {
             "animDuration": -1,
             "animLength": 20,
             "nextPose": "leapingforwardglide2",
@@ -1359,13 +1688,13 @@
                     "posX": "-1.00000000",
                     "posY": "4.00000000",
                     "posZ": "0.00000000",
-                    "rotX":"0.00000000"
+                    "rotX": "0.00000000"
                 },
                 "leftArmLower": {
                     "posX": "1.00000000",
                     "posY": "4.00000000",
                     "posZ": "0.00000000",
-                    "rotX":"0.00000000"
+                    "rotX": "0.00000000"
                 },
                 "rightLegLower": {
                     "posX": "0.00000000",
@@ -1393,46 +1722,46 @@
                 }
             }
         },
-        "chakraCharging" :{
+        "chakraCharging": {
             "animDuration": -1,
             "animLength": 19,
-            "locData" :{
-                "rightArmUpper":{
+            "locData": {
+                "rightArmUpper": {
                     "rotX": -1.375616,
                     "rotY": -0.5948606,
                     "rotZ": 0
                 },
-                "rightArmLower":{
+                "rightArmLower": {
                     "rotX": 0,
                     "rotY": 0,
                     "rotZ": 0
                 },
-                "leftArmLower":{
+                "leftArmLower": {
                     "rotX": 0,
                     "rotY": 0,
                     "rotZ": 0
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": -1.375616,
                     "rotY": 0.5948606,
                     "rotZ": 0
                 }
             }
         },
-        "fireBall" :{
+        "fireBall": {
             "animDuration": -1,
             "animLength": 26,
             "nextPose": "fireBall2",
             "completeAction": "1210",
-            "locData" :{
-                "head":{
+            "locData": {
+                "head": {
                     "rotX": 0,
                     "rotZ": 0,
                     "posX": 0,
                     "posY": 4,
                     "posZ": -9
                 },
-                "upperBody":{
+                "upperBody": {
                     "rotX": 0.7435722,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1440,7 +1769,7 @@
                     "posY": 3,
                     "posZ": -6
                 },
-                "rightArmUpper":{
+                "rightArmUpper": {
                     "rotX": -1.487144,
                     "rotY": -0.4089647,
                     "rotZ": -0.2487144,
@@ -1448,7 +1777,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": 1.487144,
                     "rotY": 0.8589292,
                     "rotZ": 0,
@@ -1456,7 +1785,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "lowerBody":{
+                "lowerBody": {
                     "rotX": 0.4833219,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1466,19 +1795,19 @@
                 }
             }
         },
-        "fireBall2" :{
+        "fireBall2": {
             "animDuration": -1,
             "animLength": 26,
             "nextPose": "default",
-            "locData" :{
-                "head":{
+            "locData": {
+                "head": {
                     "rotX": 0,
                     "rotZ": 0,
                     "posX": 0,
                     "posY": 4,
                     "posZ": -9
                 },
-                "upperBody":{
+                "upperBody": {
                     "rotX": 0.7435722,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1486,7 +1815,7 @@
                     "posY": 3,
                     "posZ": -6
                 },
-                "rightArmUpper":{
+                "rightArmUpper": {
                     "rotX": -1.487144,
                     "rotY": 0.6089647,
                     "rotZ": -0.2487144,
@@ -1494,7 +1823,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": 1.487144,
                     "rotY": 0.8589292,
                     "rotZ": 0,
@@ -1502,7 +1831,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "lowerBody":{
+                "lowerBody": {
                     "rotX": 0.4833219,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1512,20 +1841,20 @@
                 }
             }
         },
-        "waterBullet" :{
+        "waterBullet": {
             "animDuration": -1,
             "animLength": 26,
             "nextPose": "waterBullet2",
             "completeAction": "1320",
-            "locData" :{
-                "head":{
+            "locData": {
+                "head": {
                     "rotX": 0,
                     "rotZ": 0,
                     "posX": 0,
                     "posY": 4,
                     "posZ": -9
                 },
-                "upperBody":{
+                "upperBody": {
                     "rotX": 0.7435722,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1533,7 +1862,7 @@
                     "posY": 3,
                     "posZ": -6
                 },
-                "rightArmUpper":{
+                "rightArmUpper": {
                     "rotX": -1.487144,
                     "rotY": -0.4089647,
                     "rotZ": -0.2487144,
@@ -1541,7 +1870,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": 1.487144,
                     "rotY": 0.8589292,
                     "rotZ": 0,
@@ -1549,7 +1878,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "lowerBody":{
+                "lowerBody": {
                     "rotX": 0.4833219,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1559,18 +1888,18 @@
                 }
             }
         },
-        "waterBullet2" :{
+        "waterBullet2": {
             "animLength": 18,
             "nextPose": "waterBullet3",
-            "locData" :{
-                "head":{
+            "locData": {
+                "head": {
                     "rotX": 0,
                     "rotZ": 0,
                     "posX": 0,
                     "posY": 4,
                     "posZ": -9
                 },
-                "upperBody":{
+                "upperBody": {
                     "rotX": 0.7435722,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1578,7 +1907,7 @@
                     "posY": 3,
                     "posZ": -6
                 },
-                "rightArmUpper":{
+                "rightArmUpper": {
                     "rotX": -1.487144,
                     "rotY": 0.6089647,
                     "rotZ": -0.2487144,
@@ -1586,7 +1915,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": 1.487144,
                     "rotY": 0.8589292,
                     "rotZ": 0,
@@ -1594,7 +1923,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "lowerBody":{
+                "lowerBody": {
                     "rotX": 0.4833219,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1604,18 +1933,18 @@
                 }
             }
         },
-        "waterBullet3" :{
+        "waterBullet3": {
             "animLength": 18,
             "nextPose": "waterBullet4",
-            "locData" :{
-                "head":{
+            "locData": {
+                "head": {
                     "rotX": 0,
                     "rotZ": 0,
                     "posX": 0,
                     "posY": 4,
                     "posZ": -9
                 },
-                "upperBody":{
+                "upperBody": {
                     "rotX": 0.7435722,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1623,7 +1952,7 @@
                     "posY": 3,
                     "posZ": -6
                 },
-                "rightArmUpper":{
+                "rightArmUpper": {
                     "rotX": -1.187144,
                     "rotY": 0.5089647,
                     "rotZ": -0.2487144,
@@ -1631,7 +1960,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": 1.487144,
                     "rotY": 0.8589292,
                     "rotZ": 0,
@@ -1639,7 +1968,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "lowerBody":{
+                "lowerBody": {
                     "rotX": 0.4833219,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1649,20 +1978,20 @@
                 }
             }
         },
-        "waterBullet4" :{
+        "waterBullet4": {
             "animDuration": -1,
             "animLength": 26,
             "nextPose": "waterBullet5",
             "completeAction": "1320",
-            "locData" :{
-                "head":{
+            "locData": {
+                "head": {
                     "rotX": 0,
                     "rotZ": 0,
                     "posX": 0,
                     "posY": 4,
                     "posZ": -9
                 },
-                "upperBody":{
+                "upperBody": {
                     "rotX": 0.7435722,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1670,7 +1999,7 @@
                     "posY": 3,
                     "posZ": -6
                 },
-                "rightArmUpper":{
+                "rightArmUpper": {
                     "rotX": -1.487144,
                     "rotY": -0.4089647,
                     "rotZ": -0.2487144,
@@ -1678,7 +2007,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": 1.487144,
                     "rotY": 0.8589292,
                     "rotZ": 0,
@@ -1686,7 +2015,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "lowerBody":{
+                "lowerBody": {
                     "rotX": 0.4833219,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1696,18 +2025,18 @@
                 }
             }
         },
-        "waterBullet5" :{
+        "waterBullet5": {
             "animLength": 18,
             "nextPose": "waterBullet6",
-            "locData" :{
-                "head":{
+            "locData": {
+                "head": {
                     "rotX": 0,
                     "rotZ": 0,
                     "posX": 0,
                     "posY": 4,
                     "posZ": -9
                 },
-                "upperBody":{
+                "upperBody": {
                     "rotX": 0.7435722,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1715,7 +2044,7 @@
                     "posY": 3,
                     "posZ": -6
                 },
-                "rightArmUpper":{
+                "rightArmUpper": {
                     "rotX": -1.487144,
                     "rotY": 0.6089647,
                     "rotZ": -0.2487144,
@@ -1723,7 +2052,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": 1.487144,
                     "rotY": 0.8589292,
                     "rotZ": 0,
@@ -1731,7 +2060,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "lowerBody":{
+                "lowerBody": {
                     "rotX": 0.4833219,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1741,18 +2070,18 @@
                 }
             }
         },
-        "waterBullet6" :{
+        "waterBullet6": {
             "animLength": 18,
             "nextPose": "waterBullet7",
-            "locData" :{
-                "head":{
+            "locData": {
+                "head": {
                     "rotX": 0,
                     "rotZ": 0,
                     "posX": 0,
                     "posY": 4,
                     "posZ": -9
                 },
-                "upperBody":{
+                "upperBody": {
                     "rotX": 0.7435722,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1760,7 +2089,7 @@
                     "posY": 3,
                     "posZ": -6
                 },
-                "rightArmUpper":{
+                "rightArmUpper": {
                     "rotX": -1.187144,
                     "rotY": 0.5089647,
                     "rotZ": -0.2487144,
@@ -1768,7 +2097,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": 1.487144,
                     "rotY": 0.8589292,
                     "rotZ": 0,
@@ -1776,7 +2105,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "lowerBody":{
+                "lowerBody": {
                     "rotX": 0.4833219,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1786,20 +2115,20 @@
                 }
             }
         },
-        "waterBullet7" :{
+        "waterBullet7": {
             "animDuration": -1,
             "animLength": 28,
             "nextPose": "waterBullet8",
             "completeAction": "1320",
-            "locData" :{
-                "head":{
+            "locData": {
+                "head": {
                     "rotX": 0,
                     "rotZ": 0,
                     "posX": 0,
                     "posY": 4,
                     "posZ": -9
                 },
-                "upperBody":{
+                "upperBody": {
                     "rotX": 0.7435722,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1807,7 +2136,7 @@
                     "posY": 3,
                     "posZ": -6
                 },
-                "rightArmUpper":{
+                "rightArmUpper": {
                     "rotX": -1.487144,
                     "rotY": -0.4089647,
                     "rotZ": -0.2487144,
@@ -1815,7 +2144,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": 1.487144,
                     "rotY": 0.8589292,
                     "rotZ": 0,
@@ -1823,7 +2152,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "lowerBody":{
+                "lowerBody": {
                     "rotX": 0.4833219,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1833,18 +2162,18 @@
                 }
             }
         },
-        "waterBullet8" :{
+        "waterBullet8": {
             "animLength": 18,
             "nextPose": "waterBullet9",
-            "locData" :{
-                "head":{
+            "locData": {
+                "head": {
                     "rotX": 0,
                     "rotZ": 0,
                     "posX": 0,
                     "posY": 4,
                     "posZ": -9
                 },
-                "upperBody":{
+                "upperBody": {
                     "rotX": 0.7435722,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1852,7 +2181,7 @@
                     "posY": 3,
                     "posZ": -6
                 },
-                "rightArmUpper":{
+                "rightArmUpper": {
                     "rotX": -1.487144,
                     "rotY": 0.6089647,
                     "rotZ": -0.2487144,
@@ -1860,7 +2189,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": 1.487144,
                     "rotY": 0.8589292,
                     "rotZ": 0,
@@ -1868,7 +2197,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "lowerBody":{
+                "lowerBody": {
                     "rotX": 0.4833219,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1878,18 +2207,18 @@
                 }
             }
         },
-        "waterBullet9" :{
+        "waterBullet9": {
             "animLength": 18,
             "nextPose": "default",
-            "locData" :{
-                "head":{
+            "locData": {
+                "head": {
                     "rotX": 0,
                     "rotZ": 0,
                     "posX": 0,
                     "posY": 4,
                     "posZ": -9
                 },
-                "upperBody":{
+                "upperBody": {
                     "rotX": 0.7435722,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1897,7 +2226,7 @@
                     "posY": 3,
                     "posZ": -6
                 },
-                "rightArmUpper":{
+                "rightArmUpper": {
                     "rotX": -1.187144,
                     "rotY": 0.5089647,
                     "rotZ": -0.2487144,
@@ -1905,7 +2234,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": 1.487144,
                     "rotY": 0.8589292,
                     "rotZ": 0,
@@ -1913,7 +2242,7 @@
                     "posY": 4,
                     "posZ": -6
                 },
-                "lowerBody":{
+                "lowerBody": {
                     "rotX": 0.4833219,
                     "rotY": 0,
                     "rotZ": 0,
@@ -1923,90 +2252,90 @@
                 }
             }
         },
-        "summonPuppet" :{
+        "summonPuppet": {
             "animDuration": -1,
             "animLength": 20,
             "nextPose": "summonPuppet1",
-            "locData" :{
-                "rightArmUpper":{
+            "locData": {
+                "rightArmUpper": {
                     "rotX": -1.375616,
                     "rotY": -0.5948606,
                     "rotZ": 0
                 },
-                "rightArmLower":{
+                "rightArmLower": {
                     "rotX": 0,
                     "rotY": 0,
                     "rotZ": 0
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": -1.375616,
                     "rotY": 0.5948606,
                     "rotZ": 0
                 }
             }
         },
-        "summonPuppet1" :{
+        "summonPuppet1": {
             "animDuration": -1,
             "animLength": 26,
             "completeAction": "11320",
             "nextPose": "default",
-            "locData" :{
-                "rightArmUpper":{
+            "locData": {
+                "rightArmUpper": {
                     "rotX": -1.375616,
                     "rotY": -0.5948606,
                     "rotZ": 0
                 },
-                "rightArmLower":{
+                "rightArmLower": {
                     "rotX": 0,
                     "rotY": 0,
                     "rotZ": 0
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": -1.375616,
                     "rotY": 0.5948606,
                     "rotZ": 0
                 }
             }
         },
-        "summonGate" :{
+        "summonGate": {
             "animDuration": -1,
             "animLength": 18,
             "nextPose": "summonGate1",
-            "locData" :{
-                "rightArmUpper":{
+            "locData": {
+                "rightArmUpper": {
                     "rotX": -1.375616,
                     "rotY": -0.5948606,
                     "rotZ": 0
                 },
-                "rightArmLower":{
+                "rightArmLower": {
                     "rotX": 0,
                     "rotY": 0,
                     "rotZ": 0
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": -1.375616,
                     "rotY": 0.5948606,
                     "rotZ": 0
                 }
             }
         },
-        "summonGate1" :{
+        "summonGate1": {
             "animDuration": -1,
             "animLength": 70,
             "completeAction": "230",
             "nextPose": "default",
-            "locData" :{
-                "rightArmUpper":{
+            "locData": {
+                "rightArmUpper": {
                     "rotX": -1.375616,
                     "rotY": -0.5948606,
                     "rotZ": 0
                 },
-                "rightArmLower":{
+                "rightArmLower": {
                     "rotX": 0,
                     "rotY": 0,
                     "rotZ": 0
                 },
-                "leftArmUpper":{
+                "leftArmUpper": {
                     "rotX": -1.375616,
                     "rotY": 0.5948606,
                     "rotZ": 0

@@ -41,7 +41,7 @@ public class UsageReport {
 
     // Once this is complete there will be a lot more data complete
     public UsageReport(boolean isClient) {
-        this(isClient, NarutoSettings.usageUUID /*UUID.randomUUID().toString()*/);
+        this(isClient, /*NarutoSettings.usageUUID*/ UUID.randomUUID().toString());
     }
 
     public void startUsageReport() {

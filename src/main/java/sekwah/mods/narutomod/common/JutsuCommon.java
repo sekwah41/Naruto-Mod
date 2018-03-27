@@ -1,5 +1,6 @@
 package sekwah.mods.narutomod.common;
 
+import net.minecraft.util.MovingObjectPosition;
 import sekwah.mods.narutomod.entitys.EntityShadowClone;
 import sekwah.mods.narutomod.entitys.EntitySubstitution;
 import sekwah.mods.narutomod.entitys.jutsuprojectiles.EntityFlameFireball;
@@ -158,6 +159,22 @@ public class JutsuCommon {
             case 311: // possibly the toggle for liams eyes
                 return true;
             case 312: // TODO set the combo for the earth style
+                // PLACEHOLDER FREEZING METHOD
+                return true;
+            case 3120:
+                jutsuSound(4, playerMP);
+                Vec3 posVec = Vec3.createVectorHelper(playerMP.posX,playerMP.posY + playerMP.getEyeHeight(), playerMP.posZ);
+                Vec3 lookVec = playerMP.getLookVec();
+                int wallRange = 10;
+                MovingObjectPosition movingObject = playerMP.worldObj.rayTraceBlocks(posVec, posVec.addVector(lookVec.xCoord * wallRange,
+                        lookVec.yCoord * wallRange, lookVec.zCoord * wallRange));
+                if(movingObject != null) {
+                    playerMP.worldObj.setBlockToAir(movingObject.blockX,movingObject.blockY, movingObject.blockZ);
+                    //System.out.printf("%s %s %s%n",movingObject.blockX,movingObject.blockY, movingObject.blockZ);
+                }
+                /*else {
+                    System.out.println("NO BLOCK");
+                }*/
                 return true;
             case 333:
                 return true;
@@ -165,78 +182,43 @@ public class JutsuCommon {
                 return true;
             case 1332:
                 jutsuSound(4, playerMP);
-
                 eyeStatus = playerMP.getDataWatcher().getWatchableObjectInt(23);
-
-                EntityShadowClone shadowClone = new EntityShadowClone(playerMP.worldObj);
-
-                shadowClone.setLocationAndAngles(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
-                shadowClone.setCustomNameTag(playerMP.getCommandSenderName());
-
-                shadowClone.setCurrentItemOrArmor(0, playerMP.getCurrentEquippedItem());
-
-                shadowClone.setCurrentItemOrArmor(1, playerMP.getCurrentArmor(3));
-                shadowClone.setCurrentItemOrArmor(2, playerMP.getCurrentArmor(2));
-                shadowClone.setCurrentItemOrArmor(3, playerMP.getCurrentArmor(1));
-                shadowClone.setCurrentItemOrArmor(4, playerMP.getCurrentArmor(0));
-
-                shadowClone.getDataWatcher().updateObject(23, eyeStatus);
-
-                shadowClone.setVelocity((Math.random() - 0.5D) / 3, 0, (Math.random() - 0.5D) / 3);
-
-                playerMP.worldObj.spawnEntityInWorld(shadowClone);
-
-                if (Math.random() > 0.1D) {
-
-                    shadowClone = new EntityShadowClone(playerMP.worldObj);
-
-                    shadowClone.setLocationAndAngles(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
-                    shadowClone.setCustomNameTag(playerMP.getCommandSenderName());
-
-                    shadowClone.setCurrentItemOrArmor(0, playerMP.getCurrentEquippedItem());
-
-                    shadowClone.setCurrentItemOrArmor(1, playerMP.getCurrentArmor(3));
-                    shadowClone.setCurrentItemOrArmor(2, playerMP.getCurrentArmor(2));
-                    shadowClone.setCurrentItemOrArmor(3, playerMP.getCurrentArmor(1));
-                    shadowClone.setCurrentItemOrArmor(4, playerMP.getCurrentArmor(0));
-
-                    shadowClone.getDataWatcher().updateObject(23, eyeStatus);
-
-                    shadowClone.setVelocity((Math.random() - 0.5D) / 3, 0, (Math.random() - 0.5D) / 3);
-
-                    playerMP.worldObj.spawnEntityInWorld(shadowClone);
-
-                    if (Math.random() > 0.9D) {
-                        shadowClone = new EntityShadowClone(playerMP.worldObj);
-
-                        shadowClone.setLocationAndAngles(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
-                        shadowClone.setCustomNameTag(playerMP.getCommandSenderName());
-
-                        shadowClone.setCurrentItemOrArmor(0, playerMP.getCurrentEquippedItem());
-
-                        shadowClone.setCurrentItemOrArmor(1, playerMP.getCurrentArmor(3));
-                        shadowClone.setCurrentItemOrArmor(2, playerMP.getCurrentArmor(2));
-                        shadowClone.setCurrentItemOrArmor(3, playerMP.getCurrentArmor(1));
-                        shadowClone.setCurrentItemOrArmor(4, playerMP.getCurrentArmor(0));
-
-                        shadowClone.getDataWatcher().updateObject(23, eyeStatus);
-
-                        shadowClone.setVelocity((Math.random() - 0.5D) / 3, 0, (Math.random() - 0.5D) / 3);
-
-                        playerMP.worldObj.spawnEntityInWorld(shadowClone);
-                    }
-                }
-                //var7.setLocationAndAngles((double)par2 + 0.5, (double)par3 + 0D, (double)par4 + 0.5D, 0.0F, 0.0F);
-                //var7.setTamed(true);
-                //var7.setOwner(this.PlayerPlace.getEntityName());
-                //par1World.spawnEntityInWorld(var7);
-
+                spawnClones(playerMP, (int) (Math.random() * 1.2 + 1.9), eyeStatus);
+                return true;
+            case 133231:
+                jutsuSound(4, playerMP);
+                eyeStatus = playerMP.getDataWatcher().getWatchableObjectInt(23);
+                spawnClones(playerMP, (int) (Math.random() * 2.2 + 8.9), eyeStatus);
                 return true;
         }
 
         return false;
 
 
+    }
+
+    private static void spawnClones(EntityPlayerMP playerMP, int cloneCount, int eyeStatus) {
+        System.out.println(cloneCount);
+        for(int i = 0; i < cloneCount; i++) {
+            System.out.println("SHADOW CLONE");
+            EntityShadowClone shadowClone = new EntityShadowClone(playerMP.worldObj);
+
+            shadowClone.setLocationAndAngles(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
+            shadowClone.setCustomNameTag(playerMP.getCommandSenderName());
+
+            shadowClone.setCurrentItemOrArmor(0, playerMP.getCurrentEquippedItem());
+
+            shadowClone.setCurrentItemOrArmor(1, playerMP.getCurrentArmor(3));
+            shadowClone.setCurrentItemOrArmor(2, playerMP.getCurrentArmor(2));
+            shadowClone.setCurrentItemOrArmor(3, playerMP.getCurrentArmor(1));
+            shadowClone.setCurrentItemOrArmor(4, playerMP.getCurrentArmor(0));
+
+            shadowClone.getDataWatcher().updateObject(23, eyeStatus);
+
+            shadowClone.setVelocity((Math.random() - 0.5D) / 3, 0, (Math.random() - 0.5D) / 3);
+
+            playerMP.worldObj.spawnEntityInWorld(shadowClone);
+        }
     }
 
     private static void jutsuSound(int i, EntityPlayerMP playerMP) {

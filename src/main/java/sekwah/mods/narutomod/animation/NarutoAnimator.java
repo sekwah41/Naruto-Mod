@@ -69,11 +69,6 @@ public class NarutoAnimator {
     }*/
 
     public static Pose[] quickSortAnimations(Pose[] poses) {
-
-        AnimModelRenderer anim = new AnimModelRenderer(new ModelNinjaBiped(), "");
-
-        anim.addBox(5,5,5,5,5,5,5);
-
         ArrayList<Pose> poseList = new ArrayList<Pose>();
         for(int i = 0; i < poses.length; i++){
             poseList.add(poses[i]);

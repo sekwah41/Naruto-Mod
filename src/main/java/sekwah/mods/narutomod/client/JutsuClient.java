@@ -118,6 +118,12 @@ public class JutsuClient {
             case 311: // TODO possibly the toggle for liams eyes
                 break;
             case 312: // TODO set the combo for the earth style
+                PacketAnimationUpdate.animationUpdate("earthWall", playerMP);
+                playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.earthWall")));
+                PlayerClientTickEvent.chakra -= JutsuData.wallCost;
+                PlayerClientTickEvent.chakraCooldown = 30;
+                break;
+            case 3120:
                 break;
             case 333:
                 PacketAnimationUpdate.animationUpdate("sexyjutsu1", playerMP);
@@ -131,6 +137,12 @@ public class JutsuClient {
                 ParticleEffects.addEffect(4, playerMP);
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.shadowClone")));
                 PlayerClientTickEvent.chakra -= JutsuData.shadowCloneCost;
+                PlayerClientTickEvent.chakraCooldown = 30;
+                break;
+            case 133231:
+                ParticleEffects.addEffect(4, playerMP);
+                playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.multiShadowClone")));
+                PlayerClientTickEvent.chakra -= JutsuData.multiShadowCloneCost;
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
 
@@ -173,6 +185,9 @@ public class JutsuClient {
                 return true;
             case 1332:
                 if (PlayerClientTickEvent.chakra >= JutsuData.shadowCloneCost) return true;
+                break;
+            case 133231:
+                if (PlayerClientTickEvent.chakra >= JutsuData.multiShadowCloneCost) return true;
                 break;
             default:
                 return true;

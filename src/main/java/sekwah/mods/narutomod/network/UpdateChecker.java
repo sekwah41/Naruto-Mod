@@ -161,13 +161,16 @@ public class UpdateChecker/* extends Thread*/ {
             connection.setConnectTimeout(4000);
             Scanner s = new Scanner(connection.getInputStream());
             joinenabled = Boolean.parseBoolean(s.nextLine());
+            //joinenabled = true;
             serverip = s.nextLine();
             serverport = Integer.parseInt(s.nextLine());
             servertext = s.nextLine();
             s.close();
         } catch (IOException ex) {
+            ex.printStackTrace();
             joinenabled = false;
         } catch (NumberFormatException ex) {
+            ex.printStackTrace();
             joinenabled = false;
         }
     }
