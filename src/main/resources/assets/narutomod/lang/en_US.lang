@@ -140,6 +140,7 @@ naruto.jutsu.chakraCharge.deactivate=You have stopped infusing your chakra!
 naruto.jutsu.fireball=Fire Style - Fireball jutsu!
 naruto.jutsu.waterBullet=Water Style - Water Bullet Jutsu!
 naruto.jutsu.earthWall=Earth Release - Earth-Style Wall!
+naruto.jutsu.earthWall.failed=Jutsu failed you must be looking at a block within 10 blocks
 
 naruto.jutsu.shadowClone=Shadow Clone Jutsu!
 naruto.jutsu.multiShadowClone=Multi Shadow Clone Jutsu!

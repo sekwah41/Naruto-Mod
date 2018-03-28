@@ -3,6 +3,8 @@ package sekwah.mods.narutomod.client;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.entitys.projectiles.*;
 import sekwah.mods.narutomod.entitys.renderers.projectiles.*;
+import sekwah.mods.narutomod.entitys.renderers.special.RenderMovingBlock;
+import sekwah.mods.narutomod.entitys.specials.EntityMovingBlock;
 import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.player.RenderNinjaPlayer;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -91,6 +93,8 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntitySubstitutionLog.class, new RenderSubstitutionLog());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityWaterBullet.class, new RenderWaterBullet());
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityMovingBlock.class, new RenderMovingBlock());
 
         NarutoAnimator.playerRenderer = new RenderNinjaPlayer();
 

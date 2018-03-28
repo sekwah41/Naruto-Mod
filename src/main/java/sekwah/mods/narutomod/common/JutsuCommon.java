@@ -1,10 +1,13 @@
 package sekwah.mods.narutomod.common;
 
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.util.*;
+import net.minecraft.world.World;
 import sekwah.mods.narutomod.entitys.EntityShadowClone;
 import sekwah.mods.narutomod.entitys.EntitySubstitution;
 import sekwah.mods.narutomod.entitys.jutsuprojectiles.EntityFlameFireball;
 import sekwah.mods.narutomod.entitys.jutsuprojectiles.EntityWaterBullet;
+import sekwah.mods.narutomod.entitys.specials.EntityMovingBlock;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
@@ -13,8 +16,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -113,12 +114,10 @@ public class JutsuCommon {
 
                 playerMP.worldObj.spawnEntityInWorld(substitution);
                 return true;
-            case 101:
+            case 101: // charging chakra
                 jutsuSound(4, playerMP);
-                // charging chakra
                 return true;
-            case 110:
-                // charging chakra stopped
+            case 110: // charging chakra stopped
                 return true;
             case 121:
                 jutsuSound(4, playerMP);
@@ -158,23 +157,11 @@ public class JutsuCommon {
                 return true;
             case 311: // possibly the toggle for liams eyes
                 return true;
-            case 312: // TODO set the combo for the earth style
-                // PLACEHOLDER FREEZING METHOD
+            case 312:
+                // TODO STOP PLAYER MOVEMENT
                 return true;
             case 3120:
-                jutsuSound(4, playerMP);
-                Vec3 posVec = Vec3.createVectorHelper(playerMP.posX,playerMP.posY + playerMP.getEyeHeight(), playerMP.posZ);
-                Vec3 lookVec = playerMP.getLookVec();
-                int wallRange = 10;
-                MovingObjectPosition movingObject = playerMP.worldObj.rayTraceBlocks(posVec, posVec.addVector(lookVec.xCoord * wallRange,
-                        lookVec.yCoord * wallRange, lookVec.zCoord * wallRange));
-                if(movingObject != null) {
-                    playerMP.worldObj.setBlockToAir(movingObject.blockX,movingObject.blockY, movingObject.blockZ);
-                    //System.out.printf("%s %s %s%n",movingObject.blockX,movingObject.blockY, movingObject.blockZ);
-                }
-                /*else {
-                    System.out.println("NO BLOCK");
-                }*/
+                activateEarthWall(playerMP);
                 return true;
             case 333:
                 return true;
@@ -197,10 +184,41 @@ public class JutsuCommon {
 
     }
 
+    private static void activateEarthWall(EntityPlayerMP playerMP) {
+        jutsuSound(4, playerMP);
+        Vec3 posVec = Vec3.createVectorHelper(playerMP.posX,playerMP.posY + playerMP.getEyeHeight(), playerMP.posZ);
+        Vec3 lookVec = playerMP.getLookVec();
+        int wallRange = 10;
+        MovingObjectPosition movingObject = playerMP.worldObj.rayTraceBlocks(posVec, posVec.addVector(lookVec.xCoord * wallRange,
+                lookVec.yCoord * wallRange, lookVec.zCoord * wallRange));
+        if(movingObject != null) {
+            //playerMP.worldObj.setBlockToAir(movingObject.blockX,movingObject.blockY, movingObject.blockZ);
+
+            //playerMP.worldObj.getBlock(movingObject.blockX,movingObject.blockY, movingObject.blockZ);
+            int dir = MathHelper.floor_double((double) ((playerMP.rotationYaw * 8F) / 360F) + 0.5D);
+            System.out.println(dir);
+            earthWallPillar(playerMP.worldObj, movingObject.blockX,movingObject.blockY, movingObject.blockZ);
+            //System.out.printf("%s %s %s%n",movingObject.blockX,movingObject.blockY, movingObject.blockZ);
+        }
+        else {
+            playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + I18n.format("naruto.jutsu.earthWall.failed")));
+            //System.out.println("NO BLOCK");
+        }
+    }
+
+    private static void earthWallPillar(World worldObj, int x, int y, int z) {
+        if(!Blocks.dirt.canPlaceBlockAt(worldObj,x,y,z)) y++;
+        //worldObj.setBlock(x,y,z,Blocks.bedrock);
+        Block block = worldObj.getBlock(x,y,z);
+        EntityMovingBlock blockEntity = new EntityMovingBlock(worldObj,x,y,z, Block.getIdFromBlock(block), worldObj.getBlockMetadata(x,y,z));
+
+        worldObj.spawnEntityInWorld(blockEntity);
+
+    }
+
     private static void spawnClones(EntityPlayerMP playerMP, int cloneCount, int eyeStatus) {
         System.out.println(cloneCount);
         for(int i = 0; i < cloneCount; i++) {
-            System.out.println("SHADOW CLONE");
             EntityShadowClone shadowClone = new EntityShadowClone(playerMP.worldObj);
 
             shadowClone.setLocationAndAngles(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
@@ -238,9 +256,6 @@ public class JutsuCommon {
 
     }
 
-    /**
-     * Teleport the enderman to a random nearby position
-     */
     protected static boolean teleportRandomly(EntityPlayerMP playerMP) {
         double d0 = playerMP.posX + (playerMP.worldObj.rand.nextDouble() - 0.5D) * 32.0D;
         double d1 = playerMP.posY + (double) (playerMP.worldObj.rand.nextInt(30) - 10);
@@ -257,9 +272,6 @@ public class JutsuCommon {
         }
     }
 
-    /**
-     * Teleport the enderman
-     */
     protected static boolean teleportTo(double posX, double posY, double posZ, EntityPlayerMP playerMP) {
 
         double d3 = playerMP.posX;

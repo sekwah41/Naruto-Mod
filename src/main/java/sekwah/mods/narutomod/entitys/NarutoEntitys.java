@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
 import sekwah.mods.narutomod.entitys.projectiles.*;
+import sekwah.mods.narutomod.entitys.specials.EntityMovingBlock;
 
 import java.awt.*;
 
@@ -33,6 +34,8 @@ public class NarutoEntitys {
         EntityRegistry.registerModEntity(EntityFlameFireball.class, "Fireball", 6, narutoMod, 64, 1, true);
 
         EntityRegistry.registerModEntity(EntityWaterBullet.class, "WaterBullet", 7, narutoMod, 64, 1, true);
+
+        EntityRegistry.registerModEntity(EntityMovingBlock.class, "EarthWall", 8, narutoMod, 64, 1, true);
 
         // TODO make a custom egg for entities
         EntityRegistry.registerModEntity(EntityPuppet.class, "Puppet", 73, narutoMod, 80, 5, true);
