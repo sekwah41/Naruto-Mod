@@ -210,9 +210,13 @@ public class JutsuCommon {
         if(!Blocks.dirt.canPlaceBlockAt(worldObj,x,y,z)) y++;
         //worldObj.setBlock(x,y,z,Blocks.bedrock);
         Block block = worldObj.getBlock(x,y,z);
-        EntityMovingBlock blockEntity = new EntityMovingBlock(worldObj,x,y,z, Block.getIdFromBlock(block), worldObj.getBlockMetadata(x,y,z));
-
-        worldObj.spawnEntityInWorld(blockEntity);
+        for(int xW = -2; xW <=2; xW ++) {
+            for(int yW = 0; yW < 5; yW ++) {
+                EntityMovingBlock blockEntity = new EntityMovingBlock(worldObj,x + xW,y + yW,z,
+                        Block.getIdFromBlock(Blocks.dirt/*block*/), worldObj.getBlockMetadata(x,y,z), 20 * 9 + (int) (Math.random() * 40));
+                worldObj.spawnEntityInWorld(blockEntity);
+            }
+        }
 
     }
 

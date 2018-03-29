@@ -35,7 +35,7 @@ public class NarutoEntitys {
 
         EntityRegistry.registerModEntity(EntityWaterBullet.class, "WaterBullet", 7, narutoMod, 64, 1, true);
 
-        EntityRegistry.registerModEntity(EntityMovingBlock.class, "EarthWall", 8, narutoMod, 64, 1, true);
+        EntityRegistry.registerModEntity(EntityMovingBlock.class, "EarthWall", 8, narutoMod, 64, 1, false);
 
         // TODO make a custom egg for entities
         EntityRegistry.registerModEntity(EntityPuppet.class, "Puppet", 73, narutoMod, 80, 5, true);
