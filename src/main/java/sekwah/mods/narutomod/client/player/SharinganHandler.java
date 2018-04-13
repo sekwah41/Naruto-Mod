@@ -4,7 +4,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class SharinganHandler {
 
-    private static final ResourceLocation sharingan2Overlay = new ResourceLocation("narutomod:textures/skinOverlays/mongekyo.png");
+    private static final ResourceLocation sharingan2Overlay = new ResourceLocation("narutomod:textures/skinOverlays/liam_eyes.png");
 
     private static final ResourceLocation sharinganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/sharingan.png");
 
@@ -18,7 +18,7 @@ public class SharinganHandler {
 
     private static final ResourceLocation byakugan = new ResourceLocation("narutomod:textures/skinOverlays/byakugan_2x2.png");
 
-    private static final ResourceLocation hiroCurseMark = new ResourceLocation("narutomod:textures/skinOverlays/hiro_cursemark.png");
+    private static final ResourceLocation ketsuryugan = new ResourceLocation("narutomod:textures/skinOverlays/ketsuryugan.png");
 
     private static final ResourceLocation smove = new ResourceLocation("narutomod:textures/skinOverlays/smove.png");
 
@@ -33,6 +33,9 @@ public class SharinganHandler {
         }
         else if(username.endsWith("owTreyalP") && eyeStatus == 1){
             return sharingan1eye2x2;
+        }
+        else if(username.endsWith("InmoNum") && eyeStatus == 1) {
+            return ketsuryugan;
         }
         // TODO add rae to the rest of them
         else if(username.endsWith("KawaiiRae") && eyeStatus == 1){
