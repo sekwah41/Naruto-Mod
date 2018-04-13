@@ -49,21 +49,21 @@ public class SharinganHandler {
             return sharinganOverlay;
         }
         else if(username.endsWith("liam3011") && eyeStatus != 0){
-            switch(eyeStatus){
-                case 1: return sharinganOverlay;
-                case 2: return sharingan2Overlay;
-                case 3: return sharingan2Overlay;
-            }
+            return returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, sharingan2Overlay);
         }
         else if(username.endsWith("Smove33") && eyeStatus != 0){
-            switch(eyeStatus){
-                case 1: return sharinganOverlay;
-                case 2: return smove;
-                case 3: return smove;
-            }
+            return returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, smove);
         }
         return null;
+    }
 
+    private ResourceLocation returnEyesPlusSusanoo(int eyeStatus, ResourceLocation loc1, ResourceLocation loc2) {
+        switch(eyeStatus){
+            case 1: return loc1;
+            case 2: return loc2;
+            case 3: return loc2;
+        }
+        return null;
     }
 
     public float[] getColor(String username, int eyeStatus){
