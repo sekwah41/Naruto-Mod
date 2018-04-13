@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 
 public class ModelKubikiribocho extends ModelBase {
-    //fields
+
     ModelRenderer Handle;
     ModelRenderer Hilt;
     ModelRenderer Blade_Extrusion_Top;

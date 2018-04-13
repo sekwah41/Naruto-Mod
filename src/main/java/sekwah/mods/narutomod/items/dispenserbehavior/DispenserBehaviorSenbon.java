@@ -1,6 +1,6 @@
 package sekwah.mods.narutomod.items.dispenserbehavior;
 
-import sekwah.mods.narutomod.entitys.projectiles.EntitySenbon;
+import sekwah.mods.narutomod.common.entity.projectiles.EntitySenbon;
 import net.minecraft.dispenser.BehaviorProjectileDispense;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.IProjectile;

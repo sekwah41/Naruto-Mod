@@ -3,7 +3,7 @@ package sekwah.mods.narutomod.items.itemmodels;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
-import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 
 public class ModelAnbuMask extends ModelNinjaBiped
 {

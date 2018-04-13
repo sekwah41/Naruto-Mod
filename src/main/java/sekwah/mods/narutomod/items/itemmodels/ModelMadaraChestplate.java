@@ -2,28 +2,28 @@ package sekwah.mods.narutomod.items.itemmodels;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 
 public class ModelMadaraChestplate extends ModelNinjaBiped {
-    public ModelRenderer Underlayer_upper;
-    public ModelRenderer Underlayer_lower;
-    public ModelRenderer topshoulder_plate_1;
-    public ModelRenderer topshoulder_plate_2;
-    public ModelRenderer Neck_guard_1;
-    public ModelRenderer Neck_guard_2;
-    public ModelRenderer bottomshoulder_pad_1;
-    public ModelRenderer Back_plate_bottom;
-    public ModelRenderer Back_plate_top;
-    public ModelRenderer Front_plate_top;
-    public ModelRenderer Front_plate_bottom;
-    public ModelRenderer bottomshoulder_pad_2;
-    public ModelRenderer sleave_left;
-    public ModelRenderer sleave_right;
+    private ModelRenderer Underlayer_upper;
+    private ModelRenderer Underlayer_lower;
+    private ModelRenderer topshoulder_plate_1;
+    private ModelRenderer topshoulder_plate_2;
+    private ModelRenderer Neck_guard_1;
+    private ModelRenderer Neck_guard_2;
+    private ModelRenderer bottomshoulder_pad_1;
+    private ModelRenderer Back_plate_bottom;
+    private ModelRenderer Back_plate_top;
+    private ModelRenderer Front_plate_top;
+    private ModelRenderer Front_plate_bottom;
+    private ModelRenderer bottomshoulder_pad_2;
+    private ModelRenderer sleave_left;
+    private ModelRenderer sleave_right;
 
-    public ModelRenderer bodyLock;
-    public ModelRenderer bodyLockLower;
-    public ModelRenderer armLockRight;
-    public ModelRenderer armLockLeft;
+    private ModelRenderer bodyLock;
+    private ModelRenderer bodyLockLower;
+    private ModelRenderer armLockRight;
+    private ModelRenderer armLockLeft;
 
     public ModelMadaraChestplate() {
         textureWidth = 64;

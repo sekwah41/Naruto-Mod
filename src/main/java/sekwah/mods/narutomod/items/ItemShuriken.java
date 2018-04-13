@@ -2,7 +2,7 @@ package sekwah.mods.narutomod.items;
 
 import com.google.common.collect.Multimap;
 import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.entitys.projectiles.EntityShuriken;
+import sekwah.mods.narutomod.common.entity.projectiles.EntityShuriken;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;

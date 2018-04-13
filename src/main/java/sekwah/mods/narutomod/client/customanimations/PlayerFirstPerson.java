@@ -1,6 +1,6 @@
 package sekwah.mods.narutomod.client.customanimations;
 
-import sekwah.mods.narutomod.player.RenderNinjaPlayer;
+import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.entity.EntityClientPlayerMP;

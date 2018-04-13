@@ -25,7 +25,7 @@ import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
-import sekwah.mods.narutomod.player.RenderNinjaPlayer;
+import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.io.ByteArrayOutputStream;

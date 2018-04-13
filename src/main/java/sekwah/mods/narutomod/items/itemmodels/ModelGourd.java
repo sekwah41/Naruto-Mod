@@ -2,7 +2,7 @@ package sekwah.mods.narutomod.items.itemmodels;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 
 public class ModelGourd extends ModelNinjaBiped {
     public ModelRenderer gord_lower_body;

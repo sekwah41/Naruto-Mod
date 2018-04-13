@@ -15,7 +15,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import sekwah.mods.narutomod.entitys.projectiles.EntityExplosiveKunai;
+import sekwah.mods.narutomod.common.entity.projectiles.EntityExplosiveKunai;
 
 public class ItemExplosiveKunai extends Item {
 

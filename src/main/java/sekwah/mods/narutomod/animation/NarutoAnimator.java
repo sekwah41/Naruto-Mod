@@ -10,8 +10,7 @@ import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import sekwah.mods.narutomod.json.JSONObject;
-import sekwah.mods.narutomod.player.RenderNinjaPlayer;
-import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
 
 import java.io.*;
 import java.util.ArrayList;

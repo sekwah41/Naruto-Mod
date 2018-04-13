@@ -6,7 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.util.ForgeDirection;
-import sekwah.mods.narutomod.blocks.NarutoBlocks;
+import sekwah.mods.narutomod.common.block.NarutoBlocks;
 
 import java.util.Random;
 

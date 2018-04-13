@@ -1,9 +1,8 @@
 package sekwah.mods.narutomod.common;
 
-import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.blocks.BlockSakuraSapling;
-import sekwah.mods.narutomod.blocks.NarutoBlocks;
-import sekwah.mods.narutomod.player.extendedproperties.PlayerInfo;
+import sekwah.mods.narutomod.common.block.BlockSakuraSapling;
+import sekwah.mods.narutomod.common.block.NarutoBlocks;
+import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

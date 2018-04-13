@@ -1,8 +1,8 @@
 package sekwah.mods.narutomod;
 
 import sekwah.mods.narutomod.animation.NarutoAnimator;
-import sekwah.mods.narutomod.blocks.NarutoBlocks;
-import sekwah.mods.narutomod.entitys.NarutoEntitys;
+import sekwah.mods.narutomod.common.block.NarutoBlocks;
+import sekwah.mods.narutomod.common.entity.NarutoEntitys;
 import sekwah.mods.narutomod.common.CommonProxy;
 import sekwah.mods.narutomod.common.EventServerHook;
 import sekwah.mods.narutomod.common.NarutoEffects;
@@ -15,7 +15,7 @@ import sekwah.mods.narutomod.packets.clientbound.ClientJutsuPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientParticleEffectPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
 import sekwah.mods.narutomod.packets.serverbound.*;
-import sekwah.mods.narutomod.player.SharinganHandler;
+import sekwah.mods.narutomod.client.player.SharinganHandler;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 import sekwah.mods.narutomod.worldgeneration.NarutoWorldGeneration;
 import cpw.mods.fml.common.Mod;

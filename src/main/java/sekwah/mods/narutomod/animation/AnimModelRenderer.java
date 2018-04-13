@@ -1,6 +1,6 @@
 package sekwah.mods.narutomod.animation;
 
-import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;

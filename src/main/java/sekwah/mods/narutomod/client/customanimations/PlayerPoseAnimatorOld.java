@@ -9,7 +9,7 @@ import sekwah.mods.narutomod.json.JSONObject;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
-import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.io.*;

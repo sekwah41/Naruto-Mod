@@ -1,7 +1,7 @@
 package sekwah.mods.narutomod.items.itemmodels;
 
 import sekwah.mods.narutomod.animation.modelparts.ModelRetexturedBoxSharpBend;
-import sekwah.mods.narutomod.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import sekwah.mods.narutomod.settings.NarutoSettings;

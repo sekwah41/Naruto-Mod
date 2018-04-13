@@ -12,7 +12,7 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
-import sekwah.mods.narutomod.blocks.NarutoBlocks;
+import sekwah.mods.narutomod.common.block.NarutoBlocks;
 import sekwah.mods.narutomod.common.NarutoEffects;
 import sekwah.mods.narutomod.items.creativetabs.CreativeTabNinjaMaterials;
 import sekwah.mods.narutomod.items.creativetabs.CreativeTabNinjaWeapons;

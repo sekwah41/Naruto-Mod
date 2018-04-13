@@ -2,7 +2,7 @@ package sekwah.mods.narutomod.items;
 
 import com.google.common.collect.Multimap;
 import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.entitys.projectiles.EntityKunai;
+import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;

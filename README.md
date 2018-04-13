@@ -1,4 +1,7 @@
 # Naruto-Mod
+Note: The package SekCore is used betwen a few of my projects (mostly unreleased) and if it ever has enough features it will become its own library.
+
+
 The mod adds various features to minecraft such as items, mobs, weapons, new player animations and chakra. The mod is still in beta so there are a lot of features still being added.
 
 The mod is still in beta so a lot is still being changed and added.

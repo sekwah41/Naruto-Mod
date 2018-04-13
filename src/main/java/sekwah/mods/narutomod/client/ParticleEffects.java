@@ -2,8 +2,8 @@ package sekwah.mods.narutomod.client;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
-import sekwah.mods.narutomod.entitys.particles.EntityColouredSmokeFX;
-import sekwah.mods.narutomod.entitys.particles.EntityColouredSmokeTrackingFX;
+import sekwah.mods.narutomod.common.entity.particles.EntityColouredSmokeFX;
+import sekwah.mods.narutomod.common.entity.particles.EntityColouredSmokeTrackingFX;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
