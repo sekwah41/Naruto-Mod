@@ -1,7 +1,5 @@
 package sekwah.mods.narutomod.common.block;
 
-import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.common.block.tileentity.TileEntityBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -16,6 +14,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.common.block.tileentity.TileEntityBase;
 
 public class BlockBonsaiTree extends BlockContainer {
     @SideOnly(Side.CLIENT)

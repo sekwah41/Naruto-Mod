@@ -1,9 +1,15 @@
 package sekwah.mods.narutomod.client;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.ItemStack;
-import sekwah.mods.narutomod.NarutoMod;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import org.lwjgl.input.Keyboard;
 import sekwah.mods.narutomod.client.gui.GuiJutsuMenu;
 import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
 import sekwah.mods.narutomod.client.gui.GuiOptionsMenu;
@@ -13,15 +19,6 @@ import sekwah.mods.narutomod.packets.serverbound.ServerEyePacket;
 import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 import sekwah.mods.narutomod.packets.serverbound.ServerSoundPacket;
 import sekwah.mods.narutomod.settings.NarutoSettings;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import org.lwjgl.input.Keyboard;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

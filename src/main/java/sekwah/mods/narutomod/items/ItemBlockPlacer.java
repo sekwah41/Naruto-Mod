@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.items;
 
-import sekwah.mods.narutomod.NarutoMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -10,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.block.NarutoBlocks;
 
 public class ItemBlockPlacer extends Item {

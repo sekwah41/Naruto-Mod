@@ -1,8 +1,8 @@
 package sekwah.mods.narutomod.common.entity.ai;
 
-import sekwah.mods.narutomod.common.entity.EntityNinjaVillager;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
+import sekwah.mods.narutomod.common.entity.EntityNinjaVillager;
 
 public class EntityAILookAtNinjaTradePlayer extends EntityAIWatchClosest {
     private final EntityNinjaVillager theMerchant;

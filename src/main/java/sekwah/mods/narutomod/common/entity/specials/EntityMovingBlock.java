@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.common.entity.specials;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
@@ -9,7 +8,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.ForgeModContainer;
 
 public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnData {
 

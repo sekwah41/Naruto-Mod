@@ -1,16 +1,16 @@
 package sekwah.mods.narutomod.animation;
 
-import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.client.PlayerRenderTickEvent;
-import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
-import sekwah.mods.narutomod.packets.PacketDispatcher;
-import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
-import sekwah.mods.narutomod.json.JSONObject;
+import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.client.PlayerRenderTickEvent;
 import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
+import sekwah.mods.narutomod.json.JSONObject;
+import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
+import sekwah.mods.narutomod.packets.PacketDispatcher;
+import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 
 import java.io.*;
 import java.util.ArrayList;

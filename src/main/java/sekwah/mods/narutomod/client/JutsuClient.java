@@ -1,13 +1,13 @@
 package sekwah.mods.narutomod.client;
 
-import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.assets.JutsuData;
-import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
+import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.assets.JutsuData;
+import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 
 import java.util.Random;
 

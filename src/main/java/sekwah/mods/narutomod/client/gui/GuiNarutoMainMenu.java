@@ -2,7 +2,6 @@ package sekwah.mods.narutomod.client.gui;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-import sekwah.mods.narutomod.NarutoMod;
 import cpw.mods.fml.client.GuiModList;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -29,6 +28,7 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 import org.lwjgl.util.glu.Project;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.network.UpdateChecker;
 
 import java.io.BufferedReader;

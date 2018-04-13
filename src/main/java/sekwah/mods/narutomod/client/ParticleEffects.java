@@ -1,15 +1,15 @@
 package sekwah.mods.narutomod.client;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.common.entity.particles.EntityColouredSmokeFX;
 import sekwah.mods.narutomod.common.entity.particles.EntityColouredSmokeTrackingFX;
-import sekwah.mods.narutomod.settings.NarutoSettings;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.entity.player.EntityPlayerMP;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.serverbound.ServerParticleEffectPacket;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;

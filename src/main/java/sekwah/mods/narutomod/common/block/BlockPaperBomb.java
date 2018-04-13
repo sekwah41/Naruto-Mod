@@ -1,7 +1,5 @@
 package sekwah.mods.narutomod.common.block;
 
-import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.items.NarutoItems;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,7 +17,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityPaperBomb;
+import sekwah.mods.narutomod.items.NarutoItems;
 
 import java.util.Iterator;
 import java.util.List;

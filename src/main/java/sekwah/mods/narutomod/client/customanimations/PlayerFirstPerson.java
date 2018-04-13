@@ -1,7 +1,5 @@
 package sekwah.mods.narutomod.client.customanimations;
 
-import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
-import sekwah.mods.narutomod.settings.NarutoSettings;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.renderer.entity.Render;
@@ -9,6 +7,8 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 public class PlayerFirstPerson {
 

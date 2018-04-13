@@ -1,10 +1,10 @@
 package sekwah.mods.narutomod.packets;
 
-import sekwah.mods.narutomod.client.ParticleEffects;
-import sekwah.mods.narutomod.client.SoundEffects;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import sekwah.mods.narutomod.client.JutsuClient;
+import sekwah.mods.narutomod.client.ParticleEffects;
+import sekwah.mods.narutomod.client.SoundEffects;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;

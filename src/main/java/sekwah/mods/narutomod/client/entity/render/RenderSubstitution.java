@@ -1,11 +1,6 @@
 package sekwah.mods.narutomod.client.entity.render;
 
 import com.mojang.authlib.GameProfile;
-import net.minecraft.entity.DataWatcher;
-import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.client.PlayerClientTickEvent;
-import sekwah.mods.narutomod.common.entity.EntitySubstitution;
-import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,6 +11,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
+import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,6 +26,10 @@ import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.client.PlayerClientTickEvent;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.common.entity.EntitySubstitution;
 
 import static net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED;
 import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D;

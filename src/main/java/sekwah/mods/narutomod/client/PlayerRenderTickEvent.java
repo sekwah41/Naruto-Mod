@@ -1,10 +1,8 @@
 package sekwah.mods.narutomod.client;
 
-import cpw.mods.fml.common.gameevent.TickEvent;
-import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.animation.NarutoAnimator;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -13,6 +11,8 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.entity.DataWatcher;
+import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.gui.GuiNarutoMainMenu;
 
 public class PlayerRenderTickEvent {

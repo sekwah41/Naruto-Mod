@@ -1,7 +1,5 @@
 package sekwah.mods.narutomod.client.gui;
 
-import sekwah.mods.narutomod.client.gui.Jutsus.JutsuList;
-import sekwah.mods.narutomod.client.gui.Jutsus.Jutsus;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -17,6 +15,8 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+import sekwah.mods.narutomod.client.gui.Jutsus.JutsuList;
+import sekwah.mods.narutomod.client.gui.Jutsus.Jutsus;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,8 +1,8 @@
 package sekwah.mods.narutomod.packets;
 
-import sekwah.mods.narutomod.NarutoMod;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraft.entity.player.EntityPlayerMP;
+import sekwah.mods.narutomod.NarutoMod;
 
 public class PacketDispatcher {
 

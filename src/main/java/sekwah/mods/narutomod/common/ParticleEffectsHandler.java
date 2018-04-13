@@ -1,8 +1,8 @@
 package sekwah.mods.narutomod.common;
 
-import sekwah.mods.narutomod.packets.PacketDispatcher;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraft.entity.player.EntityPlayerMP;
+import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.clientbound.ClientParticleEffectPacket;
 
 import java.io.ByteArrayOutputStream;

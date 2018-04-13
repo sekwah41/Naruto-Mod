@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.common.entity.projectiles;
 
-import sekwah.mods.narutomod.items.NarutoItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -17,6 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.items.NarutoItems;
 
 import java.util.List;
 

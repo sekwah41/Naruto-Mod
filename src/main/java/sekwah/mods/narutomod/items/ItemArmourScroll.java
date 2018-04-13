@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.items;
 
-import sekwah.mods.narutomod.NarutoMod;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.items.itemmodels.ModelBackScroll;
 
 import java.util.List;

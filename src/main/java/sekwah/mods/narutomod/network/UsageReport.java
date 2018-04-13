@@ -1,11 +1,14 @@
 package sekwah.mods.narutomod.network;
 
 import com.google.common.collect.Maps;
+import net.minecraft.server.MinecraftServer;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.settings.NarutoSettings;
-import net.minecraft.server.MinecraftServer;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.*;
 import java.util.*;
 

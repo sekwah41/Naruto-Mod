@@ -1,8 +1,5 @@
 package sekwah.mods.narutomod.common.entity;
 
-import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
-import sekwah.mods.narutomod.common.entity.projectiles.EntityShuriken;
-import sekwah.mods.narutomod.items.NarutoItems;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -14,6 +11,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
+import sekwah.mods.narutomod.common.entity.projectiles.EntityShuriken;
+import sekwah.mods.narutomod.items.NarutoItems;
 
 public class EntityRogueNinja extends EntityMob {
 

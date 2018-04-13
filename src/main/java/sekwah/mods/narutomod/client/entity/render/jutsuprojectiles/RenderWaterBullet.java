@@ -1,7 +1,5 @@
 package sekwah.mods.narutomod.client.entity.render.jutsuprojectiles;
 
-import sekwah.mods.narutomod.client.PlayerRenderTickEvent;
-import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
@@ -14,6 +12,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.client.PlayerRenderTickEvent;
+import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import sekwah.mods.narutomod.common.entity.models.jutsuprojectiles.ModelWaterBullet;
 
 @SideOnly(Side.CLIENT)

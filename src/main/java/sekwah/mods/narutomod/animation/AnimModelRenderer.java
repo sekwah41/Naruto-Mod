@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.animation;
 
-import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
@@ -10,6 +9,7 @@ import net.minecraft.client.model.TextureOffset;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.Tessellator;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 
 import java.util.ArrayList;
 

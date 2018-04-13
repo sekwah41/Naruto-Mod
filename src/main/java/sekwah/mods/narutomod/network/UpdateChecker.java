@@ -1,7 +1,7 @@
 package sekwah.mods.narutomod.network;
 
-import sekwah.mods.narutomod.NarutoMod;
 import net.minecraft.util.EnumChatFormatting;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.json.JSONException;
 import sekwah.mods.narutomod.json.JSONObject;
 

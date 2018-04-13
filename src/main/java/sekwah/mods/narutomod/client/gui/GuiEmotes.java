@@ -1,13 +1,13 @@
 package sekwah.mods.narutomod.client.gui;
 
-import sekwah.mods.narutomod.settings.EnumNarutoOptions;
-import sekwah.mods.narutomod.settings.NarutoSettings;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.client.gui.components.GuiNarutoOptionsSlider;
+import sekwah.mods.narutomod.settings.EnumNarutoOptions;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 //
 // GuiBuffBar implements a simple status bar at the top of the screen which 

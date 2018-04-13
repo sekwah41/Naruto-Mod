@@ -1,9 +1,9 @@
 package sekwah.mods.narutomod.packets;
 
-import sekwah.mods.narutomod.common.JutsuCommon;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.player.EntityPlayerMP;
+import sekwah.mods.narutomod.common.JutsuCommon;
 import sekwah.mods.narutomod.packets.clientbound.ClientJutsuPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientParticleEffectPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;

@@ -1,12 +1,5 @@
 package sekwah.mods.narutomod.client;
 
-import sekwah.mods.narutomod.animation.NarutoAnimator;
-import sekwah.mods.narutomod.common.entity.projectiles.*;
-import sekwah.mods.narutomod.client.entity.render.projectiles.*;
-import sekwah.mods.narutomod.client.entity.render.special.RenderMovingBlock;
-import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
-import sekwah.mods.narutomod.items.NarutoItems;
-import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -17,23 +10,30 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.common.block.NarutoBlocks;
+import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.block.itemrenderers.ItemRendererBonsaiTree;
 import sekwah.mods.narutomod.client.block.rendereres.TileEntityBonsaiRenderer;
-import sekwah.mods.narutomod.common.block.tileentity.TileEntityBase;
-import sekwah.mods.narutomod.client.gui.GuiChakraAndStaminaBar;
-import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
-import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityFlameFireball;
-import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
+import sekwah.mods.narutomod.client.entity.render.*;
 import sekwah.mods.narutomod.client.entity.render.jutsuprojectiles.RenderFireball;
 import sekwah.mods.narutomod.client.entity.render.jutsuprojectiles.RenderWaterBullet;
+import sekwah.mods.narutomod.client.entity.render.projectiles.*;
+import sekwah.mods.narutomod.client.entity.render.special.RenderMovingBlock;
+import sekwah.mods.narutomod.client.gui.GuiChakraAndStaminaBar;
+import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
+import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
 import sekwah.mods.narutomod.common.CommonProxy;
+import sekwah.mods.narutomod.common.block.NarutoBlocks;
+import sekwah.mods.narutomod.common.block.tileentity.TileEntityBase;
+import sekwah.mods.narutomod.common.entity.*;
+import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityFlameFireball;
+import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
+import sekwah.mods.narutomod.common.entity.projectiles.*;
+import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
+import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemKubikiribocho;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemSamehada;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemScroll;
 import sekwah.mods.narutomod.network.UsageReport;
-import sekwah.mods.narutomod.common.entity.*;
-import sekwah.mods.narutomod.client.entity.render.*;
 
 public class ClientProxy extends CommonProxy {
 

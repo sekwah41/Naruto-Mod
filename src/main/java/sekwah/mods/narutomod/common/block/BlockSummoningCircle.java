@@ -1,8 +1,5 @@
 package sekwah.mods.narutomod.common.block;
 
-import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.packets.PacketDispatcher;
-import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,6 +14,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.packets.PacketDispatcher;
+import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

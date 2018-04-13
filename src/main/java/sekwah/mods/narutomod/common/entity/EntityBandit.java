@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.common.entity;
 
-import sekwah.mods.narutomod.items.NarutoItems;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
@@ -12,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.items.NarutoItems;
 
 public class EntityBandit extends EntityMob {
 

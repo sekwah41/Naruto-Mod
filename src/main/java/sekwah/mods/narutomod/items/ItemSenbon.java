@@ -1,19 +1,19 @@
 package sekwah.mods.narutomod.items;
 
 import com.google.common.collect.Multimap;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import sekwah.mods.narutomod.NarutoMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.entity.projectiles.EntitySenbon;
 
 public class ItemSenbon extends Item {

@@ -1,10 +1,10 @@
 package sekwah.mods.narutomod.items.dispenserbehavior;
 
-import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
 import net.minecraft.dispenser.BehaviorProjectileDispense;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
 
 public final class DispenserBehaviorKunai extends BehaviorProjectileDispense {
     /**

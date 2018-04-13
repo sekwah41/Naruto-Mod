@@ -1,8 +1,5 @@
 package sekwah.mods.narutomod.common;
 
-import sekwah.mods.narutomod.common.block.BlockSakuraSapling;
-import sekwah.mods.narutomod.common.block.NarutoBlocks;
-import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -18,6 +15,9 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import sekwah.mods.narutomod.common.block.BlockSakuraSapling;
+import sekwah.mods.narutomod.common.block.NarutoBlocks;
+import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
 
 
 public class EventServerHook {

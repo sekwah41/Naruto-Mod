@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.common.block;
 
-import sekwah.mods.narutomod.NarutoMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -9,6 +8,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.NarutoMod;
 
 public class BlockSummoningCircleEdge extends Block {
     /**

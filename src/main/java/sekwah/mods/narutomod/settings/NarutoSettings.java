@@ -5,8 +5,6 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import sekwah.mods.narutomod.client.gui.GuiChakraAndStaminaBar;
 
-import java.util.UUID;
-
 public class NarutoSettings {
 
 

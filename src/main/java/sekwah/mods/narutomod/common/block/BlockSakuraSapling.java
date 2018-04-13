@@ -1,7 +1,5 @@
 package sekwah.mods.narutomod.common.block;
 
-import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.worldgeneration.WorldGenSakuraTrees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockBush;
@@ -13,7 +11,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.TerrainGen;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.worldgeneration.WorldGenBigSakuraTree;
+import sekwah.mods.narutomod.worldgeneration.WorldGenSakuraTrees;
 
 import java.util.Random;
 

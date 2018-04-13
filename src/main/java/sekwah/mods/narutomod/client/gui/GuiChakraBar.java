@@ -1,8 +1,5 @@
 package sekwah.mods.narutomod.client.gui;
 
-import sekwah.mods.narutomod.client.PlayerClientTickEvent;
-import sekwah.mods.narutomod.common.NarutoEffects;
-import sekwah.mods.narutomod.settings.NarutoSettings;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -11,6 +8,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.client.PlayerClientTickEvent;
+import sekwah.mods.narutomod.common.NarutoEffects;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 //
 // GuiBuffBar implements a simple status bar at the top of the screen which 

@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.items;
 
-import sekwah.mods.narutomod.NarutoMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockJukebox;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.NarutoMod;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,12 +1,12 @@
 package sekwah.mods.narutomod.animation.dynamicplayerposes;
 
-import sekwah.mods.narutomod.animation.PartData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
+import sekwah.mods.narutomod.animation.PartData;
 
 public class FlyingPose extends DynamicPose {
 

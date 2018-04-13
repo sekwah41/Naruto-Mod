@@ -1,7 +1,5 @@
 package sekwah.mods.narutomod.common.entity;
 
-import sekwah.mods.narutomod.common.entity.ai.*;
-import sekwah.mods.narutomod.items.NarutoItems;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityZombie;
@@ -24,6 +22,8 @@ import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.village.Village;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.common.block.NarutoBlocks;
+import sekwah.mods.narutomod.common.entity.ai.*;
+import sekwah.mods.narutomod.items.NarutoItems;
 
 import java.util.*;
 

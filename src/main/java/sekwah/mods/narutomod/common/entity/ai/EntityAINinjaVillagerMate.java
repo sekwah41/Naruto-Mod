@@ -1,11 +1,11 @@
 package sekwah.mods.narutomod.common.entity.ai;
 
-import sekwah.mods.narutomod.common.entity.EntityNinjaVillager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.village.Village;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.common.entity.EntityNinjaVillager;
 
 public class EntityAINinjaVillagerMate extends EntityAIBase {
     Village villageObj;

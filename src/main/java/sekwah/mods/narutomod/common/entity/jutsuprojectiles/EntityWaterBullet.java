@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.common.entity.jutsuprojectiles;
 
-import sekwah.mods.narutomod.common.NarutoDamageSources;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -12,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.common.NarutoDamageSources;
 
 import java.util.List;
 

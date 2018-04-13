@@ -1,12 +1,12 @@
 package sekwah.mods.narutomod.items.itemrenderers;
 
-import sekwah.mods.narutomod.items.itemmodels.ModelKubikiribocho;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.items.itemmodels.ModelKubikiribocho;
 
 
 public class RenderItemKubikiribocho implements IItemRenderer {

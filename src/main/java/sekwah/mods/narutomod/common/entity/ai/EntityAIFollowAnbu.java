@@ -1,7 +1,7 @@
 package sekwah.mods.narutomod.common.entity.ai;
 
-import sekwah.mods.narutomod.common.entity.EntityNinjaVillager;
 import net.minecraft.entity.ai.EntityAIBase;
+import sekwah.mods.narutomod.common.entity.EntityNinjaVillager;
 import sekwah.mods.narutomod.common.entity.EntityNinjaVillagerAnbu;
 
 import java.util.Iterator;

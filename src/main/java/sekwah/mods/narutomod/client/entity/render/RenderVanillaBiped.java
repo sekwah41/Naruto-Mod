@@ -24,7 +24,6 @@ import net.minecraft.util.StringUtils;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Map;
-import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 public class RenderVanillaBiped extends RenderLiving {

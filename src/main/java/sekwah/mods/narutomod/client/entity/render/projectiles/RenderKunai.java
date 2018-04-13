@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.client.entity.render.projectiles;
 
-import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,6 +9,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
 
 @SideOnly(Side.CLIENT)
 public class RenderKunai extends Render {

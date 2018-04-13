@@ -8,8 +8,6 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 
-import java.io.File;
-
 public class SkinFetcher {
 
     public static final ResourceLocation locationStevePng = new ResourceLocation("textures/entity/steve.png");

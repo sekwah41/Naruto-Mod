@@ -1,10 +1,10 @@
 package sekwah.mods.narutomod.items.dispenserbehavior;
 
-import sekwah.mods.narutomod.common.entity.projectiles.EntityShuriken;
 import net.minecraft.dispenser.BehaviorProjectileDispense;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.common.entity.projectiles.EntityShuriken;
 
 public final class DispenserBehaviorShuriken extends BehaviorProjectileDispense {
     /**

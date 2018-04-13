@@ -1,7 +1,7 @@
 package sekwah.mods.narutomod.client.gui.Jutsus;
 
-import sekwah.mods.narutomod.items.NarutoItems;
 import net.minecraft.item.ItemStack;
+import sekwah.mods.narutomod.items.NarutoItems;
 
 import java.util.ArrayList;
 import java.util.List;

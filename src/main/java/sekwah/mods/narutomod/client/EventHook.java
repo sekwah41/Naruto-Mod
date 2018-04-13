@@ -1,11 +1,11 @@
 package sekwah.mods.narutomod.client;
 
-import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
 
 public class EventHook {
 

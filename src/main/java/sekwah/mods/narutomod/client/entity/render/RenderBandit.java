@@ -1,11 +1,11 @@
 package sekwah.mods.narutomod.client.entity.render;
 
-import sekwah.mods.narutomod.common.entity.EntityBandit;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.common.entity.EntityBandit;
 import sekwah.mods.narutomod.common.entity.models.ModelBandit;
 
 @SideOnly(Side.CLIENT)

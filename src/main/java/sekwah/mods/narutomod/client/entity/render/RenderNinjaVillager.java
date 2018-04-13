@@ -1,12 +1,12 @@
 package sekwah.mods.narutomod.client.entity.render;
 
-import sekwah.mods.narutomod.common.entity.EntityNinjaVillager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.common.entity.EntityNinjaVillager;
 
 @SideOnly(Side.CLIENT)
 public class RenderNinjaVillager extends RenderNinjaBiped {

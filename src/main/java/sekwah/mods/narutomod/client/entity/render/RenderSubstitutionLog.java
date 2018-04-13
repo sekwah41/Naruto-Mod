@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.client.entity.render;
 
-import sekwah.mods.narutomod.common.entity.models.jutsuprojectiles.ModelSubstitution;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -10,6 +9,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.common.entity.EntitySubstitutionLog;
+import sekwah.mods.narutomod.common.entity.models.jutsuprojectiles.ModelSubstitution;
 
 @SideOnly(Side.CLIENT)
 public class RenderSubstitutionLog extends RenderLiving {

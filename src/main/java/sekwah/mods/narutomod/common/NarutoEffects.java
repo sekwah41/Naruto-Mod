@@ -1,7 +1,7 @@
 package sekwah.mods.narutomod.common;
 
-import sekwah.mods.narutomod.NarutoMod;
 import net.minecraft.potion.Potion;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.potioneffects.PotionChakraRestore;
 
 import java.awt.*;

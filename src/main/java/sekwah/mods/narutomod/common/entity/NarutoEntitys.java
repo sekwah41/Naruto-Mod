@@ -1,12 +1,12 @@
 package sekwah.mods.narutomod.common.entity;
 
-import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityFlameFireball;
-import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
+import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityFlameFireball;
+import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import sekwah.mods.narutomod.common.entity.projectiles.*;
 import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
 

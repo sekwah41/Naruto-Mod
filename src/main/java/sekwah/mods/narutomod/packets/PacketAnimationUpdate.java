@@ -1,8 +1,8 @@
 package sekwah.mods.narutomod.packets;
 
-import sekwah.mods.narutomod.NarutoMod;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayerMP;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.packets.serverbound.ServerAnimationPacket;

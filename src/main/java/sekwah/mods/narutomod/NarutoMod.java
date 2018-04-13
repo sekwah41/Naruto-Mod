@@ -1,23 +1,5 @@
 package sekwah.mods.narutomod;
 
-import sekwah.mods.narutomod.animation.NarutoAnimator;
-import sekwah.mods.narutomod.common.block.NarutoBlocks;
-import sekwah.mods.narutomod.common.entity.NarutoEntitys;
-import sekwah.mods.narutomod.common.CommonProxy;
-import sekwah.mods.narutomod.common.EventServerHook;
-import sekwah.mods.narutomod.common.NarutoEffects;
-import sekwah.mods.narutomod.common.PlayerCommonTickEvent;
-import sekwah.mods.narutomod.items.NarutoItems;
-import sekwah.mods.narutomod.network.UpdateChecker;
-import sekwah.mods.narutomod.network.UsageReport;
-import sekwah.mods.narutomod.packets.clientbound.ClientAnimationPacket;
-import sekwah.mods.narutomod.packets.clientbound.ClientJutsuPacket;
-import sekwah.mods.narutomod.packets.clientbound.ClientParticleEffectPacket;
-import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
-import sekwah.mods.narutomod.packets.serverbound.*;
-import sekwah.mods.narutomod.client.player.SharinganHandler;
-import sekwah.mods.narutomod.settings.NarutoSettings;
-import sekwah.mods.narutomod.worldgeneration.NarutoWorldGeneration;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
@@ -30,6 +12,24 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import sekwah.mods.narutomod.animation.NarutoAnimator;
+import sekwah.mods.narutomod.client.player.SharinganHandler;
+import sekwah.mods.narutomod.common.CommonProxy;
+import sekwah.mods.narutomod.common.EventServerHook;
+import sekwah.mods.narutomod.common.NarutoEffects;
+import sekwah.mods.narutomod.common.PlayerCommonTickEvent;
+import sekwah.mods.narutomod.common.block.NarutoBlocks;
+import sekwah.mods.narutomod.common.entity.NarutoEntitys;
+import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.network.UpdateChecker;
+import sekwah.mods.narutomod.network.UsageReport;
+import sekwah.mods.narutomod.packets.clientbound.ClientAnimationPacket;
+import sekwah.mods.narutomod.packets.clientbound.ClientJutsuPacket;
+import sekwah.mods.narutomod.packets.clientbound.ClientParticleEffectPacket;
+import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
+import sekwah.mods.narutomod.packets.serverbound.*;
+import sekwah.mods.narutomod.settings.NarutoSettings;
+import sekwah.mods.narutomod.worldgeneration.NarutoWorldGeneration;
 
 import java.io.InputStream;
 
