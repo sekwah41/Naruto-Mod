@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.common.entity.models;
+package sekwah.mods.narutomod.client.entity.model;
 
 import net.minecraft.client.model.ModelBiped;
 

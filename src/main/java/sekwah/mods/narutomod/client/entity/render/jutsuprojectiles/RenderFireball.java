@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.client.PlayerRenderTickEvent;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityFlameFireball;
-import sekwah.mods.narutomod.common.entity.models.jutsuprojectiles.ModelFireball;
+import sekwah.mods.narutomod.client.entity.model.jutsuprojectiles.ModelFireball;
 
 @SideOnly(Side.CLIENT)
 public class RenderFireball extends Render {

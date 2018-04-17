@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.common.entity.models.jutsuprojectiles;
+package sekwah.mods.narutomod.client.entity.model.jutsuprojectiles;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

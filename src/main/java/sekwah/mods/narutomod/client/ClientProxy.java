@@ -29,6 +29,8 @@ import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityFlameFireball;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import sekwah.mods.narutomod.common.entity.projectiles.*;
 import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
+import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
+import sekwah.mods.narutomod.client.entity.render.jutsuprojectiles.RenderChibakuTensei;
 import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemKubikiribocho;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemSamehada;
@@ -94,6 +96,8 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityWaterBullet.class, new RenderWaterBullet());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityMovingBlock.class, new RenderMovingBlock());
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityChibakuTensei.class, new RenderChibakuTensei());
 
         NarutoAnimator.playerRenderer = new RenderNinjaPlayer();
 
