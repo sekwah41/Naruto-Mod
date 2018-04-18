@@ -43,6 +43,9 @@ public class JutsuClient {
                 break;
             case 4:
                 break;
+            case 111:
+                playerMP.addChatMessage(new ChatComponentText("ENJOY DESTRUCTION"));
+                break;
             case 401:
                 PlayerClientTickEvent.stamina -= 20;
                 PlayerClientTickEvent.setStaminaCooldown(80);
@@ -170,6 +173,8 @@ public class JutsuClient {
             case 101:
                 return true;
             case 110:
+                return true;
+            case 111:
                 return true;
             case 121:
                 if (PlayerClientTickEvent.chakra >= JutsuData.fireballCost) return true;

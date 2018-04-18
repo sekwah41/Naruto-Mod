@@ -1,4 +1,5 @@
 package sekwah.mods.narutomod.client.entity.render.jutsuprojectiles;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -22,9 +23,12 @@ public class RenderChibakuTensei extends Render {
     }
 
     private void doRenderChibaku(EntityChibakuTensei entity, double posX, double posY, double posZ, float p_76986_8_, float delta) {
+        glPushMatrix();
         glTranslated(posX,posY,posZ);
+        glTranslatef(0,entity.height / 2,0);
         float rotation = entity.aliveTicks + delta;
-        model.setPosition(rotation);
+        model.renderBlackHole(rotation);
+        glPopMatrix();
     }
 
     @Override

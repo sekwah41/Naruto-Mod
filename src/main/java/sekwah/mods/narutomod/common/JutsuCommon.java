@@ -11,6 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.common.entity.EntityShadowClone;
 import sekwah.mods.narutomod.common.entity.EntitySubstitution;
+import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityFlameFireball;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
@@ -118,6 +119,11 @@ public class JutsuCommon {
                 jutsuSound(4, playerMP);
                 return true;
             case 110: // charging chakra stopped
+                return true;
+            case 111:
+                EntityChibakuTensei bigBoomBoomBall = new EntityChibakuTensei(playerMP.worldObj);
+                bigBoomBoomBall.setPosition(playerMP.posX, playerMP.posY, playerMP.posZ);
+                playerMP.worldObj.spawnEntityInWorld(bigBoomBoomBall);
                 return true;
             case 121:
                 jutsuSound(4, playerMP);
