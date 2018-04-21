@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
  * AnbuArmor - HeroGamezFTW
  * Created using Tabula 6.0.0
  */
-public class AnbuArmor extends ModelBase {
+public class ModelAnbuArmor extends ModelBase {
     public ModelRenderer UpperRightArm;
     public ModelRenderer Head;
     public ModelRenderer UpperLeftArm;
@@ -65,7 +65,7 @@ public class AnbuArmor extends ModelBase {
     public ModelRenderer Armor20;
     public ModelRenderer LowerRightLeg;
 
-    public AnbuArmor() {
+    public ModelAnbuArmor() {
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.Arm1_1 = new ModelRenderer(this, 0, 90);

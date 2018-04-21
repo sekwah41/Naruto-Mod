@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.GuiDiscord;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -92,11 +93,13 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
 
     private boolean joinenabled;
 
-    private String joinbuttonText = "Join Naruto Server";
+    private String joinButtonText = "Join Naruto Server";
 
-    private String serverip;
+    private String serverIp;
 
-    private int serverport;
+    private int serverPort;
+
+    private String discordServer;
 
     private GuiButton fmlModButton = null;
 
@@ -144,11 +147,13 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
 
         this.updatetext = UpdateChecker.updatetext;
 
-        this.joinbuttonText = UpdateChecker.servertext;
+        this.joinButtonText = UpdateChecker.servertext;
 
-        this.serverip = UpdateChecker.serverip;
+        this.serverIp = UpdateChecker.serverip;
 
-        this.serverport = UpdateChecker.serverport;
+        this.serverPort = UpdateChecker.serverport;
+
+        this.discordServer = UpdateChecker.serverDiscord;
 
         this.updateCounter = rand.nextFloat();
         this.field_92025_p = "";
@@ -234,6 +239,8 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
             this.splashText = "Happy birthday, Praneeth98!";
         } else if (calendar.get(2) + 1 == 12 && calendar.get(5) == 3) {
             this.splashText = "Happy birthday, Orcwaagh!";
+        }else if (calendar.get(2) + 1 == 3 && calendar.get(5) == 5) {
+            this.splashText = "Happy birthday, HeroGamezFTW!";
         }
 
         boolean flag = true;
@@ -246,7 +253,8 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
         }
 
         GuiButton joinbutton;
-        this.buttonList.add(joinbutton = new GuiButton(101, this.width / 2 - 100, i + 40, joinbuttonText));
+        this.buttonList.add(joinbutton = new GuiButton(101, this.width / 2 - 100, i + 40, joinButtonText));
+        this.buttonList.add(new GuiDiscord(103, this.width / 2 - 124, i + 62));
         joinbutton.enabled = joinenabled;
         this.buttonList.add(new GuiButton(102, this.width / 2 - 100, i + 62, 98, 20, "Mod Page"));
 
@@ -295,40 +303,40 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
         }
     }
 
-    protected void actionPerformed(GuiButton p_146284_1_) {
-        if (p_146284_1_.id == 0) {
+    protected void actionPerformed(GuiButton button) {
+        if (button.id == 0) {
             this.mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings));
         }
 
-        if (p_146284_1_.id == 5) {
+        if (button.id == 5) {
             this.mc.displayGuiScreen(new GuiLanguage(this, this.mc.gameSettings, this.mc.getLanguageManager()));
         }
 
-        if (p_146284_1_.id == 1) {
+        if (button.id == 1) {
             this.mc.displayGuiScreen(new GuiSelectWorld(this));
         }
 
-        if (p_146284_1_.id == 2) {
+        if (button.id == 2) {
             this.mc.displayGuiScreen(new GuiMultiplayer(this));
         }
 
-        if (p_146284_1_.id == 14) {
+        if (button.id == 14) {
             this.func_140005_i();
         }
 
-        if (p_146284_1_.id == 4) {
+        if (button.id == 4) {
             this.mc.shutdown();
         }
 
-        if (p_146284_1_.id == 6) {
+        if (button.id == 6) {
             this.mc.displayGuiScreen(new GuiModList(this));
         }
 
-        if (p_146284_1_.id == 11) {
+        if (button.id == 11) {
             this.mc.launchIntegratedServer("Demo_World", "Demo_World", DemoWorldServer.demoWorldSettings);
         }
 
-        if (p_146284_1_.id == 12) {
+        if (button.id == 12) {
             ISaveFormat isaveformat = this.mc.getSaveLoader();
             WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
 
@@ -338,12 +346,22 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
             }
         }
 
-        if (p_146284_1_.id == 101) {
-            this.mc.displayGuiScreen(new GuiConnecting(this, mc, serverip, serverport));
+        if (button.id == 101) {
+            this.mc.displayGuiScreen(new GuiConnecting(this, mc, serverIp, serverPort));
         }
 
-        if (p_146284_1_.id == 102) {
+        if (button.id == 102) {
             String url = "http://www.planetminecraft.com/mod/naruto-mod-1750133/";
+
+            try {
+                java.awt.Desktop.getDesktop().browse(URI.create(url));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (button.id == 103) {
+            String url = this.discordServer;
 
             try {
                 java.awt.Desktop.getDesktop().browse(URI.create(url));

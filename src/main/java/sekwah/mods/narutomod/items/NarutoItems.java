@@ -27,20 +27,20 @@ public class NarutoItems {
 	public static final CreativeTabs ninjaMaterials = new CreativeTabNinjaMaterials(CreativeTabs.getNextID(), "narutoMaterials");
 	public static Item Kunai;
 	public static Item Shuriken;
-	public static Item FightingSpirit;
-	public static Item NejiTheme;
+	//public static Item FightingSpirit;
+	//public static Item NejiTheme;
 	public static Item CopperRyo;
 	public static Item SilverRyo;
 	public static Item GoldRyo;
 	public static Item Katana;
 	public static Item PaperBombItem;
 	public static Item ExplosiveKunai;
-	public static Item Gunbai;
-	public static Item Samehada;
-	public static Item Ramen;
-	public static Item Summon_Scroll;
-	public static Item Noodles;
-	public static Item military_pills;
+	public static Item GUNBAI;
+	public static Item SAMEHADA;
+	public static Item RAMEN;
+	public static Item SUMMON_SCROLL;
+	public static Item NOODLES;
+	public static Item MILITARY_PILLS;
 	public static Item bokken;
 	public static Item senbon;
 	public static Item narutoIcons;
@@ -52,17 +52,20 @@ public class NarutoItems {
 	public static Item kubikiribocho;
 	public static Item headBand;
 	public static Item fabric;
-	public static Item flakJacket;
+	public static ItemNinjaArmor flakJacket;
 	public static Item shinobiChestplate;
 	public static Item shinobiLeggings;
 	public static Item redAnbuMask;
+	public static ItemNinjaArmor JONIN_ARMOUR;
+
 	// TODO Finish adding the code and complete tomorrow(tomorrow has passed, get yo lazy ass to work you bum)
 	//  recipe needed
 	public static Item armourPlate;
 	public static EnumAction Throw = EnumHelper.addAction("Throw");
 	// Armour materials
-	private static ArmorMaterial flakArmour = EnumHelper.addArmorMaterial("FLAK", 35, new int[]{2, 7, 5, 2}, 10);
-	private static ArmorMaterial shinobiArmour = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 10);
+	private static ArmorMaterial FLACK_ARMOR = EnumHelper.addArmorMaterial("FLAK", 35, new int[]{2, 7, 5, 2}, 10);
+	private static ArmorMaterial JONIN_ARMOR = EnumHelper.addArmorMaterial("JONIN", 35, new int[]{2, 7, 5, 2}, 10);
+	private static ArmorMaterial SHINOBI_ARMOUR = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 10);
     // Same as iron atm
 	private static ArmorMaterial headbandArmour = EnumHelper.addArmorMaterial("HEADBAND", 35, new int[]{2, 8, 5, 2}, 10);
 	// Weapon and tool materials
@@ -73,8 +76,8 @@ public class NarutoItems {
 
 	public static void addItems(Configuration config) {
 
-		FightingSpirit = (new ItemNinjaRecord("FightingSpirit")).setUnlocalizedName("record_FightingSpirit");
-		NejiTheme = (new ItemNinjaRecord("NejiTheme")).setUnlocalizedName("record_NejiTheme");
+		//FightingSpirit = (new ItemNinjaRecord("FightingSpirit")).setUnlocalizedName("record_FightingSpirit");
+		//NejiTheme = (new ItemNinjaRecord("NejiTheme")).setUnlocalizedName("record_NejiTheme");
 
 		Kunai = (new ItemKunai()).setUnlocalizedName("Kunai");
 		Shuriken = (new ItemShuriken()).setUnlocalizedName("Shuriken");
@@ -92,17 +95,17 @@ public class NarutoItems {
 
 		ExplosiveKunai = (new ItemExplosiveKunai()).setUnlocalizedName("ExplosiveKunai").setTextureName("ExplosiveKunai");
 
-		Gunbai = (new ItemGunbai(gunbaiTool)).setUnlocalizedName("gunbai").setTextureName("gunbai");
+		GUNBAI = (new ItemGunbai(gunbaiTool)).setUnlocalizedName("gunbai").setTextureName("gunbai");
 
-		Ramen = (new ItemFoodWithReturnItem(10, 0.5F, Items.bowl, false).setUnlocalizedName("Ramen").setTextureName("Ramen").setMaxStackSize(1));
+		RAMEN = (new ItemFoodWithReturnItem(10, 0.5F, Items.bowl, false).setUnlocalizedName("Ramen").setTextureName("Ramen").setMaxStackSize(1));
 
-		Noodles = (new BaseItem()).setUnlocalizedName("Noodles").setTextureName("Noodles").setCreativeTab(CreativeTabs.tabFood).setMaxStackSize(64);
+		NOODLES = (new BaseItem()).setUnlocalizedName("Noodles").setTextureName("Noodles").setCreativeTab(CreativeTabs.tabFood).setMaxStackSize(64);
 
-		Summon_Scroll = (new ItemBlockPlacer(NarutoBlocks.Summoning_CircleCenter)).setUnlocalizedName("Scroll").setTextureName("Scroll").setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1);
+		SUMMON_SCROLL = (new ItemBlockPlacer(NarutoBlocks.Summoning_CircleCenter)).setUnlocalizedName("Scroll").setTextureName("Scroll").setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1);
 
-		Samehada = (new ItemSamehada(samehadaTool)).setFull3D().setUnlocalizedName("Samehada").setTextureName("Samehada");
+		SAMEHADA = (new ItemSamehada(samehadaTool)).setFull3D().setUnlocalizedName("Samehada").setTextureName("Samehada");
 
-		military_pills = (new ItemFoodBase(1, 0.1F, false)).setAlwaysEdible().setPotionEffect(NarutoEffects.chakraRestore.id, 30, 0, 1.0F).setUnlocalizedName("military_pills").setTextureName("military_pills").setCreativeTab(CreativeTabs.tabFood).setMaxStackSize(64);
+		MILITARY_PILLS = (new ItemFoodBase(1, 0.1F, false)).setAlwaysEdible().setPotionEffect(NarutoEffects.chakraRestore.id, 30, 0, 1.0F).setUnlocalizedName("military_pills").setTextureName("military_pills").setCreativeTab(CreativeTabs.tabFood).setMaxStackSize(64);
 
 		senbon = (new ItemSenbon()).setUnlocalizedName("Senbon").setTextureName("Senbon");
 
@@ -127,17 +130,21 @@ public class NarutoItems {
 
 		fabric = (new ItemFabric()).setUnlocalizedName("fabric").setCreativeTab(ninjaMaterials);
 
-		flakJacket = (new ItemArmourFlakJacket(flakArmour, 4, 1)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("flakJacket");
+		flakJacket = new ItemNinjaArmor(FLACK_ARMOR, 4, 1, "textures/armour/flak_jacket.png");
+		flakJacket.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("flakJacket");
 
 		kubikiribocho = (new ItemKubikiribocho(kubikiriTool)).setFull3D().setUnlocalizedName("Kubikiribocho").setTextureName("Kubikiribocho");
 
-		shinobiChestplate = (new ItemArmourShinobiChestplate(shinobiArmour, 4, 1)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("madarasChestplate");
+		shinobiChestplate = (new ItemArmourShinobiChestplate(SHINOBI_ARMOUR, 4, 1)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("madarasChestplate");
 
-		shinobiLeggings = (new ItemArmourShinobiLeggings(shinobiArmour, 4, 2)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("madarasLeggings");
+		shinobiLeggings = (new ItemArmourShinobiLeggings(SHINOBI_ARMOUR, 4, 2)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("madarasLeggings");
 
 		armourPlate = (new BaseItem()).setUnlocalizedName("armourPlate").setCreativeTab(ninjaMaterials).setMaxStackSize(32);
 
 		redAnbuMask = (new ItemArmourAnbuMask(headbandArmour, 4, 0)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("redAnbuMask");
+
+		JONIN_ARMOUR = (new ItemNinjaArmor(JONIN_ARMOR, 4, 1, "textures/armour/JoninArmor.png"));
+		JONIN_ARMOUR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("joninArmour");
 
 		// TODO add the masks from the anbu and rouge
 
@@ -147,9 +154,9 @@ public class NarutoItems {
 
 		GameRegistry.registerItem(Kunai, "Kunai");
 		GameRegistry.registerItem(Shuriken, "Shuriken");
-		GameRegistry.registerItem(FightingSpirit, "MusicDiscSpirit");
+		//GameRegistry.registerItem(FightingSpirit, "MusicDiscSpirit");
 
-		GameRegistry.registerItem(NejiTheme, "MusicDiscNeji");
+		//GameRegistry.registerItem(NejiTheme, "MusicDiscNeji");
 
 		GameRegistry.registerItem(CopperRyo, "Kan");
 		GameRegistry.registerItem(SilverRyo, "Rin");
@@ -158,14 +165,14 @@ public class NarutoItems {
 		GameRegistry.registerItem(Katana, "Katana");
 		GameRegistry.registerItem(PaperBombItem, "PaperBomb");
 		GameRegistry.registerItem(ExplosiveKunai, "ExplosiveKunai");
-		GameRegistry.registerItem(Ramen, "Ramen");
-		GameRegistry.registerItem(Gunbai, "Gunbai");
+		GameRegistry.registerItem(RAMEN, "Ramen");
+		GameRegistry.registerItem(GUNBAI, "Gunbai");
 		GameRegistry.registerItem(bokken, "Bokken");
-		GameRegistry.registerItem(Summon_Scroll, "SummoningWolf");
+		GameRegistry.registerItem(SUMMON_SCROLL, "SummoningWolf");
 		GameRegistry.registerItem(backScroll, "backScroll");
-		GameRegistry.registerItem(Noodles, "Noodles");
-		GameRegistry.registerItem(Samehada, "Samehada");
-		GameRegistry.registerItem(military_pills, "Military Pills");
+		GameRegistry.registerItem(NOODLES, "Noodles");
+		GameRegistry.registerItem(SAMEHADA, "Samehada");
+		GameRegistry.registerItem(MILITARY_PILLS, "Military Pills");
 		GameRegistry.registerItem(senbon, "Senbon");
 
         GameRegistry.registerItem(gourd, "Gourd");
@@ -192,6 +199,8 @@ public class NarutoItems {
 		GameRegistry.registerItem(narutoIcons, "naruto_icons");
 
 		GameRegistry.registerItem(redAnbuMask, "redAnbuMask");
+
+		GameRegistry.registerItem(JONIN_ARMOUR,"joninArmour");
 
 	}
 
@@ -225,13 +234,13 @@ public class NarutoItems {
 		//Explosive Tag
 		GameRegistry.addRecipe(new ItemStack(PaperBombItem, 1), "GGG", "PPP", "GGG", 'P', Items.paper, 'G', Items.gunpowder);
 		//Gunbai
-		GameRegistry.addRecipe(new ItemStack(Gunbai, 1), "WSW", "WSW", " S ", 'W', Blocks.wool, 'S', Items.stick);
+		GameRegistry.addRecipe(new ItemStack(GUNBAI, 1), "WSW", "WSW", " S ", 'W', Blocks.wool, 'S', Items.stick);
 		//Noodles
-		GameRegistry.addRecipe(new ItemStack(Noodles, 3), "W", "W", "W", 'W', Items.wheat);
+		GameRegistry.addRecipe(new ItemStack(NOODLES, 3), "W", "W", "W", 'W', Items.wheat);
 		//Ramen
-		GameRegistry.addRecipe(new ItemStack(Ramen, 1), "NNN", "NNN", " B ", 'N', Noodles, 'B', Items.bowl);
+		GameRegistry.addRecipe(new ItemStack(RAMEN, 1), "NNN", "NNN", " B ", 'N', NOODLES, 'B', Items.bowl);
 		//Wolf Summoning scroll
-		GameRegistry.addRecipe(new ItemStack(Summon_Scroll, 1), "PPP", "PBP", "PPP", 'P', Items.paper, 'B', Items.bone);
+		GameRegistry.addRecipe(new ItemStack(SUMMON_SCROLL, 1), "PPP", "PBP", "PPP", 'P', Items.paper, 'B', Items.bone);
 
 		//Senbon
 		GameRegistry.addRecipe(new ItemStack(senbon, 32), "I", "I", 'I', Items.iron_ingot);

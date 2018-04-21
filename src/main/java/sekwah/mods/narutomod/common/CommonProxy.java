@@ -1,7 +1,9 @@
 package sekwah.mods.narutomod.common;
 
 import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.network.UsageReport;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 // TODO start moving more code into here and use super.function to register both sides. Itll make stuff more organised.
 public class CommonProxy {
@@ -41,5 +43,9 @@ public class CommonProxy {
     public void startUsageReport() {
         NarutoMod.usageReport = new UsageReport(false);
         NarutoMod.usageReport.startUsageReport();
+    }
+
+    public void addItems() {
+        NarutoItems.addItems(NarutoSettings.config);
     }
 }

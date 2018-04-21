@@ -270,7 +270,7 @@ public class EntityNinjaVillagerAnbu extends EntityGolem {
         int var1 = this.rand.nextInt(5);
 
         if (var1 == 2) {
-            this.dropItem(NarutoItems.Samehada, 1);
+            this.dropItem(NarutoItems.SAMEHADA, 1);
         }
     }
 

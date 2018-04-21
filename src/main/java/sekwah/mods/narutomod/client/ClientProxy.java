@@ -32,6 +32,8 @@ import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
 import sekwah.mods.narutomod.client.entity.render.jutsuprojectiles.RenderChibakuTensei;
 import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.items.itemmodels.ModelFlakJacket;
+import sekwah.mods.narutomod.items.itemmodels.armor.ModelUpdateJoninArmor;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemKubikiribocho;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemSamehada;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemScroll;
@@ -127,9 +129,9 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void registerCustomItems() {
-        MinecraftForgeClient.registerItemRenderer(NarutoItems.Samehada, new RenderItemSamehada());
+        MinecraftForgeClient.registerItemRenderer(NarutoItems.SAMEHADA, new RenderItemSamehada());
 
-        MinecraftForgeClient.registerItemRenderer(NarutoItems.Summon_Scroll, new RenderItemScroll());
+        MinecraftForgeClient.registerItemRenderer(NarutoItems.SUMMON_SCROLL, new RenderItemScroll());
 
         MinecraftForgeClient.registerItemRenderer(NarutoItems.kubikiribocho, new RenderItemKubikiribocho());
     }
@@ -156,6 +158,13 @@ public class ClientProxy extends CommonProxy {
     public void startUsageReport() {
         NarutoMod.usageReport = new UsageReport(true);
         NarutoMod.usageReport.startUsageReport();
+    }
+
+    public void addItems() {
+        super.addItems();
+
+        NarutoItems.flakJacket.setModelArmor(new ModelFlakJacket());
+        NarutoItems.JONIN_ARMOUR.setModelArmor(new ModelUpdateJoninArmor());
     }
 
 }

@@ -197,13 +197,34 @@ public class JutsuCommon {
         int wallRange = 10;
         MovingObjectPosition movingObject = playerMP.worldObj.rayTraceBlocks(posVec, posVec.addVector(lookVec.xCoord * wallRange,
                 lookVec.yCoord * wallRange, lookVec.zCoord * wallRange));
+        short xDir = 0;
+        short zDir = 0;
         if(movingObject != null) {
             //playerMP.worldObj.setBlockToAir(movingObject.blockX,movingObject.blockY, movingObject.blockZ);
-
             //playerMP.worldObj.getBlock(movingObject.blockX,movingObject.blockY, movingObject.blockZ);
-            int dir = MathHelper.floor_double((double) ((playerMP.rotationYaw * 8F) / 360F) + 0.5D);
+            int dir = MathHelper.floor_double((double) ((playerMP.rotationYaw * 8F) / 360F) + 0.5D) % 4;
+
             System.out.println(dir);
-            earthWallPillar(playerMP.worldObj, movingObject.blockX,movingObject.blockY, movingObject.blockZ);
+            switch (dir) {
+                case 0:
+                    xDir = 1;
+                    break;
+                case 1:
+                    xDir = 1;
+                    zDir = 1;
+                    break;
+                case 2:
+                    zDir = 1;
+                    break;
+                case 3:
+                    xDir = 1;
+                    zDir = -1;
+                    break;
+            }
+            for(int i = -2; i <= 2; i++) {
+                earthWallPillar(playerMP.worldObj, movingObject.blockX + xDir * i,movingObject.blockY, movingObject.blockZ + zDir * i);
+            }
+
             //System.out.printf("%s %s %s%n",movingObject.blockX,movingObject.blockY, movingObject.blockZ);
         }
         else {
@@ -216,12 +237,10 @@ public class JutsuCommon {
         if(!Blocks.dirt.canPlaceBlockAt(worldObj,x,y,z)) y++;
         //worldObj.setBlock(x,y,z,Blocks.bedrock);
         Block block = worldObj.getBlock(x,y,z);
-        for(int xW = -2; xW <=2; xW ++) {
-            for(int yW = 0; yW < 5; yW ++) {
-                EntityMovingBlock blockEntity = new EntityMovingBlock(worldObj,x + xW,y + yW,z,
-                        Block.getIdFromBlock(Blocks.dirt/*block*/), worldObj.getBlockMetadata(x,y,z), 20 * 9 + (int) (Math.random() * 40));
-                worldObj.spawnEntityInWorld(blockEntity);
-            }
+        for(int yW = 0; yW < 5; yW ++) {
+            EntityMovingBlock blockEntity = new EntityMovingBlock(worldObj,x,y + yW,z,
+                    Block.getIdFromBlock(Blocks.dirt/*block*/), worldObj.getBlockMetadata(x,y,z), 20 * 9 + (int) (Math.random() * 40));
+            worldObj.spawnEntityInWorld(blockEntity);
         }
 
     }

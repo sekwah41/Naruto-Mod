@@ -102,7 +102,7 @@ public class NarutoSettings {
             chakraBarOffsetY = (int) (sliderValue * 300);
             config.get(Configuration.CATEGORY_GENERAL, "chakraBarOffsetY", 2).set(chakraBarOffsetX);
         } else if (setting == EnumNarutoOptions.JUTSU_DELAY) {
-            jutsuDelay = (int) (sliderValue * 20) + 5;
+            jutsuDelay = (int) (sliderValue * 25) + 5;
             config.get(Configuration.CATEGORY_GENERAL, "jutsuDelay", 10).set(jutsuDelay);
         }
         // TODO once hue slider complete remove the red blue and green and have it calculate the values whenever hue changed or loaded.
@@ -172,7 +172,7 @@ public class NarutoSettings {
         } else if (setting == EnumNarutoOptions.CHAKRA_BAR_OFFSETY) {
             return (float) (chakraBarOffsetY) / 300F;
         } else if (setting == EnumNarutoOptions.JUTSU_DELAY) {
-            return (float) (jutsuDelay - 5) / 20F;
+            return (float) (jutsuDelay - 5) / 25F;
         } else if (setting == EnumNarutoOptions.CHAKRA_RED) {
             return chakraRed / 255F;
         } else if (setting == EnumNarutoOptions.CHAKRA_GREEN) {
@@ -222,9 +222,11 @@ public class NarutoSettings {
 
         Property configJutsuDelay = config.get(Configuration.CATEGORY_GENERAL, "jutsuDelay", 10);
         jutsuDelay = configJutsuDelay.getInt(10);
+
         configJutsuDelay.comment = "Sets the time in ticks for the jutsu delay, minimum is 5(lightining refrexes(ninja)) and max is 25(slowpoke) default 10";
-        if(jutsuDelay > 25){
-            jutsuDelay = 25;
+
+        if(jutsuDelay > 30){
+            jutsuDelay = 30;
         }
         else if(jutsuDelay < 0){
             jutsuDelay = 0;

@@ -24,7 +24,6 @@ public class EntityChibakuTensei extends Entity {
         int travelTime = 20 * 6;
         if(aliveTicks < travelTime) {
             double moveAmount = (travelTime - aliveTicks) * 0.002;
-            System.out.println(moveAmount);
             this.posY += moveAmount;
         }
         if(aliveTicks > 20 * 30) {

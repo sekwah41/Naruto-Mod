@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
  * SasukeKidArmor - HeroGamezFTW
  * Created using Tabula 6.0.0
  */
-public class SasukeKidArmor extends ModelBase {
+public class ModelSasukeKidArmor extends ModelBase {
     private ModelRenderer Head;
     private ModelRenderer UpperBody;
     private ModelRenderer UpperLeftArm;
@@ -115,7 +115,7 @@ public class SasukeKidArmor extends ModelBase {
     private ModelRenderer Leg8_3;
     private ModelRenderer Leg7_3;
 
-    public SasukeKidArmor() {
+    public ModelSasukeKidArmor() {
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.WhiteStrap2 = new ModelRenderer(this, 0, 80);

@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
  * NarutoShippudenArmor - HeroGamezFTW
  * Created using Tabula 6.0.0
  */
-public class NarutoShippudenArmor extends ModelBase {
+public class ModelNarutoShippudenArmor extends ModelBase {
     private ModelRenderer UpperRightArm;
     private ModelRenderer Head;
     private ModelRenderer UpperLeftArm;
@@ -77,7 +77,7 @@ public class NarutoShippudenArmor extends ModelBase {
     private ModelRenderer Leg2_1;
     private ModelRenderer Leg4_1;
 
-    public NarutoShippudenArmor() {
+    public ModelNarutoShippudenArmor() {
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.Round5 = new ModelRenderer(this, 50, 50);

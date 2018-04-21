@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
  * BorutoMovieKidArmor - HeroGamezFTW
  * Created using Tabula 6.0.0
  */
-public class BorutoMovieKidArmor extends ModelBase {
+public class ModelBorutoMovieKidArmor extends ModelBase {
     private ModelRenderer Head;
     private ModelRenderer UpperBody;
     private ModelRenderer UpperRightArm;
@@ -95,7 +95,7 @@ public class BorutoMovieKidArmor extends ModelBase {
     private ModelRenderer Leg3_1;
     private ModelRenderer Leg4_1;
 
-    public BorutoMovieKidArmor() {
+    public ModelBorutoMovieKidArmor() {
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.Jacket1 = new ModelRenderer(this, 70, 20);

@@ -185,7 +185,8 @@ public class JutsuClient {
             case 311:
                 return false;// TODO possibly the toggle for liams eyes, will be true once done
             case 312:
-                return true; // TODO set the combo for the earth style
+                if (PlayerClientTickEvent.chakra >= JutsuData.wallCost) return true;
+                break;
             case 333:
                 return true;
             case 1332:

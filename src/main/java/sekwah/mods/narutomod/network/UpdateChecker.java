@@ -33,6 +33,8 @@ public class UpdateChecker/* extends Thread*/ {
 
     public static String servertext = "Join Naruto Server";
 
+    public static String serverDiscord = "http://discord.gg/fAJ3xJg";
+
     private final Timer threadTrigger = new Timer("Update Checker", true);
 
     private final URL updateURL;
@@ -40,7 +42,7 @@ public class UpdateChecker/* extends Thread*/ {
     // Once this is complete there will be a lot more data complete
     public UpdateChecker() {
         try {
-            this.updateURL = new URL("http://report.sekwah.com/naruto-mod/updateCheck.php");
+            this.updateURL = new URL("http://report.sekwah.com/naruto-mod/updateCheck");
         } catch (MalformedURLException malformedurlexception) {
             throw new IllegalArgumentException();
         }
@@ -165,6 +167,7 @@ public class UpdateChecker/* extends Thread*/ {
             serverip = s.nextLine();
             serverport = Integer.parseInt(s.nextLine());
             servertext = s.nextLine();
+            serverDiscord = s.nextLine();
             s.close();
         } catch (IOException ex) {
             ex.printStackTrace();

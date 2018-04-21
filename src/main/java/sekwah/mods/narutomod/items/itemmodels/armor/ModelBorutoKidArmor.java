@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
  * BorutoKidArmor - HeroGamezFTW
  * Created using Tabula 6.0.0
  */
-public class BorutoKidArmor extends ModelBase {
+public class ModelBorutoKidArmor extends ModelBase {
     public ModelRenderer Head;
     public ModelRenderer UpperBody;
     public ModelRenderer UpperRightArm;
@@ -92,7 +92,7 @@ public class BorutoKidArmor extends ModelBase {
     public ModelRenderer Leg3_1;
     public ModelRenderer Leg4_1;
 
-    public BorutoKidArmor() {
+    public ModelBorutoKidArmor() {
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.Leg4_1 = new ModelRenderer(this, 0, 56);

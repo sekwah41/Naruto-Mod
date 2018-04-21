@@ -146,7 +146,7 @@ public class NarutoMod {
 
         NarutoBlocks.addBlocks(NarutoSettings.config);
 
-        NarutoItems.addItems(NarutoSettings.config);
+        proxy.addItems();
 
         NarutoItems.addDispenserBehavior();
 

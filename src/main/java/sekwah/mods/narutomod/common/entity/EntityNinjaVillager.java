@@ -419,8 +419,8 @@ public class EntityNinjaVillager extends EntityAgeable implements INpc, IMerchan
 
         switch (this.getProfession()) {
             case 0:
-                //addBlacksmithItem(merchantrecipelist, NarutoItems.military_pills.itemID, this.rand, this.adjustProbability(0.3F));
-                addBlacksmithItem(merchantrecipelist, NarutoItems.Noodles, this.rand, this.adjustProbability(0.9F));
+                //addBlacksmithItem(merchantrecipelist, NarutoItems.MILITARY_PILLS.itemID, this.rand, this.adjustProbability(0.3F));
+                addBlacksmithItem(merchantrecipelist, NarutoItems.NOODLES, this.rand, this.adjustProbability(0.9F));
                 addMerchantItem(merchantrecipelist, Items.paper, this.rand, this.adjustProbability(0.8F));
                 addMerchantItem(merchantrecipelist, Items.book, this.rand, this.adjustProbability(0.8F));
                 addMerchantItem(merchantrecipelist, Item.getItemFromBlock(NarutoBlocks.Sakura_Sapling), this.rand, this.adjustProbability(0.3F));
@@ -518,7 +518,7 @@ public class EntityNinjaVillager extends EntityAgeable implements INpc, IMerchan
         blacksmithSellingList.put(NarutoItems.Kunai, new Tuple(Integer.valueOf(4), Integer.valueOf(7)));
         blacksmithSellingList.put(NarutoItems.ExplosiveKunai, new Tuple(Integer.valueOf(14), Integer.valueOf(16)));
         villagerStockList.put(NarutoBlocks.Sakura_Sapling, new Tuple(Integer.valueOf(4), Integer.valueOf(13)));
-        villagerStockList.put(NarutoItems.Noodles, new Tuple(Integer.valueOf(16), Integer.valueOf(24)));
+        villagerStockList.put(NarutoItems.NOODLES, new Tuple(Integer.valueOf(16), Integer.valueOf(24)));
         villagerStockList.put(Items.paper, new Tuple(Integer.valueOf(16), Integer.valueOf(24)));
         villagerStockList.put(Items.experience_bottle, new Tuple(Integer.valueOf(13), Integer.valueOf(16)));
         villagerStockList.put(Items.redstone, new Tuple(Integer.valueOf(5), Integer.valueOf(15)));
