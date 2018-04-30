@@ -96,6 +96,7 @@ public class JutsuCommon {
 
                 for (int loops = 0; loops < 40; loops++) {
                     if (teleportRandomly(playerMP)) {
+                        playerMP.fallDistance = 0.0F;
                         break;
                     }
                 }
@@ -286,19 +287,12 @@ public class JutsuCommon {
     }
 
     protected static boolean teleportRandomly(EntityPlayerMP playerMP) {
-        double d0 = playerMP.posX + (playerMP.worldObj.rand.nextDouble() - 0.5D) * 32.0D;
-        double d1 = playerMP.posY + (double) (playerMP.worldObj.rand.nextInt(30) - 10);
-        double d2 = playerMP.posZ + (playerMP.worldObj.rand.nextDouble() - 0.5D) * 32.0D;
+        double differenceX = playerMP.posX + (playerMP.worldObj.rand.nextDouble() - 0.5D) * 32.0D;
+        double differenceY = playerMP.posY + (double) (playerMP.worldObj.rand.nextInt(30) - 10);
+        double differenceZ = playerMP.posZ + (playerMP.worldObj.rand.nextDouble() - 0.5D) * 32.0D;
 
-        double differenceX = d0;
-        double differenceY = d1;
-        double differenceZ = d2;
         double distance = Math.sqrt(differenceX * differenceX + differenceY * differenceY + differenceZ * differenceZ);
-        if (distance > 6) {
-            return teleportTo(d0, d1, d2, playerMP);
-        } else {
-            return false;
-        }
+        return distance > 6 && teleportTo(differenceX, differenceY, differenceZ, playerMP);
     }
 
     protected static boolean teleportTo(double posX, double posY, double posZ, EntityPlayerMP playerMP) {

@@ -15,12 +15,6 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
 
     /*public int blockID;
     public int metadata;*/
-    /**
-     * Animation data
-     */
-    public double fromPosX;
-    public double fromPosY;
-    public double fromPosZ;
 
     public double toPosX;
     public double toPosY;
@@ -47,22 +41,25 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         this.health = health;
         this.commonSetup();
         this.preventEntitySpawning = true;
-        this.setPosition(x + 0.5f, y, z + 0.5f);
+        this.toPosX = x + 0.5f;
+        this.toPosY = y;
+        this.toPosZ = z + 0.5f;
+        this.setPosition(x + 0.5f, y - 5, z + 0.5f);
         this.canMove = false;
     }
 
     @Override
-    public void setPosition(double p_70107_1_, double p_70107_3_, double p_70107_5_)
+    public void setPosition(double posX, double posY, double posZ)
     {
         if(!this.canMove) {
             return;
         }
-        this.posX = p_70107_1_;
-        this.posY = p_70107_3_;
-        this.posZ = p_70107_5_;
+        this.posX = posX;
+        this.posY = posY;
+        this.posZ = posZ;
         float f = this.width / 2.0F;
         float f1 = this.height;
-        this.boundingBox.setBounds(p_70107_1_ - (double)f, p_70107_3_ - (double)this.yOffset + (double)this.ySize, p_70107_5_ - (double)f, p_70107_1_ + (double)f, p_70107_3_ - (double)this.yOffset + (double)this.ySize + (double)f1, p_70107_5_ + (double)f);
+        this.boundingBox.setBounds(posX - (double)f, posY - (double)this.yOffset + (double)this.ySize, posZ - (double)f, posX + (double)f, posY - (double)this.yOffset + (double)this.ySize + (double)f1, posZ + (double)f);
     }
 
     @Override
@@ -117,6 +114,8 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
 
     @Override
     public void onUpdate() {
+
+        this.posY += (this.toPosY - this.posY) / 4f;
         //this.posY += 0.01;
 
         if(!this.worldObj.isRemote) {
