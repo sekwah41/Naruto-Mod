@@ -61,7 +61,11 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
     @Override
     public void setPosition(double posX, double posY, double posZ)
     {
-
+        if(this.canMove) {
+            this.posX = posX;
+            this.posY = posY;
+            this.posZ = posZ;
+        }
     }
 
     @Override
