@@ -1,0 +1,11 @@
+\.gradle/
+eclipse/
+forge/
+out/
+*.iml
+*.ipr
+*.iws
+
+src/main/resources/assets/narutomod/8342a58781\.ogg
+
+src/main/resources/assets/narutomod/sounds/unused\.ogg

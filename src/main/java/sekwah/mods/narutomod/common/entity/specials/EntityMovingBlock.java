@@ -42,24 +42,26 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         this.commonSetup();
         this.preventEntitySpawning = true;
         this.toPosX = x + 0.5f;
-        this.toPosY = y;
+        this.toPosY = y + 1;
         this.toPosZ = z + 0.5f;
-        this.setPosition(x + 0.5f, y - 5, z + 0.5f);
+        this.forceSetPosition(x + 0.5f, y, z + 0.5f);
         this.canMove = false;
     }
 
-    @Override
-    public void setPosition(double posX, double posY, double posZ)
+    public void forceSetPosition(double posX, double posY, double posZ)
     {
-        if(!this.canMove) {
-            return;
-        }
         this.posX = posX;
         this.posY = posY;
         this.posZ = posZ;
         float f = this.width / 2.0F;
         float f1 = this.height;
         this.boundingBox.setBounds(posX - (double)f, posY - (double)this.yOffset + (double)this.ySize, posZ - (double)f, posX + (double)f, posY - (double)this.yOffset + (double)this.ySize + (double)f1, posZ + (double)f);
+    }
+
+    @Override
+    public void setPosition(double posX, double posY, double posZ)
+    {
+
     }
 
     @Override
@@ -115,7 +117,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
     @Override
     public void onUpdate() {
 
-        this.posY += (this.toPosY - this.posY) / 4f;
+        //this.posY += (this.toPosY - this.posY) / 4f;
         //this.posY += 0.01;
 
         if(!this.worldObj.isRemote) {
@@ -142,12 +144,19 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
     protected void readEntityFromNBT(NBTTagCompound nbtTagCompound) {
         this.block = Block.getBlockById(nbtTagCompound.getInteger("BlockID"));
         this.data = nbtTagCompound.getByte("Data");
+        this.toPosX = nbtTagCompound.getDouble("ToPosX");
+        this.toPosY = nbtTagCompound.getDouble("ToPosY");
+        this.toPosZ = nbtTagCompound.getDouble("ToPosZ");
+
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound nbtTagCompound) {
         nbtTagCompound.setInteger("BlockID", Block.getIdFromBlock(this.block));
         nbtTagCompound.setByte("Data", this.data);
+        nbtTagCompound.setDouble("ToPosX", this.toPosX);
+        nbtTagCompound.setDouble("ToPosY", this.toPosY);
+        nbtTagCompound.setDouble("ToPosZ", this.toPosZ);
     }
 
     @Override
