@@ -20,7 +20,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
     public double toPosY;
     public double toPosZ;
 
-    public double transitionLength;
+    public int aliveTicks;
 
     public int health;
 
@@ -31,7 +31,9 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
 
     public EntityMovingBlock(World world) {
         super(world);
+        this.ignoreFrustumCheck = false;
         this.commonSetup();
+        this.aliveTicks = 0;
     }
 
     public EntityMovingBlock(World par1World, double x, double y, double z, int blockID, int blockMetaID, int health) {
@@ -42,10 +44,11 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         this.commonSetup();
         this.preventEntitySpawning = true;
         this.toPosX = x + 0.5f;
-        this.toPosY = y + 1;
+        this.toPosY = y;
         this.toPosZ = z + 0.5f;
         this.forceSetPosition(x + 0.5f, y, z + 0.5f);
         this.canMove = false;
+        this.aliveTicks = 0;
     }
 
     public void forceSetPosition(double posX, double posY, double posZ)
@@ -62,9 +65,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
     public void setPosition(double posX, double posY, double posZ)
     {
         if(this.canMove) {
-            this.posX = posX;
-            this.posY = posY;
-            this.posZ = posZ;
+            this.forceSetPosition(posX, posY, posZ);
         }
     }
 
@@ -121,6 +122,8 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
     @Override
     public void onUpdate() {
 
+        this.aliveTicks++;
+
         //this.posY += (this.toPosY - this.posY) / 4f;
         //this.posY += 0.01;
 
@@ -167,12 +170,14 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
     public void writeSpawnData(ByteBuf buffer) {
         buffer.writeInt(Block.getIdFromBlock(this.block));
         buffer.writeByte(this.data);
+        buffer.writeDouble(this.toPosY);
     }
 
     @Override
     public void readSpawnData(ByteBuf additionalData) {
         this.block = Block.getBlockById(additionalData.readInt());
         this.data = additionalData.readByte();
+        this.toPosY = additionalData.readDouble();
         this.canMove = false;
     }
 
