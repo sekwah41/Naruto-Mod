@@ -207,8 +207,7 @@ public class JutsuCommon {
             if(dir < 0) {
                 dir += 4;
             }
-
-            System.out.println(dir);
+            
             switch (dir) {
                 case 0:
                     xDir = 1;
