@@ -204,6 +204,9 @@ public class JutsuCommon {
             //playerMP.worldObj.setBlockToAir(movingObject.blockX,movingObject.blockY, movingObject.blockZ);
             //playerMP.worldObj.getBlock(movingObject.blockX,movingObject.blockY, movingObject.blockZ);
             int dir = MathHelper.floor_double((double) ((playerMP.rotationYaw * 8F) / 360F) + 0.5D) % 4;
+            if(dir < 0) {
+                dir += 4;
+            }
 
             System.out.println(dir);
             switch (dir) {

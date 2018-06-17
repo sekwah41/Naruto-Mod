@@ -437,7 +437,7 @@ public class EntityKunai extends EntityArrow implements IProjectile {
     /**
      * Called by a player entity when they collide with an entity
      */
-    public void onCollideWithPlayer(EntityPlayer p_70100_1_) {
+    public void boundingBox(EntityPlayer p_70100_1_) {
         if (!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0) {
             boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2 && p_70100_1_.capabilities.isCreativeMode;
 

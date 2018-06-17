@@ -31,7 +31,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
 
     public EntityMovingBlock(World world) {
         super(world);
-        this.ignoreFrustumCheck = false;
+        this.ignoreFrustumCheck = true;
         this.commonSetup();
         this.aliveTicks = 0;
     }
@@ -131,6 +131,12 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
             WorldServer worldserver = (WorldServer)this.worldObj;
             if(this.health == 30) {
                 this.setShaking();
+            }
+            if(this.health <= 30 && Math.random() < 0.1) {
+                this.worldObj.playSoundAtEntity(this, this.block.stepSound.getBreakSound(), 1, 1);
+                worldserver.func_147487_a("blockcrack_" + Block.getIdFromBlock(block) + "_" + this.data,
+                        this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.boundingBox.minY + 0.1D,
+                        this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width ,10,0,0,0,1);
             }
             if(this.health-- < 0) {
                 this.worldObj.playSoundAtEntity(this, this.block.stepSound.getBreakSound(), 1, 1);

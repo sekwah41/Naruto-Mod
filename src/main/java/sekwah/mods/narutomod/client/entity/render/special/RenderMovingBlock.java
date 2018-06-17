@@ -34,7 +34,10 @@ public class RenderMovingBlock extends Render {
     private void renderBlock(EntityMovingBlock entity, double x, double y, double z, float p_76986_8_, float p_76986_9_) {
         GL11.glPushMatrix();
 
-        float downAmount = (5 / ((entity.aliveTicks + p_76986_9_) * 0.4f));
+        float downAmount = ((5 + 2) / ((entity.aliveTicks + p_76986_9_) * 0.4f)) - 1f;
+        if(downAmount < 0) {
+            downAmount = 0;
+        }
         if(entity.getShaking()) {
             float shakeAmount = 0.02f;
             GL11.glTranslatef((float) (this.shakeOffset(shakeAmount) + x),(float) (this.shakeOffset(shakeAmount) + y) + 0.5f - downAmount,(float) (this.shakeOffset(shakeAmount) + z));
