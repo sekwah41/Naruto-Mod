@@ -410,16 +410,16 @@ public class PlayerClientTickEvent {
             } else if (!Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && !hasDoubleJumped && !doubleJumpReady) {
                 doubleJumpReady = true;
             } else if (Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && !hasDoubleJumped && playerMP.isAirBorne && doubleJumpReady
-                    && /*useChakra(3F)*/ chakra >= 3F && stamina >= 15F) {
+                    && /*useChakra(3F)*/ chakra >= 2F && stamina >= 5F) {
 
                 playerMP.setVelocity(playerMP.motionX, 0.5F, playerMP.motionZ);
                 hasDoubleJumped = true;
                 doubleJumpReady = false;
                 playerMP.fallDistance = 0.0F;
                 ParticleEffects.addEffect(3, playerMP);
-                chakra -= 3F;
+                chakra -= 2F;
                 setChakraCooldown(30);
-                stamina -= 10F;
+                stamina -= 5F;
                 setStaminaCooldown(80);
 
                 ByteArrayOutputStream bos = new ByteArrayOutputStream(8);

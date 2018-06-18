@@ -84,10 +84,6 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
     private int field_92020_v;
     private int field_92019_w;
     private ResourceLocation field_110351_G;
-    /**
-     * String showing if there is a mod update available
-     */
-    private String updatetext;
 
     private String narutoversion;
 
@@ -144,8 +140,6 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
         //repeats = 1 + rand.nextInt(2);
 
         this.joinenabled = UpdateChecker.joinenabled;
-
-        this.updatetext = UpdateChecker.updatetext;
 
         this.joinButtonText = UpdateChecker.servertext;
 
@@ -599,7 +593,7 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
             String brd = trueBrandings.get(i);
             if (!Strings.isNullOrEmpty(brd)) {
                 if (brd.equals("Naruto Mod")) {
-                    brd = "Naruto Mod v" + this.narutoversion + this.updatetext;
+                    brd = "Naruto Mod v" + this.narutoversion + UpdateChecker.updatetext;
                 }
                 this.drawString(this.fontRendererObj, brd, 2, this.height - (10 + i * (this.fontRendererObj.FONT_HEIGHT + 1)), 16777215);
             }

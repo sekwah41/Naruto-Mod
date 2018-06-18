@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,7 +59,7 @@ public class UpdateChecker/* extends Thread*/ {
                     NarutoMod.logger.info("Checking for updates");
                     checkUpdate(updateURL);
                 }
-            }, 0L); // Shorter than 15 mins by 10 seconds just to make sure its not on the border and online
+            }, 0L);
 
             // players are missed
 
@@ -154,7 +155,7 @@ public class UpdateChecker/* extends Thread*/ {
             updatetext = EnumChatFormatting.RED + " - Error reading update file :(";
         } catch (IOException e) {
             e.printStackTrace();
-            updatetext = EnumChatFormatting.RED + " - Could not connect to the update info file :(";
+            updatetext = EnumChatFormatting.RED + " - Could not connect";
         }
 
         try {
