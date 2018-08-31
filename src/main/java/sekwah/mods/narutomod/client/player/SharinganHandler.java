@@ -22,11 +22,15 @@ public class SharinganHandler {
 
     private static final ResourceLocation smove = new ResourceLocation("narutomod:textures/skinOverlays/smove.png");
 
+    private static final ResourceLocation jougan = new ResourceLocation("narutomod:textures/skinOverlays/jougan.png");
 
     public ResourceLocation getEyes(String username, int eyeStatus){
 
         if (username.endsWith("Zaromaru") && eyeStatus == 1) {
             return rinneganOverlay;
+        }
+        else if(username.endsWith("HeroGamezFTW") && eyeStatus == 1) {
+            return jougan;
         }
         else if(username.endsWith("Gingershadow") && eyeStatus == 1){
             return motherFuckingDEMONSOverlay;
