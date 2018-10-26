@@ -142,6 +142,12 @@ public class JutsuClient {
                 PlayerClientTickEvent.chakra -= JutsuData.shadowCloneCost;
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
+            case 1322:
+                ParticleEffects.addEffect(4, playerMP);
+                playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.chibiClone")));
+                PlayerClientTickEvent.chakra -= JutsuData.shadowCloneCost;
+                PlayerClientTickEvent.chakraCooldown = 30;
+                break;
             case 133231:
                 ParticleEffects.addEffect(4, playerMP);
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.multiShadowClone")));
