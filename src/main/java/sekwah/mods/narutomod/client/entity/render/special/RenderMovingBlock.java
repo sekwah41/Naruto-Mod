@@ -36,6 +36,7 @@ public class RenderMovingBlock extends Render {
 
         float downAmount = ((5 + 2) / ((entity.aliveTicks + p_76986_9_) * 0.4f)) - 1f;
         if(downAmount < 0) {
+            entity.ignoreFrustumCheck = false;
             downAmount = 0;
         }
         if(entity.getShaking()) {

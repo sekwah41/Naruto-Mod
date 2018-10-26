@@ -30,6 +30,7 @@ import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.common.entity.EntityShadowClone;
+import sekwah.mods.narutomod.sekcore.SkinLoader;
 
 import static net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED;
 import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D;
@@ -193,8 +194,8 @@ public class RenderShadowClone extends RendererLivingEntity {
         //System.out.println("I WANT THIS SKIN");
 
         if (par1EntityShadowClone.getCustomNameTag() != null && par1EntityShadowClone.getCustomNameTag().length() > 0) {
-            locationSkin = AbstractClientPlayer.getLocationSkin(par1EntityShadowClone.getCustomNameTag());
-            AbstractClientPlayer.getDownloadImageSkin(locationSkin, par1EntityShadowClone.getCustomNameTag());
+            locationSkin = SkinLoader.getUserSkin(par1EntityShadowClone.getCustomNameTag());
+            SkinLoader.getDownloadImageSkin(locationSkin, null, par1EntityShadowClone.getCustomNameTag());
         }
 
         return locationSkin;
@@ -253,8 +254,8 @@ public class RenderShadowClone extends RendererLivingEntity {
 
             ResourceLocation locationSkin = AbstractClientPlayer.locationStevePng;
 
-            locationSkin = SkinFetcher.getLocationSkin(par1EntityShadowClone.getCustomNameTag());
-            AbstractClientPlayer.getDownloadImageSkin(locationSkin, par1EntityShadowClone.getCustomNameTag());
+            locationSkin = SkinLoader.getUserSkin(par1EntityShadowClone.getCustomNameTag());
+            SkinLoader.getDownloadImageSkin(locationSkin, null, par1EntityShadowClone.getCustomNameTag());
 
             this.bindTexture(locationSkin);
 
@@ -290,12 +291,12 @@ public class RenderShadowClone extends RendererLivingEntity {
 
         if (flag1 && flag2) {
 
-            ResourceLocation locationSkin = null;
+            ResourceLocation locationCape = null;
 
-            locationSkin = SkinFetcher.getLocationCape(par1EntityShadowClone.getCustomNameTag());
-            SkinFetcher.getDownloadImageCape(null, par1EntityShadowClone.getCustomNameTag());
+            locationCape = SkinLoader.getUserCape(par1EntityShadowClone.getCustomNameTag());
+            SkinLoader.getDownloadImageSkin(null, locationCape, par1EntityShadowClone.getCustomNameTag());
 
-            this.bindTexture(locationSkin);
+            this.bindTexture(locationCape);
             GL11.glPushMatrix();
             GL11.glTranslatef(0.0F, 0.0F, 0.125F);
             double d0 = par1EntityShadowClone.field_71091_bM + (par1EntityShadowClone.field_71094_bP - par1EntityShadowClone.field_71091_bM) * (double) par2 - (par1EntityShadowClone.prevPosX + (par1EntityShadowClone.posX - par1EntityShadowClone.prevPosX) * (double) par2);

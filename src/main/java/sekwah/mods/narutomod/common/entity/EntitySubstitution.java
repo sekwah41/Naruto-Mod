@@ -12,6 +12,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.sekcore.SkinLoader;
 
 public class EntitySubstitution extends EntityMob {
 
@@ -39,8 +40,8 @@ public class EntitySubstitution extends EntityMob {
             this.locationSkin = AbstractClientPlayer.locationStevePng;
 
             if (this.getCustomNameTag() != null && this.getCustomNameTag().length() > 0) {
-                this.locationSkin = AbstractClientPlayer.getLocationSkin(this.getCustomNameTag());
-                AbstractClientPlayer.getDownloadImageSkin(this.locationSkin, this.getCustomNameTag());
+                this.locationSkin = SkinLoader.getUserSkin(this.getCustomNameTag());
+                SkinLoader.getDownloadImageSkin(this.locationSkin, null, this.getCustomNameTag());
             }
 
             // this.locationCape = getLocationCape("cloaks/" + this.getCustomNameTag());

@@ -17,6 +17,7 @@ import sekwah.mods.narutomod.common.entity.ai.EntityAIOwnerHurtTarget;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityShuriken;
 import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.sekcore.SkinLoader;
 
 public class EntityShadowClone extends EntityMob {
 
@@ -47,6 +48,8 @@ public class EntityShadowClone extends EntityMob {
         this.targetTasks.addTask(1, new sekwah.mods.narutomod.common.entity.ai.EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
 
+        //this.setChild(true);
+
         this.setupCustomSkin();
 
     }
@@ -57,8 +60,8 @@ public class EntityShadowClone extends EntityMob {
             this.locationSkin = AbstractClientPlayer.locationStevePng;
 
             if (this.getCustomNameTag() != null && this.getCustomNameTag().length() > 0) {
-                this.locationSkin = AbstractClientPlayer.getLocationSkin(this.getCustomNameTag());
-                AbstractClientPlayer.getDownloadImageSkin(this.locationSkin, this.getCustomNameTag());
+                this.locationSkin = SkinLoader.getUserSkin(this.getCustomNameTag());
+                SkinLoader.getDownloadImageSkin(this.locationSkin, null, this.getCustomNameTag());
             }
 
             // this.locationCape = getLocationCape("cloaks/" + this.getCustomNameTag());
@@ -173,7 +176,7 @@ public class EntityShadowClone extends EntityMob {
          System.out.println("Swag" + this.isSprinting());*/
 
         if (lifetime == poofTime) {
-            this.playSound("narutomod:jutsusounds.clone_poof", 0.15F, 1.0F);
+            this.playSound("narutomod:jutsusounds.clone_poof", 0.15F, this.isChild() ? 1.2F : 1.0f);
         }
 
         if (lifetime <= 0) { // how many ticks they last
@@ -251,7 +254,7 @@ public class EntityShadowClone extends EntityMob {
         ++this.deathTime;
 
         if (this.deathTime == 5) {
-            this.playSound("narutomod:jutsusounds.clone_poof", 0.15F, 1.0F);
+            this.playSound("narutomod:jutsusounds.clone_poof", 0.15F, this.isChild() ? 1.2F : 1.0f);
             this.setDead();
 
             for (int i = 0; i < 20; ++i) {

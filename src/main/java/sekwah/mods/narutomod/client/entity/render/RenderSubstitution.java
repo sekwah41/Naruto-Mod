@@ -30,6 +30,7 @@ import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.common.entity.EntitySubstitution;
+import sekwah.mods.narutomod.sekcore.SkinLoader;
 
 import static net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED;
 import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D;
@@ -190,8 +191,8 @@ public class RenderSubstitution extends RendererLivingEntity {
         ResourceLocation locationSkin = AbstractClientPlayer.locationStevePng;
 
         if (par1EntitySubstitution.getCustomNameTag() != null && par1EntitySubstitution.getCustomNameTag().length() > 0) {
-            locationSkin = AbstractClientPlayer.getLocationSkin(par1EntitySubstitution.getCustomNameTag());
-            AbstractClientPlayer.getDownloadImageSkin(locationSkin, par1EntitySubstitution.getCustomNameTag());
+            locationSkin = SkinLoader.getUserSkin(par1EntitySubstitution.getCustomNameTag());
+            SkinLoader.getDownloadImageSkin(locationSkin, null, par1EntitySubstitution.getCustomNameTag());
         }
 
         return locationSkin;
@@ -250,8 +251,8 @@ public class RenderSubstitution extends RendererLivingEntity {
 
             ResourceLocation locationSkin = AbstractClientPlayer.locationStevePng;
 
-            locationSkin = AbstractClientPlayer.getLocationSkin(par1EntitySubstitution.getCustomNameTag());
-            AbstractClientPlayer.getDownloadImageSkin(locationSkin, par1EntitySubstitution.getCustomNameTag());
+            locationSkin = SkinLoader.getUserSkin(par1EntitySubstitution.getCustomNameTag());
+            SkinLoader.getDownloadImageSkin(locationSkin, null, par1EntitySubstitution.getCustomNameTag());
 
             this.bindTexture(locationSkin);
 
@@ -291,8 +292,8 @@ public class RenderSubstitution extends RendererLivingEntity {
 
             ResourceLocation locationSkin = null;
 
-            locationSkin = SkinFetcher.getLocationCape(par1EntitySubstitution.getCustomNameTag());
-            SkinFetcher.getDownloadImageCape(null, par1EntitySubstitution.getCustomNameTag());
+            locationSkin = SkinLoader.getUserSkin(par1EntitySubstitution.getCustomNameTag());
+            SkinLoader.getDownloadImageSkin(locationSkin, null, par1EntitySubstitution.getCustomNameTag());
 
             this.bindTexture(locationSkin);
             GL11.glPushMatrix();

@@ -38,6 +38,7 @@ import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.client.player.models.extras.ModelRibs;
 import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.sekcore.SkinLoader;
 
 @SideOnly(Side.CLIENT)
 public class RenderNinjaPlayer extends RenderPlayer {
@@ -539,7 +540,9 @@ public class RenderNinjaPlayer extends RenderPlayer {
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
     protected ResourceLocation getEntityTexture(AbstractClientPlayer p_110775_1_) {
-        return p_110775_1_.getLocationSkin();
+        ResourceLocation skinLoc = SkinLoader.getUserSkin(p_110775_1_.getCommandSenderName());
+        SkinLoader.getDownloadImageSkin(skinLoc, null, p_110775_1_.getCommandSenderName());
+        return skinLoc;
     }
 
     protected void renderEquippedItems(AbstractClientPlayer p_77029_1_, float p_77029_2_) {
@@ -612,8 +615,8 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         String[] MaskUsers = {"sekwah41", "Praneeth98", "Orcwaagh"};
         for (int mask = 0; mask < MaskUsers.length; ++mask) {
-            if (p_77029_1_.getCommandSenderName().endsWith(MaskUsers[mask]) && p_77029_1_.func_152123_o()) {
-                this.bindTexture(p_77029_1_.getLocationSkin());
+            if (p_77029_1_.getCommandSenderName().endsWith(MaskUsers[mask])) {
+                this.bindTexture(this.getEntityTexture(p_77029_1_));
                 this.modelBipedMain.renderMask(0.0625F);
             }
         }
