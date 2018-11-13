@@ -9,6 +9,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
+import java.util.List;
+
 public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnData {
 
     private boolean canMove = true;
@@ -56,6 +58,10 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         this.posX = posX;
         this.posY = posY;
         this.posZ = posZ;
+        this.setBoundingBox(posX, posY, posZ);
+    }
+
+    public void setBoundingBox(double posX, double posY, double posZ) {
         float f = this.width / 2.0F;
         float f1 = this.height;
         this.boundingBox.setBounds(posX - (double)f, posY - (double)this.yOffset + (double)this.ySize, posZ - (double)f, posX + (double)f, posY - (double)this.yOffset + (double)this.ySize + (double)f1, posZ + (double)f);
@@ -103,7 +109,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
 
     public AxisAlignedBB getCollisionBox(Entity entity)
     {
-        return entity.boundingBox;
+        return this.boundingBox;
     }
 
     /**
@@ -116,13 +122,36 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
 
     public boolean canBePushed()
     {
-        return false;
+        return true;
     }
+
+    public boolean canBeCollidedWith()
+    {
+        return true;
+    }
+
+    private double lastDownAmount = 0;
 
     @Override
     public void onUpdate() {
 
         this.aliveTicks++;
+
+        double downAmount = (((5 + 2) / ((this.aliveTicks) * 0.4f)) - 1f);
+        if(downAmount < 0) {
+            downAmount = 0;
+        }
+        //this.setBoundingBox(this.posX, this.posY + downAmount, this.posZ);
+        double moveAmount = lastDownAmount == 0 ? 0 : (lastDownAmount - downAmount);
+        lastDownAmount = downAmount;
+
+        List entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.copy().offset(0,downAmount,0));
+        for(Object entityObj : entities) {
+            if(!(entityObj instanceof EntityMovingBlock)) {
+                Entity entity = (Entity) entityObj;
+                entity.moveEntity(0,moveAmount,0);
+            }
+        }
 
         //this.posY += (this.toPosY - this.posY) / 4f;
         //this.posY += 0.01;

@@ -80,7 +80,6 @@ public class EntityFlameFireball extends EntityFireball {
                     double differenceY = this.posY - entity.posY;
                     double differenceZ = this.posZ - entity.posZ;
                     double distance = Math.sqrt(differenceX * differenceX + differenceY * differenceY + differenceZ * differenceZ);
-                    System.out.println((16 / ((distance * 2))));
                     entity.setFire((int) (16 / ((distance * 2))));
                 }
             }

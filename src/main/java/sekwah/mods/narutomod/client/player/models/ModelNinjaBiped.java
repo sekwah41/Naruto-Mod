@@ -553,16 +553,16 @@ public class ModelNinjaBiped extends ModelBiped
         }
 
 
-        if (this.isThrowing)
+        /*if (this.isThrowing)
         {
             this.bipedRightArmUpper.rotateAngleY = -(0.1F) + this.bipedHead.rotateAngleX;
             this.bipedRightArmUpper.rotateAngleX = -(1F + (this.bipedHead.rotateAngleY / 2));
             this.bipedRightArmUpper.rotateAngleZ = -1.2831853071795864769252867665601F;
 
             this.bipedRightArmLower.rotateAngleX = 0;
-        }
+        }*/
 
-        if(this.isClient){
+        /*if(this.isClient){
             if (this.isClientThrowing)
             {
 
@@ -622,7 +622,7 @@ public class ModelNinjaBiped extends ModelBiped
                     this.bipedRightArmUpper.rotateAngleZ = this.rightArmThrowBeforeZ;
                 }
             }
-        }
+        }*/
 
         if (this.isSprinting && this.onGround == 0F)
         {

@@ -55,7 +55,7 @@ public class NarutoMod {
     // update data
     public static int[] mcVersion = {1,7,10}; // e.g. 164 is 1.6.4
 
-    public static int[] modVersion = {0,4,2}; // e.g. 030 is 0.3.1
+    public static int[] modVersion = {0,5,1}; // e.g. 030 is 0.3.1
     // leave this as false or be more careful!
     public static boolean isPreRelease = true;
 

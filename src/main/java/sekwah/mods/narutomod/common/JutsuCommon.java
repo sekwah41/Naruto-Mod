@@ -9,6 +9,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import scala.actors.threadpool.Arrays;
 import sekwah.mods.narutomod.common.entity.EntityShadowClone;
 import sekwah.mods.narutomod.common.entity.EntitySubstitution;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
@@ -20,6 +21,7 @@ import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.util.List;
 
 public class JutsuCommon {
 
@@ -241,13 +243,31 @@ public class JutsuCommon {
         }
     }
 
+    private static List blockList = Arrays.asList(allowedBlocks(Blocks.stone, Blocks.coal_ore, Blocks.diamond_ore,
+            Blocks.log, Blocks.gravel, Blocks.sand, Blocks.sandstone));
+
+    private static String[] allowedBlocks(Block... blocks) {
+        String[] names = new String[blocks.length];
+        for (int i = 0; i < blocks.length; i++) {
+            names[i] = blocks[i].getUnlocalizedName();
+        }
+        return names;
+    }
+
     private static void earthWallPillar(World worldObj, int x, int y, int z) {
         if(!Blocks.dirt.canPlaceBlockAt(worldObj,x,y,z)) y++;
+        else if(Blocks.dirt.canPlaceBlockAt(worldObj,x,y-1,z)) y++;
         //worldObj.setBlock(x,y,z,Blocks.bedrock);
-        Block block = worldObj.getBlock(x,y,z);
         for(int yW = 0; yW < 5; yW ++) {
+            if(worldObj.getBlock(x,y+ yW,z) != Blocks.air) continue;
+            Block block = worldObj.getBlock(x,y-5 + yW,z);
+            int meta = worldObj.getBlockMetadata(x,y-5 + yW,z);
+            if(!blockList.contains(block.getUnlocalizedName())) {
+                block = Blocks.dirt;
+                meta = 0;
+            }
             EntityMovingBlock blockEntity = new EntityMovingBlock(worldObj,x,y + yW,z,
-                    Block.getIdFromBlock(Blocks.dirt/*block*/), worldObj.getBlockMetadata(x,y,z), 20 * 9 + (int) (Math.random() * 40));
+                    Block.getIdFromBlock(/*Blocks.dirt*/block), meta, 20 * 9 + (int) (Math.random() * 40));
             worldObj.spawnEntityInWorld(blockEntity);
         }
 

@@ -224,13 +224,16 @@ public class RenderNinjaPlayer extends RenderPlayer {
             } else if (enumaction == EnumAction.bow) {
                 this.modelArmorChestplate.aimedBow = this.modelArmor.aimedBow = this.modelBipedMain.aimedBow = true;
             } else if (enumaction == NarutoItems.Throw) {
-                //this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = true;
+                this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = true;
                 /*if (FMLClientHandler.instance().getClient().thePlayer == p_76986_1_) {
                     this.modelArmorChestplate.isClientThrowing = this.modelArmor.isClientThrowing = this.modelBipedMain.isClientThrowing = true;
                 } else {
                     this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = true;
                 }*/
             }
+        }
+        else {
+            this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = false;
         }
 
 
