@@ -2,7 +2,7 @@
     "poses": {
         "earthWall": {
             "animDuration": -1,
-            "animLength": 30,
+            "animLength": 16,
             "nextPose": "earthWall2",
             "locData": {
                 "head": {
@@ -84,7 +84,7 @@
         },
         "earthWall2": {
             "animDuration": -1,
-            "animLength": 13,
+            "animLength": 14,
             "nextPose": "earthWall3",
             "locData": {
                 "head": {
@@ -166,7 +166,7 @@
         },
         "earthWall3": {
             "animDuration": -1,
-            "animLength": 39,
+            "animLength": 30,
             "completeAction": "3120",
             "nextPose": "earthWall4",
             "locData": {
@@ -249,7 +249,7 @@
         },
         "earthWall4": {
             "animDuration": -1,
-            "animLength": 79,
+            "animLength": 20,
             "nextPose": "default",
             "locData": {
                 "head": {

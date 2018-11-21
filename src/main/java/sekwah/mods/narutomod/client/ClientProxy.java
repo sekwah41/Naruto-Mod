@@ -7,6 +7,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import sekwah.mods.narutomod.NarutoMod;
@@ -156,6 +157,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void startUsageReport() {
+
         NarutoMod.usageReport = new UsageReport(true);
         NarutoMod.usageReport.startUsageReport();
     }
@@ -165,6 +167,10 @@ public class ClientProxy extends CommonProxy {
 
         NarutoItems.flakJacket.setModelArmor(new ModelFlakJacket());
         NarutoItems.JONIN_ARMOUR.setModelArmor(new ModelUpdateJoninArmor());
+    }
+
+    public void commands() {
+        ClientCommandHandler.instance.registerCommand(new CommandReloadPoses());
     }
 
 }

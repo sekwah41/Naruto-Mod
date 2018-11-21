@@ -48,4 +48,8 @@ public class CommonProxy {
     public void addItems() {
         NarutoItems.addItems(NarutoSettings.config);
     }
+
+    public void commands() {
+
+    }
 }

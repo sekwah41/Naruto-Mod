@@ -71,6 +71,8 @@ public class NarutoMod {
     @EventHandler
     public void init(FMLInitializationEvent event) {
 
+        proxy.commands();
+
         // TODO look into the mod hooks for the in game gui so i can change (hp) to a number
         //  also so i can change the chakra back
 

@@ -145,6 +145,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         double moveAmount = lastDownAmount == 0 ? 0 : (lastDownAmount - downAmount);
         lastDownAmount = downAmount;
 
+        // TODO Move entity bounding box  down but dont move the actual entity (check what does lighting and what effects other parts but could work)
         List entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.copy().offset(0,downAmount,0));
         for(Object entityObj : entities) {
             if(!(entityObj instanceof EntityMovingBlock)) {
