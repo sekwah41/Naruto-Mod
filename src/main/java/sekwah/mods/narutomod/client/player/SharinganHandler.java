@@ -34,6 +34,9 @@ public class SharinganHandler {
         else if(username.endsWith("HeroGamezFTW") && eyeStatus == 1) {
             return jougan;
         }
+        else if(username.endsWith("HeroGamezFTW") && eyeStatus == 2){
+            return sageMode;
+        }
         else if(username.endsWith("Gingershadow") && eyeStatus == 1){
             return motherFuckingDEMONSOverlay;
         }
@@ -59,9 +62,6 @@ public class SharinganHandler {
         }
         else if(username.endsWith("Smove33") && eyeStatus != 0){
             return returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, smove);
-        }
-        else if(username.endsWith("HeroGamezFTW") && eyeStatus == 1){
-            return sageMode;
         }
         return null;
     }

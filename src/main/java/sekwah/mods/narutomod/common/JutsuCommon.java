@@ -9,7 +9,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
-import scala.actors.threadpool.Arrays;
 import sekwah.mods.narutomod.common.entity.EntityShadowClone;
 import sekwah.mods.narutomod.common.entity.EntitySubstitution;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
@@ -21,6 +20,7 @@ import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.util.Arrays;
 import java.util.List;
 
 public class JutsuCommon {
