@@ -175,15 +175,7 @@ public class RenderShadowClone extends RendererLivingEntity {
     }
 
     protected ResourceLocation func_110817_a(EntityShadowClone par1EntityShadowClone) {
-        ResourceLocation locationSkin = AbstractClientPlayer.locationStevePng;
-        //System.out.println("I WANT THIS SKIN");
-
-        if (par1EntityShadowClone.getCustomNameTag() != null && par1EntityShadowClone.getCustomNameTag().length() > 0) {
-            locationSkin = SkinLoader.getUserSkin(par1EntityShadowClone.getCustomNameTag());
-            SkinLoader.getDownloadImageSkin(locationSkin, null, par1EntityShadowClone.getCustomNameTag());
-        }
-
-        return locationSkin;
+        return par1EntityShadowClone.getLocationSkin();
     }
 
     /**

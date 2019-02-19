@@ -70,7 +70,9 @@ public class EntityShadowClone extends EntityMob implements SkinManager.SkinAvai
     public EntityShadowClone(World par1World, GameProfile gameProfile) {
         this(par1World);
 
-        this.loadSkinFromProfile(gameProfile);
+        this.gameProfile = gameProfile;
+
+        //this.loadSkinFromProfile(gameProfile);
 
     }
 
@@ -95,9 +97,6 @@ public class EntityShadowClone extends EntityMob implements SkinManager.SkinAvai
         this.getDataWatcher().addObject(14, Byte.valueOf((byte) 0));
 
         this.getDataWatcher().addObject(DataWatcherIDs.eyerenderer, 0);
-
-        this.getDataWatcher().addObject(24, "sekwah41");
-        this.getDataWatcher().addObject(25, "c26c64de-390a-4a72-8452-50c40d4aaa84");
     }
 
     // TODO store master and the display name seperately and take into account the user's team and other stuff
@@ -126,8 +125,6 @@ public class EntityShadowClone extends EntityMob implements SkinManager.SkinAvai
             return false;
         } else {
             EntityLivingBase entitylivingbase = this.getAttackTarget();
-
-            System.out.println(entitylivingbase);
 
             if (entitylivingbase == null && this.getEntityToAttack() instanceof EntityLivingBase) {
                 entitylivingbase = (EntityLivingBase) this.getEntityToAttack();
@@ -283,7 +280,7 @@ public class EntityShadowClone extends EntityMob implements SkinManager.SkinAvai
 
         this.setCustomNameTag("sekwah41");
 
-        GameProfile gameProfile = MinecraftServer.getServer().func_152358_ax().func_152655_a("sekwah41");
+        gameProfile = MinecraftServer.getServer().func_152358_ax().func_152655_a("sekwah41");
 
         return par1EntityLivingData;
     }
@@ -312,6 +309,7 @@ public class EntityShadowClone extends EntityMob implements SkinManager.SkinAvai
         }
 
         // par1NBTTagCompound.setInteger("WeaponID", this.weaponID);
+        par1NBTTagCompound.setString("profileUUID", this.gameProfile.getId().toString());
     }
 
     /**
@@ -323,6 +321,8 @@ public class EntityShadowClone extends EntityMob implements SkinManager.SkinAvai
         if (par1NBTTagCompound.getBoolean("IsBaby")) {
             this.setChild(true);
         }
+
+        gameProfile = new GameProfile(UUID.fromString(par1NBTTagCompound.getString("profileUUID")), this.getCustomNameTag());
 
         // this.weaponID = par1NBTTagCompound.getInteger("WeaponID");
     }
@@ -356,16 +356,6 @@ public class EntityShadowClone extends EntityMob implements SkinManager.SkinAvai
         }
     }
 
-    @Override
-    public void writeSpawnData(ByteBuf buffer) {
-
-    }
-
-    @Override
-    public void readSpawnData(ByteBuf additionalData) {
-
-    }
-
     @SideOnly(Side.CLIENT)
 
     static final class SwitchType
@@ -395,13 +385,23 @@ public class EntityShadowClone extends EntityMob implements SkinManager.SkinAvai
         }
     }
 
-    /*@Override
+    @Override
     public void writeSpawnData(ByteBuf buffer) {
-        ByteBufUtils.writeUTF8String(buffer, "");
+        if(gameProfile != null) {
+            ByteBufUtils.writeUTF8String(buffer, gameProfile.getName() + "\n" + gameProfile.getId().toString());
+        }
+        else {
+            ByteBufUtils.writeUTF8String(buffer, "null");
+        }
     }
 
     @Override
     public void readSpawnData(ByteBuf buffer) {
         String string = ByteBufUtils.readUTF8String(buffer);
-    }*/
+        if(string.equals("null")) {
+            return;
+        }
+        String[] details = string.split("\n");
+        this.loadSkinFromProfile(new GameProfile(UUID.fromString(details[1]), details[0]));
+    }
 }

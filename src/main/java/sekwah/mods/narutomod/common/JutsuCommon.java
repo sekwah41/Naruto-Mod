@@ -276,7 +276,7 @@ public class JutsuCommon {
     private static void spawnClones(EntityPlayerMP playerMP, int cloneCount, int eyeStatus, boolean baby) {
         System.out.println(cloneCount);
         for(int i = 0; i < cloneCount; i++) {
-            EntityShadowClone shadowClone = new EntityShadowClone(playerMP.worldObj);
+            EntityShadowClone shadowClone = new EntityShadowClone(playerMP.worldObj, playerMP.getGameProfile());
 
             shadowClone.setLocationAndAngles(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
             shadowClone.setCustomNameTag(playerMP.getCommandSenderName());
