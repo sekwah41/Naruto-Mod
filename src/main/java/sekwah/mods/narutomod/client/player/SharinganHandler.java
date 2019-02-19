@@ -24,6 +24,8 @@ public class SharinganHandler {
 
     private static final ResourceLocation jougan = new ResourceLocation("narutomod:textures/skinOverlays/jougan.png");
 
+    private static final ResourceLocation sageMode = new ResourceLocation("narutomod:textures/skinOverlays/sagemode.png");
+
     public ResourceLocation getEyes(String username, int eyeStatus){
 
         if (username.endsWith("Zaromaru") && eyeStatus == 1) {
@@ -57,6 +59,9 @@ public class SharinganHandler {
         }
         else if(username.endsWith("Smove33") && eyeStatus != 0){
             return returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, smove);
+        }
+        else if(username.endsWith("HeroGamezFTW") && eyeStatus == 1){
+            return sageMode;
         }
         return null;
     }
