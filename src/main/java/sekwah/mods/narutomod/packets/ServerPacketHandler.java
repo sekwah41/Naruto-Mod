@@ -3,6 +3,7 @@ package sekwah.mods.narutomod.packets;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.player.EntityPlayerMP;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.common.JutsuCommon;
 import sekwah.mods.narutomod.packets.clientbound.ClientJutsuPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientParticleEffectPacket;
@@ -95,9 +96,9 @@ public class ServerPacketHandler {
         DataWatcher dw = playerEntity.getDataWatcher();
         //NarutoMod.logger.info(jutsuPose);
 
-        dw.updateObject(26, dw.getWatchableObjectString(20));
-        dw.updateObject(20, jutsuPose);
-        //dw.updateObject(25, Float.valueOf(0));
+        dw.updateObject(DataWatcherIDs.lastPose, dw.getWatchableObjectString(DataWatcherIDs.jutsuPose));
+        dw.updateObject(DataWatcherIDs.jutsuPose, jutsuPose);
+        //dw.updateObject(DataWatcherIDs.animationTick, Float.valueOf(0));
     }
 
     public static void handleEyePacket(byte[] packet, EntityPlayerMP playerEntity) {
@@ -110,7 +111,7 @@ public class ServerPacketHandler {
         }
         DataWatcher dw = playerEntity.getDataWatcher();
 
-        dw.updateObject(23, eyeThing);
+        dw.updateObject(DataWatcherIDs.eyerenderer, eyeThing);
     }
 
     public static void handlePlayerDataPacket(byte[] packet) {

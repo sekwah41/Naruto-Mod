@@ -6,6 +6,7 @@ import net.minecraft.entity.DataWatcher;
 import net.minecraft.nbt.NBTTagCompound;
 import sekwah.mods.narutomod.client.PlayerRenderTickEvent;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.json.JSONObject;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
@@ -355,20 +356,20 @@ public class PlayerPoseAnimatorNewProto {
 
         NBTTagCompound data = playerMP.getEntityData();
 
-        if (!dw.getWatchableObjectString(20).equals(data.getString("lastposeClient"))) {
-            dw.updateObject(25, 0);
-            data.setString("lastposeClient", dw.getWatchableObjectString(20));
+        if (!dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals(data.getString("lastposeClient"))) {
+            dw.updateObject(DataWatcherIDs.animationTick, 0);
+            data.setString("lastposeClient", dw.getWatchableObjectString(DataWatcherIDs.jutsuPose));
         }
 
-        if (dw.getWatchableObjectString(20).equals(data.getString("lastposeClient")) & getAnimTicks(dw.getWatchableObjectString(20)) > dw.getWatchableObjectInt(25)) {
+        if (dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals(data.getString("lastposeClient")) & getAnimTicks(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose)) > dw.getWatchableObjectInt(25)) {
             float delta = PlayerRenderTickEvent.delta;
             while (delta-- >= 1) {
-                if (getAnimTicks(dw.getWatchableObjectString(20)) > dw.getWatchableObjectInt(25)) {
-                    dw.updateObject(25, dw.getWatchableObjectInt(25) + 1);
+                if (getAnimTicks(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose)) > dw.getWatchableObjectInt(25)) {
+                    dw.updateObject(DataWatcherIDs.animationTick, dw.getWatchableObjectInt(25) + 1);
                 }
             }
         } else {
-            dw.updateObject(26, dw.getWatchableObjectString(20));
+            dw.updateObject(DataWatcherIDs.lastPose, dw.getWatchableObjectString(DataWatcherIDs.jutsuPose));
         }
     }
 
@@ -377,22 +378,22 @@ public class PlayerPoseAnimatorNewProto {
         NBTTagCompound data = playerMP.getEntityData();
 
         DataWatcher dw = playerMP.getDataWatcher();
-        if (!dw.getWatchableObjectString(20).equals(data.getString("lastposeClient"))) {
-            dw.updateObject(25, 0);
-            data.setString("lastposeClient", dw.getWatchableObjectString(20));
+        if (!dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals(data.getString("lastposeClient"))) {
+            dw.updateObject(DataWatcherIDs.animationTick, 0);
+            data.setString("lastposeClient", dw.getWatchableObjectString(DataWatcherIDs.jutsuPose));
             PlayerRenderTickEvent.hasFiredAnimationUpdate = false;
         }
 
-        if (dw.getWatchableObjectString(20).equals(data.getString("lastposeClient")) & getAnimTicks(dw.getWatchableObjectString(20)) > dw.getWatchableObjectInt(25)) {
+        if (dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals(data.getString("lastposeClient")) & getAnimTicks(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose)) > dw.getWatchableObjectInt(25)) {
             float delta = PlayerRenderTickEvent.delta;
             while (delta-- >= 1) {
-                if (getAnimTicks(dw.getWatchableObjectString(20)) > dw.getWatchableObjectInt(25)) {
-                    dw.updateObject(25, dw.getWatchableObjectInt(25) + 1);
+                if (getAnimTicks(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose)) > dw.getWatchableObjectInt(25)) {
+                    dw.updateObject(DataWatcherIDs.animationTick, dw.getWatchableObjectInt(25) + 1);
                 }
                 // TODO this could possibly be the cause of the animation problem
                 //else{
                 //if(!PlayerRenderTickEvent.hasFiredAnimationUpdate){
-                //dw.updateObject(26, dw.getWatchableObjectString(20));
+                //dw.updateObject(DataWatcherIDs.lastPose, dw.getWatchableObjectString(DataWatcherIDs.jutsuPose));
                 //animationComplete(playerMP);
                 //}
                 //PlayerRenderTickEvent.hasFiredAnimationUpdate = true;
@@ -400,7 +401,7 @@ public class PlayerPoseAnimatorNewProto {
             }
         } else {
             if (!PlayerRenderTickEvent.hasFiredAnimationUpdate) {
-                dw.updateObject(26, dw.getWatchableObjectString(20));
+                dw.updateObject(DataWatcherIDs.lastPose, dw.getWatchableObjectString(DataWatcherIDs.jutsuPose));
                 animationComplete(playerMP);
                 PlayerRenderTickEvent.hasFiredAnimationUpdate = true;
             }
@@ -409,7 +410,7 @@ public class PlayerPoseAnimatorNewProto {
 
     private static void animationComplete(EntityClientPlayerMP playerMP) { // triggered by the client to get the next animation
         DataWatcher dw = playerMP.getDataWatcher();
-        String animationID = dw.getWatchableObjectString(20);
+        String animationID = dw.getWatchableObjectString(DataWatcherIDs.jutsuPose);
         if (poses.has(animationID)) {
             JSONObject poseInfo = poses.getJSONObject(animationID);
             if (poseInfo.has("nextPose")) {

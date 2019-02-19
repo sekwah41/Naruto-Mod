@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.PlayerRenderTickEvent;
 import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.json.JSONObject;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
@@ -420,18 +421,18 @@ public class NarutoAnimator {
 
         //NBTTagCompound data = entity.getEntityData();
 
-        if (!dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27))) {
-            dw.updateObject(25, Float.valueOf(0));
-            dw.updateObject(27, dw.getWatchableObjectString(20));
+        if (!dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals(dw.getWatchableObjectString(DataWatcherIDs.poseClient))) {
+            dw.updateObject(DataWatcherIDs.animationTick, Float.valueOf(0));
+            dw.updateObject(DataWatcherIDs.poseClient, dw.getWatchableObjectString(DataWatcherIDs.jutsuPose));
         }
 
-        if (dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27)) && getPose(dw.getWatchableObjectString(20), poseArray) != null && getPose(dw.getWatchableObjectString(20), poseArray).animLength > dw.getWatchableObjectFloat(25)) {
+        if (dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals(dw.getWatchableObjectString(DataWatcherIDs.poseClient)) && getPose(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose), poseArray) != null && getPose(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose), poseArray).animLength > dw.getWatchableObjectFloat(DataWatcherIDs.animationTick)) {
             float delta = PlayerRenderTickEvent.delta;
-            if (getPose(dw.getWatchableObjectString(20), poseArray).animLength > dw.getWatchableObjectFloat(25)) {
-                dw.updateObject(25, Float.valueOf(dw.getWatchableObjectFloat(25) + delta));
+            if (getPose(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose), poseArray).animLength > dw.getWatchableObjectFloat(DataWatcherIDs.animationTick)) {
+                dw.updateObject(DataWatcherIDs.animationTick, Float.valueOf(dw.getWatchableObjectFloat(DataWatcherIDs.animationTick) + delta));
             }
         }/* else {
-            dw.updateObject(26, dw.getWatchableObjectString(20));
+            dw.updateObject(DataWatcherIDs.lastPose, dw.getWatchableObjectString(DataWatcherIDs.jutsuPose));
         }*/
     }
 
@@ -440,22 +441,22 @@ public class NarutoAnimator {
         NBTTagCompound data = playerMP.getEntityData();
 
         DataWatcher dw = playerMP.getDataWatcher();
-        if (!dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27))) {
-            dw.updateObject(25, Float.valueOf(0));
-            dw.updateObject(27, dw.getWatchableObjectString(20));
+        if (!dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals(dw.getWatchableObjectString(DataWatcherIDs.poseClient))) {
+            dw.updateObject(DataWatcherIDs.animationTick, Float.valueOf(0));
+            dw.updateObject(DataWatcherIDs.poseClient, dw.getWatchableObjectString(DataWatcherIDs.jutsuPose));
             PlayerRenderTickEvent.hasFiredAnimationUpdate = false;
         }
 
-        if (dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27)) && getPose(dw.getWatchableObjectString(20), poseArray) != null && getPose(dw.getWatchableObjectString(20), poseArray).animLength > dw.getWatchableObjectFloat(25)) {
+        if (dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals(dw.getWatchableObjectString(DataWatcherIDs.poseClient)) && getPose(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose), poseArray) != null && getPose(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose), poseArray).animLength > dw.getWatchableObjectFloat(DataWatcherIDs.animationTick)) {
             float delta = PlayerRenderTickEvent.delta;
             //while (delta-- >= 1) {
-            Pose currentPose = getPose(dw.getWatchableObjectString(20), poseArray);
-            if (currentPose.animLength > dw.getWatchableObjectFloat(25)) {
-                if(dw.getWatchableObjectFloat(25) + delta >= currentPose.animLength){
-                    dw.updateObject(25, Float.valueOf(currentPose.animLength));
+            Pose currentPose = getPose(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose), poseArray);
+            if (currentPose.animLength > dw.getWatchableObjectFloat(DataWatcherIDs.animationTick)) {
+                if(dw.getWatchableObjectFloat(DataWatcherIDs.animationTick) + delta >= currentPose.animLength){
+                    dw.updateObject(DataWatcherIDs.animationTick, Float.valueOf(currentPose.animLength));
                 }
                 else{
-                    dw.updateObject(25, Float.valueOf(dw.getWatchableObjectFloat(25) + delta));
+                    dw.updateObject(DataWatcherIDs.animationTick, Float.valueOf(dw.getWatchableObjectFloat(DataWatcherIDs.animationTick) + delta));
                 }
             } else {
                 if (!PlayerRenderTickEvent.hasFiredAnimationUpdate) {
@@ -473,13 +474,13 @@ public class NarutoAnimator {
                 PlayerRenderTickEvent.hasFiredAnimationUpdate = true;
             }
 
-           /* if (dw.getWatchableObjectString(20).equals("default")) {
+           /* if (dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals("default")) {
                 if (NarutoSettings.experimentalFirstPersonMode == 2) {
                     NarutoSettings.experimentalFirstPerson = false;
                 }
             }*/
             /**if(NarutoSettings.experimentalFirstPersonMode == 2){
-             if(dw.getWatchableObjectString(20).equals("default") && dw.getWatchableObjectString(27).equals("default")){
+             if(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals("default") && dw.getWatchableObjectString(DataWatcherIDs.poseClient).equals("default")){
              NarutoSettings.experimentalFirstPerson = false;
              }
              else{
@@ -491,8 +492,8 @@ public class NarutoAnimator {
 
     private static void animationComplete(EntityClientPlayerMP playerMP, Pose[] poseArray) { // triggered by the client to get the next animation
         DataWatcher dw = playerMP.getDataWatcher();
-        dw.updateObject(26, dw.getWatchableObjectString(20));
-        String animationID = dw.getWatchableObjectString(20);
+        dw.updateObject(DataWatcherIDs.lastPose, dw.getWatchableObjectString(DataWatcherIDs.jutsuPose));
+        String animationID = dw.getWatchableObjectString(DataWatcherIDs.jutsuPose);
         Pose pose = getPose(animationID, poseArray);
         if (pose != null) {
             if (pose.nextPose != null) {

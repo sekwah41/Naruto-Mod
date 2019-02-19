@@ -12,6 +12,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.sekcore.SkinLoader;
 
 public class EntitySubstitution extends EntityMob {
@@ -64,7 +65,7 @@ public class EntitySubstitution extends EntityMob {
         this.getDataWatcher().addObject(13, Byte.valueOf((byte) 0));
         this.getDataWatcher().addObject(14, Byte.valueOf((byte) 0));
 
-        this.getDataWatcher().addObject(23, 0);
+        this.getDataWatcher().addObject(DataWatcherIDs.eyerenderer, 0);
 
         this.getDataWatcher().addObject(18, 0F);
         this.getDataWatcher().addObject(19, 0F);

@@ -8,16 +8,16 @@ public class PlayerCommonTickEvent {
     @SubscribeEvent
     public void tick(ServerTickEvent event) {
         /**DataWatcher dw = player.getDataWatcher();
-         if((!dw.getWatchableObjectString(20).equals("default") || !dw.getWatchableObjectString(26).equals("default")) && !dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(26))){
-         if(PlayerPoseAnimator.getAnimTicks(dw.getWatchableObjectString(20)) > dw.getWatchableObjectInt(25)){
-         dw.updateObject(25, dw.getWatchableObjectInt(25) + 1); // used to progress the animation.
+         if((!dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals("default") || !dw.getWatchableObjectString(DataWatcherIDs.lastPose).equals("default")) && !dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals(dw.getWatchableObjectString(DataWatcherIDs.lastPose))){
+         if(PlayerPoseAnimator.getAnimTicks(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose)) > dw.getWatchableObjectInt(25)){
+         dw.updateObject(DataWatcherIDs.animationTick, dw.getWatchableObjectInt(25) + 1); // used to progress the animation.
          }
          else{
-         dw.updateObject(25, 0);
+         dw.updateObject(DataWatcherIDs.animationTick, 0);
          }
 
-         if(PlayerPoseAnimator.getAnimTicks(dw.getWatchableObjectString(20)) <= dw.getWatchableObjectInt(25)){
-         dw.updateObject(26, dw.getWatchableObjectString(20)); // used to progress the animation.
+         if(PlayerPoseAnimator.getAnimTicks(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose)) <= dw.getWatchableObjectInt(25)){
+         dw.updateObject(DataWatcherIDs.lastPose, dw.getWatchableObjectString(DataWatcherIDs.jutsuPose)); // used to progress the animation.
          }
          }*/
     }

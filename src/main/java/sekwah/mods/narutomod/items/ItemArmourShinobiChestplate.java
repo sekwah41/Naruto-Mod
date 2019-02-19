@@ -13,6 +13,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.items.itemmodels.ModelMadaraChestplate;
 
 public class ItemArmourShinobiChestplate extends ItemArmor {
@@ -50,9 +51,9 @@ public class ItemArmourShinobiChestplate extends ItemArmor {
                     armorModel = new ModelMadaraChestplate(); // change to the flak jacket model
                     if (entityLiving instanceof EntityPlayer) {
                         DataWatcher dw = entityLiving.getDataWatcher();
-                        armorModel.animationID = dw.getWatchableObjectString(20);
-                        armorModel.animationlastID = dw.getWatchableObjectString(26);
-                        armorModel.animationTick = dw.getWatchableObjectFloat(25);
+                        armorModel.animationID = dw.getWatchableObjectString(DataWatcherIDs.jutsuPose);
+                        armorModel.animationlastID = dw.getWatchableObjectString(DataWatcherIDs.lastPose);
+                        armorModel.animationTick = dw.getWatchableObjectFloat(DataWatcherIDs.animationTick);
                     }
                 }
             }

@@ -29,6 +29,7 @@ import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.common.entity.EntitySubstitution;
 import sekwah.mods.narutomod.sekcore.SkinLoader;
 
@@ -426,12 +427,12 @@ public class RenderSubstitution extends RendererLivingEntity {
 
         DataWatcher dw = par1EntitySubstitution.getDataWatcher();
 
-        int eyeStatus = dw.getWatchableObjectInt(23);
+        int eyeStatus = dw.getWatchableObjectInt(DataWatcherIDs.eyerenderer);
 
         overlay = NarutoMod.instance.sharinganHandler.getEyes(par1EntitySubstitution.getCommandSenderName(), eyeStatus);
         if(overlay == null) {
             eyeStatus = 0;
-            dw.updateObject(23,0);
+            dw.updateObject(DataWatcherIDs.eyerenderer,0);
         }
 
         // TODO add more colour values, this makes it so it can only be 1 colour and also makes it render nicer

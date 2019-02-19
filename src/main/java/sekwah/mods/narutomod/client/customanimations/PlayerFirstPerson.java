@@ -8,6 +8,7 @@ import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
 public class PlayerFirstPerson {
@@ -53,7 +54,7 @@ public class PlayerFirstPerson {
             float CameraYoffset = 0;
             float CameraZoffset = (float) (Math.sin(Math.toRadians(playerMP.rotationYaw - 90)) * (-playerMP.getLookVec().yCoord + 0.1) / 1.2) / 3.6F;
 
-            if (!dw.getWatchableObjectString(20).equals("default") || !dw.getWatchableObjectString(26).equals("default")) {
+            if (!dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals("default") || !dw.getWatchableObjectString(DataWatcherIDs.lastPose).equals("default")) {
                 // TODO if needed add an X offset so the head can move left and right
                 CameraXoffset -= (float) (Math.cos(Math.toRadians(playerMP.rotationYaw - 90)) * playerRender.getHeadZOffset()) / 30;
                 CameraZoffset -= (float) (Math.sin(Math.toRadians(playerMP.rotationYaw - 90)) * playerRender.getHeadZOffset()) / 30;

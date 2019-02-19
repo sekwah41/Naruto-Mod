@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.items.itemmodels.ModelFlakJacket;
 
 public class ItemNinjaArmor extends ItemArmor {
@@ -55,9 +56,9 @@ public class ItemNinjaArmor extends ItemArmor {
                 if (type == 1) {
                     if (entityLiving instanceof EntityPlayer) {
                         DataWatcher dw = entityLiving.getDataWatcher();
-                        modelArmor.animationID = dw.getWatchableObjectString(20);
-                        modelArmor.animationlastID = dw.getWatchableObjectString(26);
-                        modelArmor.animationTick = dw.getWatchableObjectFloat(25);
+                        modelArmor.animationID = dw.getWatchableObjectString(DataWatcherIDs.jutsuPose);
+                        modelArmor.animationlastID = dw.getWatchableObjectString(DataWatcherIDs.lastPose);
+                        modelArmor.animationTick = dw.getWatchableObjectFloat(DataWatcherIDs.animationTick);
                     }
                 }
             }

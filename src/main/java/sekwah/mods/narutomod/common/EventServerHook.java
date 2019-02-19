@@ -2,6 +2,7 @@ package sekwah.mods.narutomod.common;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
@@ -15,6 +16,7 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.block.BlockSakuraSapling;
 import sekwah.mods.narutomod.common.block.NarutoBlocks;
 import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
@@ -61,24 +63,29 @@ public class EventServerHook {
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public void handleConstruction(EntityConstructing event) {
 
 
         if (event.entity instanceof EntityPlayer) {
-            DataWatcher dw = event.entity.getDataWatcher();
-            dw.addObject(20, "default"); // jutsu pose id (such as charging)
-            dw.addObject(21, "Undefined"); // current clan
-            // current player
-            dw.addObject(22, 50);
-            dw.addObject(23, 0); // Eye renders (LIAMS SHITTY EYE TOGGLES)
-            //dw.addObject(23, 50); // amount of chakra
-            dw.addObject(24, 0); // amount of kunai in player
-            // Float.valueOf(0)
-            dw.addObject(25, Float.valueOf(0)); // animationTick (used to add smooth animation for players to different poses, is currently edited by the client :P)
-            dw.addObject(26, "default"); // lastpose (so the smooth animation works between poses)
-            dw.addObject(27, "default"); // poseClient (the last pose the client updated(so it can change the animationTick back to 0))
-            //dw.addObject(27, 0); // could also possibly add a kunai throw tick.
+            try {
+                DataWatcher dw = event.entity.getDataWatcher();
+                dw.addObject(DataWatcherIDs.jutsuPose /*20*/, "default"); // jutsu pose id (such as charging)
+                //dw.addObject(21, "Undefined"); // current clan
+                // current player
+                //dw.addObject(22, 50);
+                dw.addObject(DataWatcherIDs.eyerenderer /*23*/, Integer.valueOf(0)); // Eye renders (LIAMS SHITTY EYE TOGGLES)
+                //dw.addObject(23, 50); // amount of chakra
+                //dw.addObject(24, 0); // amount of kunai in player
+                // Float.valueOf(0)
+                dw.addObject(DataWatcherIDs.animationTick /*25*/, Float.valueOf(0)); // animationTick (used to add smooth animation for players to different poses, is currently edited by the client :P)
+                dw.addObject(DataWatcherIDs.lastPose /*26*/, "default"); // lastpose (so the smooth animation works between poses)
+                dw.addObject(DataWatcherIDs.poseClient /*27*/, "default"); // poseClient (the last pose the client updated(so it can change the animationTick back to 0))
+                //dw.addObject(DataWatcherIDs.poseClient, 0); // could also possibly add a kunai throw tick.
+            }
+            catch(IllegalArgumentException e) {
+                NarutoMod.logger.error("Problem with data watchers");
+            }
 
             event.entity.registerExtendedProperties(PlayerInfo.IDENTIFIER, new PlayerInfo((EntityPlayer) event.entity));
 

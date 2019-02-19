@@ -5,12 +5,14 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
+import net.minecraft.client.resources.SkinManager;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -29,6 +31,7 @@ import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.common.entity.EntityShadowClone;
 import sekwah.mods.narutomod.sekcore.SkinLoader;
 
@@ -37,24 +40,6 @@ import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3
 
 @SideOnly(Side.CLIENT)
 public class RenderShadowClone extends RendererLivingEntity {
-
-    private static final ResourceLocation steveTextures = new ResourceLocation("textures/entity/steve.png");
-
-    private static final ResourceLocation sharingan2Overlay = new ResourceLocation("narutomod:textures/skinOverlays/mongekyo.png");
-
-    private static final ResourceLocation sharinganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/sharingan.png");
-
-    private static final ResourceLocation rinneganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/rinnegan2x2.png");
-
-    private static final ResourceLocation motherFuckingDEMONSOverlay = new ResourceLocation("narutomod:textures/skinOverlays/demonEyes2x2.png");
-
-    private static final ResourceLocation byakugan = new ResourceLocation("narutomod:textures/skinOverlays/byakugan_2x2.png");
-
-    private static final ResourceLocation sharingan1eye2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2x2.png");
-
-    private static final ResourceLocation hiroCurseMark = new ResourceLocation("narutomod:textures/skinOverlays/hiro_cursemark.png");
-
-    private static final ResourceLocation sharingan1eye2_2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2_2x2.png");
 
     private ModelNinjaBiped modelBipedMain;
     private ModelNinjaBiped modelArmorChestplate;
@@ -252,12 +237,7 @@ public class RenderShadowClone extends RendererLivingEntity {
 
         if (par1EntityShadowClone.getCustomNameTag().equals("deadmau5")) {
 
-            ResourceLocation locationSkin = AbstractClientPlayer.locationStevePng;
-
-            locationSkin = SkinLoader.getUserSkin(par1EntityShadowClone.getCustomNameTag());
-            SkinLoader.getDownloadImageSkin(locationSkin, null, par1EntityShadowClone.getCustomNameTag());
-
-            this.bindTexture(locationSkin);
+            this.bindTexture(par1EntityShadowClone.getLocationSkin());
 
             for (int i = 0; i < 2; ++i) {
                 float f3 = par1EntityShadowClone.prevRotationYaw + (par1EntityShadowClone.rotationYaw - par1EntityShadowClone.prevRotationYaw) * par2 - (par1EntityShadowClone.prevRenderYawOffset + (par1EntityShadowClone.renderYawOffset - par1EntityShadowClone.prevRenderYawOffset) * par2);
@@ -429,12 +409,12 @@ public class RenderShadowClone extends RendererLivingEntity {
 
         DataWatcher dw = par1EntityShadowClone.getDataWatcher();
 
-        int eyeStatus = dw.getWatchableObjectInt(23);
+        int eyeStatus = dw.getWatchableObjectInt(DataWatcherIDs.eyerenderer);
 
         overlay = NarutoMod.instance.sharinganHandler.getEyes(par1EntityShadowClone.getCommandSenderName(), eyeStatus);
         if(overlay == null) {
             eyeStatus = 0;
-            dw.updateObject(23,0);
+            dw.updateObject(DataWatcherIDs.eyerenderer,0);
         }
 
         // TODO add more colour values, this makes it so it can only be 1 colour and also makes it render nicer

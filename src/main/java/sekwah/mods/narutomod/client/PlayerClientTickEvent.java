@@ -21,6 +21,7 @@ import org.lwjgl.input.Keyboard;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
 import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.common.NarutoEffects;
 import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
@@ -146,9 +147,9 @@ public class PlayerClientTickEvent {
             // Sorts out temp anims
             // Ends the gliding in air pose(possibly make a more efficient system or nicer looking one
             DataWatcher dw = playerMP.getDataWatcher();
-            //NarutoMod.logger.info("20:" + dw.getWatchableObjectString(20) + " 27:" + dw.getWatchableObjectString(20));
-            if(dw.getWatchableObjectString(20).equals(dw.getWatchableObjectString(27)) && (dw.getWatchableObjectString(20).startsWith("leapingforwardglide")
-                    || dw.getWatchableObjectString(20).startsWith("leapingbackglide") || dw.getWatchableObjectString(20).equals("leapingleftglide") || dw.getWatchableObjectString(20).equals("leapingrightglide")) ){
+            //NarutoMod.logger.info("20:" + dw.getWatchableObjectString(DataWatcherIDs.jutsuPose) + " 27:" + dw.getWatchableObjectString(DataWatcherIDs.jutsuPose));
+            if(dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals(dw.getWatchableObjectString(DataWatcherIDs.poseClient)) && (dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).startsWith("leapingforwardglide")
+                    || dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).startsWith("leapingbackglide") || dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals("leapingleftglide") || dw.getWatchableObjectString(DataWatcherIDs.jutsuPose).equals("leapingrightglide")) ){
                 animTime++;
                 if(animTime > 10){
                     if(!firedChangeBack){

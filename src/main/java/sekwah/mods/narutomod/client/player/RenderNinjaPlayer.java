@@ -37,8 +37,8 @@ import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.client.player.models.extras.ModelRibs;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.items.NarutoItems;
-import sekwah.mods.narutomod.sekcore.SkinLoader;
 
 @SideOnly(Side.CLIENT)
 public class RenderNinjaPlayer extends RenderPlayer {
@@ -253,9 +253,9 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
 
         // 20 is current animation, 27 is last client animation. Using 27 as it is set to the value of 20 when 25 is set back to 0.
-        this.modelArmorChestplate.animationID = this.modelArmor.animationID = this.modelBipedMain.animationID = dw.getWatchableObjectString(27);
-        this.modelArmorChestplate.animationlastID = this.modelArmor.animationlastID = this.modelBipedMain.animationlastID = dw.getWatchableObjectString(26);
-        this.modelArmorChestplate.animationTick = this.modelArmor.animationTick = this.modelBipedMain.animationTick = dw.getWatchableObjectFloat(25);
+        this.modelArmorChestplate.animationID = this.modelArmor.animationID = this.modelBipedMain.animationID = dw.getWatchableObjectString(DataWatcherIDs.poseClient);
+        this.modelArmorChestplate.animationlastID = this.modelArmor.animationlastID = this.modelBipedMain.animationlastID = dw.getWatchableObjectString(DataWatcherIDs.lastPose);
+        this.modelArmorChestplate.animationTick = this.modelArmor.animationTick = this.modelBipedMain.animationTick = dw.getWatchableObjectFloat(DataWatcherIDs.animationTick);
 
         this.modelArmorChestplate.isSneak = this.modelArmor.isSneak = this.modelBipedMain.isSneak = p_76986_1_.isSneaking();
         this.modelArmorChestplate.isSprinting = this.modelArmor.isSprinting = this.modelBipedMain.isSprinting = p_76986_1_.isSprinting();
@@ -513,10 +513,10 @@ public class RenderNinjaPlayer extends RenderPlayer {
         } else {
             this.mainModel.setRotationAngles(p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_, p_77036_1_);
         }
-        int eyeStatus = p_77036_1_.getDataWatcher().getWatchableObjectInt(23);
+        int eyeStatus = p_77036_1_.getDataWatcher().getWatchableObjectInt(DataWatcherIDs.eyerenderer);
         if(NarutoMod.instance.sharinganHandler.getEyes(p_77036_1_.getCommandSenderName(), eyeStatus) == null) {
             eyeStatus = 0;
-            p_77036_1_.getDataWatcher().updateObject(23,0);
+            p_77036_1_.getDataWatcher().updateObject(DataWatcherIDs.eyerenderer,0);
         }
         if(p_77036_1_ instanceof AbstractClientPlayer) {
             if(eyeStatus == 3) {
@@ -543,9 +543,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
     protected ResourceLocation getEntityTexture(AbstractClientPlayer p_110775_1_) {
-        ResourceLocation skinLoc = SkinLoader.getUserSkin(p_110775_1_.getCommandSenderName());
-        SkinLoader.getDownloadImageSkin(skinLoc, null, p_110775_1_.getCommandSenderName());
-        return skinLoc;
+        return p_110775_1_.getLocationSkin();
     }
 
     protected void renderEquippedItems(AbstractClientPlayer p_77029_1_, float p_77029_2_) {
@@ -771,12 +769,12 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         DataWatcher dw = p_77029_1_.getDataWatcher();
 
-        int eyeStatus = dw.getWatchableObjectInt(23);
+        int eyeStatus = dw.getWatchableObjectInt(DataWatcherIDs.eyerenderer);
 
         overlay = NarutoMod.instance.sharinganHandler.getEyes(p_77029_1_.getCommandSenderName(), eyeStatus);
         if(overlay == null) {
             eyeStatus = 0;
-            dw.updateObject(23,0);
+            dw.updateObject(DataWatcherIDs.eyerenderer,0);
         }
 
         // TODO add more colour values, this makes it so it can only be 1 colour and also makes it render nicer
