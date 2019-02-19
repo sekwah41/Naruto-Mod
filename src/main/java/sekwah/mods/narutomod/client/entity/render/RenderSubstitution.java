@@ -31,7 +31,6 @@ import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.common.entity.EntitySubstitution;
-import sekwah.mods.narutomod.sekcore.SkinLoader;
 
 import static net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED;
 import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D;
@@ -189,14 +188,7 @@ public class RenderSubstitution extends RendererLivingEntity {
     }
 
     protected ResourceLocation func_110817_a(EntitySubstitution par1EntitySubstitution) {
-        ResourceLocation locationSkin = AbstractClientPlayer.locationStevePng;
-
-        if (par1EntitySubstitution.getCustomNameTag() != null && par1EntitySubstitution.getCustomNameTag().length() > 0) {
-            locationSkin = SkinLoader.getUserSkin(par1EntitySubstitution.getCustomNameTag());
-            SkinLoader.getDownloadImageSkin(locationSkin, null, par1EntitySubstitution.getCustomNameTag());
-        }
-
-        return locationSkin;
+        return par1EntitySubstitution.getLocationSkin();
     }
 
     /**
@@ -250,12 +242,7 @@ public class RenderSubstitution extends RendererLivingEntity {
 
         if (par1EntitySubstitution.getCustomNameTag().equals("deadmau5")) {
 
-            ResourceLocation locationSkin = AbstractClientPlayer.locationStevePng;
-
-            locationSkin = SkinLoader.getUserSkin(par1EntitySubstitution.getCustomNameTag());
-            SkinLoader.getDownloadImageSkin(locationSkin, null, par1EntitySubstitution.getCustomNameTag());
-
-            this.bindTexture(locationSkin);
+            this.bindTexture(par1EntitySubstitution.getLocationSkin());
 
             for (int i = 0; i < 2; ++i) {
                 float f3 = par1EntitySubstitution.prevRotationYaw + (par1EntitySubstitution.rotationYaw - par1EntitySubstitution.prevRotationYaw) * par2 - (par1EntitySubstitution.prevRenderYawOffset + (par1EntitySubstitution.renderYawOffset - par1EntitySubstitution.prevRenderYawOffset) * par2);
@@ -291,12 +278,7 @@ public class RenderSubstitution extends RendererLivingEntity {
 
         if (flag1 && flag2) {
 
-            ResourceLocation locationSkin = null;
-
-            locationSkin = SkinLoader.getUserSkin(par1EntitySubstitution.getCustomNameTag());
-            SkinLoader.getDownloadImageSkin(locationSkin, null, par1EntitySubstitution.getCustomNameTag());
-
-            this.bindTexture(locationSkin);
+            this.bindTexture(par1EntitySubstitution.getLocationSkin());
             GL11.glPushMatrix();
             GL11.glTranslatef(0.0F, 0.0F, 0.125F);
             double d0 = par1EntitySubstitution.field_71091_bM + (par1EntitySubstitution.field_71094_bP - par1EntitySubstitution.field_71091_bM) * (double) par2 - (par1EntitySubstitution.prevPosX + (par1EntitySubstitution.posX - par1EntitySubstitution.prevPosX) * (double) par2);

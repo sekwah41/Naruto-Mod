@@ -29,7 +29,6 @@ import sekwah.mods.narutomod.common.entity.ai.EntityAIOwnerHurtTarget;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityShuriken;
 import sekwah.mods.narutomod.items.NarutoItems;
-import sekwah.mods.narutomod.sekcore.SkinLoader;
 
 import java.util.UUID;
 

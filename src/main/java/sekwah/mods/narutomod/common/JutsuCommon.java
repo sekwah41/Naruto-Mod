@@ -71,7 +71,7 @@ public class JutsuCommon {
 
                 playerMP.addPotionEffect((new PotionEffect(Potion.invisibility.getId(), 10, 0)));
 
-                EntitySubstitution substitution = new EntitySubstitution(playerMP.worldObj);
+                EntitySubstitution substitution = new EntitySubstitution(playerMP.worldObj, playerMP.getGameProfile());
 
                 substitution.setLocationAndAngles(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
                 substitution.setCustomNameTag(playerMP.getCommandSenderName());

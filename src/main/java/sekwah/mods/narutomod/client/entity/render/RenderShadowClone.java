@@ -33,7 +33,6 @@ import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.common.entity.EntityShadowClone;
-import sekwah.mods.narutomod.sekcore.SkinLoader;
 
 import static net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED;
 import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D;
@@ -263,12 +262,7 @@ public class RenderShadowClone extends RendererLivingEntity {
 
         if (flag1 && flag2) {
 
-            ResourceLocation locationCape = null;
-
-            locationCape = SkinLoader.getUserCape(par1EntityShadowClone.getCustomNameTag());
-            SkinLoader.getDownloadImageSkin(null, locationCape, par1EntityShadowClone.getCustomNameTag());
-
-            this.bindTexture(locationCape);
+            this.bindTexture(par1EntityShadowClone.getLocationSkin());
             GL11.glPushMatrix();
             GL11.glTranslatef(0.0F, 0.0F, 0.125F);
             double d0 = par1EntityShadowClone.field_71091_bM + (par1EntityShadowClone.field_71094_bP - par1EntityShadowClone.field_71091_bM) * (double) par2 - (par1EntityShadowClone.prevPosX + (par1EntityShadowClone.posX - par1EntityShadowClone.prevPosX) * (double) par2);

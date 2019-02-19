@@ -1,21 +1,31 @@
 package sekwah.mods.narutomod.common.entity;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.resources.SkinManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
-import sekwah.mods.narutomod.sekcore.SkinLoader;
 
-public class EntitySubstitution extends EntityMob {
+import java.util.UUID;
+
+public class EntitySubstitution extends EntityMob implements SkinManager.SkinAvailableCallback, IEntityAdditionalSpawnData {
 
     //public static final ResourceLocation locationStevePng = new ResourceLocation("textures/entity/steve.png");
 
@@ -29,24 +39,25 @@ public class EntitySubstitution extends EntityMob {
     private ResourceLocation locationSkin;
     private ResourceLocation locationCape;
 
+    public static final ResourceLocation locationStevePng = new ResourceLocation("textures/entity/steve.png");
+
+    private GameProfile gameProfile;
+
     public EntitySubstitution(World par1World) {
         super(par1World);
-        this.setupCustomSkin();
 
     }
 
-    protected void setupCustomSkin() {
-        if (this.getCustomNameTag() != null && !this.getCustomNameTag().isEmpty()) {
+    public EntitySubstitution(World par1World, GameProfile gameProfile) {
+        super(par1World);
 
-            this.locationSkin = AbstractClientPlayer.locationStevePng;
+        this.gameProfile = gameProfile;
 
-            if (this.getCustomNameTag() != null && this.getCustomNameTag().length() > 0) {
-                this.locationSkin = SkinLoader.getUserSkin(this.getCustomNameTag());
-                SkinLoader.getDownloadImageSkin(this.locationSkin, null, this.getCustomNameTag());
-            }
+    }
 
-            // this.locationCape = getLocationCape("cloaks/" + this.getCustomNameTag());
-        }
+    private void loadSkinFromProfile(GameProfile gameProfile) {
+        SkinManager skinmanager = Minecraft.getMinecraft().func_152342_ad();
+        skinmanager.func_152790_a(gameProfile, this, true);
     }
 
     protected void applyEntityAttributes() {
@@ -239,17 +250,81 @@ public class EntitySubstitution extends EntityMob {
     public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
         par1EntityLivingData = super.onSpawnWithEgg(par1EntityLivingData);
 
-        this.setCustomNameTag("SEKWAH41");
+        this.setCustomNameTag("sekwah41");
+
+        gameProfile = MinecraftServer.getServer().func_152358_ax().func_152655_a("sekwah41");
 
         return par1EntityLivingData;
     }
 
 
-    public ResourceLocation getLocationSkin() {
-        return this.locationSkin;
+    public ResourceLocation getLocationSkin()
+    {
+        return this.locationSkin == null ? locationStevePng : this.locationSkin;
     }
 
     public ResourceLocation getLocationCape() {
         return this.locationCape;
+    }
+
+    @Override
+    public void func_152121_a(MinecraftProfileTexture.Type p_152121_1_, ResourceLocation p_152121_2_) {
+        switch (EntityShadowClone.SwitchType.field_152630_a[p_152121_1_.ordinal()])
+        {
+            case 1:
+                this.locationSkin = p_152121_2_;
+                break;
+            case 2:
+                this.locationCape = p_152121_2_;
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    static final class SwitchType
+    {
+        static final int[] field_152630_a = new int[MinecraftProfileTexture.Type.values().length];
+        private static final String __OBFID = "CL_00001832";
+
+        static
+        {
+            try
+            {
+                field_152630_a[MinecraftProfileTexture.Type.SKIN.ordinal()] = 1;
+            }
+            catch (NoSuchFieldError var2)
+            {
+                ;
+            }
+
+            try
+            {
+                field_152630_a[MinecraftProfileTexture.Type.CAPE.ordinal()] = 2;
+            }
+            catch (NoSuchFieldError var1)
+            {
+                ;
+            }
+        }
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        if(gameProfile != null) {
+            ByteBufUtils.writeUTF8String(buffer, gameProfile.getName() + "\n" + gameProfile.getId().toString());
+        }
+        else {
+            ByteBufUtils.writeUTF8String(buffer, "null");
+        }
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf buffer) {
+        String string = ByteBufUtils.readUTF8String(buffer);
+        if(string.equals("null")) {
+            return;
+        }
+        String[] details = string.split("\n");
+        this.loadSkinFromProfile(new GameProfile(UUID.fromString(details[1]), details[0]));
     }
 }
