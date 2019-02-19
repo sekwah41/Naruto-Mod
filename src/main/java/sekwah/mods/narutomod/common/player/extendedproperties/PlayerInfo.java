@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 
 public class PlayerInfo implements IExtendedEntityProperties
 {
@@ -23,8 +24,6 @@ public class PlayerInfo implements IExtendedEntityProperties
     private int maxStamina;
     private int staminaRegenCooldown;
     private double staminaRegenRate;
-
-    private int CLAN_WATCHER = 21;
 
     private String clan = "Undefined"; // Start storing custom objects like what jutsus are learnt and make a special saver for those objects and loader for those objects
 
@@ -73,15 +72,15 @@ public class PlayerInfo implements IExtendedEntityProperties
 
     public void copyData(PlayerInfo info) {
         this.clan = info.clan;
-        player.getDataWatcher().updateObject(CLAN_WATCHER, clan);
+        player.getDataWatcher().updateObject(DataWatcherIDs.clan, clan);
     }
 
 
     public void reloadDW() {
-        player.getDataWatcher().updateObject(CLAN_WATCHER, "Undefined");
+        player.getDataWatcher().updateObject(DataWatcherIDs.clan, "Undefined");
 
         System.out.println("Clan: " + clan);
-        player.getDataWatcher().updateObject(CLAN_WATCHER, clan);
+        player.getDataWatcher().updateObject(DataWatcherIDs.clan, clan);
     }
 
     /**

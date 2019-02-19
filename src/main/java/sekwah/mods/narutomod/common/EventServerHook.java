@@ -63,6 +63,7 @@ public class EventServerHook {
         }
     }
 
+    // High should run before the others so people dont always think its my mod causing the issue...
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void handleConstruction(EntityConstructing event) {
 
@@ -71,7 +72,7 @@ public class EventServerHook {
             try {
                 DataWatcher dw = event.entity.getDataWatcher();
                 dw.addObject(DataWatcherIDs.jutsuPose /*20*/, "default"); // jutsu pose id (such as charging)
-                //dw.addObject(21, "Undefined"); // current clan
+                dw.addObject(DataWatcherIDs.clan, "Undefined"); // current clan
                 // current player
                 //dw.addObject(22, 50);
                 dw.addObject(DataWatcherIDs.eyerenderer /*23*/, Integer.valueOf(0)); // Eye renders (LIAMS SHITTY EYE TOGGLES)
