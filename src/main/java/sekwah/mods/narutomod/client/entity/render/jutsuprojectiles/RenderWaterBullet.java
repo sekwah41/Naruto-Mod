@@ -13,8 +13,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.client.PlayerRenderTickEvent;
-import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import sekwah.mods.narutomod.client.entity.model.jutsuprojectiles.ModelWaterBullet;
+import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 
 @SideOnly(Side.CLIENT)
 public class RenderWaterBullet extends Render {

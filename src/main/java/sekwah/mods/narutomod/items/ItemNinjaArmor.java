@@ -15,7 +15,6 @@ import net.minecraft.util.IIcon;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
-import sekwah.mods.narutomod.items.itemmodels.ModelFlakJacket;
 
 public class ItemNinjaArmor extends ItemArmor {
 

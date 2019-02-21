@@ -8,8 +8,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import sekwah.mods.narutomod.common.entity.EntitySubstitutionLog;
 import sekwah.mods.narutomod.client.entity.model.jutsuprojectiles.ModelSubstitution;
+import sekwah.mods.narutomod.common.entity.EntitySubstitutionLog;
 
 @SideOnly(Side.CLIENT)
 public class RenderSubstitutionLog extends RenderLiving {

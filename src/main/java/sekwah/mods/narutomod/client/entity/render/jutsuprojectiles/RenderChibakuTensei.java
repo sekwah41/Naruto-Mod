@@ -1,10 +1,10 @@
 package sekwah.mods.narutomod.client.entity.render.jutsuprojectiles;
-import net.minecraft.client.renderer.OpenGlHelper;
+
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
 import sekwah.mods.narutomod.client.entity.model.jutsuprojectiles.ModelChibakuTensei;
+import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
 
 import static org.lwjgl.opengl.GL11.*;
 

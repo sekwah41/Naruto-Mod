@@ -1,17 +1,13 @@
 package sekwah.mods.narutomod.client;
 
 import net.minecraft.command.CommandBase;
-import net.minecraft.command.CommandException;
-import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.animation.Pose;
 
 import java.io.InputStream;
-import java.util.List;
 
 public class CommandReloadPoses extends CommandBase {
 

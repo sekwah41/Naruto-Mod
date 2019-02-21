@@ -13,7 +13,6 @@ import sekwah.mods.narutomod.animation.Pose;
 import sekwah.mods.narutomod.animation.dynamicplayerposes.DynamicPose;
 import sekwah.mods.narutomod.animation.modelparts.ModelRetexturedBox;
 import sekwah.mods.narutomod.animation.modelparts.ModelRetexturedBoxSharpBend;
-import sekwah.mods.narutomod.client.PlayerRenderTickEvent;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.util.ArrayList;

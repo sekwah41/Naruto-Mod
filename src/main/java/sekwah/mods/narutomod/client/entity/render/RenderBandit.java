@@ -5,8 +5,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import sekwah.mods.narutomod.common.entity.EntityBandit;
 import sekwah.mods.narutomod.client.entity.model.ModelBandit;
+import sekwah.mods.narutomod.common.entity.EntityBandit;
 
 @SideOnly(Side.CLIENT)
 public class RenderBandit extends RenderNinjaBiped {

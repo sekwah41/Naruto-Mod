@@ -1,7 +1,6 @@
 package sekwah.mods.narutomod.client.entity.model.jutsuprojectiles;
 
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 
 import static org.lwjgl.opengl.GL11.*;
