@@ -8,8 +8,6 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.SkinManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,11 +18,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
 
 import java.util.UUID;
 
-public class EntitySubstitution extends EntityMob implements SkinManager.SkinAvailableCallback, IEntityAdditionalSpawnData {
+public class EntitySubstitution extends EntityMob implements SkinCallback, IEntityAdditionalSpawnData {
 
     //public static final ResourceLocation locationStevePng = new ResourceLocation("textures/entity/steve.png");
 
@@ -55,8 +54,7 @@ public class EntitySubstitution extends EntityMob implements SkinManager.SkinAva
     }
 
     private void loadSkinFromProfile(GameProfile gameProfile) {
-        SkinManager skinmanager = Minecraft.getMinecraft().func_152342_ad();
-        skinmanager.func_152790_a(gameProfile, this, true);
+        NarutoMod.proxy.getSkin(gameProfile, this);
     }
 
     protected void applyEntityAttributes() {
@@ -267,7 +265,7 @@ public class EntitySubstitution extends EntityMob implements SkinManager.SkinAva
     }
 
     @Override
-    public void func_152121_a(MinecraftProfileTexture.Type p_152121_1_, ResourceLocation p_152121_2_) {
+    public void returnedSkin(MinecraftProfileTexture.Type p_152121_1_, ResourceLocation p_152121_2_) {
         switch (EntityShadowClone.SwitchType.field_152630_a[p_152121_1_.ordinal()])
         {
             case 1:

@@ -1,5 +1,6 @@
 package sekwah.mods.narutomod.client;
 
+import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -42,6 +43,8 @@ import sekwah.mods.narutomod.network.UsageReport;
 
 public class ClientProxy extends CommonProxy {
 
+    private  SkinFetcher skinFetcher = new SkinFetcher();
+
     public void addKeyBindings() {
 
         new NarutoKeyHandler();
@@ -64,6 +67,10 @@ public class ClientProxy extends CommonProxy {
 
         //TickRegistry.registerTickHandler(new PlayerAllPlayerTickHandler(EnumSet.of(TickType.PLAYER)), Side.CLIENT);
 
+    }
+
+    public void getSkin(GameProfile profile, SkinCallback entity) {
+        skinFetcher.getSkin(profile, entity);
     }
 
     public void registerRenderers() {

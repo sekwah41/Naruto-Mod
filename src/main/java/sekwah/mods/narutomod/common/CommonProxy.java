@@ -1,6 +1,8 @@
 package sekwah.mods.narutomod.common;
 
+import com.mojang.authlib.GameProfile;
 import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.common.entity.SkinCallback;
 import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.network.UsageReport;
 import sekwah.mods.narutomod.settings.NarutoSettings;
@@ -21,6 +23,9 @@ public class CommonProxy {
     public void addTickHandelers() {
 
 
+    }
+
+    public void getSkin(GameProfile profile, SkinCallback entity) {
     }
 
     public void addEventListener() {
