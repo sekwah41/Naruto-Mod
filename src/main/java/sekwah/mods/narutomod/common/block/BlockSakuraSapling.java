@@ -3,6 +3,7 @@ package sekwah.mods.narutomod.common.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,7 +18,7 @@ import sekwah.mods.narutomod.worldgeneration.WorldGenSakuraTrees;
 
 import java.util.Random;
 
-public class BlockSakuraSapling extends BlockBush {
+public class BlockSakuraSapling extends BlockBush implements IGrowable {
 
     // TODO fix because extending flower is breaking at the moment
     protected BlockSakuraSapling(int par1) {
@@ -42,16 +43,6 @@ public class BlockSakuraSapling extends BlockBush {
             if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9 && par5Random.nextInt(7) == 0) {
                 this.markOrGrowMarked(par1World, par2, par3, par4, par5Random);
             }
-        }
-    }
-
-    public void markOrGrowMarked(World par1World, int par2, int par3, int par4, Random par5Random) {
-        int l = par1World.getBlockMetadata(par2, par3, par4);
-
-        if ((l & 8) == 0) {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, l | 8, 4);
-        } else {
-            this.growTree(par1World, par2, par3, par4, par5Random);
         }
     }
 
@@ -121,5 +112,34 @@ public class BlockSakuraSapling extends BlockBush {
      */
     public void registerBlockIcons(IIconRegister par1IconRegister) {
         this.blockIcon = par1IconRegister.registerIcon(NarutoMod.modid + ":" + "sapling_sakura");
+    }
+
+    public void markOrGrowMarked(World p_149879_1_, int p_149879_2_, int p_149879_3_, int p_149879_4_, Random p_149879_5_)
+    {
+        int l = p_149879_1_.getBlockMetadata(p_149879_2_, p_149879_3_, p_149879_4_);
+
+        if ((l & 8) == 0)
+        {
+            p_149879_1_.setBlockMetadataWithNotify(p_149879_2_, p_149879_3_, p_149879_4_, l | 8, 4);
+        }
+        else
+        {
+            this.growTree(p_149879_1_, p_149879_2_, p_149879_3_, p_149879_4_, p_149879_5_);
+        }
+    }
+
+    public boolean func_149851_a(World p_149851_1_, int p_149851_2_, int p_149851_3_, int p_149851_4_, boolean p_149851_5_)
+    {
+        return true;
+    }
+
+    public boolean func_149852_a(World p_149852_1_, Random p_149852_2_, int p_149852_3_, int p_149852_4_, int p_149852_5_)
+    {
+        return (double)p_149852_1_.rand.nextFloat() < 0.45D;
+    }
+
+    public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_)
+    {
+        this.markOrGrowMarked(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_, p_149853_2_);
     }
 }
