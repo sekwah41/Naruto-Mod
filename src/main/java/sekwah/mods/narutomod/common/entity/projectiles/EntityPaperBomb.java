@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 public class EntityPaperBomb extends Entity {
     /**
@@ -95,7 +96,9 @@ public class EntityPaperBomb extends Entity {
 
     private void explode() {
         float var1 = 4.0F;
-        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, var1, true);
+        if(!this.worldObj.isRemote) {
+            this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, var1, !NarutoSettings.nonDestructiveMode);
+        }
     }
 
     /**
