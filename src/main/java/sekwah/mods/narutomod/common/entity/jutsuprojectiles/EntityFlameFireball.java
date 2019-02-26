@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.util.List;
 
@@ -84,18 +85,22 @@ public class EntityFlameFireball extends EntityFireball {
                 }
             }
 
-            for (int x = (int) this.posX - 2; x < (int) this.posX + 1; x++) {
-                for (int y = (int) this.posY - 1; y < (int) this.posY + 2; y++) {
-                    for (int z = (int) this.posZ - 1; z < (int) this.posZ + 2; z++) {
-                        Block block = this.worldObj.getBlock(x, y, z);
-                        if (block == Blocks.air) {
-                            this.worldObj.setBlock(x, y, z, Blocks.fire);
+            boolean destructiveMode = !NarutoSettings.nonDestructiveMode;
+
+            if(destructiveMode) {
+                for (int x = (int) this.posX - 2; x < (int) this.posX + 1; x++) {
+                    for (int y = (int) this.posY - 1; y < (int) this.posY + 2; y++) {
+                        for (int z = (int) this.posZ - 1; z < (int) this.posZ + 2; z++) {
+                            Block block = this.worldObj.getBlock(x, y, z);
+                            if (block == Blocks.air) {
+                                this.worldObj.setBlock(x, y, z, Blocks.fire);
+                            }
                         }
                     }
                 }
             }
 
-            this.worldObj.newExplosion(null, this.posX, this.posY, this.posZ, explosionPower, true, false);
+            this.worldObj.newExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, explosionPower, destructiveMode, destructiveMode);
             this.setDead();
         }
     }

@@ -54,6 +54,8 @@ public class NarutoSettings {
 
     public static boolean dodgesEnabled = true;
 
+    public static boolean nonDestructiveMode = true;
+
     public static void changeSetting() {
     }
 
@@ -213,6 +215,10 @@ public class NarutoSettings {
         Property configExperimentalFirstPerson = config.get(Configuration.CATEGORY_GENERAL, "experimentalFirstPersonEnabled", true);
          experimentalFirstPerson = configExperimentalFirstPerson.getBoolean(true);
          configExperimentalFirstPerson.comment = "If this is set to true then you can see your arms and legs in first person.";
+
+         Property configNonDestructiveMode = config.get(Configuration.CATEGORY_GENERAL, "nonDestructiveMode", false);
+        nonDestructiveMode = configNonDestructiveMode.getBoolean(true);
+        configNonDestructiveMode.comment = "Server side setting: If true jutsus will not damage the world e.g. fire or block damage.";
 
         chakraBarOffsetX = config.get(Configuration.CATEGORY_GENERAL, "chakraBarOffsetX", 2).getInt(2);
 

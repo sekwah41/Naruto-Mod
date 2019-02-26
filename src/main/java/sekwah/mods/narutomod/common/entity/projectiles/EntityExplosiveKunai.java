@@ -18,6 +18,7 @@ import net.minecraft.network.play.server.S2BPacketChangeGameState;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.util.List;
 
@@ -398,7 +399,9 @@ public class EntityExplosiveKunai extends EntityArrow implements IProjectile {
 
     private void explode() {
         float var1 = 3F;
-        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, var1, true);
+        if(!this.worldObj.isRemote) {
+            this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, var1, !NarutoSettings.nonDestructiveMode);
+        }
     }
 
     /**
