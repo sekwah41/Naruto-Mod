@@ -198,6 +198,9 @@ public class JutsuClient {
             case 1332:
                 if (PlayerClientTickEvent.chakra >= JutsuData.shadowCloneCost) return true;
                 break;
+            case 1322:
+                if (PlayerClientTickEvent.chakra >= JutsuData.shadowCloneCost) return true;
+                break;
             case 133231:
                 if (PlayerClientTickEvent.chakra >= JutsuData.multiShadowCloneCost) return true;
                 break;
