@@ -63,6 +63,12 @@ public class SharinganHandler {
         else if(username.endsWith("Smove33") && eyeStatus != 0){
             return returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, smove);
         }
+        else if(username.endsWith("K2XLeviathan") && eyeStatus == 0) {
+            returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, smove);
+        }
+        else if(username.endsWith("ItzSoul") && eyeStatus == 0) {
+            returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, smove);
+        }
         return null;
     }
 

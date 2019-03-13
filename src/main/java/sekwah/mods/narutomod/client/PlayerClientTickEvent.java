@@ -172,9 +172,7 @@ public class PlayerClientTickEvent {
             if (ChargingChakra) {
                 if (ChakraChargeDelay >= 0) {
                     ChakraChargeDelay--;
-                } else if (!ChakraCharge && playerMoved) {
-                    ChakraChargeDelay = 30;
-                } else if (!ChakraCharge && !playerMoved) {
+                } else if (!ChakraCharge) {
                     ChakraCharge = true;
 
                     ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
@@ -186,7 +184,7 @@ public class PlayerClientTickEvent {
                     }
 
                     PacketDispatcher.sendPacketToServer(new ServerJutsuPacket(bos.toByteArray()));
-                } else if (ChakraCharge && playerMoved) {
+                }/* else if (ChakraCharge && playerMoved) {
 
                     ChakraChargeDelay = 30;
                     ChakraCharge = false;
@@ -200,7 +198,7 @@ public class PlayerClientTickEvent {
 
                     PacketDispatcher.sendPacketToServer(new ServerJutsuPacket(bos.toByteArray()));
 
-                } else {
+                }*/ else {
 
                     if (chakra < maxChakra) {
                         chakra += 0.15;
@@ -382,15 +380,6 @@ public class PlayerClientTickEvent {
                         playerMP.motionX *= 1.18F;
                         playerMP.motionZ *= 1.18F;
                     }
-
-                    /*if (!playerMP.isInWater()) {
-                        int i = (int) Math.round(playerMP.posY - 0.4);
-                        Block j = playerMP.worldObj.getBlock((int) playerMP.posX, i - 2, (int) playerMP.posZ);
-                        if (!(j.getMaterial() == Material.water)) {
-                            playerMP.motionX *= 1.18F;
-                            playerMP.motionZ *= 1.18F;
-                        }
-                    }*/
                 }
             }
 

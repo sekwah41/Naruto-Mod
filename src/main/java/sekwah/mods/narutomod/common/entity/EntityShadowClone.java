@@ -1,7 +1,9 @@
 package sekwah.mods.narutomod.common.entity;
 
+import com.google.common.collect.Iterables;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+import com.mojang.authlib.properties.Property;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
@@ -15,6 +17,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -27,6 +30,7 @@ import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityShuriken;
 import sekwah.mods.narutomod.items.NarutoItems;
 
+import java.io.IOException;
 import java.util.UUID;
 
 public class EntityShadowClone extends EntityMob implements SkinCallback, IEntityAdditionalSpawnData {
@@ -382,21 +386,51 @@ public class EntityShadowClone extends EntityMob implements SkinCallback, IEntit
 
     @Override
     public void writeSpawnData(ByteBuf buffer) {
-        if(gameProfile != null) {
+        PacketBuffer packetBuffer = new PacketBuffer(buffer);
+
+        Property textureProperty = Iterables.getFirst(gameProfile.getProperties().get("textures"), null);
+        NBTTagCompound nbtTagCompound = new NBTTagCompound();
+        nbtTagCompound.setString("name", gameProfile.getName());
+        nbtTagCompound.setString("id", gameProfile.getId().toString());
+        if (textureProperty != null) {
+            nbtTagCompound.setString("tex_name", textureProperty.getName());
+            nbtTagCompound.setString("tex_value", textureProperty.getName());
+            nbtTagCompound.setString("tex_sig", textureProperty.getSignature());
+        }
+        try {
+            packetBuffer.writeNBTTagCompoundToBuffer(nbtTagCompound);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*if(gameProfile != null) {
             ByteBufUtils.writeUTF8String(buffer, gameProfile.getName() + "\n" + gameProfile.getId().toString());
         }
         else {
             ByteBufUtils.writeUTF8String(buffer, "null");
-        }
+        }*/
     }
 
     @Override
     public void readSpawnData(ByteBuf buffer) {
-        String string = ByteBufUtils.readUTF8String(buffer);
+        PacketBuffer packetBuffer = new PacketBuffer(buffer);
+        NBTTagCompound tagCompound = null;
+        try {
+            tagCompound = packetBuffer.readNBTTagCompoundFromBuffer();
+
+            GameProfile gameProfile = new GameProfile(UUID.fromString(tagCompound.getString("id")), tagCompound.getString("name"));
+            if(tagCompound.hasKey("tex_name")) {
+                gameProfile.getProperties().put("textures", new Property(tagCompound.getString("tex_name"),
+                        tagCompound.getString("tex_value"), tagCompound.getString("tex_sig")));
+            }
+            this.loadSkinFromProfile(gameProfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*String string = ByteBufUtils.readUTF8String(buffer);
         if(string.equals("null")) {
             return;
         }
         String[] details = string.split("\n");
-        this.loadSkinFromProfile(new GameProfile(UUID.fromString(details[1]), details[0]));
+        this.loadSkinFromProfile(new GameProfile(UUID.fromString(details[1]), details[0]));*/
     }
 }
