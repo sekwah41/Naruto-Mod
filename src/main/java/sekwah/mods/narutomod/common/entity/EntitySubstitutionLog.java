@@ -1,5 +1,6 @@
 package sekwah.mods.narutomod.common.entity;
 
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.ItemStack;
@@ -7,7 +8,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntitySubstitutionLog extends EntityMob {
+public class EntitySubstitutionLog extends EntityCreature {
     public int destuctionTime = 0;
 
 
@@ -22,7 +23,6 @@ public class EntitySubstitutionLog extends EntityMob {
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.0D);
     }
 
     protected void entityInit() {

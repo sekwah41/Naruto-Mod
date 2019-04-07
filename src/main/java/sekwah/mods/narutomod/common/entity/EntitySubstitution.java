@@ -8,6 +8,7 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -23,7 +24,7 @@ import sekwah.mods.narutomod.common.DataWatcherIDs;
 
 import java.util.UUID;
 
-public class EntitySubstitution extends EntityMob implements SkinCallback, IEntityAdditionalSpawnData {
+public class EntitySubstitution extends EntityCreature implements SkinCallback, IEntityAdditionalSpawnData {
 
     //public static final ResourceLocation locationStevePng = new ResourceLocation("textures/entity/steve.png");
 
@@ -59,6 +60,7 @@ public class EntitySubstitution extends EntityMob implements SkinCallback, IEnti
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0D);

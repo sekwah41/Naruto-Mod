@@ -6,3 +6,6 @@ out/
 *.ipr
 *.iws
 
+
+\.idea/
+\classes/

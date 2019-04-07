@@ -9,10 +9,8 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +18,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.NarutoMod;
@@ -33,7 +32,7 @@ import sekwah.mods.narutomod.items.NarutoItems;
 import java.io.IOException;
 import java.util.UUID;
 
-public class EntityShadowClone extends EntityMob implements SkinCallback, IEntityAdditionalSpawnData {
+public class EntityShadowClone extends EntityCreature implements SkinCallback, IEntityAdditionalSpawnData {
 
     //public static final ResourceLocation locationStevePng = new ResourceLocation("textures/entity/steve.png");
 
@@ -80,8 +79,50 @@ public class EntityShadowClone extends EntityMob implements SkinCallback, IEntit
         NarutoMod.proxy.getSkin(gameProfile, this);
     }
 
+    public boolean attackEntityAsMob(Entity p_attackEntityAsMob_1_) {
+        float var2 = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+        int var3 = 0;
+        if (p_attackEntityAsMob_1_ instanceof EntityLivingBase) {
+            var2 += EnchantmentHelper.getEnchantmentModifierLiving(this, (EntityLivingBase)p_attackEntityAsMob_1_);
+            var3 += EnchantmentHelper.getKnockbackModifier(this, (EntityLivingBase)p_attackEntityAsMob_1_);
+        }
+
+        boolean var4 = p_attackEntityAsMob_1_.attackEntityFrom(DamageSource.causeMobDamage(this), var2);
+        if (var4) {
+            if (var3 > 0) {
+                p_attackEntityAsMob_1_.addVelocity((double)(-MathHelper.sin(this.rotationYaw * 3.1415927F / 180.0F) * (float)var3 * 0.5F), 0.1D, (double)(MathHelper.cos(this.rotationYaw * 3.1415927F / 180.0F) * (float)var3 * 0.5F));
+                this.motionX *= 0.6D;
+                this.motionZ *= 0.6D;
+            }
+
+            int var5 = EnchantmentHelper.getFireAspectModifier(this);
+            if (var5 > 0) {
+                p_attackEntityAsMob_1_.setFire(var5 * 4);
+            }
+
+            if (p_attackEntityAsMob_1_ instanceof EntityLivingBase) {
+                EnchantmentHelper.func_151384_a((EntityLivingBase)p_attackEntityAsMob_1_, this);
+            }
+
+            EnchantmentHelper.func_151385_b(this, p_attackEntityAsMob_1_);
+        }
+
+        return var4;
+    }
+
+
+
+    protected void attackEntity(Entity p_attackEntity_1_, float p_attackEntity_2_) {
+        if (this.attackTime <= 0 && p_attackEntity_2_ < 2.0F && p_attackEntity_1_.boundingBox.maxY > this.boundingBox.minY && p_attackEntity_1_.boundingBox.minY < this.boundingBox.maxY) {
+            this.attackTime = 20;
+            this.attackEntityAsMob(p_attackEntity_1_);
+        }
+
+    }
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
