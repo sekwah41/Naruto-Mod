@@ -43,7 +43,7 @@ import sekwah.mods.narutomod.network.UsageReport;
 
 public class ClientProxy extends CommonProxy {
 
-    private  SkinFetcher skinFetcher = new SkinFetcher();
+    private  SkinFetcher skinFetcher;
 
     public void addKeyBindings() {
 
@@ -74,6 +74,8 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void registerRenderers() {
+
+        skinFetcher = new SkinFetcher(Minecraft.getMinecraft().func_152347_ac());
 
         // causes problems at the moment, update it at some point for new animations.
         // RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderNinjaPlayer());
@@ -122,6 +124,7 @@ public class ClientProxy extends CommonProxy {
         // TODO change common stuff to be in the common proxy but activate it with
         // super.addEventListener(); // much tidier
         MinecraftForge.EVENT_BUS.register(new EventHook());
+        FMLCommonHandler.instance().bus().register(new EventHook());
 
         FMLCommonHandler.instance().bus().register(new PlayerClientTickEvent());
 

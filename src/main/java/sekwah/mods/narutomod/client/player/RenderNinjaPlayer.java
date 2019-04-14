@@ -38,6 +38,7 @@ import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.client.player.models.extras.ModelRibs;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
+import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
 import sekwah.mods.narutomod.items.NarutoItems;
 
 @SideOnly(Side.CLIENT)
@@ -53,6 +54,9 @@ public class RenderNinjaPlayer extends RenderPlayer {
     public ModelNinjaBiped modelArmorChestplate;
     public ModelNinjaBiped modelArmor;
     private ModelNinjaBiped modelSkinOverlay;
+
+    private float lastBrightnessX;
+    private float lastBrightnessY;
 
     private ModelRibs modelRibs;
 
@@ -493,35 +497,37 @@ public class RenderNinjaPlayer extends RenderPlayer {
     /**
      * Renders the model in RenderLiving
      */
-    protected void renderModel(EntityLivingBase p_77036_1_, float p_77036_2_, float p_77036_3_, float p_77036_4_, float p_77036_5_, float p_77036_6_, float p_77036_7_) {
-        this.bindEntityTexture(p_77036_1_);
+    protected void renderModel(EntityLivingBase player, float p_77036_2_, float p_77036_3_, float p_77036_4_, float p_77036_5_, float p_77036_6_, float p_77036_7_) {
+        this.bindEntityTexture(player);
 
-        if (!p_77036_1_.isInvisible()) {
-            this.mainModel.render(p_77036_1_, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
-        } else if (!p_77036_1_.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer)) {
+        if (!player.isInvisible()) {
+            this.mainModel.render(player, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+        } else if (!player.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer)) {
             GL11.glPushMatrix();
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.15F);
             GL11.glDepthMask(false);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
-            this.mainModel.render(p_77036_1_, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+            this.mainModel.render(player, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
             GL11.glPopMatrix();
             GL11.glDepthMask(true);
         } else {
-            this.mainModel.setRotationAngles(p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_, p_77036_1_);
+            this.mainModel.setRotationAngles(p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_, player);
         }
-        int eyeStatus = p_77036_1_.getDataWatcher().getWatchableObjectInt(DataWatcherIDs.eyerenderer);
-        if(NarutoMod.instance.sharinganHandler.getEyes(p_77036_1_.getCommandSenderName(), eyeStatus) == null) {
+        int eyeStatus = player.getDataWatcher().getWatchableObjectInt(DataWatcherIDs.eyerenderer);
+        if(NarutoMod.instance.sharinganHandler.getEyes(player.getCommandSenderName(), eyeStatus, PlayerInfo.get((EntityPlayer) player).animateEyes) == null) {
             eyeStatus = 0;
-            p_77036_1_.getDataWatcher().updateObject(DataWatcherIDs.eyerenderer,0);
+            player.getDataWatcher().updateObject(DataWatcherIDs.eyerenderer,0);
         }
-        if(p_77036_1_ instanceof AbstractClientPlayer) {
+        if(player instanceof AbstractClientPlayer) {
             if(eyeStatus == 3) {
                 this.bindTexture(susanooRibs);
                 GL11.glPushMatrix();
+                GL11.glDisable(GL11.GL_LIGHTING);
+                fullBrightLightmap();
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.6F);
                 GL11.glScalef(1.1F, 1.1F, 1.1F);
                 GL11.glTranslatef(0,-0.1F,0);
@@ -529,12 +535,16 @@ public class RenderNinjaPlayer extends RenderPlayer {
                 GL11.glEnable(GL11.GL_BLEND);
                 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
-                modelRibs.render(p_77036_1_, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+                modelRibs.render(player, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+                revertLightmap();
                 GL11.glDisable(GL11.GL_BLEND);
                 GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
                 GL11.glPopMatrix();
                 GL11.glDepthMask(true);
-                this.bindEntityTexture(p_77036_1_);
+
+                GL11.glEnable(GL11.GL_ALPHA_TEST);
+                GL11.glEnable(GL11.GL_LIGHTING);
+                this.bindEntityTexture(player);
             }
         }
     }
@@ -546,13 +556,13 @@ public class RenderNinjaPlayer extends RenderPlayer {
         return p_110775_1_.getLocationSkin();
     }
 
-    protected void renderEquippedItems(AbstractClientPlayer p_77029_1_, float p_77029_2_) {
-        net.minecraftforge.client.event.RenderPlayerEvent.Specials.Pre event = new net.minecraftforge.client.event.RenderPlayerEvent.Specials.Pre(p_77029_1_, this, p_77029_2_);
+    protected void renderEquippedItems(AbstractClientPlayer player, float p_77029_2_) {
+        net.minecraftforge.client.event.RenderPlayerEvent.Specials.Pre event = new net.minecraftforge.client.event.RenderPlayerEvent.Specials.Pre(player, this, p_77029_2_);
         if (MinecraftForge.EVENT_BUS.post(event)) return;
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
         //super.renderEquippedItems(p_77029_1_, p_77029_2_);
-        super.renderArrowsStuckInEntity(p_77029_1_, p_77029_2_);
-        ItemStack itemstack = p_77029_1_.inventory.armorItemInSlot(3);
+        super.renderArrowsStuckInEntity(player, p_77029_2_);
+        ItemStack itemstack = player.inventory.armorItemInSlot(3);
 
         if (itemstack != null && event.renderHelmet) {
             GL11.glPushMatrix();
@@ -570,7 +580,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
                     GL11.glScalef(f1, -f1, -f1);
                 }
 
-                this.renderManager.itemRenderer.renderItem(p_77029_1_, itemstack, 0);
+                this.renderManager.itemRenderer.renderItem(player, itemstack, 0);
             } else if (itemstack.getItem() == Items.skull) {
                 f1 = 1.0625F;
                 GL11.glScalef(f1, -f1, -f1);
@@ -594,12 +604,12 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         float f2;
 
-        if (p_77029_1_.getCommandSenderName().equals("deadmau5") && p_77029_1_.func_152123_o()) {
-            this.bindTexture(p_77029_1_.getLocationSkin());
+        if (player.getCommandSenderName().equals("deadmau5") && player.func_152123_o()) {
+            this.bindTexture(player.getLocationSkin());
 
             for (int j = 0; j < 2; ++j) {
-                float f9 = p_77029_1_.prevRotationYaw + (p_77029_1_.rotationYaw - p_77029_1_.prevRotationYaw) * p_77029_2_ - (p_77029_1_.prevRenderYawOffset + (p_77029_1_.renderYawOffset - p_77029_1_.prevRenderYawOffset) * p_77029_2_);
-                float f10 = p_77029_1_.prevRotationPitch + (p_77029_1_.rotationPitch - p_77029_1_.prevRotationPitch) * p_77029_2_;
+                float f9 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * p_77029_2_ - (player.prevRenderYawOffset + (player.renderYawOffset - player.prevRenderYawOffset) * p_77029_2_);
+                float f10 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * p_77029_2_;
                 GL11.glPushMatrix();
                 GL11.glRotatef(f9, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(f10, 1.0F, 0.0F, 0.0F);
@@ -616,24 +626,24 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         String[] MaskUsers = {"sekwah41", "Praneeth98", "Orcwaagh"};
         for (int mask = 0; mask < MaskUsers.length; ++mask) {
-            if (p_77029_1_.getCommandSenderName().endsWith(MaskUsers[mask])) {
-                this.bindTexture(this.getEntityTexture(p_77029_1_));
+            if (player.getCommandSenderName().endsWith(MaskUsers[mask])) {
+                this.bindTexture(this.getEntityTexture(player));
                 this.modelBipedMain.renderMask(0.0625F);
             }
         }
 
-        boolean flag = p_77029_1_.func_152122_n();
+        boolean flag = player.func_152122_n();
         flag = event.renderCape && flag;
         float f4;
 
-        if (flag && !p_77029_1_.isInvisible() && !p_77029_1_.getHideCape()) {
-            this.bindTexture(p_77029_1_.getLocationCape());
+        if (flag && !player.isInvisible() && !player.getHideCape()) {
+            this.bindTexture(player.getLocationCape());
             GL11.glPushMatrix();
             GL11.glTranslatef(0.0F, 0.0F, 0.125F);
-            double d3 = p_77029_1_.field_71091_bM + (p_77029_1_.field_71094_bP - p_77029_1_.field_71091_bM) * (double) p_77029_2_ - (p_77029_1_.prevPosX + (p_77029_1_.posX - p_77029_1_.prevPosX) * (double) p_77029_2_);
-            double d4 = p_77029_1_.field_71096_bN + (p_77029_1_.field_71095_bQ - p_77029_1_.field_71096_bN) * (double) p_77029_2_ - (p_77029_1_.prevPosY + (p_77029_1_.posY - p_77029_1_.prevPosY) * (double) p_77029_2_);
-            double d0 = p_77029_1_.field_71097_bO + (p_77029_1_.field_71085_bR - p_77029_1_.field_71097_bO) * (double) p_77029_2_ - (p_77029_1_.prevPosZ + (p_77029_1_.posZ - p_77029_1_.prevPosZ) * (double) p_77029_2_);
-            f4 = p_77029_1_.prevRenderYawOffset + (p_77029_1_.renderYawOffset - p_77029_1_.prevRenderYawOffset) * p_77029_2_;
+            double d3 = player.field_71091_bM + (player.field_71094_bP - player.field_71091_bM) * (double) p_77029_2_ - (player.prevPosX + (player.posX - player.prevPosX) * (double) p_77029_2_);
+            double d4 = player.field_71096_bN + (player.field_71095_bQ - player.field_71096_bN) * (double) p_77029_2_ - (player.prevPosY + (player.posY - player.prevPosY) * (double) p_77029_2_);
+            double d0 = player.field_71097_bO + (player.field_71085_bR - player.field_71097_bO) * (double) p_77029_2_ - (player.prevPosZ + (player.posZ - player.prevPosZ) * (double) p_77029_2_);
+            f4 = player.prevRenderYawOffset + (player.renderYawOffset - player.prevRenderYawOffset) * p_77029_2_;
             double d1 = (double) MathHelper.sin(f4 * (float) Math.PI / 180.0F);
             double d2 = (double) (-MathHelper.cos(f4 * (float) Math.PI / 180.0F));
             float f5 = (float) d4 * 10.0F;
@@ -652,14 +662,14 @@ public class RenderNinjaPlayer extends RenderPlayer {
                 f6 = 0.0F;
             }
 
-            float f8 = p_77029_1_.prevCameraYaw + (p_77029_1_.cameraYaw - p_77029_1_.prevCameraYaw) * p_77029_2_;
-            f5 += MathHelper.sin((p_77029_1_.prevDistanceWalkedModified + (p_77029_1_.distanceWalkedModified - p_77029_1_.prevDistanceWalkedModified) * p_77029_2_) * 6.0F) * 32.0F * f8;
+            float f8 = player.prevCameraYaw + (player.cameraYaw - player.prevCameraYaw) * p_77029_2_;
+            f5 += MathHelper.sin((player.prevDistanceWalkedModified + (player.distanceWalkedModified - player.prevDistanceWalkedModified) * p_77029_2_) * 6.0F) * 32.0F * f8;
 
-            if (p_77029_1_.isSneaking()) {
+            if (player.isSneaking()) {
                 f5 += 25.0F;
             }
 
-            if (p_77029_1_.isSprinting()) {
+            if (player.isSprinting()) {
                 f7 += 45.0F;
                 GL11.glTranslatef(0.0F, 0.0F, -0.125F);
             }
@@ -672,7 +682,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
             GL11.glPopMatrix();
         }
 
-        ItemStack itemstack1 = p_77029_1_.inventory.getCurrentItem();
+        ItemStack itemstack1 = player.inventory.getCurrentItem();
 
         if (itemstack1 != null && event.renderItem) {
             GL11.glPushMatrix();
@@ -685,13 +695,13 @@ public class RenderNinjaPlayer extends RenderPlayer {
             //GL11.glTranslatef(-0.0625F, 0.4375F, 0.0625F);
             GL11.glTranslatef(0.0125F, 0.2775F, 0.0625F);
 
-            if (p_77029_1_.fishEntity != null) {
+            if (player.fishEntity != null) {
                 itemstack1 = new ItemStack(Items.stick);
             }
 
             EnumAction enumaction = null;
 
-            if (p_77029_1_.getItemInUseCount() > 0) {
+            if (player.getItemInUseCount() > 0) {
                 enumaction = itemstack1.getItemUseAction();
             }
 
@@ -720,7 +730,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
                     GL11.glTranslatef(0.0F, -0.125F, 0.0F);
                 }
 
-                if (p_77029_1_.getItemInUseCount() > 0 && enumaction == EnumAction.block) {
+                if (player.getItemInUseCount() > 0 && enumaction == EnumAction.block) {
                     GL11.glTranslatef(0.05F, 0.0F, -0.1F);
                     GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
@@ -751,7 +761,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
                     f3 = (float) (i >> 8 & 255) / 255.0F;
                     f4 = (float) (i & 255) / 255.0F;
                     GL11.glColor4f(f12, f3, f4, 1.0F);
-                    this.renderManager.itemRenderer.renderItem(p_77029_1_, itemstack1, k);
+                    this.renderManager.itemRenderer.renderItem(player, itemstack1, k);
                 }
             } else {
                 k = itemstack1.getItem().getColorFromItemStack(itemstack1, 0);
@@ -759,7 +769,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
                 f12 = (float) (k >> 8 & 255) / 255.0F;
                 f3 = (float) (k & 255) / 255.0F;
                 GL11.glColor4f(f11, f12, f3, 1.0F);
-                this.renderManager.itemRenderer.renderItem(p_77029_1_, itemstack1, 0);
+                this.renderManager.itemRenderer.renderItem(player, itemstack1, 0);
             }
 
             GL11.glPopMatrix();
@@ -767,11 +777,11 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         ResourceLocation overlay = null;
 
-        DataWatcher dw = p_77029_1_.getDataWatcher();
+        DataWatcher dw = player.getDataWatcher();
 
         int eyeStatus = dw.getWatchableObjectInt(DataWatcherIDs.eyerenderer);
 
-        overlay = NarutoMod.instance.sharinganHandler.getEyes(p_77029_1_.getCommandSenderName(), eyeStatus);
+        overlay = NarutoMod.instance.sharinganHandler.getEyes(player.getCommandSenderName(), eyeStatus, PlayerInfo.get(player).animateEyes);
         if(overlay == null) {
             eyeStatus = 0;
             dw.updateObject(DataWatcherIDs.eyerenderer,0);
@@ -780,7 +790,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
         // TODO add more colour values, this makes it so it can only be 1 colour and also makes it render nicer
         // in SEUS, if anything the eyes should be grayscale with this enabled. But it would screw up eyes which have
         // multiple colours...
-        float[] glColor = NarutoMod.instance.sharinganHandler.getColor(p_77029_1_.getCommandSenderName(), eyeStatus);
+        float[] glColor = NarutoMod.instance.sharinganHandler.getColor(player.getCommandSenderName(), eyeStatus);
 
         if (overlay != null) {
 
@@ -806,166 +816,40 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
             //this.modelSkinOverlay.bipedHead.render(0.0625F);
 
-            float lastBrightnessX = OpenGlHelper.lastBrightnessX;
-            float lastBrightnessY = OpenGlHelper.lastBrightnessY;
-
-            char c0 = 61680;
-            int j = c0 % 65536;
-            int k = c0 / 65536;
-
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
+            fullBrightLightmap();
 
             GL11.glColor4f(glColor[0], glColor[1], glColor[2], 1.0F);
 
             this.modelSkinOverlay.bipedHead.render(0.0625F);
 
-
-            //this.bindTexture(new ResourceLocation("narutomod:textures/particles/sakuraParticle.png"));
-            //Tessellator tessellator = Tessellator.instance;
-
-            //this.modelBipedMain.bipedHead.postRender(0.0625F);
-
-            /**tessellator.startDrawingQuads();
-             tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
-             tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
-             tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
-             tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
-             tessellator.draw();*/
-
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             GL11.glEnable(GL11.GL_ALPHA_TEST);
 
             GL11.glEnable(GL11.GL_LIGHTING);
 
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lastBrightnessX, lastBrightnessY);
+            revertLightmap();
 
-            this.bindTexture(p_77029_1_.getLocationSkin());
+            this.bindTexture(player.getLocationSkin());
 
         }
 
-        /*if (p_77029_1_.getCommandSenderName().endsWith("liam3011")) {
-            //if(p_76986_1_.getEntityData().getBoolean("showEyes")){
+        MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderPlayerEvent.Specials.Post(player, this, p_77029_2_));
+    }
 
-            //GL11.glEnable(GL11.GL_BLEND);
-            //GL11.glDisable(GL11.GL_ALPHA_TEST);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            GL11.glDisable(GL11.GL_LIGHTING);
+    public void fullBrightLightmap() {
+        lastBrightnessX = OpenGlHelper.lastBrightnessX;
+        lastBrightnessY = OpenGlHelper.lastBrightnessY;
 
-            GL11.glDepthMask(true);
+        char c0 = 61680;
+        int j = c0 % 65536;
+        int k = c0 / 65536;
 
-            this.bindTexture(sharingan2Overlay);
-            //this.bindTexture(sharinganOverlay);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
+    }
 
-            this.modelSkinOverlay.bipedHead.rotateAngleX = this.modelBipedMain.bipedHead.rotateAngleX;
-            this.modelSkinOverlay.bipedHead.rotateAngleY = this.modelBipedMain.bipedHead.rotateAngleY;
-            this.modelSkinOverlay.bipedHead.rotateAngleZ = this.modelBipedMain.bipedHead.rotateAngleZ;
-
-            this.modelSkinOverlay.bipedHead.rotationPointX = this.modelBipedMain.bipedHead.rotationPointX;
-            this.modelSkinOverlay.bipedHead.rotationPointY = this.modelBipedMain.bipedHead.rotationPointY;
-            this.modelSkinOverlay.bipedHead.rotationPointZ = this.modelBipedMain.bipedHead.rotationPointZ;
-
-            //this.modelSkinOverlay.bipedHead.render(0.0625F);
-
-            float lastBrightnessX = OpenGlHelper.lastBrightnessX;
-            float lastBrightnessY = OpenGlHelper.lastBrightnessY;
-
-            char c0 = 61680;
-            int j = c0 % 65536;
-            int k = c0 / 65536;
-
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
-
-
-            GL11.glColor4f(1.0F, 0.0F, 0.0F, 1.0F);
-
-            this.modelSkinOverlay.bipedHead.render(0.0625F);
-
-
-            //this.bindTexture(new ResourceLocation("narutomod:textures/particles/sakuraParticle.png"));
-            //Tessellator tessellator = Tessellator.instance;
-
-            //this.modelBipedMain.bipedHead.postRender(0.0625F);
-
-            *//**tessellator.startDrawingQuads();
-         tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
-         tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
-         tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
-         tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
-         tessellator.draw();*//*
-
-            GL11.glEnable(GL11.GL_ALPHA_TEST);
-
-            GL11.glEnable(GL11.GL_LIGHTING);
-
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lastBrightnessX, lastBrightnessY);
-
-            this.bindTexture(p_77029_1_.getLocationSkin());
-
-        }*/
-
-
-
-        /*if (p_77029_1_.getCommandSenderName().endsWith("SSJHiro11")) {
-            //if(par1AbstractClientPlayer.getEntityData().getBoolean("showEyes")){
-
-            //GL11.glEnable(GL11.GL_BLEND);
-            //GL11.glDisable(GL11.GL_ALPHA_TEST);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            GL11.glDisable(GL11.GL_LIGHTING);
-
-            GL11.glDepthMask(true);
-
-            this.bindTexture(hiroCurseMark);
-
-            this.modelSkinOverlay.bipedHead.rotateAngleX = this.modelBipedMain.bipedHead.rotateAngleX;
-            this.modelSkinOverlay.bipedHead.rotateAngleY = this.modelBipedMain.bipedHead.rotateAngleY;
-            this.modelSkinOverlay.bipedHead.rotateAngleZ = this.modelBipedMain.bipedHead.rotateAngleZ;
-
-            this.modelSkinOverlay.bipedHead.rotationPointX = this.modelBipedMain.bipedHead.rotationPointX;
-            this.modelSkinOverlay.bipedHead.rotationPointY = this.modelBipedMain.bipedHead.rotationPointY;
-            this.modelSkinOverlay.bipedHead.rotationPointZ = this.modelBipedMain.bipedHead.rotationPointZ;
-
-            //this.modelSkinOverlay.bipedHead.render(0.0625F);
-
-            float lastBrightnessX = OpenGlHelper.lastBrightnessX;
-            float lastBrightnessY = OpenGlHelper.lastBrightnessY;
-
-            char c0 = 61680;
-            int j = c0 % 65536;
-            int k = c0 / 65536;
-
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
-
-
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-
-            this.modelSkinOverlay.bipedHead.render(0.0625F);
-
-
-            //this.bindTexture(new ResourceLocation("narutomod:textures/particles/sakuraParticle.png"));
-            //Tessellator tessellator = Tessellator.instance;
-
-            //this.modelBipedMain.bipedHead.postRender(0.0625F);
-
-            *//**tessellator.startDrawingQuads();
-         tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(12) / 32);
-         tessellator.addVertexWithUV(0.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(12) / 32);
-         tessellator.addVertexWithUV(-2.0D, -2.0D, 0.0D, (double)(11) / 64, (double)(13) / 32);
-         tessellator.addVertexWithUV(-2.0D, 0.0D, 0.0D, (double)(10) / 64, (double)(13) / 32);
-         tessellator.draw();*//*
-
-            GL11.glEnable(GL11.GL_ALPHA_TEST);
-
-            GL11.glEnable(GL11.GL_LIGHTING);
-
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lastBrightnessX, lastBrightnessY);
-
-            this.bindTexture(p_77029_1_.getLocationSkin());
-
-        }*/
-
-        MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderPlayerEvent.Specials.Post(p_77029_1_, this, p_77029_2_));
+    public void revertLightmap() {
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lastBrightnessX, lastBrightnessY);
     }
 
     /**

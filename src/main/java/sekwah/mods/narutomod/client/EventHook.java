@@ -2,53 +2,66 @@ package sekwah.mods.narutomod.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.client.render.DelayedRender;
+import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
 
 public class EventHook {
 
-    /**@ForgeSubscribe
-     @SideOnly(Side.CLIENT)
-     public void onLivingJumpEvent(LivingJumpEvent event)
-     {
-     if (event.entity instanceof EntityPlayer)
-     {
-     if (PlayerClientTickHandler.chakraDash)
-     {
-     event.entity.motionY += 0.2D;
-     PlayerClientTickHandler.chakra -= 0.04F;
+    @SubscribeEvent
+    public void postRender(TickEvent.RenderTickEvent event) {
+        if(event.phase == TickEvent.Phase.START) {
+            NarutoMod.delayedRenders.clear();
+        }
+    }
 
-     ParticleEffects.addEffect(3, (EntityClientPlayerMP) event.entity);
-     }
-     }
-     }*/
+    @SubscribeEvent
+    public void postRender(RenderWorldLastEvent event) {
+        for(DelayedRender delayedRender : NarutoMod.delayedRenders) {
+            delayedRender.render();
+        }
+    }
 
-
-    // The tick event is in its own class
-    /**@SubscribeEvent public void tick(ClientTickEvent event) {
-    PlayerClientTickHandeler.firePlayerTick();
-    //TickRegistry.registerTickHandler(new PlayerCommonTickHandler(), Side.SERVER);
-    }*/
-
-    /**@ForgeSubscribe public void renderWorldLastEvent(RenderWorldLastEvent evt)
-    {
-    // for extra render effects
-    }*/
-
-    /**@ForgeSubscribe
-     @SideOnly(Side.CLIENT)
-     public void entityAttacked(LivingAttackEvent event)
-     {
-     EntityLiving attackedEnt = event.entityLiving;
-     DamageSource attackSource = event.source;
-     }*/
-
-
-    // First person and player render hooks.
-
-    // http://www.minecraftforge.net/forum/index.php?topic=13315.0
+    @SubscribeEvent
+    public void playerTick(TickEvent.PlayerTickEvent event) {
+        int ticksPerFrame = 2;
+        if(event.phase == TickEvent.Phase.START) {
+            PlayerInfo playerInfo = PlayerInfo.get(event.player);
+            int eyeStatus = event.player.getDataWatcher().getWatchableObjectInt(DataWatcherIDs.eyerenderer);
+            if(eyeStatus == 0) {
+                playerInfo.animateEyes = -1;
+            }
+            else {
+                if(playerInfo.animateEyes == -1) {
+                    if(eyeStatus == 1) {
+                        playerInfo.animateEyes = 0;
+                    }
+                    else {
+                        playerInfo.animateEyes = 5;
+                    }
+                }
+                else if(eyeStatus == 1 && playerInfo.animateEyes > 0) {
+                    /*if(++playerInfo.animateEyeTicks > ticksPerFrame) {
+                        playerInfo.animateEyeTicks = 0;
+                        playerInfo.animateEyes--;
+                    }*/
+                    playerInfo.animateEyes--;
+                }
+                else if((eyeStatus == 2 || eyeStatus == 3) && playerInfo.animateEyes < 5) {
+                    /*if(++playerInfo.animateEyeTicks > ticksPerFrame) {
+                        playerInfo.animateEyeTicks = 0;
+                    }*/
+                    playerInfo.animateEyes++;
+                }
+            }
+        }
+    }
 
     @SubscribeEvent
     public void onJoinWorld(EntityJoinWorldEvent event) {

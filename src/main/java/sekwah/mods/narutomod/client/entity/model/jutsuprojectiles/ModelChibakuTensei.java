@@ -86,7 +86,7 @@ public class ModelChibakuTensei extends ModelBase {
         glPopMatrix();
         glColor4f(1,1,1,1);
         glEnable(GL_TEXTURE_2D);
-        glEnable(GL_LIGHTING);
+        //glEnable(GL_LIGHTING);
         glPopMatrix();
 
     }

@@ -2,23 +2,18 @@ package sekwah.mods.narutomod.client.player;
 
 import net.minecraft.util.ResourceLocation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SharinganHandler {
 
     private static final ResourceLocation sharingan2Overlay = new ResourceLocation("narutomod:textures/skinOverlays/liam_eyes.png");
 
+    private static final ResourceLocation mangekyouOverlay = new ResourceLocation("narutomod:textures/skinOverlays/mangekyou.png");
+
     private static final ResourceLocation sharinganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/sharingan.png");
 
     private static final ResourceLocation rinneganOverlay = new ResourceLocation("narutomod:textures/skinOverlays/rinnegan2x2.png");
-
-    private static final ResourceLocation motherFuckingDEMONSOverlay = new ResourceLocation("narutomod:textures/skinOverlays/demonEyes2x2.png");
-
-    private static final ResourceLocation sharingan1eye2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2x2.png");
-
-    private static final ResourceLocation sharingan1eye2_2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2_2x2.png");
-
-    private static final ResourceLocation byakugan = new ResourceLocation("narutomod:textures/skinOverlays/byakugan_2x2.png");
-
-    private static final ResourceLocation ketsuryugan = new ResourceLocation("narutomod:textures/skinOverlays/ketsuryugan.png");
 
     private static final ResourceLocation smove = new ResourceLocation("narutomod:textures/skinOverlays/smove.png");
 
@@ -26,7 +21,13 @@ public class SharinganHandler {
 
     private static final ResourceLocation sageMode = new ResourceLocation("narutomod:textures/skinOverlays/sagemode.png");
 
-    public ResourceLocation getEyes(String username, int eyeStatus){
+    private static final ResourceLocation[] animateToMon = getAnimatedTextures("narutomod:textures/skinOverlays/sharingantransform_frame", 4);
+
+    public ResourceLocation getEyes(String username, int eyeStatus) {
+        return this.getEyes(username, eyeStatus, -1);
+    }
+
+    public ResourceLocation getEyes(String username, int eyeStatus, int animate){
 
         if (username.endsWith("Zaromaru") && eyeStatus == 1) {
             return rinneganOverlay;
@@ -37,39 +38,29 @@ public class SharinganHandler {
         else if(username.endsWith("HeroGamezFTW") && eyeStatus == 2){
             return sageMode;
         }
-        else if(username.endsWith("Gingershadow") && eyeStatus == 1){
-            return motherFuckingDEMONSOverlay;
-        }
-        else if(username.endsWith("owTreyalP") && eyeStatus == 1){
-            return sharingan1eye2x2;
-        }
-        else if(username.endsWith("InmoNum") && eyeStatus == 1) {
-            return ketsuryugan;
-        }
-        // TODO add rae to the rest of them
-        else if(username.endsWith("KawaiiRae") && eyeStatus == 1){
-            return sharingan1eye2_2x2;
-        }
-        // add miches name
-        else if(username.endsWith("CrazyMtch42")){
-            return byakugan;
-        }
-        else if(username.endsWith("GohanPlays_") && eyeStatus != 0){
-            return sharinganOverlay;
-        }
         else if(username.endsWith("liam3011") && eyeStatus != 0){
             return returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, sharingan2Overlay);
         }
         else if(username.endsWith("Smove33") && eyeStatus != 0){
             return returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, smove);
         }
-        else if(username.endsWith("K2XLeviathan") && eyeStatus == 0) {
-            returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, smove);
-        }
-        else if(username.endsWith("ItzSoul") && eyeStatus == 0) {
-            returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, smove);
+        else if(eyeStatus != 0) {
+            return returnEyesAnimateSusanoo(sharinganOverlay, mangekyouOverlay, animate);
         }
         return null;
+    }
+
+    private ResourceLocation returnEyesAnimateSusanoo(ResourceLocation loc1, ResourceLocation loc2, int animate) {
+        switch(animate) {
+            case -1:
+                return null;
+            case 0:
+                return loc1;
+            case 5:
+                return loc2;
+            default:
+                return animateToMon[animate-1];
+        }
     }
 
     private ResourceLocation returnEyesPlusSusanoo(int eyeStatus, ResourceLocation loc1, ResourceLocation loc2) {
@@ -96,6 +87,14 @@ public class SharinganHandler {
             colors[2] = 0;
         }
         return colors;
+    }
+
+    private static ResourceLocation[] getAnimatedTextures(String baseName, int count) {
+        List<ResourceLocation> tempList = new ArrayList<ResourceLocation>();
+        for (int i = 1; i < count + 1; i++) {
+            tempList.add(new ResourceLocation(baseName + i + ".png"));
+        }
+        return tempList.toArray(new ResourceLocation[count]);
     }
 
 }

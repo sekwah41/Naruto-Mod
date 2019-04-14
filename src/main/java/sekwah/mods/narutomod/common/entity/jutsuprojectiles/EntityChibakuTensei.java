@@ -8,8 +8,6 @@ import net.minecraft.world.World;
 
 public class EntityChibakuTensei extends Entity {
 
-    public int aliveTicks = 0;
-
     public EntityChibakuTensei(World world) {
         super(world);
     }
@@ -20,13 +18,14 @@ public class EntityChibakuTensei extends Entity {
     }
 
     public void onUpdate() {
-        aliveTicks++;
         int travelTime = 20 * 6;
-        if(aliveTicks < travelTime) {
-            double moveAmount = (travelTime - aliveTicks) * 0.002;
+        if(ticksExisted < travelTime) {
+            double moveAmount = (travelTime - ticksExisted) * 0.002;
             this.posY += moveAmount;
+            float sizeValue = 2.2f - (float) moveAmount * 10f;
+            this.setSize(sizeValue, sizeValue);
         }
-        if(aliveTicks > 20 * 30) {
+        if(ticksExisted > 20 * 30) {
             setDead();
         }
     }

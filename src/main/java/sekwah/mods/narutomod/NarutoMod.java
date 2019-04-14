@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.player.SharinganHandler;
+import sekwah.mods.narutomod.client.render.DelayedRender;
 import sekwah.mods.narutomod.common.CommonProxy;
 import sekwah.mods.narutomod.common.EventServerHook;
 import sekwah.mods.narutomod.common.NarutoEffects;
@@ -32,6 +33,8 @@ import sekwah.mods.narutomod.settings.NarutoSettings;
 import sekwah.mods.narutomod.worldgeneration.NarutoWorldGeneration;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 // --username sekwah41
 @Mod(modid = NarutoMod.modid, name = "Naruto Mod", version = NarutoMod.version)
@@ -44,7 +47,9 @@ public class NarutoMod {
 
     // TODO for the lang files possibly use the \u0007 character code thing and see if that works for accents
 
-    public static final String version = "0.5.0a5";
+    public static final String version = "0.5.0a6";
+
+    public static List<DelayedRender> delayedRenders = new ArrayList<DelayedRender>();
 
     /**
      * Need to start using instances more.

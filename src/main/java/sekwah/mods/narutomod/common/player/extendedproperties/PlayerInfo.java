@@ -31,6 +31,9 @@ public class PlayerInfo implements IExtendedEntityProperties
 
     private int levelXP, level;
 
+    public int animateEyes = -1;
+    public int animateEyeTicks = 0;
+
     private int health, maxHealth; // will potentially be used to overwrite the current health or if another way is found it may be good.
 
 
@@ -78,8 +81,6 @@ public class PlayerInfo implements IExtendedEntityProperties
 
     public void reloadDW() {
         player.getDataWatcher().updateObject(DataWatcherIDs.clan, "Undefined");
-
-        System.out.println("Clan: " + clan);
         player.getDataWatcher().updateObject(DataWatcherIDs.clan, clan);
     }
 

@@ -42,7 +42,7 @@ public class EventServerHook {
                 NarutoMod.logger.error("Problem with data watchers");
             }
 
-            event.entity.registerExtendedProperties(PlayerInfo.IDENTIFIER, new PlayerInfo((EntityPlayer) event.entity));
+            PlayerInfo.register((EntityPlayer) event.entity);
 
             /*Side side = FMLCommonHandler.instance().getEffectiveSide();
             if (side == Side.CLIENT) {
