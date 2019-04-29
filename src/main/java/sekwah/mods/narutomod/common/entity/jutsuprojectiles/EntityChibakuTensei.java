@@ -6,11 +6,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+
 public class EntityChibakuTensei extends Entity {
 
     public EntityChibakuTensei(World world) {
         super(world);
     }
+
+    public final int maxLife = 10 * 30;
+
+    private boolean hasLookedForBlocks = false;
 
     @Override
     protected void entityInit() {
@@ -25,9 +31,13 @@ public class EntityChibakuTensei extends Entity {
             float sizeValue = 2.2f - (float) moveAmount * 10f;
             this.setSize(sizeValue, sizeValue);
         }
-        if(ticksExisted > 20 * 30) {
+        if(ticksExisted > maxLife) {
             setDead();
         }
+    }
+
+    public ArrayList<String> grabBlocks() {
+        return null;
     }
 
     @Override

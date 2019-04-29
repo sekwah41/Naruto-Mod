@@ -34,6 +34,9 @@ public class ModelChibakuTensei extends ModelBase {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glEnable(GL_BLEND);
         glDisable(GL_TEXTURE_2D);
+
+        int boxes = 5;
+
         float scale;
         if(rotation < 20 * 6) {
             scale = rotation / 90f;
@@ -43,51 +46,70 @@ public class ModelChibakuTensei extends ModelBase {
         }
         scale += Math.cos(rotation / 8) * 0.07f + 0.14f;
         glScalef(scale, scale, scale);
-        glPushMatrix();
-        glScalef(1.45f,1.45f,1.45f);
         glColor4f(1,1,1,0.13f);
+        renderBoxes(boxes, rotation, 1.45f);
+        //glPushMatrix();
+        /*glScalef(1.45f,1.45f,1.45f);
 
         glDepthMask(false);
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < boxes; i++) {
             glRotatef(-rotation * 3, 0f, 1f, 0f);
             glRotatef(60.0F, 0.7071F, 0.0F, 0.7071F);
             this.blackHole.render(0.0625f);
         }
         glDepthMask(true);
-        glPopMatrix();
+        glPopMatrix();*/
 
         int modValue = ((int)rotation) % 10;
         if(modValue == 1 || modValue == 3 || modValue == 7) {
-            glPushMatrix();
-            glScalef(1.1f,1.1f,1.1f);
             glColor4f(1,1,1,0.5f);
+            renderBoxes(boxes, rotation, 1.1f);
+            /*glPushMatrix();
+            glScalef(1.1f,1.1f,1.1f);
 
             glDepthMask(false);
-            for(int i = 0; i < 5; i++) {
+            for(int i = 0; i < boxes; i++) {
                 glRotatef(rotation * 3, 0f, 1f, 0f);
                 glRotatef(60.0F, 0.7071F, 0.0F, 0.7071F);
                 this.blackHole.render(0.0625f);
             }
             glDepthMask(true);
-            glPopMatrix();
+            glPopMatrix();*/
         }
 
 
-        glPushMatrix();
+        glColor4f(0,0,0,1f);
+        renderBoxes(boxes, rotation, 1f);
+        /*glPushMatrix();
         glDepthMask(false);
         glColor4f(0,0,0,1f);
 
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < boxes; i++) {
             glRotatef(rotation * 3, 0f, 1f, 0f);
             glRotatef(60.0F, 0.7071F, 0.0F, 0.7071F);
             this.blackHole.render(0.0625f);
         }
         glDepthMask(true);
         glPopMatrix();
+        //glEnable(GL_LIGHTING);
+        */
         glColor4f(1,1,1,1);
         glEnable(GL_TEXTURE_2D);
-        //glEnable(GL_LIGHTING);
         glPopMatrix();
 
+    }
+
+    public void renderBoxes(int boxCount, float rotation, float scale) {
+        glPushMatrix();
+        glScalef(scale,scale,scale);
+
+        glDepthMask(false);
+        for(int i = 0; i < boxCount; i++) {
+            glRotatef(rotation * 3, 0f, 1f, 0f);
+            glRotatef(60.0F, 0.7071F, 0.0F, 0.7071F);
+            this.blackHole.render(0.0625f);
+        }
+        glDepthMask(true);
+        glPopMatrix();
     }
 }

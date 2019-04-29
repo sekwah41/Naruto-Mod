@@ -34,6 +34,10 @@ public class RenderChibakuTensei extends Render implements IDelayedRender {
         glTranslatef(0,entity.height / 2,0);
         float rotation = entity.ticksExisted + delta;
         model.renderBlackHole(rotation);
+        int shrinkTime = 10;
+        if(entity.ticksExisted + shrinkTime > ((EntityChibakuTensei) entity).maxLife) {
+            glScalef(1, 1, 1);
+        }
         glPopMatrix();
     }
 
