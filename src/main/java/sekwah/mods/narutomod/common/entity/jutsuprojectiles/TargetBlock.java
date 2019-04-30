@@ -7,10 +7,9 @@ public class TargetBlock implements Comparable<TargetBlock> {
     public final int x;
     public final int y;
     public final int z;
-    public final Block block;
     public final double sqDist;
 
-    public TargetBlock(int x, int y, int z, double bx, double by, double bz, Block block) {
+    public TargetBlock(int x, int y, int z, double bx, double by, double bz) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -18,7 +17,6 @@ public class TargetBlock implements Comparable<TargetBlock> {
         double dy = by - y;
         double dz = bz - z;
         this.sqDist = dx * dx + dy * dy + dz * dz;
-        this.block = block;
     }
 
     @Override

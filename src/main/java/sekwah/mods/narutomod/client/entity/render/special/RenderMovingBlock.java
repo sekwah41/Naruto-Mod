@@ -53,7 +53,7 @@ public class RenderMovingBlock extends Render {
         this.blockRenderer.renderBlockSandFalling(block, entity.worldObj, MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.posY), MathHelper.floor_double(entity.posZ), entity.getMetaData());
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
-        //this.blockRenderer.renderBlockSandFalling(block, world, i, j, k, p_76986_1_.field_145814_a);
+        //this.blockRenderer.renderBlockSandFalling(block, world, i, j, k, p_76986_1_.metadata);
     }
 
     @Override

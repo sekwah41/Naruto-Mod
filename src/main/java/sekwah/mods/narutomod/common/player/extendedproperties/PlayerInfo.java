@@ -101,7 +101,7 @@ public class PlayerInfo implements IExtendedEntityProperties
 
         properties.setString("Clan", clan);
         properties.setInteger("CurrentChakra", this.chakra);
-        properties.setInteger("MaxChakra", this.maxChakra);// possibly calculate the maxKi when a player loads to stop potential cheating with nbt data
+        properties.setInteger("MaxChakra", this.maxChakra);// possibly calculate the maxKi when a player loads to stop potential cheating with nbtTagCompound data
         properties.setInteger("CurrentStamina", this.stamina);
         properties.setInteger("MaxStamina", this.maxStamina);
         compound.setTag(IDENTIFIER, properties);

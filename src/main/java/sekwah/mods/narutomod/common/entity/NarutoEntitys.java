@@ -9,6 +9,7 @@ import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityFlameFireball;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import sekwah.mods.narutomod.common.entity.projectiles.*;
+import sekwah.mods.narutomod.common.entity.specials.EntityChibakuBlock;
 import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
 
 import java.awt.*;
@@ -36,9 +37,11 @@ public class NarutoEntitys {
 
         EntityRegistry.registerModEntity(EntityWaterBullet.class, "WaterBullet", 7, narutoMod, 64, 1, true);
 
-        EntityRegistry.registerModEntity(EntityMovingBlock.class, "EarthWall", 8, narutoMod, 64, 1, false);
+        EntityRegistry.registerModEntity(EntityMovingBlock.class, "EarthWall", 8, narutoMod, 120, 1, false);
 
-        EntityRegistry.registerModEntity(EntityChibakuTensei.class, "ChibakuTensei", 9, narutoMod, 64, 1, false);
+        EntityRegistry.registerModEntity(EntityChibakuBlock.class, "ChibakuBlocks", 9, narutoMod, 64, 20, true);
+
+        EntityRegistry.registerModEntity(EntityChibakuTensei.class, "ChibakuTensei", 10, narutoMod, 64, 1, false);
 
         // TODO make a custom egg for entities
         EntityRegistry.registerModEntity(EntityPuppet.class, "Puppet", 73, narutoMod, 80, 5, true);

@@ -20,6 +20,7 @@ import sekwah.mods.narutomod.client.entity.render.jutsuprojectiles.RenderChibaku
 import sekwah.mods.narutomod.client.entity.render.jutsuprojectiles.RenderFireball;
 import sekwah.mods.narutomod.client.entity.render.jutsuprojectiles.RenderWaterBullet;
 import sekwah.mods.narutomod.client.entity.render.projectiles.*;
+import sekwah.mods.narutomod.client.entity.render.special.RenderChibakuBlock;
 import sekwah.mods.narutomod.client.entity.render.special.RenderMovingBlock;
 import sekwah.mods.narutomod.client.gui.GuiChakraAndStaminaBar;
 import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
@@ -32,6 +33,7 @@ import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityFlameFireball;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import sekwah.mods.narutomod.common.entity.projectiles.*;
+import sekwah.mods.narutomod.common.entity.specials.EntityChibakuBlock;
 import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
 import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.items.itemmodels.ModelFlakJacket;
@@ -108,6 +110,8 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityWaterBullet.class, new RenderWaterBullet());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityMovingBlock.class, new RenderMovingBlock());
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntityChibakuBlock.class, new RenderChibakuBlock());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityChibakuTensei.class, new RenderChibakuTensei());
 
