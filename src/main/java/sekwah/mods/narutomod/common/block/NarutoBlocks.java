@@ -26,16 +26,16 @@ public class NarutoBlocks {
         // example = (new Block(160, Material.ground)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setBlockName("paperbombblock").setTextureName(par1Str)("paperbombblock");
 
 
-        PaperBombBlock = (new BlockPaperBomb(8)).setHardness(0.0F).setStepSound(Block.soundTypeGrass).setBlockName("paperbombblock").setBlockTextureName("paperbombblock");
+        PaperBombBlock = (new BlockPaperBomb(8)).setHardness(0.0F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("paperbombblock").setTextureName("paperbombblock");
 
-        Summoning_CircleCenter = (new BlockSummoningCircle(false, 0)).setHardness(-1F).setStepSound(Block.soundTypeGrass).setBlockName("Summoning_CircleCenter").setBlockTextureName("Summoning_CircleCenter");
-        Summoning_CircleEdges = (new BlockSummoningCircleEdge(false)).setHardness(-1F).setStepSound(Block.soundTypeGrass).setBlockName("Summoning_CircleSides").setBlockTextureName("Summoning_CircleSides");
+        Summoning_CircleCenter = (new BlockSummoningCircle(false, 0)).setHardness(-1F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("Summoning_CircleCenter").setTextureName("Summoning_CircleCenter");
+        Summoning_CircleEdges = (new BlockSummoningCircleEdge(false)).setHardness(-1F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("Summoning_CircleSides").setTextureName("Summoning_CircleSides");
 
-        Sakura_Leaves = (new BlockSakuraLeaves()).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setBlockName("sakuraleaves").setBlockTextureName("sakuraleaves");
+        Sakura_Leaves = (new BlockSakuraLeaves()).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setUnlocalizedName("sakuraleaves").setTextureName("sakuraleaves");
 
-        Sakura_Sapling = (new BlockSakuraSapling(3104)).setHardness(0.0F).setStepSound(Block.soundTypeGrass).setBlockName("sakurasapling").setBlockTextureName("sakurasapling").setCreativeTab(CreativeTabs.tabDecorations);
+        Sakura_Sapling = (new BlockSakuraSapling(3104)).setHardness(0.0F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("sakurasapling").setTextureName("sakurasapling").setCreativeTab(CreativeTabs.tabDecorations);
 
-        bonsaiTree = (new BlockBonsaiTree()).setHardness(3F).setStepSound(Block.soundTypeGrass).setBlockName("bonsaitree").setBlockTextureName("bonsaitree").setCreativeTab(CreativeTabs.tabDecorations);
+        bonsaiTree = (new BlockBonsaiTree()).setHardness(3F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("bonsaitree").setTextureName("bonsaitree").setCreativeTab(CreativeTabs.tabDecorations);
 
         // if you find out what the rest of the registerBlock does then maybe that will allow more advanced blocks
         GameRegistry.registerBlock(PaperBombBlock, PaperBombBlock.getUnlocalizedName());

@@ -148,8 +148,8 @@ public class ModelVanillaBiped extends ModelBiped {
         float var8;
         float var9;
 
-        if (this.onGround > -9990.0F) {
-            var8 = this.onGround;
+        if (this.swingProgress > -9990.0F) {
+            var8 = this.swingProgress;
             this.bipedBody.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(var8) * (float) Math.PI * 2.0F) * 0.2F;
             this.bipedRightArm.rotationPointZ = MathHelper.sin(this.bipedBody.rotateAngleY) * 5.0F;
             this.bipedRightArm.rotationPointX = -MathHelper.cos(this.bipedBody.rotateAngleY) * 5.0F;
@@ -158,15 +158,15 @@ public class ModelVanillaBiped extends ModelBiped {
             this.bipedRightArm.rotateAngleY += this.bipedBody.rotateAngleY;
             this.bipedLeftArm.rotateAngleY += this.bipedBody.rotateAngleY;
             this.bipedLeftArm.rotateAngleX += this.bipedBody.rotateAngleY;
-            var8 = 1.0F - this.onGround;
+            var8 = 1.0F - this.swingProgress;
             var8 *= var8;
             var8 *= var8;
             var8 = 1.0F - var8;
             var9 = MathHelper.sin(var8 * (float) Math.PI);
-            float var10 = MathHelper.sin(this.onGround * (float) Math.PI) * -(this.bipedHead.rotateAngleX - 0.7F) * 0.75F;
+            float var10 = MathHelper.sin(this.swingProgress * (float) Math.PI) * -(this.bipedHead.rotateAngleX - 0.7F) * 0.75F;
             this.bipedRightArm.rotateAngleX = (float) ((double) this.bipedRightArm.rotateAngleX - ((double) var9 * 1.2D + (double) var10));
             this.bipedRightArm.rotateAngleY += this.bipedBody.rotateAngleY * 2.0F;
-            this.bipedRightArm.rotateAngleZ = MathHelper.sin(this.onGround * (float) Math.PI) * -0.4F;
+            this.bipedRightArm.rotateAngleZ = MathHelper.sin(this.swingProgress * (float) Math.PI) * -0.4F;
         }
 
         if (this.isSneak) {

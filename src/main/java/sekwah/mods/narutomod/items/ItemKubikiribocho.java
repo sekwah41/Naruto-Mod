@@ -60,8 +60,8 @@ public class ItemKubikiribocho extends Item {
      * the damage on the stack.
      */
     public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase) {
-        if(par1ItemStack.getMaxDamage() > par1ItemStack.getMetadata()){
-            par1ItemStack.setItemDamage(par1ItemStack.getMetadata() - 1);
+        if(par1ItemStack.getMaxDurability() > par1ItemStack.getMetadata()){
+            par1ItemStack.setMetadata(par1ItemStack.getMetadata() - 1);
         }
         //par1ItemStack.damageItem(1, par3EntityLivingBase);
         return true;
@@ -128,7 +128,7 @@ public class ItemKubikiribocho extends Item {
      * Return whether this item is repairable in an anvil.
      */
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
-        return this.toolMaterial.func_150995_f() == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return this.toolMaterial.getRepairItemStack().getItem() == par2ItemStack.getItem() || super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -136,7 +136,7 @@ public class ItemKubikiribocho extends Item {
      */
     public Multimap getAttributeModifiers(ItemStack stack) {
         Multimap multimap = super.getAttributeModifiers(stack);
-        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double) this.weaponDamage, 0));
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Weapon modifier", (double) this.weaponDamage, 0));
         return multimap;
     }
 }

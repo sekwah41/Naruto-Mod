@@ -3,15 +3,13 @@ package sekwah.mods.narutomod.common.entity.jutsuprojectiles;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirt;
-import net.minecraft.block.BlockGrass;
-import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.BlockFluidBase;
 import sekwah.mods.narutomod.common.entity.specials.EntityChibakuBlock;
 
 import java.util.*;
@@ -26,8 +24,6 @@ public class EntityChibakuTensei extends Entity {
 
     public final int maxLife = 60 * 20;
     public final int noSpawny = 10 * 20;
-
-    private boolean hasLookedForBlocks = false;
 
     public double lastSqDist = 1;
 
@@ -71,7 +67,7 @@ public class EntityChibakuTensei extends Entity {
                         if(targetBlock != null) {
                             Block block = this.worldObj.getBlock(targetBlock.x, targetBlock.y, targetBlock.z);
                             if(block.getBlockHardness(this.worldObj, targetBlock.x, targetBlock.y, targetBlock.z) > -1) {
-                                if(!(block instanceof BlockLeaves)) {
+                                if(!(block instanceof BlockLeaves) && !(block instanceof BlockDynamicLiquid)) {
                                     if(block == Blocks.grass) {
                                         block = Blocks.dirt;
                                     }
@@ -133,6 +129,7 @@ public class EntityChibakuTensei extends Entity {
                     float blockRangeSq = (float) blockRange * blockRange;
                     if(x * x + y * y + z * z < blockRangeSq) {
                         Block block = this.worldObj.getBlock(cX + x, cY + y, cZ + z);
+                        // TODO find if there is a way to set the block no to fall
                         if(block.getMaterial() != Material.air) {
                             blocks.add(new TargetBlock(cX + x, cY + y, cZ + z, this.posX, this.posY, this.posZ));
                         }

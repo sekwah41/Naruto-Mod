@@ -211,13 +211,13 @@ public class RenderShadowClone extends RendererLivingEntity {
                     NBTTagCompound nbttagcompound = itemstack.getTagCompound();
 
                     if (nbttagcompound.hasKey("SkullOwner", 10)) {
-                        gameprofile = NBTUtil.func_152459_a(nbttagcompound.getCompoundTag("SkullOwner"));
+                        gameprofile = NBTUtil.readGameProfileFromNBT(nbttagcompound.getCompoundTag("SkullOwner"));
                     } else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner"))) {
                         gameprofile = new GameProfile(null, nbttagcompound.getString("SkullOwner"));
                     }
                 }
 
-                TileEntitySkullRenderer.field_147536_b.func_152674_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, itemstack.getItemDamage(), gameprofile);
+                TileEntitySkullRenderer.field_147536_b.func_152674_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, itemstack.getMetadata(), gameprofile);
             }
 
             GL11.glPopMatrix();
@@ -366,7 +366,7 @@ public class RenderShadowClone extends RendererLivingEntity {
             int j;
 
             if (itemstack1.getItem().requiresMultipleRenderPasses()) {
-                for (j = 0; j < itemstack1.getItem().getRenderPasses(itemstack1.getItemDamage()); ++j) {
+                for (j = 0; j < itemstack1.getItem().getRenderPasses(itemstack1.getMetadata()); ++j) {
                     int k = itemstack1.getItem().getColorFromItemStack(itemstack1, j);
                     f13 = (float) (k >> 16 & 255) / 255.0F;
                     f12 = (float) (k >> 8 & 255) / 255.0F;

@@ -23,7 +23,7 @@ public class ParticleEffectsHandler {
             ex.printStackTrace();
         }
 
-        PacketDispatcher.sendPacketToAllAround(new ClientParticleEffectPacket(bos.toByteArray()), new TargetPoint(playerMP.worldObj.getWorldInfo().getVanillaDimension(), playerMP.posX, playerMP.posY, playerMP.posZ, 64));
+        PacketDispatcher.sendPacketToAllAround(new ClientParticleEffectPacket(bos.toByteArray()), new TargetPoint(playerMP.worldObj.getWorldInfo().getDimension(), playerMP.posX, playerMP.posY, playerMP.posZ, 64));
 
     }
 

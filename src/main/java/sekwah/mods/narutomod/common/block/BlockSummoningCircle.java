@@ -125,7 +125,7 @@ public class BlockSummoningCircle extends Block {
             }
 
             if (!par1World.isRemote) {
-                PacketDispatcher.sendPacketToAllAround(new ClientSoundPacket(bos.toByteArray()), new TargetPoint(par1World.getWorldInfo().getVanillaDimension(), par2, par3, par4, 64));
+                PacketDispatcher.sendPacketToAllAround(new ClientSoundPacket(bos.toByteArray()), new TargetPoint(par1World.getWorldInfo().getDimension(), par2, par3, par4, 64));
             }
 
             //par1World.playAuxSFX(par2, par3, par4, "narutomod:jutsusounds.bunshin_seal", 0.5F, 1F, false);

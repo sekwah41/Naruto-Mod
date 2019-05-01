@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.GuiDiscord;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -620,7 +621,7 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
         synchronized (this.field_104025_t) {
             if (this.field_92025_p.length() > 0 && p_73864_1_ >= this.field_92022_t && p_73864_1_ <= this.field_92020_v && p_73864_2_ >= this.field_92021_u && p_73864_2_ <= this.field_92019_w) {
                 GuiConfirmOpenLink guiconfirmopenlink = new GuiConfirmOpenLink(this, this.field_104024_v, 13, true);
-                guiconfirmopenlink.func_146358_g();
+                guiconfirmopenlink.initGui();
                 this.mc.displayGuiScreen(guiconfirmopenlink);
             }
         }

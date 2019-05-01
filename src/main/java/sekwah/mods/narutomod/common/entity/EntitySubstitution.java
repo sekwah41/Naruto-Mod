@@ -164,9 +164,9 @@ public class EntitySubstitution extends EntityCreature implements SkinCallback, 
 
                 if (var3 != null) {
                     if (var3.isItemStackDamageable()) {
-                        var3.setItemDamage(var3.getItemDamageForDisplay() + this.rand.nextInt(2));
+                        var3.setMetadata(var3.getMetadata() + this.rand.nextInt(2));
 
-                        if (var3.getItemDamageForDisplay() >= var3.getMaxDamage()) {
+                        if (var3.getMetadata() >= var3.getMaxDurability()) {
                             this.renderBrokenItemStack(var3);
                             this.setCurrentItemOrArmor(4, null);
                         }
@@ -250,7 +250,7 @@ public class EntitySubstitution extends EntityCreature implements SkinCallback, 
 
         this.setCustomNameTag("sekwah41");
 
-        gameProfile = MinecraftServer.getServer().func_152358_ax().func_152655_a("sekwah41");
+        gameProfile = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("sekwah41");
 
         return par1EntityLivingData;
     }

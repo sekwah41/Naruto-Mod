@@ -22,6 +22,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.TargetBlock;
 
@@ -109,7 +110,21 @@ public class EntityChibakuBlock extends Entity implements IEntityAdditionalSpawn
                     if(!this.worldObj.isRemote) {
                         TargetBlock block = this.entityChibaku.placeBlock();
                         if(block != null) {
-                            this.worldObj.setBlock(block.x, block.y, block.z, this.block, metadata, 2);
+                            //this.worldObj.getChunkFromChunkCoords(block.x, block.z);
+                            // TODO see if there is a better way than this or find if you can stop the liquid also updating.
+                            try {
+                                this.worldObj.isRemote = true;
+                                if(this.block.getMaterial() == Material.water) metadata = 0;
+                                this.worldObj.setBlock(block.x, block.y, block.z, this.block, metadata, 2);
+                                this.worldObj.isRemote = false;
+                            }
+                            catch(Exception e) {
+                                // THIS IS ONLY HERE BECAUSE I HATE FORGE, could replace with asm or a MIXIN (possible but i like the quick fix)
+                                NarutoMod.logger.error("Error setting block as client, retrying as server");
+                                this.worldObj.isRemote = false;
+                                if(this.block.getMaterial() == Material.water) metadata = 0;
+                                this.worldObj.setBlock(block.x, block.y, block.z, this.block, metadata, 2);
+                            }
                             this.setDead();
                             return;
                         }
