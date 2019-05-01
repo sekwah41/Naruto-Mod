@@ -42,6 +42,7 @@ public class EntityChibakuTensei extends Entity {
 
     @Override
     protected void entityInit() {
+        this.noClip = true;
         this.setSize(2,2);
     }
 
@@ -110,7 +111,7 @@ public class EntityChibakuTensei extends Entity {
             for (int y = -radius; y < radius; y++) {
                 for (int z = -radius; z < radius; z++) {
                     if(x * x + y * y + z * z < radSq) {
-                        Block block = this.worldObj.getBlock(cX + x, cY + y, cZ + z);
+                        Block block = this.worldObj.getBlock((int) this.posX + x, (int) this.posY + y, (int) this.posZ + z);
                         if(block.getMaterial() == Material.air) {
                             blocks.add(new TargetBlock((int) this.posX + x, (int) this.posY + y, (int) this.posZ + z, this.posX, this.posY, this.posZ));
                         }

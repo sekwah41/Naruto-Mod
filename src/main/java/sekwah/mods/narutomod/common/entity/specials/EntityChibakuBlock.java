@@ -109,7 +109,7 @@ public class EntityChibakuBlock extends Entity implements IEntityAdditionalSpawn
                     if(!this.worldObj.isRemote) {
                         TargetBlock block = this.entityChibaku.placeBlock();
                         if(block != null) {
-                            this.worldObj.setBlock(block.x, block.y, block.z, this.block, metadata, 3);
+                            this.worldObj.setBlock(block.x, block.y, block.z, this.block, metadata, 2);
                             this.setDead();
                             return;
                         }
