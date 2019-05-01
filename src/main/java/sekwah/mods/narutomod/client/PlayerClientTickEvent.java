@@ -24,6 +24,7 @@ import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.common.NarutoEffects;
 import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.jutsu.Jutsus;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
@@ -235,7 +236,7 @@ public class PlayerClientTickEvent {
             if (JutsuCasting) {
                 if (JutsuKeyDelay <= 0) {
                     JutsuCasting = false;
-                    if(JutsuCombo.equals("1333223")){
+                    if(JutsuCombo.equals(Jutsus.RAINBOW_CHAKRA)){
                         NarutoSettings.rainbowChakra = !NarutoSettings.rainbowChakra;
                         if(NarutoSettings.rainbowChakra){
                             GuiNotificationUpdate.queueNotification(I18n.format("naruto.gui.settings"),

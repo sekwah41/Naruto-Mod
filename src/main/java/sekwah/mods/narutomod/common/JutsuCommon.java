@@ -7,7 +7,11 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.*;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.common.entity.EntityShadowClone;
 import sekwah.mods.narutomod.common.entity.EntitySubstitution;
@@ -15,6 +19,8 @@ import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityFlameFireball;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
+import sekwah.mods.narutomod.jutsu.Jutsu;
+import sekwah.mods.narutomod.jutsu.Jutsus;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
 
@@ -29,9 +35,9 @@ public class JutsuCommon {
         Vec3 looking = playerMP.getLookVec();
         int eyeStatus = 0;
         switch (jutsuCombo) {
-            case 1: // chakra restore
+            case Jutsus.CHAKRA_RESTORE: // chakra restore
                 return true;
-            case 2: // chakra dash
+            case Jutsus.CHAKRA_DASH: // chakra dash
                 // blue smoke new EntityColouredSmokeFX(this.theWorld, par2, par4, par6, par8, par10, par12, 0.3F, 0.3F, 1F);
 
                 // red smoke new EntityColouredSmokeFX(this.theWorld, par2, par4, par6, par8, par10, par12, 1F, 0.3F, 0.3F);
@@ -39,33 +45,33 @@ public class JutsuCommon {
                 // change it to code and add a client side particle spawner using packets and client code
                 // ParticleEffectsHandler.addEffect(1, playerMP);
                 return true;
-            case 3: // water walk
+            case Jutsus.WATER_WALK: // water walk
                 return true;
-            case 4: // resets falling damage server side
+            case Jutsus.RESET_FALL_DAMAGE: // resets falling damage server side
                 //playerMP.attackEntityFrom(DamageSource.fall, playerMP.fallDistance / 10);
                 playerMP.fallDistance = 0.0F;
                 return true;
-            case 401:
+            case Jutsus.LEAP_START:
                 return true;
-            case 402:
+            case Jutsus.DODGE_BACK_START:
                 return true;
-            case 403:
+            case Jutsus.DODGE_LEFT_START:
                 return true;
-            case 404:
+            case Jutsus.DODGE_RIGHT_START:
                 return true;
-            case 411:
+            case Jutsus.LEAP_STOP:
                 jutsuSound(8, playerMP);
                 return true;
-            case 412:
+            case Jutsus.DODGE_BACK_STOP:
                 jutsuSound(8, playerMP);
                 return true;
-            case 413:
+            case Jutsus.DODGE_LEFT_STOP:
                 jutsuSound(8, playerMP);
                 return true;
-            case 414:
+            case Jutsus.DODGE_RIGHT_STOP:
                 jutsuSound(8, playerMP);
                 return true;
-            case 12:
+            case Jutsus.SUBSTITUTION:
 
                 eyeStatus = playerMP.getDataWatcher().getWatchableObjectInt(DataWatcherIDs.eyerenderer);
 
@@ -118,20 +124,20 @@ public class JutsuCommon {
 
                 playerMP.worldObj.spawnEntityInWorld(substitution);
                 return true;
-            case 101: // charging chakra
+            case Jutsus.CHAKRA_INFUSE_START: // charging chakra
                 jutsuSound(4, playerMP);
                 return true;
-            case 110: // charging chakra stopped
+            case Jutsus.CHAKRA_INFUSE_STOP: // charging chakra stopped
                 return true;
-            case 111:
+            case Jutsus.CHIBAKU_TENSEI:
                 EntityChibakuTensei bigBoomBoomBall = new EntityChibakuTensei(playerMP.worldObj);
                 bigBoomBoomBall.setPosition(playerMP.posX, playerMP.posY, playerMP.posZ);
                 playerMP.worldObj.spawnEntityInWorld(bigBoomBoomBall);
                 return true;
-            case 121:
+            case Jutsus.FIREBALL:
                 jutsuSound(4, playerMP);
                 return true;
-            case 1210:
+            case Jutsus.FIREBALL_STOP:
                 jutsuSound(5, playerMP);
 
                 EntityFlameFireball fireball = new EntityFlameFireball(playerMP.worldObj, playerMP, 1, 1, 1);
@@ -148,10 +154,10 @@ public class JutsuCommon {
 
                 playerMP.worldObj.spawnEntityInWorld(fireball);
                 return true;
-            case 132:
+            case Jutsus.WATER_BULLET:
                 jutsuSound(4, playerMP);
                 return true;
-            case 1320:
+            case Jutsus.WATER_BULLET_STOP:
                 EntityWaterBullet waterBullet = new EntityWaterBullet(playerMP.worldObj, playerMP, 1, 1, 1);
                 waterBullet.setLocationAndAngles(playerMP.posX + looking.xCoord * 1,
                         playerMP.posY + 1.2F + looking.yCoord * 0.2,
@@ -164,29 +170,29 @@ public class JutsuCommon {
 
                 playerMP.worldObj.spawnEntityInWorld(waterBullet);
                 return true;
-            case 311: // possibly the toggle for liams eyes
+            case Jutsus.EYES:
                 return true;
-            case 312:
+            case Jutsus.EARTH_WALL:
                 // TODO STOP PLAYER MOVEMENT
                 return true;
-            case 3120:
+            case Jutsus.EARTH_WALL_STOP:
                 activateEarthWall(playerMP);
                 return true;
-            case 333:
+            case Jutsus.SEKC:
                 return true;
-            case 3330:
+            case Jutsus.SEKC_STOP:
                 return true;
-            case 1332:
+            case Jutsus.REGULAR_SHADOW_CLONE:
                 jutsuSound(4, playerMP);
                 eyeStatus = playerMP.getDataWatcher().getWatchableObjectInt(DataWatcherIDs.eyerenderer);
                 spawnClones(playerMP, (int) (Math.random() * 1.2 + 1.9), eyeStatus, false);
                 return true;
-            case 1322:
+            case Jutsus.CHIBI_SHADOW_CLONE:
                 jutsuSound(4, playerMP);
                 eyeStatus = playerMP.getDataWatcher().getWatchableObjectInt(DataWatcherIDs.eyerenderer);
                 spawnClones(playerMP, (int) (Math.random() * 1.2 + 1.9), eyeStatus, true);
                 return true;
-            case 133231:
+            case Jutsus.MULTI_SHADOW_CLONE:
                 jutsuSound(4, playerMP);
                 eyeStatus = playerMP.getDataWatcher().getWatchableObjectInt(DataWatcherIDs.eyerenderer);
                 spawnClones(playerMP, (int) (Math.random() * 2.2 + 8.9), eyeStatus, false);
@@ -216,17 +222,17 @@ public class JutsuCommon {
             }
 
             switch (dir) {
-                case 0:
+                case Jutsu.FORWARD:
                     xDir = 1;
                     break;
-                case 1:
+                case Jutsu.BACK:
                     xDir = 1;
                     zDir = 1;
                     break;
-                case 2:
+                case Jutsu.LEFT:
                     zDir = 1;
                     break;
-                case 3:
+                case Jutsu.RIGHT:
                     xDir = 1;
                     zDir = -1;
                     break;

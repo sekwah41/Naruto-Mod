@@ -7,6 +7,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.assets.JutsuData;
+import sekwah.mods.narutomod.jutsu.Jutsus;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 
 import java.util.Random;
@@ -21,9 +22,9 @@ public class JutsuClient {
 
         switch (jutsuCombo) {
 
-            case 1:
+            case Jutsus.CHAKRA_RESTORE:
                 break;
-            case 2:
+            case Jutsus.CHAKRA_DASH:
                 if (PlayerClientTickEvent.chakraDash) {
                     PlayerClientTickEvent.chakraDash = false;
                     playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + I18n.format("naruto.jutsu.chakraDash.deactivate")));
@@ -32,7 +33,7 @@ public class JutsuClient {
                     playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.chakraDash.activate")));
                 }
                 break;
-            case 3:
+            case Jutsus.WATER_WALK:
                 if (PlayerClientTickEvent.waterWalking) {
                     PlayerClientTickEvent.waterWalking = false;
                     playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + I18n.format("naruto.jutsu.waterWalk.deactivate")));
@@ -41,114 +42,112 @@ public class JutsuClient {
                     playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.waterWalk.activate")));
                 }
                 break;
-            case 4:
+            case Jutsus.RESET_FALL_DAMAGE:
                 break;
-            case 111:
+            case Jutsus.CHIBAKU_TENSEI:
                 playerMP.addChatMessage(new ChatComponentText("ENJOY DESTRUCTION"));
                 break;
-            case 401:
+            case Jutsus.LEAP_START:
                 PlayerClientTickEvent.stamina -= 20;
                 PlayerClientTickEvent.setStaminaCooldown(80);
                 PacketAnimationUpdate.animationUpdate("leapforward" + (rand.nextInt(2) + 1), playerMP);
                 break;
-            case 402:
+            case Jutsus.DODGE_BACK_START:
                 PlayerClientTickEvent.stamina -= 20;
                 PlayerClientTickEvent.setStaminaCooldown(80);
                 PacketAnimationUpdate.animationUpdate("leapback" + (rand.nextInt(2) + 1), playerMP);
                 break;
-            case 403:
+            case Jutsus.DODGE_LEFT_START:
                 PlayerClientTickEvent.stamina -= 20;
                 PlayerClientTickEvent.setStaminaCooldown(80);
                 PacketAnimationUpdate.animationUpdate("leapleft", playerMP);
                 break;
-            case 404:
+            case Jutsus.DODGE_RIGHT_START:
                 PlayerClientTickEvent.stamina -= 20;
                 PlayerClientTickEvent.setStaminaCooldown(80);
                 PacketAnimationUpdate.animationUpdate("leapright", playerMP);
                 break;
-            case 411:
+            case Jutsus.LEAP_STOP:
                 lookVector = playerMP.getLookVec();
                 playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, (lookVector.yCoord + 0.8F) * 0.7F
                         , playerMP.motionZ + lookVector.zCoord * 1.5F);
                 break;
-            case 412:
+            case Jutsus.DODGE_BACK_STOP:
                 lookVector = playerMP.getLookVec();
                 lookVector.rotateAroundY((float) (Math.PI));
                 playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.1F);
                 /*playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, (lookVector.yCoord + 0.8F) * 0.7F
                         , playerMP.motionZ + lookVector.zCoord * 1.5F);*/
                 break;
-            case 413:
+            case Jutsus.DODGE_LEFT_STOP:
                 lookVector = playerMP.getLookVec();
                 lookVector.rotateAroundY((float) (Math.PI / 2F));
                 playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.5F);
                 break;
-            case 414:
+            case Jutsus.DODGE_RIGHT_STOP:
                 lookVector = playerMP.getLookVec();
                 lookVector.rotateAroundY((float) (-Math.PI / 2F));
                 playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.5F);
                 break;
-            case 12:// change the combo at some point and make sure its the same as in jutsu common
+            case Jutsus.SUBSTITUTION:// change the combo at some point and make sure its the same as in jutsu common
                 // add code to execute client side  here!
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.substitution")));
                 ParticleEffects.addEffect(4, playerMP);
                 PlayerClientTickEvent.chakra -= JutsuData.substitutionCost;
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
-            case 101:
+            case Jutsus.CHAKRA_INFUSE_START:
                 PacketAnimationUpdate.animationUpdate("chakraCharging", playerMP);
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.chakraCharge.activate")));
                 break;
-            case 110:
+            case Jutsus.CHAKRA_INFUSE_STOP:
                 PacketAnimationUpdate.animationUpdate("default", playerMP);
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + I18n.format("naruto.jutsu.chakraCharge.deactivate")));
                 break;
-            case 121:
+            case Jutsus.FIREBALL:
                 PacketAnimationUpdate.animationUpdate("fireBall", playerMP);
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.fireball")));
                 PlayerClientTickEvent.chakra -= JutsuData.fireballCost;
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
-            case 1210:
-                // Doesnt do anything
+            case Jutsus.FIREBALL_STOP:
                 break;
-            case 132:
+            case Jutsus.WATER_BULLET:
                 PacketAnimationUpdate.animationUpdate("waterBullet", playerMP); // change to a water ball pose
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.waterBullet")));
                 PlayerClientTickEvent.chakra -= JutsuData.waterBulletCost;
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
-            case 311: // TODO possibly the toggle for liams eyes
+            case Jutsus.EYES:
                 break;
-            case 312: // TODO set the combo for the earth style
+            case Jutsus.EARTH_WALL: // TODO set the combo for the earth style
                 PacketAnimationUpdate.animationUpdate("earthWall", playerMP);
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.earthWall")));
                 PlayerClientTickEvent.chakra -= JutsuData.wallCost;
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
-            case 3120:
+            case Jutsus.EARTH_WALL_STOP:
                 break;
-            case 333:
+            case Jutsus.SEKC:
                 PacketAnimationUpdate.animationUpdate("sexyjutsu1", playerMP);
                 break;
-            case 3330:
+            case Jutsus.SEKC_STOP:
                 break;
-            case 1320:
-                // Doesnt do anything
+            case Jutsus.WATER_BULLET_STOP:
                 break;
-            case 1332:
+            case Jutsus.REGULAR_SHADOW_CLONE:
                 ParticleEffects.addEffect(4, playerMP);
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.shadowClone")));
                 PlayerClientTickEvent.chakra -= JutsuData.shadowCloneCost;
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
-            case 1322:
+            case Jutsus.CHIBI_SHADOW_CLONE:
                 ParticleEffects.addEffect(4, playerMP);
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.chibiClone")));
                 PlayerClientTickEvent.chakra -= JutsuData.shadowCloneCost;
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
-            case 133231:
+            case Jutsus.MULTI_SHADOW_CLONE:
                 ParticleEffects.addEffect(4, playerMP);
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.multiShadowClone")));
                 PlayerClientTickEvent.chakra -= JutsuData.multiShadowCloneCost;
@@ -167,41 +166,41 @@ public class JutsuClient {
     public static boolean canCast(int jutsuCombo, EntityClientPlayerMP playerMP /*  add int to say if its chakra, stamina or both. or add a new method*/) {
         NarutoMod.logger.debug("Can Cast: " + jutsuCombo);
         switch (jutsuCombo) {
-            case 1:
+            case Jutsus.CHAKRA_RESTORE:
                 return true;
-            case 2:
+            case Jutsus.CHAKRA_DASH:
                 return true;
-            case 3:
+            case Jutsus.WATER_WALK:
                 return true;
-            case 12:
+            case Jutsus.SUBSTITUTION:
                 if (PlayerClientTickEvent.chakra >= JutsuData.substitutionCost) return true;
                 break;
-            case 101:
+            case Jutsus.CHAKRA_INFUSE_START:
                 return true;
-            case 110:
+            case Jutsus.CHAKRA_INFUSE_STOP:
                 return true;
-            case 111:
+            case Jutsus.CHIBAKU_TENSEI:
                 return true;
-            case 121:
+            case Jutsus.FIREBALL:
                 if (PlayerClientTickEvent.chakra >= JutsuData.fireballCost) return true;
                 break;
-            case 132:
+            case Jutsus.WATER_BULLET:
                 if (PlayerClientTickEvent.chakra >= JutsuData.waterBulletCost) return true;
                 break;
-            case 311:
+            case Jutsus.EYES:
                 return false;// TODO possibly the toggle for liams eyes, will be true once done
-            case 312:
+            case Jutsus.EARTH_WALL:
                 if (PlayerClientTickEvent.chakra >= JutsuData.wallCost) return true;
                 break;
-            case 333:
+            case Jutsus.SEKC:
                 return true;
-            case 1332:
+            case Jutsus.REGULAR_SHADOW_CLONE:
                 if (PlayerClientTickEvent.chakra >= JutsuData.shadowCloneCost) return true;
                 break;
-            case 1322:
+            case Jutsus.CHIBI_SHADOW_CLONE:
                 if (PlayerClientTickEvent.chakra >= JutsuData.shadowCloneCost) return true;
                 break;
-            case 133231:
+            case Jutsus.MULTI_SHADOW_CLONE:
                 if (PlayerClientTickEvent.chakra >= JutsuData.multiShadowCloneCost) return true;
                 break;
             default:
