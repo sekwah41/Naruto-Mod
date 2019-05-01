@@ -89,15 +89,15 @@ String getModVersion(String type) {
     file.readLines("UTF-8").each { String s ->
         s = s.trim()
         if (s.startsWith(prefix)) {
-            s = s.substring(prefix.length(), s.length() - 2)
-            String[] pts = s.split("\\.")
+            s = s.substring(prefix.length(), s.length() - 2);
+            String[] pts = s.split("\\.");
 
-            major = pts[0]
-            revision = pts[1]
-            patch = pts[2]
+            major = pts[0];
+            revision = pts[1];
+            patch = pts[2];
         }
     }
-    return "$major.$revision.$patch"
+    return "$major.$revision.$patch";
 }
 
 processResources {
