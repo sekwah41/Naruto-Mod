@@ -2,13 +2,13 @@ package sekwah.mods.narutomod.common;
 
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -244,7 +244,9 @@ public class JutsuCommon {
             //System.out.printf("%s %s %s%n",movingObject.blockX,movingObject.blockY, movingObject.blockZ);
         }
         else {
-            playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + I18n.format("naruto.jutsu.earthWall.failed")));
+            IChatComponent message = new ChatComponentTranslation("naruto.jutsu.earthWall.failed");
+            message.getChatStyle().setColor(EnumChatFormatting.RED);
+            playerMP.addChatMessage(message);
             //System.out.println("NO BLOCK");
         }
     }
