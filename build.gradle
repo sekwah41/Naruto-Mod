@@ -72,12 +72,15 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 tasks.build.dependsOn devJar, sourceJar, javadocJar
 
 String getModVersion(String type) {
-    File file = sourceSets.main.java.filter { File f -> f.file }.filter { File element ->
+    File file = sourceSets.main.java.filter { File element ->
+        if (!element.file) return false
+        String ret = ""
         element.readLines("UTF-8").each { String s ->
             if (s.trim().startsWith("@Mod")) {
-                return "src/main/java/$element.path"
+                ret = "src/main/java/$element.path"
             }
         }
+        return ret
     }.first()
     String major = "0"
     String revision = "1"
