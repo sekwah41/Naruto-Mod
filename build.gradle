@@ -31,7 +31,7 @@ minecraft {
     if (project.hasProperty("runDir")) {
         runDir = project.runDir
     } else if (file("../run").exists()) {
-        runDir = "../ run"
+        runDir = "../run"
     } else if (file("run").exists()) {
         runDir = "run"
     } else {
