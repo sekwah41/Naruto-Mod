@@ -6,6 +6,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
@@ -15,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.player.SharinganHandler;
 import sekwah.mods.narutomod.client.render.DelayedRender;
+import sekwah.mods.narutomod.command.CommandJutsu;
 import sekwah.mods.narutomod.common.CommonProxy;
 import sekwah.mods.narutomod.common.EventServerHook;
 import sekwah.mods.narutomod.common.NarutoEffects;
@@ -26,6 +28,7 @@ import sekwah.mods.narutomod.network.UpdateChecker;
 import sekwah.mods.narutomod.network.UsageReport;
 import sekwah.mods.narutomod.packets.clientbound.ClientAnimationPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientJutsuPacket;
+import sekwah.mods.narutomod.packets.clientbound.ClientJutsuCommandPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientParticleEffectPacket;
 import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
 import sekwah.mods.narutomod.packets.serverbound.*;
@@ -167,6 +170,7 @@ public class NarutoMod {
         packetNetwork.registerMessage(ClientJutsuPacket.class, ClientJutsuPacket.class, 1, Side.CLIENT);
         packetNetwork.registerMessage(ClientSoundPacket.class, ClientSoundPacket.class, 2, Side.CLIENT);
         packetNetwork.registerMessage(ClientAnimationPacket.class, ClientAnimationPacket.class, 3, Side.CLIENT);
+        packetNetwork.registerMessage(ClientJutsuCommandPacket.class, ClientJutsuCommandPacket.class, 4, Side.CLIENT);
 
         packetNetwork.registerMessage(ServerParticleEffectPacket.class, ServerParticleEffectPacket.class, 100, Side.SERVER);
         packetNetwork.registerMessage(ServerJutsuPacket.class, ServerJutsuPacket.class, 101, Side.SERVER);
@@ -174,6 +178,11 @@ public class NarutoMod {
         packetNetwork.registerMessage(ServerSoundPacket.class, ServerSoundPacket.class, 103, Side.SERVER);
         packetNetwork.registerMessage(ServerEyePacket.class, ServerEyePacket.class, 104, Side.SERVER);
 
+    }
+
+    @EventHandler
+    public void onServerStart(FMLServerStartingEvent event) {
+        event.registerServerCommand(new CommandJutsu());
     }
 
 }

@@ -1,15 +1,24 @@
 package sekwah.mods.narutomod.client;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
+import org.apache.commons.io.IOUtils;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.assets.JutsuData;
+import sekwah.mods.narutomod.jutsu.Jutsu;
 import sekwah.mods.narutomod.jutsu.Jutsus;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
+import sekwah.mods.narutomod.packets.PacketDispatcher;
+import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.util.Random;
 
 public class JutsuClient {
@@ -120,7 +129,7 @@ public class JutsuClient {
                 break;
             case Jutsus.EYES:
                 break;
-            case Jutsus.EARTH_WALL: // TODO set the combo for the earth style
+            case Jutsus.EARTH_RELEASE: // TODO set the combo for the earth style
                 PacketAnimationUpdate.animationUpdate("earthWall", playerMP);
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.earthWall")));
                 PlayerClientTickEvent.chakra -= JutsuData.wallCost;
@@ -163,6 +172,26 @@ public class JutsuClient {
 
     }
 
+    public static void executeRemote(int jutsuCombination) {
+        if (canCast(jutsuCombination, Minecraft.getMinecraft().thePlayer)) {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+            DataOutputStream outputStream = new DataOutputStream(bos);
+            try {
+                outputStream.writeInt(jutsuCombination);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            PacketDispatcher.sendPacketToServer(new ServerJutsuPacket(bos.toByteArray()));
+            IOUtils.closeQuietly(bos);
+        }
+    }
+
+    //moved here so the server doesn't crash when registering the packet
+    public static void displayJutsuList() {
+        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        Jutsu.getRegisteredJutsuCombinations().forEach((name, combination) -> player.addChatMessage(new ChatComponentTranslation("naruto.jutsu.combo." + name, Jutsu.translateToKeyCombo(combination))));
+    }
+
     public static boolean canCast(int jutsuCombo, EntityClientPlayerMP playerMP /*  add int to say if its chakra, stamina or both. or add a new method*/) {
         NarutoMod.logger.debug("Can Cast: " + jutsuCombo);
         switch (jutsuCombo) {
@@ -189,7 +218,7 @@ public class JutsuClient {
                 break;
             case Jutsus.EYES:
                 return false;// TODO possibly the toggle for liams eyes, will be true once done
-            case Jutsus.EARTH_WALL:
+            case Jutsus.EARTH_RELEASE:
                 if (PlayerClientTickEvent.chakra >= JutsuData.wallCost) return true;
                 break;
             case Jutsus.SEKC:

@@ -172,7 +172,7 @@ public class JutsuCommon {
                 return true;
             case Jutsus.EYES:
                 return true;
-            case Jutsus.EARTH_WALL:
+            case Jutsus.EARTH_RELEASE:
                 // TODO STOP PLAYER MOVEMENT
                 return true;
             case Jutsus.EARTH_WALL_STOP:

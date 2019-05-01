@@ -24,7 +24,7 @@ public class Jutsus {
     public static final int FIREBALL = 121; // cvc
     public static final int WATER_BULLET = 132; // cbv
     public static final int EYES = 311; // bcc //possibly the toggle for liams eyes
-    public static final int EARTH_WALL = 312; //bcv
+    public static final int EARTH_RELEASE = 312; //bcv
     public static final int SEKC = 333; // bbb
     public static final int CHIBI_SHADOW_CLONE = 1322; // cbvv
     public static final int REGULAR_SHADOW_CLONE = 1332; // cbbv
@@ -42,5 +42,4 @@ public class Jutsus {
 
     //special because client-only
     public static final String RAINBOW_CHAKRA = "1333223"; // cbbbvvb
-
 }
