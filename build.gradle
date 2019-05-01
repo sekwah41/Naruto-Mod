@@ -7,125 +7,111 @@ buildscript {
         }
         maven {
             name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+            url = "https://oss.sonatype.org/content/groups/public"
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath "net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT"
     }
 }
+apply plugin: "forge"
 
-def root = project.projectDir.parentFile
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8 // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+}
 
-apply plugin: 'forge'
-
-
-def mod_file = getModFile()
-version = getVersion("version", mod_file)
-//version = "0.4.2b4"
-group= "sekwah.mods.narutomod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = getModVersion("version")
+group = "sekwah.mods.narutomod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "narutomod"
 
 minecraft {
-    version = "1.7.10-10.13.4.1558-1.7.10"
-    runDir = "eclipse"
+    version = "1.7.10-10.13.4.1614-1.7.10"
+    //mappings = "stable_12" //TODO uncomment for mappings, yay!
+    if (project.hasProperty("runDir")) {
+        runDir = project.runDir
+    } else if (file("../run").exists()) {
+        runDir = "../ run"
+    } else if (file("run").exists()) {
+        runDir = "run"
+    } else {
+        runDir = "eclipse"
+    }
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption("Xdoclint:none", "-quiet")
+        }
+    }
 }
 
 jar {
-    manifest {
-        attributes "Main-Class": "com.nextgencrafters.narutomodinstaller.Loader"
-    }
+    manifest.mainAttributes("Main-Class": "com.nextgencrafters.narutomodinstaller.Loader")
 }
 
 task devJar(type: Jar) {
-    description 'Creates a compiled version for other developers to use in their workspaces.'
     from sourceSets.main.output
-    classifier = 'dev'
+    description "Creates a compiled version for other developers to use in their workspaces."
+    classifier = "dev"
 }
 
 task sourceJar(type: Jar) {
-    description 'Outputs the source code into a jar file.'
-    from sourceSets.main.java
-    from new File(root, "dev")
-    classifier = 'src'
+    from sourceSets.main.allSource
+    description "Outputs the source code into a jar file."
+    classifier = "src"
 }
 
-task buildAll(type: GradleBuild) {
-    description "Runs all compile tasks(Doesn't build the fully compiled yet)"
-    devJar.execute()
-    sourceJar.execute()
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    description "Creates a Javadoc Jar"
+    classifier = "javadoc"
 }
 
-dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
+tasks.build.dependsOn devJar, sourceJar, javadocJar
 
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
-}
-
-String getModFile() {
-    String path = "";
-    FileTree tree = fileTree(dir: 'src/main/java')
-    tree.include '**/*.java'
-    tree.visit {element ->
-        if (element.file.isFile()) {
-            element.file.eachLine { String s ->
-                s = s.trim();
-                if (s.startsWith("@Mod")) {
-                    path = "src/main/java/$element.relativePath"
-                }
+String getModVersion(String type) {
+    File file = sourceSets.main.java.filter { File f -> f.file }.filter { File element ->
+        element.readLines("UTF-8").each { String s ->
+            if (s.trim().startsWith("@Mod")) {
+                return "src/main/java/$element.path"
             }
         }
-    }
-    return path;
-}
-
-String getVersion(String type, String mod_file) {
-    String major = "0";
-    String revision = "0";
-    String patch = "0";
-    String prefix = "public static final String $type = \"";
-    File file = file(mod_file)
-    file.eachLine { String s ->
-        s = s.trim();
+    }.first()
+    String major = "0"
+    String revision = "1"
+    String patch = "0"
+    String prefix = "public static final String $type = \""
+    file.readLines("UTF-8").each { String s ->
+        s = s.trim()
         if (s.startsWith(prefix)) {
-            s = s.substring(prefix.length(), s.length() - 2);
-            String[] pts = s.split("\\.");
+            s = s.substring(prefix.length(), s.length() - 2)
+            String[] pts = s.split("\\.")
 
-            major = pts[0];
-            revision = pts[1];
-            patch = pts[2];
+            major = pts[0]
+            revision = pts[1]
+            patch = pts[2]
         }
     }
-    return "$major.$revision.$patch";
+    return "$major.$revision.$patch"
 }
 
-
-processResources
-{
+processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcVersion", project.minecraft.version
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
+        include "mcmod.info"
 
         // replace version and mcVersion
-        expand 'version':project.version, 'mcVersion':project.minecraft.version
+        expand "version": project.version, "mcVersion": project.minecraft.version
     }
 
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude "mcmod.info"
     }
 }
