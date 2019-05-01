@@ -3,13 +3,10 @@ package sekwah.mods.narutomod.client;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
-import javafx.scene.control.Skin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.SkinManager;
 import net.minecraft.util.ResourceLocation;
 import sekwah.mods.narutomod.common.entity.SkinCallback;
-
-import java.util.Map;
 
 public class SkinFetcher {
 
