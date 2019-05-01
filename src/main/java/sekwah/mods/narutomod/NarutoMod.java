@@ -47,7 +47,7 @@ public class NarutoMod {
 
     // TODO for the lang files possibly use the \u0007 character code thing and see if that works for accents
 
-    public static final String version = "0.5.0a6";
+    public static final String version = "0.5.0a7";
 
     public static List<DelayedRender> delayedRenders = new ArrayList<DelayedRender>();
 
