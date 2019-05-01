@@ -19,7 +19,9 @@ import static net.minecraft.util.EnumChatFormatting.RED;
 
 public class CommandJutsu extends CommandBase {
 
-    private static final int PERMISSION_LEVEL_LIST_JUTSUS = 4;
+    //TODO make configurable
+    private static final int PERMISSION_LEVEL_LIST_JUTSUS = 0;
+    private static final int PERMISSION_LEVEL_ACTIVATE_JUTSUS = 0;
 
     @Override
     public String getCommandName() {
@@ -34,9 +36,9 @@ public class CommandJutsu extends CommandBase {
     @Override
     public void processCommand(ICommandSender sender, String[] args) {
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
+        int perms = getPermissionLevel(player);
         if(args.length == 0) throw new WrongUsageException(getCommandUsage(sender));
         if(args.length == 1 && "list".equals(args[0])) {
-            int perms = getPermissionLevel(player);
             if(perms >= PERMISSION_LEVEL_LIST_JUTSUS) {
                 PacketDispatcher.sendPacketToPlayer(new ClientJutsuCommandPacket(0), player);
             }
@@ -49,7 +51,12 @@ public class CommandJutsu extends CommandBase {
         }
 
         if("activate".equals(args[0])) {
-            if(args.length == 2) { //activate jutsu, no permission needed
+            if(perms < PERMISSION_LEVEL_ACTIVATE_JUTSUS) {
+                IChatComponent chatComponent = new ChatComponentTranslation("commands.generic.permission");
+                chatComponent.getChatStyle().setColor(RED);
+                sender.addChatMessage(chatComponent);
+            }
+            if(args.length == 2) {
                 if(Jutsu.getRegisteredJutsuCombinations().containsKey(args[1])) {
                     PacketDispatcher.sendPacketToPlayer(new ClientJutsuCommandPacket(Jutsu.getRegisteredJutsuCombinations().get(args[1])), player);
                 }
