@@ -24,7 +24,7 @@ public class ItemExplosiveKunai extends Item {
     public ItemExplosiveKunai() {
         super();
         this.maxStackSize = 16;
-        this.setMaxDamage(-1);
+        this.setMaxDurability(-1);
         this.setCreativeTab(NarutoItems.ninjaWeapons);
         this.weaponDamage = 3.0F;
     }

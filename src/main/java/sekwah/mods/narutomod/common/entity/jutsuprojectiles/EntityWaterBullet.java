@@ -352,9 +352,9 @@ public class EntityWaterBullet extends Entity // TODO actually code the water bu
 
         if (par1NBTTagCompound.hasKey("direction")) {
             NBTTagList nbttaglist = par1NBTTagCompound.getTagList("direction", 6);
-            this.motionX = nbttaglist.func_150309_d(0);
-            this.motionY = nbttaglist.func_150309_d(1);
-            this.motionZ = nbttaglist.func_150309_d(2);
+            this.motionX = nbttaglist.getDoubleAt(0);
+            this.motionY = nbttaglist.getDoubleAt(1);
+            this.motionZ = nbttaglist.getDoubleAt(2);
         } else {
             this.setDead();
         }

@@ -134,15 +134,15 @@ public class GuiNotificationUpdate extends Gui // make it look like the achievem
             GL11.glEnable(GL11.GL_ALPHA_TEST);
             this.drawTexturedModalRect(i, j, 96, 202, 160, 32);
 
-            this.mc.fontRenderer.drawString(notificationGetLocalText, i + 30, j + 7, -256);
-            this.mc.fontRenderer.drawString(notificationStatName, i + 30, j + 18, -1);
+            this.mc.fontRendererObj.drawString(notificationGetLocalText, i + 30, j + 7, -256);
+            this.mc.fontRendererObj.drawString(notificationStatName, i + 30, j + 18, -1);
 
             RenderHelper.enableGUIStandardItemLighting();
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
             GL11.glEnable(GL11.GL_COLOR_MATERIAL);
             GL11.glEnable(GL11.GL_LIGHTING);
-            this.itemRender.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.getTextureManager(), itemIcon, i + 8, j + 8);
+            this.itemRender.renderItemAndEffectIntoGUI(this.mc.fontRendererObj, this.mc.getTextureManager(), itemIcon, i + 8, j + 8);
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDepthMask(true);
             GL11.glEnable(GL11.GL_DEPTH_TEST);

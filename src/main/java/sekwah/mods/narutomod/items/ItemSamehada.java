@@ -25,7 +25,7 @@ public class ItemSamehada extends Item {
         super();
         this.toolMaterial = par2EnumNinjaToolMaterial;
         this.maxStackSize = 1;
-        this.setMaxDamage(par2EnumNinjaToolMaterial.getMaxUses());
+        this.setMaxDurability(par2EnumNinjaToolMaterial.getMaxUses());
         this.setCreativeTab(NarutoItems.ninjaWeapons);
         this.weaponDamage = 4 + par2EnumNinjaToolMaterial.getDamageVsEntity();
     }

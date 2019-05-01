@@ -508,7 +508,7 @@ public class EntityNinjaVillager extends EntityAgeable implements INpc, IMerchan
     }
 
 
-    public void func_110297_a_(ItemStack par1ItemStack) {
+    public void verifySellingItem(ItemStack par1ItemStack) {
     }
 
     static {

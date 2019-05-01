@@ -162,7 +162,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
                 modelbiped.bipedLeftLegLower.showModel = p_77032_2_ == 2 || p_77032_2_ == 3;
                 modelbiped = (ModelNinjaBiped) net.minecraftforge.client.ForgeHooksClient.getArmorModel(p_77032_1_, itemstack, p_77032_2_, modelbiped);
                 this.setRenderPassModel(modelbiped);
-                modelbiped.onGround = this.mainModel.onGround;
+                modelbiped.swingProgress = this.mainModel.swingProgress;
                 modelbiped.isRiding = this.mainModel.isRiding;
                 modelbiped.isChild = this.mainModel.isChild;
 
@@ -308,10 +308,10 @@ public class RenderNinjaPlayer extends RenderPlayer {
             return;
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_CULL_FACE);
-        this.mainModel.onGround = this.renderSwingProgress(p_76986_1_, p_76986_9_);
+        this.mainModel.swingProgress = this.getSwingProgress(p_76986_1_, p_76986_9_);
 
         if (this.renderPassModel != null) {
-            this.renderPassModel.onGround = this.mainModel.onGround;
+            this.renderPassModel.swingProgress = this.mainModel.swingProgress;
         }
 
         this.mainModel.isRiding = p_76986_1_.isRiding();
@@ -590,13 +590,13 @@ public class RenderNinjaPlayer extends RenderPlayer {
                     NBTTagCompound nbttagcompound = itemstack.getTagCompound();
 
                     if (nbttagcompound.hasKey("SkullOwner", 10)) {
-                        gameprofile = NBTUtil.func_152459_a(nbttagcompound.getCompoundTag("SkullOwner"));
+                        gameprofile = NBTUtil.readGameProfileFromNBT(nbttagcompound.getCompoundTag("SkullOwner"));
                     } else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner"))) {
                         gameprofile = new GameProfile(null, nbttagcompound.getString("SkullOwner"));
                     }
                 }
 
-                TileEntitySkullRenderer.field_147536_b.func_152674_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, itemstack.getItemDamage(), gameprofile);
+                TileEntitySkullRenderer.field_147536_b.func_152674_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, itemstack.getMetadata(), gameprofile);
             }
 
             GL11.glPopMatrix();
@@ -604,7 +604,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         float f2;
 
-        if (player.getCommandSenderName().equals("deadmau5") && player.func_152123_o()) {
+        if (player.getCommandSenderName().equals("deadmau5") && player.hasSkin()) {
             this.bindTexture(player.getLocationSkin());
 
             for (int j = 0; j < 2; ++j) {
@@ -632,7 +632,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
             }
         }
 
-        boolean flag = player.func_152122_n();
+        boolean flag = player.hasCape();
         flag = event.renderCape && flag;
         float f4;
 
@@ -755,7 +755,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
             float f12;
 
             if (itemstack1.getItem().requiresMultipleRenderPasses()) {
-                for (k = 0; k < itemstack1.getItem().getRenderPasses(itemstack1.getItemDamage()); ++k) {
+                for (k = 0; k < itemstack1.getItem().getRenderPasses(itemstack1.getMetadata()); ++k) {
                     int i = itemstack1.getItem().getColorFromItemStack(itemstack1, k);
                     f12 = (float) (i >> 16 & 255) / 255.0F;
                     f3 = (float) (i >> 8 & 255) / 255.0F;
@@ -864,22 +864,22 @@ public class RenderNinjaPlayer extends RenderPlayer {
     protected void func_96449_a(AbstractClientPlayer p_96449_1_, double p_96449_2_, double p_96449_4_, double p_96449_6_, String p_96449_8_, float p_96449_9_, double p_96449_10_) {
         if (p_96449_10_ < 100.0D) {
             Scoreboard scoreboard = p_96449_1_.getWorldScoreboard();
-            ScoreObjective scoreobjective = scoreboard.func_96539_a(2);
+            ScoreObjective scoreobjective = scoreboard.getObjectiveInDisplaySlot(2);
 
             if (scoreobjective != null) {
-                Score score = scoreboard.func_96529_a(p_96449_1_.getCommandSenderName(), scoreobjective);
+                Score score = scoreboard.getValueFromObjective(p_96449_1_.getCommandSenderName(), scoreobjective);
 
                 if (p_96449_1_.isPlayerSleeping()) {
-                    this.func_147906_a(p_96449_1_, score.getScorePoints() + " " + scoreobjective.getDisplayName(), p_96449_2_, p_96449_4_ - 1.5D, p_96449_6_, 64);
+                    this.renderLivingLabel(p_96449_1_, score.getScorePoints() + " " + scoreobjective.getDisplayName(), p_96449_2_, p_96449_4_ - 1.5D, p_96449_6_, 64);
                 } else {
-                    this.func_147906_a(p_96449_1_, score.getScorePoints() + " " + scoreobjective.getDisplayName(), p_96449_2_, p_96449_4_, p_96449_6_, 64);
+                    this.renderLivingLabel(p_96449_1_, score.getScorePoints() + " " + scoreobjective.getDisplayName(), p_96449_2_, p_96449_4_, p_96449_6_, 64);
                 }
 
                 p_96449_4_ += (double) ((float) this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * p_96449_9_);
             }
         }
 
-        super.func_96449_a(p_96449_1_, p_96449_2_, p_96449_4_, p_96449_6_, p_96449_8_, p_96449_9_, p_96449_10_);
+        super.renderOffsetLivingLabel(p_96449_1_, p_96449_2_, p_96449_4_, p_96449_6_, p_96449_8_, p_96449_9_, p_96449_10_);
     }
 
     public void renderFirstPersonArm(EntityPlayer p_82441_1_) {
@@ -893,7 +893,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         float f = 1.0F;
         GL11.glColor3f(f, f, f);
-        this.modelBipedMain.onGround = 0.0F;
+        this.modelBipedMain.swingProgress = 0.0F;
         this.modelBipedMain.setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, p_82441_1_);
         this.modelBipedMain.bipedRightArm.render(0.0625F);
     }

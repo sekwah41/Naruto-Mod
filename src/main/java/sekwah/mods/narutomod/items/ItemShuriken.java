@@ -24,7 +24,7 @@ public class ItemShuriken extends Item {
     public ItemShuriken() {
         super();
         this.maxStackSize = 16;
-        this.setMaxDamage(-1);
+        this.setMaxDurability(-1);
         this.setCreativeTab(NarutoItems.ninjaWeapons);
         this.weaponDamage = 4.0F;
     }

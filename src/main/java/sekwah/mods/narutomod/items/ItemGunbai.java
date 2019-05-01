@@ -30,7 +30,7 @@ public class ItemGunbai extends Item {
         super();
         this.toolMaterial = par2EnumToolMaterial;
         this.maxStackSize = 1;
-        this.setMaxDamage(par2EnumToolMaterial.getMaxUses());
+        this.setMaxDurability(par2EnumToolMaterial.getMaxUses());
         this.setCreativeTab(NarutoItems.ninjaWeapons);
         this.weaponDamage = 4 + par2EnumToolMaterial.getDamageVsEntity();
     }
@@ -133,7 +133,7 @@ public class ItemGunbai extends Item {
      * Return whether this item is repairable in an anvil.
      */
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
-        return this.toolMaterial.func_150995_f() == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return this.toolMaterial.getRepairItemStack().getItem() == par2ItemStack.getItem() || super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -141,7 +141,7 @@ public class ItemGunbai extends Item {
      */
     public Multimap getAttributeModifiers(ItemStack stack) {
         Multimap multimap = super.getAttributeModifiers(stack);
-        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double) this.weaponDamage, 0));
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Weapon modifier", (double) this.weaponDamage, 0));
         return multimap;
     }
 }

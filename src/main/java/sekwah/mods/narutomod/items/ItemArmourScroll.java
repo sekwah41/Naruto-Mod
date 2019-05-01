@@ -31,7 +31,7 @@ public class ItemArmourScroll extends ItemArmor {
                             int par3, int par4) {
         super(par2EnumArmorMaterial, par3, par4);
         setHasSubtypes(true);
-        setMaxDamage(0);
+        this.setMaxDurability(0);
 
     }
 
@@ -59,19 +59,19 @@ public class ItemArmourScroll extends ItemArmor {
     public String getArmorTexture(ItemStack stack, Entity entity, int slot,
                                   String type) {
 
-        if (stack.getItem() == NarutoItems.backScroll && stack.getItemDamage() == 0 && slot == 1) {
+        if (stack.getItem() == NarutoItems.backScroll && stack.getMetadata() == 0 && slot == 1) {
             return NarutoMod.modid + ":textures/armour/back_scroll_white.png";
-        } else if (stack.getItem() == NarutoItems.backScroll && stack.getItemDamage() == 1 && slot == 1) {
+        } else if (stack.getItem() == NarutoItems.backScroll && stack.getMetadata() == 1 && slot == 1) {
             return NarutoMod.modid + ":textures/armour/back_scroll_yellow.png";
-        } else if (stack.getItem() == NarutoItems.backScroll && stack.getItemDamage() == 2 && slot == 1) {
+        } else if (stack.getItem() == NarutoItems.backScroll && stack.getMetadata() == 2 && slot == 1) {
             return NarutoMod.modid + ":textures/armour/back_scroll_purple.png";
-        } else if (stack.getItem() == NarutoItems.backScroll && stack.getItemDamage() == 3 && slot == 1) {
+        } else if (stack.getItem() == NarutoItems.backScroll && stack.getMetadata() == 3 && slot == 1) {
             return NarutoMod.modid + ":textures/armour/back_scroll_blue.png";
-        } else if (stack.getItem() == NarutoItems.backScroll && stack.getItemDamage() == 4 && slot == 1) {
+        } else if (stack.getItem() == NarutoItems.backScroll && stack.getMetadata() == 4 && slot == 1) {
             return NarutoMod.modid + ":textures/armour/back_scroll_green.png";
-        } else if (stack.getItem() == NarutoItems.backScroll && stack.getItemDamage() == 5 && slot == 1) {
+        } else if (stack.getItem() == NarutoItems.backScroll && stack.getMetadata() == 5 && slot == 1) {
             return NarutoMod.modid + ":textures/armour/back_scroll_red.png";
-        } else if (stack.getItem() == NarutoItems.backScroll && stack.getItemDamage() == 6 && slot == 1) {
+        } else if (stack.getItem() == NarutoItems.backScroll && stack.getMetadata() == 6 && slot == 1) {
             return NarutoMod.modid + ":textures/armour/back_scroll_black.png";
         } else {
             return NarutoMod.modid + ":textures/armour/back_scroll_white.png";
@@ -84,8 +84,8 @@ public class ItemArmourScroll extends ItemArmor {
     }
 
     public String getUnlocalizedName(ItemStack par1ItemStack) {
-        if (0 <= par1ItemStack.getItemDamage() && par1ItemStack.getItemDamage() <= 6) {
-            return super.getUnlocalizedName() + "." + names[par1ItemStack.getItemDamage()];
+        if (0 <= par1ItemStack.getMetadata() && par1ItemStack.getMetadata() <= 6) {
+            return super.getUnlocalizedName() + "." + names[par1ItemStack.getMetadata()];
         } else {
             return super.getUnlocalizedName() + "." + names[1];
         }

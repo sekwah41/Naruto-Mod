@@ -45,27 +45,27 @@ public class NarutoEntitys {
 
         // TODO make a custom egg for entities
         EntityRegistry.registerModEntity(EntityPuppet.class, "Puppet", 73, narutoMod, 80, 5, true);
-        EntityList.IDtoClassMapping.put(73, EntityPuppet.class);
+        EntityList.idToClassMap.put(73, EntityPuppet.class);
         EntityList.entityEggs.put(73, new EntityList.EntityEggInfo(73, (new Color(50, 50, 50)).getRGB(), (new Color(195, 173, 169)).getRGB()));
 
         EntityRegistry.registerModEntity(EntityRogueNinja.class, "Rogue_Ninja", 70, narutoMod, 80, 1, true);
-        EntityList.IDtoClassMapping.put(70, EntityRogueNinja.class);
+        EntityList.idToClassMap.put(70, EntityRogueNinja.class);
         EntityList.entityEggs.put(70, new EntityList.EntityEggInfo(70, (new Color(40, 40, 40)).getRGB(), (new Color(149, 94, 39)).getRGB()));
 
         EntityRegistry.registerModEntity(EntityNinjaVillager.class, "Ninja_Villager", 71, narutoMod, 80, 1, true);
-        EntityList.IDtoClassMapping.put(71, EntityNinjaVillager.class);
+        EntityList.idToClassMap.put(71, EntityNinjaVillager.class);
         EntityList.entityEggs.put(71, new EntityList.EntityEggInfo(71, (new Color(42, 135, 58)).getRGB(), (new Color(149, 94, 39)).getRGB()));
 
         EntityRegistry.registerModEntity(EntityNinjaVillagerAnbu.class, "Ninja_VillagerAnbu", 72, narutoMod, 80, 1, true);
-        EntityList.IDtoClassMapping.put(72, EntityNinjaVillagerAnbu.class);
+        EntityList.idToClassMap.put(72, EntityNinjaVillagerAnbu.class);
         EntityList.entityEggs.put(72, new EntityList.EntityEggInfo(72, (new Color(173, 173, 173)).getRGB(), (new Color(23, 23, 23)).getRGB()));
 
         EntityRegistry.registerModEntity(EntityBandit.class, "Bandit", 74, narutoMod, 80, 1, true);
-        EntityList.IDtoClassMapping.put(74, EntityBandit.class);
+        EntityList.idToClassMap.put(74, EntityBandit.class);
         EntityList.entityEggs.put(74, new EntityList.EntityEggInfo(74, (new Color(227, 13, 13)).getRGB(), (new Color(242, 198, 121)).getRGB()));
 
         EntityRegistry.registerModEntity(EntityShadowClone.class, "Shadow_Clone", 75, narutoMod, 80, 1, true);
-        EntityList.IDtoClassMapping.put(75, EntityShadowClone.class);
+        EntityList.idToClassMap.put(75, EntityShadowClone.class);
         EntityList.entityEggs.put(75, new EntityList.EntityEggInfo(75, (new Color(40, 40, 40)).getRGB(), (new Color(149, 94, 39)).getRGB()));
 
 

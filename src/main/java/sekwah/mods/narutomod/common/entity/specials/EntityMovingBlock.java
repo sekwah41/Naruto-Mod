@@ -64,7 +64,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
     public void setBoundingBox(double posX, double posY, double posZ) {
         float f = this.width / 2.0F;
         float f1 = this.height;
-        this.boundingBox.setBounds(posX - (double)f, posY - (double)this.yOffset + (double)this.ySize, posZ - (double)f, posX + (double)f, posY - (double)this.yOffset + (double)this.ySize + (double)f1, posZ + (double)f);
+        this.boundingBox.setBounds(posX - (double)f, posY - (double)this.yOffset + (double)this.yOffset2, posZ - (double)f, posX + (double)f, posY - (double)this.yOffset + (double)this.yOffset2 + (double)f1, posZ + (double)f);
     }
 
     @Override
@@ -163,13 +163,13 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
                 this.setShaking();
             }
             if(this.health <= 30 && Math.random() < 0.1) {
-                this.worldObj.playSoundAtEntity(this, this.block.stepSound.getBreakSound(), 1, 1);
+                this.worldObj.playSoundAtEntity(this, this.block.stepSound.getDigResourcePath(), 1, 1);
                 worldserver.func_147487_a("blockcrack_" + Block.getIdFromBlock(block) + "_" + this.data,
                         this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.boundingBox.minY + 0.1D,
                         this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width ,10,0,0,0,1);
             }
             if(this.health-- < 0) {
-                this.worldObj.playSoundAtEntity(this, this.block.stepSound.getBreakSound(), 1, 1);
+                this.worldObj.playSoundAtEntity(this, this.block.stepSound.getDigResourcePath(), 1, 1);
                 worldserver.func_147487_a("blockcrack_" + Block.getIdFromBlock(block) + "_" + this.data,
                         this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.boundingBox.minY + 0.1D,
                         this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width ,10,0,0,0,1);

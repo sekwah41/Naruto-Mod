@@ -20,7 +20,7 @@ public class ItemFabric extends Item {
     public ItemFabric() {
         super();
         setHasSubtypes(true);
-        setMaxDamage(0);
+        this.setMaxDurability(0);
     }
 
     @SideOnly(Side.CLIENT)
@@ -40,8 +40,8 @@ public class ItemFabric extends Item {
     }
 
     public String getUnlocalizedName(ItemStack par1ItemStack) {
-        if (0 <= par1ItemStack.getItemDamage() && par1ItemStack.getItemDamage() <= 2) {
-            return super.getUnlocalizedName() + "." + names[par1ItemStack.getItemDamage()];
+        if (0 <= par1ItemStack.getMetadata() && par1ItemStack.getMetadata() <= 2) {
+            return super.getUnlocalizedName() + "." + names[par1ItemStack.getMetadata()];
         } else {
             return super.getUnlocalizedName() + "." + names[1];
         }

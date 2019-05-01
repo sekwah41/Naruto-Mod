@@ -77,7 +77,7 @@ public class ClientProxy extends CommonProxy {
 
     public void registerRenderers() {
 
-        skinFetcher = new SkinFetcher(Minecraft.getMinecraft().func_152347_ac());
+        skinFetcher = new SkinFetcher(Minecraft.getMinecraft().getSessionService());
 
         // causes problems at the moment, update it at some point for new animations.
         // RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderNinjaPlayer());

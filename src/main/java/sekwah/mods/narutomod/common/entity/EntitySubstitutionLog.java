@@ -59,27 +59,6 @@ public class EntitySubstitutionLog extends EntityCreature {
         }
         if (this.worldObj.isDaytime() && !this.worldObj.isRemote && !this.isChild()) {
             float var1 = this.getBrightness(1.0F);
-
-            if (var1 > 0.5F && this.rand.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F && this.worldObj.canBlockSeeTheSky(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ))) {
-                boolean var2 = true;
-                ItemStack var3 = this.getEquipmentInSlot(4);
-
-                if (var3 != null) {
-                    if (var3.isItemStackDamageable()) {
-                        var3.setItemDamage(var3.getItemDamageForDisplay() + this.rand.nextInt(2));
-
-                        if (var3.getItemDamageForDisplay() >= var3.getMaxDamage()) {
-                            this.renderBrokenItemStack(var3);
-                            this.setCurrentItemOrArmor(4, null);
-                        }
-                    }
-
-                    var2 = false;
-                }
-
-                if (var2) {
-                }
-            }
         }
 
         super.onLivingUpdate();

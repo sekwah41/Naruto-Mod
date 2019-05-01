@@ -448,9 +448,9 @@ public class ModelNinjaBiped extends ModelBiped
         float f6;
         float f7;
 
-        if (this.onGround > -9990.0F)
+        if (this.swingProgress > -9990.0F)
         {
-            f6 = this.onGround;
+            f6 = this.swingProgress;
             this.bipedBody.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(f6) * (float)Math.PI * 2.0F) * 0.2F;
             this.bipedLowerBody.setRotationPoint(0F, 6F, 0F);
             this.bipedLowerBody.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(f6) * (float)Math.PI * 2.0F) * 0.2F;
@@ -461,15 +461,15 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedRightArmUpper.rotateAngleY += this.bipedBody.rotateAngleY;
             this.bipedLeftArmUpper.rotateAngleY += this.bipedBody.rotateAngleY;
             this.bipedLeftArmUpper.rotateAngleX += this.bipedBody.rotateAngleY;
-            f6 = 1.0F - this.onGround;
+            f6 = 1.0F - this.swingProgress;
             f6 *= f6;
             f6 *= f6;
             f6 = 1.0F - f6;
             f7 = MathHelper.sin(f6 * (float)Math.PI);
-            float var10 = MathHelper.sin(this.onGround * (float)Math.PI) * -(this.bipedHead.rotateAngleX - 0.7F) * 0.75F;
+            float var10 = MathHelper.sin(this.swingProgress * (float)Math.PI) * -(this.bipedHead.rotateAngleX - 0.7F) * 0.75F;
             this.bipedRightArmUpper.rotateAngleX = (float)((double)this.bipedRightArmUpper.rotateAngleX - ((double)f7 * 1.2D + (double)var10));
             this.bipedRightArmUpper.rotateAngleY += this.bipedBody.rotateAngleY * 2.0F;
-            this.bipedRightArmUpper.rotateAngleZ = MathHelper.sin(this.onGround * (float)Math.PI) * -0.4F;
+            this.bipedRightArmUpper.rotateAngleZ = MathHelper.sin(this.swingProgress * (float)Math.PI) * -0.4F;
             this.bipedRightArmUpper.setRotationPoint(-5.0F, 2.0F + par2, 0.0F);
             this.bipedLeftArmUpper.setRotationPoint(5.0F, 2.0F + par2, 0.0F);
         }
@@ -623,7 +623,7 @@ public class ModelNinjaBiped extends ModelBiped
             }
         }*/
 
-        if (this.isSprinting && this.onGround == 0F)
+        if (this.isSprinting && this.swingProgress == 0F)
         {
             this.bipedLowerBody.rotateAngleX = 0F;
             this.bipedBody.rotateAngleX = 0.7435722F;
@@ -679,17 +679,17 @@ public class ModelNinjaBiped extends ModelBiped
         if(this.animationID.equals(this.animationlastID)){
             Pose pose = NarutoAnimator.getPose(animationID, NarutoAnimator.playerPoses);
             if(pose instanceof DynamicPose){
-                ((DynamicPose) pose).updatePose(par1, par2, par3, par4, par5, par6, par7Entity, onGround);
+                ((DynamicPose) pose).updatePose(par1, par2, par3, par4, par5, par6, par7Entity, swingProgress);
             }
         }
         else{
             Pose pose = NarutoAnimator.getPose(animationID, NarutoAnimator.playerPoses);
             if(pose instanceof DynamicPose){
-                ((DynamicPose) pose).updatePose(par1, par2, par3, par4, par5, par6, par7Entity, onGround);
+                ((DynamicPose) pose).updatePose(par1, par2, par3, par4, par5, par6, par7Entity, swingProgress);
             }
             Pose lastPose = NarutoAnimator.getPose(animationlastID, NarutoAnimator.playerPoses);
             if(lastPose instanceof DynamicPose){
-                ((DynamicPose) lastPose).updatePose(par1, par2, par3, par4, par5, par6, par7Entity, onGround);
+                ((DynamicPose) lastPose).updatePose(par1, par2, par3, par4, par5, par6, par7Entity, swingProgress);
             }
         }
 

@@ -95,7 +95,7 @@ public class RenderSubstitution extends RendererLivingEntity {
                 modelbiped.bipedLeftLeg.showModel = par2 == 2 || par2 == 3;
                 modelbiped = (ModelNinjaBiped) ForgeHooksClient.getArmorModel(par1EntitySubstitution, itemstack, par2, modelbiped);
                 this.setRenderPassModel(modelbiped);
-                modelbiped.onGround = this.mainModel.onGround;
+                modelbiped.swingProgress = this.mainModel.swingProgress;
                 modelbiped.isRiding = this.mainModel.isRiding;
                 modelbiped.isChild = this.mainModel.isChild;
                 float f1 = 1.0F;
@@ -228,13 +228,13 @@ public class RenderSubstitution extends RendererLivingEntity {
                     NBTTagCompound nbttagcompound = itemstack.getTagCompound();
 
                     if (nbttagcompound.hasKey("SkullOwner", 10)) {
-                        gameprofile = NBTUtil.func_152459_a(nbttagcompound.getCompoundTag("SkullOwner"));
+                        gameprofile = NBTUtil.readGameProfileFromNBT(nbttagcompound.getCompoundTag("SkullOwner"));
                     } else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner"))) {
                         gameprofile = new GameProfile(null, nbttagcompound.getString("SkullOwner"));
                     }
                 }
 
-                TileEntitySkullRenderer.field_147536_b.func_152674_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, itemstack.getItemDamage(), gameprofile);
+                TileEntitySkullRenderer.field_147536_b.func_152674_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, itemstack.getMetadata(), gameprofile);
             }
 
             GL11.glPopMatrix();
@@ -385,7 +385,7 @@ public class RenderSubstitution extends RendererLivingEntity {
             int j;
 
             if (itemstack1.getItem().requiresMultipleRenderPasses()) {
-                for (j = 0; j < itemstack1.getItem().getRenderPasses(itemstack1.getItemDamage()); ++j) {
+                for (j = 0; j < itemstack1.getItem().getRenderPasses(itemstack1.getMetadata()); ++j) {
                     int k = itemstack1.getItem().getColorFromItemStack(itemstack1, j);
                     f13 = (float) (k >> 16 & 255) / 255.0F;
                     f12 = (float) (k >> 8 & 255) / 255.0F;
@@ -500,7 +500,7 @@ public class RenderSubstitution extends RendererLivingEntity {
     public void renderFirstPersonArm(EntityPlayer par1EntityPlayer) {
         float f = 1.0F;
         GL11.glColor3f(f, f, f);
-        this.modelBipedMain.onGround = 0.0F;
+        this.modelBipedMain.swingProgress = 0.0F;
         this.modelBipedMain.setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, par1EntityPlayer);
         this.modelBipedMain.bipedRightArm.render(0.0625F);
     }

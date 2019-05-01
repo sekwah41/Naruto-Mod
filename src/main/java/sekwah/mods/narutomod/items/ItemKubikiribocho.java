@@ -28,7 +28,7 @@ public class ItemKubikiribocho extends Item {
         super();
         this.toolMaterial = par2EnumNinjaToolMaterial;
         this.maxStackSize = 1;
-        this.setMaxDamage(par2EnumNinjaToolMaterial.getMaxUses());
+        this.setMaxDurability(par2EnumNinjaToolMaterial.getMaxUses());
         this.setCreativeTab(NarutoItems.ninjaWeapons);
         this.weaponDamage = 4 + par2EnumNinjaToolMaterial.getDamageVsEntity();
     }
@@ -60,8 +60,8 @@ public class ItemKubikiribocho extends Item {
      * the damage on the stack.
      */
     public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase) {
-        if(par1ItemStack.getMaxDamage() > par1ItemStack.getItemDamage()){
-            par1ItemStack.setItemDamage(par1ItemStack.getItemDamage() - 1);
+        if(par1ItemStack.getMaxDamage() > par1ItemStack.getMetadata()){
+            par1ItemStack.setItemDamage(par1ItemStack.getMetadata() - 1);
         }
         //par1ItemStack.damageItem(1, par3EntityLivingBase);
         return true;

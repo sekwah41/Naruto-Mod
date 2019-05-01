@@ -347,7 +347,7 @@ public class GuiJutsuMenu extends GuiScreen {
                 //RenderHelper.enableGUIStandardItemLighting();
                 GL11.glEnable(GL11.GL_LIGHTING);
                 GL11.glEnable(GL11.GL_CULL_FACE);
-                renderitem.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.getTextureManager(), jutsu2.theItemStack, i5 + 3, l4 + 3);
+                renderitem.renderItemAndEffectIntoGUI(this.mc.fontRendererObj, this.mc.getTextureManager(), jutsu2.theItemStack, i5 + 3, l4 + 3);
                 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 GL11.glDisable(GL11.GL_LIGHTING);
 
@@ -379,7 +379,7 @@ public class GuiJutsuMenu extends GuiScreen {
         super.drawScreen(par1, par2, par3);
 
         if (jutsu1 != null) {
-            String s = I18n.format(jutsu1.func_150951_e().getUnformattedText());
+            String s = I18n.format(jutsu1.getStatName().getUnformattedText());
             String s1 = jutsu1.getDescription();
             j4 = par1 + 12;
             l3 = par2 - 4;
@@ -396,7 +396,7 @@ public class GuiJutsuMenu extends GuiScreen {
                 this.fontRendererObj.drawSplitString(s1, j4, l3 + 12, i5, -6250336);
 
                 if (true) {
-                    this.fontRendererObj.drawStringWithShadow(I18n.format("Learnt!"), j4, l3 + l4 + 4, -7302913);
+                    this.fontRendererObj.drawStringWithShadow("Learnt!", j4, l3 + l4 + 4, -7302913);
                 }
             }
             /**else

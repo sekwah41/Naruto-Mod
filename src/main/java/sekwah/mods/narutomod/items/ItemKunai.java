@@ -24,7 +24,7 @@ public class ItemKunai extends Item {
     public ItemKunai() {
         super();
         this.maxStackSize = 16;
-        this.setMaxDamage(-1);
+        this.setMaxDurability(-1);
         //this.setCreativeTab(CreativeTabs.tabCombat);
         this.setCreativeTab(NarutoItems.ninjaWeapons);
         this.weaponDamage = 4.0F;
@@ -135,7 +135,7 @@ public class ItemKunai extends Item {
      */
     public Multimap getAttributeModifiers(ItemStack stack) {
         Multimap multimap = super.getAttributeModifiers(stack);
-        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double) this.weaponDamage, 0));
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Weapon modifier", (double) this.weaponDamage, 0));
         return multimap;
     }
 }

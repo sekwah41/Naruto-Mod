@@ -34,8 +34,8 @@ public class ItemArmourHeadband extends ItemArmor {
 	public ItemArmourHeadband(ArmorMaterial par2EnumArmorMaterial,
 			int par3, int par4) {
 			super(par2EnumArmorMaterial, par3, par4);
-			setHasSubtypes(true);
-			setMaxDamage(0);
+			this.setHasSubtypes(true);
+			this.setMaxDurability(0);
 
 	}
 	
@@ -53,7 +53,7 @@ public class ItemArmourHeadband extends ItemArmor {
 	}
 
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4) {
-        if(par1ItemStack.getItemDamage() == 3){
+        if(par1ItemStack.getMetadata() == 3){
             par2List.add("\u00a77" + I18n.format("item.headProtector.Youtube.desc"));
         }
     }
@@ -78,8 +78,8 @@ public class ItemArmourHeadband extends ItemArmor {
 
 	public String getUnlocalizedName(ItemStack par1ItemStack)
 	{
-		if( 0 <= par1ItemStack.getItemDamage() && par1ItemStack.getItemDamage() <= 6){
-			return super.getUnlocalizedName() + "." + names[par1ItemStack.getItemDamage()];
+		if( 0 <= par1ItemStack.getMetadata() && par1ItemStack.getMetadata() <= 6){
+			return super.getUnlocalizedName() + "." + names[par1ItemStack.getMetadata()];
 		}
 		else{
 			return super.getUnlocalizedName() + "." + names[1];
@@ -90,25 +90,25 @@ public class ItemArmourHeadband extends ItemArmor {
     public String getArmorTexture(ItemStack stack, Entity entity, int slot,
                                   String type) {
 
-        if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 0 && slot == 0) {
+        if (stack.getItem() == NarutoItems.headBand && stack.getMetadata() == 0 && slot == 0) {
             return NarutoMod.modid + ":textures/armour/leafvillage_headband.png";
         }
-        else if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 1 && slot == 0) {
+        else if (stack.getItem() == NarutoItems.headBand && stack.getMetadata() == 1 && slot == 0) {
             return NarutoMod.modid + ":textures/armour/custard_headband.png";
         }
-        else if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 2 && slot == 0) {
+        else if (stack.getItem() == NarutoItems.headBand && stack.getMetadata() == 2 && slot == 0) {
             return NarutoMod.modid + ":textures/armour/lavavillage_headband.png";
         }
-        else if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 3 && slot == 0) {
+        else if (stack.getItem() == NarutoItems.headBand && stack.getMetadata() == 3 && slot == 0) {
             return NarutoMod.modid + ":textures/armour/youtube_headband.png";
         }
-        else if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 4 && slot == 0) {
+        else if (stack.getItem() == NarutoItems.headBand && stack.getMetadata() == 4 && slot == 0) {
             return NarutoMod.modid + ":textures/armour/back_scroll_green.png";
         }
-        else if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 5 && slot == 0) {
+        else if (stack.getItem() == NarutoItems.headBand && stack.getMetadata() == 5 && slot == 0) {
             return NarutoMod.modid + ":textures/armour/back_scroll_red.png";
         }
-        else if (stack.getItem() == NarutoItems.headBand && stack.getItemDamage() == 6 && slot == 0) {
+        else if (stack.getItem() == NarutoItems.headBand && stack.getMetadata() == 6 && slot == 0) {
             return NarutoMod.modid + ":textures/armour/back_scroll_black.png";
         }
         else{
@@ -183,7 +183,7 @@ public class ItemArmourHeadband extends ItemArmor {
      */
 	/**public EnumAction getItemUseAction(ItemStack par1ItemStack) // not exactly needed but when working its funny :3
 	{
-		if(par1ItemStack.getItemDamage() == 1){
+		if(par1ItemStack.getMetadata() == 1){
 			return EnumAction.eat;
 		}
 		return EnumAction.none;
@@ -194,7 +194,7 @@ public class ItemArmourHeadband extends ItemArmor {
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-    	if(par1ItemStack.getItemDamage() != 1){
+    	if(par1ItemStack.getMetadata() != 1){
     		int i = EntityLiving.getArmorPosition(par1ItemStack) - 1;
             ItemStack itemstack1 = par3EntityPlayer.getCurrentArmor(i);
 

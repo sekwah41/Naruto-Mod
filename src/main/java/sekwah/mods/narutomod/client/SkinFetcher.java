@@ -18,7 +18,7 @@ public class SkinFetcher {
 
     public void getSkin(GameProfile profile, SkinCallback entity) {
         //GameProfile filledProfile = sessionService.fillProfileProperties(profile, false);
-        SkinManager skinmanager = Minecraft.getMinecraft().func_152342_ad();
+        SkinManager skinmanager = Minecraft.getMinecraft().getSkinManager();
 
         SkinRequest request = new SkinRequest(entity);
         skinmanager.func_152790_a(profile, request, false);
@@ -33,7 +33,7 @@ public class SkinFetcher {
         }
 
         @Override
-        public void func_152121_a(MinecraftProfileTexture.Type type, ResourceLocation location) {
+        public void onSkinAvailable(MinecraftProfileTexture.Type type, ResourceLocation location) {
             callback.returnedSkin(type, location);
         }
     }

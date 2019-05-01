@@ -86,7 +86,7 @@ public class ItemBlockPlacer extends Item {
                         this.spawnBlock.onPostBlockPlaced(par3World, par4, par5, par6, j1);
                     }
 
-                    par3World.playSoundEffect((double) ((float) par4 + 0.5F), (double) ((float) par5 + 0.5F), (double) ((float) par6 + 0.5F), block.stepSound.func_150496_b(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+                    par3World.playSoundEffect((double) ((float) par4 + 0.5F), (double) ((float) par5 + 0.5F), (double) ((float) par6 + 0.5F), block.stepSound.getDigResourcePath(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getFrequency() * 0.8F);
                     --par1ItemStack.stackSize;
                 }
             }

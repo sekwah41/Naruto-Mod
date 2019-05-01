@@ -23,7 +23,7 @@ public class ItemSenbon extends Item {
     public ItemSenbon() {
         super();
         this.maxStackSize = 32;
-        this.setMaxDamage(-1);
+        this.setMaxDurability(-1);
         this.setCreativeTab(NarutoItems.ninjaWeapons);
 
         this.weaponDamage = 1.0F;

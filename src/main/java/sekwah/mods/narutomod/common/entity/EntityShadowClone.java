@@ -318,17 +318,18 @@ public class EntityShadowClone extends EntityCreature implements SkinCallback, I
 
         this.setCustomNameTag("sekwah41");
 
-        gameProfile = MinecraftServer.getServer().func_152358_ax().func_152655_a("sekwah41");
+        gameProfile = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("sekwah41");
 
         return par1EntityLivingData;
     }
 
     public void setUsername(String name) {
-        GameProfile gameProfile = MinecraftServer.getServer().func_152358_ax().func_152655_a(name);
+        GameProfile gameProfile = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername(name);
+        this.setCustomNameTag(name);
     }
 
     public void setUUID(UUID uuid) {
-        GameProfile gameProfile = MinecraftServer.getServer().func_152358_ax().func_152652_a(uuid);
+        GameProfile gameProfile = MinecraftServer.getServer().getPlayerProfileCache().func_152652_a(uuid);
         this.setGameProfile(gameProfile);
     }
 

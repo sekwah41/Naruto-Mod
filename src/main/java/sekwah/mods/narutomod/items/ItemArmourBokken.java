@@ -26,7 +26,7 @@ public class ItemArmourBokken extends ItemArmor {
                                   int par3, int par4) {
         super(par2EnumArmorMaterial, par3, par4);
         setHasSubtypes(true);
-        setMaxDamage(0);
+        this.setMaxDurability(0);
 
     }
 
@@ -66,8 +66,8 @@ public class ItemArmourBokken extends ItemArmor {
      * <p/>
      * public String getUnlocalizedName(ItemStack par1ItemStack)
      * {
-     * if( 0 <= par1ItemStack.getItemDamage() && par1ItemStack.getItemDamage() <= 6){
-     * return super.getUnlocalizedName() + "." + names[par1ItemStack.getItemDamage()];
+     * if( 0 <= par1ItemStack.getMetadata() && par1ItemStack.getMetadata() <= 6){
+     * return super.getUnlocalizedName() + "." + names[par1ItemStack.getMetadata()];
      * }
      * else{
      * return super.getUnlocalizedName() + "." + names[1];

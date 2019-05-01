@@ -77,7 +77,7 @@ public class RenderShadowClone extends RendererLivingEntity {
                 modelbiped.bipedLeftLeg.showModel = par2 == 2 || par2 == 3;
                 modelbiped = (ModelNinjaBiped) ForgeHooksClient.getArmorModel(par1EntityShadowClone, itemstack, par2, modelbiped);
                 this.setRenderPassModel(modelbiped);
-                modelbiped.onGround = this.mainModel.onGround;
+                modelbiped.swingProgress = this.mainModel.swingProgress;
                 modelbiped.isRiding = this.mainModel.isRiding;
                 modelbiped.isChild = this.mainModel.isChild;
                 float f1 = 1.0F;
@@ -483,7 +483,7 @@ public class RenderShadowClone extends RendererLivingEntity {
     public void renderFirstPersonArm(EntityPlayer par1EntityPlayer) {
         float f = 1.0F;
         GL11.glColor3f(f, f, f);
-        this.modelBipedMain.onGround = 0.0F;
+        this.modelBipedMain.swingProgress = 0.0F;
         this.modelBipedMain.setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, par1EntityPlayer);
         this.modelBipedMain.bipedRightArm.render(0.0625F);
     }

@@ -134,9 +134,9 @@ public class EntityBandit extends EntityMob {
 
                 if (var3 != null) {
                     if (var3.isItemStackDamageable()) {
-                        var3.setItemDamage(var3.getItemDamageForDisplay() + this.rand.nextInt(2));
+                        var3.setMetadata(var3.getCurrentDurability() + this.rand.nextInt(2));
 
-                        if (var3.getItemDamageForDisplay() >= var3.getMaxDamage()) {
+                        if (var3.getCurrentDurability() >= var3.getMaxDurability()) {
                             this.renderBrokenItemStack(var3);
                             this.setCurrentItemOrArmor(4, null);
                         }
@@ -283,7 +283,7 @@ public class EntityBandit extends EntityMob {
     public boolean interact(EntityPlayer par1EntityPlayer) {
         ItemStack var2 = par1EntityPlayer.getCurrentEquippedItem();
 
-        if (var2 != null && var2.getItem() == Items.golden_apple && var2.getItemDamage() == 0 && this.isPotionActive(Potion.weakness)) {
+        if (var2 != null && var2.getItem() == Items.golden_apple && var2.getMetadata() == 0 && this.isPotionActive(Potion.weakness)) {
             if (!par1EntityPlayer.capabilities.isCreativeMode) {
                 --var2.stackSize;
             }

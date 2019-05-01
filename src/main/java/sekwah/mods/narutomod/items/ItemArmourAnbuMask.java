@@ -23,7 +23,7 @@ public class ItemArmourAnbuMask extends ItemArmor {
 	public ItemArmourAnbuMask(ArmorMaterial par2EnumArmorMaterial,
                               int par3, int par4) {
 			super(par2EnumArmorMaterial, par3, par4);
-			setMaxDamage(0);
+			this.setMaxDurability(0);
 
 	}
 
@@ -111,7 +111,7 @@ public class ItemArmourAnbuMask extends ItemArmor {
      */
 	/**public EnumAction getItemUseAction(ItemStack par1ItemStack) // not exactly needed but when working its funny :3
 	{
-		if(par1ItemStack.getItemDamage() == 1){
+		if(par1ItemStack.getMetadata() == 1){
 			return EnumAction.eat;
 		}
 		return EnumAction.none;
@@ -122,7 +122,7 @@ public class ItemArmourAnbuMask extends ItemArmor {
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-    	if(par1ItemStack.getItemDamage() != 1){
+    	if(par1ItemStack.getMetadata() != 1){
     		int i = EntityLiving.getArmorPosition(par1ItemStack) - 1;
             ItemStack itemstack1 = par3EntityPlayer.getCurrentArmor(i);
 

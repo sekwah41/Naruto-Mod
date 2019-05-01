@@ -25,8 +25,8 @@ public class ItemArmourKatana extends ItemArmor {
     public ItemArmourKatana(ArmorMaterial par2EnumArmorMaterial,
                             int par3, int par4) {
         super(par2EnumArmorMaterial, par3, par4);
-        setHasSubtypes(true);
-        setMaxDamage(0);
+        this.setHasSubtypes(true);
+        this.setMaxDurability(0);
 
     }
 

@@ -162,11 +162,11 @@ public class EntityChibakuBlock extends Entity implements IEntityAdditionalSpawn
                     {
                         this.setDead();
 
-                        if (!this.field_145808_f && this.worldObj.canPlaceEntityOnSide(this.block, i, j, k, true, 1, (Entity)null, (ItemStack)null) && !BlockFalling.func_149831_e(this.worldObj, i, j - 1, k) && this.worldObj.setBlock(i, j, k, this.block, this.metadata, 3))
+                        if (!this.field_145808_f && this.worldObj.canPlaceEntityOnSide(this.block, i, j, k, true, 1, (Entity)null, (ItemStack)null) && !BlockFalling.canFallBelow(this.worldObj, i, j - 1, k) && this.worldObj.setBlock(i, j, k, this.block, this.metadata, 3))
                         {
                             if (this.block instanceof BlockFalling)
                             {
-                                ((BlockFalling)this.block).func_149828_a(this.worldObj, i, j, k, this.metadata);
+                                ((BlockFalling)this.block).playSoundWhenFallen(this.worldObj, i, j, k, this.metadata);
                             }
 
                             if (this.nbtTagCompound != null && this.block instanceof ITileEntityProvider)
@@ -177,7 +177,7 @@ public class EntityChibakuBlock extends Entity implements IEntityAdditionalSpawn
                                 {
                                     NBTTagCompound nbttagcompound = new NBTTagCompound();
                                     tileentity.writeToNBT(nbttagcompound);
-                                    Iterator iterator = this.nbtTagCompound.func_150296_c().iterator();
+                                    Iterator iterator = this.nbtTagCompound.getKeySet().iterator();
 
                                     while (iterator.hasNext())
                                     {
