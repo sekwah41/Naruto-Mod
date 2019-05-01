@@ -14,7 +14,6 @@ import sekwah.mods.narutomod.packets.clientbound.ClientJutsuCommandPacket;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import static net.minecraft.util.EnumChatFormatting.RED;
 
@@ -51,10 +50,8 @@ public class CommandJutsu extends CommandBase {
 
         if("activate".equals(args[0])) {
             if(args.length == 2) { //activate jutsu, no permission needed
-                Map<String, String> jutsus = Jutsu.getRegisteredJutsuCombinations();
-                if(jutsus.containsKey(args[1])) {
-                    int jutsu = Integer.decode(jutsus.get(args[1]));
-                    PacketDispatcher.sendPacketToPlayer(new ClientJutsuCommandPacket(jutsu), player);
+                if(Jutsu.getRegisteredJutsuCombinations().containsKey(args[1])) {
+                    PacketDispatcher.sendPacketToPlayer(new ClientJutsuCommandPacket(Jutsu.getRegisteredJutsuCombinations().get(args[1])), player);
                 }
                 else {
                     sender.addChatMessage(new ChatComponentText("Invalid Jutsu!"));

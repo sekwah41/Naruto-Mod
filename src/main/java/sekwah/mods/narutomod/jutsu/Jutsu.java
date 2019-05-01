@@ -22,28 +22,28 @@ public class Jutsu {
     public static final int BACK = 1;
     public static final int LEFT = 2;
     public static final int RIGHT = 3;
-    private static final Map<String, String> JUTSUS = new HashMap<String, String>() {{
-        put("substitution", "12");
-        put("chibaku_tensei", "111");
-        put("fireball", "121");
-        put("water_bullet", "132");
-        //put("eyes", "311"); //TODO not implemented
-        put("earth_release", "312");
-        put("sekc", "333");
-        put("chibi_shadow_clone", "1322");
-        put("shadow_clone", "1332");
-        put("multi_shadow_clone", "133231");
+    private static final Map<String, Integer> JUTSUS = new HashMap<String, Integer>() {{
+        put("substitution", Jutsus.SUBSTITUTION);
+        put("chibaku_tensei", Jutsus.CHIBAKU_TENSEI);
+        put("fireball", Jutsus.FIREBALL);
+        put("water_bullet", Jutsus.WATER_BULLET);
+        //put("eyes", Jutsus.EYES); //TODO not implemented
+        put("earth_release", Jutsus.EARTH_RELEASE);
+        put("sekc", Jutsus.SEKC);
+        put("chibi_shadow_clone", Jutsus.CHIBI_SHADOW_CLONE);
+        put("shadow_clone", Jutsus.REGULAR_SHADOW_CLONE);
+        put("multi_shadow_clone", Jutsus.MULTI_SHADOW_CLONE);
     }};
 
     @SideOnly(Side.CLIENT)
-    public static String translateToKeyCombo(String input) {
-        input = input.replaceAll(KEY_ONE, Keyboard.getKeyName(NarutoKeyHandler.keys[0].getKeyCode()));
-        input = input.replaceAll(KEY_TWO, Keyboard.getKeyName(NarutoKeyHandler.keys[1].getKeyCode()));
-        input = input.replaceAll(KEY_THREE, Keyboard.getKeyName(NarutoKeyHandler.keys[2].getKeyCode()));
-        return input;
+    public static String translateToKeyCombo(int keyCombo) {
+        return String.valueOf(keyCombo)
+                .replaceAll(KEY_ONE, Keyboard.getKeyName(NarutoKeyHandler.keys[0].getKeyCode()))
+                .replaceAll(KEY_TWO, Keyboard.getKeyName(NarutoKeyHandler.keys[1].getKeyCode()))
+                .replaceAll(KEY_THREE, Keyboard.getKeyName(NarutoKeyHandler.keys[2].getKeyCode()));
     }
 
-    public static Map<String, String> getRegisteredJutsuCombinations() {
+    public static Map<String, Integer> getRegisteredJutsuCombinations() {
         return JUTSUS;
     }
 }
