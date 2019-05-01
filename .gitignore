@@ -9,3 +9,5 @@ out/
 
 \.idea/
 \classes/
+run/
+build/
