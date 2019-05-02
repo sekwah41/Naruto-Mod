@@ -14,6 +14,8 @@ import sekwah.mods.narutomod.client.gui.GuiJutsuMenu;
 import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
 import sekwah.mods.narutomod.client.gui.GuiOptionsMenu;
 import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.jutsu.Jutsu;
+import sekwah.mods.narutomod.jutsu.Jutsus;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.serverbound.ServerEyePacket;
 import sekwah.mods.narutomod.packets.serverbound.ServerJutsuPacket;
@@ -75,15 +77,19 @@ public class NarutoKeyHandler {
                     EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
 
                     int jutsuSound = 0;
-                    if (keyDesc.equals("naruto.keys.key1")) {
-                        PlayerClientTickEvent.JutsuCombo += "1";
-                        jutsuSound = 1;
-                    } else if (keyDesc.equals("naruto.keys.key2")) {
-                        PlayerClientTickEvent.JutsuCombo += "2";
-                        jutsuSound = 2;
-                    } else if (keyDesc.equals("naruto.keys.key3")) {
-                        PlayerClientTickEvent.JutsuCombo += "3";
-                        jutsuSound = 3;
+                    switch(keyDesc) {
+                        case "naruto.keys.key1":
+                            PlayerClientTickEvent.JutsuCombo += Jutsu.KEY_ONE;
+                            jutsuSound = 1;
+                            break;
+                        case "naruto.keys.key2":
+                            PlayerClientTickEvent.JutsuCombo += Jutsu.KEY_TWO;
+                            jutsuSound = 2;
+                            break;
+                        case "naruto.keys.key3":
+                            PlayerClientTickEvent.JutsuCombo += Jutsu.KEY_THREE;
+                            jutsuSound = 3;
+                            break;
                     }
 
                     PlayerClientTickEvent.JutsuKeyDelay = NarutoSettings.jutsuDelay;
@@ -131,7 +137,7 @@ public class NarutoKeyHandler {
                             if (PlayerClientTickEvent.onWater) {
                                 PlayerClientTickEvent.useChakra(10F);
                             }
-                            sendJutsuPacket(401);
+                            sendJutsuPacket(Jutsus.LEAP_START);
                         }
                     }
                 }
@@ -213,7 +219,7 @@ public class NarutoKeyHandler {
                                 if (PlayerClientTickEvent.onWater) {
                                     PlayerClientTickEvent.useChakra(10F);
                                 }
-                                sendJutsuPacket(403);
+                                sendJutsuPacket(Jutsus.DODGE_LEFT_START);
                             }
                         }
 
@@ -241,7 +247,7 @@ public class NarutoKeyHandler {
                                 if (PlayerClientTickEvent.onWater) {
                                     PlayerClientTickEvent.useChakra(10F);
                                 }
-                                sendJutsuPacket(404);
+                                sendJutsuPacket(Jutsus.DODGE_RIGHT_START);
                             }
                         }
                     /*if(PlayerClientTickEvent.stamina >= 20) {
@@ -267,7 +273,7 @@ public class NarutoKeyHandler {
                                 if (PlayerClientTickEvent.onWater) {
                                     PlayerClientTickEvent.useChakra(10F);
                                 }
-                                sendJutsuPacket(402);
+                                sendJutsuPacket(Jutsus.DODGE_BACK_START);
                             }
                         }
                     /*if(PlayerClientTickEvent.stamina >= 20) {
