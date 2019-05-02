@@ -37,7 +37,8 @@ public class BlockPaperBomb extends Block {
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1IconRegister) {
+    @Override
+    public void registerIcons(IIconRegister par1IconRegister) {
         blockIcons = new IIcon[4];
         blockIcons[0] = par1IconRegister.registerIcon(NarutoMod.modid + ":" + (this.getUnlocalizedName().substring(5)));
         blockIcons[1] = par1IconRegister.registerIcon(NarutoMod.modid + ":" + (this.getUnlocalizedName().substring(5)) + 2);

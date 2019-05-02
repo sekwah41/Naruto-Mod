@@ -26,7 +26,8 @@ public class BlockSummoningCircleEdge extends Block {
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1IconRegister) {
+    @Override
+    public void registerIcons(IIconRegister par1IconRegister) {
         blockIcons = new IIcon[8];
         blockIcons[0] = par1IconRegister.registerIcon(NarutoMod.modid + ":Summoning_CircleSides");
         blockIcons[1] = par1IconRegister.registerIcon(NarutoMod.modid + ":Summoning_CircleSides2");

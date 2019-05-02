@@ -27,7 +27,8 @@ public class BlockBonsaiTree extends BlockContainer {
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1IconRegister) {
+    @Override
+    public void registerIcons(IIconRegister par1IconRegister) {
         this.blockIcon = par1IconRegister.registerIcon(NarutoMod.modid + ":" + (this.getUnlocalizedName().substring(5)));
     }
 

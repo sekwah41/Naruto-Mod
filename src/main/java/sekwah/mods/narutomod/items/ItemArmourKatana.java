@@ -55,7 +55,6 @@ public class ItemArmourKatana extends ItemArmor {
     }*/
 
     /**
-     @SideOnly(Side.CLIENT)
      public Icon getIconFromDamage(int par1){
      return Icons[par1];
      }*/

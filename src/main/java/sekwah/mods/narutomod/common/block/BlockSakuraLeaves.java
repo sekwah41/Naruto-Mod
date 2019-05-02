@@ -245,7 +245,8 @@ public class BlockSakuraLeaves extends BlockLeavesBase implements IShearable {
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1IconRegister) {
+    @Override
+    public void registerIcons(IIconRegister par1IconRegister) {
         blockIcons = new IIcon[2];
         blockIcons[0] = par1IconRegister.registerIcon(NarutoMod.modid + ":" + "leaves_sakura");
         blockIcons[1] = par1IconRegister.registerIcon(NarutoMod.modid + ":" + "leaves_sakura_opaque");

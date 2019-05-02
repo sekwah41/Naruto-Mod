@@ -57,12 +57,12 @@ public class AnimModelRenderer extends ModelRenderer {
     /**
      * Sets the current box's rotation points and rotation angles to another box.
      */
-    public void addChild(ModelRenderer p_78792_1_) {
+    public void addChild(ModelRenderer child) {
         if (this.childModels == null) {
             this.childModels = new ArrayList();
         }
 
-        this.childModels.add(p_78792_1_);
+        this.childModels.add(child);
     }
 
     public ModelRenderer setTextureOffset(int p_78784_1_, int p_78784_2_) {
