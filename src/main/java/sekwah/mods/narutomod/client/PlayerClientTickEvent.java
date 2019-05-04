@@ -171,6 +171,19 @@ public class PlayerClientTickEvent {
 
 
             if (ChargingChakra) {
+                String currentPose = playerMP.getDataWatcher().getWatchableObjectString(DataWatcherIDs.jutsuPose);
+                if(playerMP.isSprinting()) {
+                    if(currentPose.equals("chakraCharging")) {
+                        PacketAnimationUpdate.animationUpdate("chakraSprintCharging", playerMP);
+                    }
+                    chakra += 0.02;
+                }
+                else {
+                    if(currentPose.equals("chakraSprintCharging")) {
+                        PacketAnimationUpdate.animationUpdate("chakraCharging", playerMP);
+                    }
+                    chakra += 0.08;
+                }
                 if (ChakraChargeDelay >= 0) {
                     ChakraChargeDelay--;
                 } else if (!ChakraCharge) {
@@ -202,7 +215,17 @@ public class PlayerClientTickEvent {
                 }*/ else {
 
                     if (chakra < maxChakra) {
-                        chakra += 0.15;
+                        if(playerMoved) {
+                            if(playerMP.isSprinting()) {
+                                chakra += 0.02;
+                            }
+                            else {
+                                chakra += 0.08;
+                            }
+                        }
+                        else {
+                            chakra += 0.55;
+                        }
                     }
                     ChakraFocus = true;
 

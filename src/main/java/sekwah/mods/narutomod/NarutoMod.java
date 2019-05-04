@@ -48,9 +48,7 @@ public class NarutoMod {
     @SidedProxy(clientSide = "sekwah.mods.narutomod.client.ClientProxy", serverSide = "sekwah.mods.narutomod.common.CommonProxy")
     public static CommonProxy proxy;
 
-    // TODO for the lang files possibly use the \u0007 character code thing and see if that works for accents
-
-    public static final String version = "0.5.0b8";
+    public static final String version = "0.5.0b9";
 
     public static List<DelayedRender> delayedRenders = new ArrayList<DelayedRender>();
 

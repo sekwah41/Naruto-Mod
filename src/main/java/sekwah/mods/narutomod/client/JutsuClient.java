@@ -57,22 +57,22 @@ public class JutsuClient {
                 playerMP.addChatMessage(new ChatComponentText("ENJOY DESTRUCTION"));
                 break;
             case Jutsus.LEAP_START:
-                PlayerClientTickEvent.stamina -= 20;
+                PlayerClientTickEvent.stamina -= 5;
                 PlayerClientTickEvent.setStaminaCooldown(80);
                 PacketAnimationUpdate.animationUpdate("leapforward" + (rand.nextInt(2) + 1), playerMP);
                 break;
             case Jutsus.DODGE_BACK_START:
-                PlayerClientTickEvent.stamina -= 20;
+                PlayerClientTickEvent.stamina -= 5;
                 PlayerClientTickEvent.setStaminaCooldown(80);
                 PacketAnimationUpdate.animationUpdate("leapback" + (rand.nextInt(2) + 1), playerMP);
                 break;
             case Jutsus.DODGE_LEFT_START:
-                PlayerClientTickEvent.stamina -= 20;
+                PlayerClientTickEvent.stamina -= 5;
                 PlayerClientTickEvent.setStaminaCooldown(80);
                 PacketAnimationUpdate.animationUpdate("leapleft", playerMP);
                 break;
             case Jutsus.DODGE_RIGHT_START:
-                PlayerClientTickEvent.stamina -= 20;
+                PlayerClientTickEvent.stamina -= 5;
                 PlayerClientTickEvent.setStaminaCooldown(80);
                 PacketAnimationUpdate.animationUpdate("leapright", playerMP);
                 break;
@@ -106,7 +106,12 @@ public class JutsuClient {
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
             case Jutsus.CHAKRA_INFUSE_START:
-                PacketAnimationUpdate.animationUpdate("chakraCharging", playerMP);
+                if(playerMP.isSprinting()) {
+                    PacketAnimationUpdate.animationUpdate("chakraSprintCharging", playerMP);
+                }
+                else {
+                    PacketAnimationUpdate.animationUpdate("chakraCharging", playerMP);
+                }
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.chakraCharge.activate")));
                 break;
             case Jutsus.CHAKRA_INFUSE_STOP:

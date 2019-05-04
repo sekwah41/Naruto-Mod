@@ -1752,6 +1752,32 @@
                 }
             }
         },
+        "chakraSprintCharging" : {
+            "animDuration": -1,
+            "animLength": 19,
+            "locData" : {
+                "rightArmUpper": {
+                    "rotX": "1.47079633",
+                    "rotY": "0",
+                    "rotZ": "0"
+                },
+                "rightArmLower": {
+                    "rotX": "0",
+                    "rotY": "0",
+                    "rotZ": "0"
+                },
+                "leftArmUpper": {
+                    "rotX": "-1.06814152",
+                    "rotZ": "-1.38230071",
+                    "rotY": "0.50265481"
+                },
+                "leftArmLower": {
+                    "rotX": "-1.31946889",
+                    "rotY": 0,
+                    "rotZ": 0
+                }
+            }
+        },
         "fireBall": {
             "animDuration": -1,
             "animLength": 26,
