@@ -6,8 +6,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
 import sekwah.mods.narutomod.common.entity.specials.EntityChibakuBlock;
@@ -40,6 +44,16 @@ public class EntityChibakuTensei extends Entity {
     protected void entityInit() {
         this.noClip = true;
         this.setSize(2,2);
+
+        this.getDataWatcher().addObject(16, 0f);
+    }
+
+    public float getGrabRadius() {
+        return this.getDataWatcher().getWatchableObjectFloat(16);
+    }
+
+    public void setGrabRadius(float radius) {
+        this.getDataWatcher().updateObject(16, radius);
     }
 
     public void onUpdate() {
@@ -49,6 +63,40 @@ public class EntityChibakuTensei extends Entity {
             this.posY += moveAmount;
             float sizeValue = 3.5f - (float) moveAmount * 3f;
             this.setSize(sizeValue, sizeValue);
+        }
+        if(ticksExisted > travelTime) {
+            float gravityRadius = 30;
+            float gravityHeight = 70;
+            List entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.setBounds(this.posX - gravityRadius, this.posY - gravityHeight, this.posZ - gravityRadius, this.posX + gravityRadius, this.posY + gravityHeight, this.posZ + gravityRadius));
+
+            float grabDistance = this.getGrabRadius() + 2;
+            for(Object entityObj : entities) {
+                if(entityObj instanceof Entity && !(entityObj instanceof EntityChibakuBlock)) {
+                    if(entityObj instanceof EntityPlayer) {
+                        if(((EntityPlayer) entityObj).capabilities.isCreativeMode) {
+                            continue;
+                        }
+                    }
+                    Entity entity = (Entity) entityObj;
+                    Vec3 dir = Vec3.createVectorHelper(this.posX - entity.posX, this.posY - entity.posY, this.posZ - entity.posZ);
+                    double length = dir.lengthVector();
+                    if(length < grabDistance) {
+                        Vec3 normDir = dir.normalize();
+                        if(length <= 1) {
+                            entity.setPosition(this.posX, this.posY, this.posZ);
+                            entity.setVelocity(0,0,0);
+                            entity.attackEntityFrom(DamageSource.magic, 3);
+                        }
+                        else {
+                            double divider = Math.min(Math.max(length * 3, 0.5d), 9);
+                            entity.motionX += normDir.xCoord / divider;
+                            entity.motionY += normDir.yCoord / divider;
+                            entity.motionZ += normDir.zCoord / divider;
+                            entity.attackEntityFrom(DamageSource.magic, 0);
+                        }
+                    }
+                }
+            }
         }
         if(!this.worldObj.isRemote) {
             if(ticksExisted == travelTime / 9) {
@@ -80,6 +128,9 @@ public class EntityChibakuTensei extends Entity {
                                     this.worldObj.spawnEntityInWorld(blockEntity);
                                 }
                                 this.worldObj.setBlock(targetBlock.x, targetBlock.y, targetBlock.z, Blocks.air);
+                            }
+                            if(i == 9) {
+                                this.setGrabRadius((float) Vec3.createVectorHelper(this.posX - targetBlock.x, this.posY - targetBlock.y, this.posZ - targetBlock.z).lengthVector());
                             }
                         }
                     }

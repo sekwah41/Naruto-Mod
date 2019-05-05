@@ -78,25 +78,23 @@ public class JutsuClient {
                 break;
             case Jutsus.LEAP_STOP:
                 lookVector = playerMP.getLookVec();
-                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, (lookVector.yCoord + 0.8F) * 0.7F
-                        , playerMP.motionZ + lookVector.zCoord * 1.5F);
+                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 2F, (lookVector.yCoord + 0.8F) * 1F
+                        , playerMP.motionZ + lookVector.zCoord * 2F);
                 break;
             case Jutsus.DODGE_BACK_STOP:
                 lookVector = playerMP.getLookVec();
                 lookVector.rotateAroundY((float) (Math.PI));
-                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.1F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.1F);
-                /*playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, (lookVector.yCoord + 0.8F) * 0.7F
-                        , playerMP.motionZ + lookVector.zCoord * 1.5F);*/
+                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.5F);
                 break;
             case Jutsus.DODGE_LEFT_STOP:
                 lookVector = playerMP.getLookVec();
                 lookVector.rotateAroundY((float) (Math.PI / 2F));
-                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.5F);
+                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.7F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.7F);
                 break;
             case Jutsus.DODGE_RIGHT_STOP:
                 lookVector = playerMP.getLookVec();
                 lookVector.rotateAroundY((float) (-Math.PI / 2F));
-                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.5F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.5F);
+                playerMP.setVelocity(playerMP.motionX + lookVector.xCoord * 1.7F, 0.5F, playerMP.motionZ + lookVector.zCoord * 1.7F);
                 break;
             case Jutsus.SUBSTITUTION:// change the combo at some point and make sure its the same as in jutsu common
                 // add code to execute client side  here!

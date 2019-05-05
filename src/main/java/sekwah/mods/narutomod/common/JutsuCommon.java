@@ -61,6 +61,7 @@ public class JutsuCommon {
                 return true;
             case Jutsus.LEAP_STOP:
                 jutsuSound(8, playerMP);
+                playerMP.fallDistance = -5;
                 return true;
             case Jutsus.DODGE_BACK_STOP:
                 jutsuSound(8, playerMP);

@@ -61,12 +61,11 @@ public class EventServerHook {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
             //NarutoMod.logger.info(event.distance);
             if(event.distance < 9){
-                event.distance /= 3;
+                event.distance *= 0.3f;
             }
-            if(event.distance > 3){
-                event.distance -= 3f;
-                event.distance *= 0.7f;
-                event.distance += 3f;
+            if(event.distance > 3) {
+                event.distance -= 5f;
+                event.distance *= 0.6f;
             }
 
 

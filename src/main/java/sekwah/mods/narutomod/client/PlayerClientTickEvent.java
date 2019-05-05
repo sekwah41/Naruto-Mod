@@ -392,8 +392,8 @@ public class PlayerClientTickEvent {
 
             if (chakraDash) {
                 if(playerMoved){
-                    useChakra(0.05F);
-                    useStamina(0.2f);
+                    useChakra(0.09F);
+                    useStamina(0.04f);
                 }
                 //this.chakra -= 0.1;
             }
@@ -401,8 +401,8 @@ public class PlayerClientTickEvent {
             if (chakraDash) {
                 if (playerMP.onGround && !playerMP.isInWater()) {
                     if((Math.pow(playerMP.motionX,2) + Math.pow(playerMP.motionZ,2)) < 1.3f){
-                        playerMP.motionX *= 1.18F;
-                        playerMP.motionZ *= 1.18F;
+                        playerMP.motionX *= 1.25F;
+                        playerMP.motionZ *= 1.25F;
                     }
                 }
             }

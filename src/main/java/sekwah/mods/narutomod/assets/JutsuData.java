@@ -14,4 +14,9 @@ public class JutsuData {
 
     public static int multiShadowCloneCost = 60;
 
+
+    public static float leapAmount = 2.5f;
+    public static float leapUp = 0.7f;
+    public static float dodgeAmount = 1.7f;
+
 }
