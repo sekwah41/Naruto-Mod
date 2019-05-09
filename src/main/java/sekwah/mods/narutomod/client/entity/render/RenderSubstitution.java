@@ -91,8 +91,10 @@ public class RenderSubstitution extends RendererLivingEntity {
                 modelbiped.bipedRightArmLower.showModel = par2 == 1;
                 modelbiped.bipedLeftArmUpper.showModel = par2 == 1;
                 modelbiped.bipedLeftArmLower.showModel = par2 == 1;
-                modelbiped.bipedRightLeg.showModel = par2 == 2 || par2 == 3;
-                modelbiped.bipedLeftLeg.showModel = par2 == 2 || par2 == 3;
+                modelbiped.bipedRightLegUpper.showModel = par2 == 2 || par2 == 3;
+                modelbiped.bipedRightLegLower.showModel = par2 == 2 || par2 == 3;
+                modelbiped.bipedLeftLegUpper.showModel = par2 == 2 || par2 == 3;
+                modelbiped.bipedLeftLegLower.showModel = par2 == 2 || par2 == 3;
                 modelbiped = (ModelNinjaBiped) ForgeHooksClient.getArmorModel(par1EntitySubstitution, itemstack, par2, modelbiped);
                 this.setRenderPassModel(modelbiped);
                 modelbiped.swingProgress = this.mainModel.swingProgress;

@@ -96,14 +96,11 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
 
     public void firstPersonChangeBack() {
-        this.modelBipedMain.bipedHead.isHidden = this.modelBipedMain.bipedHead.isHidden = this.modelArmorChestplate.bipedHead.isHidden = false;
-        this.modelBipedMain.bipedHeadwear.isHidden = this.modelBipedMain.bipedHeadwear.isHidden = this.modelArmorChestplate.bipedHeadwear.isHidden = false;
+        this.modelBipedMain.bipedHead.isHidden = this.modelArmorChestplate.bipedHead.isHidden = false;
+        this.modelBipedMain.bipedHeadwear.isHidden = this.modelArmorChestplate.bipedHeadwear.isHidden = false;
         this.modelBipedMain.bipedMask.isHidden = false;
         this.modelBipedMain.bipedMaskMed.isHidden = false;
         this.modelBipedMain.bipedMaskSmall.isHidden = false;
-
-        this.modelSkinOverlay.bipedHead.isHidden = this.modelSkinOverlay.bipedHead.isHidden = this.modelArmorChestplate.bipedHead.isHidden = false;
-        this.modelSkinOverlay.bipedHeadwear.isHidden = this.modelSkinOverlay.bipedHeadwear.isHidden = this.modelArmorChestplate.bipedHeadwear.isHidden = false;
         this.modelSkinOverlay.bipedMask.isHidden = false;
         this.modelSkinOverlay.bipedMaskMed.isHidden = false;
         this.modelSkinOverlay.bipedMaskSmall.isHidden = false;
@@ -153,7 +150,6 @@ public class RenderNinjaPlayer extends RenderPlayer {
                 modelbiped.bipedLeftArmUpper.showModel = p_77032_2_ == 1;
                 modelbiped.bipedLeftArmLower.showModel = p_77032_2_ == 1;
                 modelbiped.bipedRightArm.showModel = p_77032_2_ == 1;
-                modelbiped.bipedLeftArm.showModel = p_77032_2_ == 1;
                 modelbiped.bipedRightLeg.showModel = p_77032_2_ == 2 || p_77032_2_ == 3;
                 modelbiped.bipedLeftLeg.showModel = p_77032_2_ == 2 || p_77032_2_ == 3;
                 modelbiped.bipedRightLegUpper.showModel = p_77032_2_ == 2 || p_77032_2_ == 3;
