@@ -20,10 +20,9 @@ naruto.gui.clan.select=Select
 item.Kunai.name=Kunai
 item.Shuriken.name=Shuriken
 
-item.record_FightingSpirit.name=Music Disc
-item.record_FightingSpirit.desc=Naruto - Fighting Spirit
-item.record_NejiTheme.name=Music Disc
-item.record_NejiTheme.desc=Naruto - Neji Theme
+item.record_lonelymarch.name=Music Disc
+item.record_lonelymarch.desc=Sekwah - Lonely March
+item.record.LonelyMarch.desc=Sekwah - Lonely March
         
 item.copper_ryo.name=Kan
 item.silver_ryo.name=Rin

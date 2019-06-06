@@ -28,7 +28,7 @@ public class NarutoItems {
 	public static Item Kunai;
 	public static Item Shuriken;
 	//public static Item FightingSpirit;
-	//public static Item NejiTheme;
+	public static Item LonelyMarch;
 	public static Item CopperRyo;
 	public static Item SilverRyo;
 	public static Item GoldRyo;
@@ -78,6 +78,8 @@ public class NarutoItems {
 
 		//FightingSpirit = (new ItemNinjaRecord("FightingSpirit")).setUnlocalizedName("record_FightingSpirit");
 		//NejiTheme = (new ItemNinjaRecord("NejiTheme")).setUnlocalizedName("record_NejiTheme");
+
+		LonelyMarch = (new ItemNinjaRecord("LonelyMarch")).setUnlocalizedName("record_lonelymarch");
 
 		Kunai = (new ItemKunai()).setUnlocalizedName("Kunai");
 		Shuriken = (new ItemShuriken()).setUnlocalizedName("Shuriken");
@@ -157,6 +159,8 @@ public class NarutoItems {
 		//GameRegistry.registerItem(FightingSpirit, "MusicDiscSpirit");
 
 		//GameRegistry.registerItem(NejiTheme, "MusicDiscNeji");
+
+		GameRegistry.registerItem(LonelyMarch, "MusicLonelyMarch");
 
 		GameRegistry.registerItem(CopperRyo, "Kan");
 		GameRegistry.registerItem(SilverRyo, "Rin");

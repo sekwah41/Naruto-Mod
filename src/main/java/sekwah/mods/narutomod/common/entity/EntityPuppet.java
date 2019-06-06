@@ -78,10 +78,6 @@ public class EntityPuppet extends EntityMob {
             }
         }
 
-        if (this.rand.nextInt(24) == 0) {
-            this.worldObj.playSoundEffect(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.fire", 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F);
-        }
-
         if (!this.onGround && this.motionY < 0.0D) {
             this.motionY *= 0.6D;
         }
@@ -147,7 +143,7 @@ public class EntityPuppet extends EntityMob {
     }
 
     /**
-     * Returns true if the entity is on fire. Used by render to add the fire effect on rendering.
+     * Returns true if the entity is on t. Used by render to add the fire effect on rendering.
      */
     public boolean isBurning() {
         return false;

@@ -8,9 +8,7 @@
   "jutsusounds.clone_poof": {"category": "player","sounds": [{"name": "jutsusounds/clone_poof","stream": false}]},
   "ninjavillager.death": {"category": "neutral","sounds": [{"name": "ninjavillager/death","stream": false}]},
   "ninjavillager.hurt": {"category": "neutral","sounds": [{"name": "ninjavillager/hurt","stream": false}]},
-  "records.FightingSpirit": {"category": "record","sounds": [{"name": "records/FightingSpirit","stream": true}]},
-  "records.NejiTheme": {"category": "record","sounds": [{"name": "records/NejiTheme","stream": true}]},
-  "records.BadSituation": {"category": "record","sounds": [{"name": "records/BadSituation","stream": true}]},
+  "records.LonelyMarch": {"category": "record","sounds": [{"name": "records/LonelyMarch","stream": true}]},
   "effects.Kunai_thud": {"category": "master","sounds": [{"name": "effects/Kunai_thud","stream": false}]},
   "effects.Needle_hit": {"category": "master","sounds": [{"name": "effects/Needle_hit","stream": false}]},
   "effects.Sizzle": {"category": "master","sounds": [{"name": "effects/Sizzle","stream": false}]}
