@@ -168,7 +168,7 @@ public class ModelMadaraLeggings extends ModelNinjaBiped {
 
         //left_leg.cubeList.add();
 
-        if(NarutoSettings.betterArms) {
+        /*if(NarutoSettings.betterArms) {
 
             this.right_leg = new ModelRenderer(this, 43, -3);
             this.right_leg.setTextureSize(64, 64);
@@ -183,7 +183,7 @@ public class ModelMadaraLeggings extends ModelNinjaBiped {
             this.left_legLower = new ModelRenderer(this, 43, -3);
             this.left_legLower.setTextureSize(64, 64);
             this.left_legLower.mirror = true;
-        }
+        }*/
 
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
@@ -232,7 +232,7 @@ public class ModelMadaraLeggings extends ModelNinjaBiped {
             //front_leg_plate_2.rotateAngleX += this.bipedRightLeg.rotateAngleX + 0.05F;
         }
 
-        if(NarutoSettings.betterArms) {
+        /*if(NarutoSettings.betterArms) {
             this.upperLeftLegBox.setLowerRotation(this.left_leg,this.bipedLeftLegLower.rotateAngleX);
             this.upperRightLegBox.setLowerRotation(this.right_leg,this.bipedRightLegLower.rotateAngleX);
 
@@ -244,7 +244,7 @@ public class ModelMadaraLeggings extends ModelNinjaBiped {
 
             this.left_legLower.cubeList.add(lowerLeftLegBox);
             this.right_legLower.cubeList.add(lowerRightLegBox);
-        }
+        }*/
 
         /*front_leg_plate_1.render(f5);
         //back_leg_plate_2.render(f5);

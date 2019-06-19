@@ -137,6 +137,8 @@ naruto.jutsu.chakraCharge.activate=You begin to infuse your chakra!
 naruto.jutsu.chakraCharge.deactivate=You have stopped infusing your chakra!
 
 naruto.jutsu.fireball=Fire Style - Fireball jutsu!
+naruto.jutsu.chidori=Lightning Style - Chidori!
+naruto.jutsu.chidorifail=It’s at this moment in time %s knew, he fucked up
 naruto.jutsu.waterBullet=Water Style - Water Bullet Jutsu!
 naruto.jutsu.earthWall=Earth Release - Earth-Style Wall!
 naruto.jutsu.earthWall.failed=Jutsu failed you must be looking at a block within 10 blocks

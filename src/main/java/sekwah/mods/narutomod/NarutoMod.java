@@ -48,7 +48,7 @@ public class NarutoMod {
     @SidedProxy(clientSide = "sekwah.mods.narutomod.client.ClientProxy", serverSide = "sekwah.mods.narutomod.common.CommonProxy")
     public static CommonProxy proxy;
 
-    public static final String version = "0.5.0b10";
+    public static final String version = "0.5.0b11";
 
     public static List<DelayedRender> delayedRenders = new ArrayList<DelayedRender>();
 

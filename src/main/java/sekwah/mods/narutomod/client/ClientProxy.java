@@ -37,7 +37,7 @@ import sekwah.mods.narutomod.common.entity.specials.EntityChibakuBlock;
 import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
 import sekwah.mods.narutomod.items.NarutoItems;
 import sekwah.mods.narutomod.items.itemmodels.ModelFlakJacket;
-import sekwah.mods.narutomod.items.itemmodels.armor.ModelUpdateJoninArmor;
+import sekwah.mods.narutomod.items.itemmodels.armor.*;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemKubikiribocho;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemSamehada;
 import sekwah.mods.narutomod.items.itemrenderers.RenderItemScroll;
@@ -180,7 +180,12 @@ public class ClientProxy extends CommonProxy {
         super.addItems();
 
         NarutoItems.flakJacket.setModelArmor(new ModelFlakJacket());
-        NarutoItems.JONIN_ARMOUR.setModelArmor(new ModelUpdateJoninArmor());
+        NarutoItems.JONIN_ARMOR.setModelArmor(new ModelUpdateJoninArmor());
+        NarutoItems.NARUTO_SHIPPUDEN_ARMOR.setModelArmor(new ModelNarutoShippudenArmor());
+        NarutoItems.BORUTO_KID_ARMOR.setModelArmor(new ModelBorutoKidArmor());
+        NarutoItems.BORUTO_KID_MOVIE_ARMOR.setModelArmor(new ModelBorutoMovieKidArmor());
+        NarutoItems.ANBU_ARMOR.setModelArmor(new ModelAnbuArmor());
+        NarutoItems.SASUKE_KID_ARMOR.setModelArmor(new ModelSasukeKidArmor());
     }
 
     public void commands() {

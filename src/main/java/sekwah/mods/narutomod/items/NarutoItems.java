@@ -28,7 +28,7 @@ public class NarutoItems {
 	public static Item Kunai;
 	public static Item Shuriken;
 	//public static Item FightingSpirit;
-	public static Item LonelyMarch;
+	public static Item LONELY_MARCH;
 	public static Item CopperRyo;
 	public static Item SilverRyo;
 	public static Item GoldRyo;
@@ -56,7 +56,13 @@ public class NarutoItems {
 	public static Item shinobiChestplate;
 	public static Item shinobiLeggings;
 	public static Item redAnbuMask;
-	public static ItemNinjaArmor JONIN_ARMOUR;
+
+	public static ItemNinjaArmor JONIN_ARMOR;
+	public static ItemNinjaArmor NARUTO_SHIPPUDEN_ARMOR;
+	public static ItemNinjaArmor SASUKE_KID_ARMOR;
+	public static ItemNinjaArmor BORUTO_KID_ARMOR;
+	public static ItemNinjaArmor BORUTO_KID_MOVIE_ARMOR;
+	public static ItemNinjaArmor ANBU_ARMOR;
 
 	// TODO Finish adding the code and complete tomorrow(tomorrow has passed, get yo lazy ass to work you bum)
 	//  recipe needed
@@ -64,8 +70,12 @@ public class NarutoItems {
 	public static EnumAction Throw = EnumHelper.addAction("Throw");
 	// Armour materials
 	private static ArmorMaterial FLACK_ARMOR = EnumHelper.addArmorMaterial("FLAK", 35, new int[]{2, 7, 5, 2}, 10);
-	private static ArmorMaterial JONIN_ARMOR = EnumHelper.addArmorMaterial("JONIN", 35, new int[]{2, 7, 5, 2}, 10);
+	private static ArmorMaterial JONIN_ARMOR_MATERIAL = EnumHelper.addArmorMaterial("JONIN", 35, new int[]{2, 7, 5, 2}, 10);
 	private static ArmorMaterial SHINOBI_ARMOUR = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 10);
+
+	private static ArmorMaterial ANBU_ARMOUR = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 10);
+
+	private static ArmorMaterial KID_ARMOUR = EnumHelper.addArmorMaterial("KID_CLOTHES", 35, new int[]{2, 8, 5, 2}, 10);
     // Same as iron atm
 	private static ArmorMaterial headbandArmour = EnumHelper.addArmorMaterial("HEADBAND", 35, new int[]{2, 8, 5, 2}, 10);
 	// Weapon and tool materials
@@ -79,7 +89,7 @@ public class NarutoItems {
 		//FightingSpirit = (new ItemNinjaRecord("FightingSpirit")).setUnlocalizedName("record_FightingSpirit");
 		//NejiTheme = (new ItemNinjaRecord("NejiTheme")).setUnlocalizedName("record_NejiTheme");
 
-		LonelyMarch = (new ItemNinjaRecord("LonelyMarch")).setUnlocalizedName("record_lonelymarch");
+		LONELY_MARCH = (new ItemNinjaRecord("LonelyMarch")).setUnlocalizedName("record_lonelymarch");
 
 		Kunai = (new ItemKunai()).setUnlocalizedName("Kunai");
 		Shuriken = (new ItemShuriken()).setUnlocalizedName("Shuriken");
@@ -145,8 +155,23 @@ public class NarutoItems {
 
 		redAnbuMask = (new ItemArmourAnbuMask(headbandArmour, 4, 0)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("redAnbuMask");
 
-		JONIN_ARMOUR = (new ItemNinjaArmor(JONIN_ARMOR, 4, 1, "textures/armour/JoninArmor.png"));
-		JONIN_ARMOUR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("joninArmour");
+		JONIN_ARMOR = (new ItemNinjaArmor(JONIN_ARMOR_MATERIAL, 4, 1, "textures/armour/JoninArmor.png"));
+		JONIN_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("joninArmour");
+
+		NARUTO_SHIPPUDEN_ARMOR = (new ItemNinjaArmor(KID_ARMOUR, 4, 1, "textures/armour/NarutoShippudenArmor.png"));
+		NARUTO_SHIPPUDEN_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("narutoShippudenArmor");
+
+		SASUKE_KID_ARMOR = (new ItemNinjaArmor(KID_ARMOUR, 4, 1, "textures/armour/SasukeKidArmor.png"));
+		SASUKE_KID_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("sasukeKidArmor");
+
+		BORUTO_KID_ARMOR = (new ItemNinjaArmor(KID_ARMOUR, 4, 1, "textures/armour/BorutoKidArmor.png"));
+		BORUTO_KID_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("borutoKidArmor");
+
+		BORUTO_KID_MOVIE_ARMOR = (new ItemNinjaArmor(KID_ARMOUR, 4, 1, "textures/armour/BorutoMovieKidArmor.png"));
+		BORUTO_KID_MOVIE_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("borutoKidMovieArmor");
+
+		ANBU_ARMOR = (new ItemNinjaArmor(ANBU_ARMOUR, 4, 1, "textures/armour/AnbuArmor.png"));
+		ANBU_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("anbuArmor");
 
 		// TODO add the masks from the anbu and rouge
 
@@ -160,7 +185,7 @@ public class NarutoItems {
 
 		//GameRegistry.registerItem(NejiTheme, "MusicDiscNeji");
 
-		GameRegistry.registerItem(LonelyMarch, "MusicLonelyMarch");
+		GameRegistry.registerItem(LONELY_MARCH, "MusicLonelyMarch");
 
 		GameRegistry.registerItem(CopperRyo, "Kan");
 		GameRegistry.registerItem(SilverRyo, "Rin");
@@ -204,7 +229,13 @@ public class NarutoItems {
 
 		GameRegistry.registerItem(redAnbuMask, "redAnbuMask");
 
-		GameRegistry.registerItem(JONIN_ARMOUR,"joninArmour");
+		GameRegistry.registerItem(JONIN_ARMOR,"joninArmour");
+
+		GameRegistry.registerItem(NARUTO_SHIPPUDEN_ARMOR,"narutoShippudenArmor");
+		GameRegistry.registerItem(SASUKE_KID_ARMOR,"sasukeKidArmor");
+		GameRegistry.registerItem(BORUTO_KID_ARMOR,"borutoKidArmor");
+		GameRegistry.registerItem(BORUTO_KID_MOVIE_ARMOR,"borutoKidMovieArmor");
+		GameRegistry.registerItem(ANBU_ARMOR,"anbuArmor");
 
 	}
 

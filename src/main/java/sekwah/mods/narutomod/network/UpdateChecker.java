@@ -31,7 +31,7 @@ public class UpdateChecker/* extends Thread*/ {
     public static String serverip = "localhost";
     public static int serverport = 25565;
 
-    public static String servertext = "Join Naruto Server";
+    public static String servertext = "Coming Soon(ish)™";
 
     public static String serverDiscord = "http://discord.gg/fAJ3xJg";
 

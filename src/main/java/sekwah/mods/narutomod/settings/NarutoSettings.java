@@ -19,6 +19,8 @@ public class NarutoSettings {
     /**
      * Switch between using the new arms and sticking to the normal. Possibly even make the lower arms slightly smaller
      * so they can bend back like captain sparkles old videos(e.g.  but plan to change it back to yours once its more efficient :3
+     *
+     * Removed due to armour hero is making really REALLY wont work nice with it..... GJ HERO <3 RUINING MY PRETTY FEATURES
      */
     public static boolean betterArms = false;
 

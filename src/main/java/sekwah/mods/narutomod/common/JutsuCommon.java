@@ -2,6 +2,7 @@ package sekwah.mods.narutomod.common;
 
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraft.block.Block;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
@@ -134,6 +135,17 @@ public class JutsuCommon {
                 EntityChibakuTensei bigBoomBoomBall = new EntityChibakuTensei(playerMP.worldObj);
                 bigBoomBoomBall.setPosition(playerMP.posX, playerMP.posY, playerMP.posZ);
                 playerMP.worldObj.spawnEntityInWorld(bigBoomBoomBall);
+                return true;
+            case Jutsus.SCREAMING_BIRB:
+                return true;
+            case Jutsus.SCREAMING_BIRBY_BOI:
+                jutsuSound(9, playerMP);
+                return true;
+            case Jutsus.SCREAMING_BIRBY_BOII:
+                ParticleEffectsHandler.addEffect(6, playerMP);
+                return true;
+            case Jutsus.SCREAMING_BIRBY_BOIII:
+                playerMP.worldObj.addWeatherEffect(new EntityLightningBolt(playerMP.worldObj, playerMP.posX, playerMP.posY, playerMP.posZ));
                 return true;
             case Jutsus.FIREBALL:
                 jutsuSound(4, playerMP);

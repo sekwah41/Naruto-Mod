@@ -36,6 +36,9 @@ public class SoundEffects {
 			case 8:
 				playerMP.worldObj.playSound(posX, posY, posZ, "narutomod:jutsusounds.leap", 0.5F, 1F, false);
 				break;
+			case 9:
+				playerMP.worldObj.playSound(posX, posY, posZ, "narutomod:jutsusounds.chidori", 0.5F, 1F, false);
+				break;
 		}
 	}
 

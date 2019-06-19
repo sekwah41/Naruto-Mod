@@ -4,10 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.*;
 import org.apache.commons.io.IOUtils;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.assets.JutsuData;
@@ -52,6 +49,16 @@ public class JutsuClient {
                 }
                 break;
             case Jutsus.RESET_FALL_DAMAGE:
+                break;
+            case Jutsus.SCREAMING_BIRB:
+                playerMP.addChatMessage(new ChatComponentTranslation("naruto.jutsu.chidori").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GREEN)));
+                PacketAnimationUpdate.animationUpdate("chidori", playerMP);
+                break;
+            case Jutsus.SCREAMING_BIRBY_BOI:
+            case Jutsus.SCREAMING_BIRBY_BOIII:
+                break;
+            case Jutsus.SCREAMING_BIRBY_BOII:
+                playerMP.addChatMessage(new ChatComponentTranslation("naruto.jutsu.chidorifail", playerMP.getCommandSenderName()).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GREEN)));
                 break;
             case Jutsus.CHIBAKU_TENSEI:
                 playerMP.addChatMessage(new ChatComponentText("ENJOY DESTRUCTION"));
@@ -165,7 +172,6 @@ public class JutsuClient {
                 PlayerClientTickEvent.chakra -= JutsuData.multiShadowCloneCost;
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
-
             // add shadow clone summon client side
             default:
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + I18n.format("naruto.jutsu.unrecognised")));
@@ -198,21 +204,9 @@ public class JutsuClient {
     public static boolean canCast(int jutsuCombo, EntityClientPlayerMP playerMP /*  add int to say if its chakra, stamina or both. or add a new method*/) {
         NarutoMod.logger.debug("Can Cast: " + jutsuCombo);
         switch (jutsuCombo) {
-            case Jutsus.CHAKRA_RESTORE:
-                return true;
-            case Jutsus.CHAKRA_DASH:
-                return true;
-            case Jutsus.WATER_WALK:
-                return true;
             case Jutsus.SUBSTITUTION:
                 if (PlayerClientTickEvent.chakra >= JutsuData.substitutionCost) return true;
                 break;
-            case Jutsus.CHAKRA_INFUSE_START:
-                return true;
-            case Jutsus.CHAKRA_INFUSE_STOP:
-                return true;
-            case Jutsus.CHIBAKU_TENSEI:
-                return true;
             case Jutsus.FIREBALL:
                 if (PlayerClientTickEvent.chakra >= JutsuData.fireballCost) return true;
                 break;
@@ -224,11 +218,7 @@ public class JutsuClient {
             case Jutsus.EARTH_RELEASE:
                 if (PlayerClientTickEvent.chakra >= JutsuData.wallCost) return true;
                 break;
-            case Jutsus.SEKC:
-                return true;
             case Jutsus.REGULAR_SHADOW_CLONE:
-                if (PlayerClientTickEvent.chakra >= JutsuData.shadowCloneCost) return true;
-                break;
             case Jutsus.CHIBI_SHADOW_CLONE:
                 if (PlayerClientTickEvent.chakra >= JutsuData.shadowCloneCost) return true;
                 break;

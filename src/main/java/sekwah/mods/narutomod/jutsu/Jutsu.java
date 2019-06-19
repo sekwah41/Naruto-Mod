@@ -25,6 +25,7 @@ public class Jutsu {
     private static final Map<String, Integer> JUTSUS = new HashMap<String, Integer>() {{
         put("substitution", Jutsus.SUBSTITUTION);
         put("chibaku_tensei", Jutsus.CHIBAKU_TENSEI);
+        put("chidori", Jutsus.SCREAMING_BIRBY_BOI);
         put("fireball", Jutsus.FIREBALL);
         put("water_bullet", Jutsus.WATER_BULLET);
         //put("eyes", Jutsus.EYES); //TODO not implemented

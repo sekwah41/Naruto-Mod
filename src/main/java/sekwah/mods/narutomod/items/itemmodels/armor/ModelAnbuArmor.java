@@ -3,18 +3,16 @@ package sekwah.mods.narutomod.items.itemmodels.armor;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 
 /**
  * AnbuArmor - HeroGamezFTW
  * Created using Tabula 6.0.0
  */
-public class ModelAnbuArmor extends ModelBase {
-    public ModelRenderer UpperRightArm;
-    public ModelRenderer Head;
-    public ModelRenderer UpperLeftArm;
-    public ModelRenderer UpperLeftLeg;
+public class ModelAnbuArmor extends ModelNinjaBiped {
+
     public ModelRenderer UpperBody;
-    public ModelRenderer UpperRightLeg;
     public ModelRenderer LowerRightArm;
     public ModelRenderer Arm1;
     public ModelRenderer Arm4;
@@ -35,7 +33,6 @@ public class ModelAnbuArmor extends ModelBase {
     public ModelRenderer Arm3_1;
     public ModelRenderer Arm7_1;
     public ModelRenderer Arm9_1;
-    public ModelRenderer LowerLeftLeg;
     public ModelRenderer LowerBody;
     public ModelRenderer Armor2;
     public ModelRenderer Armor17;
@@ -63,7 +60,6 @@ public class ModelAnbuArmor extends ModelBase {
     public ModelRenderer Armorleft2;
     public ModelRenderer Armor21;
     public ModelRenderer Armor20;
-    public ModelRenderer LowerRightLeg;
 
     public ModelAnbuArmor() {
         this.textureWidth = 150;
@@ -111,9 +107,6 @@ public class ModelAnbuArmor extends ModelBase {
         this.Arm2 = new ModelRenderer(this, 0, 70);
         this.Arm2.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Arm2.addBox(1.8F, 2.8F, -2.1F, 4, 1, 2, 0.0F);
-        this.LowerLeftLeg = new ModelRenderer(this, 0, 28);
-        this.LowerLeftLeg.setRotationPoint(2.0F, 12.0F, 0.0F);
-        this.LowerLeftLeg.addBox(-4.0F, -6.0F, -2.0F, 4, 6, 4, 0.0F);
         this.Armor19 = new ModelRenderer(this, 100, 0);
         this.Armor19.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Armor19.addBox(-3.8F, 1.9F, 1.4F, 1, 1, 1, 0.0F);
@@ -136,9 +129,6 @@ public class ModelAnbuArmor extends ModelBase {
         this.Armor24 = new ModelRenderer(this, 99, 13);
         this.Armor24.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Armor24.addBox(2.8F, -0.1F, 1.3F, 1, 1, 1, 0.0F);
-        this.UpperRightArm = new ModelRenderer(this, 40, 16);
-        this.UpperRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
-        this.UpperRightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 6, 4, 0.0F);
         this.UpperBody = new ModelRenderer(this, 16, 16);
         this.UpperBody.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.UpperBody.addBox(-4.0F, 0.0F, -2.0F, 8, 6, 4, 0.0F);
@@ -157,9 +147,6 @@ public class ModelAnbuArmor extends ModelBase {
         this.Armor22 = new ModelRenderer(this, 99, 13);
         this.Armor22.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Armor22.addBox(2.8F, -0.1F, -2.3F, 1, 1, 4, 0.0F);
-        this.UpperRightLeg = new ModelRenderer(this, 0, 16);
-        this.UpperRightLeg.setRotationPoint(2.0F, 12.0F, 0.0F);
-        this.UpperRightLeg.addBox(-6.0F, 0.0F, -2.0F, 4, 6, 4, 0.0F);
         this.Arm6 = new ModelRenderer(this, 0, 70);
         this.Arm6.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Arm6.addBox(5.1F, 2.8F, -2.09F, 1, 1, 4, 0.0F);
@@ -173,7 +160,7 @@ public class ModelAnbuArmor extends ModelBase {
         this.Armor11.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Armor11.addBox(2.8F, 0.0F, -2.3F, 1, 2, 1, 0.0F);
         this.LowerLeftArm = new ModelRenderer(this, 40, 28);
-        this.LowerLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
+        this.LowerLeftArm.setRotationPoint(4.0F, -2.0F, 0.0F);
         this.LowerLeftArm.addBox(-6.0F, 2.0F, -2.0F, 4, 6, 4, 0.0F);
         this.Armor1 = new ModelRenderer(this, 0, 50);
         this.Armor1.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -194,9 +181,6 @@ public class ModelAnbuArmor extends ModelBase {
         this.Armor12 = new ModelRenderer(this, 90, 0);
         this.Armor12.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Armor12.addBox(-3.8F, 0.0F, -2.3F, 1, 2, 1, 0.0F);
-        this.UpperLeftArm = new ModelRenderer(this, 40, 16);
-        this.UpperLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
-        this.UpperLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 6, 4, 0.0F);
         this.Armor21 = new ModelRenderer(this, 70, 20);
         this.Armor21.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Armor21.addBox(-4.6F, 5.1F, -2.25F, 1, 2, 1, 0.0F);
@@ -204,14 +188,11 @@ public class ModelAnbuArmor extends ModelBase {
         this.Armor13 = new ModelRenderer(this, 100, 0);
         this.Armor13.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Armor13.addBox(2.8F, 1.9F, -2.4F, 1, 1, 1, 0.0F);
-        this.Head = new ModelRenderer(this, 0, 0);
-        this.Head.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.Head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
         this.Armor25 = new ModelRenderer(this, 100, 12);
         this.Armor25.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Armor25.addBox(-3.8F, -0.1F, 1.3F, 1, 1, 1, 0.0F);
         this.LowerBody = new ModelRenderer(this, 16, 28);
-        this.LowerBody.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.LowerBody.setRotationPoint(0.0F, -6.0F, 0.0F);
         this.LowerBody.addBox(-4.0F, 6.0F, -2.0F, 8, 6, 4, 0.0F);
         this.Arm5 = new ModelRenderer(this, 0, 70);
         this.Arm5.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -225,18 +206,12 @@ public class ModelAnbuArmor extends ModelBase {
         this.Armor6 = new ModelRenderer(this, 60, 50);
         this.Armor6.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Armor6.addBox(-4.0F, 1.9F, 1.2F, 8, 4, 1, 0.0F);
-        this.LowerRightLeg = new ModelRenderer(this, 0, 28);
-        this.LowerRightLeg.setRotationPoint(2.0F, 12.0F, 0.0F);
-        this.LowerRightLeg.addBox(-8.0F, -6.0F, -2.0F, 4, 6, 4, 0.0F);
         this.LowerRightArm = new ModelRenderer(this, 40, 28);
-        this.LowerRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
+        this.LowerRightArm.setRotationPoint(-4.0F, -2.0F, 0.0F);
         this.LowerRightArm.addBox(2.0F, 2.0F, -2.0F, 4, 6, 4, 0.0F);
         this.Armor5 = new ModelRenderer(this, 0, 50);
         this.Armor5.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Armor5.addBox(-4.2F, 11.0F, -1.7F, 1, 1, 4, 0.0F);
-        this.UpperLeftLeg = new ModelRenderer(this, 0, 16);
-        this.UpperLeftLeg.setRotationPoint(2.0F, 12.0F, 0.0F);
-        this.UpperLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4, 0.0F);
         this.LowerLeftArm.addChild(this.Arm1_1);
         this.UpperBody.addChild(this.Armor2);
         this.UpperBody.addChild(this.Armor23);
@@ -251,7 +226,6 @@ public class ModelAnbuArmor extends ModelBase {
         this.UpperBody.addChild(this.Armor17);
         this.LowerBody.addChild(this.Armor6_1);
         this.LowerRightArm.addChild(this.Arm2);
-        this.UpperLeftLeg.addChild(this.LowerLeftLeg);
         this.UpperBody.addChild(this.Armor19);
         this.LowerRightArm.addChild(this.Arm8);
         this.LowerBody.addChild(this.Armor20);
@@ -268,7 +242,6 @@ public class ModelAnbuArmor extends ModelBase {
         this.LowerBody.addChild(this.Armor3);
         this.LowerLeftArm.addChild(this.Arm9_1);
         this.UpperBody.addChild(this.Armor11);
-        this.UpperLeftArm.addChild(this.LowerLeftArm);
         this.LowerBody.addChild(this.Armor1);
         this.LowerRightArm.addChild(this.Arm4);
         this.LowerRightArm.addChild(this.Arm1);
@@ -278,24 +251,21 @@ public class ModelAnbuArmor extends ModelBase {
         this.LowerBody.addChild(this.Armor21);
         this.UpperBody.addChild(this.Armor13);
         this.UpperBody.addChild(this.Armor25);
-        this.UpperBody.addChild(this.LowerBody);
         this.LowerRightArm.addChild(this.Arm5);
         this.UpperBody.addChild(this.Armor16);
         this.LowerRightArm.addChild(this.Arm7);
         this.UpperBody.addChild(this.Armor6);
-        this.UpperRightLeg.addChild(this.LowerRightLeg);
-        this.UpperRightArm.addChild(this.LowerRightArm);
         this.LowerBody.addChild(this.Armor5);
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-        this.UpperRightArm.render(f5);
-        this.UpperBody.render(f5);
-        this.UpperRightLeg.render(f5);
-        this.UpperLeftArm.render(f5);
-        this.Head.render(f5);
-        this.UpperLeftLeg.render(f5);
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+
+        this.renderTracked(this.LowerLeftArm, f5, this.bipedLeftArmUpper, this.bipedLeftArmLower);
+        this.renderTracked(this.LowerRightArm, f5, this.bipedRightArmUpper, this.bipedRightArmLower);
+        this.renderTracked(this.UpperBody, f5, this.bipedBody);
+        this.renderTracked(this.LowerBody, f5, this.bipedLowerBody);
     }
 
     /**

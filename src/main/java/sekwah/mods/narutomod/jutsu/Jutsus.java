@@ -18,6 +18,11 @@ public class Jutsus {
     public static final int DODGE_LEFT_STOP = 413;
     public static final int DODGE_RIGHT_STOP = 414;
 
+    public static final int SCREAMING_BIRB = 123;
+    public static final int SCREAMING_BIRBY_BOI = 1230;
+    public static final int SCREAMING_BIRBY_BOII = 12301;
+    public static final int SCREAMING_BIRBY_BOIII = 12302;
+
     //actual jutsu combinations
     public static final int SUBSTITUTION = 12; // cv
     public static final int CHIBAKU_TENSEI = 111; // ccc

@@ -157,7 +157,7 @@ public class ModelNinjaBiped extends ModelBiped
 
         this.bipedLowerBody = new AnimModelRenderer(this, 16, 22,"lowerBody");
         this.bipedLowerBody.cubeList.add(new ModelRetexturedBox(this.bipedLowerBody, 16, 22, -4F, 0F, -2F, 8, 6, 4, p_i1149_1_, 28, 24, 28,16));
-        this.bipedLowerBody.setRotationPoint(0F, 6F, 0F);
+        this.bipedLowerBody.setRotationPoint(0F, 6F + p_i1149_2_, 0F);
 
         //this.bipedLowerBody.addBox(-4F, 0F, -2F, 8, 6, 4, p_i1149_1_);
         //this.bipedLowerBody.cubeList.add(new ModelRetexturedBox(this.bipedLowerBody, 16, 22, -4F, 0F, -2F, 8, 6, 4, p_i1149_1_));
@@ -356,6 +356,7 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedRightArmUpper = new AnimModelRenderer(this, 16, 22, "rightArmUpper", bipedRightArmUpper);
         }
 
+
         this.bipedLeftArmLower.setRotationPoint(1.0F, 4F, 0.0F);
 
         this.bipedRightArmLower.setRotationPoint(-1.0F, 4F, 0.0F);
@@ -452,7 +453,7 @@ public class ModelNinjaBiped extends ModelBiped
         {
             f6 = this.swingProgress;
             this.bipedBody.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(f6) * (float)Math.PI * 2.0F) * 0.2F;
-            this.bipedLowerBody.setRotationPoint(0F, 6F, 0F);
+            this.bipedLowerBody.setRotationPoint(0F, 6F + par2, 0F);
             this.bipedLowerBody.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(f6) * (float)Math.PI * 2.0F) * 0.2F;
             this.bipedRightArmUpper.rotationPointZ = MathHelper.sin(this.bipedBody.rotateAngleY) * 5.0F;
             this.bipedRightArmUpper.rotationPointX = -MathHelper.cos(this.bipedBody.rotateAngleY) * 5.0F;
@@ -482,7 +483,7 @@ public class ModelNinjaBiped extends ModelBiped
 
             this.bipedBody.rotateAngleX = 0.6F;
             this.bipedLowerBody.rotateAngleX = 0.155F;
-            this.bipedLowerBody.setRotationPoint(0F, 4.05F, 3.05F);
+            this.bipedLowerBody.setRotationPoint(0F, 4.05F + par2, 3.05F);
             this.bipedRightArmUpper.rotateAngleX += 0.4F;
             this.bipedLeftArmUpper.rotateAngleX += 0.4F;
             this.bipedHead.setRotationPoint(0.0F, 0.0F + par2, 0.0F);
@@ -506,7 +507,7 @@ public class ModelNinjaBiped extends ModelBiped
         {
             this.bipedBody.rotateAngleX = 0.0F;
             this.bipedLowerBody.rotateAngleX = 0.0F;
-            this.bipedLowerBody.setRotationPoint(0F, 6F, 0F);
+            this.bipedLowerBody.setRotationPoint(0F, 6F + par2, 0F);
             this.bipedRightLegUpper.rotationPointZ = 0.1F;
             this.bipedLeftLegUpper.rotationPointZ = 0.1F;
             this.bipedRightLegUpper.rotationPointY = 12.0F;
@@ -645,7 +646,7 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedMaskSmall.setRotationPoint(0F, 3.133333F, -5F);
             this.bipedHeadwear.setRotationPoint(0F, 3.133333F, -5F);
             this.bipedBody.setRotationPoint(0F, 3F, -3.5F);
-            this.bipedLowerBody.setRotationPoint(0F, 6F, 0F);
+            this.bipedLowerBody.setRotationPoint(0F, 5F + par2, 0F);
             this.bipedRightArmUpper.setRotationPoint(-5F, 3.933333F, -3F);
             this.bipedLeftArmUpper.setRotationPoint(5F, 3.266667F, -3F);
             this.bipedRightLegUpper.setRotationPoint(-2F, 12.0F, 0.0F);
@@ -806,6 +807,16 @@ public class ModelNinjaBiped extends ModelBiped
         part.rotateAngleX = tracker.rotateAngleX;
         part.rotateAngleY = tracker.rotateAngleY;
         part.rotateAngleZ = tracker.rotateAngleZ;
+    }
+
+
+    protected void renderTracked(ModelRenderer part, float f5, ModelRenderer... tracked) {
+        GL11.glPushMatrix();
+        for (ModelRenderer track : tracked) {
+            track.postRender(f5);
+        }
+        part.render(f5);
+        GL11.glPopMatrix();
     }
 
     /**

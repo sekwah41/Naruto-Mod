@@ -2,6 +2,7 @@
   "jutsusounds.Seal_a": {"category": "player","sounds": [{"name": "jutsusounds/Seal_a","stream": false}]},
   "jutsusounds.Seal_b": {"category": "player","sounds": [{"name": "jutsusounds/Seal_b","stream": false}]},
   "jutsusounds.Seal_c": {"category": "player","sounds": [{"name": "jutsusounds/Seal_c","stream": false}]},
+  "jutsusounds.chidori": {"category": "player","sounds": [{"name": "jutsusounds/chidori","stream": false}]},
   "jutsusounds.bunshin_seal": {"category": "player","sounds": [{"name": "jutsusounds/bunshin_seal","stream": false}]},
   "jutsusounds.jump_air": {"category": "player","sounds": [{"name": "jutsusounds/jump_air","stream": false},{"name": "jutsusounds/jump_air2","stream": false},{"name": "jutsusounds/jump_air3","stream": false}]},
   "jutsusounds.leap": {"category": "player","sounds": [{"name": "jutsusounds/leap","stream": false},{"name": "jutsusounds/leap2","stream": false}]},

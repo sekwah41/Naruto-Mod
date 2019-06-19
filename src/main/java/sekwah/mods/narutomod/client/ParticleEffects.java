@@ -5,6 +5,7 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.common.entity.particles.EntityBirbFX;
 import sekwah.mods.narutomod.common.entity.particles.EntityColouredSmokeFX;
 import sekwah.mods.narutomod.common.entity.particles.EntityColouredSmokeTrackingFX;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
@@ -77,7 +78,6 @@ public class ParticleEffects {
             posX = dis.readDouble();
             posY = dis.readDouble();
             posZ = dis.readDouble();
-            dimension = dis.readInt();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -124,6 +124,11 @@ public class ParticleEffects {
                 e.printStackTrace();
             }
             Minecraft.getMinecraft().effectRenderer.addEffect(new EntityColouredSmokeFX(playerMP.worldObj, posX + particleX, posY + particleY, posZ + particleZ, 0, 0, 0, red, green, blue));
+        }
+        else if (effectID == 6) {
+            for (int i = 1; i < 1000; i++) {
+                Minecraft.getMinecraft().effectRenderer.addEffect(new EntityBirbFX(playerMP.worldObj, posX, posY, posZ).setMotion(Math.random() - 0.5D, Math.random() - 0.5D, Math.random() - 0.5D));
+            }
         }
         else {
 
