@@ -35,12 +35,12 @@ import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import sekwah.mods.narutomod.common.entity.projectiles.*;
 import sekwah.mods.narutomod.common.entity.specials.EntityChibakuBlock;
 import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
-import sekwah.mods.narutomod.items.NarutoItems;
-import sekwah.mods.narutomod.items.itemmodels.ModelFlakJacket;
-import sekwah.mods.narutomod.items.itemmodels.armor.*;
-import sekwah.mods.narutomod.items.itemrenderers.RenderItemKubikiribocho;
-import sekwah.mods.narutomod.items.itemrenderers.RenderItemSamehada;
-import sekwah.mods.narutomod.items.itemrenderers.RenderItemScroll;
+import sekwah.mods.narutomod.common.items.NarutoItems;
+import sekwah.mods.narutomod.common.items.itemmodels.ModelFlakJacket;
+import sekwah.mods.narutomod.common.items.itemmodels.armor.*;
+import sekwah.mods.narutomod.common.items.itemrenderers.RenderItemKubikiribocho;
+import sekwah.mods.narutomod.common.items.itemrenderers.RenderItemSamehada;
+import sekwah.mods.narutomod.common.items.itemrenderers.RenderItemScroll;
 import sekwah.mods.narutomod.network.UsageReport;
 
 public class ClientProxy extends CommonProxy {

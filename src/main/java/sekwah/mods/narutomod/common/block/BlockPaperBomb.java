@@ -19,7 +19,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityPaperBomb;
-import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.common.items.NarutoItems;
 
 import java.util.Iterator;
 import java.util.List;

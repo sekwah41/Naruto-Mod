@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.client.gui.components.GuiNarutoOptionsSlider;
-import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.common.items.NarutoItems;
 import sekwah.mods.narutomod.settings.EnumNarutoOptions;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 

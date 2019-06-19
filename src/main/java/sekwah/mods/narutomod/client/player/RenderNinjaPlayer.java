@@ -39,7 +39,7 @@ import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.client.player.models.extras.ModelRibs;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
-import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.common.items.NarutoItems;
 
 @SideOnly(Side.CLIENT)
 public class RenderNinjaPlayer extends RenderPlayer {

@@ -13,7 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityShuriken;
-import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.common.items.NarutoItems;
 
 public class EntityRogueNinja extends EntityMob {
 

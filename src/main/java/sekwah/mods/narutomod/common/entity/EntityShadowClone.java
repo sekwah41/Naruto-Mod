@@ -25,7 +25,7 @@ import sekwah.mods.narutomod.common.entity.ai.EntityAIFollowMaster;
 import sekwah.mods.narutomod.common.entity.ai.EntityAIOwnerHurtTarget;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityShuriken;
-import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.common.items.NarutoItems;
 
 import java.io.IOException;
 import java.util.UUID;

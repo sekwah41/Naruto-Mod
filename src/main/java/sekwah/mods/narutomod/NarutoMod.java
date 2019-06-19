@@ -23,7 +23,7 @@ import sekwah.mods.narutomod.common.NarutoEffects;
 import sekwah.mods.narutomod.common.PlayerCommonTickEvent;
 import sekwah.mods.narutomod.common.block.NarutoBlocks;
 import sekwah.mods.narutomod.common.entity.NarutoEntitys;
-import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.common.items.NarutoItems;
 import sekwah.mods.narutomod.network.UpdateChecker;
 import sekwah.mods.narutomod.network.UsageReport;
 import sekwah.mods.narutomod.packets.clientbound.ClientAnimationPacket;

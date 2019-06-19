@@ -13,7 +13,7 @@ import org.lwjgl.input.Keyboard;
 import sekwah.mods.narutomod.client.gui.GuiJutsuMenu;
 import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
 import sekwah.mods.narutomod.client.gui.GuiOptionsMenu;
-import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.common.items.NarutoItems;
 import sekwah.mods.narutomod.jutsu.Jutsu;
 import sekwah.mods.narutomod.jutsu.Jutsus;
 import sekwah.mods.narutomod.packets.PacketDispatcher;

@@ -23,7 +23,7 @@ import net.minecraft.village.Village;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.common.block.NarutoBlocks;
 import sekwah.mods.narutomod.common.entity.ai.*;
-import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.common.items.NarutoItems;
 
 import java.util.*;
 

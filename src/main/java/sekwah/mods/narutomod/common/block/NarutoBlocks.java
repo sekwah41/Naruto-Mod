@@ -3,6 +3,9 @@ package sekwah.mods.narutomod.common.block;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 
 public class NarutoBlocks {
@@ -49,11 +52,8 @@ public class NarutoBlocks {
 
         GameRegistry.registerBlock(bonsaiTree, bonsaiTree.getUnlocalizedName());
 
-        //LanguageRegistry.addName(Sakura_Leaves, "Sakura Leaves");
-
-        //LanguageRegistry.addName(Sakura_Sapling, "Sakura Sapling");
-
-        //LanguageRegistry.addName(bonsaiTree, "Bonsai Tree");
+        // Bonsai
+        GameRegistry.addShapelessRecipe(new ItemStack(bonsaiTree, 1), Items.flower_pot, Blocks.sapling);
 
     }
 

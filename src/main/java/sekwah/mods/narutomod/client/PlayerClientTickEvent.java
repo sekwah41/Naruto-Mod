@@ -23,7 +23,7 @@ import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
 import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.common.NarutoEffects;
-import sekwah.mods.narutomod.items.NarutoItems;
+import sekwah.mods.narutomod.common.items.NarutoItems;
 import sekwah.mods.narutomod.jutsu.Jutsus;
 import sekwah.mods.narutomod.packets.PacketAnimationUpdate;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
