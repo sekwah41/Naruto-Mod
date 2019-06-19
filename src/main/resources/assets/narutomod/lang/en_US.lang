@@ -23,33 +23,33 @@ item.Shuriken.name=Shuriken
 item.record_lonelymarch.name=Music Disc
 item.record_lonelymarch.desc=Sekwah - Lonely March
 item.record.LonelyMarch.desc=Sekwah - Lonely March
-        
+
 item.copper_ryo.name=Kan
 item.silver_ryo.name=Rin
 item.gold_ryo.name=Ryo
-        
+
 item.Katana.name=Katana
-        
+
 item.ExplosiveTag.name=Paper Bomb
-        
+
 item.ExplosiveKunai.name=Explosive Kunai
 
 item.Kubikiribocho.name=Kubikiribocho
 item.Kubikiribocho.desc.line1=A giant baddass sword that heals
 item.Kubikiribocho.desc.line2=with the blood of your enemies.
-        
+
 item.Ramen.name=Ramen
-        
+
 item.gunbai.name=Gunbai
 item.gunbai.desc.line1=Sadly, this is just a cheap knock off
 item.gunbai.desc.line2=of the real legendary weapon.
-        
+
 item.Bokken.name=Bokken
-        
+
 item.Scroll.name=Summoning Scroll(Wolf)
-        
+
 item.Noodles.name=Noodles
-        
+
 item.Samehada.name=Samehada
 
 item.military_pills.name=Military Pills
@@ -79,16 +79,23 @@ item.headProtector.Youtube.name=Youtuber Headband
 item.headProtector.Youtube.desc=Village hidden in the memes
 item.headProtector.Lava.name=Lava Headband
 
+item.sasukeKidArmour.name=Sasuke Kid Clothes
+item.joninArmour.name=Jonin Armour
+item.borutoKidArmour.name=Boruto Kid Clothes
+item.borutoKidMovieArmour.name=Boruto Kid Movie Clothes
+item.narutoShippudenArmour.name=Naruto Shippuden Clothes
+item.anbuArmour.name=Anbu Armour
+
+
 item.backBokken.name=Sheathed Bokken
-        
+
 item.backKatana.name=Sheathed Katana
-        
 item.backStraps.name=Leather Straps
-        
+
 item.fabric..name=Fabric
-        
+
 item.fabric.reinforced.name=Reinforced Fabric
-        
+
 item.fabric.reinforcedBlack.name=Reinforced Black Fabric
 item.flakJacket.name=Flak Jacket
 item.kubikiribocho.name=Kubikiribocho
@@ -102,23 +109,24 @@ tile.bonsaitree.name=BonsaiTree
 
 
 itemGroup.narutoWeapons=Naruto Weapons
-
 itemGroup.narutoMaterials=Naruto Materials
+itemGroup.narutoArmour=Naruto Armour
+
 Jutsus.Chakra_Control=Chakra Control
 Jutsus.Chakra_Control.desc=The basis of every technique with the exception of taijutsu. Passive ability. C can also be held to focus your chakra and speed up regeneration.
-        
+
 Jutsus.Fire_Ball_Jutsu=Fire Ball Jutsu
 Jutsus.Fire_Ball_Jutsu.desc=Turn your chakra to fire and release it in the form of a fireball. Combo: C V C
-        
+
 Jutsus.Shadow_Clone_Jutsu=Shadow Clone Jutsu
 Jutsus.Shadow_Clone_Jutsu.desc=Confuse your enemy with copies of yourself! Combo: C B B V
-        
+
 Jutsus.Water_Walk=Water Walking
 Jutsus.Water_Walk.desc=Direct chakra to beneath your feet and allow yourself to stand, run and jump on water. Combo: B
-        
+
 Jutsus.Chakra_Dash=Chakra Dash
 Jutsus.Chakra_Dash.desc=Infuse chakra throughout your body and increase the speed of your movements. Combo: V
-        
+
 Jutsus.Substitution=Substitution
 Jutsus.Substitution.desc=This technique replaces the users body with an object. Combo: C V
 

@@ -576,8 +576,6 @@ public class ModelSasukeKidArmor extends ModelNinjaBiped {
         this.renderTracked(this.UpperBody, f5, this.bipedBody);
         this.renderTracked(this.LowerBody, f5, this.bipedLowerBody);
 
-        this.Jacket2.setRotationPoint(12.0F, 0.0F, 0.0F);
-
     }
 
     /**

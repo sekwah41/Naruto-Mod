@@ -14,8 +14,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import sekwah.mods.narutomod.common.NarutoEffects;
 import sekwah.mods.narutomod.common.block.NarutoBlocks;
-import sekwah.mods.narutomod.items.creativetabs.CreativeTabNinjaMaterials;
-import sekwah.mods.narutomod.items.creativetabs.CreativeTabNinjaWeapons;
+import sekwah.mods.narutomod.items.creativetabs.CreativeTabNinja;
 import sekwah.mods.narutomod.items.dispenserbehavior.DispenserBehaviorExplosiveKunai;
 import sekwah.mods.narutomod.items.dispenserbehavior.DispenserBehaviorKunai;
 import sekwah.mods.narutomod.items.dispenserbehavior.DispenserBehaviorSenbon;
@@ -23,8 +22,9 @@ import sekwah.mods.narutomod.items.dispenserbehavior.DispenserBehaviorShuriken;
 
 public class NarutoItems {
 
-	public static final CreativeTabs ninjaWeapons = new CreativeTabNinjaWeapons(CreativeTabs.getNextID(), "narutoWeapons");
-	public static final CreativeTabs ninjaMaterials = new CreativeTabNinjaMaterials(CreativeTabs.getNextID(), "narutoMaterials");
+	public static final CreativeTabNinja ninjaWeapons = new CreativeTabNinja(CreativeTabs.getNextID(), "narutoWeapons");
+	public static final CreativeTabNinja ninjaMaterials = new CreativeTabNinja(CreativeTabs.getNextID(), "narutoMaterials");
+	public static final CreativeTabNinja ninjaArmour = new CreativeTabNinja(CreativeTabs.getNextID(), "narutoArmour");
 	public static Item Kunai;
 	public static Item Shuriken;
 	//public static Item FightingSpirit;
@@ -52,28 +52,29 @@ public class NarutoItems {
 	public static Item kubikiribocho;
 	public static Item headBand;
 	public static Item fabric;
-	public static ItemNinjaArmor flakJacket;
+	public static ItemNinjaArmour flakJacket;
 	public static Item shinobiChestplate;
 	public static Item shinobiLeggings;
 	public static Item redAnbuMask;
 
-	public static ItemNinjaArmor JONIN_ARMOR;
-	public static ItemNinjaArmor NARUTO_SHIPPUDEN_ARMOR;
-	public static ItemNinjaArmor SASUKE_KID_ARMOR;
-	public static ItemNinjaArmor BORUTO_KID_ARMOR;
-	public static ItemNinjaArmor BORUTO_KID_MOVIE_ARMOR;
-	public static ItemNinjaArmor ANBU_ARMOR;
+	public static ItemNinjaArmour JONIN_ARMOUR;
+	public static ItemNinjaArmour NARUTO_SHIPPUDEN_ARMOUR;
+	public static ItemNinjaArmour SASUKE_KID_ARMOUR;
+	public static ItemNinjaArmour BORUTO_KID_ARMOUR;
+	public static ItemNinjaArmour BORUTO_KID_MOVIE_ARMOUR;
+	public static ItemNinjaArmour ANBU_ARMOUR;
+	public static ItemNinjaArmour KID_NARUTO;
 
 	// TODO Finish adding the code and complete tomorrow(tomorrow has passed, get yo lazy ass to work you bum)
 	//  recipe needed
 	public static Item armourPlate;
 	public static EnumAction Throw = EnumHelper.addAction("Throw");
 	// Armour materials
-	private static ArmorMaterial FLACK_ARMOR = EnumHelper.addArmorMaterial("FLAK", 35, new int[]{2, 7, 5, 2}, 10);
-	private static ArmorMaterial JONIN_ARMOR_MATERIAL = EnumHelper.addArmorMaterial("JONIN", 35, new int[]{2, 7, 5, 2}, 10);
+	private static ArmorMaterial FLACK_ARMOUR = EnumHelper.addArmorMaterial("FLAK", 35, new int[]{2, 7, 5, 2}, 10);
+	private static ArmorMaterial JONIN_ARMOUR_MATERIAL = EnumHelper.addArmorMaterial("JONIN", 35, new int[]{2, 7, 5, 2}, 10);
 	private static ArmorMaterial SHINOBI_ARMOUR = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 10);
 
-	private static ArmorMaterial ANBU_ARMOUR = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 10);
+	private static ArmorMaterial ANBU_ARMOUR_MAT = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 10);
 
 	private static ArmorMaterial KID_ARMOUR = EnumHelper.addArmorMaterial("KID_CLOTHES", 35, new int[]{2, 8, 5, 2}, 10);
     // Same as iron atm
@@ -113,7 +114,7 @@ public class NarutoItems {
 
 		NOODLES = (new BaseItem()).setUnlocalizedName("Noodles").setTextureName("Noodles").setCreativeTab(CreativeTabs.tabFood).setMaxStackSize(64);
 
-		SUMMON_SCROLL = (new ItemBlockPlacer(NarutoBlocks.Summoning_CircleCenter)).setUnlocalizedName("Scroll").setTextureName("Scroll").setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1);
+		SUMMON_SCROLL = (new ItemBlockPlacer(NarutoBlocks.Summoning_CircleCenter)).setUnlocalizedName("Scroll").setTextureName("Scroll").setCreativeTab(ninjaArmour).setMaxStackSize(1);
 
 		SAMEHADA = (new ItemSamehada(samehadaTool)).setFull3D().setUnlocalizedName("Samehada").setTextureName("Samehada");
 
@@ -125,53 +126,55 @@ public class NarutoItems {
 
 		narutoIcons = (new IconItem()).setUnlocalizedName("narutoIcons").setMaxStackSize(1);
 
-		gourd = (new ItemArmourGourd(ArmorMaterial.IRON, 4, 1)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("gourd");
+		gourd = (new ItemArmourGourd(ArmorMaterial.IRON, 4, 1)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("gourd");
 
-		backScroll = (new ItemArmourScroll(ArmorMaterial.IRON, 4, 1)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("backScroll");
+		backScroll = (new ItemArmourScroll(ArmorMaterial.IRON, 4, 1)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("backScroll");
 
-		backBokken = (new ItemArmourBokken(ArmorMaterial.IRON, 4, 1)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("backBokken");
-		// armour items
+		backBokken = (new ItemArmourBokken(ArmorMaterial.IRON, 4, 1)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("backBokken");
 
-		backKatana = (new ItemArmourKatana(ArmorMaterial.IRON, 4, 1)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("backKatana");
+		backKatana = (new ItemArmourKatana(ArmorMaterial.IRON, 4, 1)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("backKatana");
 
 		backStraps = (new BaseItem()).setUnlocalizedName("backStraps").setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1);
 
 		// TODO add durability onto the headbands and back scroll so register as seperate items or look how leather has a colour value
 		// TODO change liams hidden in the tress to hidden in the leaf and add other village headbands.
-		headBand = (new ItemArmourHeadband(headbandArmour, 4, 0)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("headProtector");
+		headBand = (new ItemArmourHeadband(headbandArmour, 4, 0)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("headProtector");
 
 		fabric = (new ItemFabric()).setUnlocalizedName("fabric").setCreativeTab(ninjaMaterials);
 
-		flakJacket = new ItemNinjaArmor(FLACK_ARMOR, 4, 1, "textures/armour/flak_jacket.png");
-		flakJacket.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("flakJacket");
+		flakJacket = new ItemNinjaArmour(FLACK_ARMOUR, 4, 1, "textures/armour/flak_jacket.png");
+		flakJacket.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("flakJacket");
 
 		kubikiribocho = (new ItemKubikiribocho(kubikiriTool)).setFull3D().setUnlocalizedName("Kubikiribocho").setTextureName("Kubikiribocho");
 
-		shinobiChestplate = (new ItemArmourShinobiChestplate(SHINOBI_ARMOUR, 4, 1)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("madarasChestplate");
+		shinobiChestplate = (new ItemArmourShinobiChestplate(SHINOBI_ARMOUR, 4, 1)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("madarasChestplate");
 
-		shinobiLeggings = (new ItemArmourShinobiLeggings(SHINOBI_ARMOUR, 4, 2)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("madarasLeggings");
+		shinobiLeggings = (new ItemArmourShinobiLeggings(SHINOBI_ARMOUR, 4, 2)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("madarasLeggings");
 
 		armourPlate = (new BaseItem()).setUnlocalizedName("armourPlate").setCreativeTab(ninjaMaterials).setMaxStackSize(32);
 
-		redAnbuMask = (new ItemArmourAnbuMask(headbandArmour, 4, 0)).setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("redAnbuMask");
+		redAnbuMask = (new ItemArmourAnbuMask(headbandArmour, 4, 0)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("redAnbuMask");
 
-		JONIN_ARMOR = (new ItemNinjaArmor(JONIN_ARMOR_MATERIAL, 4, 1, "textures/armour/JoninArmor.png"));
-		JONIN_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("joninArmour");
+		JONIN_ARMOUR = (new ItemNinjaArmour(JONIN_ARMOUR_MATERIAL, 4, 1, "textures/armour/JoninArmour.png"));
+		JONIN_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("joninArmour");
 
-		NARUTO_SHIPPUDEN_ARMOR = (new ItemNinjaArmor(KID_ARMOUR, 4, 1, "textures/armour/NarutoShippudenArmor.png"));
-		NARUTO_SHIPPUDEN_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("narutoShippudenArmor");
+		NARUTO_SHIPPUDEN_ARMOUR = (new ItemNinjaArmour(KID_ARMOUR, 4, 1, "textures/armour/NarutoShippudenArmour.png"));
+		NARUTO_SHIPPUDEN_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("narutoShippudenArmour");
 
-		SASUKE_KID_ARMOR = (new ItemNinjaArmor(KID_ARMOUR, 4, 1, "textures/armour/SasukeKidArmor.png"));
-		SASUKE_KID_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("sasukeKidArmor");
+		SASUKE_KID_ARMOUR = (new ItemNinjaArmour(KID_ARMOUR, 4, 1, "textures/armour/SasukeKidArmour.png"));
+		SASUKE_KID_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("sasukeKidArmour");
 
-		BORUTO_KID_ARMOR = (new ItemNinjaArmor(KID_ARMOUR, 4, 1, "textures/armour/BorutoKidArmor.png"));
-		BORUTO_KID_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("borutoKidArmor");
+		BORUTO_KID_ARMOUR = (new ItemNinjaArmour(KID_ARMOUR, 4, 1, "textures/armour/BorutoKidArmour.png"));
+		BORUTO_KID_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("borutoKidArmour");
 
-		BORUTO_KID_MOVIE_ARMOR = (new ItemNinjaArmor(KID_ARMOUR, 4, 1, "textures/armour/BorutoMovieKidArmor.png"));
-		BORUTO_KID_MOVIE_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("borutoKidMovieArmor");
+		BORUTO_KID_MOVIE_ARMOUR = (new ItemNinjaArmour(KID_ARMOUR, 4, 1, "textures/armour/BorutoMovieKidArmour.png"));
+		BORUTO_KID_MOVIE_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("borutoKidMovieArmour");
 
-		ANBU_ARMOR = (new ItemNinjaArmor(ANBU_ARMOUR, 4, 1, "textures/armour/AnbuArmor.png"));
-		ANBU_ARMOR.setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(1).setUnlocalizedName("anbuArmor");
+		ANBU_ARMOUR = (new ItemNinjaArmour(ANBU_ARMOUR_MAT, 4, 1, "textures/armour/AnbuArmour.png"));
+		ANBU_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("anbuArmour");
+
+		ANBU_ARMOUR = (new ItemNinjaArmour(ANBU_ARMOUR_MAT, 4, 1, "textures/armour/AnbuArmour.png"));
+		ANBU_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("anbuArmour");
 
 		// TODO add the masks from the anbu and rouge
 
@@ -229,13 +232,18 @@ public class NarutoItems {
 
 		GameRegistry.registerItem(redAnbuMask, "redAnbuMask");
 
-		GameRegistry.registerItem(JONIN_ARMOR,"joninArmour");
+		GameRegistry.registerItem(JONIN_ARMOUR,"joninArmour");
 
-		GameRegistry.registerItem(NARUTO_SHIPPUDEN_ARMOR,"narutoShippudenArmor");
-		GameRegistry.registerItem(SASUKE_KID_ARMOR,"sasukeKidArmor");
-		GameRegistry.registerItem(BORUTO_KID_ARMOR,"borutoKidArmor");
-		GameRegistry.registerItem(BORUTO_KID_MOVIE_ARMOR,"borutoKidMovieArmor");
-		GameRegistry.registerItem(ANBU_ARMOR,"anbuArmor");
+		GameRegistry.registerItem(NARUTO_SHIPPUDEN_ARMOUR,"narutoShippudenArmour");
+		GameRegistry.registerItem(SASUKE_KID_ARMOUR,"sasukeKidArmour");
+		GameRegistry.registerItem(BORUTO_KID_ARMOUR,"borutoKidArmour");
+		GameRegistry.registerItem(BORUTO_KID_MOVIE_ARMOUR,"borutoKidMovieArmour");
+		GameRegistry.registerItem(ANBU_ARMOUR,"anbuArmour");
+
+
+		ninjaArmour.setItemStack(new ItemStack(redAnbuMask));
+		ninjaMaterials.setItemStack(new ItemStack(fabric));
+		ninjaWeapons.setItemStack(new ItemStack(Kunai));
 
 	}
 

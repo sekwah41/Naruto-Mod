@@ -35,6 +35,10 @@ public class ItemKunai extends Item {
         this.itemIcon = par1IconRegister.registerIcon(NarutoMod.modid + ":" + (this.getUnlocalizedName().substring(5)));
     }
 
+    public boolean isFull3D() {
+        return true;
+    }
+
 
     public float func_82803_g() {
         return -2F;

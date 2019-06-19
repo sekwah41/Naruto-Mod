@@ -212,6 +212,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
     public void doRender(AbstractClientPlayer p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
         if (MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderPlayerEvent.Pre(p_76986_1_, this, p_76986_9_)))
             return;
+        GL11.glPushMatrix();
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
         ItemStack itemstack = p_76986_1_.inventory.getCurrentItem();
         this.modelArmorChestplate.heldItemRight = this.modelArmor.heldItemRight = this.modelBipedMain.heldItemRight = itemstack != null ? 1 : 0;
@@ -272,6 +273,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
         /*this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = false;
         this.modelArmorChestplate.isClientThrowing = this.modelArmor.isClientThrowing = this.modelBipedMain.isClientThrowing = false;*/
         this.modelArmorChestplate.heldItemRight = this.modelArmor.heldItemRight = this.modelBipedMain.heldItemRight = 0;
+        GL11.glPopMatrix();
         MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderPlayerEvent.Post(p_76986_1_, this, p_76986_9_));
     }
 

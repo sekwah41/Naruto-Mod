@@ -16,9 +16,9 @@ import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
 
-public class ItemNinjaArmor extends ItemArmor {
+public class ItemNinjaArmour extends ItemArmor {
 
-    private final String armorTexture;
+    private final String armourTexture;
     private ModelNinjaBiped modelArmor;
     @SideOnly(Side.CLIENT)
     private IIcon[] Icons;
@@ -27,10 +27,10 @@ public class ItemNinjaArmor extends ItemArmor {
         this.modelArmor = armor;
     }
 
-    public ItemNinjaArmor(ArmorMaterial par2EnumArmorMaterial,
-                          int par3, int par4, String armorTexture) {
+    public ItemNinjaArmour(ArmorMaterial par2EnumArmorMaterial,
+                           int par3, int par4, String armourTexture) {
         super(par2EnumArmorMaterial, par3, par4);
-        this.armorTexture = armorTexture;
+        this.armourTexture = armourTexture;
 
     }
 
@@ -41,7 +41,7 @@ public class ItemNinjaArmor extends ItemArmor {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-        return NarutoMod.modid + ":" + this.armorTexture;
+        return NarutoMod.modid + ":" + this.armourTexture;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ItemNinjaArmor extends ItemArmor {
     public ModelBiped getArmorModel(EntityLivingBase entityLiving,
                                     ItemStack itemStack, int armorSlot) {
         if (itemStack != null) {
-            if (itemStack.getItem() instanceof ItemNinjaArmor) {
+            if (itemStack.getItem() instanceof ItemNinjaArmour) {
                 int type = ((ItemArmor) itemStack.getItem()).armorType;
 
                 if (type == 1) {
