@@ -74,6 +74,7 @@ item.headProtector=headband
 
 item.headProtector.HiddenInTheTrees.name=Hidden In The Trees Headband
 item.headProtector.HiddenInTheLeaves.name=Hidden In The Leaves Headband
+item.headProtector.HiddenInTheLeavesScratched.name=Hidden In The Leaves Headband (Scratched)
 item.headProtector.Custard.name=Custard Headband
 item.headProtector.Youtube.name=Youtuber Headband
 item.headProtector.Youtube.desc=Village hidden in the memes
@@ -92,16 +93,24 @@ item.backBokken.name=Sheathed Bokken
 item.backKatana.name=Sheathed Katana
 item.backStraps.name=Leather Straps
 
-item.fabric..name=Fabric
+item.fabric.name=Fabric
 
-item.fabric.reinforced.name=Reinforced Fabric
+item.fabric.Reinforced.name=Reinforced Fabric
 
-item.fabric.reinforcedBlack.name=Reinforced Black Fabric
+item.fabric.ReinforcedGreen.name=Reinforced Green Fabric
+
+item.fabric.ReinforcedBlack.name=Reinforced Black Fabric
+item.fabric.ReinforcedBlue.name=Reinforced Blue Fabric
+item.fabric.ReinforcedRed.name=Reinforced Red Fabric
+item.fabric.ReinforcedOrange.name=Reinforced Orange Fabric
 item.flakJacket.name=Flak Jacket
 item.kubikiribocho.name=Kubikiribocho
 item.madarasChestplate.name=Madara's Chestplate
 item.madarasLeggings.name=Madara's Leggings
+
 item.armourPlate.name=Armour Plate
+item.armourPlate.Red.name=Red Armour Plate
+item.armourPlate.Green.name=Green Armour Plate
 
 tile.sakuraleaves.name=Sakura Leaves
 tile.sakurasapling.name=Sakura Sapling
@@ -146,7 +155,7 @@ naruto.jutsu.chakraCharge.deactivate=You have stopped infusing your chakra!
 
 naruto.jutsu.fireball=Fire Style - Fireball jutsu!
 naruto.jutsu.chidori=Lightning Style - Chidori!
-naruto.jutsu.chidorifail=It’s at this moment in time %s knew, he fucked up
+naruto.jutsu.chidorifail=It’s at this moment in time %s knew, he screwed up
 naruto.jutsu.waterBullet=Water Style - Water Bullet Jutsu!
 naruto.jutsu.earthWall=Earth Release - Earth-Style Wall!
 naruto.jutsu.earthWall.failed=Jutsu failed you must be looking at a block within 10 blocks

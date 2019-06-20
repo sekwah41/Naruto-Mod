@@ -141,7 +141,10 @@ public class NarutoItems {
 		// TODO change liams hidden in the tress to hidden in the leaf and add other village headbands.
 		headBand = (new ItemArmourHeadband(headbandArmour, 4, 0)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("headProtector");
 
-		fabric = (new ItemFabric()).setUnlocalizedName("fabric").setCreativeTab(ninjaMaterials);
+		//fabric = (new ItemFabric()).setUnlocalizedName("fabric").setCreativeTab(ninjaMaterials);
+		fabric = (new BaseItemAndSub("Reinforced", "ReinforcedGreen", "ReinforcedBlack", "ReinforcedRed", "ReinforcedBlue", "ReinforcedOrange")).setName("fabric").setCreativeTab(ninjaMaterials);
+
+		armourPlate = (new BaseItemAndSub("Red", "Green")).setName("armourPlate").setCreativeTab(ninjaMaterials).setMaxStackSize(32);
 
 		flakJacket = new ItemNinjaArmour(FLACK_ARMOUR, 4, 1, "textures/armour/flak_jacket.png");
 		flakJacket.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("flakJacket");
@@ -151,8 +154,6 @@ public class NarutoItems {
 		shinobiChestplate = (new ItemArmourShinobiChestplate(SHINOBI_ARMOUR, 4, 1)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("madarasChestplate");
 
 		shinobiLeggings = (new ItemArmourShinobiLeggings(SHINOBI_ARMOUR, 4, 2)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("madarasLeggings");
-
-		armourPlate = (new BaseItem()).setUnlocalizedName("armourPlate").setCreativeTab(ninjaMaterials).setMaxStackSize(32);
 
 		redAnbuMask = (new ItemArmourAnbuMask(headbandArmour, 4, 0)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("redAnbuMask");
 
@@ -312,18 +313,55 @@ public class NarutoItems {
 		// Fabric
 		GameRegistry.addRecipe(new ItemStack(fabric, 6, 0), "WWW", "WWW", 'W', Blocks.wool);
 
-		// Reinforced Fabric
-		GameRegistry.addRecipe(new ItemStack(fabric, 1, 1), "IGI", "CCC", "   ", 'C', new ItemStack(fabric, 1, 0), 'I', Items.iron_ingot, 'G', new ItemStack(Items.dye, 1, 2));
+		GameRegistry.addShapelessRecipe(new ItemStack(fabric, 1, 2), new ItemStack(fabric, 1, 1), new ItemStack(Items.dye, 1, 2));
+		GameRegistry.addShapelessRecipe(new ItemStack(fabric, 1, 3), new ItemStack(fabric, 1, 1), new ItemStack(Items.dye, 1, 0));
+		GameRegistry.addShapelessRecipe(new ItemStack(fabric, 1, 4), new ItemStack(fabric, 1, 1), new ItemStack(Items.dye, 1, 1));
+		GameRegistry.addShapelessRecipe(new ItemStack(fabric, 1, 5), new ItemStack(fabric, 1, 1), new ItemStack(Items.dye, 1, 4));
+		GameRegistry.addShapelessRecipe(new ItemStack(fabric, 1, 6), new ItemStack(fabric, 1, 1), new ItemStack(Items.dye, 1, 14));
 
-		GameRegistry.addRecipe(new ItemStack(fabric, 1, 1), "   ", "IGI", "CCC", 'C', new ItemStack(fabric, 1, 0), 'I', Items.iron_ingot, 'G', new ItemStack(Items.dye, 1, 2));
+		// Reinforced Fabric
+		GameRegistry.addRecipe(new ItemStack(fabric, 3, 1), "III", "CCC", 'C', new ItemStack(fabric, 1, 0), 'I', Items.iron_ingot);
+
+		// Armour Plate
+		GameRegistry.addRecipe(new ItemStack(armourPlate, 3, 0), "III", "RRR", 'R', new ItemStack(fabric, 1, 1), 'I', Items.iron_ingot);
+
+		// Naruto clothes
+		GameRegistry.addRecipe(new ItemStack(NARUTO_SHIPPUDEN_ARMOUR), "B B", "BBB", "OOO", 'B', new ItemStack(fabric, 1, 3), 'O', new ItemStack(fabric, 1, 6));
+
+		// Jounin Armour
+		GameRegistry.addRecipe(new ItemStack(JONIN_ARMOUR), "A A", "AAA", "AAA", 'A', new ItemStack(armourPlate, 1, 2));
+
+		// Anbu Armour
+		GameRegistry.addRecipe(new ItemStack(ANBU_ARMOUR), "B B", "AAA", "AAA", 'B', new ItemStack(fabric, 1, 3), 'A', armourPlate);
+
+		// Boruto
+		GameRegistry.addRecipe(new ItemStack(BORUTO_KID_MOVIE_ARMOUR), "B B", "BFB", "BFB", 'B', new ItemStack(fabric, 1, 3), 'F', new ItemStack(fabric));
+		GameRegistry.addShapelessRecipe(new ItemStack(BORUTO_KID_ARMOUR), new ItemStack(BORUTO_KID_MOVIE_ARMOUR), new ItemStack(Items.dye, 1, 9));
+
+		// Headband
+		GameRegistry.addRecipe(new ItemStack(headBand, 1, 0), "BAB", 'B', new ItemStack(fabric, 1, 5), 'A', armourPlate);
+		GameRegistry.addRecipe(new ItemStack(headBand, 1, 1), "SAS", 'S', Items.sugar, 'A', armourPlate);
+		GameRegistry.addRecipe(new ItemStack(headBand, 1, 3), "RAR", 'R', new ItemStack(fabric, 1, 4), 'A', armourPlate);
+
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, 4), new ItemStack(headBand, 1, 0));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, 0), new ItemStack(headBand, 1, 4));
+
+		// Anbu Mask
+		GameRegistry.addRecipe(new ItemStack(redAnbuMask), "IRI", "III", " I ", 'R', new ItemStack(Items.dye, 1, 1), 'I', new ItemStack(armourPlate, 1, 0));
+
+		// Colored Armour Plates
+		GameRegistry.addShapelessRecipe(new ItemStack(armourPlate, 1, 1), new ItemStack(armourPlate, 1, 0), new ItemStack(Items.dye, 1, 1));
+		GameRegistry.addShapelessRecipe(new ItemStack(armourPlate, 1, 2), new ItemStack(armourPlate, 1, 0), new ItemStack(Items.dye, 1, 2));
 
 		// Flak Jacket
 
-		GameRegistry.addRecipe(new ItemStack(flakJacket, 1), "R R", "RRR", "RRR", 'R', new ItemStack(fabric, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(flakJacket, 1), "R R", "RRR", "RRR", 'R', new ItemStack(fabric, 1, 2));
 
 		// Senju Armour
 
-		GameRegistry.addRecipe(new ItemStack(shinobiChestplate, 1), "R R", "RRR", "RRR", 'R', armourPlate);
+		GameRegistry.addRecipe(new ItemStack(shinobiChestplate, 1), "R R", "RRR", "RRR", 'R', new ItemStack(armourPlate, 1, 1));
+
+		GameRegistry.addRecipe(new ItemStack(shinobiLeggings, 1), "RRR", "B B", "B B", 'R', new ItemStack(armourPlate, 1, 1), 'B', new ItemStack(fabric, 1, 3));
 
 		// Armour plate
 
