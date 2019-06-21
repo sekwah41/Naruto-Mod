@@ -77,7 +77,7 @@ item.headProtector.HiddenInTheLeaves.name=Повязка деревни скры
 item.headProtector.HiddenInTheLeavesScratched.name=Повязка деревни скрытой в Листьях (Повреждённая)
 item.headProtector.Custard.name=Повязка деревни скрытой в Сладостях
 item.headProtector.Youtube.name=Повязка Ютубера
-item.headProtector.Youtube.desc=Деревня спрятанная в мемах
+item.headProtector.Youtube.desc=Деревня скрытая в мемах
 item.headProtector.Lava.name=Повязка деревни скрытой в Лавые
 
 item.sasukeKidArmour.name=Детская одежда Саске
@@ -103,7 +103,7 @@ item.fabric.ReinforcedBlack.name=Усиленная чёрная ткань
 item.fabric.ReinforcedBlue.name=Усиленная синяя ткань
 item.fabric.ReinforcedRed.name=Усиленная красная ткань
 item.fabric.ReinforcedOrange.name=Усиленная оранжевая ткань
-item.flakJacket.name=Одноцветный жилет
+item.flakJacket.name=Бронированный жилет
 item.kubikiribocho.name=Кубикирибочо
 item.madarasChestplate.name=Нагрудник Мадары
 item.madarasLeggings.name=Поножи Мадары
@@ -173,7 +173,7 @@ naruto.jutsu.nochakra=Недостаточно чакры!
 naruto.jutsu.nostamina=Не достаточно сил!
 
 
-entity.narutomod.Puppet.name=Кукла
+entity.narutomod.Puppet.name=Марионетка
 entity.narutomod.Rogue_Ninja.name=Шиноби-Разбойник
 entity.narutomod.Ninja_Villager.name=Житель Шиноби
 entity.narutomod.Ninja_VillagerAnbu.name=Анбу
