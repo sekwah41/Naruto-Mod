@@ -11,44 +11,46 @@ naruto.gui.chakraGUICorner=GUI угол
 naruto.gui.jutsuSettings=Настройки Дзюцу
 naruto.gui.jutsuDelay=Задержка (В тиках)
 
+naruto.gui.chakraColour=Chakra Colour
+
+naruto.gui.clan.title=Clan Selection
+naruto.gui.clan.select=Select
+
 
 item.Kunai.name=Кунай
 item.Shuriken.name=Сюрикен
 
-item.record_FightingSpirit.name=Пластинка
-        
-item.record_NejiTheme.name=МПластинка
-
 item.record_lonelymarch.name=Пластинка
 item.record_lonelymarch.desc=Sekwah - Lonely March
 item.record.LonelyMarch.desc=Sekwah - Lonely March
-        
+
 item.copper_ryo.name=Кан
 item.silver_ryo.name=Рин
 item.gold_ryo.name=Рё
-        
+
 item.Katana.name=Катана
-        
+
 item.ExplosiveTag.name=Бумажная бомба
-        
+
 item.ExplosiveKunai.name=Взрывной кунай
 
 item.Kubikiribocho.name=Кубикирибочо
 item.Kubikiribocho.desc.line1=Огромное оружие, становиться острее,
 item.Kubikiribocho.desc.line2=с каждой каплей крови на нём.
-        
+
 item.Ramen.name=Рамен
-        
+
 item.gunbai.name=Гунбай
 item.gunbai.desc.line1=К сожалению, это всего лишь дешевая
 item.gunbai.desc.line2=подделка легендарного оружия.
-        
+
 item.Bokken.name=Боккен
-        
+
 item.Scroll.name=Свиток Призыва(Волк)
-        
+
 item.Noodles.name=Лапша
-        
+item.Noodles.name=Лапша
+
 item.Samehada.name=Самехада
 
 item.military_pills.name=Военные таблетки
@@ -57,7 +59,6 @@ item.Senbon.name=Игла
 
 item.gourd.name=Тыква
 
-item.Noodles.name=Лапша
 
 item.backScroll=Свиток
 
@@ -86,17 +87,19 @@ item.borutoKidMovieArmour.name=Детская одежда Боруто (Экр�
 item.narutoShippudenArmour.name=Новая одежда Наруто
 item.anbuArmour.name=Броня отряда Анбу
 
+
 item.backBokken.name=Наспинный боккен
-        
+
 item.backKatana.name=Наспинная катана
-        
 item.backStraps.name=Кожаные ремни
-        
-item.fabric..name=Ткань
-        
-item.fabric.reinforced.name=Усиленная ткань
-        
-m.fabric.ReinforcedBlack.name=Усиленная чёрная ткань
+
+item.fabric.name=Fabric
+
+item.fabric.Reinforced.name=Reinforced Fabric
+
+item.fabric.ReinforcedGreen.name=Reinforced Green Fabric
+
+item.fabric.ReinforcedBlack.name=Reinforced Black Fabric
 item.fabric.ReinforcedBlue.name=Усиленная синяя ткань
 item.fabric.ReinforcedRed.name=Усиленная красная ткань
 item.fabric.ReinforcedOrange.name=Усиленная оранжевая ткань
@@ -120,19 +123,19 @@ itemGroup.narutoArmour=Наруто - Броня
 
 Jutsus.Chakra_Control=Контроль чакры
 Jutsus.Chakra_Control.desc=Основа любой техники, кроме тайдзюцу. Пассивное умение. Зажав клавишу C, вы можете ускорить регенерацию чакры.
-        
+
 Jutsus.Fire_Ball_Jutsu=Огненный шар
 Jutsus.Fire_Ball_Jutsu.desc=Преврати свою чакру в огонь и выпусти её в форме шара. Комбинация: C V C
-        
+
 Jutsus.Shadow_Clone_Jutsu=Техника теневого клонирования
 Jutsus.Shadow_Clone_Jutsu.desc=Ошелами врага своим количеством! Комбинация: C B B V
-        
+
 Jutsus.Water_Walk=Техника хождения по воде
 Jutsus.Water_Walk.desc=Сконцентрируй чакру в ногах, что позволит тебе стоять, бежать и прыгать на воде. Комбинация: B
-        
+
 Jutsus.Chakra_Dash=Порыв чакры
 Jutsus.Chakra_Dash.desc=Пропусти чакру сквозь своё тело, увеличивая скорость передвежения. Комбинация: V
-        
+
 Jutsus.Substitution=Техника подмены тел
 Jutsus.Substitution.desc=Эта техника меняет тело использовавшего с объектом местами. Комбинация: C V
 
@@ -141,7 +144,6 @@ Jutsus.Water_Bullet.desc=Сконцентрируй чакру в своем ж�
 
 naruto.jutsu.chakraDash.deactivate=Вы прекратили использовать технику: Порыв чакры!
 naruto.jutsu.chakraDash.activate=Вы использовали технику Порыв чакры!
-naruto.jutsu.chakraDash.nochakra=недостаточно Чакры!
 
 naruto.jutsu.waterWalk.deactivate=Вы прекратили использовать технику: хождения по воде!
 naruto.jutsu.waterWalk.activate=Вы использовали технику хождения по воде!
@@ -152,11 +154,10 @@ naruto.jutsu.chakraCharge.activate=Вы начали регенерироват�
 naruto.jutsu.chakraCharge.deactivate=Вы прекратили регенерацию чакры!
 
 naruto.jutsu.fireball=Стиль огня - Огненный шар!
-naruto.jutsu.waterBullet=Стиль воды - Водяные пули!
 naruto.jutsu.chidori=Стиль молнии - Чидори!
-naruto.jutsu.earthWall=Стиль земли - Зеслянная стена!
-
 naruto.jutsu.chidorifail=It’s at this moment in time %s knew, he screwed up
+naruto.jutsu.waterBullet=Стиль воды - Водяные пули!
+naruto.jutsu.earthWall=Стиль земли - Зеслянная стена!
 naruto.jutsu.earthWall.failed=Дзюдцу не может быть использованно! Вы должны смотреть на блок, рядом с которым не менее 10 других
 
 naruto.jutsu.shadowClone=Техника теневого клонирования!
@@ -228,3 +229,9 @@ naruto.jutsu.combo.sekc=Саблазн-Дзюцу: %s
 naruto.jutsu.combo.chibi_shadow_clone=Водяные клоны: %s
 naruto.jutsu.combo.shadow_clone=Теневые клоны: %s
 naruto.jutsu.combo.multi_shadow_clone=Мульти-теневые клоны: %s
+item.fabric..name=Ткань
+item.fabric.reinforced.name=Усиленная ткань
+item.record_FightingSpirit.name=Пластинка
+item.record_NejiTheme.name=МПластинка
+m.fabric.ReinforcedBlack.name=Усиленная чёрная ткань
+naruto.jutsu.chakraDash.nochakra=недостаточно Чакры!
