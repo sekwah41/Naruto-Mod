@@ -11,10 +11,10 @@ naruto.gui.chakraGUICorner=GUI угол
 naruto.gui.jutsuSettings=Настройки Дзюцу
 naruto.gui.jutsuDelay=Задержка (В тиках)
 
-naruto.gui.chakraColour=Chakra Colour
+naruto.gui.chakraColour=Цвет чакры
 
-naruto.gui.clan.title=Clan Selection
-naruto.gui.clan.select=Select
+naruto.gui.clan.title=Выбор клана
+naruto.gui.clan.select=Выбрать
 
 
 item.Kunai.name=Кунай
@@ -57,7 +57,7 @@ item.military_pills.name=Военные таблетки
 
 item.Senbon.name=Игла
 
-item.gourd.name=Тыква
+item.gourd.name=Песчаный сосуд
 
 
 item.backScroll=Свиток
@@ -75,17 +75,18 @@ item.headProtector=Повязка
 item.headProtector.HiddenInTheTrees.name=Повязка деревни скрытой в Деревьях
 item.headProtector.HiddenInTheLeaves.name=Повязка деревни скрытой в Листьях
 item.headProtector.HiddenInTheLeavesScratched.name=Повязка деревни скрытой в Листьях (Повреждённая)
-item.headProtector.Custard.name=Сладкая повязка
+item.headProtector.Custard.name=Повязка деревни скрытой в Сладостях
 item.headProtector.Youtube.name=Повязка Ютубера
 item.headProtector.Youtube.desc=Деревня спрятанная в мемах
-item.headProtector.Lava.name=Повязка Лавы
+item.headProtector.Lava.name=Повязка деревни скрытой в Лавые
 
 item.sasukeKidArmour.name=Детская одежда Саске
 item.joninArmour.name=Жилет Джонина
 item.borutoKidArmour.name=Деткская одежда Боруто
 item.borutoKidMovieArmour.name=Детская одежда Боруто (Экранизации)
 item.narutoShippudenArmour.name=Новая одежда Наруто
-item.anbuArmour.name=Броня отряда Анбу
+item.narutoKidArmour.name=Детская одежда Наруто
+item.anbuArmour.name=Броня Анбу
 
 
 item.backBokken.name=Наспинный боккен
@@ -93,13 +94,12 @@ item.backBokken.name=Наспинный боккен
 item.backKatana.name=Наспинная катана
 item.backStraps.name=Кожаные ремни
 
-item.fabric.name=Fabric
+item.fabric.name=Ткань
 
-item.fabric.Reinforced.name=Reinforced Fabric
+item.fabric.Reinforced.name=Усиленная ткань
 
-item.fabric.ReinforcedGreen.name=Reinforced Green Fabric
-
-item.fabric.ReinforcedBlack.name=Reinforced Black Fabric
+item.fabric.ReinforcedGreen.name=Усиленная зелёная ткань
+item.fabric.ReinforcedBlack.name=Усиленная чёрная ткань
 item.fabric.ReinforcedBlue.name=Усиленная синяя ткань
 item.fabric.ReinforcedRed.name=Усиленная красная ткань
 item.fabric.ReinforcedOrange.name=Усиленная оранжевая ткань
@@ -155,7 +155,7 @@ naruto.jutsu.chakraCharge.deactivate=Вы прекратили регенера�
 
 naruto.jutsu.fireball=Стиль огня - Огненный шар!
 naruto.jutsu.chidori=Стиль молнии - Чидори!
-naruto.jutsu.chidorifail=It’s at this moment in time %s knew, he screwed up
+naruto.jutsu.chidorifail=В этот момент %s узнал, он облажался
 naruto.jutsu.waterBullet=Стиль воды - Водяные пули!
 naruto.jutsu.earthWall=Стиль земли - Зеслянная стена!
 naruto.jutsu.earthWall.failed=Дзюдцу не может быть использованно! Вы должны смотреть на блок, рядом с которым не менее 10 других
@@ -182,7 +182,7 @@ entity.narutomod.Shadow_Clone.name=Теневой Клон
 entity.narutomod.Substitution.name=Подмена
 entity.narutomod.SubstitutionLog.name=Бревно
 
-narutomod.keys.category=Клавиши Управление Модом
+narutomod.keys.category=Клавиши управления модом Naruto Mod
 naruto.keys.key1=Дзюцу Клавиша 1
 naruto.keys.key2=Дзюцу Клавиша 2
 naruto.keys.key3=Дзюцу Клавиша 3
@@ -212,7 +212,7 @@ naruto.gui.dodges.enabled=Dodges включены
 
 naruto.gui.betterArms=Улучшенные руки
 
-naruto.gui.restartMinecraft=Перезапустить майнкрафт
+naruto.gui.restartMinecraft=Перезапустите Майнкрафт
 
 naruto.gui.settingsSaved=Настройки сохранены
 
@@ -220,8 +220,8 @@ item.redAnbuMask.name=Красная маска Анбу
 
 commands.naruto.jutsu.usage=/jutsu <list/activate>
 commands.naruto.jutsu.activate.usage=/jutsu activate <jutsu>
-naruto.jutsu.combo.substitution=Подмена: %s
-naruto.jutsu.combo.chibaku_tensei=Чибаку сенсей: %s
+naruto.jutsu.combo.substitution=Техника подмены тел: %s
+naruto.jutsu.combo.chibaku_tensei=Чибаку Тенсей: %s
 naruto.jutsu.combo.fireball=Огненный шар: %s
 naruto.jutsu.combo.water_bullet=Водяные пули: %s
 naruto.jutsu.combo.earth_release=Земляная стена: %s
@@ -229,9 +229,7 @@ naruto.jutsu.combo.sekc=Саблазн-Дзюцу: %s
 naruto.jutsu.combo.chibi_shadow_clone=Водяные клоны: %s
 naruto.jutsu.combo.shadow_clone=Теневые клоны: %s
 naruto.jutsu.combo.multi_shadow_clone=Мульти-теневые клоны: %s
-item.fabric..name=Ткань
-item.fabric.reinforced.name=Усиленная ткань
+
 item.record_FightingSpirit.name=Пластинка
-item.record_NejiTheme.name=МПластинка
-m.fabric.ReinforcedBlack.name=Усиленная чёрная ткань
-naruto.jutsu.chakraDash.nochakra=недостаточно Чакры!
+item.record_NejiTheme.name=Пластинка
+naruto.jutsu.chakraDash.nochakra=Недостаточно Чакры!
