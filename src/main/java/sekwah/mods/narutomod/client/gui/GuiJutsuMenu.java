@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.stats.StatFileWriter;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -396,7 +397,7 @@ public class GuiJutsuMenu extends GuiScreen {
                 this.fontRendererObj.drawSplitString(s1, j4, l3 + 12, i5, -6250336);
 
                 if (true) {
-                    this.fontRendererObj.drawStringWithShadow("Learnt!", j4, l3 + l4 + 4, -7302913);
+                    this.fontRendererObj.drawStringWithShadow(I18n.format("gui.jutsu.learnt"), j4, l3 + l4 + 4, -7302913);
                 }
             }
             /**else

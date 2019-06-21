@@ -273,6 +273,8 @@ public class RenderNinjaPlayer extends RenderPlayer {
         /*this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = false;
         this.modelArmorChestplate.isClientThrowing = this.modelArmor.isClientThrowing = this.modelBipedMain.isClientThrowing = false;*/
         this.modelArmorChestplate.heldItemRight = this.modelArmor.heldItemRight = this.modelBipedMain.heldItemRight = 0;
+
+
         GL11.glPopMatrix();
         MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderPlayerEvent.Post(p_76986_1_, this, p_76986_9_));
     }

@@ -50,22 +50,22 @@ public class ItemNinjaArmour extends ItemArmor {
                                     ItemStack itemStack, int armorSlot) {
         if (itemStack != null) {
             if (itemStack.getItem() instanceof ItemNinjaArmour) {
-                int type = ((ItemArmor) itemStack.getItem()).armorType;
-
-                if (type == 1) {
-                    if (entityLiving instanceof EntityPlayer) {
-                        DataWatcher dw = entityLiving.getDataWatcher();
-                        modelArmor.animationID = dw.getWatchableObjectString(DataWatcherIDs.jutsuPose);
-                        modelArmor.animationlastID = dw.getWatchableObjectString(DataWatcherIDs.lastPose);
-                        modelArmor.animationTick = dw.getWatchableObjectFloat(DataWatcherIDs.animationTick);
-                    }
+                if (entityLiving instanceof EntityPlayer) {
+                    DataWatcher dw = entityLiving.getDataWatcher();
+                    modelArmor.animationID = dw.getWatchableObjectString(DataWatcherIDs.jutsuPose);
+                    modelArmor.animationlastID = dw.getWatchableObjectString(DataWatcherIDs.lastPose);
+                    modelArmor.animationTick = dw.getWatchableObjectFloat(DataWatcherIDs.animationTick);
+                }
+                else {
+                    DataWatcher dw = entityLiving.getDataWatcher();
+                    modelArmor.animationID = "default";
+                    modelArmor.animationlastID = "default";
+                    modelArmor.animationTick = 0;
                 }
             }
         }
 
         if (modelArmor != null) {
-            modelArmor.bipedBody.showModel = armorSlot == 1;
-
             modelArmor.isSneak = entityLiving.isSneaking();
             modelArmor.isRiding = entityLiving.isRiding();
             modelArmor.isChild = entityLiving.isChild();

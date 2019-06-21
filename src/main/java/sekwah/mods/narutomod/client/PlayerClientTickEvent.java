@@ -116,6 +116,11 @@ public class PlayerClientTickEvent {
 
             EntityClientPlayerMP playerMP = FMLClientHandler.instance().getClient().thePlayer;
 
+            if(playerMP.capabilities.isCreativeMode) {
+                chakra = maxChakra;
+                stamina = maxStamina;
+            }
+
             //PlayerInfo playerInfo = PlayerInfo.get(playerMP); // Possibly move all data over to this
 
             if (chakraCooldown > 0) {

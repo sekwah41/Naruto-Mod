@@ -35,6 +35,7 @@ import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityWaterBullet;
 import sekwah.mods.narutomod.common.entity.projectiles.*;
 import sekwah.mods.narutomod.common.entity.specials.EntityChibakuBlock;
 import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
+import sekwah.mods.narutomod.common.items.ItemNinjaArmour;
 import sekwah.mods.narutomod.common.items.NarutoItems;
 import sekwah.mods.narutomod.common.items.itemmodels.ModelFlakJacket;
 import sekwah.mods.narutomod.common.items.itemmodels.armor.*;
@@ -179,13 +180,13 @@ public class ClientProxy extends CommonProxy {
     public void addItems() {
         super.addItems();
 
-        NarutoItems.flakJacket.setModelArmor(new ModelFlakJacket());
-        NarutoItems.JONIN_ARMOUR.setModelArmor(new ModelUpdateJoninArmor());
-        NarutoItems.NARUTO_SHIPPUDEN_ARMOUR.setModelArmor(new ModelNarutoShippudenArmor());
-        NarutoItems.BORUTO_KID_ARMOUR.setModelArmor(new ModelBorutoKidArmor());
-        NarutoItems.BORUTO_KID_MOVIE_ARMOUR.setModelArmor(new ModelBorutoMovieKidArmor());
-        NarutoItems.ANBU_ARMOUR.setModelArmor(new ModelAnbuArmor());
-        NarutoItems.SASUKE_KID_ARMOUR.setModelArmor(new ModelSasukeKidArmour());
+        ((ItemNinjaArmour) NarutoItems.flakJacket).setModelArmor(new ModelFlakJacket());
+        ((ItemNinjaArmour) NarutoItems.JONIN_ARMOUR).setModelArmor(new ModelUpdateJoninArmor());
+        ((ItemNinjaArmour) NarutoItems.NARUTO_SHIPPUDEN_ARMOUR).setModelArmor(new ModelNarutoShippudenArmor());
+        ((ItemNinjaArmour) NarutoItems.BORUTO_KID_ARMOUR).setModelArmor(new ModelBorutoKidArmor());
+        ((ItemNinjaArmour) NarutoItems.BORUTO_KID_MOVIE_ARMOUR).setModelArmor(new ModelBorutoMovieKidArmor());
+        ((ItemNinjaArmour) NarutoItems.ANBU_ARMOUR).setModelArmor(new ModelAnbuArmor());
+        ((ItemNinjaArmour) NarutoItems.SASUKE_KID_ARMOUR).setModelArmor(new ModelSasukeKidArmour());
     }
 
     public void commands() {

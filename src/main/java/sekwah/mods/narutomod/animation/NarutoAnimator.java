@@ -315,7 +315,7 @@ public class NarutoAnimator {
         if(!animationID.equals("default") || !animationlastID.equals("default")){
             lastPose = getPose(animationlastID, poseArray);
             currentPose = getPose(animationID, poseArray);
-            if(currentPose == null){
+            if(currentPose == null) {
                 NarutoMod.logger.error("PoseData not found for: " + animationID);
                 return;
             }

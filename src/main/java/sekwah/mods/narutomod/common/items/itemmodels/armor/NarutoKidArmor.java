@@ -366,25 +366,21 @@ public class NarutoKidArmor extends ModelNinjaBiped {
         this.UzumakiShoulder2.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.UzumakiShoulder2.addBox(2.1F, -1.53F, -1.05F, 1, 1, 1, 0.0F);
         this.setRotateAngle(UzumakiShoulder2, -0.8726646259971648F, 0.0F, 0.0F);
-        this.UpperLeftArm.addChild(this.LowerLeftArm);
         this.UpperLeftArm.addChild(this.UzumakiShoulder4);
         this.LowerRightLeg.addChild(this.Shoe3_1);
         this.UpperLeftArm.addChild(this.UzumakiShoulder1);
         this.LowerLeftArm.addChild(this.Arm2_1);
-        this.UpperRightLeg.addChild(this.LowerRightLeg);
         this.UpperLeftArm.addChild(this.UzumakiShoulder11);
         this.UpperRightLeg.addChild(this.KunaiBagStrap2);
         this.UpperLeftArm.addChild(this.UzumakiShoulder9);
         this.LowerLeftLeg.addChild(this.Leg3);
         this.UpperBody.addChild(this.Design2);
         this.LowerRightLeg.addChild(this.Leg3_1);
-        this.UpperLeftLeg.addChild(this.LowerLeftLeg);
         this.UpperLeftArm.addChild(this.UzumakiShoulder6);
         this.UpperBody.addChild(this.Round1);
         this.UpperBody.addChild(this.Round8);
         this.LowerLeftLeg.addChild(this.Shoe3);
         this.UpperLeftArm.addChild(this.UzumakiShoulder10);
-        this.UpperBody.addChild(this.LowerBody);
         this.LowerRightArm.addChild(this.Arm4);
         this.UpperBody.addChild(this.Round6);
         this.LowerLeftLeg.addChild(this.Shoe1);
@@ -421,7 +417,6 @@ public class NarutoKidArmor extends ModelNinjaBiped {
         this.UpperRightLeg.addChild(this.WhiteStrap4);
         this.UpperBody.addChild(this.Strap1);
         this.LowerRightLeg.addChild(this.Leg4_1);
-        this.UpperRightArm.addChild(this.LowerRightArm);
         this.UpperBody.addChild(this.Round11);
         this.LowerRightLeg.addChild(this.Leg1_1);
         this.UpperRightLeg.addChild(this.WhiteStrap2);
@@ -444,7 +439,9 @@ public class NarutoKidArmor extends ModelNinjaBiped {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+
         this.UpperLeftArm.render(f5);
         this.UpperLeftLeg.render(f5);
         this.UpperRightArm.render(f5);

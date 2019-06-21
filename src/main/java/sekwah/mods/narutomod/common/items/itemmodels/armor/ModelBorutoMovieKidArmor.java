@@ -96,7 +96,7 @@ public class ModelBorutoMovieKidArmor extends ModelNinjaBiped {
     private ModelRenderer Leg4_1;
 
     public ModelBorutoMovieKidArmor() {
-        float expandValue = 0.001f;
+        float expandValue = 0.005f;
 
         this.textureWidth = 150;
         this.textureHeight = 100;

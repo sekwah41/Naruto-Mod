@@ -56,16 +56,16 @@ public class RenderSubstitution extends RendererLivingEntity {
     private static final ResourceLocation sharingan1eye2_2x2 = new ResourceLocation("narutomod:textures/skinOverlays/sharingan1eye2_2x2.png");
 
     private ModelNinjaBiped modelBipedMain;
-    private ModelNinjaBiped modelArmorChestplate;
-    private ModelNinjaBiped modelArmor;
+    private ModelNinjaBiped modelArmourChestplate;
+    private ModelNinjaBiped modelArmour;
 
     private ModelNinjaBiped modelSkinOverlay;
 
     public RenderSubstitution() {
         super(new ModelNinjaBiped(0.0F), 0.5F);
         this.modelBipedMain = (ModelNinjaBiped) this.mainModel;
-        this.modelArmorChestplate = new ModelNinjaBiped(1.0F);
-        this.modelArmor = new ModelNinjaBiped(0.5F);
+        this.modelArmourChestplate = new ModelNinjaBiped(1.0F);
+        this.modelArmour = new ModelNinjaBiped(0.5F);
 
         this.modelSkinOverlay = new ModelNinjaBiped(0.001F);
     }
@@ -82,7 +82,7 @@ public class RenderSubstitution extends RendererLivingEntity {
             if (item instanceof ItemArmor) {
                 ItemArmor itemarmor = (ItemArmor) item;
                 this.bindTexture(RenderBiped.getArmorResource(par1EntitySubstitution, itemstack, par2, null));
-                ModelNinjaBiped modelbiped = par2 == 2 ? this.modelArmor : this.modelArmorChestplate;
+                ModelNinjaBiped modelbiped = par2 == 2 ? this.modelArmour : this.modelArmourChestplate;
                 modelbiped.bipedHead.showModel = par2 == 0;
                 modelbiped.bipedHeadwear.showModel = par2 == 0;
                 modelbiped.bipedBody.showModel = par2 == 1 || par2 == 2;
@@ -148,29 +148,33 @@ public class RenderSubstitution extends RendererLivingEntity {
         float f2 = 1.0F;
         GL11.glColor3f(f2, f2, f2);
         ItemStack itemstack = par1Entity.getEquipmentInSlot(0);
-        this.modelArmorChestplate.heldItemRight = this.modelArmor.heldItemRight = this.modelBipedMain.heldItemRight = itemstack != null ? 1 : 0;
+        this.modelArmourChestplate.heldItemRight = this.modelArmour.heldItemRight = this.modelBipedMain.heldItemRight = itemstack != null ? 1 : 0;
 
         if (itemstack != null && par1Entity.getEquipmentInSlot(0).stackSize > 0) {
             EnumAction enumaction = itemstack.getItemUseAction();
 
             if (enumaction == EnumAction.block) {
-                this.modelArmorChestplate.heldItemRight = this.modelArmor.heldItemRight = this.modelBipedMain.heldItemRight = 3;
+                this.modelArmourChestplate.heldItemRight = this.modelArmour.heldItemRight = this.modelBipedMain.heldItemRight = 3;
             }
             //else if (enumaction == EnumAction.bow)
             //{
-            //    this.modelArmorChestplate.aimedBow = this.modelArmor.aimedBow = this.modelBipedMain.aimedBow = true;
+            //    this.modelArmourChestplate.aimedBow = this.modelArmour.aimedBow = this.modelBipedMain.aimedBow = true;
             // }
             //else if (enumaction == EnumAction.Throw)
             //{
-            //    this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = true;
+            //    this.modelArmourChestplate.isThrowing = this.modelArmour.isThrowing = this.modelBipedMain.isThrowing = true;
             //}
         }
 
-        this.modelArmorChestplate.isSneak = this.modelArmor.isSneak = this.modelBipedMain.isSneak = par1Entity.isSneaking();
-        this.modelArmorChestplate.isSprinting = this.modelArmor.isSprinting = this.modelBipedMain.isSprinting = par1Entity.isSprinting();
+        this.modelArmourChestplate.animationID = this.modelArmour.animationID = this.modelBipedMain.animationID = "default";
+        this.modelArmourChestplate.animationlastID = this.modelArmour.animationlastID = this.modelBipedMain.animationlastID = "default";
+        this.modelArmourChestplate.animationTick = this.modelArmour.animationTick = this.modelBipedMain.animationTick = 0;
+
+        this.modelArmourChestplate.isSneak = this.modelArmour.isSneak = this.modelBipedMain.isSneak = par1Entity.isSneaking();
+        this.modelArmourChestplate.isSprinting = this.modelArmour.isSprinting = this.modelBipedMain.isSprinting = par1Entity.isSprinting();
 
         if (FMLClientHandler.instance().getClient().thePlayer.getCommandSenderName().equals(par1Entity.getCustomNameTag())) {
-            this.modelArmorChestplate.isChakraFocus = this.modelArmor.isChakraFocus = this.modelBipedMain.isChakraFocus = PlayerClientTickEvent.isChakraFocus;
+            this.modelArmourChestplate.isChakraFocus = this.modelArmour.isChakraFocus = this.modelBipedMain.isChakraFocus = PlayerClientTickEvent.isChakraFocus;
         }
 
         double d3 = par4 - (double) par1Entity.yOffset;
@@ -181,12 +185,12 @@ public class RenderSubstitution extends RendererLivingEntity {
 
         super.doRender(par1Entity, par2, d3, par6, par8, par9);
 
-        this.modelArmorChestplate.aimedBow = this.modelArmor.aimedBow = this.modelBipedMain.aimedBow = false;
-        this.modelArmorChestplate.isThrowing = this.modelArmor.isThrowing = this.modelBipedMain.isThrowing = false;
-        this.modelArmorChestplate.isSneak = this.modelArmor.isSneak = this.modelBipedMain.isSneak = false;
-        this.modelArmorChestplate.isSprinting = this.modelArmor.isSprinting = this.modelBipedMain.isSprinting = false;
-        this.modelArmorChestplate.isChakraFocus = this.modelArmor.isChakraFocus = this.modelBipedMain.isChakraFocus = false;
-        this.modelArmorChestplate.heldItemRight = this.modelArmor.heldItemRight = this.modelBipedMain.heldItemRight = 0;
+        this.modelArmourChestplate.aimedBow = this.modelArmour.aimedBow = this.modelBipedMain.aimedBow = false;
+        this.modelArmourChestplate.isThrowing = this.modelArmour.isThrowing = this.modelBipedMain.isThrowing = false;
+        this.modelArmourChestplate.isSneak = this.modelArmour.isSneak = this.modelBipedMain.isSneak = false;
+        this.modelArmourChestplate.isSprinting = this.modelArmour.isSprinting = this.modelBipedMain.isSprinting = false;
+        this.modelArmourChestplate.isChakraFocus = this.modelArmour.isChakraFocus = this.modelBipedMain.isChakraFocus = false;
+        this.modelArmourChestplate.heldItemRight = this.modelArmour.heldItemRight = this.modelBipedMain.heldItemRight = 0;
     }
 
     protected ResourceLocation func_110817_a(EntitySubstitution par1EntitySubstitution) {

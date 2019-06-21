@@ -93,7 +93,7 @@ public class ModelBorutoKidArmor extends ModelNinjaBiped {
     public ModelRenderer Leg4_1;
 
     public ModelBorutoKidArmor() {
-        float expandValue = 0.001f;
+        float expandValue = 0.005f;
         
         this.textureWidth = 150;
         this.textureHeight = 100;

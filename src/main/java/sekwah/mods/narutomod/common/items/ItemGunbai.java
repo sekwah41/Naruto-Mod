@@ -43,7 +43,7 @@ public class ItemGunbai extends Item {
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4) {
 
         par2List.add("\u00a77" + I18n.format("item.gunbai.desc.line1"));
-        par2List.add("\u00a77" + " " + I18n.format("item.gunbai.desc.line2"));
+        par2List.add("\u00a77" + I18n.format("item.gunbai.desc.line2"));
     }
 
     public void onUpdate(ItemStack itemstack, World par2World, Entity par3Entity, int par4, boolean par5) {

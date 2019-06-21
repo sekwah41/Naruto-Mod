@@ -117,7 +117,7 @@ public class ModelSasukeKidArmour extends ModelNinjaBiped {
 
     public ModelSasukeKidArmour() {
 
-        float expandValue = 0.001f;
+        float expandValue = 0.005f;
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.WhiteStrap2 = new ModelRenderer(this, 0, 80);

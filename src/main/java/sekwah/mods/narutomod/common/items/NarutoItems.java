@@ -52,19 +52,19 @@ public class NarutoItems {
 	public static Item kubikiribocho;
 	public static Item headBand;
 	public static Item fabric;
-	public static ItemNinjaArmour flakJacket;
+	public static Item flakJacket;
 	public static Item shinobiChestplate;
 	public static Item shinobiLeggings;
 	public static Item redAnbuMask;
 	public static Item narutoKid;
 
-	public static ItemNinjaArmour JONIN_ARMOUR;
-	public static ItemNinjaArmour NARUTO_SHIPPUDEN_ARMOUR;
-	public static ItemNinjaArmour SASUKE_KID_ARMOUR;
-	public static ItemNinjaArmour BORUTO_KID_ARMOUR;
-	public static ItemNinjaArmour BORUTO_KID_MOVIE_ARMOUR;
-	public static ItemNinjaArmour ANBU_ARMOUR;
-	public static ItemNinjaArmour KID_NARUTO_ARMOUR;
+	public static Item JONIN_ARMOUR;
+	public static Item NARUTO_SHIPPUDEN_ARMOUR;
+	public static Item SASUKE_KID_ARMOUR;
+	public static Item BORUTO_KID_ARMOUR;
+	public static Item BORUTO_KID_MOVIE_ARMOUR;
+	public static Item ANBU_ARMOUR;
+	public static Item KID_NARUTO_ARMOUR;
 
 	// TODO Finish adding the code and complete tomorrow(tomorrow has passed, get yo lazy ass to work you bum)
 	//  recipe needed
@@ -362,6 +362,14 @@ public class NarutoItems {
 		GameRegistry.addRecipe(new ItemStack(shinobiChestplate, 1), "R R", "RRR", "RRR", 'R', new ItemStack(armourPlate, 1, 1));
 
 		GameRegistry.addRecipe(new ItemStack(shinobiLeggings, 1), "RRR", "B B", "B B", 'R', new ItemStack(armourPlate, 1, 1), 'B', new ItemStack(fabric, 1, 3));
+
+		// Back scrolls
+		GameRegistry.addShapelessRecipe(new ItemStack(backScroll, 1, 1), new ItemStack(backScroll, 1, 0), new ItemStack(Items.dye, 1, 11));
+		GameRegistry.addShapelessRecipe(new ItemStack(backScroll, 1, 2), new ItemStack(backScroll, 1, 0), new ItemStack(Items.dye, 1, 5));
+		GameRegistry.addShapelessRecipe(new ItemStack(backScroll, 1, 3), new ItemStack(backScroll, 1, 0), new ItemStack(Items.dye, 1, 4));
+		GameRegistry.addShapelessRecipe(new ItemStack(backScroll, 1, 4), new ItemStack(backScroll, 1, 0), new ItemStack(Items.dye, 1, 2));
+		GameRegistry.addShapelessRecipe(new ItemStack(backScroll, 1, 5), new ItemStack(backScroll, 1, 0), new ItemStack(Items.dye, 1, 1));
+		GameRegistry.addShapelessRecipe(new ItemStack(backScroll, 1, 6), new ItemStack(backScroll, 1, 0), new ItemStack(Items.dye, 1, 0));
 
 		// Armour plate
 

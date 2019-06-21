@@ -70,7 +70,7 @@ public class ItemKubikiribocho extends Item {
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4) {
 
         par2List.add("\u00a77" + I18n.format("item.Kubikiribocho.desc.line1"));
-        par2List.add("\u00a77" + " " + I18n.format("item.Kubikiribocho.desc.line2"));
+        par2List.add("\u00a77" + I18n.format("item.Kubikiribocho.desc.line2"));
     }
 
     public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_, Block p_150894_3_, int p_150894_4_, int p_150894_5_, int p_150894_6_, EntityLivingBase p_150894_7_) {
