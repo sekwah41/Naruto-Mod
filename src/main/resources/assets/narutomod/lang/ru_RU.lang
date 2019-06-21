@@ -15,11 +15,11 @@ naruto.gui.jutsuDelay=Задержка (В тиках)
 item.Kunai.name=Кунай
 item.Shuriken.name=Сюрикен
 
-item.record_FightingSpirit.name=Музыкальная пластинка
+item.record_FightingSpirit.name=Пластинка
         
-item.record_NejiTheme.name=Музыкальная пластинка
+item.record_NejiTheme.name=МПластинка
 
-item.record_lonelymarch.name=Музыкальная пластинка
+item.record_lonelymarch.name=Пластинка
 item.record_lonelymarch.desc=Sekwah - Lonely March
 item.record.LonelyMarch.desc=Sekwah - Lonely March
         
@@ -223,8 +223,8 @@ naruto.jutsu.combo.substitution=Подмена: %s
 naruto.jutsu.combo.chibaku_tensei=Чибаку сенсей: %s
 naruto.jutsu.combo.fireball=Огненный шар: %s
 naruto.jutsu.combo.water_bullet=Водяные пули: %s
-naruto.jutsu.combo.earth_release=Земленной шар: %s
-naruto.jutsu.combo.sekc=Саблазн: %s
+naruto.jutsu.combo.earth_release=Земляная стена: %s
+naruto.jutsu.combo.sekc=Саблазн-Дзюцу: %s
 naruto.jutsu.combo.chibi_shadow_clone=Водяные клоны: %s
 naruto.jutsu.combo.shadow_clone=Теневые клоны: %s
 naruto.jutsu.combo.multi_shadow_clone=Мульти-теневые клоны: %s
