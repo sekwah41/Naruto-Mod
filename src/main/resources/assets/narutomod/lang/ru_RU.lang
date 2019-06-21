@@ -86,7 +86,6 @@ item.sasukeKidArmour.name=Детская одежда Саске
 item.borutoKidArmour.name=Деткская одежда Боруто
 item.borutoKidMovieArmour.name=Детская одежда Боруто (Экранизации)
 item.narutoShippudenArmour.name=Новая одежда Наруто
-item.narutoKidArmour.name=Детская одежда Наруто
 item.anbuArmour.name=Броня Анбу
 
 
@@ -100,11 +99,13 @@ item.fabric.name=Ткань
 item.fabric.Reinforced.name=Усиленная ткань
 
 item.fabric.ReinforcedGreen.name=Усиленная зелёная ткань
+
 item.fabric.ReinforcedBlack.name=Усиленная чёрная ткань
 item.fabric.ReinforcedBlue.name=Усиленная синяя ткань
 item.fabric.ReinforcedRed.name=Усиленная красная ткань
 item.fabric.ReinforcedOrange.name=Усиленная оранжевая ткань
 item.flakJacket.name=Бронированный жилет
+item.joninArmour.name=Flak Jacket
 item.kubikiribocho.name=Кубикирибочо
 item.madarasChestplate.name=Нагрудник Мадары
 item.madarasLeggings.name=Поножи Мадары
@@ -232,7 +233,7 @@ naruto.jutsu.combo.sekc=Саблазн-Дзюцу: %s
 naruto.jutsu.combo.chibi_shadow_clone=Водяные клоны: %s
 naruto.jutsu.combo.shadow_clone=Теневые клоны: %s
 naruto.jutsu.combo.multi_shadow_clone=Мульти-теневые клоны: %s
-
+item.narutoKidArmour.name=Детская одежда Наруто
 item.record_FightingSpirit.name=Пластинка
 item.record_NejiTheme.name=Пластинка
 naruto.jutsu.chakraDash.nochakra=Недостаточно Чакры!
