@@ -38,6 +38,8 @@ item.Kubikiribocho.name=Кубикирибочо
 item.Kubikiribocho.desc.line1=Огромное оружие, становиться острее,
 item.Kubikiribocho.desc.line2=с каждой каплей крови на нём.
 
+
+
 item.Ramen.name=Рамен
 
 item.gunbai.name=Гунбай
@@ -81,7 +83,6 @@ item.headProtector.Youtube.desc=Деревня скрытая в мемах
 item.headProtector.Lava.name=Повязка деревни скрытой в Лавые
 
 item.sasukeKidArmour.name=Детская одежда Саске
-item.joninArmour.name=Жилет Джонина
 item.borutoKidArmour.name=Деткская одежда Боруто
 item.borutoKidMovieArmour.name=Детская одежда Боруто (Экранизации)
 item.narutoShippudenArmour.name=Новая одежда Наруто
@@ -120,6 +121,8 @@ tile.bonsaitree.name=Бонсай
 itemGroup.narutoWeapons=Наруто - Оружие
 itemGroup.narutoMaterials=Наруто - Материалы
 itemGroup.narutoArmour=Наруто - Броня
+
+gui.jutsu.learnt=Learnt!
 
 Jutsus.Chakra_Control=Контроль чакры
 Jutsus.Chakra_Control.desc=Основа любой техники, кроме тайдзюцу. Пассивное умение. Зажав клавишу C, вы можете ускорить регенерацию чакры.

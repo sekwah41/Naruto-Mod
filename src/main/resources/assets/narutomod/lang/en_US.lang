@@ -38,6 +38,8 @@ item.Kubikiribocho.name=Kubikiribocho
 item.Kubikiribocho.desc.line1=A giant baddass sword that heals
 item.Kubikiribocho.desc.line2=with the blood of your enemies.
 
+
+
 item.Ramen.name=Ramen
 
 item.gunbai.name=Gunbai
@@ -81,7 +83,6 @@ item.headProtector.Youtube.desc=Village hidden in the memes
 item.headProtector.Lava.name=Lava Headband
 
 item.sasukeKidArmour.name=Sasuke Kid Clothes
-item.joninArmour.name=Jonin Armour
 item.borutoKidArmour.name=Boruto Kid Clothes
 item.borutoKidMovieArmour.name=Boruto Kid Movie Clothes
 item.narutoShippudenArmour.name=Naruto Shippuden Clothes
@@ -104,6 +105,7 @@ item.fabric.ReinforcedBlue.name=Reinforced Blue Fabric
 item.fabric.ReinforcedRed.name=Reinforced Red Fabric
 item.fabric.ReinforcedOrange.name=Reinforced Orange Fabric
 item.flakJacket.name=Flak Jacket
+item.joninArmour.name=Flak Jacket
 item.kubikiribocho.name=Kubikiribocho
 item.madarasChestplate.name=Madara's Chestplate
 item.madarasLeggings.name=Madara's Leggings
@@ -120,6 +122,8 @@ tile.bonsaitree.name=BonsaiTree
 itemGroup.narutoWeapons=Naruto Weapons
 itemGroup.narutoMaterials=Naruto Materials
 itemGroup.narutoArmour=Naruto Armour
+
+gui.jutsu.learnt=Learnt!
 
 Jutsus.Chakra_Control=Chakra Control
 Jutsus.Chakra_Control.desc=The basis of every technique with the exception of taijutsu. Passive ability. C can also be held to focus your chakra and speed up regeneration.
