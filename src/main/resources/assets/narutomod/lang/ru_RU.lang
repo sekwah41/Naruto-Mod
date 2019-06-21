@@ -1,37 +1,41 @@
-naruto.gui.options.title=Настройка Мода
-naruto.gui.done=Применить
-naruto.gui.firstPerson=Вид От Первого Лица
+naruto.gui.options.title=Меню мода
+naruto.gui.done=Готово
+naruto.gui.firstPerson=Первое лицо
 naruto.gui.on=Включить
 naruto.gui.off=Выключить
 naruto.gui.jutsutoggle=Дзюцу
 naruto.gui.chakraGUIOffset=Смещение
-naruto.gui.generalOptions=Главные Настройки
-naruto.gui.chakraGui=Показатель Чакры
+naruto.gui.generalOptions=Главные настройки
+naruto.gui.chakraGui=GUI Чакры
 naruto.gui.chakraGUICorner=GUI угол
 naruto.gui.jutsuSettings=Настройки Дзюцу
-naruto.gui.jutsuDelay=Задержка Печатей
+naruto.gui.jutsuDelay=Задержка (В тиках)
 
 
 item.Kunai.name=Кунай
 item.Shuriken.name=Сюрикен
 
-item.record_FightingSpirit.name=Музыкальная Пластинка
+item.record_FightingSpirit.name=Музыкальная пластинка
         
-item.record_NejiTheme.name=Музыкальная Пластинка
+item.record_NejiTheme.name=Музыкальная пластинка
+
+item.record_lonelymarch.name=Музыкальная пластинка
+item.record_lonelymarch.desc=Sekwah - Lonely March
+item.record.LonelyMarch.desc=Sekwah - Lonely March
         
 item.copper_ryo.name=Кан
 item.silver_ryo.name=Рин
-item.gold_ryo.name=Рю
+item.gold_ryo.name=Рё
         
 item.Katana.name=Катана
         
-item.ExplosiveTag.name=Взрывная Печать
+item.ExplosiveTag.name=Бумажная бомба
         
-item.ExplosiveKunai.name=Кунай Со Взрывной Печатью
+item.ExplosiveKunai.name=Взрывной кунай
 
 item.Kubikiribocho.name=Кубикирибочо
-item.Kubikiribocho.desc.line1=Легендарное оружие. Становится
-item.Kubikiribocho.desc.line2=сильнее с каждым убитым врагом.
+item.Kubikiribocho.desc.line1=Огромное оружие, становиться острее,
+item.Kubikiribocho.desc.line2=с каждой каплей крови на нём.
         
 item.Ramen.name=Рамен
         
@@ -39,7 +43,7 @@ item.gunbai.name=Гунбай
 item.gunbai.desc.line1=К сожалению, это всего лишь дешевая
 item.gunbai.desc.line2=подделка легендарного оружия.
         
-item.Bokken.name=Шест Бо
+item.Bokken.name=Боккен
         
 item.Scroll.name=Свиток Призыва(Волк)
         
@@ -47,7 +51,7 @@ item.Noodles.name=Лапша
         
 item.Samehada.name=Самехада
 
-item.military_pills.name=Военные Пилюли
+item.military_pills.name=Военные таблетки
 
 item.Senbon.name=Игла
 
@@ -57,87 +61,115 @@ item.Noodles.name=Лапша
 
 item.backScroll=Свиток
 
-item.backScroll.White.name=Белый Свиток
-item.backScroll.Yellow.name=Жёлтый Свиток
-item.backScroll.Purple.name=Фиолетовый Свиток
-item.backScroll.Blue.name=Синий Свиток
-item.backScroll.Green.name=Зелёный Свиток
-item.backScroll.Red.name=Красный Свиток
-item.backScroll.Black.name=Чёрный Свиток
+item.backScroll.White.name=Белый свиток
+item.backScroll.Yellow.name=Жёлтый свиток
+item.backScroll.Purple.name=Фиолетовый свиток
+item.backScroll.Blue.name=Синий свиток
+item.backScroll.Green.name=Зелёный свиток
+item.backScroll.Red.name=Красный свиток
+item.backScroll.Black.name=Чёрный свиток
 
-item.headProtector=Защитная Повязка
+item.headProtector=Повязка
 
-item.headProtector.HiddenInTheTrees.name=Деревня Скрытая В Лесах
-item.headProtector.Custard.name=Повязка С Кремом
+item.headProtector.HiddenInTheTrees.name=Повязка деревни скрытой в Деревьях
+item.headProtector.HiddenInTheLeaves.name=Повязка деревни скрытой в Листьях
+item.headProtector.HiddenInTheLeavesScratched.name=Повязка деревни скрытой в Листьях (Повреждённая)
+item.headProtector.Custard.name=Сладкая повязка
+item.headProtector.Youtube.name=Повязка Ютубера
+item.headProtector.Youtube.desc=Деревня спрятанная в мемах
+item.headProtector.Lava.name=Повязка Лавы
 
-item.backBokken.name=Прикрепленный Шест Бо
+item.sasukeKidArmour.name=Детская одежда Саске
+item.joninArmour.name=Жилет Джонина
+item.borutoKidArmour.name=Деткская одежда Боруто
+item.borutoKidMovieArmour.name=Детская одежда Боруто (Экранизации)
+item.narutoShippudenArmour.name=Новая одежда Наруто
+item.anbuArmour.name=Броня отряда Анбу
+
+item.backBokken.name=Наспинный боккен
         
-item.backKatana.name=Прикрепленная Катана
+item.backKatana.name=Наспинная катана
         
-item.backStraps.name=Кожаные Ремни
+item.backStraps.name=Кожаные ремни
         
 item.fabric..name=Ткань
         
-item.fabric.reinforced.name=Укреплённая Ткань
+item.fabric.reinforced.name=Усиленная ткань
         
-item.fabric.reinforcedBlack.name=Укреплённая Черная ткань
-item.flakJacket.name=Защитный Жилет
+m.fabric.ReinforcedBlack.name=Усиленная чёрная ткань
+item.fabric.ReinforcedBlue.name=Усиленная синяя ткань
+item.fabric.ReinforcedRed.name=Усиленная красная ткань
+item.fabric.ReinforcedOrange.name=Усиленная оранжевая ткань
+item.flakJacket.name=Одноцветный жилет
 item.kubikiribocho.name=Кубикирибочо
-item.madarasChestplate.name=Укреплённый Нагрудник
-item.madarasLeggings.name=Укреплённые поножи
-item.armourPlate.name=Железная Пластина
+item.madarasChestplate.name=Нагрудник Мадары
+item.madarasLeggings.name=Поножи Мадары
 
-tile.sakuraleaves.name=Листья Сакуры
-tile.sakurasapling.name=Саженец Сакуры
+item.armourPlate.name=Железная пластина
+item.armourPlate.Red.name=Красная железная пластина
+item.armourPlate.Green.name=Зелёная железная пластина
+
+tile.sakuraleaves.name=Листья сакуры
+tile.sakurasapling.name=Саженец сакуры
 tile.bonsaitree.name=Бонсай
 
 
 itemGroup.narutoWeapons=Наруто - Оружие
-
 itemGroup.narutoMaterials=Наруто - Материалы
-Jutsus.Chakra_Control=Контроль Чакры
-Jutsus.Chakra_Control.desc=Основа любой техники, кроме тайдзюцу. Пассивное умение. Удерживайте C, чтобы регенерировать количество чакры.
+itemGroup.narutoArmour=Наруто - Броня
+
+Jutsus.Chakra_Control=Контроль чакры
+Jutsus.Chakra_Control.desc=Основа любой техники, кроме тайдзюцу. Пассивное умение. Зажав клавишу C, вы можете ускорить регенерацию чакры.
         
-Jutsus.Fire_Ball_Jutsu=Огненный Шар
-Jutsus.Fire_Ball_Jutsu.desc=Преврати свою чакру в огонь и сформируй её в форме шара. Комбинация: C V C
+Jutsus.Fire_Ball_Jutsu=Огненный шар
+Jutsus.Fire_Ball_Jutsu.desc=Преврати свою чакру в огонь и выпусти её в форме шара. Комбинация: C V C
         
-Jutsus.Shadow_Clone_Jutsu=Техника Теневого Клонирования
-Jutsus.Shadow_Clone_Jutsu.desc=Ошеломи врага копиями Себя! Комбинация: C B B V
+Jutsus.Shadow_Clone_Jutsu=Техника теневого клонирования
+Jutsus.Shadow_Clone_Jutsu.desc=Ошелами врага своим количеством! Комбинация: C B B V
         
 Jutsus.Water_Walk=Техника хождения по воде
-Jutsus.Water_Walk.desc=Сконцентрируй чакру в ногах. Это позволит тебе свободно передвигаться по воде. Комбинация: B
+Jutsus.Water_Walk.desc=Сконцентрируй чакру в ногах, что позволит тебе стоять, бежать и прыгать на воде. Комбинация: B
         
-Jutsus.Chakra_Dash=Рывок Чакры
-Jutsus.Chakra_Dash.desc=Пропусти чакру сквозь своё тело и увеличь скорость передвижения. Комбинация: V
+Jutsus.Chakra_Dash=Порыв чакры
+Jutsus.Chakra_Dash.desc=Пропусти чакру сквозь своё тело, увеличивая скорость передвежения. Комбинация: V
         
-Jutsus.Substitution=Техника Подмены
-Jutsus.Substitution.desc=Эта техника заменяет тело использовавшего её с объектом. Комбинация: C V
+Jutsus.Substitution=Техника подмены тел
+Jutsus.Substitution.desc=Эта техника меняет тело использовавшего с объектом местами. Комбинация: C V
 
-Jutsus.Water_Bullet=Водяные Пули
-Jutsus.Water_Bullet.desc=Сконцентрируй чакру в своем животе и выпусти её в форме трех мощных снарядов. Комбинация: C B V
+Jutsus.Water_Bullet=Водяные пули
+Jutsus.Water_Bullet.desc=Сконцентрируй чакру в своем животе и выпусти её в форме трех мощных водных снарядов. Комбинация: C B V
 
-naruto.jutsu.chakraDash.deactivate=Вы прекратили технику Рывка Чакры!
-naruto.jutsu.chakraDash.activate=Вы активировали Рывок Чакры!
+naruto.jutsu.chakraDash.deactivate=Вы прекратили использовать технику: Порыв чакры!
+naruto.jutsu.chakraDash.activate=Вы использовали технику Порыв чакры!
 naruto.jutsu.chakraDash.nochakra=недостаточно Чакры!
 
-naruto.jutsu.waterWalk.deactivate=Вы прекратили технику Хождения По Воде!
-naruto.jutsu.waterWalk.activate=Вы активировали технику Хождения По Воде!
+naruto.jutsu.waterWalk.deactivate=Вы прекратили использовать технику: хождения по воде!
+naruto.jutsu.waterWalk.activate=Вы использовали технику хождения по воде!
 
-naruto.jutsu.substitution=Техника Подмены!
+naruto.jutsu.substitution=Техника подмены тел!
 
-naruto.jutsu.chakraCharge.activate=Вы регенерируете чакру!
+naruto.jutsu.chakraCharge.activate=Вы начали регенерировать чакру!
 naruto.jutsu.chakraCharge.deactivate=Вы прекратили регенерацию чакры!
 
-naruto.jutsu.fireball=Элемент Огня - Огненный Шар!
-naruto.jutsu.waterBullet=Элемент Воды - Водяные Пули!
+naruto.jutsu.fireball=Стиль огня - Огненный шар!
+naruto.jutsu.waterBullet=Стиль воды - Водяные пули!
+naruto.jutsu.chidori=Стиль молнии - Чидори!
+naruto.jutsu.earthWall=Стиль земли - Зеслянная стена!
 
-naruto.jutsu.shadowClone=Техника Теневого Клонирования!
+naruto.jutsu.chidorifail=It’s at this moment in time %s knew, he screwed up
+naruto.jutsu.earthWall.failed=Дзюдцу не может быть использованно! Вы должны смотреть на блок, рядом с которым не менее 10 других
 
-naruto.jutsu.unrecognised=Неопределенное дзюцу!
+naruto.jutsu.shadowClone=Техника теневого клонирования!
+naruto.jutsu.chibiClone=Техника водяного клонирования!
+naruto.jutsu.multiShadowClone=Техника мульти-теневого клонирования!
+
+naruto.jutsu.unrecognised=Неизвестное дзюцу!
 
 naruto.jutsu.comboLimit=Вы превысили количество комбинаций!
 
 naruto.jutsu.nochakra=Недостаточно чакры!
+
+naruto.jutsu.nostamina=Не достаточно сил!
 
 
 entity.narutomod.Puppet.name=Кукла
@@ -145,7 +177,7 @@ entity.narutomod.Rogue_Ninja.name=Шиноби-Разбойник
 entity.narutomod.Ninja_Villager.name=Житель Шиноби
 entity.narutomod.Ninja_VillagerAnbu.name=Анбу
 entity.narutomod.Bandit.name=Бандит
-entity.narutomod.Shadow_Clone.name=теневой Клон
+entity.narutomod.Shadow_Clone.name=Теневой Клон
 entity.narutomod.Substitution.name=Подмена
 entity.narutomod.SubstitutionLog.name=Бревно
 
@@ -153,7 +185,46 @@ narutomod.keys.category=Клавиши Управление Модом
 naruto.keys.key1=Дзюцу Клавиша 1
 naruto.keys.key2=Дзюцу Клавиша 2
 naruto.keys.key3=Дзюцу Клавиша 3
-naruto.keys.jutsumenu=Меню Техник
-naruto.keys.options=Настройки Мода
+naruto.keys.jutsumenu=Открыть список дзюцу
+naruto.keys.options=Настройки мода
 
-potion.chakraRestore=Регенерация Чакры
+potion.chakraRestore=Регенерация чакры
+
+death.attack.waterBullet=%1$s был расплющен водиными пулями шиноби %2$s
+
+naruto.gui.chakraRed=Красное сочитание чакры
+naruto.gui.chakraGreen=Зелёное сочитание чакры
+naruto.gui.chakraBlue=Синее сочитание чакры
+
+naruto.gui.chakraBarDesign=Вид показателей
+
+naruto.gui.chakraHue=HUE
+naruto.gui.chakraBrightness=Яркость
+
+naruto.keys.toggledodges=Включить Dodges
+naruto.gui.dodges=Dodges
+
+naruto.gui.settings=Настройки
+
+naruto.gui.dodges.disabled=Dodges выключены
+naruto.gui.dodges.enabled=Dodges включены
+
+naruto.gui.betterArms=Улучшенные руки
+
+naruto.gui.restartMinecraft=Перезапустить майнкрафт
+
+naruto.gui.settingsSaved=Настройки сохранены
+
+item.redAnbuMask.name=Красная маска Анбу
+
+commands.naruto.jutsu.usage=/jutsu <list/activate>
+commands.naruto.jutsu.activate.usage=/jutsu activate <jutsu>
+naruto.jutsu.combo.substitution=Подмена: %s
+naruto.jutsu.combo.chibaku_tensei=Чибаку сенсей: %s
+naruto.jutsu.combo.fireball=Огненный шар: %s
+naruto.jutsu.combo.water_bullet=Водяные пули: %s
+naruto.jutsu.combo.earth_release=Земленной шар: %s
+naruto.jutsu.combo.sekc=Саблазн: %s
+naruto.jutsu.combo.chibi_shadow_clone=Водяные клоны: %s
+naruto.jutsu.combo.shadow_clone=Теневые клоны: %s
+naruto.jutsu.combo.multi_shadow_clone=Мульти-теневые клоны: %s
