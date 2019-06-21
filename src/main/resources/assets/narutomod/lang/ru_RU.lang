@@ -123,7 +123,7 @@ itemGroup.narutoWeapons=Наруто - Оружие
 itemGroup.narutoMaterials=Наруто - Материалы
 itemGroup.narutoArmour=Наруто - Броня
 
-gui.jutsu.learnt=Learnt!
+gui.jutsu.learnt=Выучено!
 
 Jutsus.Chakra_Control=Контроль чакры
 Jutsus.Chakra_Control.desc=Основа любой техники, кроме тайдзюцу. Пассивное умение. Зажав клавишу C, вы можете ускорить регенерацию чакры.
