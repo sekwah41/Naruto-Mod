@@ -95,6 +95,8 @@ public class ModelHeadband extends ModelNinjaBiped
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
 		renderWithLock(this.bipedHead, headLock, f5);
+
+
 	}
 
 	private void renderWithLock(ModelRenderer bipedBody, ModelRenderer lockblock, float f5) {
