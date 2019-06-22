@@ -125,6 +125,8 @@ itemGroup.narutoWeapons=Наруто - Оружие
 itemGroup.narutoMaterials=Наруто - Материалы
 itemGroup.narutoArmour=Наруто - Броня
 
+menu.modpage=Страница мода
+
 gui.jutsu.learnt=Выучено!
 
 Jutsus.Chakra_Control=Контроль чакры
