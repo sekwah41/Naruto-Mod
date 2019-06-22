@@ -221,6 +221,7 @@ naruto.gui.restartMinecraft=Restart minecraft
 naruto.gui.settingsSaved=Settings saved
 
 item.redAnbuMask.name=Red Anbu Mask
+item.narutoKidArmour.name=Naruto Clothes
 
 commands.naruto.jutsu.usage=/jutsu <list/activate>
 commands.naruto.jutsu.activate.usage=/jutsu activate <jutsu>

@@ -57,7 +57,6 @@ public class ItemNinjaArmour extends ItemArmor {
                     modelArmor.animationTick = dw.getWatchableObjectFloat(DataWatcherIDs.animationTick);
                 }
                 else {
-                    DataWatcher dw = entityLiving.getDataWatcher();
                     modelArmor.animationID = "default";
                     modelArmor.animationlastID = "default";
                     modelArmor.animationTick = 0;
