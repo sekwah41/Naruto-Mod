@@ -250,7 +250,7 @@ public class GuiNarutoMainMenu extends GuiScreen implements GuiYesNoCallback {
         this.buttonList.add(joinbutton = new GuiButton(101, this.width / 2 - 100, i + 40, joinButtonText));
         this.buttonList.add(new GuiDiscord(103, this.width / 2 - 124, i + 62));
         joinbutton.enabled = joinenabled;
-        this.buttonList.add(new GuiButton(102, this.width / 2 - 100, i + 62, 98, 20, "Mod Page"));
+        this.buttonList.add(new GuiButton(102, this.width / 2 - 100, i + 62, 98, 20, I18n.format("menu.modpage")));
 
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, i + 72 + 12, 98, 20, I18n.format("menu.options")));
         this.buttonList.add(new GuiButton(4, this.width / 2 + 2, i + 72 + 12, 98, 20, I18n.format("menu.quit")));

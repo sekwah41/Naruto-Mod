@@ -53,9 +53,6 @@ public class ItemArmourHeadband extends ItemArmor {
 	}
 
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4) {
-        if(par1ItemStack.getMetadata() == 3){
-            par2List.add("\u00a77" + I18n.format("item.headProtector.Youtube.desc"));
-        }
     }
 	
 	
