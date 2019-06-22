@@ -11,8 +11,11 @@ public class ItemRendererBonsaiTree implements IItemRenderer {
 
     private ModelBonsai model;
 
-    public ItemRendererBonsaiTree() {
+    private final ResourceLocation blockTexture;
+
+    public ItemRendererBonsaiTree(ResourceLocation blockTexture) {
         model = new ModelBonsai();
+        this.blockTexture = blockTexture;
     }
 
     @Override
@@ -37,7 +40,9 @@ public class ItemRendererBonsaiTree implements IItemRenderer {
         //GL11.glRotatef(dir * (90F), 0F, 1F, 0F);
         //GL11.glTranslatef(0.4F, 0.1F, -0.5F);
         //TileEntityRenderer.instance.renderEngine.bindTexture(new ResourceLocation("narutomod:textures/blocks/bonsaitree.png"));
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("narutomod:textures/blocks/bonsaitreeTexture.png"));
+
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(blockTexture);
+
         if (type == ItemRenderType.ENTITY) {
             GL11.glTranslatef(0.0F, 0.2F, 0.0F);
         } else if (type == ItemRenderType.INVENTORY) {

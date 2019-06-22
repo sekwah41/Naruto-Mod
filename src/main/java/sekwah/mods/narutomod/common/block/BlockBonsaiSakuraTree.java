@@ -15,13 +15,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.common.block.tileentity.TileEntityBonzaiTree;
+import sekwah.mods.narutomod.common.block.tileentity.TileEntityBonzaiSakuraTree;
 
-public class BlockBonsaiTree extends BlockContainer {
+public class BlockBonsaiSakuraTree extends BlockContainer {
     @SideOnly(Side.CLIENT)
     private IIcon[] blockIcons;
 
-    public BlockBonsaiTree() {
+    public BlockBonsaiSakuraTree() {
         super(Material.plants);
         this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1.0F, 0.8F);
     }
@@ -70,7 +70,7 @@ public class BlockBonsaiTree extends BlockContainer {
      * Returns a new instance of a block's tile entity class. Called on placing the block.
      */
     public TileEntity createNewTileEntity(World par1World, int p_149915_2_) {
-        return new TileEntityBonzaiTree();
+        return new TileEntityBonzaiSakuraTree();
     }
 
     //And this tell it that you can see through this block, and neighbor blocks should be rendered.

@@ -8,6 +8,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,7 +28,8 @@ import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
 import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
 import sekwah.mods.narutomod.common.CommonProxy;
 import sekwah.mods.narutomod.common.block.NarutoBlocks;
-import sekwah.mods.narutomod.common.block.tileentity.TileEntityBase;
+import sekwah.mods.narutomod.common.block.tileentity.TileEntityBonzaiSakuraTree;
+import sekwah.mods.narutomod.common.block.tileentity.TileEntityBonzaiTree;
 import sekwah.mods.narutomod.common.entity.*;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityChibakuTensei;
 import sekwah.mods.narutomod.common.entity.jutsuprojectiles.EntityFlameFireball;
@@ -121,7 +123,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, NarutoAnimator.playerRenderer);
 
         // Register the custom block render
-        GameRegistry.registerTileEntity(TileEntityBase.class, "bonsaitree");
+        GameRegistry.registerTileEntity(TileEntityBonzaiSakuraTree.class, "bonsaitree");
 
     }
 
@@ -153,9 +155,13 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void registerCustomBlocks() {
-        ClientRegistry.registerTileEntity(TileEntityBase.class, "test_radio", new TileEntityBonsaiRenderer());
+        ClientRegistry.registerTileEntity(TileEntityBonzaiTree.class, "bonzai_tree", new TileEntityBonsaiRenderer(new ResourceLocation("narutomod:textures/blocks/bonsaitreeTexture.png")));
 
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(NarutoBlocks.bonsaiTree), new ItemRendererBonsaiTree());
+        ClientRegistry.registerTileEntity(TileEntityBonzaiSakuraTree.class, "bonzai_sakura_tree", new TileEntityBonsaiRenderer(new ResourceLocation("narutomod:textures/blocks/bonsaitreeSakuraTexture.png")));
+
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(NarutoBlocks.bonsaiTree), new ItemRendererBonsaiTree(new ResourceLocation("narutomod:textures/blocks/bonsaitreeTexture.png")));
+
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(NarutoBlocks.bonsaiSakuraTree), new ItemRendererBonsaiTree(new ResourceLocation("narutomod:textures/blocks/bonsaitreeSakuraTexture.png")));
 
     }
 

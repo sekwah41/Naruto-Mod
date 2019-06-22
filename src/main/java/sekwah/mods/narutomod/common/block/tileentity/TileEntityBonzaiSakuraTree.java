@@ -3,7 +3,7 @@ package sekwah.mods.narutomod.common.block.tileentity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityBase extends TileEntity {
+public class TileEntityBonzaiSakuraTree extends TileEntity {
     @Override
     public void writeToNBT(NBTTagCompound par1) {
         super.writeToNBT(par1);

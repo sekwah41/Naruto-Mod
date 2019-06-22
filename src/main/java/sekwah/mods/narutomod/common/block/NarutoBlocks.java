@@ -14,13 +14,15 @@ public class NarutoBlocks {
     public static Block PaperBombEntityTexture;
 
     public static Block Summoning_CircleCenter;
-    public static Block Summoning_CircleEdges; // change the edges to be one block with metadata at some point
+    public static Block Summoning_CircleEdges;
 
     public static Block Sakura_Leaves;
 
     public static Block Sakura_Sapling;
 
-    public static Block bonsaiTree; // needs the renderer to be finished
+    public static Block bonsaiTree;
+
+    public static Block bonsaiSakuraTree;
 
 
     public static void addBlocks(Configuration config) {
@@ -40,6 +42,8 @@ public class NarutoBlocks {
 
         bonsaiTree = (new BlockBonsaiTree()).setHardness(3F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("bonsaitree").setTextureName("bonsaitree").setCreativeTab(CreativeTabs.tabDecorations);
 
+        bonsaiSakuraTree = (new BlockBonsaiSakuraTree()).setHardness(3F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("bonsaisakuratree").setTextureName("bonsaisakuratree").setCreativeTab(CreativeTabs.tabDecorations);
+
         // if you find out what the rest of the registerBlock does then maybe that will allow more advanced blocks
         GameRegistry.registerBlock(PaperBombBlock, PaperBombBlock.getUnlocalizedName());
 
@@ -52,8 +56,12 @@ public class NarutoBlocks {
 
         GameRegistry.registerBlock(bonsaiTree, bonsaiTree.getUnlocalizedName());
 
+        GameRegistry.registerBlock(bonsaiSakuraTree, bonsaiSakuraTree.getUnlocalizedName());
+
         // Bonsai
         GameRegistry.addShapelessRecipe(new ItemStack(bonsaiTree, 1), Items.flower_pot, Blocks.sapling);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(bonsaiSakuraTree, 1), Items.flower_pot, Sakura_Sapling);
 
     }
 
