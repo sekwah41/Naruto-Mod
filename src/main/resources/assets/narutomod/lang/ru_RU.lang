@@ -72,16 +72,18 @@ item.backScroll.Green.name=Зелёный свиток
 item.backScroll.Red.name=Красный свиток
 item.backScroll.Black.name=Чёрный свиток
 
-item.headProtector=Повязка
-
-item.headProtector.HiddenInTheTrees.name=Повязка деревни скрытой в Деревьях
-item.headProtector.HiddenInTheLeaves.name=Повязка деревни скрытой в Листьях
-item.headProtector.HiddenInTheLeavesScratched.name=Повязка деревни скрытой в Листьях (Повреждённая)
-item.headProtector.Rainbow.name=Повязка деревни скрытой в Любви
-item.headProtector.Custard.name=Повязка деревни скрытой в Сладостях
-item.headProtector.Youtube.name=Повязка Ютубера
-item.headProtector.Youtube.desc=Деревня скрытая в мемах
-item.headProtector.Lava.name=Повязка деревни скрытой в Лавые
+item.blankBlueHeadBand.name=Синяя повязка
+item.blankBlackHeadBand.name=Чёрная повязка
+item.blankRedHeadBand.name=Красная повязка
+item.headProtector.name=Повязка деревни скрытой в Листве 
+item.headProtectorBlack.name=Повязка деревни скрытой в Листве
+item.headProtectorSand.name=Повязка деревни скрытой в Песке
+item.headProtectorSound.name=Повязка деревни скрытой в Звуке
+item.headProtectorScratched.name=Повязка деревни скрытой в Листве (Повреждённая)
+item.headProtectorRainbow.name=Повязка деревни скрытой в Любви
+item.custardHeadband.name=Повязка деревни скрытой в Сладостях
+item.headProtectorRock.name=Повязка деревни скрытой в Камнях
+item.headProtectorLava.name=Повязка деревни скрытой в Лаве
 
 item.sasukeKidArmour.name=Детская одежда Саске
 item.borutoKidArmour.name=Деткская одежда Боруто
