@@ -27,6 +27,7 @@ public class NarutoItems {
 	public static final CreativeTabNinja ninjaWeapons = new CreativeTabNinja(CreativeTabs.getNextID(), "narutoWeapons");
 	public static final CreativeTabNinja ninjaMaterials = new CreativeTabNinja(CreativeTabs.getNextID(), "narutoMaterials");
 	public static final CreativeTabNinja ninjaArmour = new CreativeTabNinja(CreativeTabs.getNextID(), "narutoArmour");
+	public static final CreativeTabNinja ninjaHeadband = new CreativeTabNinja(CreativeTabs.getNextID(), "narutoHeadband");
 	public static Item Kunai;
 	public static Item Shuriken;
 	//public static Item FightingSpirit;
@@ -139,7 +140,7 @@ public class NarutoItems {
 
 		backStraps = (new BaseItem()).setUnlocalizedName("backStraps").setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1);
 
-		headBand = (new ItemArmourHeadbands(headbandArmour, 4, 0)).setName("headProtector").setCreativeTab(ninjaArmour).setMaxStackSize(1);
+		headBand = (new ItemArmourHeadbands(headbandArmour, 4, 0)).setName("headProtector").setCreativeTab(ninjaHeadband).setMaxStackSize(1);
 
 		fabric = (new BaseItemAndSub("Reinforced", "ReinforcedGreen", "ReinforcedBlack", "ReinforcedRed", "ReinforcedBlue", "ReinforcedOrange")).setName("fabric").setCreativeTab(ninjaMaterials);
 
@@ -249,6 +250,7 @@ public class NarutoItems {
 		ninjaArmour.setItemStack(new ItemStack(redAnbuMask));
 		ninjaMaterials.setItemStack(new ItemStack(fabric));
 		ninjaWeapons.setItemStack(new ItemStack(Kunai));
+		ninjaHeadband.setItemStack(new ItemStack(headBand));
 
 	}
 

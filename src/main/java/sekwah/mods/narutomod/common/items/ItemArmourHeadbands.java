@@ -39,7 +39,12 @@ public class ItemArmourHeadbands extends ItemArmor {
         RAINBOW(8, "headProtectorRainbow", "pride_headband"),
         LEAVES_BLACK(9, "headProtectorBlack", "leafvillage_headband_black"),
         SAND(10, "headProtectorSand", "sandblack_headband"),
-        SOUND(11, "headProtectorSound", "soundvillage_headband");
+        SOUND(11, "headProtectorSound", "soundvillage_headband"),
+        MIST(12, "headProtectorMist", "mistblack_headband"),
+        WATERFALL(13, "headProtectorWaterfall", "waterfallblack_headband"),
+        CLOUD(14, "headProtectorCloud", "cloudblack_headband"),
+        RAIN(15, "headProtectorRain", "rainblack_headband"),
+        GRASS(16, "headProtectorGrass", "grassblack_headband");
 
         private final int subId;
         private final String name;

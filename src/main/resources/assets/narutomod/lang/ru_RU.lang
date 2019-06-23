@@ -75,21 +75,28 @@ item.backScroll.Black.name=Чёрный свиток
 item.blankBlueHeadBand.name=Синяя повязка
 item.blankBlackHeadBand.name=Чёрная повязка
 item.blankRedHeadBand.name=Красная повязка
-item.headProtector.name=Повязка деревни скрытой в Листве 
+item.headProtector.name=Повязка деревни скрытой в Листве
 item.headProtectorBlack.name=Повязка деревни скрытой в Листве
 item.headProtectorSand.name=Повязка деревни скрытой в Песке
 item.headProtectorSound.name=Повязка деревни скрытой в Звуке
+item.headProtectorMist.name=Hidden In The Mist Headband
+item.headProtectorWaterfall.name=Hidden In The Waterfall Headband
+item.headProtectorCloud.name=Hidden In The Clouds Headband
+item.headProtectorRain.name=Hidden In The Rain Headband
+item.headProtectorGrass.name=Hidden In The Grass Headband
 item.headProtectorScratched.name=Повязка деревни скрытой в Листве (Повреждённая)
 item.headProtectorRainbow.name=Повязка деревни скрытой в Любви
 item.custardHeadband.name=Повязка деревни скрытой в Сладостях
 item.headProtectorRock.name=Повязка деревни скрытой в Камнях
 item.headProtectorLava.name=Повязка деревни скрытой в Лаве
+itemGroup.narutoHeadband=Naruto Headbands
+
+menu.modpage=Страница мода
 
 item.sasukeKidArmour.name=Детская одежда Саске
 item.borutoKidArmour.name=Деткская одежда Боруто
 item.borutoKidMovieArmour.name=Детская одежда Боруто (Экранизации)
 item.narutoShippudenArmour.name=Новая одежда Наруто
-item.narutoKidArmour.name=Детская одежда Наруто
 item.anbuArmour.name=Броня Анбу
 
 
@@ -126,8 +133,6 @@ tile.bonsaitree.name=Бонсай
 itemGroup.narutoWeapons=Наруто - Оружие
 itemGroup.narutoMaterials=Наруто - Материалы
 itemGroup.narutoArmour=Наруто - Броня
-
-menu.modpage=Страница мода
 
 gui.jutsu.learnt=Выучено!
 
@@ -227,6 +232,7 @@ naruto.gui.restartMinecraft=Перезапустите Майнкрафт
 naruto.gui.settingsSaved=Настройки сохранены
 
 item.redAnbuMask.name=Красная маска Анбу
+item.narutoKidArmour.name=Детская одежда Наруто
 
 commands.naruto.jutsu.usage=/jutsu <list/activate>
 commands.naruto.jutsu.activate.usage=/jutsu activate <jutsu>
