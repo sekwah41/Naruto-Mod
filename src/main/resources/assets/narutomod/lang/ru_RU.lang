@@ -48,7 +48,7 @@ item.gunbai.desc.line2=подделка легендарного оружия.
 
 item.Bokken.name=Боккен
 
-item.Scroll.name=Свиток Призыва(Волк)
+item.Scroll.name=Свиток Призыва (Волк)
 
 item.Noodles.name=Лапша
 item.Noodles.name=Лапша
@@ -79,17 +79,17 @@ item.headProtector.name=Повязка деревни скрытой в Лист
 item.headProtectorBlack.name=Повязка деревни скрытой в Листве
 item.headProtectorSand.name=Повязка деревни скрытой в Песке
 item.headProtectorSound.name=Повязка деревни скрытой в Звуке
-item.headProtectorMist.name=Hidden In The Mist Headband
-item.headProtectorWaterfall.name=Hidden In The Waterfall Headband
-item.headProtectorCloud.name=Hidden In The Clouds Headband
-item.headProtectorRain.name=Hidden In The Rain Headband
-item.headProtectorGrass.name=Hidden In The Grass Headband
+item.headProtectorMist.name=Повязка деревни скрытой в Тумане
+item.headProtectorWaterfall.name=Повязка деревни скрытой в Водопаде
+item.headProtectorCloud.name=Повязка деревни скрытой в Облаке
+item.headProtectorRain.name=Повязка деревни скрытой в Дожде
+item.headProtectorGrass.name=Повязка деревни скрытой в Траве
 item.headProtectorScratched.name=Повязка деревни скрытой в Листве (Повреждённая)
 item.headProtectorRainbow.name=Повязка деревни скрытой в Любви
 item.custardHeadband.name=Повязка деревни скрытой в Сладостях
 item.headProtectorRock.name=Повязка деревни скрытой в Камнях
 item.headProtectorLava.name=Повязка деревни скрытой в Лаве
-itemGroup.narutoHeadband=Naruto Headbands
+itemGroup.narutoHeadband=Наруто - Повязки
 
 menu.modpage=Страница мода
 
