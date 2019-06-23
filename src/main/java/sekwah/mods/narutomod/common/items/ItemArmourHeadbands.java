@@ -44,7 +44,17 @@ public class ItemArmourHeadbands extends ItemArmor {
         WATERFALL(13, "headProtectorWaterfall", "waterfallblack_headband"),
         CLOUD(14, "headProtectorCloud", "cloudblack_headband"),
         RAIN(15, "headProtectorRain", "rainblack_headband"),
-        GRASS(16, "headProtectorGrass", "grassblack_headband");
+        GRASS(16, "headProtectorGrass", "grassblack_headband"),
+        YOUTUBE(16, "headProtectorYoutube", "youtube_headband"),
+        LEAVES_BLACK_SCRATCHED(17, "headProtectorBlackScratched", "leafvillage_headband_black_scratched"),
+        ROCK_SCRATCHED(18, "headProtectorRockScratched", "rock_headband_scratched"),
+        SAND_SCRATCHED(19, "headProtectorSandScratched", "sandblack_headband_scratched"),
+        SOUND_SCRATCHED(20, "headProtectorSoundScratched", "soundvillage_headband_scratched"),
+        MIST_SCRATCHED(21, "headProtectorMistScratched", "mistblack_headband_scratched"),
+        WATERFALL_SCRATCHED(22, "headProtectorWaterfallScratched", "waterfallblack_headband_scratched"),
+        CLOUD_SCRATCHED(23, "headProtectorCloudScratched", "cloudblack_headband_scratched"),
+        RAIN_SCRATCHED(24, "headProtectorRainScratched", "rainblack_headband_scratched"),
+        GRASS_SCRATCHED(25, "headProtectorGrassScratched", "grassblack_headband_scratched");
 
         private final int subId;
         private final String name;
