@@ -20,6 +20,8 @@ import sekwah.mods.narutomod.common.items.dispenserbehavior.DispenserBehaviorKun
 import sekwah.mods.narutomod.common.items.dispenserbehavior.DispenserBehaviorSenbon;
 import sekwah.mods.narutomod.common.items.dispenserbehavior.DispenserBehaviorShuriken;
 
+import static sekwah.mods.narutomod.common.items.ItemArmourHeadbands.SUB_HEADBAND.*;
+
 public class NarutoItems {
 
 	public static final CreativeTabNinja ninjaWeapons = new CreativeTabNinja(CreativeTabs.getNextID(), "narutoWeapons");
@@ -137,11 +139,8 @@ public class NarutoItems {
 
 		backStraps = (new BaseItem()).setUnlocalizedName("backStraps").setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1);
 
-		// TODO add durability onto the headbands and back scroll so register as seperate items or look how leather has a colour value
-		// TODO change liams hidden in the tress to hidden in the leaf and add other village headbands.
-		headBand = (new ItemArmourHeadband(headbandArmour, 4, 0)).setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("headProtector");
+		headBand = (new ItemArmourHeadbands(headbandArmour, 4, 0)).setName("headProtector").setCreativeTab(ninjaArmour).setMaxStackSize(1);
 
-		//fabric = (new ItemFabric()).setUnlocalizedName("fabric").setCreativeTab(ninjaMaterials);
 		fabric = (new BaseItemAndSub("Reinforced", "ReinforcedGreen", "ReinforcedBlack", "ReinforcedRed", "ReinforcedBlue", "ReinforcedOrange")).setName("fabric").setCreativeTab(ninjaMaterials);
 
 		armourPlate = (new BaseItemAndSub("Red", "Green")).setName("armourPlate").setCreativeTab(ninjaMaterials).setMaxStackSize(32);
@@ -343,9 +342,9 @@ public class NarutoItems {
 		GameRegistry.addShapelessRecipe(new ItemStack(BORUTO_KID_ARMOUR), new ItemStack(BORUTO_KID_MOVIE_ARMOUR), new ItemStack(Items.dye, 1, 9));
 
 		// Headband
-		GameRegistry.addRecipe(new ItemStack(headBand, 1, 0), "BAB", 'B', new ItemStack(fabric, 1, 5), 'A', armourPlate);
-		GameRegistry.addRecipe(new ItemStack(headBand, 1, 1), "SAS", 'S', Items.sugar, 'A', armourPlate);
-		GameRegistry.addRecipe(new ItemStack(headBand, 1, 3), "RAR", 'R', new ItemStack(fabric, 1, 4), 'A', armourPlate);
+		GameRegistry.addRecipe(new ItemStack(headBand, 1, BLANK.getSubId()), "BAB", 'B', new ItemStack(fabric, 1, 5), 'A', armourPlate);
+		GameRegistry.addRecipe(new ItemStack(headBand, 1, CUSTARD.getSubId()), "SAS", 'S', Items.sugar, 'A', armourPlate);
+		GameRegistry.addRecipe(new ItemStack(headBand, 1, BLANK_RED.getSubId()), "RAR", 'R', new ItemStack(fabric, 1, 4), 'A', armourPlate);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, 4), new ItemStack(headBand, 1, 0));
 		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, 0), new ItemStack(headBand, 1, 4));

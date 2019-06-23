@@ -5,7 +5,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
@@ -24,15 +23,15 @@ import sekwah.mods.narutomod.common.items.itemmodels.ModelHeadband;
 
 import java.util.List;
 
-public class ItemArmourHeadband extends ItemArmor {
+public class ItemArmourHeadbandOld extends ItemArmor {
 	
 	@SideOnly(Side.CLIENT)
 	private IIcon[] Icons;
 
     // TODO add extra data so that way people can dye the headbands different colours. That will be epix :3
     // TODO above and add a crafting recipe or some way of obtaining them.
-	public ItemArmourHeadband(ArmorMaterial par2EnumArmorMaterial,
-			int par3, int par4) {
+	public ItemArmourHeadbandOld(ArmorMaterial par2EnumArmorMaterial,
+                                 int par3, int par4) {
 			super(par2EnumArmorMaterial, par3, par4);
 			this.setHasSubtypes(true);
 			this.setMaxDurability(0);
@@ -123,7 +122,7 @@ public class ItemArmourHeadband extends ItemArmor {
 
         ModelHeadband armorModel = null;
         if(itemStack != null){
-            if(itemStack.getItem() instanceof ItemArmourHeadband){
+            if(itemStack.getItem() instanceof ItemArmourHeadbandOld){
                 int type = ((ItemArmor)itemStack.getItem()).armorType;
 
                 if(type == 0){

@@ -72,16 +72,18 @@ item.backScroll.Green.name=Green Back Scroll
 item.backScroll.Red.name=Red Back Scroll
 item.backScroll.Black.name=Black Back Scroll
 
-item.headProtector=headband
-
-item.headProtector.HiddenInTheTrees.name=Hidden In The Trees Headband
-item.headProtector.HiddenInTheLeaves.name=Hidden In The Leaves Headband
-item.headProtector.HiddenInTheLeavesScratched.name=Hidden In The Leaves Headband (Scratched)
-item.headProtector.Rainbow.name=Hidden In The Pride
-item.headProtector.Custard.name=Custard Headband
-item.headProtector.Youtube.name=Youtuber Headband
-item.headProtector.Youtube.desc=Village hidden in the memes
-item.headProtector.Lava.name=Lava Headband
+item.blankBlueHeadBand.name=Blank Blue Headband
+item.blankBlackHeadBand.name=Blank Black Headband
+item.blankRedHeadBand.name=Blank Red Headband
+item.headProtector.name=Hidden In The Leaves Headband
+item.headProtectorBlack.name=Hidden In The Leaves Headband
+item.headProtectorSand.name=Hidden In The Sand Headband
+item.headProtectorSound.name=Hidden In The Sound Headband
+item.headProtectorScratched.name=Hidden In The Leaves Headband (Scratched)
+item.headProtectorRainbow.name=Hidden In The Pride
+item.custardHeadband.name=Custard Headband
+item.headProtectorRock.name=Hidden In The Stone Headband
+item.headProtectorLava.name=Lava Headband
 
 menu.modpage=Mod Page
 

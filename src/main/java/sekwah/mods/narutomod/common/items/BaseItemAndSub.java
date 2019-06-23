@@ -35,7 +35,6 @@ public class BaseItemAndSub extends Item {
 
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tabs, List list) {
-        // You can also take a more direct approach and do each one individual but I prefer the lazy / right way
         for (int i = 0; i < icons.length; ++i) {
             list.add(new ItemStack(item, 1, i));
         }
