@@ -19,6 +19,7 @@ public class ParticleEffectsHandler {
             outputStream.writeDouble(playerMP.posX);
             outputStream.writeDouble(playerMP.posY);
             outputStream.writeDouble(playerMP.posZ);
+            outputStream.writeDouble(playerMP.worldObj.getWorldInfo().getDimension());
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -78,6 +78,7 @@ public class ParticleEffects {
             posX = dis.readDouble();
             posY = dis.readDouble();
             posZ = dis.readDouble();
+            dimension = dis.readInt();
         } catch (Exception e) {
             e.printStackTrace();
         }
