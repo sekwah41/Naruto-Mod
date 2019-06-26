@@ -13,6 +13,12 @@ public class JutsuData {
     public static int shadowCloneCost = 20;
 
     public static int multiShadowCloneCost = 60;
+    
+    public static int chibakuTensei = 100;
+    
+    public static int sekc = 35;
+    
+    public static int chibiShadowClone = 50;
 
 
     public static float leapAmount = 2.5f;
