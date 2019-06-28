@@ -137,12 +137,15 @@ item.armourPlate.Green.name=Green Armour Plate
 
 tile.sakuraleaves.name=Sakura Leaves
 tile.sakurasapling.name=Sakura Sapling
-tile.bonsaitree.name=BonsaiTree
+tile.bonsaitree.name=Bonsai Tree
+tile.bonsaisakuratree.name=Sakura Bonsai Tree
 
 
 itemGroup.narutoWeapons=Naruto Weapons
 itemGroup.narutoMaterials=Naruto Materials
 itemGroup.narutoArmour=Naruto Armour
+
+gui.jutsuskilltree.title=Jutsu Skill Tree
 
 gui.jutsu.learnt=Learnt!
 

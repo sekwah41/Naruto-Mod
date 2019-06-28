@@ -138,11 +138,14 @@ item.armourPlate.Green.name=Зелёная железная пластина
 tile.sakuraleaves.name=Листья сакуры
 tile.sakurasapling.name=Саженец сакуры
 tile.bonsaitree.name=Бонсай
+tile.bonsaisakuratree.name=Sakura Bonsai Tree
 
 
 itemGroup.narutoWeapons=Наруто - Оружие
 itemGroup.narutoMaterials=Наруто - Материалы
 itemGroup.narutoArmour=Наруто - Броня
+
+gui.jutsuskilltree.title=Jutsu Skill Tree
 
 gui.jutsu.learnt=Выучено!
 

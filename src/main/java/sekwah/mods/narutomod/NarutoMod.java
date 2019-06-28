@@ -44,11 +44,13 @@ import java.util.List;
 public class NarutoMod {
 
     public static final String modid = "narutomod";
+
     public static final Logger logger = LogManager.getLogger("Sekwah41's Naruto Mod");
+
     @SidedProxy(clientSide = "sekwah.mods.narutomod.client.ClientProxy", serverSide = "sekwah.mods.narutomod.common.CommonProxy")
     public static CommonProxy proxy;
 
-    public static final String version = "0.5.0b15";
+    public static final String version = "0.5.0b16";
 
     public static List<DelayedRender> delayedRenders = new ArrayList<>();
 
@@ -59,9 +61,10 @@ public class NarutoMod {
 	public static NarutoMod instance;
 
     // update data
-    public static int[] mcVersion = {1,7,10}; // e.g. 164 is 1.6.4
+    public static int[] mcVersion = {1,7,10};
 
-    public static int[] modVersion = {0,5,1}; // e.g. 030 is 0.3.1
+    public static int[] modVersion = {0,5,1};
+
     // leave this as false or be more careful!
     public static boolean isPreRelease = true;
 

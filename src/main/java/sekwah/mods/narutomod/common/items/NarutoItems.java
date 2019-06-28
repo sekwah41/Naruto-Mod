@@ -347,9 +347,12 @@ public class NarutoItems {
 		GameRegistry.addRecipe(new ItemStack(headBand, 1, BLANK.getSubId()), "BAB", 'B', new ItemStack(fabric, 1, 5), 'A', armourPlate);
 		GameRegistry.addRecipe(new ItemStack(headBand, 1, CUSTARD.getSubId()), "SAS", 'S', Items.sugar, 'A', armourPlate);
 		GameRegistry.addRecipe(new ItemStack(headBand, 1, BLANK_RED.getSubId()), "RAR", 'R', new ItemStack(fabric, 1, 4), 'A', armourPlate);
+		GameRegistry.addRecipe(new ItemStack(headBand, 1, BLANK_BLACK.getSubId()), "BAB", 'B', new ItemStack(fabric, 1, 3), 'A', armourPlate);
 
-		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, 4), new ItemStack(headBand, 1, 0));
-		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, 0), new ItemStack(headBand, 1, 4));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, GRASS.getSubId()), new ItemStack(headBand, 1, GRASS_SCRATCHED.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, GRASS_SCRATCHED.getSubId()), new ItemStack(headBand, 1, GRASS.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, GRASS.getSubId()), new ItemStack(headBand, 1, BLANK.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, BLANK.getSubId()), Blocks.leaves);
 
 		// Anbu Mask
 		GameRegistry.addRecipe(new ItemStack(redAnbuMask), "IRI", "III", " I ", 'R', new ItemStack(Items.dye, 1, 1), 'I', new ItemStack(armourPlate, 1, 0));

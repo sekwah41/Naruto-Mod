@@ -203,7 +203,7 @@ public class GuiJutsuMenu extends GuiScreen {
     protected void drawTitle() {
         int i = (this.width - this.achievementsPaneWidth) / 2;
         int j = (this.height - this.achievementsPaneHeight) / 2;
-        this.fontRendererObj.drawString("Jutsu Skill Tree", i + 15, j + 5, 0);
+        this.fontRendererObj.drawString(I18n.format("gui.jutsuskilltree.title"), i + 15, j + 5, 0);
     }
 
     protected void genAchievementBackground(int par1, int par2, float par3) {
