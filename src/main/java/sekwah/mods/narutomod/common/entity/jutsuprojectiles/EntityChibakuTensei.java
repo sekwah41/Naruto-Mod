@@ -15,6 +15,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
 import sekwah.mods.narutomod.common.entity.specials.EntityChibakuBlock;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.util.*;
 
@@ -104,38 +105,41 @@ public class EntityChibakuTensei extends Entity {
                 cY = (int) this.posY;
                 cZ = (int) this.posZ;
             }
-            if (ticksExisted == travelTime) {
-                this.targetBlocks = this.grabBlocks();
-                this.placingLocations = this.genPlaceList(this.targetBlocks.size());
-            }
-            if (this.targetBlocks != null) {
-                if(maxLife > ticksExisted + noSpawny) {
-                    for(int i = 0; i < 10; i++) {
-                        TargetBlock targetBlock = this.targetBlocks.pollFirst();
-                        if(targetBlock != null) {
-                            Block block = this.worldObj.getBlock(targetBlock.x, targetBlock.y, targetBlock.z);
-                            if(block.getBlockHardness(this.worldObj, targetBlock.x, targetBlock.y, targetBlock.z) > -1) {
-                                if(!(block instanceof BlockLeaves) && !(block instanceof BlockDynamicLiquid)) {
-                                    if(block == Blocks.grass) {
-                                        block = Blocks.dirt;
+            if(!NarutoSettings.nonDestructiveMode) {
+                if (ticksExisted == travelTime) {
+                    this.targetBlocks = this.grabBlocks();
+                    this.placingLocations = this.genPlaceList(this.targetBlocks.size());
+                }
+                if (this.targetBlocks != null) {
+                    if(maxLife > ticksExisted + noSpawny) {
+                        for(int i = 0; i < 10; i++) {
+                            TargetBlock targetBlock = this.targetBlocks.pollFirst();
+                            if(targetBlock != null) {
+                                Block block = this.worldObj.getBlock(targetBlock.x, targetBlock.y, targetBlock.z);
+                                if(block.getBlockHardness(this.worldObj, targetBlock.x, targetBlock.y, targetBlock.z) > -1) {
+                                    if(!(block instanceof BlockLeaves) && !(block instanceof BlockDynamicLiquid)) {
+                                        if(block == Blocks.grass) {
+                                            block = Blocks.dirt;
+                                        }
+                                        else if(block == Blocks.stone) {
+                                            block = this.rand.nextFloat() > 0.5f ? Blocks.stone : Blocks.cobblestone;
+                                        }
+                                        EntityChibakuBlock blockEntity = new EntityChibakuBlock(this.worldObj, targetBlock.x - 0.5d, targetBlock.y - 0.5d, targetBlock.z - 0.5d, this, block,
+                                                worldObj.getBlockMetadata(targetBlock.x, targetBlock.y, targetBlock.z));
+                                        //block.motionY = 2;
+                                        this.worldObj.spawnEntityInWorld(blockEntity);
                                     }
-                                    else if(block == Blocks.stone) {
-                                        block = this.rand.nextFloat() > 0.5f ? Blocks.stone : Blocks.cobblestone;
-                                    }
-                                    EntityChibakuBlock blockEntity = new EntityChibakuBlock(this.worldObj, targetBlock.x - 0.5d, targetBlock.y - 0.5d, targetBlock.z - 0.5d, this, block,
-                                            worldObj.getBlockMetadata(targetBlock.x, targetBlock.y, targetBlock.z));
-                                    //block.motionY = 2;
-                                    this.worldObj.spawnEntityInWorld(blockEntity);
+                                    this.worldObj.setBlock(targetBlock.x, targetBlock.y, targetBlock.z, Blocks.air);
                                 }
-                                this.worldObj.setBlock(targetBlock.x, targetBlock.y, targetBlock.z, Blocks.air);
-                            }
-                            if(i == 9) {
-                                this.setGrabRadius((float) Vec3.createVectorHelper(this.posX - targetBlock.x, this.posY - targetBlock.y, this.posZ - targetBlock.z).lengthVector());
+                                if(i == 9) {
+                                    this.setGrabRadius((float) Vec3.createVectorHelper(this.posX - targetBlock.x, this.posY - targetBlock.y, this.posZ - targetBlock.z).lengthVector());
+                                }
                             }
                         }
                     }
                 }
             }
+
         }
         if(ticksExisted > maxLife) {
             setDead();

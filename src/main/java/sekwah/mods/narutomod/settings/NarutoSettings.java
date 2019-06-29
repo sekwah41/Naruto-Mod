@@ -58,6 +58,8 @@ public class NarutoSettings {
 
     public static boolean nonDestructiveMode = true;
 
+    public static boolean enableChibakuTensei = true;
+
     public static void changeSetting() {
     }
 
@@ -222,9 +224,9 @@ public class NarutoSettings {
         nonDestructiveMode = configNonDestructiveMode.getBoolean(true);
         configNonDestructiveMode.comment = "Server side setting: If true jutsus will not damage the world e.g. fire or block damage.";
 
-        Property enableChibakuTensei = config.get(Configuration.CATEGORY_GENERAL, "nonDestructiveMode", false);
-        nonDestructiveMode = configNonDestructiveMode.getBoolean(true);
-        configNonDestructiveMode.comment = "Server side setting: If true jutsus will not damage the world e.g. fire or block damage.";
+        Property configEnableChibakuTensei = config.get(Configuration.CATEGORY_GENERAL, "enableChibakuTensei", false);
+        enableChibakuTensei = configEnableChibakuTensei.getBoolean(false);
+        configEnableChibakuTensei.comment = "Should the chibaku tensei be enabled?";
 
         chakraBarOffsetX = config.get(Configuration.CATEGORY_GENERAL, "chakraBarOffsetX", 2).getInt(2);
 

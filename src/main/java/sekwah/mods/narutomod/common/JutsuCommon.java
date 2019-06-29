@@ -25,6 +25,7 @@ import sekwah.mods.narutomod.jutsu.Jutsu;
 import sekwah.mods.narutomod.jutsu.Jutsus;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
 import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -133,10 +134,13 @@ public class JutsuCommon {
             case Jutsus.CHAKRA_INFUSE_STOP: // charging chakra stopped
                 return true;
             case Jutsus.CHIBAKU_TENSEI:
-                EntityChibakuTensei bigBoomBoomBall = new EntityChibakuTensei(playerMP.worldObj);
-                bigBoomBoomBall.setPosition(playerMP.posX, playerMP.posY, playerMP.posZ);
-                playerMP.worldObj.spawnEntityInWorld(bigBoomBoomBall);
-                return true;
+                if(NarutoSettings.enableChibakuTensei) {
+                    EntityChibakuTensei bigBoomBoomBall = new EntityChibakuTensei(playerMP.worldObj);
+                    bigBoomBoomBall.setPosition(playerMP.posX, playerMP.posY, playerMP.posZ);
+                    playerMP.worldObj.spawnEntityInWorld(bigBoomBoomBall);
+                    return true;
+                }
+                return false;
             case Jutsus.SCREAMING_BIRB:
                 return true;
             case Jutsus.SCREAMING_BIRBY_BOI:
