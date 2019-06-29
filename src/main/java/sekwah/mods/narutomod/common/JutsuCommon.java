@@ -251,8 +251,9 @@ public class JutsuCommon {
                     zDir = -1;
                     break;
             }
+            int y = getOffset(playerMP.worldObj, movingObject.blockX + xDir,movingObject.blockY, movingObject.blockZ, 5);
             for(int i = -2; i <= 2; i++) {
-                earthWallPillar(playerMP.worldObj, movingObject.blockX + xDir * i,movingObject.blockY, movingObject.blockZ + zDir * i);
+                earthWallPillar(playerMP.worldObj, movingObject.blockX + xDir * i, y, movingObject.blockZ + zDir * i);
             }
 
             //System.out.printf("%s %s %s%n",movingObject.blockX,movingObject.blockY, movingObject.blockZ);
@@ -284,9 +285,35 @@ public class JutsuCommon {
                 || !blockTestBlock.isCollidable();
     }
 
+    private static int getOffset(World worldObj, int x, int y, int z, int maxOffset) {
+        y++;
+        for (int i = 1; i < maxOffset+1; i++) {
+            if(i == maxOffset) {
+                y += maxOffset - 2;
+                break;
+            }
+            if(canPlaceEarthBlock(worldObj,x,y-1,z)) {
+                y--;
+            }
+            else {
+                break;
+            }
+        }
+        for (int i = 0; i < maxOffset; i++) {
+            if(!canPlaceEarthBlock(worldObj,x,y+1,z)) {
+                y++;
+            }
+            else {
+                break;
+            }
+        }
+        return y;
+    }
+
     private static void earthWallPillar(World worldObj, int x, int y, int z) {
-        if(!canPlaceEarthBlock(worldObj,x,y,z)) y++;
-        else if(canPlaceEarthBlock(worldObj,x,y-1,z)) y++;
+
+        y = getOffset(worldObj, x, y, z, 5);
+
         //worldObj.setBlock(x,y,z,Blocks.bedrock);
         for(int yW = 0; yW < 5; yW ++) {
             Block blockTestBlock = worldObj.getBlock(x,y+ yW,z);

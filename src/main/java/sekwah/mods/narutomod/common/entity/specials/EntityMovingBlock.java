@@ -64,7 +64,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         this.posY = posY;
         this.posZ = posZ;
         this.setBoundingBox(posX, posY, posZ);
-        this.spawningParticles = worldObj.getBlock((int) posX, (int) posY - 1, (int) posZ) != Blocks.air;
+        this.spawningParticles = worldObj.getBlock((int) posX - 1, (int) posY - 1, (int) posZ - 1) != Blocks.air;
     }
 
     public void setBoundingBox(double posX, double posY, double posZ) {
