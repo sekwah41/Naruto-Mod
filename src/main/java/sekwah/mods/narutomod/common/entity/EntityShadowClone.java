@@ -215,9 +215,9 @@ public class EntityShadowClone extends EntityCreature implements SkinCallback, I
             this.playSound("narutomod:jutsusounds.clone_poof", 0.15F, this.isChild() ? 1.2F : 1.0f);
         }
 
-        /*if (lifetime <= 0) { // how many ticks they last
+        if (lifetime <= 0) { // how many ticks they last
             this.damageEntity(DamageSource.magic, 30);
-        }*/
+        }
         if (this.worldObj.isDaytime() && !this.worldObj.isRemote && !this.isChild()) {
             float var1 = this.getBrightness(1.0F);
         }

@@ -215,10 +215,14 @@ public class NarutoSettings {
         }
 
         Property configExperimentalFirstPerson = config.get(Configuration.CATEGORY_GENERAL, "experimentalFirstPersonEnabled", true);
-         experimentalFirstPerson = configExperimentalFirstPerson.getBoolean(true);
-         configExperimentalFirstPerson.comment = "If this is set to true then you can see your arms and legs in first person.";
+        experimentalFirstPerson = configExperimentalFirstPerson.getBoolean(true);
+        configExperimentalFirstPerson.comment = "If this is set to true then you can see your arms and legs in first person.";
 
-         Property configNonDestructiveMode = config.get(Configuration.CATEGORY_GENERAL, "nonDestructiveMode", false);
+        Property configNonDestructiveMode = config.get(Configuration.CATEGORY_GENERAL, "nonDestructiveMode", false);
+        nonDestructiveMode = configNonDestructiveMode.getBoolean(true);
+        configNonDestructiveMode.comment = "Server side setting: If true jutsus will not damage the world e.g. fire or block damage.";
+
+        Property enableChibakuTensei = config.get(Configuration.CATEGORY_GENERAL, "nonDestructiveMode", false);
         nonDestructiveMode = configNonDestructiveMode.getBoolean(true);
         configNonDestructiveMode.comment = "Server side setting: If true jutsus will not damage the world e.g. fire or block damage.";
 

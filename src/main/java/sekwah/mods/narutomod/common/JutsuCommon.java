@@ -2,6 +2,7 @@ package sekwah.mods.narutomod.common;
 
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -221,7 +222,7 @@ public class JutsuCommon {
         jutsuSound(4, playerMP);
         Vec3 posVec = Vec3.createVectorHelper(playerMP.posX,playerMP.posY + playerMP.getEyeHeight(), playerMP.posZ);
         Vec3 lookVec = playerMP.getLookVec();
-        int wallRange = 10;
+        int wallRange = 40;
         MovingObjectPosition movingObject = playerMP.worldObj.rayTraceBlocks(posVec, posVec.addVector(lookVec.xCoord * wallRange,
                 lookVec.yCoord * wallRange, lookVec.zCoord * wallRange));
         short xDir = 0;
@@ -257,7 +258,7 @@ public class JutsuCommon {
             //System.out.printf("%s %s %s%n",movingObject.blockX,movingObject.blockY, movingObject.blockZ);
         }
         else {
-            IChatComponent message = new ChatComponentTranslation("naruto.jutsu.earthWall.failed");
+            IChatComponent message = new ChatComponentTranslation("naruto.jutsu.earthWall.failed", wallRange);
             message.getChatStyle().setColor(EnumChatFormatting.RED);
             playerMP.addChatMessage(message);
             //System.out.println("NO BLOCK");
@@ -275,12 +276,21 @@ public class JutsuCommon {
         return names;
     }
 
+    private static boolean canPlaceEarthBlock(World worldObj, int x, int y, int z) {
+        Block blockTestBlock = worldObj.getBlock(x,y,z);
+        return blockTestBlock == Blocks.air
+                || Blocks.dirt.canPlaceBlockAt(worldObj,x,y,z)
+                || blockTestBlock.canBeReplacedByLeaves(worldObj,x,y,z)
+                || !blockTestBlock.isCollidable();
+    }
+
     private static void earthWallPillar(World worldObj, int x, int y, int z) {
-        if(!Blocks.dirt.canPlaceBlockAt(worldObj,x,y,z)) y++;
-        else if(Blocks.dirt.canPlaceBlockAt(worldObj,x,y-1,z)) y++;
+        if(!canPlaceEarthBlock(worldObj,x,y,z)) y++;
+        else if(canPlaceEarthBlock(worldObj,x,y-1,z)) y++;
         //worldObj.setBlock(x,y,z,Blocks.bedrock);
         for(int yW = 0; yW < 5; yW ++) {
-            if(worldObj.getBlock(x,y+ yW,z) != Blocks.air) continue;
+            Block blockTestBlock = worldObj.getBlock(x,y+ yW,z);
+            if(!canPlaceEarthBlock(worldObj, x,y+ yW,z)) continue;
             Block block = worldObj.getBlock(x,y-5 + yW,z);
             int meta = worldObj.getBlockMetadata(x,y-5 + yW,z);
             if(!blockList.contains(block.getUnlocalizedName())) {
@@ -288,7 +298,7 @@ public class JutsuCommon {
                 meta = 0;
             }
             EntityMovingBlock blockEntity = new EntityMovingBlock(worldObj,x,y + yW,z,
-                    Block.getIdFromBlock(/*Blocks.dirt*/block), meta, 20 * 9 + (int) (Math.random() * 40));
+                    Block.getIdFromBlock(block), meta, 20 * 20 + (int) (Math.random() * 40));
             worldObj.spawnEntityInWorld(blockEntity);
         }
 

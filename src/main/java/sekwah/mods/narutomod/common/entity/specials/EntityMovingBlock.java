@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -30,6 +31,10 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
 
     private Block block;
     private byte data;
+
+    private boolean spawningParticles = false;
+
+    private int lastSoundLoc = 0;
 
     public EntityMovingBlock(World world) {
         super(world);
@@ -59,6 +64,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         this.posY = posY;
         this.posZ = posZ;
         this.setBoundingBox(posX, posY, posZ);
+        this.spawningParticles = worldObj.getBlock((int) posX, (int) posY - 1, (int) posZ) != Blocks.air;
     }
 
     public void setBoundingBox(double posX, double posY, double posZ) {
@@ -141,24 +147,41 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         if(downAmount < 0) {
             downAmount = 0;
         }
+
+
         //this.setBoundingBox(this.posX, this.posY + downAmount, this.posZ);
         double moveAmount = lastDownAmount == 0 ? 0 : (lastDownAmount - downAmount);
         lastDownAmount = downAmount;
 
         // TODO Move entity bounding box  down but dont move the actual entity (check what does lighting and what effects other parts but could work)
-        List entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.copy().offset(0,downAmount,0));
+        /*List entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.copy().offset(0,downAmount,0));
         for(Object entityObj : entities) {
             if(!(entityObj instanceof EntityMovingBlock)) {
                 Entity entity = (Entity) entityObj;
                 entity.moveEntity(0,moveAmount,0);
             }
-        }
+        }*/
 
         //this.posY += (this.toPosY - this.posY) / 4f;
         //this.posY += 0.01;
 
         if(!this.worldObj.isRemote) {
             WorldServer worldserver = (WorldServer)this.worldObj;
+
+
+
+            if(this.spawningParticles && downAmount != 0) {
+                if((int) downAmount != lastSoundLoc) {
+                    this.lastSoundLoc = (int) downAmount;
+                    this.worldObj.playSoundAtEntity(this, this.block.stepSound.getDigResourcePath(), 1, 1);
+                }
+                worldserver.func_147487_a("cloud", this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.boundingBox.minY + 0.1D,
+                        this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width ,10,0,0,0,0.05);
+                worldserver.func_147487_a("blockcrack_" + Block.getIdFromBlock(block) + "_" + this.data,
+                        this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.boundingBox.minY + 0.1D,
+                        this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width ,10,0,0,0,1);
+            }
+
             if(this.health == 30) {
                 this.setShaking();
             }

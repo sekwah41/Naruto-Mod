@@ -349,10 +349,32 @@ public class NarutoItems {
 		GameRegistry.addRecipe(new ItemStack(headBand, 1, BLANK_RED.getSubId()), "RAR", 'R', new ItemStack(fabric, 1, 4), 'A', armourPlate);
 		GameRegistry.addRecipe(new ItemStack(headBand, 1, BLANK_BLACK.getSubId()), "BAB", 'B', new ItemStack(fabric, 1, 3), 'A', armourPlate);
 
-		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, GRASS.getSubId()), new ItemStack(headBand, 1, GRASS_SCRATCHED.getSubId()));
-		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, GRASS_SCRATCHED.getSubId()), new ItemStack(headBand, 1, GRASS.getSubId()));
-		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, GRASS.getSubId()), new ItemStack(headBand, 1, BLANK.getSubId()));
-		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, BLANK.getSubId()), Blocks.leaves);
+		addReverseableHeadband(GRASS, GRASS_SCRATCHED);
+		addReverseableHeadband(LEAVES, SCRATCHED);
+		addReverseableHeadband(LEAVES_BLACK, LEAVES_BLACK_SCRATCHED);
+		addReverseableHeadband(ROCK, ROCK_SCRATCHED);
+		addReverseableHeadband(SAND, SAND_SCRATCHED);
+		addReverseableHeadband(SOUND, SOUND_SCRATCHED);
+		addReverseableHeadband(MIST, MIST_SCRATCHED);
+		addReverseableHeadband(WATERFALL, WATERFALL_SCRATCHED);
+		addReverseableHeadband(CLOUD, CLOUD_SCRATCHED);
+		addReverseableHeadband(RAIN, RAIN_SCRATCHED);
+
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, LEAVES.getSubId()), Blocks.leaves, new ItemStack(headBand, 1, BLANK.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, LEAVES.getSubId()), Blocks.leaves2, new ItemStack(headBand, 1, BLANK.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, LEAVES_BLACK.getSubId()), Blocks.leaves, new ItemStack(headBand, 1, BLANK_BLACK.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, LEAVES_BLACK.getSubId()), Blocks.leaves2, new ItemStack(headBand, 1, BLANK_BLACK.getSubId()));
+
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, LAVA.getSubId()), Items.lava_bucket, new ItemStack(headBand, 1, BLANK_RED.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, ROCK.getSubId()), Blocks.stone, new ItemStack(headBand, 1, BLANK_RED.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, SAND.getSubId()), Blocks.sand, new ItemStack(headBand, 1, BLANK_BLACK.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, SOUND.getSubId()), Blocks.noteblock, new ItemStack(headBand, 1, BLANK_RED.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, WATERFALL.getSubId()), Items.water_bucket, new ItemStack(headBand, 1, BLANK_BLACK.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, MIST.getSubId()), Items.snowball, new ItemStack(headBand, 1, BLANK_BLACK.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, RAIN.getSubId()), new ItemStack(Items.potionitem, 1, 0), new ItemStack(headBand, 1, BLANK_BLACK.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, GRASS.getSubId()), new ItemStack(Blocks.tallgrass, 1, 1), new ItemStack(headBand, 1, BLANK_BLACK.getSubId()));
+
+
 
 		// Anbu Mask
 		GameRegistry.addRecipe(new ItemStack(redAnbuMask), "IRI", "III", " I ", 'R', new ItemStack(Items.dye, 1, 1), 'I', new ItemStack(armourPlate, 1, 0));
@@ -384,6 +406,12 @@ public class NarutoItems {
 		/*GameRegistry.addRecipe(new ItemStack(armourPlate, 3), "   ", "III", "III", 'I', Items.iron_ingot);
 
 		GameRegistry.addRecipe(new ItemStack(armourPlate, 3), "III", "III", "   ", 'I', Items.iron_ingot);*/
+
+	}
+
+	public static void addReverseableHeadband(ItemArmourHeadbands.SUB_HEADBAND headband1, ItemArmourHeadbands.SUB_HEADBAND headband2) {
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, headband1.getSubId()), new ItemStack(headBand, 1, headband2.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, headband2.getSubId()), new ItemStack(headBand, 1, headband1.getSubId()));
 
 	}
 
