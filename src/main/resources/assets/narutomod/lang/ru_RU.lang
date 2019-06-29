@@ -138,14 +138,14 @@ item.armourPlate.Green.name=Зелёная железная пластина
 tile.sakuraleaves.name=Листья сакуры
 tile.sakurasapling.name=Саженец сакуры
 tile.bonsaitree.name=Бонсай
-tile.bonsaisakuratree.name=Sakura Bonsai Tree
+tile.bonsaisakuratree.name=Бонсай из сакуры
 
 
 itemGroup.narutoWeapons=Наруто - Оружие
 itemGroup.narutoMaterials=Наруто - Материалы
 itemGroup.narutoArmour=Наруто - Броня
 
-gui.jutsuskilltree.title=Jutsu Skill Tree
+gui.jutsuskilltree.title=Дерево навыков владения Дзюцу
 
 gui.jutsu.learnt=Выучено!
 
@@ -186,7 +186,7 @@ naruto.jutsu.chidori=Стиль молнии - Чидори!
 naruto.jutsu.chidorifail=В этот момент %s узнал, он облажался
 naruto.jutsu.waterBullet=Стиль воды - Водяные пули!
 naruto.jutsu.earthWall=Стиль земли - Зеслянная стена!
-naruto.jutsu.earthWall.failed=Дзюдцу не может быть использованно! Вы должны смотреть на блок, рядом с которым не менее 10 других
+naruto.jutsu.earthWall.failed=Дзюдцу не может быть использованно! Вы должны смотреть на блок, рядом с которым не менее %s других
 
 naruto.jutsu.shadowClone=Техника теневого клонирования!
 naruto.jutsu.chibiClone=Техника водяного клонирования!
