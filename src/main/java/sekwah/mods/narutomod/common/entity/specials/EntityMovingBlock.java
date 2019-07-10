@@ -34,7 +34,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
     private byte data;
 
     private boolean spawningParticles = false;
-    private boolean needsToDoBlockCheck = true;
+    private boolean hasDoneBlockCheck = false;
 
     private int lastSoundLoc = 0;
 
@@ -55,6 +55,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         this.toPosX = x + 0.5f;
         this.toPosY = y;
         this.toPosZ = z + 0.5f;
+        this.forceSetPosition(x + 0.5f, y, z + 0.5f);
         this.canMove = false;
         this.aliveTicks = 0;
     }
@@ -140,10 +141,6 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
 
     @Override
     public void onUpdate() {
-        if(this.needsToDoBlockCheck) {
-            this.needsToDoBlockCheck = false;
-            this.spawningParticles = worldObj.getBlock((int) posX - 1, (int) posY - 1, (int) posZ - 1) != Blocks.air;
-        }
 
         this.aliveTicks++;
 
