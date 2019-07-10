@@ -34,6 +34,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
     private byte data;
 
     private boolean spawningParticles = false;
+    private boolean needsToDoBlockCheck = true;
 
     private int lastSoundLoc = 0;
 
@@ -64,8 +65,6 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         this.posY = posY;
         this.posZ = posZ;
         this.setBoundingBox(posX, posY, posZ);
-        Chunk chunk = worldObj.getChunkFromBlockCoords((int) posX - 1, (int) posZ - 1);
-        this.spawningParticles = worldObj.getBlock((int) posX - 1, (int) posY - 1, (int) posZ - 1) != Blocks.air;
     }
 
     public void setBoundingBox(double posX, double posY, double posZ) {
@@ -141,6 +140,10 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
 
     @Override
     public void onUpdate() {
+        if(this.needsToDoBlockCheck) {
+            this.needsToDoBlockCheck = false;
+            this.spawningParticles = worldObj.getBlock((int) posX - 1, (int) posY - 1, (int) posZ - 1) != Blocks.air;
+        }
 
         this.aliveTicks++;
 
