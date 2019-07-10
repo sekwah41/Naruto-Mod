@@ -145,6 +145,7 @@ public class JutsuCommon {
                 if(NarutoSettings.enableChidori) {
                     return true;
                 }
+                return false;
             case Jutsus.SCREAMING_BIRBY_BOI:
                 jutsuSound(9, playerMP);
                 return true;
