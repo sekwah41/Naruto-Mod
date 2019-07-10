@@ -58,7 +58,9 @@ public class NarutoSettings {
 
     public static boolean nonDestructiveMode = true;
 
-    public static boolean enableChibakuTensei = true;
+    public static boolean enableChibakuTensei = false;
+
+    public static boolean enableChidori = true;
 
     public static void changeSetting() {
     }
@@ -227,6 +229,10 @@ public class NarutoSettings {
         Property configEnableChibakuTensei = config.get(Configuration.CATEGORY_GENERAL, "enableChibakuTensei", false);
         enableChibakuTensei = configEnableChibakuTensei.getBoolean(false);
         configEnableChibakuTensei.comment = "Should the chibaku tensei be enabled?";
+
+        Property configEnableChidori = config.get(Configuration.CATEGORY_GENERAL, "enableChidori", false);
+        enableChidori = configEnableChidori.getBoolean(false);
+        configEnableChidori.comment = "Should the chidori be enabled?";
 
         chakraBarOffsetX = config.get(Configuration.CATEGORY_GENERAL, "chakraBarOffsetX", 2).getInt(2);
 
