@@ -4,7 +4,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.*;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.Vec3;
 import org.apache.commons.io.IOUtils;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.assets.JutsuData;
@@ -55,6 +59,9 @@ public class JutsuClient {
                 PacketAnimationUpdate.animationUpdate("chidori", playerMP);
                 break;
             case Jutsus.SCREAMING_BIRBY_BOI:
+                PlayerClientTickEvent.chakra -= JutsuData.chidoriCost;
+                PlayerClientTickEvent.chakraCooldown = 30;
+                break;
             case Jutsus.SCREAMING_BIRBY_BOIII:
                 break;
             case Jutsus.SCREAMING_BIRBY_BOII:
@@ -62,6 +69,8 @@ public class JutsuClient {
                 break;
             case Jutsus.CHIBAKU_TENSEI:
                 playerMP.addChatMessage(new ChatComponentText("ENJOY DESTRUCTION"));
+                PlayerClientTickEvent.chakra -= JutsuData.chibakuTenseiCost;
+                PlayerClientTickEvent.chakraCooldown = 30;
                 break;
             case Jutsus.LEAP_START:
                 PlayerClientTickEvent.stamina -= 5;
@@ -149,6 +158,8 @@ public class JutsuClient {
                 break;
             case Jutsus.SEKC:
                 PacketAnimationUpdate.animationUpdate("sexyjutsu1", playerMP);
+                PlayerClientTickEvent.chakra -= JutsuData.sekcCost;
+                PlayerClientTickEvent.chakraCooldown = 30;
                 break;
             case Jutsus.SEKC_STOP:
                 break;
@@ -163,7 +174,7 @@ public class JutsuClient {
             case Jutsus.CHIBI_SHADOW_CLONE:
                 ParticleEffects.addEffect(4, playerMP);
                 playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + I18n.format("naruto.jutsu.chibiClone")));
-                PlayerClientTickEvent.chakra -= JutsuData.shadowCloneCost;
+                PlayerClientTickEvent.chakra -= JutsuData.chibiShadowCloneCost;
                 PlayerClientTickEvent.chakraCooldown = 30;
                 break;
             case Jutsus.MULTI_SHADOW_CLONE:
@@ -205,30 +216,39 @@ public class JutsuClient {
         NarutoMod.logger.debug("Can Cast: " + jutsuCombo);
         switch (jutsuCombo) {
             case Jutsus.SUBSTITUTION:
-                if (PlayerClientTickEvent.chakra >= JutsuData.substitutionCost) return true;
+                if (JutsuData.substitutionEnabled && PlayerClientTickEvent.chakra >= JutsuData.substitutionCost) return true;
+                break;
+            case Jutsus.CHIBAKU_TENSEI:
+                if (JutsuData.chibakuTenseiEnabled && PlayerClientTickEvent.chakra >= JutsuData.chibakuTenseiCost) return true;
+                break;
+            case Jutsus.SCREAMING_BIRB:
+                if (JutsuData.chidoriEnabled && PlayerClientTickEvent.chakra >= JutsuData.chidoriCost) return true;
                 break;
             case Jutsus.FIREBALL:
-                if (PlayerClientTickEvent.chakra >= JutsuData.fireballCost) return true;
+                if (JutsuData.fireballEnabled && PlayerClientTickEvent.chakra >= JutsuData.fireballCost) return true;
                 break;
             case Jutsus.WATER_BULLET:
-                if (PlayerClientTickEvent.chakra >= JutsuData.waterBulletCost) return true;
+                if (JutsuData.waterBulletEnabled && PlayerClientTickEvent.chakra >= JutsuData.waterBulletCost) return true;
                 break;
             case Jutsus.EYES:
                 return false;// TODO possibly the toggle for liams eyes, will be true once done
             case Jutsus.EARTH_RELEASE:
-                if (PlayerClientTickEvent.chakra >= JutsuData.wallCost) return true;
+                if (JutsuData.wallEnabled && PlayerClientTickEvent.chakra >= JutsuData.wallCost) return true;
                 break;
             case Jutsus.REGULAR_SHADOW_CLONE:
+                if (JutsuData.shadowCloneEnabled && PlayerClientTickEvent.chakra >= JutsuData.shadowCloneCost) return true;
+                break;
             case Jutsus.CHIBI_SHADOW_CLONE:
-                if (PlayerClientTickEvent.chakra >= JutsuData.shadowCloneCost) return true;
+                if (JutsuData.chibiShadowCloneEnabled && PlayerClientTickEvent.chakra >= JutsuData.chibiShadowCloneCost) return true;
                 break;
             case Jutsus.MULTI_SHADOW_CLONE:
-                if (PlayerClientTickEvent.chakra >= JutsuData.multiShadowCloneCost) return true;
+                if (JutsuData.multiShadowCloneEnabled && PlayerClientTickEvent.chakra >= JutsuData.multiShadowCloneCost) return true;
                 break;
+            case Jutsus.SEKC:
+                if (JutsuData.sekcEnabled && PlayerClientTickEvent.chakra >= JutsuData.sekcCost) return true;
             default:
                 return true;
         }
-
         playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + I18n.format("naruto.jutsu.nochakra")));
         return false;
     }

@@ -14,6 +14,7 @@ import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
+import sekwah.mods.narutomod.assets.JutsuData;
 import sekwah.mods.narutomod.client.player.SharinganHandler;
 import sekwah.mods.narutomod.client.render.DelayedRender;
 import sekwah.mods.narutomod.command.CommandJutsu;
@@ -35,6 +36,7 @@ import sekwah.mods.narutomod.packets.serverbound.*;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 import sekwah.mods.narutomod.worldgeneration.NarutoWorldGeneration;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -139,13 +141,15 @@ public class NarutoMod {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-
+        JutsuData.init(event.getSuggestedConfigurationFile());
         this.packetNetwork();
-
-        entityAnimator = new NarutoAnimator();
-
-        InputStream fileStreamJson = NarutoMod.class.getResourceAsStream("/assets/narutomod/mod/poseData.json");
-        NarutoAnimator.playerPoses = entityAnimator.addPoses(fileStreamJson, NarutoAnimator.playerPoses);
+        try (InputStream fileStreamJson = NarutoMod.class.getResourceAsStream("/assets/narutomod/mod/poseData.json")) {
+            entityAnimator = new NarutoAnimator();
+            NarutoAnimator.playerPoses = entityAnimator.addPoses(fileStreamJson, NarutoAnimator.playerPoses);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
         NarutoEntitys.addEntities(this);
 
