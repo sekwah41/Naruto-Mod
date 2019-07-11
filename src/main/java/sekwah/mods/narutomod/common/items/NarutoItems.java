@@ -373,6 +373,7 @@ public class NarutoItems {
 		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, MIST.getSubId()), Items.snowball, new ItemStack(headBand, 1, BLANK_BLACK.getSubId()));
 		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, RAIN.getSubId()), new ItemStack(Items.potionitem, 1, 0), new ItemStack(headBand, 1, BLANK_BLACK.getSubId()));
 		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, GRASS.getSubId()), new ItemStack(Blocks.tallgrass, 1, 1), new ItemStack(headBand, 1, BLANK_BLACK.getSubId()));
+		GameRegistry.addShapelessRecipe(new ItemStack(headBand, 1, CLOUD.getSubId()), new ItemStack(Blocks.wool, 1, 0), new ItemStack(headBand, 1, BLANK_BLACK.getSubId()));
 
 
 
