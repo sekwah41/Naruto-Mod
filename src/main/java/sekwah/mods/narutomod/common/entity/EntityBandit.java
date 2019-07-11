@@ -180,14 +180,14 @@ public class EntityBandit extends EntityMob {
      * Returns the sound this mob makes when it is hurt.
      */
     protected String getHurtSound() {
-        return "narutomod:ninjavillager.hurt";
+        return "minecraft:game.player.hurt";
     }
 
     /**
      * Returns the sound this mob makes on death.
      */
     protected String getDeathSound() {
-        return "narutomod:ninjavillager.death";
+        return "minecraft:game.player.die";
     }
 
     /**
@@ -235,9 +235,7 @@ public class EntityBandit extends EntityMob {
         super.addRandomArmor();
         int var1 = this.rand.nextInt(6);
 
-        if (var1 == 0) {
-            this.setCurrentItemOrArmor(0, new ItemStack(Items.stone_sword));
-        } else if (var1 == 4) {
+        if (var1 >= 3) {
             this.setCurrentItemOrArmor(0, new ItemStack(NarutoItems.bokken));
         } else {
             this.setCurrentItemOrArmor(0, new ItemStack(Items.wooden_sword));

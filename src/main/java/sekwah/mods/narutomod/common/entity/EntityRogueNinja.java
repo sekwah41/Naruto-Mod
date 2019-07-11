@@ -147,14 +147,14 @@ public class EntityRogueNinja extends EntityMob {
      * Returns the sound this mob makes when it is hurt.
      */
     protected String getHurtSound() {
-        return "narutomod:ninjavillager.hurt";
+        return "minecraft:game.player.hurt";
     }
 
     /**
      * Returns the sound this mob makes on death.
      */
     protected String getDeathSound() {
-        return "narutomod:ninjavillager.death";
+        return "minecraft:game.player.die";
     }
 
     /**
