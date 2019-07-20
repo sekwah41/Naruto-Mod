@@ -65,6 +65,7 @@ public class NarutoItems {
 	public static Item NARUTO_SHIPPUDEN_ARMOUR;
 	public static Item SASUKE_KID_ARMOUR;
 	public static Item BORUTO_KID_ARMOUR;
+	public static Item BORUTO_KAKASHI_ARMOUR;
 	public static Item BORUTO_KID_MOVIE_ARMOUR;
 	public static Item ANBU_ARMOUR;
 	public static Item KID_NARUTO_ARMOUR;
@@ -169,6 +170,9 @@ public class NarutoItems {
 		BORUTO_KID_ARMOUR = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/BorutoKidArmour.png"));
 		BORUTO_KID_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("borutoKidArmour");
 
+		BORUTO_KAKASHI_ARMOUR = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/BorutoKakashiArmor.png"));
+		BORUTO_KAKASHI_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("borutoKakashiArmour");
+
 		KID_NARUTO_ARMOUR = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/NarutoKidArmour.png"));
 		KID_NARUTO_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("narutoKidArmour");
 
@@ -242,6 +246,7 @@ public class NarutoItems {
 		GameRegistry.registerItem(NARUTO_SHIPPUDEN_ARMOUR,"narutoShippudenArmour");
 		GameRegistry.registerItem(SASUKE_KID_ARMOUR,"sasukeKidArmour");
 		GameRegistry.registerItem(BORUTO_KID_ARMOUR,"borutoKidArmour");
+		GameRegistry.registerItem(BORUTO_KAKASHI_ARMOUR,"borutoKakashiArmour");
 		GameRegistry.registerItem(BORUTO_KID_MOVIE_ARMOUR,"borutoKidMovieArmour");
 		GameRegistry.registerItem(ANBU_ARMOUR,"anbuArmour");
 		GameRegistry.registerItem(KID_NARUTO_ARMOUR,"narutoKidArmour");
@@ -294,6 +299,8 @@ public class NarutoItems {
 
 		//Senbon
 		GameRegistry.addRecipe(new ItemStack(senbon, 32), "I", "I", 'I', Items.iron_ingot);
+
+		GameRegistry.addShapelessRecipe(new ItemStack(LONELY_MARCH, 1), new ItemStack(Blocks.obsidian, 1, 0), new ItemStack(Items.dye, 1, 12));
 
 		// Back Straps
 		GameRegistry.addRecipe(new ItemStack(backStraps, 1), " LL", "   ", "LL ", 'L', Items.leather);
