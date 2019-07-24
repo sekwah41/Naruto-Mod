@@ -175,7 +175,7 @@ public class ItemArmourHeadbands extends ItemArmor {
                     armorModel = new ModelHeadband();
                     if(entityLiving instanceof EntityPlayer){
                         DataWatcher dw = entityLiving.getDataWatcher();
-                        armorModel.animationID = dw.getWatchableObjectString(DataWatcherIDs.jutsuPose);
+                        armorModel.animationID = dw.getWatchableObjectString(DataWatcherIDs.poseClient);
                         armorModel.animationlastID = dw.getWatchableObjectString(DataWatcherIDs.lastPose);
                         armorModel.animationTick = dw.getWatchableObjectFloat(DataWatcherIDs.animationTick);
                     }

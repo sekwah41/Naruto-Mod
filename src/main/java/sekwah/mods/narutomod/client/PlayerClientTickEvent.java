@@ -211,14 +211,14 @@ public class PlayerClientTickEvent {
                     if (chakra < maxChakra) {
                         if(playerMoved) {
                             if(playerMP.isSprinting()) {
-                                //chakra += 0.01;
+                                chakra += 0.15;
                             }
                             else {
-                                //chakra += 0.02;
+                                chakra += 0.4;
                             }
                         }
                         else {
-                            chakra += 0.55;
+                            chakra += 1;
                         }
                     }
                     ChakraFocus = true;

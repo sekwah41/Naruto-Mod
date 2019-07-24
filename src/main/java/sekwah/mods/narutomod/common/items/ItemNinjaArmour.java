@@ -52,7 +52,7 @@ public class ItemNinjaArmour extends ItemArmor {
             if (itemStack.getItem() instanceof ItemNinjaArmour) {
                 if (entityLiving instanceof EntityPlayer) {
                     DataWatcher dw = entityLiving.getDataWatcher();
-                    modelArmor.animationID = dw.getWatchableObjectString(DataWatcherIDs.jutsuPose);
+                    modelArmor.animationID = dw.getWatchableObjectString(DataWatcherIDs.poseClient);
                     modelArmor.animationlastID = dw.getWatchableObjectString(DataWatcherIDs.lastPose);
                     modelArmor.animationTick = dw.getWatchableObjectFloat(DataWatcherIDs.animationTick);
                 }

@@ -349,15 +349,11 @@ public class NarutoAnimator {
                     PartData partData = getPart(part.boxName, currentPose.partData);
                     animPosePart(part, partData, animationTick, currentPose.animLength);
                 }
-
-                // Old format    if(locData.has("rightArmUpper")){animPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"), animationTick, animLength);}
             } else {
                 for (AnimModelRenderer part : animatedParts) {
                     PartData partData = getPart(part.boxName, currentPose.partData);
                     setPosePart(part, partData);
                 }
-
-                // Old format    if(locData.has("rightArmUpper")){setPosePart(modelBiped.bipedRightArmUpper, locData.getJSONObject("rightArmUpper"));}
             }
         }
 
