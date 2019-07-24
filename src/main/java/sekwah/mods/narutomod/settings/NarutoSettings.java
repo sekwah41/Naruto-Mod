@@ -32,6 +32,10 @@ public class NarutoSettings {
 
     public static int chakraGUICorner = 1;
 
+    public static double maxStamina = 100;
+
+    public static double maxChakra = 100;
+
     public static int jutsuDelay = 10; // Delay time in ticks, from when the last button is presset till the jutsu casts
 
     public static int usageReportMode = 0;
@@ -242,6 +246,12 @@ public class NarutoSettings {
 
         Property configJutsuDelay = config.get(Configuration.CATEGORY_GENERAL, "jutsuDelay", 10);
         jutsuDelay = configJutsuDelay.getInt(10);
+
+        Property configMaxChakra = config.get(Configuration.CATEGORY_GENERAL, "maxChakra", 100);
+        maxChakra = configMaxChakra.getDouble(100);
+
+        Property configMaxStamina = config.get(Configuration.CATEGORY_GENERAL, "maxStamina", 100);
+        maxStamina = configMaxStamina.getDouble(100);
 
         configJutsuDelay.comment = "Sets the time in ticks for the jutsu delay, minimum is 5(lightining refrexes(ninja)) and max is 25(slowpoke) default 10";
 

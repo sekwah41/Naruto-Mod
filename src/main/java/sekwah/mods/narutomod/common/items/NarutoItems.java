@@ -69,19 +69,22 @@ public class NarutoItems {
 	public static Item BORUTO_KID_MOVIE_ARMOUR;
 	public static Item ANBU_ARMOUR;
 	public static Item KID_NARUTO_ARMOUR;
+	public static Item HAN_HAT;
 
 	// TODO Finish adding the code and complete tomorrow(tomorrow has passed, get yo lazy ass to work you bum)
 	//  recipe needed
 	public static Item armourPlate;
 	public static EnumAction Throw = EnumHelper.addAction("Throw");
 	// Armour materials
-	private static ArmorMaterial FLACK_ARMOUR = EnumHelper.addArmorMaterial("FLAK", 35, new int[]{2, 7, 5, 2}, 10);
-	private static ArmorMaterial JONIN_ARMOUR_MATERIAL = EnumHelper.addArmorMaterial("JONIN", 35, new int[]{2, 7, 5, 2}, 10);
-	private static ArmorMaterial SHINOBI_ARMOUR = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 10);
+	private static ArmorMaterial FLACK_ARMOUR = EnumHelper.addArmorMaterial("FLAK", 35, new int[]{2, 7, 5, 2}, 5);
+	private static ArmorMaterial JONIN_ARMOUR_MATERIAL = EnumHelper.addArmorMaterial("JONIN", 35, new int[]{2, 7, 5, 2}, 6);
+	private static ArmorMaterial SHINOBI_ARMOUR = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 14, 8, 2}, 8);
 
-	private static ArmorMaterial ANBU_ARMOUR_MAT = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 10);
+	private static ArmorMaterial ANBU_ARMOUR_MAT = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 8);
 
-	private static ArmorMaterial CHARACTER_CLOTHES = EnumHelper.addArmorMaterial("CHARACTER_CLOTHES", 35, new int[]{2, 8, 5, 2}, 10);
+	private static ArmorMaterial CHARACTER_CLOTHES = EnumHelper.addArmorMaterial("CHARACTER_CLOTHES", 35, new int[]{2, 14, 5, 2}, 6);
+
+	private static ArmorMaterial FULL_CHARACTER_CLOTHES = EnumHelper.addArmorMaterial("FULL_CHARACTER_CLOTHES", 35, new int[]{2, 18, 5, 2}, 6);
     // Same as iron atm
 	private static ArmorMaterial headbandArmour = EnumHelper.addArmorMaterial("HEADBAND", 35, new int[]{2, 8, 5, 2}, 10);
 	// Weapon and tool materials
@@ -170,7 +173,7 @@ public class NarutoItems {
 		BORUTO_KID_ARMOUR = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/BorutoKidArmour.png"));
 		BORUTO_KID_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("borutoKidArmour");
 
-		BORUTO_KAKASHI_ARMOUR = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/BorutoKakashiArmor.png"));
+		BORUTO_KAKASHI_ARMOUR = (new ItemNinjaArmour(FULL_CHARACTER_CLOTHES, 4, 1, "textures/armour/BorutoKakashiArmor.png"));
 		BORUTO_KAKASHI_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("borutoKakashiArmour");
 
 		KID_NARUTO_ARMOUR = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/NarutoKidArmour.png"));
@@ -184,6 +187,9 @@ public class NarutoItems {
 
 		ANBU_ARMOUR = (new ItemNinjaArmour(ANBU_ARMOUR_MAT, 4, 1, "textures/armour/AnbuArmour.png"));
 		ANBU_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("anbuArmour");
+
+		HAN_HAT = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 0, "textures/armour/hanhat.png"));
+		HAN_HAT.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("hanHat");
 
 		// TODO add the masks from the anbu and rouge
 
@@ -250,6 +256,7 @@ public class NarutoItems {
 		GameRegistry.registerItem(BORUTO_KID_MOVIE_ARMOUR,"borutoKidMovieArmour");
 		GameRegistry.registerItem(ANBU_ARMOUR,"anbuArmour");
 		GameRegistry.registerItem(KID_NARUTO_ARMOUR,"narutoKidArmour");
+		GameRegistry.registerItem(HAN_HAT,"hanHat");
 
 
 		ninjaArmour.setItemStack(new ItemStack(redAnbuMask));

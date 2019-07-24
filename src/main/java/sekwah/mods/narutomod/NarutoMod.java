@@ -27,11 +27,7 @@ import sekwah.mods.narutomod.common.entity.NarutoEntitys;
 import sekwah.mods.narutomod.common.items.NarutoItems;
 import sekwah.mods.narutomod.network.UpdateChecker;
 import sekwah.mods.narutomod.network.UsageReport;
-import sekwah.mods.narutomod.packets.clientbound.ClientAnimationPacket;
-import sekwah.mods.narutomod.packets.clientbound.ClientJutsuPacket;
-import sekwah.mods.narutomod.packets.clientbound.ClientJutsuCommandPacket;
-import sekwah.mods.narutomod.packets.clientbound.ClientParticleEffectPacket;
-import sekwah.mods.narutomod.packets.clientbound.ClientSoundPacket;
+import sekwah.mods.narutomod.packets.clientbound.*;
 import sekwah.mods.narutomod.packets.serverbound.*;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 import sekwah.mods.narutomod.worldgeneration.NarutoWorldGeneration;
@@ -176,6 +172,7 @@ public class NarutoMod {
         packetNetwork.registerMessage(ClientSoundPacket.class, ClientSoundPacket.class, 2, Side.CLIENT);
         packetNetwork.registerMessage(ClientAnimationPacket.class, ClientAnimationPacket.class, 3, Side.CLIENT);
         packetNetwork.registerMessage(ClientJutsuCommandPacket.class, ClientJutsuCommandPacket.class, 4, Side.CLIENT);
+        packetNetwork.registerMessage(ClientMaxStatsPacket.class, ClientMaxStatsPacket.class, 5, Side.CLIENT);
 
         packetNetwork.registerMessage(ServerParticleEffectPacket.class, ServerParticleEffectPacket.class, 100, Side.SERVER);
         packetNetwork.registerMessage(ServerJutsuPacket.class, ServerJutsuPacket.class, 101, Side.SERVER);

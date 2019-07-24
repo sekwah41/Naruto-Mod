@@ -2,6 +2,7 @@ package sekwah.mods.narutomod.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -17,6 +18,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import org.apache.commons.io.IOUtils;
 import org.lwjgl.input.Keyboard;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
@@ -51,23 +53,24 @@ public class PlayerClientTickEvent {
     public static boolean chakraDash = false;
 
     public static boolean waterWalking = false;
-    public static float chakra = 100;
-    public static float maxChakra = 100;
 
-    public static float stamina = 100;
-    public static float maxStamina = 100;
+    public static double chakra = 100;
+    public static double maxChakra = 100;
+
+    public static double stamina = 100;
+    public static double maxStamina = 100;
     public static int staminaCooldown;
 
     public static int chakraCooldown;
     public static boolean isChakraFocus;
     public static String jutsuPoseID = "default"; // finish this so it is set by the different jutsu, for chakra charge it when its turned off and on. and for other jutsus set a delay untill its changed back
     private static boolean ChakraCharge = false;
-    private static int ChakraChargeDelay = 20;
+    private static int ChakraChargeDelay = 15;
     private static double lastX;
     private static double lastY;
     private static double lastZ;
     private static boolean playerMoved;
-    public int substitCooldown = 0; // the cooldown for the substitution jutsu, so it cant be spammed
+    public int substiteCooldown = 0; // the cooldown for the substitution jutsu, so it cant be spammed
     public boolean hasDoubleJumped = false;
 
     public boolean doubleJumpReady = false;
@@ -81,7 +84,7 @@ public class PlayerClientTickEvent {
     private int animTime = 0; // checks how long the pose has been active for for certain poses(stops early change back)
 
     public static String getJutsuPoseID() {
-        if (jutsuPoseID == "default") {
+        if (jutsuPoseID.equals("default")) {
             //if(isChakraFocus){
             //	return "chakraCharging";
             //}
@@ -94,6 +97,8 @@ public class PlayerClientTickEvent {
 
     @SubscribeEvent
     public void tick(ClientTickEvent event) {
+
+        if(event.phase == TickEvent.Phase.END) return;
 
         if (!(RenderManager.instance.entityRenderMap.get(EntityPlayer.class) instanceof RenderNinjaPlayer)) {
             RenderManager.instance.entityRenderMap.put(EntityPlayer.class, NarutoAnimator.playerRenderer);
@@ -181,13 +186,11 @@ public class PlayerClientTickEvent {
                     if(currentPose.equals("chakraCharging")) {
                         PacketAnimationUpdate.animationUpdate("chakraSprintCharging", playerMP);
                     }
-                    chakra += 0.02;
                 }
                 else {
                     if(currentPose.equals("chakraSprintCharging")) {
                         PacketAnimationUpdate.animationUpdate("chakraCharging", playerMP);
                     }
-                    chakra += 0.08;
                 }
                 if (ChakraChargeDelay >= 0) {
                     ChakraChargeDelay--;
@@ -203,29 +206,15 @@ public class PlayerClientTickEvent {
                     }
 
                     PacketDispatcher.sendPacketToServer(new ServerJutsuPacket(bos.toByteArray()));
-                }/* else if (ChakraCharge && playerMoved) {
-
-                    ChakraChargeDelay = 30;
-                    ChakraCharge = false;
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-                    DataOutputStream outputStream = new DataOutputStream(bos);
-                    try {
-                        outputStream.writeInt(110);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-
-                    PacketDispatcher.sendPacketToServer(new ServerJutsuPacket(bos.toByteArray()));
-
-                }*/ else {
+                } else {
 
                     if (chakra < maxChakra) {
                         if(playerMoved) {
                             if(playerMP.isSprinting()) {
-                                chakra += 0.02;
+                                //chakra += 0.01;
                             }
                             else {
-                                chakra += 0.08;
+                                //chakra += 0.02;
                             }
                         }
                         else {
@@ -247,7 +236,7 @@ public class PlayerClientTickEvent {
                     // add code for chakra charging such as the animation
                 }
             } else if (ChakraCharge) {
-                ChakraChargeDelay = 30;
+                ChakraChargeDelay = 15;
                 ChakraCharge = false;
                 ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
                 DataOutputStream outputStream = new DataOutputStream(bos);
@@ -258,8 +247,8 @@ public class PlayerClientTickEvent {
                 }
 
                 PacketDispatcher.sendPacketToServer(new ServerJutsuPacket(bos.toByteArray()));
-            } else if (ChakraChargeDelay != 30) {
-                ChakraChargeDelay = 30;
+            } else if (ChakraChargeDelay != 15) {
+                ChakraChargeDelay = 15;
             }
             if (JutsuCasting) {
                 if (JutsuKeyDelay <= 0) {
@@ -287,6 +276,7 @@ public class PlayerClientTickEvent {
                         }
 
                         PacketDispatcher.sendPacketToServer(new ServerJutsuPacket(bos.toByteArray()));
+                        IOUtils.closeQuietly(bos);
 
                     }
                     JutsuCombo = "";
@@ -297,7 +287,7 @@ public class PlayerClientTickEvent {
 
             if (chakraDash) {
                 if (chakra > 0.5F) {
-                    setChakraCooldown(30);
+                    setChakraCooldown(15);
 
                     double possibility = Math.random();
                     if (possibility >= 0.2F) {
@@ -315,7 +305,7 @@ public class PlayerClientTickEvent {
             }
             if (chakraDash) {
                 if(stamina > 0.5f){
-                    setStaminaCooldown(80);
+                    setStaminaCooldown(40);
                 }
                 else{
                     chakraDash = false;
@@ -326,7 +316,7 @@ public class PlayerClientTickEvent {
 
             if (waterWalking) {
                 if (chakra > 0.1F) {
-                    chakraCooldown = 30;
+                    chakraCooldown = 15;
                     //NarutoMod.logger.info(playerMP.getYOffset());
                     int i = (int) Math.round(playerMP.posY - playerMP.getYOffset() - 0.96f);
                     Block j = playerMP.worldObj.getBlock((int) playerMP.posX, i, (int) playerMP.posZ);
@@ -439,7 +429,7 @@ public class PlayerClientTickEvent {
                 chakra -= 2F;
                 setChakraCooldown(30);
                 stamina -= 5F;
-                setStaminaCooldown(80);
+                setStaminaCooldown(40);
 
                 ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
                 DataOutputStream outputStream = new DataOutputStream(bos);

@@ -15,18 +15,7 @@ import sekwah.mods.narutomod.settings.NarutoSettings;
 // GuiBuffBar implements a simple status bar at the top of the screen which 
 // shows the current buffs/debuffs applied to the character.
 //
-public class GuiChakraAndStaminaBar extends /*Gui*/NarutoGui {
-    //private static final ResourceLocation BARSTEXTURE = new ResourceLocation("narutomod", "textures/gui/newChakraBars.png");
-
-    //private static final ResourceLocation DEFAULTTEXTURE = new ResourceLocation("narutomod", "textures/gui/defaultBars.png");
-
-    /*private static final ResourceLocation DEFAULTTEXTURE = new ResourceLocation("narutomod", "textures/gui/chakrabars/DefaultBars.png");
-    private static final ResourceLocation KATANATEXTURE = new ResourceLocation("narutomod", "textures/gui/chakrabars/Katana.png");
-    private static final ResourceLocation KUBITEXTURE = new ResourceLocation("narutomod", "textures/gui/chakrabars/Kubi.png");
-    private static final ResourceLocation KUNAITEXTURE = new ResourceLocation("narutomod", "textures/gui/chakrabars/Kunai.png");
-    private static final ResourceLocation SCEPTERTEXTURE = new ResourceLocation("narutomod", "textures/gui/chakrabars/Scepter.png");
-    private static final ResourceLocation SCROLLTEXTURE = new ResourceLocation("narutomod", "textures/gui/chakrabars/Scroll.png");
-    private static final ResourceLocation UNNAMEDTEXTURE = new ResourceLocation("narutomod", "textures/gui/chakrabars/unnamedbar.png");*/
+public class GuiChakraAndStaminaBar extends NarutoGui {
 
     private static final int barTextureWidth = 100;
 

@@ -19,6 +19,7 @@ import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
@@ -43,9 +44,8 @@ import sekwah.mods.narutomod.common.items.NarutoItems;
 
 @SideOnly(Side.CLIENT)
 public class RenderNinjaPlayer extends RenderPlayer {
-    public static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
 
-    //private static final ResourceLocation steveTextures = new ResourceLocation("textures/entity/steve.png");
+    public static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
 
     private static final ResourceLocation susanooRibs = new ResourceLocation("narutomod:textures/otherStuff/susanoo.png");
 
@@ -297,43 +297,43 @@ public class RenderNinjaPlayer extends RenderPlayer {
         return p_77034_1_ + p_77034_3_ * f3;
     }
 
-    /**
-     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is common
-     * (Render<T extends Entity) and this method has signature public void func_76986_a(T entity, double d, double d1,
-     * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
-     */
-    public void doFinalRender(EntityLivingBase p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
-        if (MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Pre(p_76986_1_, this, p_76986_2_, p_76986_4_, p_76986_6_)))
+    public void doFinalRender(EntityLivingBase entity, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float swingProgress) {
+        if (MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Pre(entity, this, p_76986_2_, p_76986_4_, p_76986_6_)))
             return;
+
+        if(this.mainModel instanceof ModelNinjaBiped) {
+            ItemStack stack = ((EntityPlayer) entity).getCurrentArmor(2);
+            ((ModelNinjaBiped) mainModel).bipedHeadwear.showModel = !(entity instanceof EntityPlayer && stack != null && stack.getItem() == NarutoItems.BORUTO_KAKASHI_ARMOUR);
+        }
+        
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_CULL_FACE);
-        this.mainModel.swingProgress = this.getSwingProgress(p_76986_1_, p_76986_9_);
+        this.mainModel.swingProgress = this.getSwingProgress(entity, swingProgress);
 
         if (this.renderPassModel != null) {
             this.renderPassModel.swingProgress = this.mainModel.swingProgress;
         }
 
-        this.mainModel.isRiding = p_76986_1_.isRiding();
+        this.mainModel.isRiding = entity.isRiding();
 
         if (this.renderPassModel != null) {
             this.renderPassModel.isRiding = this.mainModel.isRiding;
         }
 
-        this.mainModel.isChild = p_76986_1_.isChild();
+        this.mainModel.isChild = entity.isChild();
 
         if (this.renderPassModel != null) {
             this.renderPassModel.isChild = this.mainModel.isChild;
         }
 
         try {
-            float f2 = this.interpolateRotation(p_76986_1_.prevRenderYawOffset, p_76986_1_.renderYawOffset, p_76986_9_);
-            float f3 = this.interpolateRotation(p_76986_1_.prevRotationYawHead, p_76986_1_.rotationYawHead, p_76986_9_);
+            float f2 = this.interpolateRotation(entity.prevRenderYawOffset, entity.renderYawOffset, swingProgress);
+            float f3 = this.interpolateRotation(entity.prevRotationYawHead, entity.rotationYawHead, swingProgress);
             float f4;
 
-            if (p_76986_1_.isRiding() && p_76986_1_.ridingEntity instanceof EntityLivingBase) {
-                EntityLivingBase entitylivingbase1 = (EntityLivingBase) p_76986_1_.ridingEntity;
-                f2 = this.interpolateRotation(entitylivingbase1.prevRenderYawOffset, entitylivingbase1.renderYawOffset, p_76986_9_);
+            if (entity.isRiding() && entity.ridingEntity instanceof EntityLivingBase) {
+                EntityLivingBase entitylivingbase1 = (EntityLivingBase) entity.ridingEntity;
+                f2 = this.interpolateRotation(entitylivingbase1.prevRenderYawOffset, entitylivingbase1.renderYawOffset, swingProgress);
                 f4 = MathHelper.wrapAngleTo180_float(f3 - f2);
 
                 if (f4 < -85.0F) {
@@ -351,19 +351,19 @@ public class RenderNinjaPlayer extends RenderPlayer {
                 }
             }
 
-            float f13 = p_76986_1_.prevRotationPitch + (p_76986_1_.rotationPitch - p_76986_1_.prevRotationPitch) * p_76986_9_;
-            this.renderLivingAt(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_);
-            f4 = this.handleRotationFloat(p_76986_1_, p_76986_9_);
-            this.rotateCorpse(p_76986_1_, f4, f2, p_76986_9_);
+            float f13 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * swingProgress;
+            this.renderLivingAt(entity, p_76986_2_, p_76986_4_, p_76986_6_);
+            f4 = this.handleRotationFloat(entity, swingProgress);
+            this.rotateCorpse(entity, f4, f2, swingProgress);
             float f5 = 0.0625F;
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
             GL11.glScalef(-1.0F, -1.0F, 1.0F);
-            this.preRenderCallback(p_76986_1_, p_76986_9_);
+            this.preRenderCallback(entity, swingProgress);
             GL11.glTranslatef(0.0F, -24.0F * f5 - 0.0078125F, 0.0F);
-            float f6 = p_76986_1_.prevLimbSwingAmount + (p_76986_1_.limbSwingAmount - p_76986_1_.prevLimbSwingAmount) * p_76986_9_;
-            float f7 = p_76986_1_.limbSwing - p_76986_1_.limbSwingAmount * (1.0F - p_76986_9_);
+            float f6 = entity.prevLimbSwingAmount + (entity.limbSwingAmount - entity.prevLimbSwingAmount) * swingProgress;
+            float f7 = entity.limbSwing - entity.limbSwingAmount * (1.0F - swingProgress);
 
-            if (p_76986_1_.isChild()) {
+            if (entity.isChild()) {
                 f7 *= 3.0F;
             }
 
@@ -372,27 +372,27 @@ public class RenderNinjaPlayer extends RenderPlayer {
             }
 
             GL11.glEnable(GL11.GL_ALPHA_TEST);
-            this.mainModel.setLivingAnimations(p_76986_1_, f7, f6, p_76986_9_);
-            this.renderModel(p_76986_1_, f7, f6, f4, f3 - f2, f13, f5);
+            this.mainModel.setLivingAnimations(entity, f7, f6, swingProgress);
+            this.renderModel(entity, f7, f6, f4, f3 - f2, f13, f5);
             int j;
             float f8;
             float f9;
             float f10;
 
             for (int i = 0; i < 4; ++i) {
-                j = this.shouldRenderPass(p_76986_1_, i, p_76986_9_);
+                j = this.shouldRenderPass(entity, i, swingProgress);
 
                 if (j > 0) {
-                    this.renderPassModel.setLivingAnimations(p_76986_1_, f7, f6, p_76986_9_);
-                    this.renderPassModel.render(p_76986_1_, f7, f6, f4, f3 - f2, f13, f5);
+                    this.renderPassModel.setLivingAnimations(entity, f7, f6, swingProgress);
+                    this.renderPassModel.render(entity, f7, f6, f4, f3 - f2, f13, f5);
 
                     if ((j & 240) == 16) {
-                        this.func_82408_c(p_76986_1_, i, p_76986_9_);
-                        this.renderPassModel.render(p_76986_1_, f7, f6, f4, f3 - f2, f13, f5);
+                        this.func_82408_c(entity, i, swingProgress);
+                        this.renderPassModel.render(entity, f7, f6, f4, f3 - f2, f13, f5);
                     }
 
                     if ((j & 15) == 15) {
-                        f8 = (float) p_76986_1_.ticksExisted + p_76986_9_;
+                        f8 = (float) entity.ticksExisted + swingProgress;
                         this.bindTexture(RES_ITEM_GLINT);
                         GL11.glEnable(GL11.GL_BLEND);
                         f9 = 0.5F;
@@ -413,7 +413,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
                             GL11.glRotatef(30.0F - (float) k * 60.0F, 0.0F, 0.0F, 1.0F);
                             GL11.glTranslatef(0.0F, f11, 0.0F);
                             GL11.glMatrixMode(GL11.GL_MODELVIEW);
-                            this.renderPassModel.render(p_76986_1_, f7, f6, f4, f3 - f2, f13, f5);
+                            this.renderPassModel.render(entity, f7, f6, f4, f3 - f2, f13, f5);
                         }
 
                         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -432,28 +432,28 @@ public class RenderNinjaPlayer extends RenderPlayer {
             }
 
             GL11.glDepthMask(true);
-            this.renderEquippedItems(p_76986_1_, p_76986_9_);
-            float f14 = p_76986_1_.getBrightness(p_76986_9_);
-            j = this.getColorMultiplier(p_76986_1_, f14, p_76986_9_);
+            this.renderEquippedItems(entity, swingProgress);
+            float f14 = entity.getBrightness(swingProgress);
+            j = this.getColorMultiplier(entity, f14, swingProgress);
             OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
             GL11.glDisable(GL11.GL_TEXTURE_2D);
             OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
 
-            if ((j >> 24 & 255) > 0 || p_76986_1_.hurtTime > 0 || p_76986_1_.deathTime > 0) {
+            if ((j >> 24 & 255) > 0 || entity.hurtTime > 0 || entity.deathTime > 0) {
                 GL11.glDisable(GL11.GL_TEXTURE_2D);
                 GL11.glDisable(GL11.GL_ALPHA_TEST);
                 GL11.glEnable(GL11.GL_BLEND);
                 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 GL11.glDepthFunc(GL11.GL_EQUAL);
 
-                if (p_76986_1_.hurtTime > 0 || p_76986_1_.deathTime > 0) {
+                if (entity.hurtTime > 0 || entity.deathTime > 0) {
                     GL11.glColor4f(f14, 0.0F, 0.0F, 0.4F);
-                    this.mainModel.render(p_76986_1_, f7, f6, f4, f3 - f2, f13, f5);
+                    this.mainModel.render(entity, f7, f6, f4, f3 - f2, f13, f5);
 
                     for (int l = 0; l < 4; ++l) {
-                        if (this.inheritRenderPass(p_76986_1_, l, p_76986_9_) >= 0) {
+                        if (this.inheritRenderPass(entity, l, swingProgress) >= 0) {
                             GL11.glColor4f(f14, 0.0F, 0.0F, 0.4F);
-                            this.renderPassModel.render(p_76986_1_, f7, f6, f4, f3 - f2, f13, f5);
+                            this.renderPassModel.render(entity, f7, f6, f4, f3 - f2, f13, f5);
                         }
                     }
                 }
@@ -464,12 +464,12 @@ public class RenderNinjaPlayer extends RenderPlayer {
                     float f15 = (float) (j & 255) / 255.0F;
                     f10 = (float) (j >> 24 & 255) / 255.0F;
                     GL11.glColor4f(f8, f9, f15, f10);
-                    this.mainModel.render(p_76986_1_, f7, f6, f4, f3 - f2, f13, f5);
+                    this.mainModel.render(entity, f7, f6, f4, f3 - f2, f13, f5);
 
                     for (int i1 = 0; i1 < 4; ++i1) {
-                        if (this.inheritRenderPass(p_76986_1_, i1, p_76986_9_) >= 0) {
+                        if (this.inheritRenderPass(entity, i1, swingProgress) >= 0) {
                             GL11.glColor4f(f8, f9, f15, f10);
-                            this.renderPassModel.render(p_76986_1_, f7, f6, f4, f3 - f2, f13, f5);
+                            this.renderPassModel.render(entity, f7, f6, f4, f3 - f2, f13, f5);
                         }
                     }
                 }
@@ -490,8 +490,8 @@ public class RenderNinjaPlayer extends RenderPlayer {
         OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glPopMatrix();
-        this.passSpecialRender(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_);
-        MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Post(p_76986_1_, this, p_76986_2_, p_76986_4_, p_76986_6_));
+        this.passSpecialRender(entity, p_76986_2_, p_76986_4_, p_76986_6_);
+        MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Post(entity, this, p_76986_2_, p_76986_4_, p_76986_6_));
     }
 
     /**

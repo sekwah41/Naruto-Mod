@@ -4,10 +4,13 @@ import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import sekwah.mods.narutomod.client.JutsuClient;
 import sekwah.mods.narutomod.client.ParticleEffects;
+import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.client.SoundEffects;
+import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.IOException;
 
 public class ClientPacketHandler {
 
@@ -25,6 +28,17 @@ public class ClientPacketHandler {
         }
 
         JutsuClient.execute(JutsuCombo, playerMP);
+    }
+
+    public static void handleMaxStats(byte[] packet) {
+        ByteArrayInputStream bais = new ByteArrayInputStream(packet);
+        DataInputStream dis = new DataInputStream(bais);
+        try {
+            PlayerClientTickEvent.maxStamina = PlayerClientTickEvent.stamina = dis.readDouble();
+            PlayerClientTickEvent.maxChakra = PlayerClientTickEvent.chakra = dis.readDouble();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void handleParticleEffect(byte[] packet) {

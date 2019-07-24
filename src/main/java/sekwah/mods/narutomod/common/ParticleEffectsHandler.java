@@ -25,7 +25,6 @@ public class ParticleEffectsHandler {
         }
 
         PacketDispatcher.sendPacketToAllAround(new ClientParticleEffectPacket(bos.toByteArray()), new TargetPoint(playerMP.worldObj.getWorldInfo().getDimension(), playerMP.posX, playerMP.posY, playerMP.posZ, 64));
-
     }
 
 }

@@ -65,22 +65,22 @@ public class JutsuClient {
                 break;
             case Jutsus.LEAP_START:
                 PlayerClientTickEvent.stamina -= 5;
-                PlayerClientTickEvent.setStaminaCooldown(80);
+                PlayerClientTickEvent.setStaminaCooldown(40);
                 PacketAnimationUpdate.animationUpdate("leapforward" + (rand.nextInt(2) + 1), playerMP);
                 break;
             case Jutsus.DODGE_BACK_START:
                 PlayerClientTickEvent.stamina -= 5;
-                PlayerClientTickEvent.setStaminaCooldown(80);
+                PlayerClientTickEvent.setStaminaCooldown(40);
                 PacketAnimationUpdate.animationUpdate("leapback" + (rand.nextInt(2) + 1), playerMP);
                 break;
             case Jutsus.DODGE_LEFT_START:
                 PlayerClientTickEvent.stamina -= 5;
-                PlayerClientTickEvent.setStaminaCooldown(80);
+                PlayerClientTickEvent.setStaminaCooldown(40);
                 PacketAnimationUpdate.animationUpdate("leapleft", playerMP);
                 break;
             case Jutsus.DODGE_RIGHT_START:
                 PlayerClientTickEvent.stamina -= 5;
-                PlayerClientTickEvent.setStaminaCooldown(80);
+                PlayerClientTickEvent.setStaminaCooldown(40);
                 PacketAnimationUpdate.animationUpdate("leapright", playerMP);
                 break;
             case Jutsus.LEAP_STOP:
