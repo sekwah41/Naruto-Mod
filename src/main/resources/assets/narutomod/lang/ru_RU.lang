@@ -258,6 +258,10 @@ naruto.jutsu.combo.sekc=Саблазн-Дзюцу: %s
 naruto.jutsu.combo.chibi_shadow_clone=Водяные клоны: %s
 naruto.jutsu.combo.shadow_clone=Теневые клоны: %s
 naruto.jutsu.combo.multi_shadow_clone=Мульти-теневые клоны: %s
+
+item.borutoKakashiArmour.name=Броня Какаши
+item.hanHat.name=Шляпа Хана
+
 item.record_FightingSpirit.name=Пластинка
 item.record_NejiTheme.name=Пластинка
 naruto.jutsu.chakraDash.nochakra=Недостаточно Чакры!
