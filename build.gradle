@@ -51,25 +51,19 @@ jar {
     manifest.mainAttributes("Main-Class": "com.nextgencrafters.narutomodinstaller.Loader")
 }
 
-task devJar(type: Jar) {
-    from sourceSets.main.output
-    description "Creates a compiled version for other developers to use in their workspaces."
-    classifier = "dev"
-}
+//task devJar(type: Jar) {
+//    from sourceSets.main.output
+//    description "Creates a compiled version for other developers to use in their workspaces."
+//    classifier = "dev"
+//}
 
-task sourceJar(type: Jar) {
-    from sourceSets.main.allSource
-    description "Outputs the source code into a jar file."
-    classifier = "src"
-}
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    from javadoc.destinationDir
+//    description "Creates a Javadoc Jar"
+//    classifier = "javadoc"
+//}
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    from javadoc.destinationDir
-    description "Creates a Javadoc Jar"
-    classifier = "javadoc"
-}
-
-tasks.build.dependsOn devJar, sourceJar, javadocJar
+//tasks.build.dependsOn devJar, sourceJar, javadocJar
 
 String getModVersion(String type) {
     File file = sourceSets.main.java.filter { File element ->
@@ -89,8 +83,8 @@ String getModVersion(String type) {
     file.readLines("UTF-8").each { String s ->
         s = s.trim()
         if (s.startsWith(prefix)) {
-            s = s.substring(prefix.length(), s.length() - 2);
-            String[] pts = s.split("\\.");
+            s = s.substring(prefix.length(), s.length() - 2)
+            String[] pts = s.split("\\.")
 
             major = pts[0];
             revision = pts[1];

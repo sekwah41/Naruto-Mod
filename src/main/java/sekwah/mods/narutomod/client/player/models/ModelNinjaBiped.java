@@ -13,6 +13,7 @@ import sekwah.mods.narutomod.animation.Pose;
 import sekwah.mods.narutomod.animation.dynamicplayerposes.DynamicPose;
 import sekwah.mods.narutomod.animation.modelparts.ModelRetexturedBox;
 import sekwah.mods.narutomod.animation.modelparts.ModelRetexturedBoxSharpBend;
+import sekwah.mods.narutomod.common.items.itemmodels.armor.IRenderFirstPerson;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.util.ArrayList;
@@ -327,35 +328,9 @@ public class ModelNinjaBiped extends ModelBiped
         }
     }
 
-    /**
-     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
-     * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
-     * "far" arms and legs can swing at most.
-     *
-     * TODO recreate in sekcanims to not remove and recreate the parts as java should have pointers to them as they are objects
-     * put into a list. They should be able to be edited from their variables stored here so sort it out and itll probably fix lag.
-     * the old way was a rather rough way just used to make the thing work as you weren't brilliant at coding at the time :)
-     */
     public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity)
     {
         //long timeTaken = System.nanoTime();
-        if(NarutoSettings.betterArms) {
-            this.animatedParts.remove(this.bipedRightArmLower);
-            this.animatedParts.remove(this.bipedLeftArmUpper);
-            this.animatedParts.remove(this.bipedLeftArmLower);
-            this.animatedParts.remove(this.bipedRightArmUpper);
-
-            this.boxList.remove(bipedRightArmLower);
-            this.bipedRightArmLower = new AnimModelRenderer(this, 40, 22, "rightArmLower", bipedRightArmLower);
-            this.boxList.remove(bipedLeftArmUpper);
-            this.bipedLeftArmUpper = new AnimModelRenderer(this, 16, 22, "leftArmUpper", bipedLeftArmUpper);
-            this.bipedLeftArmUpper.mirror = true;
-            this.boxList.remove(bipedLeftArmLower);
-            this.bipedLeftArmLower = new AnimModelRenderer(this, 40, 22, "leftArmLower", bipedLeftArmLower);
-            this.boxList.remove(bipedRightArmUpper);
-            this.bipedRightArmUpper = new AnimModelRenderer(this, 16, 22, "rightArmUpper", bipedRightArmUpper);
-        }
-
 
         this.bipedLeftArmLower.setRotationPoint(1.0F, 4F, 0.0F);
 
@@ -368,23 +343,6 @@ public class ModelNinjaBiped extends ModelBiped
         this.bipedLeftArmLower.rotateAngleX = 0;
         this.bipedLeftArmLower.rotateAngleY = 0;
         this.bipedLeftArmLower.rotateAngleZ = 0;
-
-        if(NarutoSettings.betterArms) {
-            this.animatedParts.remove(this.bipedRightLegLower);
-            this.animatedParts.remove(this.bipedLeftLegUpper);
-            this.animatedParts.remove(this.bipedLeftLegLower);
-            this.animatedParts.remove(this.bipedRightLegUpper);
-
-            this.boxList.remove(bipedRightLegLower);
-            this.bipedRightLegLower = new AnimModelRenderer(this, 0, 22, "rightLegLower", bipedRightLegLower);
-            this.boxList.remove(bipedLeftLegUpper);
-            this.bipedLeftLegUpper = new AnimModelRenderer(this, 0, 22, "leftLegUpper", bipedLeftLegUpper);
-            this.bipedLeftLegUpper.mirror = true;
-            this.boxList.remove(bipedLeftLegLower);
-            this.bipedLeftLegLower = new AnimModelRenderer(this, 0, 22, "leftLegLower", bipedLeftLegLower);
-            this.boxList.remove(bipedRightLegUpper);
-            this.bipedRightLegUpper = new AnimModelRenderer(this, 0, 22, "rightLegUpper", bipedRightLegUpper);
-        }
 
         this.bipedLeftLegLower.setRotationPoint(0F, 6F, 0.0F);
 
@@ -658,25 +616,6 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedRightLegUpper.rotateAngleX *= 0.6F;
         }
 
-        // This stuff is probably the sorta thing which is adding to the memory leak, recreating parts like this to
-        // reacalate the bends.
-        if(NarutoSettings.betterArms){
-            this.animatedParts.add(this.bipedRightArmLower);
-            this.animatedParts.add(this.bipedLeftArmUpper);
-            this.animatedParts.add(this.bipedLeftArmLower);
-            this.animatedParts.add(this.bipedRightArmUpper);
-
-            this.animatedParts.add(this.bipedRightLegLower);
-            this.animatedParts.add(this.bipedLeftLegUpper);
-            this.animatedParts.add(this.bipedLeftLegLower);
-            this.animatedParts.add(this.bipedRightLegUpper);
-            //NarutoMod.logger.info(this.animatedParts.size());
-        }
-
-        /*if(!this.animationID.equals("default") || !this.animationlastID.equals("default")){
-            PlayerPoseAnimator.animate(this, this.animationID, this.animationlastID, this.animationTick);
-        }*/
-
         if(this.animationID.equals(this.animationlastID)){
             Pose pose = NarutoAnimator.getPose(animationID, NarutoAnimator.playerPoses);
             if(pose instanceof DynamicPose){
@@ -719,21 +658,6 @@ public class ModelNinjaBiped extends ModelBiped
             lowerLeftArmBox.setUpperRotation(this.bipedLeftArmLower, this.bipedLeftArmLower.rotateAngleX);
             upperRightArmBox.setLowerRotation(this.bipedRightArmUpper, this.bipedRightArmLower.rotateAngleX);
             lowerRightArmBox.setUpperRotation(this.bipedRightArmLower, this.bipedRightArmLower.rotateAngleX);
-
-
-            this.bipedRightArmUpper.cubeList.add(upperRightArmBox);
-
-            this.bipedRightArmLower.cubeList.add(lowerRightArmBox);
-
-            this.bipedRightArmUpper.addChild(this.bipedRightArmLower);
-
-            this.bipedLeftArmUpper.mirror = true;
-            this.bipedLeftArmUpper.cubeList.add(upperLeftArmBox);
-
-            this.bipedLeftArmLower.mirror = true;
-            this.bipedLeftArmLower.cubeList.add(lowerLeftArmBox);
-
-            this.bipedLeftArmUpper.addChild(this.bipedLeftArmLower);
         }
 
         // Legs
@@ -756,21 +680,6 @@ public class ModelNinjaBiped extends ModelBiped
             lowerLeftLegBox.setUpperRotation(this.bipedLeftLegLower, this.bipedLeftLegLower.rotateAngleX);
             upperRightLegBox.setLowerRotation(this.bipedRightLegUpper, this.bipedRightLegLower.rotateAngleX);
             lowerRightLegBox.setUpperRotation(this.bipedRightLegLower, this.bipedRightLegLower.rotateAngleX);
-
-
-            this.bipedRightLegUpper.cubeList.add(upperRightLegBox);
-
-            this.bipedRightLegLower.cubeList.add(lowerRightLegBox);
-
-            this.bipedRightLegUpper.addChild(this.bipedRightLegLower);
-
-            this.bipedLeftLegUpper.mirror = true;
-            this.bipedLeftLegUpper.cubeList.add(upperLeftLegBox);
-
-            this.bipedLeftLegLower.mirror = true;
-            this.bipedLeftLegLower.cubeList.add(lowerLeftLegBox);
-
-            this.bipedLeftLegUpper.addChild(this.bipedLeftLegLower);
         }
         //NarutoMod.logger.info("Time to recalculate:" + (System.nanoTime() - timeTaken) + " (nanoseconds)");
     }
@@ -813,6 +722,7 @@ public class ModelNinjaBiped extends ModelBiped
     protected void renderTracked(ModelRenderer part, float f5, ModelRenderer... tracked) {
         GL11.glPushMatrix();
         for (ModelRenderer track : tracked) {
+            if(track.isHidden) return;
             track.postRender(f5);
         }
         part.render(f5);
@@ -826,4 +736,13 @@ public class ModelNinjaBiped extends ModelBiped
     {
         this.bipedCloak.render(p_78111_1_);
     }
+
+    /*@Override
+    public void renderFirstPersonArm(float scale) {
+        GL11.glPushMatrix();
+        this.bipedRightArmUpper.render(scale);
+        this.bipedRightArmUpper.postRender(scale);
+        this.bipedRightArmUpper.render(scale);
+        GL11.glPopMatrix();
+    }*/
 }

@@ -2,13 +2,14 @@ package sekwah.mods.narutomod.common.items.itemmodels.armor;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 
 /**
  * AnbuArmor - HeroGamezFTW
  * Created using Tabula 6.0.0
  */
-public class ModelAnbuArmor extends ModelNinjaBiped {
+public class ModelAnbuArmor extends ModelNinjaBiped implements IRenderFirstPerson {
 
     public ModelRenderer UpperBody;
     public ModelRenderer LowerRightArm;
@@ -273,5 +274,12 @@ public class ModelAnbuArmor extends ModelNinjaBiped {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
+    }
+
+    @Override
+    public void renderFirstPersonArm(float scale) {
+        this.bipedRightArmUpper.rotateAngleX = this.bipedRightArmUpper.rotateAngleY = this.bipedRightArmUpper.rotateAngleZ = 0;
+        this.bipedRightArmLower.rotateAngleX = this.bipedRightArmLower.rotateAngleY = this.bipedRightArmUpper.rotateAngleZ = 0;
+        this.renderTracked(this.LowerRightArm, scale, this.bipedRightArmUpper, this.bipedRightArmLower);
     }
 }

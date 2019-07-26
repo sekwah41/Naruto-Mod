@@ -8,7 +8,7 @@ import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
  * SasukeKidArmor - HeroGamezFTW
  * Created using Tabula 6.0.0
  */
-public class ModelSasukeKidArmour extends ModelNinjaBiped {
+public class ModelSasukeKidArmour extends ModelNinjaBiped implements IRenderFirstPerson {
 
     private ModelRenderer UpperBody;
     private ModelRenderer UpperLeftArm;
@@ -583,5 +583,13 @@ public class ModelSasukeKidArmour extends ModelNinjaBiped {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
+    }
+
+    @Override
+    public void renderFirstPersonArm(float scale) {
+        this.bipedRightArmUpper.rotateAngleX = this.bipedRightArmUpper.rotateAngleY = this.bipedRightArmUpper.rotateAngleZ = 0;
+        this.bipedRightArmLower.rotateAngleX = this.bipedRightArmLower.rotateAngleY = this.bipedRightArmUpper.rotateAngleZ = 0;
+        this.renderTracked(this.UpperRightArm, scale, this.bipedRightArmUpper);
+        this.renderTracked(this.LowerRightArm, scale, this.bipedRightArmUpper, this.bipedRightArmLower);
     }
 }

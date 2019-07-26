@@ -10,6 +10,7 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.RenderBiped;
@@ -39,6 +40,7 @@ import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.client.player.models.extras.ModelRibs;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
+import sekwah.mods.narutomod.common.items.itemmodels.armor.IRenderFirstPerson;
 import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
 import sekwah.mods.narutomod.common.items.NarutoItems;
 
@@ -305,7 +307,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
             ItemStack stack = ((EntityPlayer) entity).getCurrentArmor(2);
             ((ModelNinjaBiped) mainModel).bipedHeadwear.showModel = !(entity instanceof EntityPlayer && stack != null && stack.getItem() == NarutoItems.BORUTO_KAKASHI_ARMOUR);
         }
-        
+
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_CULL_FACE);
         this.mainModel.swingProgress = this.getSwingProgress(entity, swingProgress);
@@ -491,6 +493,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glPopMatrix();
         this.passSpecialRender(entity, p_76986_2_, p_76986_4_, p_76986_6_);
+
         MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Post(entity, this, p_76986_2_, p_76986_4_, p_76986_6_));
     }
 
@@ -686,13 +689,10 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         if (itemstack1 != null && event.renderItem) {
             GL11.glPushMatrix();
-            //this.modelBipedMain.bipedRightArm.postRender(0.0625F);
-            //this.modelBipedMain.bipedRightArmUpper.postRender(0.0625F);
 
             this.modelBipedMain.bipedRightArmUpper.postRender(0.0625F);
             this.modelBipedMain.bipedRightArmLower.postRender(0.0625F);
 
-            //GL11.glTranslatef(-0.0625F, 0.4375F, 0.0625F);
             GL11.glTranslatef(0.0125F, 0.2775F, 0.0625F);
 
             if (player.fishEntity != null) {
@@ -882,20 +882,30 @@ public class RenderNinjaPlayer extends RenderPlayer {
         super.renderOffsetLivingLabel(p_96449_1_, p_96449_2_, p_96449_4_, p_96449_6_, p_96449_8_, p_96449_9_, p_96449_10_);
     }
 
-    public void renderFirstPersonArm(EntityPlayer p_82441_1_) {
-        /**if (!NarutoSettings.experimentalFirstPerson) {
-         float f = 1.0F;
-         GL11.glColor3f(f, f, f);
-         this.modelBipedMain.onGround = 0.0F;
-         this.modelBipedMain.setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, p_82441_1_);
-         this.modelBipedMain.bipedRightArm.render(0.0625F);
-         }*/
-
+    public void renderFirstPersonArm(EntityPlayer player) {
         float f = 1.0F;
         GL11.glColor3f(f, f, f);
         this.modelBipedMain.swingProgress = 0.0F;
-        this.modelBipedMain.setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, p_82441_1_);
+        this.modelBipedMain.setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, player);
         this.modelBipedMain.bipedRightArm.render(0.0625F);
+        ItemStack itemstack = player.inventory.armorItemInSlot(2);
+        if(itemstack != null && itemstack.getItem() != null) {
+            ModelBiped modelbiped = this.modelArmorChestplate;
+            modelbiped = net.minecraftforge.client.ForgeHooksClient.getArmorModel(player, itemstack, 2, modelbiped);
+            if(modelbiped instanceof IRenderFirstPerson && this.renderManager.renderEngine != null) {
+                ModelNinjaBiped ninjaBiped = ((ModelNinjaBiped) modelbiped);
+                ninjaBiped.isSprinting = false;
+                ninjaBiped.isSneak = false;
+                ninjaBiped.animationID = "default";
+                ninjaBiped.animationlastID = "default";
+                ninjaBiped.animationTick = 0;
+                ninjaBiped.setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, player);
+                this.bindTexture(RenderBiped.getArmorResource(player, itemstack, 2, null));
+                ((IRenderFirstPerson) ninjaBiped).renderFirstPersonArm(0.0625F);
+            }
+        }
+
+
     }
 
     /**

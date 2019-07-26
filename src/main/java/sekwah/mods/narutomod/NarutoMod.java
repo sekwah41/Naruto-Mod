@@ -48,7 +48,7 @@ public class NarutoMod {
     @SidedProxy(clientSide = "sekwah.mods.narutomod.client.ClientProxy", serverSide = "sekwah.mods.narutomod.common.CommonProxy")
     public static CommonProxy proxy;
 
-    public static final String version = "0.5.0b19";
+    public static final String version = "0.5.0b18";
 
     public static List<DelayedRender> delayedRenders = new ArrayList<>();
 
@@ -105,15 +105,6 @@ public class NarutoMod {
         updateChecker.startUpdateChecker();
 
         sharinganHandler = new SharinganHandler();
-
-        //Thread updateChecker = new Thread(new UpdateCheckerOld());
-        //updateChecker.run();
-
-        /** ticks are now an event so use an event listener like the bonemeal one or the data watcher one
-         @SubscribeEvent public void tick(ClientTickEvent event) {
-         TickRegistry.registerTickHandler(new PlayerCommonTickHandler(), Side.SERVER);
-         }
-         */
 
         MinecraftForge.EVENT_BUS.register(new EventServerHook());
 

@@ -8,7 +8,7 @@ import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
  * NarutoShippudenArmor - HeroGamezFTW
  * Created using Tabula 6.0.0
  */
-public class ModelNarutoShippudenArmor extends ModelNinjaBiped {
+public class ModelNarutoShippudenArmor extends ModelNinjaBiped implements IRenderFirstPerson {
 
     private ModelRenderer UpperRightArm;
     private ModelRenderer UpperLeftArm;
@@ -389,5 +389,13 @@ public class ModelNarutoShippudenArmor extends ModelNinjaBiped {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
+    }
+
+    @Override
+    public void renderFirstPersonArm(float scale) {
+        this.bipedRightArmUpper.rotateAngleX = this.bipedRightArmUpper.rotateAngleY = this.bipedRightArmUpper.rotateAngleZ = 0;
+        this.bipedRightArmLower.rotateAngleX = this.bipedRightArmLower.rotateAngleY = this.bipedRightArmUpper.rotateAngleZ = 0;
+        this.renderTracked(this.UpperRightArm, scale, this.bipedRightArmUpper);
+        this.renderTracked(this.LowerRightArm, scale, this.bipedRightArmUpper, this.bipedRightArmLower);
     }
 }
