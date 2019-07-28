@@ -16,14 +16,6 @@ public class NarutoSettings {
 
     public static int experimentalFirstPersonMode = 0;
 
-    /**
-     * Switch between using the new arms and sticking to the normal. Possibly even make the lower arms slightly smaller
-     * so they can bend back like captain sparkles old videos(e.g.  but plan to change it back to yours once its more efficient :3
-     *
-     * Removed due to armour hero is making really REALLY wont work nice with it..... GJ HERO <3 RUINING MY PRETTY FEATURES
-     */
-    public static boolean betterArms = false;
-
     public static int settingsPage = 1;
 
     public static int chakraBarOffsetX = 2;
@@ -102,7 +94,6 @@ public class NarutoSettings {
     }
 
     public static void booleanChange() {
-        config.get(Configuration.CATEGORY_GENERAL, "betterArms", betterArms).set(betterArms);
         config.get(Configuration.CATEGORY_GENERAL, "dodgesEnabled", dodgesEnabled).set(dodgesEnabled);
     }
 
@@ -270,38 +261,8 @@ public class NarutoSettings {
                 "operaing system and cores then please set it to 1 so we have a usage count) also may make some fun " +
                 "stats such as how many fireballs have been shot and other things.";
 
-
-        /*Property configUsageUUID = config.get(Configuration.CATEGORY_GENERAL, "usageReportUUID", UUID.randomUUID().toString());
-        usageUUID = configUsageUUID.getString();
-        configUsageUUID.comment = "Used to stop duplicates of users and used to make data completely anonymous. Specific data " +
-                "is kept on the database for a max of 30 mins and a min of 15 mins after logout.";*/
-
-        //int randomBlockID = config.getBlock("RandomBlock", 200).getInt();
-
-        //int randomItemID = config.getItem("RandomItem", 20000).getInt();
-
-        // Since this flag is a boolean, we can read it into the variable directly from the config.
-        //someConfigFlag = config.get(Configuration.CATEGORY_GENERAL, "SomeConfigFlag", false).getBoolean(false);
-
-        //Notice there is nothing that gets the value of this property so the expression results in a Property object.
-        //Property someProperty = config.get(Configuration.CATEGORY_GENERAL, "SomeConfigString", "nothing");
-
-        // Here we add a comment to our new property.
-        //someProperty.comment = "This value can be read as a string!";
-
-        //String someConfigString = someProperty.value;
-        // this could also be:
-        // int someInt = someProperty.getInt();
-        // boolean someBoolean = someProperty.getBoolean(true);
-
-        Property configBetterArms = config.get(Configuration.CATEGORY_GENERAL, "betterArms", false);
-        betterArms = configBetterArms.getBoolean();
-
         Property configDodges = config.get(Configuration.CATEGORY_GENERAL, "dodgesEnabled", true);
         dodgesEnabled = configDodges.getBoolean();
-
-        // (or possibly changed to be like captain sparkles old videos if changed)
-        configBetterArms.comment = "Can't be changed in game as the corners would be stuck at angles. True = uses new arms like general blender models. False = corners like the old versions of the mod";
 
         chakraBarDesign = config.get(Configuration.CATEGORY_GENERAL, "chakraBarDesign", 1).getInt(1);
         // Stop out of bounds exceptions.

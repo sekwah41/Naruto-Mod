@@ -197,14 +197,14 @@ public class ModelNinjaBiped extends ModelBiped
         // Arms
         this.bipedRightArmUpper = new AnimModelRenderer(this, 40, 16, "rightArmUpper", bipedRightArmUpper);
         upperRightArmBox = new ModelRetexturedBoxSharpBend(this.bipedRightArmUpper, 40, 16, -3.0F, -2.0F, -2.0F, 4, 6, 4, p_i1149_1_, 44, 16, 44, 26);
-        this.bipedRightArmUpper.cubeList.add(upperRightArmBox);
+        this.bipedRightArmUpper.unbakedList.add(upperRightArmBox);
         //this.bipedRightArmUpper.addRetexturedBox(-3.0F, -2.0F, -2.0F, 4, 6, 4, p_i1149_1_, 44, 16, 44, 26);
         this.bipedRightArmUpper.setRotationPoint(-5.0F, 2.0F + p_i1149_2_, 0.0F);
 
 
         this.bipedRightArmLower = new AnimModelRenderer(this, 40, 22, "rightArmLower", bipedRightArmLower);
         lowerRightArmBox = new ModelRetexturedBoxSharpBend(this.bipedRightArmLower, 40, 22, -2F, 0F, -2F, 4, 6, 4, p_i1149_1_, 44, 26, 48, 16);
-        this.bipedRightArmLower.cubeList.add(lowerRightArmBox);
+        this.bipedRightArmLower.unbakedList.add(lowerRightArmBox);
         this.bipedRightArmLower.setRotationPoint(-1.0F, 4F + p_i1149_2_, 0.0F);
 
         this.bipedRightArmUpper.addChild(this.bipedRightArmLower);
@@ -212,14 +212,14 @@ public class ModelNinjaBiped extends ModelBiped
         this.bipedLeftArmUpper = new AnimModelRenderer(this, 40, 16, "leftArmUpper", bipedLeftArmUpper);
         this.bipedLeftArmUpper.mirror = true;
         upperLeftArmBox = new ModelRetexturedBoxSharpBend(this.bipedLeftArmUpper, 40, 16, -1.0F, -2.0F, -2.0F, 4, 6, 4, p_i1149_1_, 44, 16, 44, 26);
-        this.bipedLeftArmUpper.cubeList.add(upperLeftArmBox);
+        this.bipedLeftArmUpper.unbakedList.add(upperLeftArmBox);
         this.bipedLeftArmUpper.setRotationPoint(5.0F, 2.0F, 0.0F);
 
 
         this.bipedLeftArmLower = new AnimModelRenderer(this, 40, 22, "leftArmLower", bipedLeftArmLower);
         this.bipedLeftArmLower.mirror = true;
         lowerLeftArmBox = new ModelRetexturedBoxSharpBend(this.bipedLeftArmLower, 40, 22, -2F, 0F, -2F, 4, 6, 4, p_i1149_1_, 44, 26, 48, 16);
-        this.bipedLeftArmLower.cubeList.add(lowerLeftArmBox);
+        this.bipedLeftArmLower.unbakedList.add(lowerLeftArmBox);
         this.bipedLeftArmLower.setRotationPoint(1.0F, 4F, 0.0F);
 
         this.bipedLeftArmUpper.addChild(this.bipedLeftArmLower);
@@ -228,13 +228,13 @@ public class ModelNinjaBiped extends ModelBiped
 
         this.bipedRightLegUpper = new AnimModelRenderer(this, 0, 16, "rightLegUpper");
         upperRightLegBox = new ModelRetexturedBoxSharpBend(this.bipedRightLegUpper, 0, 16, -2.0F, 0F, -2.0F, 4, 6, 4, p_i1149_1_, 4, 16, 4, 26);
-        this.bipedRightLegUpper.cubeList.add(upperRightLegBox);
+        this.bipedRightLegUpper.unbakedList.add(upperRightLegBox);
         this.bipedRightLegUpper.setRotationPoint(-2.0F, 12.0F + p_i1149_2_, 0.0F);
 
 
         this.bipedRightLegLower = new AnimModelRenderer(this, 0, 22, "rightLegLower");
         lowerRightLegBox = new ModelRetexturedBoxSharpBend(this.bipedRightLegLower, 0, 22, -2F, 0F, -2F, 4, 6, 4, p_i1149_1_, 4, 26, 8, 16);
-        this.bipedRightLegLower.cubeList.add(lowerRightLegBox);
+        this.bipedRightLegLower.unbakedList.add(lowerRightLegBox);
         this.bipedRightLegLower.setRotationPoint(0.0F, 6F, 0.0F);
 
         this.bipedRightLegUpper.addChild(this.bipedRightLegLower);
@@ -242,14 +242,14 @@ public class ModelNinjaBiped extends ModelBiped
         this.bipedLeftLegUpper = new AnimModelRenderer(this, 0, 16, "leftLegUpper");
         this.bipedLeftLegUpper.mirror = true;
         upperLeftLegBox = new ModelRetexturedBoxSharpBend(this.bipedLeftLegUpper, 0, 16, -2.0F, 0F, -2.0F, 4, 6, 4, p_i1149_1_, 4, 16, 4, 26);
-        this.bipedLeftLegUpper.cubeList.add(upperLeftLegBox);
+        this.bipedLeftLegUpper.unbakedList.add(upperLeftLegBox);
         this.bipedLeftLegUpper.setRotationPoint(2.0F, 12.0F, 0.0F);
 
 
         this.bipedLeftLegLower = new AnimModelRenderer(this, 0, 22, "leftLegLower");
         this.bipedLeftLegLower.mirror = true;
         lowerLeftLegBox = new ModelRetexturedBoxSharpBend(this.bipedLeftLegLower, 0, 22, -2F, 0F, -2F, 4, 6, 4, p_i1149_1_, 4, 26, 8, 16);
-        this.bipedLeftLegLower.cubeList.add(lowerLeftLegBox);
+        this.bipedLeftLegLower.unbakedList.add(lowerLeftLegBox);
         this.bipedLeftLegLower.setRotationPoint(0.0F, 6F, 0.0F);
 
         this.bipedLeftLegUpper.addChild(this.bipedLeftLegLower);
@@ -653,12 +653,11 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedLeftArmLower.rotateAngleX = -1.5F;
         }
 
-        if(NarutoSettings.betterArms) {
-            upperLeftArmBox.setLowerRotation(this.bipedLeftArmUpper, this.bipedLeftArmLower.rotateAngleX);
-            lowerLeftArmBox.setUpperRotation(this.bipedLeftArmLower, this.bipedLeftArmLower.rotateAngleX);
-            upperRightArmBox.setLowerRotation(this.bipedRightArmUpper, this.bipedRightArmLower.rotateAngleX);
-            lowerRightArmBox.setUpperRotation(this.bipedRightArmLower, this.bipedRightArmLower.rotateAngleX);
-        }
+
+        upperLeftArmBox.setLowerRotation(this.bipedLeftArmUpper, this.bipedLeftArmLower.rotateAngleX);
+        lowerLeftArmBox.setUpperRotation(this.bipedLeftArmLower, this.bipedLeftArmLower.rotateAngleX);
+        upperRightArmBox.setLowerRotation(this.bipedRightArmUpper, this.bipedRightArmLower.rotateAngleX);
+        lowerRightArmBox.setUpperRotation(this.bipedRightArmLower, this.bipedRightArmLower.rotateAngleX);
 
         // Legs
 
@@ -675,12 +674,11 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedLeftLegLower.rotateAngleX = 1.5F;
         }
 
-        if(NarutoSettings.betterArms){
-            upperLeftLegBox.setLowerRotation(this.bipedLeftLegUpper, this.bipedLeftLegLower.rotateAngleX);
-            lowerLeftLegBox.setUpperRotation(this.bipedLeftLegLower, this.bipedLeftLegLower.rotateAngleX);
-            upperRightLegBox.setLowerRotation(this.bipedRightLegUpper, this.bipedRightLegLower.rotateAngleX);
-            lowerRightLegBox.setUpperRotation(this.bipedRightLegLower, this.bipedRightLegLower.rotateAngleX);
-        }
+        upperLeftLegBox.setLowerRotation(this.bipedLeftLegUpper, this.bipedLeftLegLower.rotateAngleX);
+        lowerLeftLegBox.setUpperRotation(this.bipedLeftLegLower, this.bipedLeftLegLower.rotateAngleX);
+        upperRightLegBox.setLowerRotation(this.bipedRightLegUpper, this.bipedRightLegLower.rotateAngleX);
+        lowerRightLegBox.setUpperRotation(this.bipedRightLegLower, this.bipedRightLegLower.rotateAngleX);
+
         //NarutoMod.logger.info("Time to recalculate:" + (System.nanoTime() - timeTaken) + " (nanoseconds)");
     }
 

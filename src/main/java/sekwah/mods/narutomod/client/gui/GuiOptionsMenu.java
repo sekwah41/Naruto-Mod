@@ -73,9 +73,8 @@ public class GuiOptionsMenu extends GuiScreen {
             GuiButton dodgesButton = new GuiButton(7, guiX + 130, guiY + 20, 110, 20, I18n.format("naruto.gui.dodges") + ": " + I18n.format(toggleMessage));
             this.buttonList.add(dodgesButton);
 
-            toggleMessage = NarutoSettings.betterArms ? "naruto.gui.on" : I18n.format("naruto.gui.off");
-            GuiButton betterArms = new GuiButton(8, guiX + 9, guiY + 43, 110, 20, I18n.format("naruto.gui.betterArms") + ": " + I18n.format(toggleMessage));
-            this.buttonList.add(betterArms);
+            //GuiButton betterArms = new GuiButton(8, guiX + 9, guiY + 43, 110, 20, I18n.format("naruto.gui.betterArms") + ": " + I18n.format(toggleMessage));
+            //this.buttonList.add(betterArms);
             /*if(NarutoSettings.experimentalFirstPersonMode == 0){
              this.buttonList.add(new GuiButton(4, guiX + 9, guiY + 20, 110, 20, I18n.format("naruto.gui.firstPerson") + ": " + I18n.format("naruto.gui.on")));
              }
@@ -191,7 +190,7 @@ public class GuiOptionsMenu extends GuiScreen {
             NarutoSettings.dodgesEnabled = !NarutoSettings.dodgesEnabled;
             NarutoSettings.booleanChange();
             this.needsUpdate = true;
-        }
+        }/*
         if (par1GuiButton.id == 8) {
             if(NarutoSettings.betterArms){
                 GuiNotificationUpdate.queueNotification(I18n.format("naruto.gui.settings"),
@@ -201,7 +200,7 @@ public class GuiOptionsMenu extends GuiScreen {
             NarutoSettings.betterArms = !NarutoSettings.betterArms;
             NarutoSettings.booleanChange();
             this.needsUpdate = true;
-        }
+        }*/
         /*if (par1GuiButton.id == 6) {
             if (NarutoSettings.chakraGUICorner >= 4) {
                 NarutoSettings.changeSettingInt(EnumNarutoOptions.CHAKRA_BAR_CORNER, 1);

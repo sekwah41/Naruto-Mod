@@ -12,6 +12,7 @@ import org.lwjgl.opengl.GL11;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AnimModelRenderer extends ModelRenderer {
     public final String boxName;
@@ -24,14 +25,20 @@ public class AnimModelRenderer extends ModelRenderer {
      */
     private int textureOffsetY;
     private boolean compiled;
+
+    /*private boolean needsReCompile = false;*/
+
     /**
      * The GL display list rendered by the Tessellator for this model
      */
     private int displayList;
     private ModelBase baseModel;
 
+    public List<ModelBox> unbakedList;
+
     public AnimModelRenderer(ModelBase p_i1172_1_, String boxName) {
         super(p_i1172_1_, boxName);
+        this.unbakedList = new ArrayList<>();
         this.textureWidth = 64.0F;
         this.textureHeight = 32.0F;
         this.showModel = true;
@@ -39,6 +46,11 @@ public class AnimModelRenderer extends ModelRenderer {
         this.baseModel = p_i1172_1_;
         this.boxName = boxName;
         this.setTextureSize(p_i1172_1_.textureWidth, p_i1172_1_.textureHeight);
+    }
+
+    public AnimModelRenderer(ModelBase p_i1174_1_, int p_i1174_2_, int p_i1174_3_) {
+        this(p_i1174_1_, null);
+        this.setTextureOffset(p_i1174_2_, p_i1174_3_);
     }
 
     public AnimModelRenderer(ModelBase p_i1174_1_, int p_i1174_2_, int p_i1174_3_, String boxName) {
@@ -103,8 +115,11 @@ public class AnimModelRenderer extends ModelRenderer {
             if (this.showModel) {
                 if (!this.compiled) {
                     this.compileDisplayList(p_78785_1_);
+                    //this.needsReCompile = false;
                 }
-
+                /*if(this.needsReCompile) {
+                    this.reCompileDisplayList(p_78785_1_);
+                }*/
                 GL11.glTranslatef(this.offsetX, this.offsetY, this.offsetZ);
                 int i;
 
@@ -117,6 +132,12 @@ public class AnimModelRenderer extends ModelRenderer {
                                 ((ModelRenderer) this.childModels.get(i)).render(p_78785_1_);
                             }
                         }
+
+                        for (ModelBox box:
+                                this.unbakedList) {
+                            Tessellator tessellator = Tessellator.instance;
+                            box.render(tessellator, p_78785_1_);
+                        }
                     } else {
                         GL11.glTranslatef(this.rotationPointX * p_78785_1_, this.rotationPointY * p_78785_1_, this.rotationPointZ * p_78785_1_);
                         GL11.glCallList(this.displayList);
@@ -125,6 +146,13 @@ public class AnimModelRenderer extends ModelRenderer {
                             for (i = 0; i < this.childModels.size(); ++i) {
                                 ((ModelRenderer) this.childModels.get(i)).render(p_78785_1_);
                             }
+                        }
+
+
+                        for (ModelBox box:
+                                this.unbakedList) {
+                            Tessellator tessellator = Tessellator.instance;
+                            box.render(tessellator, p_78785_1_);
                         }
 
                         GL11.glTranslatef(-this.rotationPointX * p_78785_1_, -this.rotationPointY * p_78785_1_, -this.rotationPointZ * p_78785_1_);
@@ -151,6 +179,12 @@ public class AnimModelRenderer extends ModelRenderer {
                         for (i = 0; i < this.childModels.size(); ++i) {
                             ((ModelRenderer) this.childModels.get(i)).render(p_78785_1_);
                         }
+                    }
+
+                    for (ModelBox box:
+                            this.unbakedList) {
+                        Tessellator tessellator = Tessellator.instance;
+                        box.render(tessellator, p_78785_1_);
                     }
 
                     GL11.glPopMatrix();
@@ -224,22 +258,38 @@ public class AnimModelRenderer extends ModelRenderer {
         }
     }
 
+    /*@SideOnly(Side.CLIENT)
+    private void reCompileDisplayList(float size)
+    {
+        GL11.glDeleteLists(this.displayList, 1);
+        this.genDisplayList(size);
+        this.needsReCompile = false;
+    }*/
+
     /**
      * Compiles a GL display list for this model
      */
     @SideOnly(Side.CLIENT)
-    private void compileDisplayList(float p_78788_1_) {
+    private void compileDisplayList(float size) {
         this.displayList = GLAllocation.generateDisplayLists(1);
+        genDisplayList(size);
+        this.compiled = true;
+    }
+
+    private void genDisplayList(float size) {
         GL11.glNewList(this.displayList, GL11.GL_COMPILE);
         Tessellator tessellator = Tessellator.instance;
 
         for (int i = 0; i < this.cubeList.size(); ++i) {
-            ((ModelBox) this.cubeList.get(i)).render(tessellator, p_78788_1_);
+            ((ModelBox) this.cubeList.get(i)).render(tessellator, size);
         }
 
         GL11.glEndList();
-        this.compiled = true;
     }
+
+    /*public void markReCompile() {
+        this.needsReCompile = true;
+    }*/
 
     /**
      * Returns the model renderer with the new texture parameters.

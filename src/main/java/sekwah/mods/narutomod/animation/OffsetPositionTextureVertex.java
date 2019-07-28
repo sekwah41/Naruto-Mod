@@ -24,10 +24,7 @@ public class OffsetPositionTextureVertex extends PositionTextureVertex {
     }
 
     public void setOffsetVecY(double offset) {
-        System.out.println(offset);
-        System.out.println("Before:" + this.vector3D.yCoord);
         this.vector3D.yCoord = this.originalVec.yCoord + offset;
-        System.out.println("After:" + this.vector3D.yCoord);
     }
 
     public void setOffsetVecZ(double offset) {

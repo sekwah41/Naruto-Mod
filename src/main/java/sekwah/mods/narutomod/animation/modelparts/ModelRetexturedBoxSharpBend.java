@@ -7,9 +7,11 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.PositionTextureVertex;
 import net.minecraft.client.model.TexturedQuad;
 import net.minecraft.client.renderer.Tessellator;
+import sekwah.mods.narutomod.animation.AnimModelRenderer;
 import sekwah.mods.narutomod.animation.OffsetPositionTextureVertex;
 
 public class ModelRetexturedBoxSharpBend extends ModelBox {
+
     /**
      * X vertex coordinate of lower box corner
      */
@@ -134,7 +136,10 @@ public class ModelRetexturedBoxSharpBend extends ModelBox {
         return this;
     }
 
-    public void setLowerRotation(ModelRenderer par1ModelRenderer, float rotateAngleX) {
+    public void setLowerRotation(AnimModelRenderer par1ModelRenderer, float rotateAngleX) {
+
+        if(this.lowerRotation == rotateAngleX) return;
+
         float distanceMultiLower = 1.24F;
 
         float distanceMultiInnerLower = 0.94F;
@@ -153,7 +158,12 @@ public class ModelRetexturedBoxSharpBend extends ModelBox {
 
     }
 
-    public void setUpperRotation(ModelRenderer par1ModelRenderer, float rotateAngleX) {
+    public void setUpperRotation(AnimModelRenderer par1ModelRenderer, float rotateAngleX) {
+
+        if(this.upperRotation == rotateAngleX) return;
+
+        //par1ModelRenderer.markReCompile();
+
         float distanceMultiUpper = 1.24F;
 
         float distanceMultiInnerUpper = 0.94F;

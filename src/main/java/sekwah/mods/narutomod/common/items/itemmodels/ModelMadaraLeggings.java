@@ -2,6 +2,7 @@ package sekwah.mods.narutomod.common.items.itemmodels;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import sekwah.mods.narutomod.animation.AnimModelRenderer;
 import sekwah.mods.narutomod.animation.modelparts.ModelRetexturedBoxSharpBend;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 
@@ -10,8 +11,8 @@ public class ModelMadaraLeggings extends ModelNinjaBiped {
     // TODO change the leg plates to track the lower body
 
     public ModelRenderer front_leg_plate_1;
-    public ModelRenderer right_leg;
-    public ModelRenderer left_leg;
+    public AnimModelRenderer right_leg;
+    public AnimModelRenderer left_leg;
 
     public ModelRenderer left_leg_plate;
     public ModelRenderer right_leg_plate;
@@ -19,8 +20,8 @@ public class ModelMadaraLeggings extends ModelNinjaBiped {
     public ModelRenderer back_leg_plate_2;
     public ModelRenderer back_leg_plate_1;
 
-    public ModelRenderer right_legLower;
-    public ModelRenderer left_legLower;
+    public AnimModelRenderer right_legLower;
+    public AnimModelRenderer left_legLower;
 
     public ModelRenderer legLockRight;
     public ModelRenderer legLockLeft;
@@ -40,18 +41,18 @@ public class ModelMadaraLeggings extends ModelNinjaBiped {
         textureHeight = 64;
 
         // TODO finish the custom bending cubes.
-        right_leg = new ModelRenderer(this, 43, -3);
+        right_leg = new AnimModelRenderer(this, 43, -3);
         //right_leg.addBox(-2F, 0F, -2F, 4, 6, 4, 0.01F);
         upperRightLegBox = new ModelRetexturedBoxSharpBend(this.right_leg, 38, 0, -2F, 0F, -2F, 4, 6, 4, 0.01F, 38, 0, 38, 0);
-        right_leg.cubeList.add(upperRightLegBox);
+        right_leg.unbakedList.add(upperRightLegBox);
         right_leg.setTextureSize(64, 64);
         right_leg.mirror = true;
         setRotation(right_leg, 0F, 0F, 0F);
 
-        left_leg = new ModelRenderer(this, 43, -3);
+        left_leg = new AnimModelRenderer(this, 43, -3);
         //left_leg.addBox(-2F, 0F, -2F, 4, 6, 4, 0.01F);
         upperLeftLegBox = new ModelRetexturedBoxSharpBend(this.left_leg, 38, 0, -2F, 0F, -2F, 4, 6, 4, 0.01F, 38, 0, 38, 0);
-        left_leg.cubeList.add(upperLeftLegBox);
+        left_leg.unbakedList.add(upperLeftLegBox);
         left_leg.setTextureSize(64, 64);
         left_leg.mirror = true;
         setRotation(left_leg, 0F, 0F, 0F);
@@ -59,18 +60,18 @@ public class ModelMadaraLeggings extends ModelNinjaBiped {
 
         // TODO lower parts
 
-        right_legLower = new ModelRenderer(this, 43, -3);
+        right_legLower = new AnimModelRenderer(this, 43, -3);
         //right_leg.addBox(-2F, 0F, -2F, 4, 6, 4, 0.01F);
         lowerRightLegBox = new ModelRetexturedBoxSharpBend(this.right_legLower, 38, 0, -2F, 0F, -2F, 4, 2, 4, 0.01F, 38, 0, 38, 0);
-        right_legLower.cubeList.add(lowerRightLegBox);
+        right_legLower.unbakedList.add(lowerRightLegBox);
         right_legLower.setTextureSize(64, 64);
         right_legLower.mirror = true;
         setRotation(right_legLower, 0F, 0F, 0F);
 
-        left_legLower = new ModelRenderer(this, 43, -3);
+        left_legLower = new AnimModelRenderer(this, 43, -3);
         //left_leg.addBox(-2F, 0F, -2F, 4, 6, 4, 0.01F);
         lowerLeftLegBox = new ModelRetexturedBoxSharpBend(this.left_legLower, 38, 0, -2F, 0F, -2F, 4, 2, 4, 0.01F, 38, 0, 38, 0);
-        left_legLower.cubeList.add(lowerLeftLegBox);
+        left_legLower.unbakedList.add(lowerLeftLegBox);
         left_legLower.setTextureSize(64, 64);
         left_legLower.mirror = true;
         setRotation(left_legLower, 0F, 0F, 0F);
@@ -231,26 +232,11 @@ public class ModelMadaraLeggings extends ModelNinjaBiped {
             //front_leg_plate_2.rotateAngleX += this.bipedRightLeg.rotateAngleX + 0.05F;
         }
 
-        /*if(NarutoSettings.betterArms) {
-            this.upperLeftLegBox.setLowerRotation(this.left_leg,this.bipedLeftLegLower.rotateAngleX);
-            this.upperRightLegBox.setLowerRotation(this.right_leg,this.bipedRightLegLower.rotateAngleX);
+        this.upperLeftLegBox.setLowerRotation(this.left_leg,this.bipedLeftLegLower.rotateAngleX);
+        this.upperRightLegBox.setLowerRotation(this.right_leg,this.bipedRightLegLower.rotateAngleX);
 
-            this.lowerLeftLegBox.setUpperRotation(this.left_legLower,this.bipedLeftLegLower.rotateAngleX);
-            this.lowerRightLegBox.setUpperRotation(this.right_legLower,this.bipedRightLegLower.rotateAngleX);
-
-            this.left_leg.cubeList.add(upperLeftLegBox);
-            this.right_leg.cubeList.add(upperRightLegBox);
-
-            this.left_legLower.cubeList.add(lowerLeftLegBox);
-            this.right_legLower.cubeList.add(lowerRightLegBox);
-        }*/
-
-        /*front_leg_plate_1.render(f5);
-        //back_leg_plate_2.render(f5);
-        back_leg_plate_1.render(f5);
-        left_leg_plate.render(f5);
-        right_leg_plate.render(f5);*/
-        //front_leg_plate_2.render(f5);
+        this.lowerLeftLegBox.setUpperRotation(this.left_legLower,this.bipedLeftLegLower.rotateAngleX);
+        this.lowerRightLegBox.setUpperRotation(this.right_legLower,this.bipedRightLegLower.rotateAngleX);
 
         trackPart(this.bipedLeftLegLower, this.legLockLeftLower);
 
