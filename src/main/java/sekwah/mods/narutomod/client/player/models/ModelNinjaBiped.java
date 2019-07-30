@@ -419,7 +419,6 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedLeftArmUpper.rotationPointX = MathHelper.cos(this.bipedBody.rotateAngleY) * 5.0F;
             this.bipedRightArmUpper.rotateAngleY += this.bipedBody.rotateAngleY;
             this.bipedLeftArmUpper.rotateAngleY += this.bipedBody.rotateAngleY;
-            this.bipedLeftArmUpper.rotateAngleX += this.bipedBody.rotateAngleY;
             f6 = 1.0F - this.swingProgress;
             f6 *= f6;
             f6 *= f6;
@@ -509,78 +508,6 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedRightArmUpper.rotateAngleX += MathHelper.sin(par3 * 0.067F) * 0.05F;
             this.bipedLeftArmUpper.rotateAngleX -= MathHelper.sin(par3 * 0.067F) * 0.05F;
         }
-
-
-        /*if (this.isThrowing)
-        {
-            this.bipedRightArmUpper.rotateAngleY = -(0.1F) + this.bipedHead.rotateAngleX;
-            this.bipedRightArmUpper.rotateAngleX = -(1F + (this.bipedHead.rotateAngleY / 2));
-            this.bipedRightArmUpper.rotateAngleZ = -1.2831853071795864769252867665601F;
-
-            this.bipedRightArmLower.rotateAngleX = 0;
-        }*/
-
-        /*if(this.isClient){
-            if (this.isClientThrowing)
-            {
-
-                this.animateThrowBack = 40;
-                this.bipedRightArmUpper.rotateAngleX = this.rightArmThrowBeforeX;
-                this.bipedRightArmUpper.rotateAngleY = this.rightArmThrowBeforeY;
-                this.bipedRightArmUpper.rotateAngleZ = this.rightArmThrowBeforeZ;
-
-                if(this.bipedRightArmUpper.rotateAngleX == -(1F + (this.bipedHead.rotateAngleY / 2))){
-                    this.bipedRightArmUpper.rotateAngleY = -(0.1F) + this.bipedHead.rotateAngleX;
-                    this.bipedRightArmUpper.rotateAngleX = -(1F + (this.bipedHead.rotateAngleY / 2));
-                    this.bipedRightArmUpper.rotateAngleZ = -1.2831853071795864769252867665601F; // was 5F
-                }
-                else{
-                    if(PlayerRenderTickEvent.delta != 0){
-                        float speed = PlayerRenderTickEvent.delta * 10;
-                        this.rightArmThrowBeforeX += (-(1F + (this.bipedHead.rotateAngleY / 2)) - this.rightArmThrowBeforeX) / speed;
-
-                        this.rightArmThrowBeforeY += (-(0.1F) + this.bipedHead.rotateAngleX - this.rightArmThrowBeforeY) / speed;
-
-                        this.rightArmThrowBeforeZ += (-1.2831853071795864769252867665601F - this.rightArmThrowBeforeZ) / speed;
-                    }
-                }
-            }
-            else{
-                if(PlayerRenderTickEvent.delta != 0){
-                    if(this.animateThrowBack-- > 30){
-                        float speed = PlayerRenderTickEvent.delta * 10;
-
-                        this.rightArmThrowBeforeX += (-(1F + (this.bipedHead.rotateAngleY / 2)) - 2F - this.rightArmThrowBeforeX) / speed;
-
-                        this.rightArmThrowBeforeY += (-(0.1F) + this.bipedHead.rotateAngleX - this.rightArmThrowBeforeY) / speed;
-
-                        this.rightArmThrowBeforeZ += (-1.2831853071795864769252867665601F - this.rightArmThrowBeforeZ) / speed;
-
-                        this.bipedRightArmUpper.rotateAngleX = this.rightArmThrowBeforeX;
-                        this.bipedRightArmUpper.rotateAngleY = this.rightArmThrowBeforeY;
-                        this.bipedRightArmUpper.rotateAngleZ = this.rightArmThrowBeforeZ;
-                    }
-                    else if(this.animateThrowBack-- > 0){
-                        float speed = PlayerRenderTickEvent.delta * 10;
-                        this.rightArmThrowBeforeX += (this.bipedRightArmUpper.rotateAngleX - this.rightArmThrowBeforeX) / speed;
-
-                        this.rightArmThrowBeforeY += (this.bipedRightArmUpper.rotateAngleY- this.rightArmThrowBeforeY) / speed;
-
-                        this.rightArmThrowBeforeZ += (this.bipedRightArmUpper.rotateAngleZ- this.rightArmThrowBeforeZ) / speed;
-
-                        this.bipedRightArmUpper.rotateAngleX = this.rightArmThrowBeforeX;
-                        this.bipedRightArmUpper.rotateAngleY = this.rightArmThrowBeforeY;
-                        this.bipedRightArmUpper.rotateAngleZ = this.rightArmThrowBeforeZ;
-
-                    }
-                }
-                else if(this.animateThrowBack-- > 0){
-                    this.bipedRightArmUpper.rotateAngleX = this.rightArmThrowBeforeX;
-                    this.bipedRightArmUpper.rotateAngleY = this.rightArmThrowBeforeY;
-                    this.bipedRightArmUpper.rotateAngleZ = this.rightArmThrowBeforeZ;
-                }
-            }
-        }*/
 
         if (this.isSprinting && this.swingProgress == 0F)
         {

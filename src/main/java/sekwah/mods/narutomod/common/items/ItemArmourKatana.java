@@ -82,10 +82,12 @@ public class ItemArmourKatana extends ItemArmor {
 
                 if (type == 1) {
                     armorModel = new ModelBackBokken();
-                    DataWatcher dw = entityLiving.getDataWatcher();
-                    armorModel.animationID = dw.getWatchableObjectString(DataWatcherIDs.poseClient);
-                    armorModel.animationlastID = dw.getWatchableObjectString(DataWatcherIDs.lastPose);
-                    armorModel.animationTick = dw.getWatchableObjectFloat(DataWatcherIDs.animationTick);
+                    if(entityLiving instanceof EntityPlayer) {
+                        DataWatcher dw = entityLiving.getDataWatcher();
+                        armorModel.animationID = dw.getWatchableObjectString(DataWatcherIDs.poseClient);
+                        armorModel.animationlastID = dw.getWatchableObjectString(DataWatcherIDs.lastPose);
+                        armorModel.animationTick = dw.getWatchableObjectFloat(DataWatcherIDs.animationTick);
+                    }
                 }
             }
         }

@@ -31,6 +31,7 @@ import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
 import sekwah.mods.narutomod.common.entity.EntitySubstitution;
+import sekwah.mods.narutomod.common.items.NarutoItems;
 
 import static net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED;
 import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D;
@@ -150,20 +151,9 @@ public class RenderSubstitution extends RendererLivingEntity {
         ItemStack itemstack = par1Entity.getEquipmentInSlot(0);
         this.modelArmourChestplate.heldItemRight = this.modelArmour.heldItemRight = this.modelBipedMain.heldItemRight = itemstack != null ? 1 : 0;
 
-        if (itemstack != null && par1Entity.getEquipmentInSlot(0).stackSize > 0) {
-            EnumAction enumaction = itemstack.getItemUseAction();
-
-            if (enumaction == EnumAction.block) {
-                this.modelArmourChestplate.heldItemRight = this.modelArmour.heldItemRight = this.modelBipedMain.heldItemRight = 3;
-            }
-            //else if (enumaction == EnumAction.bow)
-            //{
-            //    this.modelArmourChestplate.aimedBow = this.modelArmour.aimedBow = this.modelBipedMain.aimedBow = true;
-            // }
-            //else if (enumaction == EnumAction.Throw)
-            //{
-            //    this.modelArmourChestplate.isThrowing = this.modelArmour.isThrowing = this.modelBipedMain.isThrowing = true;
-            //}
+        if(this.modelBipedMain instanceof ModelNinjaBiped) {
+            ItemStack stack = (par1Entity).getEquipmentInSlot(2);
+            modelBipedMain.bipedHeadwear.showModel = !(stack != null && stack.getItem() == NarutoItems.BORUTO_KAKASHI_ARMOUR);
         }
 
         this.modelArmourChestplate.animationID = this.modelArmour.animationID = this.modelBipedMain.animationID = "default";

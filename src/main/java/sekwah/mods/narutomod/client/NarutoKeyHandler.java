@@ -102,6 +102,7 @@ public class NarutoKeyHandler {
                         outputStream.writeDouble(playerMP.posX);
                         outputStream.writeDouble(playerMP.posY);
                         outputStream.writeDouble(playerMP.posZ);
+                        outputStream.writeInt(playerMP.dimension);
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }

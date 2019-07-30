@@ -78,6 +78,7 @@ public class ServerPacketHandler {
             x = dis.readDouble();
             y = dis.readDouble();
             z = dis.readDouble();
+            dimension = dis.readInt();
         } catch (Exception e) {
             e.printStackTrace();
         }

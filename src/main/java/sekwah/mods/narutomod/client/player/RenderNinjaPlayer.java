@@ -305,7 +305,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         if(this.mainModel instanceof ModelNinjaBiped) {
             ItemStack stack = ((EntityPlayer) entity).getCurrentArmor(2);
-            ((ModelNinjaBiped) mainModel).bipedHeadwear.showModel = !(entity instanceof EntityPlayer && stack != null && stack.getItem() == NarutoItems.BORUTO_KAKASHI_ARMOUR);
+            ((ModelNinjaBiped) mainModel).bipedHeadwear.showModel = !((entity instanceof EntityPlayer) && stack != null && stack.getItem() == NarutoItems.BORUTO_KAKASHI_ARMOUR);
         }
 
         GL11.glPushMatrix();
@@ -862,23 +862,6 @@ public class RenderNinjaPlayer extends RenderPlayer {
     }
 
     protected void func_96449_a(AbstractClientPlayer p_96449_1_, double p_96449_2_, double p_96449_4_, double p_96449_6_, String p_96449_8_, float p_96449_9_, double p_96449_10_) {
-        if (p_96449_10_ < 100.0D) {
-            Scoreboard scoreboard = p_96449_1_.getWorldScoreboard();
-            ScoreObjective scoreobjective = scoreboard.getObjectiveInDisplaySlot(2);
-
-            if (scoreobjective != null) {
-                Score score = scoreboard.getValueFromObjective(p_96449_1_.getCommandSenderName(), scoreobjective);
-
-                if (p_96449_1_.isPlayerSleeping()) {
-                    this.renderLivingLabel(p_96449_1_, score.getScorePoints() + " " + scoreobjective.getDisplayName(), p_96449_2_, p_96449_4_ - 1.5D, p_96449_6_, 64);
-                } else {
-                    this.renderLivingLabel(p_96449_1_, score.getScorePoints() + " " + scoreobjective.getDisplayName(), p_96449_2_, p_96449_4_, p_96449_6_, 64);
-                }
-
-                p_96449_4_ += (double) ((float) this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * p_96449_9_);
-            }
-        }
-
         super.renderOffsetLivingLabel(p_96449_1_, p_96449_2_, p_96449_4_, p_96449_6_, p_96449_8_, p_96449_9_, p_96449_10_);
     }
 

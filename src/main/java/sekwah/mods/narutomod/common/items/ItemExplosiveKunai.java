@@ -106,6 +106,10 @@ public class ItemExplosiveKunai extends Item {
         return par1ItemStack;
     }
 
+    public boolean isFull3D() {
+        return true;
+    }
+
     /**
      * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
      */

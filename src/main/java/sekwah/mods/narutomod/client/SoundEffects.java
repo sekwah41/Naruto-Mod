@@ -51,6 +51,7 @@ public class SoundEffects {
 			outputStream.writeDouble(playerEntity.posX);
 			outputStream.writeDouble(playerEntity.posY);
 			outputStream.writeDouble(playerEntity.posZ);
+			outputStream.writeInt(playerEntity.dimension);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

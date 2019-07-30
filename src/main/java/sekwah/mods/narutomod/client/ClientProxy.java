@@ -44,6 +44,7 @@ import sekwah.mods.narutomod.common.items.itemmodels.armor.*;
 import sekwah.mods.narutomod.common.items.itemrenderers.RenderItemKubikiribocho;
 import sekwah.mods.narutomod.common.items.itemrenderers.RenderItemSamehada;
 import sekwah.mods.narutomod.common.items.itemrenderers.RenderItemScroll;
+import sekwah.mods.narutomod.common.items.itemrenderers.RenderItemWeaponSmall;
 import sekwah.mods.narutomod.network.UsageReport;
 
 public class ClientProxy extends CommonProxy {
@@ -152,6 +153,9 @@ public class ClientProxy extends CommonProxy {
         MinecraftForgeClient.registerItemRenderer(NarutoItems.SUMMON_SCROLL, new RenderItemScroll());
 
         MinecraftForgeClient.registerItemRenderer(NarutoItems.kubikiribocho, new RenderItemKubikiribocho());
+
+        MinecraftForgeClient.registerItemRenderer(NarutoItems.Kunai, new RenderItemWeaponSmall());
+        MinecraftForgeClient.registerItemRenderer(NarutoItems.ExplosiveKunai, new RenderItemWeaponSmall());
     }
 
     public void registerCustomBlocks() {
