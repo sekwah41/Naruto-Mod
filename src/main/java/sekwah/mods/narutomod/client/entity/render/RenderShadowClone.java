@@ -160,6 +160,12 @@ public class RenderShadowClone extends RendererLivingEntity {
         this.modelArmourChestplate.isSprinting = this.modelArmour.isSprinting = this.modelBipedMain.isSprinting = false;
         this.modelArmourChestplate.isChakraFocus = this.modelArmour.isChakraFocus = this.modelBipedMain.isChakraFocus = false;
         this.modelArmourChestplate.heldItemRight = this.modelArmour.heldItemRight = this.modelBipedMain.heldItemRight = 0;
+
+        this.modelArmourChestplate.swingProgress = this.modelArmour.swingProgress = this.modelBipedMain.swingProgress = this.getSwingProgress(par1Entity, par9);
+
+        this.modelArmourChestplate.isSneak = this.modelArmour.isSneak = this.modelBipedMain.isSneak = par1Entity.isSneaking();
+        this.modelArmourChestplate.isSprinting = this.modelArmour.isSprinting = this.modelBipedMain.isSprinting = par1Entity.isSprinting();
+
     }
 
     protected ResourceLocation func_110817_a(EntityShadowClone par1EntityShadowClone) {

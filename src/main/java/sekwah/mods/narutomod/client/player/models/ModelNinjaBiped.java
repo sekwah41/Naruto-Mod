@@ -534,8 +534,8 @@ public class ModelNinjaBiped extends ModelBiped
             this.bipedLowerBody.setRotationPoint(0F, 5F + par2, 0F);
             this.bipedRightArmUpper.setRotationPoint(-5F, 3.933333F, -3F);
             this.bipedLeftArmUpper.setRotationPoint(5F, 3.266667F, -3F);
-            this.bipedRightLegUpper.setRotationPoint(-2F, 12.0F, 0.0F);
-            this.bipedLeftLegUpper.setRotationPoint(2F, 12.0F, 0.0F);
+            this.bipedRightLegUpper.setRotationPoint(-2F, 11.0F + par2, 0.0F);
+            this.bipedLeftLegUpper.setRotationPoint(2F, 11.0F + par2, 0.0F);
             this.bipedCloak.setRotationPoint(0F, -3F, 3F);
         }
         else{

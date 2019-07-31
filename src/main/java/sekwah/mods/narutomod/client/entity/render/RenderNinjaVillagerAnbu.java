@@ -6,13 +6,14 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.common.entity.EntityNinjaVillagerAnbu;
 
 @SideOnly(Side.CLIENT)
 public class RenderNinjaVillagerAnbu extends RenderNinjaBiped {
 
     public RenderNinjaVillagerAnbu() {
-        super(new ModelBiped(), 0.5F);
+        super(new ModelNinjaBiped(), 0.5F);
     }
 
 

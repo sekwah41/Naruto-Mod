@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.common.entity.ai.EntityAIAttackSprint;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityShuriken;
 import sekwah.mods.narutomod.common.items.NarutoItems;
@@ -23,9 +24,7 @@ public class EntityRogueNinja extends EntityMob {
         super(par1World);
         this.getNavigator().setBreakDoors(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityVillager.class, 1.0D, false));
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityNinjaVillager.class, 1.0D, false));
+        this.tasks.addTask(2, new EntityAIAttackSprint(this, 1.0D, false));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
         this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
         this.tasks.addTask(5, new EntityAIMoveThroughVillage(this, 1.0D, false));
@@ -37,6 +36,7 @@ public class EntityRogueNinja extends EntityMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, 0, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityNinjaVillager.class, 0, false));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityNinjaVillagerAnbu.class, 0, false));
     }
 
     protected void applyEntityAttributes() {

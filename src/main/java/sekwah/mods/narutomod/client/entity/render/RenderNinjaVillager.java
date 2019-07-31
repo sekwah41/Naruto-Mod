@@ -6,6 +6,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.common.entity.EntityNinjaVillager;
 
 @SideOnly(Side.CLIENT)
@@ -15,7 +16,7 @@ public class RenderNinjaVillager extends RenderNinjaBiped {
     private static final ResourceLocation entityTexture3 = new ResourceLocation("narutomod:textures/entitys/Ninja_Villager_Purple.png");
 
     public RenderNinjaVillager() {
-        super(new ModelBiped(), 0.5F);
+        super(new ModelNinjaBiped(), 0.5F);
     }
 
     protected void func_82422_c() {

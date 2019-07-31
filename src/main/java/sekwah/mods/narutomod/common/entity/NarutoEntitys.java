@@ -76,13 +76,12 @@ public class NarutoEntitys {
     }
 
     public static void addSpawns() {
-        BiomeGenBase[] biomeList = BiomeGenBase.getBiomeGenArray();
+        BiomeGenBase[] biomeList = {BiomeGenBase.plains, BiomeGenBase.forest, BiomeGenBase.birchForest, BiomeGenBase.jungle, BiomeGenBase.jungleHills, BiomeGenBase.taiga
+                , BiomeGenBase.stoneBeach, BiomeGenBase.swampland, BiomeGenBase.savanna, BiomeGenBase.savannaPlateau};
         for (int i = 0; i < biomeList.length; i++) {
-            if (biomeList[i] != null && biomeList[i] != BiomeGenBase.ocean && biomeList[i] != BiomeGenBase.hell && biomeList[i] != BiomeGenBase.sky) {
-                EntityRegistry.addSpawn(EntityRogueNinja.class, 1, 1, 3, EnumCreatureType.monster, biomeList[i]);
+            EntityRegistry.addSpawn(EntityRogueNinja.class, 8, 1, 3, EnumCreatureType.monster, biomeList[i]);
 
-                EntityRegistry.addSpawn(EntityBandit.class, 3, 1, 3, EnumCreatureType.monster, biomeList[i]);
-            }
+            EntityRegistry.addSpawn(EntityBandit.class, 6, 1, 3, EnumCreatureType.monster, biomeList[i]);
         }
 
     }

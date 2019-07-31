@@ -21,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
+import sekwah.mods.narutomod.common.entity.ai.EntityAIAttackSprint;
 import sekwah.mods.narutomod.common.entity.ai.EntityAIFollowMaster;
 import sekwah.mods.narutomod.common.entity.ai.EntityAIOwnerHurtTarget;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
@@ -54,6 +55,7 @@ public class EntityShadowClone extends EntityCreature implements SkinCallback, I
         this.getNavigator().setBreakDoors(true);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
+        this.tasks.addTask(2, new EntityAIAttackSprint(this, 1.0D, true));
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0D, true));
         this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
         this.tasks.addTask(5, new EntityAIFollowMaster(this, 1.0D, 10.0F, 2.0F));
@@ -107,8 +109,6 @@ public class EntityShadowClone extends EntityCreature implements SkinCallback, I
 
         return var4;
     }
-
-
 
     protected void attackEntity(Entity p_attackEntity_1_, float p_attackEntity_2_) {
         if (this.attackTime <= 0 && p_attackEntity_2_ < 2.0F && p_attackEntity_1_.boundingBox.maxY > this.boundingBox.minY && p_attackEntity_1_.boundingBox.minY < this.boundingBox.maxY) {

@@ -95,6 +95,7 @@ public class NarutoSettings {
 
     public static void booleanChange() {
         config.get(Configuration.CATEGORY_GENERAL, "dodgesEnabled", dodgesEnabled).set(dodgesEnabled);
+        config.save();
     }
 
     public static void changeSettingFromSlider(EnumNarutoOptions setting, float sliderValue) {

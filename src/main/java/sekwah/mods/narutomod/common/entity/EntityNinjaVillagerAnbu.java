@@ -14,6 +14,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.village.Village;
 import net.minecraft.world.World;
+import sekwah.mods.narutomod.common.entity.ai.EntityAIAttackSprint;
 import sekwah.mods.narutomod.common.entity.ai.EntityAIDefendNinjaVillage;
 import sekwah.mods.narutomod.common.entity.ai.EntityAILookAtNinjaVillager;
 import sekwah.mods.narutomod.common.entity.projectiles.EntityKunai;
@@ -35,7 +36,7 @@ public class EntityNinjaVillagerAnbu extends EntityGolem {
         this.getNavigator().setBreakDoors(true);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAttackOnCollide(this, 0.5D, true));
+        this.tasks.addTask(1, new EntityAIAttackSprint(this, 0.5D, true));
         this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.5D, 32.0F));
         this.tasks.addTask(3, new EntityAIMoveThroughVillage(this, 0.5D, true));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 0.5D));

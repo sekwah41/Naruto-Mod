@@ -18,6 +18,8 @@ public class EntityAIFollowMaster extends EntityAIBase {
     private int field_75343_h;
     private boolean field_75344_i;
 
+    private boolean sprinting = false;
+
     public EntityAIFollowMaster(EntityShadowClone par1Entity, double par2, float par4, float par5) {
         this.theClone = par1Entity;
         this.theWorld = par1Entity.worldObj;
@@ -80,22 +82,16 @@ public class EntityAIFollowMaster extends EntityAIBase {
 
             if (!this.petPathfinder.tryMoveToEntityLiving(this.theOwner, this.field_75336_f)) {
                 if (!this.theClone.getLeashed()) {
-                    if (this.theClone.getDistanceSqToEntity(this.theOwner) >= 144.0D) {
-                        int i = MathHelper.floor_double(this.theOwner.posX) - 2;
-                        int j = MathHelper.floor_double(this.theOwner.posZ) - 2;
-                        int k = MathHelper.floor_double(this.theOwner.boundingBox.minY);
 
-                        for (int l = 0; l <= 4; ++l) {
-                            for (int i1 = 0; i1 <= 4; ++i1) {
-                                if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && World.doesBlockHaveSolidTopSurface(this.theWorld, i + l, k - 1, j + i1) && !this.theWorld.getBlock(i + l, k, j + i1).isNormalCube() && !this.theWorld.getBlock(i + l, k + 1, j + i1).isNormalCube()) {
-                                    this.theClone.setLocationAndAngles((double) ((float) (i + l) + 0.5F), (double) k, (double) ((float) (j + i1) + 0.5F), this.theClone.rotationYaw, this.theClone.rotationPitch);
-                                    this.petPathfinder.clearPathEntity();
-                                    return;
-                                }
-                            }
-                        }
-                    }
                 }
+            }
+            if (!this.sprinting && this.theClone.getDistanceSqToEntity(this.theOwner) >= 256.0D) {
+                this.sprinting = true;
+                this.theClone.setSprinting(true);
+            }
+            else if(this.sprinting && this.theClone.getDistanceSqToEntity(this.theOwner) <= 32.0D) {
+                this.sprinting = false;
+                this.theClone.setSprinting(false);
             }
         }
     }

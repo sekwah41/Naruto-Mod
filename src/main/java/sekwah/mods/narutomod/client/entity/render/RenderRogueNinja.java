@@ -6,13 +6,14 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 import sekwah.mods.narutomod.common.entity.EntityRogueNinja;
 
 @SideOnly(Side.CLIENT)
 public class RenderRogueNinja extends RenderNinjaBiped {
 
     public RenderRogueNinja() {
-        super(new ModelBiped(), 0.5F);
+        super(new ModelNinjaBiped(), 0.5F);
     }
 
     protected void func_82422_c() {

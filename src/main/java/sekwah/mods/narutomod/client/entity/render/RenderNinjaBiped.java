@@ -38,8 +38,8 @@ public class RenderNinjaBiped extends RenderLiving {
     public static String[] bipedArmorFilenamePrefix = new String[]{"leather", "chainmail", "iron", "diamond", "gold"};
     public ModelBiped modelBipedMain;
     protected float field_77070_b;
-    protected ModelBiped field_82423_g;
-    protected ModelBiped field_82425_h;
+    protected ModelNinjaBiped field_82423_g;
+    protected ModelNinjaBiped field_82425_h;
 
     public RenderNinjaBiped(ModelBiped p_i1257_1_, float p_i1257_2_) {
         this(p_i1257_1_, p_i1257_2_, 1.0F);
@@ -96,8 +96,8 @@ public class RenderNinjaBiped extends RenderLiving {
     }
 
     protected void func_82421_b() {
-        this.field_82423_g = new ModelBiped(1.0F);
-        this.field_82425_h = new ModelBiped(0.5F);
+        this.field_82423_g = new ModelNinjaBiped(1.0F);
+        this.field_82425_h = new ModelNinjaBiped(0.5F);
     }
 
     /**
@@ -188,6 +188,11 @@ public class RenderNinjaBiped extends RenderLiving {
         this.field_82423_g.aimedBow = this.field_82425_h.aimedBow = this.modelBipedMain.aimedBow = false;
         this.field_82423_g.isSneak = this.field_82425_h.isSneak = this.modelBipedMain.isSneak = false;
         this.field_82423_g.heldItemRight = this.field_82425_h.heldItemRight = this.modelBipedMain.heldItemRight = 0;
+
+        if(this.modelBipedMain instanceof  ModelNinjaBiped) {
+
+            this.field_82423_g.isSprinting = this.field_82425_h.isSprinting = ((ModelNinjaBiped) this.modelBipedMain).isSprinting = p_76986_1_.isSprinting();
+        }
     }
 
     /**
@@ -259,8 +264,16 @@ public class RenderNinjaBiped extends RenderLiving {
                 GL11.glScalef(f1, f1, f1);
             }
 
-            this.modelBipedMain.bipedRightArm.postRender(0.0625F);
-            GL11.glTranslatef(-0.0625F, 0.4375F, 0.0625F);
+            if(this.modelBipedMain instanceof  ModelNinjaBiped) {
+                ModelNinjaBiped ninjaBiped = (ModelNinjaBiped) this.modelBipedMain;
+                ninjaBiped.bipedRightArmUpper.postRender(0.0625F);
+                ninjaBiped.bipedRightArmLower.postRender(0.0625F);
+                GL11.glTranslatef(0.0125F, 0.2775F, 0.0625F);
+            }
+            else {
+                this.modelBipedMain.bipedRightArm.postRender(0.0625F);
+                GL11.glTranslatef(-0.0625F, 0.4375F, 0.0625F);
+            }
 
             net.minecraftforge.client.IItemRenderer customRenderer = net.minecraftforge.client.MinecraftForgeClient.getItemRenderer(itemstack, net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED);
             boolean is3D = (customRenderer != null && customRenderer.shouldUseRenderHelper(net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED, itemstack, net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D));
