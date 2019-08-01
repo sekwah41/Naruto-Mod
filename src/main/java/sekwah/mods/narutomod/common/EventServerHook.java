@@ -11,7 +11,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import org.apache.commons.compress.utils.IOUtils;
+import org.apache.commons.io.IOUtils;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.client.PlayerClientTickEvent;
 import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
