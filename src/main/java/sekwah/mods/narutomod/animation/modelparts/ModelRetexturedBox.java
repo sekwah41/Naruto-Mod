@@ -8,7 +8,7 @@ import net.minecraft.client.model.PositionTextureVertex;
 import net.minecraft.client.model.TexturedQuad;
 import net.minecraft.client.renderer.Tessellator;
 
-public class ModelRetexturedBox extends ModelBox {
+public class ModelRetexturedBox extends ModelBox implements IShouldBake {
     /**
      * X vertex coordinate of lower box corner
      */
@@ -121,5 +121,10 @@ public class ModelRetexturedBox extends ModelBox {
     public ModelRetexturedBox func_78244_a(String par1Str) {
         this.field_78247_g = par1Str;
         return this;
+    }
+
+    @Override
+    public boolean shouldBake() {
+        return true;
     }
 }

@@ -70,6 +70,8 @@ public class ItemNinjaArmour extends ItemArmor {
             modelArmor.isChild = entityLiving.isChild();
             modelArmor.heldItemRight = entityLiving.getEquipmentInSlot(0) != null ? 1 : 0;
             modelArmor.isSprinting = entityLiving.isSprinting();
+            modelArmor.aimedBow = false;
+            modelArmor.isThrowing = false;
             if (entityLiving instanceof EntityPlayer) {
                 EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
                 if (itemStack != null && entityPlayer.getItemInUseCount() > 0) {

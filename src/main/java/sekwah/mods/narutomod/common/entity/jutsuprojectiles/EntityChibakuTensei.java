@@ -102,7 +102,7 @@ public class EntityChibakuTensei extends Entity {
         if(!this.worldObj.isRemote) {
             if(ticksExisted == travelTime / 9) {
                 cX = (int) this.posX;
-                cY = (int) this.posY;
+                cY = this.worldObj.getHeightValue((int) this.posX, (int) this.posZ);
                 cZ = (int) this.posZ;
             }
             if(!NarutoSettings.nonDestructiveMode) {

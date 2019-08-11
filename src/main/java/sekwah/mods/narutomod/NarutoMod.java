@@ -18,6 +18,7 @@ import sekwah.mods.narutomod.assets.JutsuData;
 import sekwah.mods.narutomod.client.player.SharinganHandler;
 import sekwah.mods.narutomod.client.render.DelayedRender;
 import sekwah.mods.narutomod.command.CommandJutsu;
+import sekwah.mods.narutomod.command.CommandReloadAnims;
 import sekwah.mods.narutomod.common.CommonProxy;
 import sekwah.mods.narutomod.common.EventServerHook;
 import sekwah.mods.narutomod.common.NarutoEffects;
@@ -48,7 +49,7 @@ public class NarutoMod {
     @SidedProxy(clientSide = "sekwah.mods.narutomod.client.ClientProxy", serverSide = "sekwah.mods.narutomod.common.CommonProxy")
     public static CommonProxy proxy;
 
-    public static final String version = "0.5.0b20";
+    public static final String version = "0.5.0b21";
 
     public static List<DelayedRender> delayedRenders = new ArrayList<>();
 
@@ -71,6 +72,7 @@ public class NarutoMod {
     public static NarutoAnimator entityAnimator;
 
     public static UsageReport usageReport;
+
     private UpdateChecker updateChecker;
 
     public SharinganHandler sharinganHandler;
@@ -79,11 +81,6 @@ public class NarutoMod {
     public void init(FMLInitializationEvent event) {
 
         proxy.commands();
-
-        // TODO look into the mod hooks for the in game gui so i can change (hp) to a number
-        //  also so i can change the chakra back
-
-        //new PlayerPoseAnimator();
 
         NarutoWorldGeneration.registerWorldGenerators();
 
@@ -173,9 +170,19 @@ public class NarutoMod {
 
     }
 
+    public static void reloadAnims() {
+        try (InputStream fileStreamJson = NarutoMod.class.getResourceAsStream("/assets/narutomod/mod/poseData.json")) {
+            NarutoAnimator.playerPoses = entityAnimator.addPoses(fileStreamJson, NarutoAnimator.playerPoses);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @EventHandler
     public void onServerStart(FMLServerStartingEvent event) {
         event.registerServerCommand(new CommandJutsu());
+        event.registerServerCommand(new CommandReloadAnims());
     }
 
 }

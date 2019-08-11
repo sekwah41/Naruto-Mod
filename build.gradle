@@ -94,6 +94,10 @@ String getModVersion(String type) {
     return "$major.$revision.$patch";
 }
 
+dependencies {
+    compile fileTree(dir: 'lib', includes: ['*.jar'])
+}
+
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version

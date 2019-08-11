@@ -9,6 +9,8 @@ import net.minecraft.client.model.TextureOffset;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.Tessellator;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.animation.modelparts.IShouldBake;
+import sekwah.mods.narutomod.animation.modelparts.ModelRetexturedBoxSharpBend;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 
 import java.util.ArrayList;
@@ -281,7 +283,10 @@ public class AnimModelRenderer extends ModelRenderer {
         Tessellator tessellator = Tessellator.instance;
 
         for (int i = 0; i < this.cubeList.size(); ++i) {
-            ((ModelBox) this.cubeList.get(i)).render(tessellator, size);
+            ModelBox box = (ModelBox) this.cubeList.get(i);
+            if(!(box instanceof IShouldBake) || (box instanceof IShouldBake && ((IShouldBake) box).shouldBake())) {
+                box.render(tessellator, size);
+            }
         }
 
         GL11.glEndList();
@@ -298,5 +303,10 @@ public class AnimModelRenderer extends ModelRenderer {
         this.textureWidth = (float) p_78787_1_;
         this.textureHeight = (float) p_78787_2_;
         return this;
+    }
+
+    public void addUnbaked(ModelRetexturedBoxSharpBend box) {
+        this.cubeList.add(box);
+        this.unbakedList.add(box);
     }
 }

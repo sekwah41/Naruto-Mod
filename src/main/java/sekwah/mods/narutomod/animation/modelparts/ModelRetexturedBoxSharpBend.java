@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.Tessellator;
 import sekwah.mods.narutomod.animation.AnimModelRenderer;
 import sekwah.mods.narutomod.animation.OffsetPositionTextureVertex;
 
-public class ModelRetexturedBoxSharpBend extends ModelBox {
+public class ModelRetexturedBoxSharpBend extends ModelBox implements IShouldBake {
 
     /**
      * X vertex coordinate of lower box corner
@@ -162,8 +162,6 @@ public class ModelRetexturedBoxSharpBend extends ModelBox {
 
         if(this.upperRotation == rotateAngleX) return;
 
-        //par1ModelRenderer.markReCompile();
-
         float distanceMultiUpper = 1.24F;
 
         float distanceMultiInnerUpper = 0.94F;
@@ -180,5 +178,10 @@ public class ModelRetexturedBoxSharpBend extends ModelBox {
         this.vertexPositions[4].setOffsetVecY(this.upperRotation * distanceMultiUpper);
         this.vertexPositions[5].setOffsetVecY(this.upperRotation * distanceMultiUpper);
 
+    }
+
+    @Override
+    public boolean shouldBake() {
+        return false;
     }
 }
