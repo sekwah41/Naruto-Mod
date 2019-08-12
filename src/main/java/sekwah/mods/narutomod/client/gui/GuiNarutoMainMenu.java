@@ -8,7 +8,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.GuiDiscord;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -30,6 +29,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 import org.lwjgl.util.glu.Project;
 import sekwah.mods.narutomod.NarutoMod;
+import sekwah.mods.narutomod.client.gui.components.GuiDiscord;
 import sekwah.mods.narutomod.network.UpdateChecker;
 
 import java.io.BufferedReader;
