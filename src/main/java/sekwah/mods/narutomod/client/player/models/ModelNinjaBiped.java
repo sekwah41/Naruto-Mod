@@ -13,8 +13,6 @@ import sekwah.mods.narutomod.animation.Pose;
 import sekwah.mods.narutomod.animation.dynamicplayerposes.DynamicPose;
 import sekwah.mods.narutomod.animation.modelparts.ModelRetexturedBox;
 import sekwah.mods.narutomod.animation.modelparts.ModelRetexturedBoxSharpBend;
-import sekwah.mods.narutomod.common.items.itemmodels.armor.IRenderFirstPerson;
-import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.util.ArrayList;
 
@@ -276,7 +274,7 @@ public class ModelNinjaBiped extends ModelBiped
     }
 
     /**
-     * Sets the models various rotation angles then renders the model.
+     * Sets the model various rotation angles then renders the model.
      */
     public void render(Entity p_78088_1_, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float p_78088_7_)
     {

@@ -30,7 +30,7 @@ public class RenderVanillaBiped extends RenderLiving {
     private static final Map field_110859_k = Maps.newHashMap();
     private static final String __OBFID = "CL_00001001";
     /**
-     * List of armor texture filenames.
+     * List of armour texture filenames.
      */
     public static String[] bipedArmorFilenamePrefix = new String[]{"leather", "chainmail", "iron", "diamond", "gold"};
     public ModelBiped modelBipedMain;
@@ -56,7 +56,7 @@ public class RenderVanillaBiped extends RenderLiving {
 
     @Deprecated //Use the more sensitive version getArmorResource below
     public static ResourceLocation func_110858_a(ItemArmor p_110858_0_, int p_110858_1_, String p_110858_2_) {
-        String s1 = String.format("textures/models/armor/%s_layer_%d%s.png", bipedArmorFilenamePrefix[p_110858_0_.renderIndex], Integer.valueOf(p_110858_1_ == 2 ? 2 : 1), p_110858_2_ == null ? "" : String.format("_%s", p_110858_2_));
+        String s1 = String.format("textures/model/armour/%s_layer_%d%s.png", bipedArmorFilenamePrefix[p_110858_0_.renderIndex], Integer.valueOf(p_110858_1_ == 2 ? 2 : 1), p_110858_2_ == null ? "" : String.format("_%s", p_110858_2_));
         ResourceLocation resourcelocation = (ResourceLocation) field_110859_k.get(s1);
 
         if (resourcelocation == null) {
@@ -70,15 +70,15 @@ public class RenderVanillaBiped extends RenderLiving {
     /**
      * More common ForgeHook version of the above function, it allows for items to have more control over what texture they provide.
      *
-     * @param entity Entity wearing the armor
-     * @param stack  ItemStack for the armor
+     * @param entity Entity wearing the armour
+     * @param stack  ItemStack for the armour
      * @param slot   Slot ID that the item is in
      * @param type   Subtype, can be null or "overlay"
-     * @return ResourceLocation pointing at the armor's texture
+     * @return ResourceLocation pointing at the armour's texture
      */
     public static ResourceLocation getArmorResource(Entity entity, ItemStack stack, int slot, String type) {
         ItemArmor item = (ItemArmor) stack.getItem();
-        String s1 = String.format("textures/models/armor/%s_layer_%d%s.png",
+        String s1 = String.format("textures/model/armour/%s_layer_%d%s.png",
                 bipedArmorFilenamePrefix[item.renderIndex], (slot == 2 ? 2 : 1), type == null ? "" : String.format("_%s", type));
 
         s1 = net.minecraftforge.client.ForgeHooksClient.getArmorTexture(entity, stack, s1, slot, type);

@@ -16,15 +16,6 @@ buildscript {
 }
 apply plugin: "forge"
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8 // Need this here so eclipse task generates correctly.
-compileJava {
-    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-version = getModVersion("version")
-group = "sekwah.mods.narutomod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "narutomod"
-
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
     mappings = "stable_12"
@@ -38,6 +29,15 @@ minecraft {
         runDir = "eclipse"
     }
 }
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8 // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+version = getModVersion("version")
+group = "sekwah.mods.narutomod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "narutomod"
 
 if (JavaVersion.current().isJava8Compatible()) {
     allprojects {

@@ -72,7 +72,7 @@ public class RenderSubstitution extends RendererLivingEntity {
     }
 
     /**
-     * Set the specified armor model as the player model. Args: player, armorSlot, partialTick
+     * Set the specified armour model as the player model. Args: player, armorSlot, partialTick
      */
     protected int setArmorModel(EntitySubstitution par1EntitySubstitution, int par2, float par3) {
         ItemStack itemstack = par1EntitySubstitution.getEquipmentInSlot(par2 + 1);

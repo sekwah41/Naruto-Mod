@@ -14,7 +14,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
-import sekwah.mods.narutomod.common.items.itemmodels.ModelGourd;
+import sekwah.mods.narutomod.client.item.model.ModelGourd;
 
 public class ItemArmourGourd extends ItemArmor {
 

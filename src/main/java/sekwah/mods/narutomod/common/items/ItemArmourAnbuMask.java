@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
-import sekwah.mods.narutomod.common.items.itemmodels.ModelAnbuMask;
+import sekwah.mods.narutomod.client.item.model.ModelAnbuMask;
 
 public class ItemArmourAnbuMask extends ItemArmor {
 

@@ -33,7 +33,7 @@ public class EntitySubstitutionLog extends EntityCreature {
     }
 
     /**
-     * Returns the current armor value as determined by a call to InventoryPlayer.getTotalArmorValue
+     * Returns the current armour value as determined by a call to InventoryPlayer.getTotalArmorValue
      */
     public int getTotalArmorValue() {
 

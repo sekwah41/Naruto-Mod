@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
-import sekwah.mods.narutomod.common.items.itemmodels.ModelFlakJacket;
+import sekwah.mods.narutomod.client.item.model.ModelFlakJacket;
 
 public class ItemArmourFlakJacket extends ItemArmor {
 

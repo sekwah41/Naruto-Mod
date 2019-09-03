@@ -144,7 +144,7 @@ public class EntityShadowClone extends EntityCreature implements SkinCallback, I
     }
 
     /**
-     * Returns the current armor value as determined by a call to InventoryPlayer.getTotalArmorValue
+     * Returns the current armour value as determined by a call to InventoryPlayer.getTotalArmorValue
      */
     public int getTotalArmorValue() {
 

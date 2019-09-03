@@ -58,7 +58,7 @@ public class EntityRogueNinja extends EntityMob {
     }
 
     /**
-     * Returns the current armor value as determined by a call to InventoryPlayer.getTotalArmorValue
+     * Returns the current armour value as determined by a call to InventoryPlayer.getTotalArmorValue
      */
     public int getTotalArmorValue() {
         int var1 = super.getTotalArmorValue() + 2;

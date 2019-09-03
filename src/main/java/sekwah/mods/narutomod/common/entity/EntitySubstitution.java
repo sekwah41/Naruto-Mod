@@ -85,7 +85,7 @@ public class EntitySubstitution extends EntityCreature implements SkinCallback, 
     }
 
     /**
-     * Returns the current armor value as determined by a call to InventoryPlayer.getTotalArmorValue
+     * Returns the current armour value as determined by a call to InventoryPlayer.getTotalArmorValue
      */
     public int getTotalArmorValue() {
         return 0;
