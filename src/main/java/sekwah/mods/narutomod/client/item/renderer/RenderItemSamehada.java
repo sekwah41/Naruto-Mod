@@ -6,12 +6,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import sekwah.mods.narutomod.client.item.model.ModelSamehada;
+import sekwah.mods.narutomod.client.ClientProxy;
+import sekwah.mods.narutomod.client.item.model.weapon.ModelSamehada;
 
-
+/**
+ * Registered in {@link ClientProxy#registerCustomItems()}
+ */
 public class RenderItemSamehada implements IItemRenderer {
 
     protected ModelSamehada weaponModel;
+
 
     public RenderItemSamehada() {
         weaponModel = new ModelSamehada();

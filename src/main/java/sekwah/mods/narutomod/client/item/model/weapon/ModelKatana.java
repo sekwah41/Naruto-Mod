@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.client.item.model;
+package sekwah.mods.narutomod.client.item.model.weapon;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

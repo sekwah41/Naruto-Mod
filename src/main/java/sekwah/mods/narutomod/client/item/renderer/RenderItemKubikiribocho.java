@@ -6,9 +6,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import sekwah.mods.narutomod.client.item.model.ModelKubikiribocho;
+import sekwah.mods.narutomod.client.ClientProxy;
+import sekwah.mods.narutomod.client.item.model.weapon.ModelKubikiribocho;
 
-
+/**
+ * Registered in {@link ClientProxy#registerCustomItems()}
+ */
 public class RenderItemKubikiribocho implements IItemRenderer {
 
     protected ModelKubikiribocho weaponModel;

@@ -6,8 +6,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.client.ClientProxy;
 
-
+/**
+ * Registered in {@link ClientProxy#registerCustomItems()}
+ */
 public class RenderItemWeaponSmall implements IItemRenderer {
 
     public RenderItemWeaponSmall() {

@@ -1,14 +1,17 @@
-package sekwah.mods.narutomod.client.item.model;
+package sekwah.mods.narutomod.client.item.model.weapon;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 public class ModelScroll extends ModelBase {
-    //fields
-    public ModelRenderer Paper;
-    public ModelRenderer Center;
 
+    private ModelRenderer Paper;
+    private ModelRenderer Center;
+
+    /**
+     * Used in {@link sekwah.mods.narutomod.client.item.renderer.RenderItemScroll}
+     */
     public ModelScroll() {
         textureWidth = 64;
         textureHeight = 32;

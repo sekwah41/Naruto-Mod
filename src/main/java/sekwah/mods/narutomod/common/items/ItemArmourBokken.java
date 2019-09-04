@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
-import sekwah.mods.narutomod.client.item.model.ModelBackBokken;
+import sekwah.mods.narutomod.client.item.model.armour.ModelBackBokken;
 
 public class ItemArmourBokken extends ItemArmor {
 

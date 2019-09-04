@@ -1,38 +1,42 @@
-package sekwah.mods.narutomod.client.item.model;
+package sekwah.mods.narutomod.client.item.model.weapon;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
+import sekwah.mods.narutomod.client.ClientProxy;
 
 public class ModelSamehada extends ModelBase {
     //fields
-    ModelRenderer Shape1;
-    ModelRenderer Shape2;
-    ModelRenderer Shape3;
-    ModelRenderer Shape4;
-    ModelRenderer Shape5;
-    ModelRenderer Shape6;
-    ModelRenderer Shape7;
-    ModelRenderer Shape8;
-    ModelRenderer Shape9;
-    ModelRenderer Shape10;
-    ModelRenderer Shape11;
-    ModelRenderer Shape12;
-    ModelRenderer Shape13;
-    ModelRenderer Shape14;
-    ModelRenderer Shape15;
-    ModelRenderer Shape16;
-    ModelRenderer Shape17;
-    ModelRenderer Shape18;
-    ModelRenderer Shape19;
-    ModelRenderer Shape20;
-    ModelRenderer Shape21;
-    ModelRenderer Shape22;
-    ModelRenderer Shape23;
-    ModelRenderer Shape24;
-    ModelRenderer Shape25;
+    private ModelRenderer Shape1;
+    private ModelRenderer Shape2;
+    private ModelRenderer Shape3;
+    private ModelRenderer Shape4;
+    private ModelRenderer Shape5;
+    private ModelRenderer Shape6;
+    private ModelRenderer Shape7;
+    private ModelRenderer Shape8;
+    private ModelRenderer Shape9;
+    private ModelRenderer Shape10;
+    private ModelRenderer Shape11;
+    private ModelRenderer Shape12;
+    private ModelRenderer Shape13;
+    private ModelRenderer Shape14;
+    private ModelRenderer Shape15;
+    private ModelRenderer Shape16;
+    private ModelRenderer Shape17;
+    private ModelRenderer Shape18;
+    private ModelRenderer Shape19;
+    private ModelRenderer Shape20;
+    private ModelRenderer Shape21;
+    private ModelRenderer Shape22;
+    private ModelRenderer Shape23;
+    private ModelRenderer Shape24;
+    private ModelRenderer Shape25;
 
+    /**
+     * Used in {@link sekwah.mods.narutomod.client.item.renderer.RenderItemSamehada}
+     */
     public ModelSamehada() {
         textureWidth = 256;
         textureHeight = 256;

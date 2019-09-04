@@ -19,7 +19,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
-import sekwah.mods.narutomod.client.item.model.ModelHeadband;
+import sekwah.mods.narutomod.client.item.model.armour.ModelHeadband;
 
 import java.util.List;
 

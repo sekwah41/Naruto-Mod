@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.client.item.model;
+package sekwah.mods.narutomod.client.item.model.weapon;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -7,22 +7,22 @@ import org.lwjgl.opengl.GL11;
 
 public class ModelKubikiribocho extends ModelBase {
 
-    ModelRenderer Handle;
-    ModelRenderer Hilt;
-    ModelRenderer Blade_Extrusion_Top;
-    ModelRenderer Blade_Extrusion_Base;
-    ModelRenderer Bottom_Smooth_Corner;
-    ModelRenderer Top_Smooth_Corner;
-    ModelRenderer Top_Rivet;
-    ModelRenderer Middle_Rivet;
-    ModelRenderer Bottom_Rivet;
-    ModelRenderer Blade_Top_L;
-    ModelRenderer Blade_Top;
-    ModelRenderer Indent_Side;
-    ModelRenderer Outside_Hole;
-    ModelRenderer Blade_Base;
-    ModelRenderer Inside_Hole;
-    ModelRenderer Blade_Majority;
+    private ModelRenderer Handle;
+    private ModelRenderer Hilt;
+    private ModelRenderer Blade_Extrusion_Top;
+    private ModelRenderer Blade_Extrusion_Base;
+    private ModelRenderer Bottom_Smooth_Corner;
+    private ModelRenderer Top_Smooth_Corner;
+    private ModelRenderer Top_Rivet;
+    private ModelRenderer Middle_Rivet;
+    private ModelRenderer Bottom_Rivet;
+    private ModelRenderer Blade_Top_L;
+    private ModelRenderer Blade_Top;
+    private ModelRenderer Indent_Side;
+    private ModelRenderer Outside_Hole;
+    private ModelRenderer Blade_Base;
+    private ModelRenderer Inside_Hole;
+    private ModelRenderer Blade_Majority;
 
     public ModelKubikiribocho() {
         textureWidth = 64;

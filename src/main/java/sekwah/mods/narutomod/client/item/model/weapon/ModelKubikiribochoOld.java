@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.client.item.model;
+package sekwah.mods.narutomod.client.item.model.weapon;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -7,18 +7,18 @@ import org.lwjgl.opengl.GL11;
 
 public class ModelKubikiribochoOld extends ModelBase {
     //fields
-    ModelRenderer Shape1;
-    ModelRenderer Shape2;
-    ModelRenderer Shape3;
-    ModelRenderer Shape4;
-    ModelRenderer Shape5;
-    ModelRenderer Shape6;
-    ModelRenderer Shape7;
-    ModelRenderer Shape8;
-    ModelRenderer Shape9;
-    ModelRenderer Shape10;
-    ModelRenderer Shape11;
-    ModelRenderer Shape12;
+    private ModelRenderer Shape1;
+    private ModelRenderer Shape2;
+    private ModelRenderer Shape3;
+    private ModelRenderer Shape4;
+    private ModelRenderer Shape5;
+    private ModelRenderer Shape6;
+    private ModelRenderer Shape7;
+    private ModelRenderer Shape8;
+    private ModelRenderer Shape9;
+    private ModelRenderer Shape10;
+    private ModelRenderer Shape11;
+    private ModelRenderer Shape12;
 
     public ModelKubikiribochoOld() {
         textureWidth = 64;

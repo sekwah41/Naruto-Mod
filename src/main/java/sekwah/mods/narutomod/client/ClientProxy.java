@@ -25,6 +25,8 @@ import sekwah.mods.narutomod.client.entity.render.special.RenderChibakuBlock;
 import sekwah.mods.narutomod.client.entity.render.special.RenderMovingBlock;
 import sekwah.mods.narutomod.client.gui.GuiChakraAndStaminaBar;
 import sekwah.mods.narutomod.client.gui.GuiNotificationUpdate;
+import sekwah.mods.narutomod.client.item.model.weapon.ModelKatana;
+import sekwah.mods.narutomod.client.item.renderer.*;
 import sekwah.mods.narutomod.client.player.RenderNinjaPlayer;
 import sekwah.mods.narutomod.common.CommonProxy;
 import sekwah.mods.narutomod.common.block.NarutoBlocks;
@@ -39,12 +41,8 @@ import sekwah.mods.narutomod.common.entity.specials.EntityChibakuBlock;
 import sekwah.mods.narutomod.common.entity.specials.EntityMovingBlock;
 import sekwah.mods.narutomod.common.items.ItemNinjaArmour;
 import sekwah.mods.narutomod.common.items.NarutoItems;
-import sekwah.mods.narutomod.client.item.model.ModelFlakJacket;
+import sekwah.mods.narutomod.client.item.model.armour.ModelFlakJacket;
 import sekwah.mods.narutomod.client.item.model.armour.*;
-import sekwah.mods.narutomod.client.item.renderer.RenderItemKubikiribocho;
-import sekwah.mods.narutomod.client.item.renderer.RenderItemSamehada;
-import sekwah.mods.narutomod.client.item.renderer.RenderItemScroll;
-import sekwah.mods.narutomod.client.item.renderer.RenderItemWeaponSmall;
 import sekwah.mods.narutomod.network.UsageReport;
 
 public class ClientProxy extends CommonProxy {
@@ -66,13 +64,6 @@ public class ClientProxy extends CommonProxy {
 
     public void addTickHandelers() {
 
-        // Has been readded, but in the lsiteners, remove this part soon and make sure its removed everywhere else
-        /**TickRegistry.registerTickHandler(new PlayerRenderTickHandler(EnumSet.of(TickType.RENDER)), Side.CLIENT);
-
-         TickRegistry.registerTickHandler(new PlayerClientTickHandler(EnumSet.of(TickType.CLIENT)), Side.CLIENT);*/
-
-        //TickRegistry.registerTickHandler(new PlayerAllPlayerTickHandler(EnumSet.of(TickType.PLAYER)), Side.CLIENT);
-
     }
 
     public void getSkin(GameProfile profile, SkinCallback entity) {
@@ -83,10 +74,6 @@ public class ClientProxy extends CommonProxy {
 
         skinFetcher = new SkinFetcher(Minecraft.getMinecraft().getSessionService());
 
-        // causes problems at the moment, update it at some point for new animations.
-        // RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderNinjaPlayer());
-
-        // register the mob render
         RenderingRegistry.registerEntityRenderingHandler(EntityRogueNinja.class, new RenderRogueNinja());
         RenderingRegistry.registerEntityRenderingHandler(EntityPuppet.class, new RenderPuppet());
 
@@ -156,6 +143,8 @@ public class ClientProxy extends CommonProxy {
 
         MinecraftForgeClient.registerItemRenderer(NarutoItems.Kunai, new RenderItemWeaponSmall());
         MinecraftForgeClient.registerItemRenderer(NarutoItems.ExplosiveKunai, new RenderItemWeaponSmall());
+        MinecraftForgeClient.registerItemRenderer(NarutoItems.Katana, new RenderCustomItemModel(new ModelKatana(), new ResourceLocation("narutomod", "textures/items/models/katana.png")));
+        MinecraftForgeClient.registerItemRenderer(NarutoItems.bokken, new RenderCustomItemModel(new ModelKatana(), new ResourceLocation("narutomod", "textures/items/models/bokken.png")));
     }
 
     public void registerCustomBlocks() {

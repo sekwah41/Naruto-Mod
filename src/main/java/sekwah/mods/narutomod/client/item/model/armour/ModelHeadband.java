@@ -1,4 +1,4 @@
-package sekwah.mods.narutomod.client.item.model;
+package sekwah.mods.narutomod.client.item.model.armour;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;

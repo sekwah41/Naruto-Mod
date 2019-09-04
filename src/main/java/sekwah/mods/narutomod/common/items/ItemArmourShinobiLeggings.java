@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
-import sekwah.mods.narutomod.client.item.model.ModelMadaraLeggings;
+import sekwah.mods.narutomod.client.item.model.armour.ModelMadaraLeggings;
 
 public class ItemArmourShinobiLeggings extends ItemArmor {
 

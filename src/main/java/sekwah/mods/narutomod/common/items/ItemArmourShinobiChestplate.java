@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.common.DataWatcherIDs;
-import sekwah.mods.narutomod.client.item.model.ModelMadaraChestplate;
+import sekwah.mods.narutomod.client.item.model.armour.ModelMadaraChestplate;
 
 public class ItemArmourShinobiChestplate extends ItemArmor {
 

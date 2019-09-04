@@ -6,9 +6,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import sekwah.mods.narutomod.client.item.model.ModelScroll;
+import sekwah.mods.narutomod.client.ClientProxy;
+import sekwah.mods.narutomod.client.item.model.weapon.ModelScroll;
 
 
+/**
+ * Registered in {@link ClientProxy#registerCustomItems()}
+ */
 public class RenderItemScroll implements IItemRenderer {
 
     protected ModelScroll scrollModel;
