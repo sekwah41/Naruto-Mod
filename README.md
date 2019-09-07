@@ -1,5 +1,5 @@
 # Naruto-Mod
-Note: The package SekCore is used betwen a few of my projects (mostly unreleased) and if it ever has enough features it will become its own library.
+Note: The package SekCore is used between a few of my projects (mostly unreleased) and if it ever has enough features it will become its own library.
 
 [![Discord](https://img.shields.io/discord/168282484037910528.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/fAJ3xJg)
 [![](https://img.shields.io/github/contributors/sekwah41/Naruto-Mod.svg?style=for-the-badge&logo=github)](https://github.com/sekwah41/Naruto-Mod/graphs/contributors)
