@@ -7,7 +7,6 @@ Note: The package SekCore is used between a few of my projects (mostly unrelease
 [![](https://img.shields.io/github/issues-pr/sekwah41/Naruto-Mod.svg?style=for-the-badge&logo=github)](https://github.com/sekwah41/Naruto-Mod/pulls)
 [![](https://img.shields.io/github/forks/sekwah41/Naruto-Mod.svg?style=for-the-badge&logo=github)](https://github.com/sekwah41/Naruto-Mod/network/members)
 [![](https://img.shields.io/github/stars/sekwah41/Naruto-Mod.svg?style=for-the-badge&logo=github)](https://github.com/sekwah41/Naruto-Mod/stargazers)
-[![](https://img.shields.io/github/license/sekwah41/Naruto-Mod.svg?logo=github&style=for-the-badge)](https://github.com/sekwah41/Naruto-Mod/blob/master/LICENSE)
 
 
 The mod adds various features to minecraft such as items, mobs, weapons, new player animations and chakra. The mod is still in beta so there are a lot of features still being added.
