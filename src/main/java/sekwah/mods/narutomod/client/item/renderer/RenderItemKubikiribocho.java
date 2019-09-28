@@ -57,7 +57,7 @@ public class RenderItemKubikiribocho implements IItemRenderer {
                 GL11.glTranslatef(-0.55F, 0.35F, 0F);
 
 
-                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/model/Kubi.png"));
+                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/models/Kubi.png"));
 
                 Entity entity = (Entity) data[1];
 
@@ -78,14 +78,11 @@ public class RenderItemKubikiribocho implements IItemRenderer {
 
                 GL11.glScalef(scale, scale, scale);
 
-                // use these at some point, forgot to for samehada
-                // but will be usefull for future model
-
                 GL11.glRotatef(-119F, 0F, 0F, 1F);
 
                 GL11.glTranslatef(-0.55F, 0.35F, 0F);
 
-                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/model/Kubi.png"));
+                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/models/Kubi.png"));
 
                 weaponModel.render((Entity) data[1], 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
 

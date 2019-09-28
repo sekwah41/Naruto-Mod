@@ -209,7 +209,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
 
     @Override
     protected void readEntityFromNBT(NBTTagCompound nbtTagCompound) {
-        this.block = Block.getBlockById(nbtTagCompound.getInteger("BlockID"));
+        this.block = Block.getBlockFromName(nbtTagCompound.getString("Block"));
         this.data = nbtTagCompound.getByte("Data");
         this.toPosX = nbtTagCompound.getDouble("ToPosX");
         this.toPosY = nbtTagCompound.getDouble("ToPosY");
@@ -219,7 +219,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound nbtTagCompound) {
-        nbtTagCompound.setInteger("BlockID", Block.getIdFromBlock(this.block));
+        nbtTagCompound.setString("Block", Block.blockRegistry.getNameForObject(this.block));
         nbtTagCompound.setByte("Data", this.data);
         nbtTagCompound.setDouble("ToPosX", this.toPosX);
         nbtTagCompound.setDouble("ToPosY", this.toPosY);

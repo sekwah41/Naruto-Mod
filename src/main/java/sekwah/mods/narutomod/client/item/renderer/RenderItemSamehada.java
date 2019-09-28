@@ -57,7 +57,7 @@ public class RenderItemSamehada implements IItemRenderer {
                 GL11.glTranslatef(-0.55F, 0.35F, 0F);
 
 
-                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/model/Samehada.png"));
+                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/models/Samehada.png"));
 
                 weaponModel.render((Entity) data[1], 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
 
@@ -77,7 +77,7 @@ public class RenderItemSamehada implements IItemRenderer {
 
                 GL11.glTranslatef(-0.55F, 0.35F, 0F);
 
-                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/model/Samehada.png"));
+                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/models/Samehada.png"));
 
                 weaponModel.render((Entity) data[1], 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
 

@@ -59,7 +59,7 @@ public class RenderItemScroll implements IItemRenderer {
                 GL11.glTranslatef(-0.55F, 0.35F, 0F);
 
 
-                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/model/Samehada.png"));
+                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/models/Scroll.png"));
 
                 scrollModel.render((Entity) data[1], 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
 
@@ -79,7 +79,7 @@ public class RenderItemScroll implements IItemRenderer {
 
                 GL11.glTranslatef(-0.55F, 0.35F, 0F);
 
-                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/model/Scroll.png"));
+                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("narutomod", "textures/items/models/Scroll.png"));
 
                 scrollModel.render((Entity) data[1], 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
 
