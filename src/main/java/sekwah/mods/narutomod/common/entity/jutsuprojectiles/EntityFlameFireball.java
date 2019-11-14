@@ -16,7 +16,7 @@ import sekwah.mods.narutomod.settings.NarutoSettings;
 import java.util.List;
 
 public class EntityFlameFireball extends EntityFireball {
-    public float explosionPower = 1;
+    public float explosionPower = 2;
 
     public int life = 50;
     public float fireballGrowth = 0;

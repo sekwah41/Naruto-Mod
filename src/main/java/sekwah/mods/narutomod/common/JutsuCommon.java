@@ -333,6 +333,9 @@ public class JutsuCommon {
             }
             EntityMovingBlock blockEntity = new EntityMovingBlock(worldObj,x,y + yW,z,
                     Block.getIdFromBlock(block), meta, 20 * 20 + (int) (Math.random() * 40));
+            if(yW == 0) {
+                blockEntity.spawningParticles = true;
+            }
             worldObj.spawnEntityInWorld(blockEntity);
         }
 

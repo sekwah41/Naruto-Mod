@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
@@ -33,7 +34,7 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
     private Block block;
     private byte data;
 
-    private boolean spawningParticles = false;
+    public boolean spawningParticles = false;
     private boolean hasDoneBlockCheck = false;
 
     private int lastSoundLoc = 0;
@@ -183,20 +184,22 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
                         this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width ,10,0,0,0,1);
             }
 
-            if(this.health == 30) {
+            if(this.health <= 30 && !this.getShaking()) {
                 this.setShaking();
             }
             if(this.health <= 30 && Math.random() < 0.1) {
-                this.worldObj.playSoundAtEntity(this, this.block.stepSound.getDigResourcePath(), 1, 1);
+                this.worldObj.playSoundAtEntity(this, this.block.stepSound.getDigResourcePath(), 0.2f, 0.5f);
                 worldserver.func_147487_a("blockcrack_" + Block.getIdFromBlock(block) + "_" + this.data,
                         this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.boundingBox.minY + 0.1D,
                         this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width ,10,0,0,0,1);
             }
             if(this.health-- < 0) {
                 this.worldObj.playSoundAtEntity(this, this.block.stepSound.getDigResourcePath(), 1, 1);
-                worldserver.func_147487_a("blockcrack_" + Block.getIdFromBlock(block) + "_" + this.data,
-                        this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.boundingBox.minY + 0.1D,
-                        this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width ,10,0,0,0,1);
+                for (int i = 0; i < 3; i++) {
+                    worldserver.func_147487_a("blockcrack_" + Block.getIdFromBlock(block) + "_" + this.data,
+                            this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.boundingBox.minY + 0.1D,
+                            this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width ,10,0,0,0,1);
+                }
                 //worldserver.func_147487_a("blockcrack_" + Block.getIdFromBlock(block) + "_" + this.data, this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.boundingBox.minY + 0.1D, this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, 0,0,0);
                 this.setDead();
             }
@@ -214,6 +217,8 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         this.toPosX = nbtTagCompound.getDouble("ToPosX");
         this.toPosY = nbtTagCompound.getDouble("ToPosY");
         this.toPosZ = nbtTagCompound.getDouble("ToPosZ");
+        this.spawningParticles = nbtTagCompound.getBoolean("ShouldBreak");
+        this.health = nbtTagCompound.getInteger("Health");
 
     }
 
@@ -224,6 +229,8 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         nbtTagCompound.setDouble("ToPosX", this.toPosX);
         nbtTagCompound.setDouble("ToPosY", this.toPosY);
         nbtTagCompound.setDouble("ToPosZ", this.toPosZ);
+        nbtTagCompound.setBoolean("ShouldBreak", this.spawningParticles);
+        nbtTagCompound.setInteger("Health", this.health);
     }
 
     @Override
@@ -231,6 +238,8 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         buffer.writeInt(Block.getIdFromBlock(this.block));
         buffer.writeByte(this.data);
         buffer.writeDouble(this.toPosY);
+        buffer.writeBoolean(this.spawningParticles);
+        buffer.writeInt(this.health);
     }
 
     @Override
@@ -238,7 +247,41 @@ public class EntityMovingBlock extends Entity implements IEntityAdditionalSpawnD
         this.block = Block.getBlockById(additionalData.readInt());
         this.data = additionalData.readByte();
         this.toPosY = additionalData.readDouble();
+        this.spawningParticles = additionalData.readBoolean();
+        this.health = additionalData.readInt();
         this.canMove = false;
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount)
+    {
+        if(this.health > 30) {
+            switch(source.damageType) {
+                case "waterBullet":
+                    this.health -= 60;
+                case "onFire":
+                    this.health -= 180;
+                case "explosion":
+                case "explosion.player":
+                    this.health -= 280;
+                default:
+                    this.health -= 30;
+            }
+
+            if(this.health < 30) {
+                this.health = 30;
+            }
+        }
+
+        if (this.isEntityInvulnerable())
+        {
+            return false;
+        }
+        else
+        {
+            this.setBeenAttacked();
+            return false;
+        }
     }
 
     public Block getBlock() {

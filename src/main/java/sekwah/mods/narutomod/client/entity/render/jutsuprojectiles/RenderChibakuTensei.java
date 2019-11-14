@@ -29,12 +29,14 @@ public class RenderChibakuTensei extends Render implements IDelayedRender {
     }
 
     public void delayedRender(Entity entity, double posX, double posY, double posZ, float speed, float delta) {
-        glPushMatrix();
-        glTranslated(posX,posY,posZ);
-        glTranslatef(0,entity.height / 2,0);
-        float rotation = entity.ticksExisted + delta;
-        model.renderBlackHole(rotation);
-        glPopMatrix();
+        if(entity instanceof EntityChibakuTensei) {
+            glPushMatrix();
+            glTranslated(posX,posY,posZ);
+            glTranslatef(0,entity.height / 2,0);
+            float rotation = ((EntityChibakuTensei) entity).ticksMoved + delta;
+            model.renderBlackHole(rotation);
+            glPopMatrix();
+        }
     }
 
     @Override

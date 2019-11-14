@@ -3,6 +3,7 @@ package sekwah.mods.narutomod.common.entity.jutsuprojectiles;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -21,7 +22,7 @@ import java.util.*;
 
 
 // TODO keep the radius you are currently at (squared) and use the sort algorithm to sort positions to start building up a sphere
-public class EntityChibakuTensei extends Entity {
+public class EntityChibakuTensei extends Entity implements IEntityAdditionalSpawnData {
 
     public EntityChibakuTensei(World world) {
         super(world);
@@ -31,6 +32,8 @@ public class EntityChibakuTensei extends Entity {
     public final int noSpawny = 10 * 20;
 
     public double lastSqDist = 1;
+
+    public int ticksMoved = 0;
 
     private int cX;
     private int cY;
@@ -58,14 +61,15 @@ public class EntityChibakuTensei extends Entity {
     }
 
     public void onUpdate() {
+        ticksMoved++;
         int travelTime = 16 * 10;
-        if(ticksExisted < travelTime) {
-            double moveAmount = (travelTime - ticksExisted) * 0.005;
+        if(ticksMoved < travelTime) {
+            double moveAmount = (travelTime - ticksMoved) * 0.005;
             this.posY += moveAmount;
             float sizeValue = 3.5f - (float) moveAmount * 3f;
             this.setSize(sizeValue, sizeValue);
         }
-        if(ticksExisted > travelTime) {
+        if(ticksMoved > travelTime) {
             float gravityRadius = 30;
             float gravityHeight = 70;
             List entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.setBounds(this.posX - gravityRadius, this.posY - gravityHeight, this.posZ - gravityRadius, this.posX + gravityRadius, this.posY + gravityHeight, this.posZ + gravityRadius));
@@ -86,54 +90,56 @@ public class EntityChibakuTensei extends Entity {
                         if(length <= 1) {
                             entity.setPosition(this.posX, this.posY, this.posZ);
                             entity.setVelocity(0,0,0);
-                            entity.attackEntityFrom(DamageSource.magic, 3);
+                            if(ticksMoved % 10 == 0) {
+                                entity.attackEntityFrom(DamageSource.magic, 4);
+                            }
                         }
                         else {
                             double divider = Math.min(Math.max(length * 3, 0.5d), 9);
                             entity.motionX += normDir.xCoord / divider;
                             entity.motionY += normDir.yCoord / divider;
                             entity.motionZ += normDir.zCoord / divider;
-                            entity.attackEntityFrom(DamageSource.magic, 0);
+                            if(ticksMoved % 20 == 0) {
+                                entity.attackEntityFrom(DamageSource.magic, 1);
+                            }
                         }
                     }
                 }
             }
         }
         if(!this.worldObj.isRemote) {
-            if(ticksExisted == travelTime / 9) {
+            if(ticksMoved == travelTime / 9) {
                 cX = (int) this.posX;
                 cY = this.worldObj.getHeightValue((int) this.posX, (int) this.posZ);
                 cZ = (int) this.posZ;
             }
             if(!NarutoSettings.nonDestructiveMode) {
-                if (ticksExisted == travelTime) {
+                if (ticksMoved == travelTime) {
                     this.targetBlocks = this.grabBlocks();
                     this.placingLocations = this.genPlaceList(this.targetBlocks.size());
                 }
-                if (this.targetBlocks != null) {
-                    if(maxLife > ticksExisted + noSpawny) {
-                        for(int i = 0; i < 10; i++) {
-                            TargetBlock targetBlock = this.targetBlocks.pollFirst();
-                            if(targetBlock != null) {
-                                Block block = this.worldObj.getBlock(targetBlock.x, targetBlock.y, targetBlock.z);
-                                if(block.getBlockHardness(this.worldObj, targetBlock.x, targetBlock.y, targetBlock.z) > -1) {
-                                    if(!(block instanceof BlockLeaves) && !(block instanceof BlockDynamicLiquid)) {
-                                        if(block == Blocks.grass) {
-                                            block = Blocks.dirt;
-                                        }
-                                        else if(block == Blocks.stone) {
-                                            block = this.rand.nextFloat() > 0.5f ? Blocks.stone : Blocks.cobblestone;
-                                        }
-                                        EntityChibakuBlock blockEntity = new EntityChibakuBlock(this.worldObj, targetBlock.x - 0.5d, targetBlock.y - 0.5d, targetBlock.z - 0.5d, this, block,
-                                                worldObj.getBlockMetadata(targetBlock.x, targetBlock.y, targetBlock.z));
-                                        //block.motionY = 2;
-                                        this.worldObj.spawnEntityInWorld(blockEntity);
+                if (this.targetBlocks != null && maxLife > ticksMoved + noSpawny) {
+                    for(int i = 0; i < 10; i++) {
+                        TargetBlock targetBlock = this.targetBlocks.pollFirst();
+                        if(targetBlock != null) {
+                            Block block = this.worldObj.getBlock(targetBlock.x, targetBlock.y, targetBlock.z);
+                            if(block.getBlockHardness(this.worldObj, targetBlock.x, targetBlock.y, targetBlock.z) > -1) {
+                                if(!(block instanceof BlockLeaves) && !(block instanceof BlockDynamicLiquid)) {
+                                    if(block == Blocks.grass) {
+                                        block = Blocks.dirt;
                                     }
-                                    this.worldObj.setBlock(targetBlock.x, targetBlock.y, targetBlock.z, Blocks.air);
+                                    else if(block == Blocks.stone) {
+                                        block = this.rand.nextFloat() > 0.5f ? Blocks.stone : Blocks.cobblestone;
+                                    }
+                                    EntityChibakuBlock blockEntity = new EntityChibakuBlock(this.worldObj, targetBlock.x - 0.5d, targetBlock.y - 0.5d, targetBlock.z - 0.5d, this, block,
+                                            worldObj.getBlockMetadata(targetBlock.x, targetBlock.y, targetBlock.z));
+                                    //block.motionY = 2;
+                                    this.worldObj.spawnEntityInWorld(blockEntity);
                                 }
-                                if(i == 9) {
-                                    this.setGrabRadius((float) Vec3.createVectorHelper(this.posX - targetBlock.x, this.posY - targetBlock.y, this.posZ - targetBlock.z).lengthVector());
-                                }
+                                this.worldObj.setBlock(targetBlock.x, targetBlock.y, targetBlock.z, Blocks.air);
+                            }
+                            if(i == 9) {
+                                this.setGrabRadius((float) Vec3.createVectorHelper(this.posX - targetBlock.x, this.posY - targetBlock.y, this.posZ - targetBlock.z).lengthVector());
                             }
                         }
                     }
@@ -141,7 +147,7 @@ public class EntityChibakuTensei extends Entity {
             }
 
         }
-        if(ticksExisted > maxLife) {
+        if(ticksMoved > maxLife) {
             setDead();
         }
     }
@@ -198,12 +204,15 @@ public class EntityChibakuTensei extends Entity {
 
     @Override
     protected void readEntityFromNBT(NBTTagCompound nbtTagCompound) {
-
+        if (nbtTagCompound.hasKey("TicksMoved"))
+        {
+            this.ticksMoved = nbtTagCompound.getInteger("TicksMoved");
+        }
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound nbtTagCompound) {
-
+        nbtTagCompound.setInteger("TicksMoved", this.ticksMoved);
     }
 
     /**
@@ -218,5 +227,15 @@ public class EntityChibakuTensei extends Entity {
     public int getBrightnessForRender(float p_70070_1_)
     {
         return 15728880;
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        buffer.writeInt(this.ticksMoved);
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf additionalData) {
+        this.ticksMoved = additionalData.readInt();
     }
 }
