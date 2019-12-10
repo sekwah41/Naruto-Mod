@@ -106,7 +106,6 @@ public class RenderNinjaPlayer extends RenderPlayer {
         this.isRenderingFirstPerson = false;
     }
 
-
     public float getHeadXOffset() {
         return this.modelBipedMain.bipedHead.rotationPointX;
     }
@@ -491,6 +490,12 @@ public class RenderNinjaPlayer extends RenderPlayer {
         this.passSpecialRender(entity, p_76986_2_, p_76986_4_, p_76986_6_);
 
         MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Post(entity, this, p_76986_2_, p_76986_4_, p_76986_6_));
+    }
+
+    @Override
+    protected boolean canRenderName(EntityLivingBase targetEntity)
+    {
+        return Minecraft.isGuiEnabled() && targetEntity != this.renderManager.livingPlayer && !(targetEntity.getEquipmentInSlot(4) != null && targetEntity.getEquipmentInSlot(4).getItem() == NarutoItems.redAnbuMask) && !targetEntity.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer) && targetEntity.riddenByEntity == null;
     }
 
     /**
