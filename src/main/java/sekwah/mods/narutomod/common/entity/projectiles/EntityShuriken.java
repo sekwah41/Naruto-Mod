@@ -340,7 +340,7 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
                         if (!(movingobjectposition.entityHit instanceof EntityEnderman)) {
                             this.setDead();
                         }
-                    } else if(this.ticksInAir >= 5){
+                    } else if(this.ticksInAir >= 2){
                         this.motionX *= -0.10000000149011612D;
                         this.motionY *= -0.10000000149011612D;
                         this.motionZ *= -0.10000000149011612D;

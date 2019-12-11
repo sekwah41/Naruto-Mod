@@ -183,6 +183,7 @@ naruto.jutsu.chakraCharge.deactivate=You have stopped infusing your chakra!
 
 naruto.jutsu.fireball=Fire Style - Fireball jutsu!
 naruto.jutsu.chidori=Lightning Style - Chidori!
+naruto.jutsu.chibaku=Lightning Style - Chidori!chibaku
 naruto.jutsu.chidorifail=It’s at this moment in time %s knew, he screwed up
 naruto.jutsu.waterBullet=Water Style - Water Bullet Jutsu!
 naruto.jutsu.earthWall=Earth Release - Earth-Style Wall!
@@ -258,6 +259,8 @@ naruto.jutsu.combo.sekc=Sexy: %s
 naruto.jutsu.combo.chibi_shadow_clone=Chibi Shadow Clone: %s
 naruto.jutsu.combo.shadow_clone=Shadow Clone: %s
 naruto.jutsu.combo.multi_shadow_clone=Mutli Shadow Clone: %s
+naruto.jutsu.combo.chidori=Chidori: %s
+
 
 item.borutoKakashiArmour.name=Kakashi's Armour
 item.hanHat.name=Han's Headpiece

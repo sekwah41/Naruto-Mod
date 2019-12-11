@@ -61,7 +61,7 @@ public class JutsuClient {
                 playerMP.addChatMessage(new ChatComponentTranslation("naruto.jutsu.chidorifail", playerMP.getCommandSenderName()).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GREEN)));
                 break;
             case Jutsus.CHIBAKU_TENSEI:
-                playerMP.addChatMessage(new ChatComponentText("ENJOY DESTRUCTION"));
+                playerMP.addChatMessage(new ChatComponentTranslation("naruto.jutsu.chibaku").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GREEN)));
                 break;
             case Jutsus.LEAP_START:
                 PlayerClientTickEvent.stamina -= 5;
@@ -224,6 +224,9 @@ public class JutsuClient {
                 break;
             case Jutsus.MULTI_SHADOW_CLONE:
                 if (PlayerClientTickEvent.chakra >= JutsuData.multiShadowCloneCost) return true;
+                break;
+            case Jutsus.CHIBAKU_TENSEI:
+                if (PlayerClientTickEvent.chakra >= JutsuData.chibakuTenseiCost) return true;
                 break;
             default:
                 return true;

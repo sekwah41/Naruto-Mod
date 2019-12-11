@@ -174,8 +174,7 @@ public class EntityExplosiveKunai extends EntityArrow implements IProjectile {
      * Called to update the entity's position/logic.
      */
     public void onUpdate() {
-        //super.onUpdate();
-        // TODO sort out odd potition glitch once in ground.
+        super.onUpdate();
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
             float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
@@ -317,7 +316,7 @@ public class EntityExplosiveKunai extends EntityArrow implements IProjectile {
                             this.explode();
                             this.setDead();
                         }
-                    } else if(this.ticksInAir >= 5){
+                    } else if(this.ticksInAir >= 2){
                         this.motionX *= -0.10000000149011612D;
                         this.motionY *= -0.10000000149011612D;
                         this.motionZ *= -0.10000000149011612D;
