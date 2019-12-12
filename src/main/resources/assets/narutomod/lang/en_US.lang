@@ -183,7 +183,7 @@ naruto.jutsu.chakraCharge.deactivate=You have stopped infusing your chakra!
 
 naruto.jutsu.fireball=Fire Style - Fireball jutsu!
 naruto.jutsu.chidori=Lightning Style - Chidori!
-naruto.jutsu.chibaku=Lightning Style - Chidori!chibaku
+naruto.jutsu.chibaku=Planetary Devastation!
 naruto.jutsu.chidorifail=It’s at this moment in time %s knew, he screwed up
 naruto.jutsu.waterBullet=Water Style - Water Bullet Jutsu!
 naruto.jutsu.earthWall=Earth Release - Earth-Style Wall!
@@ -251,7 +251,7 @@ item.narutoKidArmour.name=Naruto Clothes
 commands.naruto.jutsu.usage=/jutsu <list/activate>
 commands.naruto.jutsu.activate.usage=/jutsu activate <jutsu>
 naruto.jutsu.combo.substitution=Substitution: %s
-naruto.jutsu.combo.chibaku_tensei=Chibaku Tensei: %s
+naruto.jutsu.combo.chibaku_tensei=Planetary Devastation: %s
 naruto.jutsu.combo.fireball=Fireball: %s
 naruto.jutsu.combo.water_bullet=Water Bullet: %s
 naruto.jutsu.combo.earth_release=Earth Release: %s

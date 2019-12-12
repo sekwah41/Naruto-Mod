@@ -53,6 +53,8 @@ public class JutsuClient {
             case Jutsus.SCREAMING_BIRB:
                 playerMP.addChatMessage(new ChatComponentTranslation("naruto.jutsu.chidori").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GREEN)));
                 PacketAnimationUpdate.animationUpdate("chidori", playerMP);
+                PlayerClientTickEvent.chakra -= JutsuData.chidoriCost;
+                PlayerClientTickEvent.chakraCooldown = 20;
                 break;
             case Jutsus.SCREAMING_BIRBY_BOI:
             case Jutsus.SCREAMING_BIRBY_BOIII:
@@ -61,6 +63,8 @@ public class JutsuClient {
                 playerMP.addChatMessage(new ChatComponentTranslation("naruto.jutsu.chidorifail", playerMP.getCommandSenderName()).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GREEN)));
                 break;
             case Jutsus.CHIBAKU_TENSEI:
+                PlayerClientTickEvent.chakra -= JutsuData.chibakuTenseiCost;
+                PlayerClientTickEvent.chakraCooldown = 120;
                 playerMP.addChatMessage(new ChatComponentTranslation("naruto.jutsu.chibaku").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GREEN)));
                 break;
             case Jutsus.LEAP_START:
@@ -227,6 +231,9 @@ public class JutsuClient {
                 break;
             case Jutsus.CHIBAKU_TENSEI:
                 if (PlayerClientTickEvent.chakra >= JutsuData.chibakuTenseiCost) return true;
+                break;
+            case Jutsus.SCREAMING_BIRBY_BOI:
+                if (PlayerClientTickEvent.chakra >= JutsuData.chidoriCost) return true;
                 break;
             default:
                 return true;
