@@ -183,6 +183,7 @@ naruto.jutsu.chakraCharge.deactivate=Вы прекратили регенера�
 
 naruto.jutsu.fireball=Стиль огня - Огненный шар!
 naruto.jutsu.chidori=Стиль молнии - Чидори!
+naruto.jutsu.chibaku=Опустошитель планет!
 naruto.jutsu.chidorifail=В этот момент %s узнал, он облажался
 naruto.jutsu.waterBullet=Стиль воды - Водяные пули!
 naruto.jutsu.earthWall=Стиль земли - Зеслянная стена!
@@ -250,7 +251,7 @@ item.narutoKidArmour.name=Детская одежда Наруто
 commands.naruto.jutsu.usage=/jutsu <list/activate>
 commands.naruto.jutsu.activate.usage=/jutsu activate <jutsu>
 naruto.jutsu.combo.substitution=Техника подмены тел: %s
-naruto.jutsu.combo.chibaku_tensei=Чибаку Тенсей: %s
+naruto.jutsu.combo.chibaku_tensei=Опустошитель планет: %s
 naruto.jutsu.combo.fireball=Огненный шар: %s
 naruto.jutsu.combo.water_bullet=Водяные пули: %s
 naruto.jutsu.combo.earth_release=Земляная стена: %s
