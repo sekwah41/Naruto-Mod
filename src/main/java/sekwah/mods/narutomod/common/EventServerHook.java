@@ -13,10 +13,11 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import org.apache.commons.io.IOUtils;
 import sekwah.mods.narutomod.NarutoMod;
-import sekwah.mods.narutomod.client.PlayerClientTickEvent;
+import sekwah.mods.narutomod.assets.JutsuData;
+import sekwah.mods.narutomod.assets.JutsuDataServer;
 import sekwah.mods.narutomod.common.player.extendedproperties.PlayerInfo;
 import sekwah.mods.narutomod.packets.PacketDispatcher;
-import sekwah.mods.narutomod.packets.clientbound.ClientMaxStatsPacket;
+import sekwah.mods.narutomod.packets.clientbound.ClientJutsuStatsPacket;
 import sekwah.mods.narutomod.settings.NarutoSettings;
 
 import java.io.ByteArrayOutputStream;
@@ -99,16 +100,49 @@ public class EventServerHook {
         if (event.entity instanceof EntityPlayerMP) {
             EntityPlayer player = (EntityPlayer) event.entity;
             PlayerInfo.get(player).reloadDW();
-            //PacketDispatcher.sendTo(new SyncPlayerPropsMessage((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
+
+            JutsuDataServer.refreshConfig();
+
             ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
             DataOutputStream outputStream = new DataOutputStream(bos);
             try {
                 outputStream.writeDouble(NarutoSettings.maxChakra);
                 outputStream.writeDouble(NarutoSettings.maxStamina);
+
+                outputStream.writeInt(JutsuData.substitutionCost);
+                outputStream.writeBoolean(JutsuData.substitutionEnabled);
+
+                outputStream.writeInt(JutsuData.chibakuTenseiCost);
+                outputStream.writeBoolean(JutsuData.chibakuTenseiEnabled);
+
+                outputStream.writeInt(JutsuData.chidoriCost);
+                outputStream.writeBoolean(JutsuData.chidoriEnabled);
+
+                outputStream.writeInt(JutsuData.fireballCost);
+                outputStream.writeBoolean(JutsuData.fireballEnabled);
+
+                outputStream.writeInt(JutsuData.waterBulletCost);
+                outputStream.writeBoolean(JutsuData.waterBulletEnabled);
+
+                outputStream.writeInt(JutsuData.wallCost);
+                outputStream.writeBoolean(JutsuData.wallEnabled);
+
+                outputStream.writeInt(JutsuData.shadowCloneCost);
+                outputStream.writeBoolean(JutsuData.shadowCloneEnabled);
+
+                outputStream.writeInt(JutsuData.multiShadowCloneCost);
+                outputStream.writeBoolean(JutsuData.multiShadowCloneEnabled);
+
+                outputStream.writeInt(JutsuData.chibiShadowCloneCost);
+                outputStream.writeBoolean(JutsuData.chibiShadowCloneEnabled);
+
+                outputStream.writeInt(JutsuData.sekcCost);
+                outputStream.writeBoolean(JutsuData.sekcEnabled);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-            PacketDispatcher.sendPacketToPlayer(new ClientMaxStatsPacket(bos.toByteArray()), (EntityPlayerMP) event.entity);
+            // Issues are from client side though dont want to remove the customisability
+            PacketDispatcher.sendPacketToPlayer(new ClientJutsuStatsPacket(bos.toByteArray()), (EntityPlayerMP) event.entity);
             IOUtils.closeQuietly(bos);
 
         }

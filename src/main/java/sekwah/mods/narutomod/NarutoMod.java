@@ -160,7 +160,7 @@ public class NarutoMod {
         packetNetwork.registerMessage(ClientSoundPacket.class, ClientSoundPacket.class, 2, Side.CLIENT);
         packetNetwork.registerMessage(ClientAnimationPacket.class, ClientAnimationPacket.class, 3, Side.CLIENT);
         packetNetwork.registerMessage(ClientJutsuCommandPacket.class, ClientJutsuCommandPacket.class, 4, Side.CLIENT);
-        packetNetwork.registerMessage(ClientMaxStatsPacket.class, ClientMaxStatsPacket.class, 5, Side.CLIENT);
+        packetNetwork.registerMessage(ClientJutsuStatsPacket.class, ClientJutsuStatsPacket.class, 5, Side.CLIENT);
 
         packetNetwork.registerMessage(ServerParticleEffectPacket.class, ServerParticleEffectPacket.class, 100, Side.SERVER);
         packetNetwork.registerMessage(ServerJutsuPacket.class, ServerJutsuPacket.class, 101, Side.SERVER);
