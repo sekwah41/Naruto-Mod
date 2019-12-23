@@ -385,6 +385,7 @@ public class EntityShadowClone extends EntityCreature implements SkinCallback, I
 
     @Override
     public void returnedSkin(MinecraftProfileTexture.Type p_152121_1_, ResourceLocation p_152121_2_) {
+        System.out.println("GETTING SKIN");
         switch (EntityShadowClone.SwitchType.field_152630_a[p_152121_1_.ordinal()])
         {
             case 1:

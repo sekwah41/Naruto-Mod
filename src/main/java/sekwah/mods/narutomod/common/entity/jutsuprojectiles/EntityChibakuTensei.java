@@ -89,7 +89,9 @@ public class EntityChibakuTensei extends Entity implements IEntityAdditionalSpaw
                         Vec3 normDir = dir.normalize();
                         if(length <= 1) {
                             entity.setPosition(this.posX, this.posY, this.posZ);
-                            entity.setVelocity(0,0,0);
+
+                            setEntityVelocity(entity,0,0,0);
+
                             if(ticksMoved % 10 == 0) {
                                 entity.attackEntityFrom(DamageSource.magic, 4);
                             }
@@ -150,6 +152,12 @@ public class EntityChibakuTensei extends Entity implements IEntityAdditionalSpaw
         if(ticksMoved > maxLife) {
             setDead();
         }
+    }
+
+    public void setEntityVelocity(Entity entity, double x, double y, double z) {
+        entity.motionX = x;
+        entity.motionY = y;
+        entity.motionZ = z;
     }
 
     public TargetBlock placeBlock() {
