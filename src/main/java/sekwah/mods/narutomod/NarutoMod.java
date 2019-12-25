@@ -15,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
 import sekwah.mods.narutomod.assets.JutsuData;
+import sekwah.mods.narutomod.assets.JutsuDataServer;
 import sekwah.mods.narutomod.client.player.SharinganHandler;
 import sekwah.mods.narutomod.client.render.DelayedRender;
 import sekwah.mods.narutomod.command.CommandJutsu;
@@ -125,7 +126,7 @@ public class NarutoMod {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        JutsuData.init(event.getSuggestedConfigurationFile());
+        JutsuDataServer.init(event.getSuggestedConfigurationFile());
         this.packetNetwork();
         try (InputStream fileStreamJson = NarutoMod.class.getResourceAsStream("/assets/narutomod/mod/poseData.json")) {
             entityAnimator = new NarutoAnimator();

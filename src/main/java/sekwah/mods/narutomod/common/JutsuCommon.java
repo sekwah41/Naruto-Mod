@@ -135,7 +135,7 @@ public class JutsuCommon {
                 return true;
             case Jutsus.CHIBAKU_TENSEI:
                 if(NarutoSettings.enableChibakuTensei) {
-                    EntityChibakuTensei bigBoomBoomBall = new EntityChibakuTensei(playerMP.worldObj);
+                    EntityChibakuTensei bigBoomBoomBall = new EntityChibakuTensei(playerMP);
                     bigBoomBoomBall.setPosition(playerMP.posX, playerMP.posY, playerMP.posZ);
                     playerMP.worldObj.spawnEntityInWorld(bigBoomBoomBall);
                     return true;

@@ -101,7 +101,7 @@ public class EventServerHook {
             EntityPlayer player = (EntityPlayer) event.entity;
             PlayerInfo.get(player).reloadDW();
 
-            JutsuDataServer.refreshConfig();
+            //JutsuDataServer.refreshConfig();
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
             DataOutputStream outputStream = new DataOutputStream(bos);
@@ -109,35 +109,35 @@ public class EventServerHook {
                 outputStream.writeDouble(NarutoSettings.maxChakra);
                 outputStream.writeDouble(NarutoSettings.maxStamina);
 
-                outputStream.writeInt(JutsuData.substitutionCost);
-                outputStream.writeBoolean(JutsuData.substitutionEnabled);
+                outputStream.writeInt(JutsuDataServer.substitutionCost);
+                outputStream.writeBoolean(JutsuDataServer.substitutionEnabled);
 
-                outputStream.writeInt(JutsuData.chibakuTenseiCost);
-                outputStream.writeBoolean(JutsuData.chibakuTenseiEnabled);
+                outputStream.writeInt(JutsuDataServer.chibakuTenseiCost);
+                outputStream.writeBoolean(JutsuDataServer.chibakuTenseiEnabled);
 
-                outputStream.writeInt(JutsuData.chidoriCost);
-                outputStream.writeBoolean(JutsuData.chidoriEnabled);
+                outputStream.writeInt(JutsuDataServer.chidoriCost);
+                outputStream.writeBoolean(JutsuDataServer.chidoriEnabled);
 
-                outputStream.writeInt(JutsuData.fireballCost);
-                outputStream.writeBoolean(JutsuData.fireballEnabled);
+                outputStream.writeInt(JutsuDataServer.fireballCost);
+                outputStream.writeBoolean(JutsuDataServer.fireballEnabled);
 
-                outputStream.writeInt(JutsuData.waterBulletCost);
-                outputStream.writeBoolean(JutsuData.waterBulletEnabled);
+                outputStream.writeInt(JutsuDataServer.waterBulletCost);
+                outputStream.writeBoolean(JutsuDataServer.waterBulletEnabled);
 
-                outputStream.writeInt(JutsuData.wallCost);
-                outputStream.writeBoolean(JutsuData.wallEnabled);
+                outputStream.writeInt(JutsuDataServer.wallCost);
+                outputStream.writeBoolean(JutsuDataServer.wallEnabled);
 
-                outputStream.writeInt(JutsuData.shadowCloneCost);
-                outputStream.writeBoolean(JutsuData.shadowCloneEnabled);
+                outputStream.writeInt(JutsuDataServer.shadowCloneCost);
+                outputStream.writeBoolean(JutsuDataServer.shadowCloneEnabled);
 
-                outputStream.writeInt(JutsuData.multiShadowCloneCost);
-                outputStream.writeBoolean(JutsuData.multiShadowCloneEnabled);
+                outputStream.writeInt(JutsuDataServer.multiShadowCloneCost);
+                outputStream.writeBoolean(JutsuDataServer.multiShadowCloneEnabled);
 
-                outputStream.writeInt(JutsuData.chibiShadowCloneCost);
-                outputStream.writeBoolean(JutsuData.chibiShadowCloneEnabled);
+                outputStream.writeInt(JutsuDataServer.chibiShadowCloneCost);
+                outputStream.writeBoolean(JutsuDataServer.chibiShadowCloneEnabled);
 
-                outputStream.writeInt(JutsuData.sekcCost);
-                outputStream.writeBoolean(JutsuData.sekcEnabled);
+                outputStream.writeInt(JutsuDataServer.sekcCost);
+                outputStream.writeBoolean(JutsuDataServer.sekcEnabled);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

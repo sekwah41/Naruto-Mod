@@ -8,6 +8,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -23,6 +24,13 @@ import java.util.*;
 
 // TODO keep the radius you are currently at (squared) and use the sort algorithm to sort positions to start building up a sphere
 public class EntityChibakuTensei extends Entity implements IEntityAdditionalSpawnData {
+
+    private EntityPlayerMP summoner;
+
+    public EntityChibakuTensei(EntityPlayerMP player) {
+        this(player.worldObj);
+        this.summoner = player;
+    }
 
     public EntityChibakuTensei(World world) {
         super(world);
@@ -78,7 +86,7 @@ public class EntityChibakuTensei extends Entity implements IEntityAdditionalSpaw
             for(Object entityObj : entities) {
                 if(entityObj instanceof Entity && !(entityObj instanceof EntityChibakuBlock)) {
                     if(entityObj instanceof EntityPlayer) {
-                        if(((EntityPlayer) entityObj).capabilities.isCreativeMode) {
+                        if(((EntityPlayer) entityObj).capabilities.isCreativeMode || entityObj == summoner) {
                             continue;
                         }
                     }
