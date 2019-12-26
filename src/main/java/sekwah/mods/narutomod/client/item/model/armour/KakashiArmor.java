@@ -131,7 +131,7 @@ public class KakashiArmor extends ModelNinjaArmour {
     public ModelRenderer ArmorRight2;
 
     public KakashiArmor() {
-        super(true, false);
+        super(true, false, false);
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.EyeCut2 = new ModelRenderer(this, 0, 46);

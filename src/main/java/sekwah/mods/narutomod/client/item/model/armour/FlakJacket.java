@@ -54,7 +54,7 @@ public class FlakJacket extends ModelNinjaArmour {
     public ModelRenderer ArmorRight2;
 
     public FlakJacket() {
-        super(true, false);
+        super(true, false, false);
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.ArmorBottom2 = new ModelRenderer(this, 40, 52);

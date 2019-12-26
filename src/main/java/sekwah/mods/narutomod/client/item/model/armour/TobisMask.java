@@ -48,7 +48,7 @@ public class TobisMask extends ModelNinjaArmour {
     public ModelRenderer Face39;
 
     public TobisMask() {
-        super(false, false);
+        super(false, false, false);
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.Face37 = new ModelRenderer(this, 2, 59);

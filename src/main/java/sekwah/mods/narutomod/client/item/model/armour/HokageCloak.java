@@ -71,7 +71,7 @@ public class HokageCloak extends ModelNinjaArmour {
     public ModelRenderer Leg8_1;
 
     public HokageCloak() {
-        super(true, false);
+        super(true, false, false);
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.Leg8 = new ModelRenderer(this, 129, 61);

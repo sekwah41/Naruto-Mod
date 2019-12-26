@@ -86,7 +86,7 @@ public class NarutoSageArmor extends ModelNinjaArmour {
 
 
     public NarutoSageArmor() {
-        super(true, true);
+        super(true, true, true);
 
         this.textureWidth = 150;
         this.textureHeight = 100;

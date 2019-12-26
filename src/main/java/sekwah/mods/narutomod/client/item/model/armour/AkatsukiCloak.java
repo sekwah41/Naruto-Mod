@@ -55,7 +55,7 @@ public class AkatsukiCloak extends ModelNinjaArmour {
     public ModelRenderer Leg8_1;
 
     public AkatsukiCloak() {
-        super(true, false);
+        super(true, false, false);
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.Leg3 = new ModelRenderer(this, 100, 63);

@@ -67,7 +67,7 @@ public class SasukeBoruto extends ModelNinjaArmour {
     public ModelRenderer Cape5;
 
     public SasukeBoruto() {
-        super(true, false);
+        super(true, false, false);
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.Normal12 = new ModelRenderer(this, 0, 65);
