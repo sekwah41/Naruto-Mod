@@ -70,6 +70,7 @@ public class NarutoItems {
 	public static Item ANBU_ARMOUR;
 	public static Item KID_NARUTO_ARMOUR;
 	public static Item HAN_HAT;
+	public static Item SAGE_ARMOUR;
 
 	// TODO Finish adding the code and complete tomorrow(tomorrow has passed, get yo lazy ass to work you bum)
 	//  recipe needed
@@ -191,6 +192,9 @@ public class NarutoItems {
 		HAN_HAT = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 0, "textures/armour/hanhat.png"));
 		HAN_HAT.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("hanHat");
 
+		SAGE_ARMOUR = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/SageArmour.png"));
+		SAGE_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("sage");
+
 		// TODO add the masks from the anbu and rouge
 
 		// TODO update gunbai
@@ -257,6 +261,7 @@ public class NarutoItems {
 		GameRegistry.registerItem(ANBU_ARMOUR,"anbuArmour");
 		GameRegistry.registerItem(KID_NARUTO_ARMOUR,"narutoKidArmour");
 		GameRegistry.registerItem(HAN_HAT,"hanHat");
+		GameRegistry.registerItem(SAGE_ARMOUR,"sageArmour");
 
 
 		ninjaArmour.setItemStack(new ItemStack(redAnbuMask));

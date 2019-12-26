@@ -636,7 +636,7 @@ public class ModelNinjaBiped extends ModelBiped
     }
 
 
-    private void trackToPart(AnimModelRenderer part, AnimModelRenderer tracker) {
+    public void trackToPart(ModelRenderer part, ModelRenderer tracker) {
         part.rotateAngleX = tracker.rotateAngleX;
         part.rotateAngleY = tracker.rotateAngleY;
         part.rotateAngleZ = tracker.rotateAngleZ;

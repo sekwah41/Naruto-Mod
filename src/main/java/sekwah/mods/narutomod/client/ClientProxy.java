@@ -189,6 +189,7 @@ public class ClientProxy extends CommonProxy {
         ((ItemNinjaArmour) NarutoItems.SASUKE_KID_ARMOUR).setModelArmor(new ModelSasukeKidArmour());
         ((ItemNinjaArmour) NarutoItems.KID_NARUTO_ARMOUR).setModelArmor(new ModelNarutoKidArmor());
         ((ItemNinjaArmour) NarutoItems.HAN_HAT).setModelArmor(new ModelHanHat());
+        ((ItemNinjaArmour) NarutoItems.SAGE_ARMOUR).setModelArmor(new NarutoSageArmor());
     }
 
     public void commands() {

@@ -4,10 +4,6 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import sekwah.mods.narutomod.client.player.models.ModelNinjaBiped;
 
-/**
- * NarutoKidArmor - HeroGamezFTW
- * Created using Tabula 6.0.0
- */
 public class ModelNarutoKidArmor extends ModelNinjaBiped implements IRenderFirstPerson {
 
     public ModelRenderer UpperRightArm;
