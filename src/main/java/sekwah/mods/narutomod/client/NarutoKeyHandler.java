@@ -40,9 +40,12 @@ public class NarutoKeyHandler {
     /**
      * Key descriptions; use a language file to localize the description later
      */
-    public static final String[] keyDesc = {"naruto.keys.key1", "naruto.keys.key2", "naruto.keys.key3", "naruto.keys.jutsumenu", "naruto.keys.options", "naruto.keys.leap", "naruto.keys.toggledodges", "naruto.keys.overlay", "naruto.keys.overlay1", "naruto.keys.overlay2", "naruto.keys.overlay3"};
+    public static final String[] keyDesc = {"naruto.keys.key1", "naruto.keys.key2", "naruto.keys.key3",
+            "naruto.keys.jutsumenu", "naruto.keys.options", "naruto.keys.leap", "naruto.keys.toggledodges",
+            "naruto.keys.overlay0", "naruto.keys.overlay1", "naruto.keys.overlay2", "naruto.keys.overlay3",
+            "naruto.keys.overlay4"};
     public static final KeyBinding[] keys = new KeyBinding[keyDesc.length];
-    public static boolean[] isPressed = {false, false, false, false, false, false, false, false, false, false, false};
+    public static boolean[] isPressed = {false, false, false, false, false, false, false, false, false, false, false, false};
     //private static boolean[] repeat = {false, false, false, false, false/**, false*/};
 
     public static boolean[] isVanillaPressed = {false, false, false};
@@ -52,15 +55,15 @@ public class NarutoKeyHandler {
     /**
      * Default key values
      */
-    private final int[] keyButtons = {Keyboard.KEY_C, Keyboard.KEY_V, Keyboard.KEY_B, Keyboard.KEY_J, Keyboard.KEY_O, Keyboard.KEY_X, Keyboard.KEY_Z, Keyboard.KEY_NUMPAD0, Keyboard.KEY_NUMPAD1, Keyboard.KEY_NUMPAD2, Keyboard.KEY_NUMPAD3};
+    private final int[] keyButtons = {Keyboard.KEY_C, Keyboard.KEY_V, Keyboard.KEY_B, Keyboard.KEY_J, Keyboard.KEY_O,
+            Keyboard.KEY_X, Keyboard.KEY_Z, Keyboard.KEY_NUMPAD0, Keyboard.KEY_NUMPAD1,
+            Keyboard.KEY_NUMPAD2, Keyboard.KEY_NUMPAD3, Keyboard.KEY_NUMPAD4};
 
     public NarutoKeyHandler() {
         for (int i = 0; i < keyDesc.length; ++i) {
             keys[i] = new KeyBinding(keyDesc[i], keyButtons[i], "narutomod.keys.category");
             ClientRegistry.registerKeyBinding(keys[i]);
         }
-        //keys[keyDesc.length - 1] = Minecraft.getMinecraft().gameSettings.keyBindLeft;
-        //keys[keyDesc.length - 2] = Minecraft.getMinecraft().gameSettings.keyBindRight;
     }
 
     static void keyPressed(int keyID) {
@@ -158,15 +161,7 @@ public class NarutoKeyHandler {
 //                }
                 int shittyEyeSelection = 0;
 
-                if(keyDesc.endsWith("1")){
-                    shittyEyeSelection = 1;
-                }
-                if(keyDesc.endsWith("2")){
-                    shittyEyeSelection = 2;
-                }
-                if(keyDesc.endsWith("3")){
-                    shittyEyeSelection = 3;
-                }
+                shittyEyeSelection = Integer.parseInt(keyDesc.substring(keyDesc.length() - 1));
 
                 ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
                 DataOutputStream outputStream = new DataOutputStream(bos);

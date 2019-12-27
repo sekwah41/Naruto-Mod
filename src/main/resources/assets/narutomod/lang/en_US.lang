@@ -151,24 +151,35 @@ gui.jutsu.learnt=Learnt!
 
 Jutsus.Chakra_Control=Chakra Control
 Jutsus.Chakra_Control.desc=The basis of every technique with the exception of taijutsu. Passive ability. C can also be held to focus your chakra and speed up regeneration.
+Jutsus.Chakra_Control.combo=Combo: C
 
 Jutsus.Fire_Ball_Jutsu=Fire Ball Jutsu
-Jutsus.Fire_Ball_Jutsu.desc=Turn your chakra to fire and release it in the form of a fireball. Combo: C V C
+Jutsus.Fire_Ball_Jutsu.desc=Turn your chakra to fire and release it in the form of a fireball.
+Jutsus.Fire_Ball_Jutsu.combo=Combo: C V C
 
 Jutsus.Shadow_Clone_Jutsu=Shadow Clone Jutsu
-Jutsus.Shadow_Clone_Jutsu.desc=Confuse your enemy with copies of yourself! Combo: C B B V
+Jutsus.Shadow_Clone_Jutsu.desc=Confuse your enemy with copies of yourself!
+Jutsus.Shadow_Clone_Jutsu.combo=Combo: C B B V
 
 Jutsus.Water_Walk=Water Walking
-Jutsus.Water_Walk.desc=Direct chakra to beneath your feet and allow yourself to stand, run and jump on water. Combo: B
+Jutsus.Water_Walk.desc=Direct chakra to beneath your feet and allow yourself to stand, run and jump on water.
+Jutsus.Water_Walk.combo=Combo: B
 
 Jutsus.Chakra_Dash=Chakra Dash
-Jutsus.Chakra_Dash.desc=Infuse chakra throughout your body and increase the speed of your movements. Combo: V
+Jutsus.Chakra_Dash.desc=Infuse chakra throughout your body and increase the speed of your movements.
+Jutsus.Chakra_Dash.combo=Combo: V
 
 Jutsus.Substitution=Substitution
-Jutsus.Substitution.desc=This technique replaces the users body with an object. Combo: C V
+Jutsus.Substitution.desc=This technique replaces the users body with an object.
+Jutsus.Substitution.combo=Combo: C V
 
 Jutsus.Water_Bullet=Water Bullet Jutsu
-Jutsus.Water_Bullet.desc=Knead chakra in your stomach and expel it as 3 powerful water projectiles!           Combo: C B V
+Jutsus.Water_Bullet.desc=Knead chakra in your stomach and expel it as 3 powerful water projectiles!
+Jutsus.Water_Bullet.combo=Combo: C B V
+
+Jutsus.Earth_Wall=Earth Wall
+Jutsus.Earth_Wall.desc=Manipulate the ground into a wall infused with your chakra.
+Jutsus.Earth_Wall.combo=Combo: B C V
 
 naruto.jutsu.chakraDash.deactivate=You have deactivated Chakra Dash!
 naruto.jutsu.chakraDash.activate=You have activated Chakra Dash!
@@ -218,6 +229,13 @@ naruto.keys.key3=Justsu Key 3
 naruto.keys.jutsumenu=Open Jutsu Menu
 naruto.keys.options=Open Naruto Options
 
+naruto.keys.overlay0=Remove Eye Overlay
+naruto.keys.overlay1=Eye Overlay 1
+naruto.keys.overlay2=Eye Overlay 2
+naruto.keys.overlay3=Eye Overlay 3
+naruto.keys.overlay4=Clothes Specific Overlay
+naruto.keys.leap=Leap
+
 potion.chakraRestore=Chakra Restore
 
 death.attack.waterBullet=%1$s was killed by %2$s using water bullets
@@ -254,7 +272,7 @@ naruto.jutsu.combo.substitution=Substitution: %s
 naruto.jutsu.combo.chibaku_tensei=Planetary Devastation: %s
 naruto.jutsu.combo.fireball=Fireball: %s
 naruto.jutsu.combo.water_bullet=Water Bullet: %s
-naruto.jutsu.combo.earth_release=Earth Release: %s
+naruto.jutsu.combo.earth_release=Earth Wall: %s
 naruto.jutsu.combo.sekc=Sexy: %s
 naruto.jutsu.combo.chibi_shadow_clone=Chibi Shadow Clone: %s
 naruto.jutsu.combo.shadow_clone=Shadow Clone: %s

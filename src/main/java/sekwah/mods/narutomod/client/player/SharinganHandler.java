@@ -1,6 +1,10 @@
 package sekwah.mods.narutomod.client.player;
 
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import sekwah.mods.narutomod.common.items.NarutoItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +27,22 @@ public class SharinganHandler {
 
     private static final ResourceLocation[] animateToMon = getAnimatedTextures("narutomod:textures/skinOverlays/sharingantransform_frame", 4);
 
-    public ResourceLocation getEyes(String username, int eyeStatus) {
-        return this.getEyes(username, eyeStatus, -1);
+    public ResourceLocation getEyes(EntityLivingBase entityLiving, int eyeStatus) {
+        return this.getEyes(entityLiving, eyeStatus, -1);
     }
 
-    public ResourceLocation getEyes(String username, int eyeStatus, int animate){
+    public ResourceLocation getEyes(EntityLivingBase entityLiving, int eyeStatus, int animate){
+
+        String username = entityLiving.getCommandSenderName();
+
+        if(eyeStatus == 4) {
+            ItemStack itemStack = entityLiving.getEquipmentInSlot(3);
+            if(itemStack != null) {
+                if(itemStack.getItem() == NarutoItems.SAGE_ARMOUR) {
+                    return sageMode;
+                }
+            }
+        }
 
         if (username.endsWith("Zaromaru") && eyeStatus == 1) {
             return rinneganOverlay;
@@ -35,16 +50,13 @@ public class SharinganHandler {
         else if(username.endsWith("HeroGamezFTW") && eyeStatus == 1) {
             return jougan;
         }
-        else if(username.endsWith("HeroGamezFTW") && eyeStatus == 2){
-            return sageMode;
-        }
         else if(username.endsWith("liam3011") && eyeStatus != 0){
             return returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, sharingan2Overlay);
         }
         else if(username.endsWith("Smove33") && eyeStatus != 0){
             return returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, smove);
         }
-        else if(eyeStatus != 0) {
+        else if(eyeStatus == 1 || eyeStatus == 2 || eyeStatus == 3) {
             return returnEyesAnimateSusanoo(sharinganOverlay, mangekyouOverlay, animate);
         }
         return null;

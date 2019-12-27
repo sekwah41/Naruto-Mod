@@ -179,7 +179,7 @@ public class ModelNinjaArmour extends ModelNinjaBiped implements IRenderFirstPer
     }
 
     public boolean shouldRender(ModelRenderer part) {
-        return part != null && part.childModels != null && part.childModels.size() > 0;
+        return part != null && ((part.childModels != null && part.childModels.size() > 0) || (part.cubeList != null && part.cubeList.size() > 0));
     }
 
     public void renderFull(float scale) {
@@ -234,7 +234,7 @@ public class ModelNinjaArmour extends ModelNinjaBiped implements IRenderFirstPer
     public void renderFirstPersonArm(float scale) {
         if(shouldArmRender) {
             this.bipedRightArmUpper.rotateAngleX = this.bipedRightArmUpper.rotateAngleY = this.bipedRightArmUpper.rotateAngleZ = 0;
-            this.bipedRightArmLower.rotateAngleX = this.bipedRightArmLower.rotateAngleY = this.bipedRightArmUpper.rotateAngleZ = 0;
+            this.heroFixLowerRightArm.rotateAngleX = this.heroFixLowerRightArm.rotateAngleY = this.heroFixLowerRightArm.rotateAngleZ = 0;
             this.renderTracked(this.UpperRightArm, scale, this.bipedRightArmUpper);
             this.renderTracked(this.LowerRightArm, scale, this.bipedRightArmUpper, this.bipedRightArmLower);
         }

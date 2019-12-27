@@ -522,7 +522,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
             this.mainModel.setRotationAngles(p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_, player);
         }
         int eyeStatus = player.getDataWatcher().getWatchableObjectInt(DataWatcherIDs.eyerenderer);
-        if(NarutoMod.instance.sharinganHandler.getEyes(player.getCommandSenderName(), eyeStatus, PlayerInfo.get((EntityPlayer) player).animateEyes) == null) {
+        if(NarutoMod.instance.sharinganHandler.getEyes(player, eyeStatus, PlayerInfo.get((EntityPlayer) player).animateEyes) == null) {
             eyeStatus = 0;
             player.getDataWatcher().updateObject(DataWatcherIDs.eyerenderer,0);
         }
@@ -782,7 +782,7 @@ public class RenderNinjaPlayer extends RenderPlayer {
 
         int eyeStatus = dw.getWatchableObjectInt(DataWatcherIDs.eyerenderer);
 
-        overlay = NarutoMod.instance.sharinganHandler.getEyes(player.getCommandSenderName(), eyeStatus, PlayerInfo.get(player).animateEyes);
+        overlay = NarutoMod.instance.sharinganHandler.getEyes(player, eyeStatus, PlayerInfo.get(player).animateEyes);
         if(overlay == null) {
             eyeStatus = 0;
             dw.updateObject(DataWatcherIDs.eyerenderer,0);

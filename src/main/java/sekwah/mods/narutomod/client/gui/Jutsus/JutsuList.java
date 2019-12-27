@@ -42,9 +42,11 @@ public class JutsuList {
 
     public static Jutsus chakraDash = (new Jutsus("Jutsu.Chakra_Dash", "Chakra_Dash", -2, -1, new ItemStack(NarutoItems.narutoIcons, 1, 5), chakraControl)).setIndependent().registerJutsus();
 
-    public static Jutsus substitution = (new Jutsus("Jutsu.Substitution", "Substitution", 1, -3, new ItemStack(NarutoItems.narutoIcons, 1, 6), chakraControl)).setIndependent().registerJutsus();
+    public static Jutsus substitution = (new Jutsus("Jutsu.Substitution", "Substitution", 1, -2, new ItemStack(NarutoItems.narutoIcons, 1, 6), chakraControl)).setIndependent().registerJutsus();
 
-    public static Jutsus waterBullet = (new Jutsus("Jutsu.Water_Bullet", "Water_Bullet", 1, 3, new ItemStack(NarutoItems.narutoIcons, 1, 7), chakraControl)).setIndependent().registerJutsus();
+    public static Jutsus waterBullet = (new Jutsus("Jutsu.Water_Bullet", "Water_Bullet", 1, 2, new ItemStack(NarutoItems.narutoIcons, 1, 7), chakraControl)).setIndependent().registerJutsus();
+
+    public static Jutsus earthWall = (new Jutsus("Jutsu.Earth_Wall", "Earth_Wall", 3, 0, new ItemStack(NarutoItems.narutoIcons, 1, 8), chakraControl)).setIndependent().registerJutsus();
 
     /** Is the 'getting wood' Jutsus. *//**
      public static Jutsus mineWood = (new Jutsus(1, "mineWood", 2, 1, Block.wood, openInventory)).registerJutsus();

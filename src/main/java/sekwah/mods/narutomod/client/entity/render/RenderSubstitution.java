@@ -407,7 +407,7 @@ public class RenderSubstitution extends RendererLivingEntity {
 
         int eyeStatus = dw.getWatchableObjectInt(DataWatcherIDs.eyerenderer);
 
-        overlay = NarutoMod.instance.sharinganHandler.getEyes(par1EntitySubstitution.getCommandSenderName(), eyeStatus);
+        overlay = NarutoMod.instance.sharinganHandler.getEyes(par1EntitySubstitution, eyeStatus);
         if(overlay == null) {
             eyeStatus = 0;
             dw.updateObject(DataWatcherIDs.eyerenderer,0);

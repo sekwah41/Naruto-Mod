@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -25,9 +26,9 @@ import java.util.*;
 // TODO keep the radius you are currently at (squared) and use the sort algorithm to sort positions to start building up a sphere
 public class EntityChibakuTensei extends Entity implements IEntityAdditionalSpawnData {
 
-    private EntityPlayerMP summoner;
+    private EntityPlayer summoner;
 
-    public EntityChibakuTensei(EntityPlayerMP player) {
+    public EntityChibakuTensei(EntityPlayer player) {
         this(player.worldObj);
         this.summoner = player;
     }
@@ -86,7 +87,7 @@ public class EntityChibakuTensei extends Entity implements IEntityAdditionalSpaw
             for(Object entityObj : entities) {
                 if(entityObj instanceof Entity && !(entityObj instanceof EntityChibakuBlock)) {
                     if(entityObj instanceof EntityPlayer) {
-                        if(((EntityPlayer) entityObj).capabilities.isCreativeMode || entityObj == summoner) {
+                        if(/*((EntityPlayer) entityObj).capabilities.isCreativeMode || */(summoner != null && ((EntityPlayer) entityObj).getEntityId() == summoner.getEntityId())) {
                             continue;
                         }
                     }
@@ -248,10 +249,18 @@ public class EntityChibakuTensei extends Entity implements IEntityAdditionalSpaw
     @Override
     public void writeSpawnData(ByteBuf buffer) {
         buffer.writeInt(this.ticksMoved);
+        buffer.writeInt(this.summoner == null ? -1 : this.summoner.getEntityId());
     }
 
     @Override
     public void readSpawnData(ByteBuf additionalData) {
         this.ticksMoved = additionalData.readInt();
+        int entityId = additionalData.readInt();
+        if(entityId != 0) {
+            Entity summoner = this.worldObj.getEntityByID(entityId);
+            if(summoner instanceof EntityPlayer) {
+                this.summoner = (EntityPlayer) summoner;
+            }
+        }
     }
 }

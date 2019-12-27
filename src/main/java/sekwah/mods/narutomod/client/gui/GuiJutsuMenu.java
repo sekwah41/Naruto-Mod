@@ -315,6 +315,7 @@ public class GuiJutsuMenu extends GuiScreen {
         GL11.glEnable(GL11.GL_COLOR_MATERIAL);
         int l4;
         int i5;
+        int comboHeight;
 
         for (k3 = 0; k3 < jutsuList.size(); ++k3) {
             Jutsus jutsu2 = jutsuList.get(k3);
@@ -382,22 +383,25 @@ public class GuiJutsuMenu extends GuiScreen {
         if (jutsu1 != null) {
             String s = I18n.format(jutsu1.getStatName().getUnformattedText());
             String s1 = jutsu1.getDescription();
+            String s2 = I18n.format(jutsu1.JUTSU_COMBO);
             j4 = par1 + 12;
             l3 = par2 - 4;
 
             if (true) {
                 i5 = Math.max(this.fontRendererObj.getStringWidth(s), 120);
+                comboHeight = this.fontRendererObj.splitStringWidth(s2, i5);
                 l4 = this.fontRendererObj.splitStringWidth(s1, i5);
 
                 if (true) {
                     l4 += 12;
                 }
 
-                this.drawGradientRect(j4 - 3, l3 - 3, j4 + i5 + 3, l3 + l4 + 3 + 12, -1073741824, -1073741824);
+                this.drawGradientRect(j4 - 3, l3 - 3, j4 + i5 + 3, l3 + comboHeight + l4 + 6 + 12, -1073741824, -1073741824);
                 this.fontRendererObj.drawSplitString(s1, j4, l3 + 12, i5, -6250336);
+                this.fontRendererObj.drawSplitString(s2, j4, l3 + l4 + 4, i5, -6250336);
 
                 if (true) {
-                    this.fontRendererObj.drawStringWithShadow(I18n.format("gui.jutsu.learnt"), j4, l3 + l4 + 4, -7302913);
+                    this.fontRendererObj.drawStringWithShadow(I18n.format("gui.jutsu.learnt"), j4, l3 + comboHeight + l4 + 7, -7302913);
                 }
             }
             /**else

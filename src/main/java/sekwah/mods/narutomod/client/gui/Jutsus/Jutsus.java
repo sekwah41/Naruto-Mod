@@ -33,6 +33,7 @@ public class Jutsus extends StatBase {
      * Holds the description of the Jutsus, ready to be formatted and/or displayed.
      */
     private final String JutsusDescription;
+    public final String JUTSU_COMBO;
     @SideOnly(Side.CLIENT)
 
     /**
@@ -58,6 +59,7 @@ public class Jutsus extends StatBase {
         super(par1Str, new ChatComponentTranslation("Jutsus." + par2Str));
         this.theItemStack = par5ItemStack;
         this.JutsusDescription = "Jutsus." + par2Str + ".desc";
+        this.JUTSU_COMBO = "Jutsus." + par2Str + ".combo";
         this.displayColumn = par3;
         this.displayRow = par4;
 

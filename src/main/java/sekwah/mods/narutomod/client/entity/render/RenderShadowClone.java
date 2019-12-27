@@ -392,7 +392,7 @@ public class RenderShadowClone extends RendererLivingEntity {
 
         int eyeStatus = dw.getWatchableObjectInt(DataWatcherIDs.eyerenderer);
 
-        overlay = NarutoMod.instance.sharinganHandler.getEyes(par1EntityShadowClone.getCommandSenderName(), eyeStatus);
+        overlay = NarutoMod.instance.sharinganHandler.getEyes(par1EntityShadowClone, eyeStatus);
         if(overlay == null) {
             eyeStatus = 0;
             dw.updateObject(DataWatcherIDs.eyerenderer,0);
