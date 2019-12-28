@@ -299,8 +299,9 @@ public class RenderNinjaPlayer extends RenderPlayer {
             return;
 
         if(this.mainModel instanceof ModelNinjaBiped) {
-            ItemStack stack = ((EntityPlayer) entity).getCurrentArmor(2);
-            ((ModelNinjaBiped) mainModel).bipedHeadwear.showModel = !((entity instanceof EntityPlayer) && stack != null && stack.getItem() == NarutoItems.BORUTO_KAKASHI_ARMOUR);
+            ItemStack bodyArmour = ((EntityPlayer) entity).getCurrentArmor(2);
+            ItemStack headArmour = ((EntityPlayer) entity).getCurrentArmor(3);
+            ((ModelNinjaBiped) mainModel).bipedHeadwear.showModel = !((entity instanceof EntityPlayer) && ((bodyArmour != null && NarutoItems.shouldHideHair(bodyArmour.getItem())) || (headArmour != null && NarutoItems.shouldHideHair(headArmour.getItem()))));
         }
 
         GL11.glPushMatrix();

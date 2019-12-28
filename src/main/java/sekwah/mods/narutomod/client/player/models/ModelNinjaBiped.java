@@ -644,6 +644,7 @@ public class ModelNinjaBiped extends ModelBiped
 
 
     protected void renderTracked(ModelRenderer part, float f5, ModelRenderer... tracked) {
+        if(part == null) return;
         GL11.glPushMatrix();
         for (ModelRenderer track : tracked) {
             if(track.isHidden) return;

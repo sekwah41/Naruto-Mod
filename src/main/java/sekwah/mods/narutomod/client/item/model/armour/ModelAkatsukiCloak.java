@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class AkatsukiCloak extends ModelNinjaArmour {
+public class ModelAkatsukiCloak extends ModelNinjaArmour {
 
     public ModelRenderer HeadNeck6;
     public ModelRenderer HeadNeck1;
@@ -54,8 +54,8 @@ public class AkatsukiCloak extends ModelNinjaArmour {
     public ModelRenderer Leg6_1;
     public ModelRenderer Leg8_1;
 
-    public AkatsukiCloak() {
-        super(true, false, false);
+    public ModelAkatsukiCloak() {
+        super(true, true, true);
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.Leg3 = new ModelRenderer(this, 100, 63);

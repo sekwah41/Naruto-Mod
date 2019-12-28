@@ -70,7 +70,13 @@ public class NarutoItems {
 	public static Item ANBU_ARMOUR;
 	public static Item KID_NARUTO_ARMOUR;
 	public static Item HAN_HAT;
+
 	public static Item SAGE_ARMOUR;
+	public static Item SASUKE_BORUTO;
+	public static Item KAKASHI_NARUTO;
+	public static Item TOBI_MASK;
+	public static Item HOKAGE_CLOAK;
+	public static Item AKATSUKI_CLOAK;
 
 	// TODO Finish adding the code and complete tomorrow(tomorrow has passed, get yo lazy ass to work you bum)
 	//  recipe needed
@@ -79,7 +85,8 @@ public class NarutoItems {
 	// Armour materials
 	private static ArmorMaterial FLACK_ARMOUR = EnumHelper.addArmorMaterial("FLAK", 35, new int[]{2, 7, 5, 2}, 5);
 	private static ArmorMaterial JONIN_ARMOUR_MATERIAL = EnumHelper.addArmorMaterial("JONIN", 35, new int[]{2, 7, 5, 2}, 6);
-	private static ArmorMaterial SHINOBI_ARMOUR = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 14, 8, 2}, 8);
+
+	private static ArmorMaterial SHINOBI_ARMOUR = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 8, 2}, 8);
 
 	private static ArmorMaterial ANBU_ARMOUR_MAT = EnumHelper.addArmorMaterial("SHINOBI", 35, new int[]{2, 8, 5, 2}, 8);
 
@@ -194,11 +201,22 @@ public class NarutoItems {
 
 		SAGE_ARMOUR = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/SageArmour.png"));
 		SAGE_ARMOUR.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("sage");
+//
+		SASUKE_BORUTO = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/SasukeBoruto.png"));
+		SASUKE_BORUTO.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("sasuke_boruto");
 
-		// TODO add the masks from the anbu and rouge
+		KAKASHI_NARUTO = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/KakashiArmorNaruto.png"));
+		KAKASHI_NARUTO.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("naruto_kakashi_armour");
 
-		// TODO update gunbai
+		TOBI_MASK = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 0, "textures/armour/TobiMask.png"));
+		TOBI_MASK.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("tobi_mask");
 
+		HOKAGE_CLOAK = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/HokageCloak.png"));
+		HOKAGE_CLOAK.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("hogake_cloak");
+
+		AKATSUKI_CLOAK = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/AkatsukiCloak.png"));
+		AKATSUKI_CLOAK.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("akatsuki_cloak");
+//
 		//other stuff
 
 		GameRegistry.registerItem(Kunai, "Kunai");
@@ -262,6 +280,12 @@ public class NarutoItems {
 		GameRegistry.registerItem(KID_NARUTO_ARMOUR,"narutoKidArmour");
 		GameRegistry.registerItem(HAN_HAT,"hanHat");
 		GameRegistry.registerItem(SAGE_ARMOUR,"sageArmour");
+
+		GameRegistry.registerItem(SASUKE_BORUTO,"sasukeBoruto");
+		GameRegistry.registerItem(KAKASHI_NARUTO,"kakashiNaruto");
+		GameRegistry.registerItem(TOBI_MASK,"tobiMask");
+		GameRegistry.registerItem(HOKAGE_CLOAK,"hokageCloak");
+		GameRegistry.registerItem(AKATSUKI_CLOAK,"akatsukiCloak");
 
 
 		ninjaArmour.setItemStack(new ItemStack(redAnbuMask));
@@ -435,4 +459,7 @@ public class NarutoItems {
 
 	}
 
+	public static boolean shouldHideHair(Item item) {
+		return item == NarutoItems.BORUTO_KAKASHI_ARMOUR || item == NarutoItems.TOBI_MASK || item == NarutoItems.KAKASHI_NARUTO;
+	}
 }

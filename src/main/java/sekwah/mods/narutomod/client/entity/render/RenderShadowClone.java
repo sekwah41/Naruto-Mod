@@ -143,7 +143,7 @@ public class RenderShadowClone extends RendererLivingEntity {
 
         if(this.modelBipedMain instanceof ModelNinjaBiped) {
             ItemStack stack = (par1Entity).getEquipmentInSlot(2);
-            modelBipedMain.bipedHeadwear.showModel = !(stack != null && stack.getItem() == NarutoItems.BORUTO_KAKASHI_ARMOUR);
+            modelBipedMain.bipedHeadwear.showModel = !(stack != null && NarutoItems.shouldHideHair(stack.getItem()));
         }
 
         double d3 = par4 - (double) par1Entity.yOffset;

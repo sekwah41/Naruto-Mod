@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class SasukeBoruto extends ModelNinjaArmour {
+public class ModelSasukeBoruto extends ModelNinjaArmour {
 
     public ModelRenderer Cape;
     public ModelRenderer Body1;
@@ -66,8 +66,8 @@ public class SasukeBoruto extends ModelNinjaArmour {
     public ModelRenderer Cape4;
     public ModelRenderer Cape5;
 
-    public SasukeBoruto() {
-        super(true, false, false);
+    public ModelSasukeBoruto() {
+        super(true, true, true);
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.Normal12 = new ModelRenderer(this, 0, 65);

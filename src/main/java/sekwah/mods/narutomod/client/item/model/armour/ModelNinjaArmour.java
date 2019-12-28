@@ -64,46 +64,29 @@ public class ModelNinjaArmour extends ModelNinjaBiped implements IRenderFirstPer
      also checks what should render
      */
     public void cleanupModel() {
-        if(!this.hasOnSkinParts) {
-            this.Head.cubeList.clear();
 
-            this.UpperLeftArm.cubeList.clear();
-            this.UpperRightArm.cubeList.clear();
-            this.LowerLeftArm.cubeList.clear();
-            this.LowerRightArm.cubeList.clear();
+        this.cleanupOnSkin(Head);
 
-            this.UpperBody.cubeList.clear();
-            this.LowerBody.cubeList.clear();
+        this.cleanupOnSkin(UpperLeftArm);
+        this.cleanupOnSkin(UpperRightArm);
+        this.cleanupOnSkin(LowerLeftArm);
+        this.cleanupOnSkin(LowerRightArm);
 
-            this.UpperRightLeg.cubeList.clear();
-            this.UpperLeftLeg.cubeList.clear();
-            this.LowerRightLeg.cubeList.clear();
-            this.LowerLeftLeg.cubeList.clear();
-        }
-        else {
-            this.remakeSlightlyBigger(Head);
+        this.cleanupOnSkin(UpperBody);
+        this.cleanupOnSkin(LowerBody);
 
-            this.remakeSlightlyBigger(UpperLeftArm);
-            this.remakeSlightlyBigger(UpperRightArm);
-            this.remakeSlightlyBigger(LowerLeftArm);
-            this.remakeSlightlyBigger(LowerRightArm);
+        this.cleanupOnSkin(UpperRightLeg);
+        this.cleanupOnSkin(UpperLeftLeg);
+        this.cleanupOnSkin(LowerRightLeg);
+        this.cleanupOnSkin(LowerLeftLeg);
 
-            this.remakeSlightlyBigger(UpperBody);
-            this.remakeSlightlyBigger(LowerBody);
+        if(this.UpperLeftArm != null) this.UpperLeftArm.setRotationPoint(0.0F, 0.0F, 0.0F);
+        if(this.UpperRightArm != null) this.UpperRightArm.setRotationPoint(0.0F, 0.0F, 0.0F);
 
-            this.remakeSlightlyBigger(UpperRightLeg);
-            this.remakeSlightlyBigger(UpperLeftLeg);
-            this.remakeSlightlyBigger(LowerRightLeg);
-            this.remakeSlightlyBigger(LowerLeftLeg);
-        }
+        if(this.UpperLeftLeg != null) this.UpperLeftLeg.setRotationPoint(0.0F, 0.0F, 0.0F);
+        if(this.UpperRightLeg != null) this.UpperRightLeg.setRotationPoint(4.0F, 0.0F, 0.0F);
 
-        this.UpperLeftArm.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.UpperRightArm.setRotationPoint(0.0F, 0.0F, 0.0F);
-
-        this.UpperLeftLeg.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.UpperRightLeg.setRotationPoint(4.0F, 0.0F, 0.0F);
-
-        this.LowerBody.setRotationPoint(0.0F, 0.0F, 0.0F);
+        if(this.LowerBody != null) this.LowerBody.setRotationPoint(0.0F, 0.0F, 0.0F);
 
         this.hasHead = this.shouldRender(this.Head);
 
@@ -142,7 +125,14 @@ public class ModelNinjaArmour extends ModelNinjaBiped implements IRenderFirstPer
         }
     }
 
-    public void remakeSlightlyBigger(ModelRenderer modelRenderer) {
+    public void cleanupOnSkin(ModelRenderer modelRenderer) {
+        if(modelRenderer == null) return;
+
+        if(!this.hasOnSkinParts) {
+            modelRenderer.cubeList.clear();
+            return;
+        }
+
         float expandValue = 0.005f;
 
         List oldList = modelRenderer.cubeList;
@@ -184,7 +174,7 @@ public class ModelNinjaArmour extends ModelNinjaBiped implements IRenderFirstPer
 
     public void renderFull(float scale) {
 
-        if(this.hasHead) this.renderTracked(this.Head, scale, this.Head);
+        if(this.hasHead) this.renderTracked(this.Head, scale, this.bipedHead);
 
         if(this.hasUpperLeftArm) {
             if(this.hasLowerLeftArm) this.trackToPart(this.heroFixLowerLeftArm, this.bipedLeftArmLower);

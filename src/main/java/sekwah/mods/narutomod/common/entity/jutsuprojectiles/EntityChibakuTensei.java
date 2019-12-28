@@ -87,7 +87,7 @@ public class EntityChibakuTensei extends Entity implements IEntityAdditionalSpaw
             for(Object entityObj : entities) {
                 if(entityObj instanceof Entity && !(entityObj instanceof EntityChibakuBlock)) {
                     if(entityObj instanceof EntityPlayer) {
-                        if(/*((EntityPlayer) entityObj).capabilities.isCreativeMode || */(summoner != null && ((EntityPlayer) entityObj).getEntityId() == summoner.getEntityId())) {
+                        if(((EntityPlayer) entityObj).capabilities.isCreativeMode || (summoner != null && ((EntityPlayer) entityObj).getEntityId() == summoner.getEntityId())) {
                             continue;
                         }
                     }

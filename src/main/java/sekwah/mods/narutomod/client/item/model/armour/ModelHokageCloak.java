@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class HokageCloak extends ModelNinjaArmour {
+public class ModelHokageCloak extends ModelNinjaArmour {
 
     public ModelRenderer Head;
 
@@ -70,8 +70,8 @@ public class HokageCloak extends ModelNinjaArmour {
     public ModelRenderer Leg6_1;
     public ModelRenderer Leg8_1;
 
-    public HokageCloak() {
-        super(true, false, false);
+    public ModelHokageCloak() {
+        super(true, true, true);
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.Leg8 = new ModelRenderer(this, 129, 61);

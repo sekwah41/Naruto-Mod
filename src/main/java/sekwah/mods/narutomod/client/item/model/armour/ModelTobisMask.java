@@ -3,7 +3,7 @@ package sekwah.mods.narutomod.client.item.model.armour;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class TobisMask extends ModelNinjaArmour {
+public class ModelTobisMask extends ModelNinjaArmour {
 
     public ModelRenderer Face1;
     public ModelRenderer Face2;
@@ -47,7 +47,7 @@ public class TobisMask extends ModelNinjaArmour {
     public ModelRenderer Face38;
     public ModelRenderer Face39;
 
-    public TobisMask() {
+    public ModelTobisMask() {
         super(false, false, false);
         this.textureWidth = 150;
         this.textureHeight = 100;

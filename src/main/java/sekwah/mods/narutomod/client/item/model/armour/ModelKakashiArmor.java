@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class KakashiArmor extends ModelNinjaArmour {
+public class ModelKakashiArmor extends ModelNinjaArmour {
 
     public ModelRenderer Head;
 
@@ -130,8 +130,8 @@ public class KakashiArmor extends ModelNinjaArmour {
     public ModelRenderer ArmorRight1;
     public ModelRenderer ArmorRight2;
 
-    public KakashiArmor() {
-        super(true, false, false);
+    public ModelKakashiArmor() {
+        super(true, true, true);
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.EyeCut2 = new ModelRenderer(this, 0, 46);

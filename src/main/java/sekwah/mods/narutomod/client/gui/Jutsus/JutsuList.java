@@ -48,6 +48,8 @@ public class JutsuList {
 
     public static Jutsus earthWall = (new Jutsus("Jutsu.Earth_Wall", "Earth_Wall", 3, 0, new ItemStack(NarutoItems.narutoIcons, 1, 8), chakraControl)).setIndependent().registerJutsus();
 
+    public static Jutsus multiShadowClone = (new Jutsus("Jutsu.Multi_Shadow_Clone", "Multi_Shadow_Clone", 4, -2, new ItemStack(NarutoItems.narutoIcons, 1, 9), shadowCloneJutsu)).setIndependent().registerJutsus();
+
     /** Is the 'getting wood' Jutsus. *//**
      public static Jutsus mineWood = (new Jutsus(1, "mineWood", 2, 1, Block.wood, openInventory)).registerJutsus();
 

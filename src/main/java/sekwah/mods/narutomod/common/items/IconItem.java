@@ -23,7 +23,7 @@ public class IconItem extends Item {
 
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        Icons = new IIcon[9];
+        Icons = new IIcon[10];
         Icons[0] = par1IconRegister.registerIcon(NarutoMod.modid + ":jutsu_chakra_charge");
         Icons[1] = par1IconRegister.registerIcon(NarutoMod.modid + ":jutsu_clone_tecnique");
         Icons[2] = par1IconRegister.registerIcon(NarutoMod.modid + ":jutsu_fire_ball");
@@ -33,6 +33,7 @@ public class IconItem extends Item {
         Icons[6] = par1IconRegister.registerIcon(NarutoMod.modid + ":jutsu_substiutution");
         Icons[7] = par1IconRegister.registerIcon(NarutoMod.modid + ":jutsu_water_bullet");
         Icons[8] = par1IconRegister.registerIcon(NarutoMod.modid + ":jutsu_earth_wall");
+        Icons[9] = par1IconRegister.registerIcon(NarutoMod.modid + ":jutsu_multi_shadow_clone");
     }
 
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4) {
