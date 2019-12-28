@@ -72,9 +72,6 @@ public class SharinganHandler {
         if (username.endsWith("Zaromaru") && eyeStatus == 1) {
             return rinneganOverlay;
         }
-        else if(username.endsWith("HeroGamezFTW") && eyeStatus == 1) {
-            return jougan;
-        }
         else if(username.endsWith("liam3011") && eyeStatus != 0){
             return returnEyesPlusSusanoo(eyeStatus, sharinganOverlay, sharingan2Overlay);
         }
@@ -86,7 +83,7 @@ public class SharinganHandler {
         }
 
         ItemStack itemStack = entityLiving.getEquipmentInSlot(3);
-        if(itemStack.getItem() == NarutoItems.KAKASHI_NARUTO || itemStack.getItem() == NarutoItems.BORUTO_KAKASHI_ARMOUR) {
+        if(itemStack != null && (itemStack.getItem() == NarutoItems.KAKASHI_NARUTO || itemStack.getItem() == NarutoItems.BORUTO_KAKASHI_ARMOUR)) {
             return kakashibasic;
         }
         return null;
