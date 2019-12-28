@@ -181,6 +181,10 @@ Jutsus.Earth_Wall=Earth Wall
 Jutsus.Earth_Wall.desc=Manipulate the ground into a wall infused with your chakra.
 Jutsus.Earth_Wall.combo=Combo: B C V
 
+Jutsus.Multi_Shadow_Clone=Multi Shadow Clone Jutsu
+Jutsus.Multi_Shadow_Clone.desc=Ugraded version of Shadow Clone Jutsu which summons more copies of yourself.
+Jutsus.Multi_Shadow_Clone.combo=Combo: C B B V B C
+
 naruto.jutsu.chakraDash.deactivate=You have deactivated Chakra Dash!
 naruto.jutsu.chakraDash.activate=You have activated Chakra Dash!
 
@@ -278,6 +282,14 @@ naruto.jutsu.combo.chibi_shadow_clone=Chibi Shadow Clone: %s
 naruto.jutsu.combo.shadow_clone=Shadow Clone: %s
 naruto.jutsu.combo.multi_shadow_clone=Mutli Shadow Clone: %s
 naruto.jutsu.combo.chidori=Chidori: %s
+
+item.sage.name=Sage Cloak
+item.hokage_cloak.name=Hokage Cloak
+item.tobi_mask.name=Tobi's Mask
+item.naruto_kakashi_armour.name=Kakashi Armour
+item.sasuke_boruto.name=Sasuke (Boruto) Armour
+item.akatsuki_cloak.name=Akatsuki Cloak
+item.shisuiuchihaite.name=Shisui Armour
 
 
 item.borutoKakashiArmour.name=Kakashi's Armour

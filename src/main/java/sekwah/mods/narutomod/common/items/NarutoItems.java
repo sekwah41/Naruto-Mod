@@ -77,6 +77,7 @@ public class NarutoItems {
 	public static Item TOBI_MASK;
 	public static Item HOKAGE_CLOAK;
 	public static Item AKATSUKI_CLOAK;
+	public static Item SHISUI;
 
 	// TODO Finish adding the code and complete tomorrow(tomorrow has passed, get yo lazy ass to work you bum)
 	//  recipe needed
@@ -216,6 +217,9 @@ public class NarutoItems {
 
 		AKATSUKI_CLOAK = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/AkatsukiCloak.png"));
 		AKATSUKI_CLOAK.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("akatsuki_cloak");
+
+		SHISUI = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/ShisuiUchiha.png"));
+		SHISUI.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("shisuiuchihaite");
 //
 		//other stuff
 
@@ -286,6 +290,7 @@ public class NarutoItems {
 		GameRegistry.registerItem(TOBI_MASK,"tobiMask");
 		GameRegistry.registerItem(HOKAGE_CLOAK,"hokageCloak");
 		GameRegistry.registerItem(AKATSUKI_CLOAK,"akatsukiCloak");
+		GameRegistry.registerItem(SHISUI,"shisuiuchihaite");
 
 
 		ninjaArmour.setItemStack(new ItemStack(redAnbuMask));

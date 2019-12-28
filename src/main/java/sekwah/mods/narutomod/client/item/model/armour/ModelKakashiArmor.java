@@ -6,21 +6,6 @@ import net.minecraft.entity.Entity;
 
 public class ModelKakashiArmor extends ModelNinjaArmour {
 
-    public ModelRenderer Head;
-
-    public ModelRenderer UpperLeftArm;
-    public ModelRenderer UpperRightArm;
-    public ModelRenderer LowerLeftArm;
-    public ModelRenderer LowerRightArm;
-
-    public ModelRenderer UpperBody;
-    public ModelRenderer LowerBody;
-
-    public ModelRenderer UpperRightLeg;
-    public ModelRenderer UpperLeftLeg;
-    public ModelRenderer LowerRightLeg;
-    public ModelRenderer LowerLeftLeg;
-
     public ModelRenderer Mask1;
     public ModelRenderer Mask2;
     public ModelRenderer Mask3;

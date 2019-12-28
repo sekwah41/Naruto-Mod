@@ -372,12 +372,16 @@ public class ModelSasukeBoruto extends ModelNinjaArmour {
         this.UpperBody.addChild(this.Gray4);
         this.LowerRightLeg.addChild(this.Leg2);
 
+        this.UpperBody.addChild(this.Cape);
+
         this.cleanupModel();
     }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+
+        this.Cape.rotateAngleX = f1 * 0.7f + 0.1f;
 
         this.renderFull(f5);
     }

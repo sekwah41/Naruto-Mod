@@ -25,6 +25,16 @@ public class SharinganHandler {
 
     private static final ResourceLocation sageMode = new ResourceLocation("narutomod:textures/skinOverlays/sagemode.png");
 
+    private static final ResourceLocation sasuke = new ResourceLocation("narutomod:textures/skinOverlays/sasuke.png");
+
+    private static final ResourceLocation shisui = new ResourceLocation("narutomod:textures/skinOverlays/shisui.png");
+
+    private static final ResourceLocation madara = new ResourceLocation("narutomod:textures/skinOverlays/madara.png");
+
+    private static final ResourceLocation kakashi = new ResourceLocation("narutomod:textures/skinOverlays/kakashi.png");
+
+    private static final ResourceLocation kakashibasic = new ResourceLocation("narutomod:textures/skinOverlays/kakashibasic.png");
+
     private static final ResourceLocation[] animateToMon = getAnimatedTextures("narutomod:textures/skinOverlays/sharingantransform_frame", 4);
 
     public ResourceLocation getEyes(EntityLivingBase entityLiving, int eyeStatus) {
@@ -40,6 +50,21 @@ public class SharinganHandler {
             if(itemStack != null) {
                 if(itemStack.getItem() == NarutoItems.SAGE_ARMOUR) {
                     return sageMode;
+                }
+                if(itemStack.getItem() == NarutoItems.SHISUI) {
+                    return shisui;
+                }
+                if(itemStack.getItem() == NarutoItems.SASUKE_BORUTO) {
+                    return sasuke;
+                }
+                if(itemStack.getItem() == NarutoItems.shinobiChestplate) {
+                    return madara;
+                }
+                if(itemStack.getItem() == NarutoItems.BORUTO_KID_MOVIE_ARMOUR || itemStack.getItem() == NarutoItems.BORUTO_KID_ARMOUR) {
+                    return jougan;
+                }
+                if(itemStack.getItem() == NarutoItems.KAKASHI_NARUTO || itemStack.getItem() == NarutoItems.BORUTO_KAKASHI_ARMOUR) {
+                    return kakashi;
                 }
             }
         }
@@ -58,6 +83,11 @@ public class SharinganHandler {
         }
         else if(eyeStatus == 1 || eyeStatus == 2 || eyeStatus == 3) {
             return returnEyesAnimateSusanoo(sharinganOverlay, mangekyouOverlay, animate);
+        }
+
+        ItemStack itemStack = entityLiving.getEquipmentInSlot(3);
+        if(itemStack.getItem() == NarutoItems.KAKASHI_NARUTO || itemStack.getItem() == NarutoItems.BORUTO_KAKASHI_ARMOUR) {
+            return kakashibasic;
         }
         return null;
     }

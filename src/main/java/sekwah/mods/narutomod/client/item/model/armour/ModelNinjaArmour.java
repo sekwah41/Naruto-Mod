@@ -157,7 +157,7 @@ public class ModelNinjaArmour extends ModelNinjaBiped implements IRenderFirstPer
      * @param z offsetfix
      */
     public void parentingFix(ModelRenderer originalParent, ModelRenderer child, ModelRenderer fixParent, float x, float y, float z) {
-        if(originalParent != null && originalParent.childModels != null) {
+        if(originalParent != null && originalParent.childModels != null && child != null) {
             originalParent.childModels.remove(child);
             if(fixParent != null) {
                 fixParent.setRotationPoint(x,y,z);

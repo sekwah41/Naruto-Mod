@@ -6,21 +6,6 @@ import net.minecraft.entity.Entity;
 
 public class ModelHokageCloak extends ModelNinjaArmour {
 
-    public ModelRenderer Head;
-
-    public ModelRenderer UpperLeftArm;
-    public ModelRenderer UpperRightArm;
-    public ModelRenderer LowerLeftArm;
-    public ModelRenderer LowerRightArm;
-
-    public ModelRenderer UpperBody;
-    public ModelRenderer LowerBody;
-
-    public ModelRenderer UpperRightLeg;
-    public ModelRenderer UpperLeftLeg;
-    public ModelRenderer LowerRightLeg;
-    public ModelRenderer LowerLeftLeg;
-
     public ModelRenderer HeadNeck6;
     public ModelRenderer HeadNeck1;
     public ModelRenderer HeadNeck3;

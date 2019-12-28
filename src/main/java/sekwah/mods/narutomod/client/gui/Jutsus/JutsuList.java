@@ -34,9 +34,9 @@ public class JutsuList {
 
     public static Jutsus chakraControl = (new Jutsus("Jutsu.Chakra_Control", "Chakra_Control", 0, 0, new ItemStack(NarutoItems.narutoIcons, 1, 0), null)).setIndependent().registerJutsus();
 
-    public static Jutsus fireBallJutsu = (new Jutsus("Jutsu.Shadow_Clone_Jutsu", "Shadow_Clone_Jutsu", 2, 1, new ItemStack(NarutoItems.narutoIcons, 1, 1), chakraControl)).setIndependent().registerJutsus();
+    public static Jutsus shadowCloneJutsu = (new Jutsus("Jutsu.Shadow_Clone_Jutsu", "Shadow_Clone_Jutsu", 2, 1, new ItemStack(NarutoItems.narutoIcons, 1, 1), chakraControl)).setIndependent().registerJutsus();
 
-    public static Jutsus shadowCloneJutsu = (new Jutsus("Jutsu.Fire_Ball_Jutsu", "Fire_Ball_Jutsu", 2, -1, new ItemStack(NarutoItems.narutoIcons, 1, 2), chakraControl)).setIndependent().registerJutsus();
+    public static Jutsus fireBallJutsu = (new Jutsus("Jutsu.Fire_Ball_Jutsu", "Fire_Ball_Jutsu", 2, -1, new ItemStack(NarutoItems.narutoIcons, 1, 2), chakraControl)).setIndependent().registerJutsus();
 
     public static Jutsus waterWalk = (new Jutsus("Jutsu.Water_Walk", "Water_Walk", -2, 1, new ItemStack(NarutoItems.narutoIcons, 1, 3), chakraControl)).setIndependent().registerJutsus();
 
@@ -48,7 +48,7 @@ public class JutsuList {
 
     public static Jutsus earthWall = (new Jutsus("Jutsu.Earth_Wall", "Earth_Wall", 3, 0, new ItemStack(NarutoItems.narutoIcons, 1, 8), chakraControl)).setIndependent().registerJutsus();
 
-    public static Jutsus multiShadowClone = (new Jutsus("Jutsu.Multi_Shadow_Clone", "Multi_Shadow_Clone", 4, -2, new ItemStack(NarutoItems.narutoIcons, 1, 9), shadowCloneJutsu)).setIndependent().registerJutsus();
+    public static Jutsus multiShadowClone = (new Jutsus("Jutsu.Multi_Shadow_Clone", "Multi_Shadow_Clone", 4, 2, new ItemStack(NarutoItems.narutoIcons, 1, 9), shadowCloneJutsu)).setIndependent().registerJutsus();
 
     /** Is the 'getting wood' Jutsus. *//**
      public static Jutsus mineWood = (new Jutsus(1, "mineWood", 2, 1, Block.wood, openInventory)).registerJutsus();
