@@ -37,7 +37,9 @@ import sekwah.mods.narutomod.worldgeneration.NarutoWorldGeneration;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 // --username sekwah41
 @Mod(modid = NarutoMod.modid, name = "Naruto Mod", version = NarutoMod.version)
@@ -63,7 +65,7 @@ public class NarutoMod {
     // update data
     public static int[] mcVersion = {1,7,10};
 
-    public static int[] modVersion = {0,5,0};
+    public static Integer[] modVersion = Arrays.stream(NarutoMod.version.split("\\.")).map((Integer::parseInt)).collect(Collectors.toList()).toArray(new Integer[0]);
 
     // leave this as false or be more careful!
     public static boolean isPreRelease = false;
