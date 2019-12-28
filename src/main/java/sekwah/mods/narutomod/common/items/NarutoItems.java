@@ -213,7 +213,7 @@ public class NarutoItems {
 		TOBI_MASK.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("tobi_mask");
 
 		HOKAGE_CLOAK = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/HokageCloak.png"));
-		HOKAGE_CLOAK.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("hogake_cloak");
+		HOKAGE_CLOAK.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("hokage_cloak");
 
 		AKATSUKI_CLOAK = (new ItemNinjaArmour(CHARACTER_CLOTHES, 4, 1, "textures/armour/AkatsukiCloak.png"));
 		AKATSUKI_CLOAK.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("akatsuki_cloak");
