@@ -6,6 +6,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -132,6 +133,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(new GuiChakraAndStaminaBar(Minecraft.getMinecraft()));
 
         MinecraftForge.EVENT_BUS.register(new GuiNotificationUpdate(Minecraft.getMinecraft()));
+
     }
 
     public void registerCustomItems() {
@@ -179,7 +181,7 @@ public class ClientProxy extends CommonProxy {
     public void addItems() {
         super.addItems();
 
-        ((ItemNinjaArmour) NarutoItems.flakJacket).setModelArmor(new ModelFlakJacket());
+        ((ItemNinjaArmour) NarutoItems.flakJacket).setModelArmor(new ModelFlakJacketNew());
         ((ItemNinjaArmour) NarutoItems.JONIN_ARMOUR).setModelArmor(new ModelUpdateJoninArmor());
         ((ItemNinjaArmour) NarutoItems.NARUTO_SHIPPUDEN_ARMOUR).setModelArmor(new ModelNarutoShippudenArmor());
         ((ItemNinjaArmour) NarutoItems.BORUTO_KID_ARMOUR).setModelArmor(new ModelBorutoKidArmor());

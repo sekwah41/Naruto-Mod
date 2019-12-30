@@ -1,6 +1,5 @@
 package sekwah.mods.narutomod.client.item.model.armour;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
@@ -53,7 +52,7 @@ public class ModelFlakJacketNew extends ModelNinjaArmour {
     public ModelRenderer ArmorRight2;
 
     public ModelFlakJacketNew() {
-        super(true, true, true);
+        super(false, true, true);
         this.textureWidth = 150;
         this.textureHeight = 100;
         this.ArmorBottom2 = new ModelRenderer(this, 40, 52);
@@ -302,6 +301,8 @@ public class ModelFlakJacketNew extends ModelNinjaArmour {
         this.UpperBody.addChild(this.HeadNeck4);
         this.UpperBody.addChild(this.HeadNeck3);
         this.UpperBody.addChild(this.BodyCrap3);
+
+        this.cleanupModel();
     }
 
     @Override

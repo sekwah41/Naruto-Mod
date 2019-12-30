@@ -496,7 +496,8 @@ public class RenderNinjaPlayer extends RenderPlayer {
     @Override
     protected boolean canRenderName(EntityLivingBase targetEntity)
     {
-        return Minecraft.isGuiEnabled() && targetEntity != this.renderManager.livingPlayer && !(targetEntity.getEquipmentInSlot(4) != null && targetEntity.getEquipmentInSlot(4).getItem() == NarutoItems.redAnbuMask) && !targetEntity.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer) && targetEntity.riddenByEntity == null;
+        ItemStack item = targetEntity.getEquipmentInSlot(4);
+        return Minecraft.isGuiEnabled() && targetEntity != this.renderManager.livingPlayer && !(item != null && (item.getItem() == NarutoItems.redAnbuMask || item.getItem() == NarutoItems.TOBI_MASK)) && !targetEntity.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer) && targetEntity.riddenByEntity == null;
     }
 
     /**

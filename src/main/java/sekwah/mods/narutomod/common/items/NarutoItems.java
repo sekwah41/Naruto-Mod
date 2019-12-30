@@ -159,7 +159,7 @@ public class NarutoItems {
 
 		armourPlate = (new BaseItemAndSub("Red", "Green")).setName("armourPlate").setCreativeTab(ninjaMaterials).setMaxStackSize(32);
 
-		flakJacket = new ItemNinjaArmour(FLACK_ARMOUR, 4, 1, "textures/armour/flak_jacket.png");
+		flakJacket = new ItemNinjaArmour(FLACK_ARMOUR, 4, 1, "textures/armour/FlakJacketNew.png");
 		flakJacket.setCreativeTab(ninjaArmour).setMaxStackSize(1).setUnlocalizedName("flakJacket");
 
 		kubikiribocho = (new ItemKubikiribocho(kubikiriTool)).setFull3D().setUnlocalizedName("Kubikiribocho").setTextureName("Kubikiribocho");

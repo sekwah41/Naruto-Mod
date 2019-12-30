@@ -10,6 +10,7 @@ import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.DataWatcher;
 import sekwah.mods.narutomod.NarutoMod;
 import sekwah.mods.narutomod.animation.NarutoAnimator;
@@ -45,6 +46,11 @@ public class PlayerRenderTickEvent {
             GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
             if (guiscreen instanceof GuiMainMenu) {
                 Minecraft.getMinecraft().displayGuiScreen(new GuiNarutoMainMenu());
+                // To fix
+                if(Minecraft.getMinecraft().gameSettings.renderDistanceChunks > 16) {
+                    Minecraft.getMinecraft().gameSettings.setOptionFloatValue(GameSettings.Options.RENDER_DISTANCE, 16);
+                    Minecraft.getMinecraft().gameSettings.saveOptions();
+                }
             } else if (guiscreen == null || guiscreen instanceof GuiInventory || guiscreen instanceof GuiChat) {
 
                 if(guiToShow != null){
