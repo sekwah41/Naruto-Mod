@@ -25,7 +25,7 @@ public class Jutsus {
 
     //actual jutsu combinations
     public static final int SUBSTITUTION = 12; // cv
-    public static final int CHIBAKU_TENSEI = 1332312; // cbbvbcv
+    public static final int CHIBAKU_TENSEI = 2331231; // vbbcbvc
     public static final int FIREBALL = 121; // cvc
     public static final int WATER_BULLET = 132; // cbv
     public static final int EYES = 311; // bcc //possibly the toggle for liams eyes
