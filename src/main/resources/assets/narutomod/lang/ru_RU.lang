@@ -1,13 +1,13 @@
 naruto.gui.options.title=Меню мода
 naruto.gui.done=Готово
-naruto.gui.firstPerson=Первое лицо
-naruto.gui.on=Включить
-naruto.gui.off=Выключить
+naruto.gui.firstPerson=Вид от первого лица
+naruto.gui.on=Вкл.
+naruto.gui.off=Выкл.
 naruto.gui.jutsutoggle=Дзюцу
-naruto.gui.chakraGUIOffset=Смещение
-naruto.gui.generalOptions=Главные настройки
+naruto.gui.chakraGUIOffset=Сдвиг
+naruto.gui.generalOptions=Главные настойки
 naruto.gui.chakraGui=GUI Чакры
-naruto.gui.chakraGUICorner=GUI угол
+naruto.gui.chakraGUICorner=GUI Corner
 naruto.gui.jutsuSettings=Настройки Дзюцу
 naruto.gui.jutsuDelay=Задержка (В тиках)
 
@@ -26,9 +26,9 @@ item.record.LonelyMarch.desc=Sekwah - Lonely March
 
 item.copper_ryo.name=Кан
 item.silver_ryo.name=Рин
-item.gold_ryo.name=Рё
+item.gold_ryo.name=Рэ
 
-item.Katana.name=Катана
+item.Katana.name=Каиана
 
 item.ExplosiveTag.name=Бумажная бомба
 
@@ -50,7 +50,6 @@ item.Bokken.name=Боккен
 
 item.Scroll.name=Свиток Призыва (Волк)
 
-item.Noodles.name=Лапша
 item.Noodles.name=Лапша
 
 item.Samehada.name=Самехада
@@ -138,7 +137,7 @@ item.armourPlate.Green.name=Зелёная железная пластина
 tile.sakuraleaves.name=Листья сакуры
 tile.sakurasapling.name=Саженец сакуры
 tile.bonsaitree.name=Бонсай
-tile.bonsaisakuratree.name=Бонсай из сакуры
+tile.bonsaisakuratree.name=Сакура бансай
 
 
 itemGroup.narutoWeapons=Наруто - Оружие
@@ -150,30 +149,45 @@ gui.jutsuskilltree.title=Дерево навыков владения Дзюцу
 gui.jutsu.learnt=Выучено!
 
 Jutsus.Chakra_Control=Контроль чакры
-Jutsus.Chakra_Control.desc=Основа любой техники, кроме тайдзюцу. Пассивное умение. Зажав клавишу C, вы можете ускорить регенерацию чакры.
+Jutsus.Chakra_Control.desc=Основа любой техники, кроме тайдзюцу. Пассивное умение. Зажав клавишу C, Вы можете ускорить регенерацию чакры.
+Jutsus.Chakra_Control.combo=Комбинация: C
 
 Jutsus.Fire_Ball_Jutsu=Огненный шар
-Jutsus.Fire_Ball_Jutsu.desc=Преврати свою чакру в огонь и выпусти её в форме шара. Комбинация: C V C
+Jutsus.Fire_Ball_Jutsu.desc=Преврати свою чакру в огонь и выпусти её в форме шара.
+Jutsus.Fire_Ball_Jutsu.combo=Комбинация: C V C
 
 Jutsus.Shadow_Clone_Jutsu=Техника теневого клонирования
-Jutsus.Shadow_Clone_Jutsu.desc=Ошелами врага своим количеством! Комбинация: C B B V
+Jutsus.Shadow_Clone_Jutsu.desc=Ошеломи врага своим количеством!
+Jutsus.Shadow_Clone_Jutsu.combo=Combo: C B B V
 
 Jutsus.Water_Walk=Техника хождения по воде
-Jutsus.Water_Walk.desc=Сконцентрируй чакру в ногах, что позволит тебе стоять, бежать и прыгать на воде. Комбинация: B
+Jutsus.Water_Walk.desc=Сконцентрируй чакру в ногах, что позволит тебе стоять, бежать и прыгать на воде.
+Jutsus.Water_Walk.combo=Комбинация: B
 
 Jutsus.Chakra_Dash=Порыв чакры
-Jutsus.Chakra_Dash.desc=Пропусти чакру сквозь своё тело, увеличивая скорость передвежения. Комбинация: V
+Jutsus.Chakra_Dash.desc=Пропусти чакру сквозь своё тело, увеличивая скорость передвижения.
+Jutsus.Chakra_Dash.combo=Комбинация: V
 
 Jutsus.Substitution=Техника подмены тел
-Jutsus.Substitution.desc=Эта техника меняет тело использовавшего с объектом местами. Комбинация: C V
+Jutsus.Substitution.desc=Эта техника меняет тело использовавшего с объектом местами.
+Jutsus.Substitution.combo=Комбинация: C V
 
 Jutsus.Water_Bullet=Водяные пули
-Jutsus.Water_Bullet.desc=Сконцентрируй чакру в своем животе и выпусти её в форме трех мощных водных снарядов. Комбинация: C B V
+Jutsus.Water_Bullet.desc=Сконцентрируй чакру в своем животе и выпусти её в форме трех мощных водяных снарядов.
+Jutsus.Water_Bullet.combo=Комбинация: C B V
+
+Jutsus.Earth_Wall=Земляная стена
+Jutsus.Earth_Wall.desc=Превратите участок земли в стену с помощью Вашей чакры.
+Jutsus.Earth_Wall.combo=Комбинация: B C V
+
+Jutsus.Multi_Shadow_Clone=Техника мульти-теневого клонирования
+Jutsus.Multi_Shadow_Clone.desc=Улучшенная версия Техники теневого клонирования, с помощью которой Вы сможете призвать больше копий себя.
+Jutsus.Multi_Shadow_Clone.combo=Комбинация: V B B C B V C
 
 naruto.jutsu.chakraDash.deactivate=Вы прекратили использовать технику: Порыв чакры!
-naruto.jutsu.chakraDash.activate=Вы использовали технику Порыв чакры!
+naruto.jutsu.chakraDash.activate=Вы использовали технику "Порыв чакры"!
 
-naruto.jutsu.waterWalk.deactivate=Вы прекратили использовать технику: хождения по воде!
+naruto.jutsu.waterWalk.deactivate=Вы прекратили использовать технику хождения по воде!
 naruto.jutsu.waterWalk.activate=Вы использовали технику хождения по воде!
 
 naruto.jutsu.substitution=Техника подмены тел!
@@ -186,18 +200,18 @@ naruto.jutsu.chidori=Стиль молнии - Чидори!
 naruto.jutsu.chibaku=Опустошитель планет!
 naruto.jutsu.chidorifail=В этот момент %s узнал, он облажался
 naruto.jutsu.waterBullet=Стиль воды - Водяные пули!
-naruto.jutsu.earthWall=Стиль земли - Зеслянная стена!
-naruto.jutsu.earthWall.failed=Дзюдцу не может быть использованно! Вы должны смотреть на блок, рядом с которым не менее %s других
+naruto.jutsu.earthWall=Стиль земли - Земляная стена!
+naruto.jutsu.earthWall.failed=Дзюдцу не может быть использовано! Вы должны смотреть на блок, рядом с которым не менее %s других
 
 naruto.jutsu.shadowClone=Техника теневого клонирования!
-naruto.jutsu.chibiClone=Техника водяного клонирования!
+naruto.jutsu.chibiClone=Техника чиби клонирования!
 naruto.jutsu.multiShadowClone=Техника мульти-теневого клонирования!
 
 naruto.jutsu.unrecognised=Неизвестное дзюцу!
 
-naruto.jutsu.comboLimit=Вы превысили количество комбинаций!
+naruto.jutsu.comboLimit=Комбинация слишком длинная!
 
-naruto.jutsu.nochakra=Недостаточно чакры!
+naruto.jutsu.nochakra=Не достаточно чакры!
 
 naruto.jutsu.nostamina=Не достаточно сил!
 
@@ -218,13 +232,20 @@ naruto.keys.key3=Дзюцу Клавиша 3
 naruto.keys.jutsumenu=Открыть список дзюцу
 naruto.keys.options=Настройки мода
 
-potion.chakraRestore=Регенерация чакры
+naruto.keys.overlay0=Убрать Додзюцу
+naruto.keys.overlay1=Додзюцу 1
+naruto.keys.overlay2=Додзюцу 2
+naruto.keys.overlay3=Додзюцу 3
+naruto.keys.overlay4=Додзюцу по одежде
+naruto.keys.leap=Скачок
 
-death.attack.waterBullet=%1$s был расплющен водиными пулями шиноби %2$s
+potion.chakraRestore=Восстановление чакры
 
-naruto.gui.chakraRed=Красное сочитание чакры
-naruto.gui.chakraGreen=Зелёное сочитание чакры
-naruto.gui.chakraBlue=Синее сочитание чакры
+death.attack.waterBullet=%1$s был расплющен водяными пулями шиноби %2$s
+
+naruto.gui.chakraRed=Красное сочетание чакры
+naruto.gui.chakraGreen=Зелёное сочетание чакры
+naruto.gui.chakraBlue=Синее сочетание чакры
 
 naruto.gui.chakraBarDesign=Вид показателей
 
@@ -239,9 +260,9 @@ naruto.gui.settings=Настройки
 naruto.gui.dodges.disabled=Dodges выключены
 naruto.gui.dodges.enabled=Dodges включены
 
-naruto.gui.betterArms=Улучшенные руки
+naruto.gui.betterArms=Детализированные руки
 
-naruto.gui.restartMinecraft=Перезапустите Майнкрафт
+naruto.gui.restartMinecraft=Перезапустите minecraft
 
 naruto.gui.settingsSaved=Настройки сохранены
 
@@ -259,10 +280,16 @@ naruto.jutsu.combo.sekc=Саблазн-Дзюцу: %s
 naruto.jutsu.combo.chibi_shadow_clone=Водяные клоны: %s
 naruto.jutsu.combo.shadow_clone=Теневые клоны: %s
 naruto.jutsu.combo.multi_shadow_clone=Мульти-теневые клоны: %s
+naruto.jutsu.combo.chidori=Чидори: %s
+
+item.sage.name=Плащ Мудреца
+item.hokage_cloak.name=Плащ Хокаге
+item.tobi_mask.name=Маска Тоби
+item.naruto_kakashi_armour.name=Броня Какаши
+item.sasuke_boruto.name=Броня Саске (Боруто)
+item.akatsuki_cloak.name=Плащ Акацуки
+item.shisuiuchihaite.name=Плащ Шисуи
+
 
 item.borutoKakashiArmour.name=Броня Какаши
 item.hanHat.name=Шляпа Хана
-
-item.record_FightingSpirit.name=Пластинка
-item.record_NejiTheme.name=Пластинка
-naruto.jutsu.chakraDash.nochakra=Недостаточно Чакры!
