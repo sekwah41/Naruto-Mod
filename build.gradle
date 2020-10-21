@@ -1,120 +1,193 @@
 buildscript {
     repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = "https://repo.spongepowered.org/maven" }
+        maven {url "https://plugins.gradle.org/m2/"}
+        // Only temporary
+        jcenter()
         mavenCentral()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/groups/public"
-        }
     }
     dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT"
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
+        classpath "com.wynprice.cursemaven:CurseMaven:2.1.1"
     }
 }
-apply plugin: "forge"
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+apply plugin: "org.spongepowered.mixin"
+apply plugin: "com.wynprice.cursemaven"
+
+version = project.version
+group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = project.modid
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://dvs1.progwml6.com/files/maven'
+    }
+    maven {
+        url "https://minecraft.curseforge.com/api/maven/"
+    }
+    maven {
+        url 'https://www.dogforce-games.com/maven/'
+    }
+}
 
 minecraft {
-    version = "1.7.10-10.13.4.1614-1.7.10"
-    mappings = "stable_12"
-    if (project.hasProperty("runDir")) {
-        runDir = project.runDir
-    } else if (file("../run").exists()) {
-        runDir = "../run"
-    } else if (file("run").exists()) {
-        runDir = "run"
-    } else {
-        runDir = "eclipse"
-    }
-}
+    // The mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   Snapshot are built nightly.
+    // stable_#            Stables are built at the discretion of the MCP team.
+    // Use non-default mappings at your own risk. they may not always work.
+    // Simply re-run your setup task after changing the mappings to update your workspace.
+    mappings channel: 'snapshot', version: project.mcp_mapping
 
-sourceCompatibility = 8
+    // This is for personal local tests i was doing ignore it ;)
+    //mappings channel: 'snapshot', version: '20200706-unofficialtest-1.16.1'
 
-//sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8 // Need this here so eclipse task generates correctly.
-compileJava {
-    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
-}
+    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
-version = getModVersion("version")
-group = "sekwah.mods.narutomod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "narutomod"
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
-if (JavaVersion.current().isJava8Compatible()) {
-    allprojects {
-        tasks.withType(Javadoc) {
-            options.addStringOption("Xdoclint:none", "-quiet")
-        }
-    }
-}
+    // Default run configurations.
+    // These can be tweaked, removed, or duplicated as needed.
+    runs {
+        client {
+            workingDirectory project.file('run')
 
-jar {
-    manifest.mainAttributes("Main-Class": "com.nextgencrafters.narutomodinstaller.Loader")
-}
+            // Recommended logging data for a userdev environment
+            //property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
-//task devJar(type: Jar) {
-//    from sourceSets.main.output
-//    description "Creates a compiled version for other developers to use in their workspaces."
-//    classifier = "dev"
-//}
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
 
-//task javadocJar(type: Jar, dependsOn: javadoc) {
-//    from javadoc.destinationDir
-//    description "Creates a Javadoc Jar"
-//    classifier = "javadoc"
-//}
-
-//tasks.build.dependsOn devJar, sourceJar, javadocJar
-
-String getModVersion(String type) {
-    File file = sourceSets.main.java.filter { File element ->
-        if (!element.file) return false
-        String ret = ""
-        element.readLines("UTF-8").each { String s ->
-            if (s.trim().startsWith("@Mod")) {
-                ret = "src/main/java/$element.path"
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
             }
         }
-        return ret
-    }.first()
-    String major = "0"
-    String revision = "1"
-    String patch = "0"
-    String prefix = "public static final String $type = \""
-    file.readLines("UTF-8").each { String s ->
-        s = s.trim()
-        if (s.startsWith(prefix)) {
-            s = s.substring(prefix.length(), s.length() - 2)
-            String[] pts = s.split("\\.")
 
-            major = pts[0];
-            revision = pts[1];
-            patch = pts[2];
+        server {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', ''
+            //property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', ''
+            //property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/')
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
         }
     }
-    return "$major.$revision.$patch";
+}
+
+repositories {
+    maven {
+        url "http://repo.spongepowered.org/maven/"
+    }
+}
+
+configurations {
+    include {
+        compile.extendsFrom(include)
+    }
+    includePlusMeta {
+        include.extendsFrom(includePlusMeta)
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'lib', includes: ['*.jar'])
+    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
+    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
+    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
+    minecraft 'net.minecraftforge:forge:' + project.forge_version
+
+    //include('org.ow2.asm:asm-debug-all:5.2')
+
+    // You may put jars on which you depend on in ./libs or you may define them like so..
+    // compile "some.group:artifact:version:classifier"
+    // compile "some.group:artifact:version"
+
+    // Real examples
+    // compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
+    // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
+
+    // For more info...
+    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
+    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
 }
 
-processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcVersion", project.minecraft.version
+mixin {
+    add sourceSets.main, "mixins.narutomod.json"
+}
 
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include "mcmod.info"
+// Example for how to get properties into the manifest for reading by the runtime..
+jar {
 
-        // replace version and mcVersion
-        expand "version": project.version, "mcVersion": project.minecraft.version
+    manifest {
+        attributes([
+                "Specification-Title": project.modid,
+                "Specification-Vendor": project.vendor,
+                "Specification-Version": "1", // We are version 1 of ourselves
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${version}",
+                "Implementation-Vendor" :project.vendor,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
     }
+}
 
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude "mcmod.info"
+// Example configuration to allow publishing using the maven-publish task
+// we define a custom artifact that is sourced from the reobfJar output task
+// and then declare that to be published
+// Note you'll need to add a repository here
+def reobfFile = file("$buildDir/reobfJar/output.jar")
+def reobfArtifact = artifacts.add('default', reobfFile) {
+    type 'jar'
+    builtBy 'reobfJar'
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact reobfArtifact
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
     }
 }
