@@ -1,0 +1,42 @@
+package com.sekwah.narutomod;
+
+import com.sekwah.narutomod.network.PacketHandler;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@Mod(NarutoMod.MOD_ID)
+public class NarutoMod {
+
+    public static final String MOD_ID = "narutomod";
+
+    public static final Logger LOGGER = LogManager.getLogger("Naruto Mod");
+
+    public NarutoMod() {
+
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        eventBus.addListener(this::clientSetup);
+        eventBus.addListener(this::setup);
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event) {
+
+    }
+
+    private void setup(final FMLCommonSetupEvent event) {
+        PacketHandler.init();
+    }
+
+    @SubscribeEvent
+    public static void onServerStarting(RegisterCommandsEvent event) {
+
+    }
+
+}

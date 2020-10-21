@@ -5,7 +5,7 @@ Note: The package SekCore is used between a few of my projects (mostly unrelease
 [![](https://img.shields.io/github/contributors/sekwah41/Naruto-Mod.svg?style=for-the-badge&logo=github)](https://github.com/sekwah41/Naruto-Mod/graphs/contributors)
 [![](https://img.shields.io/github/issues/sekwah41/Naruto-Mod.svg?style=for-the-badge&logo=github)](https://github.com/sekwah41/Naruto-Mod/issues)
 [![](https://img.shields.io/github/issues-pr/sekwah41/Naruto-Mod.svg?style=for-the-badge&logo=github)](https://github.com/sekwah41/Naruto-Mod/pulls)
-[![](https://img.shields.io/github/forks/sekwah41/Naruto-Mod.svg?style=for-the-badge&logo=github)](https://github.com/sekwah41/Naruto-Mod/network/members)
+[![](https://img.shields.io/github/forks/sekwah41/Naruto-Mod.svg?style=for-the-badge&logo=github)](https://github.com/sekwah41/Naruto-Mod/com.sekwah.narutomod.network/members)
 [![](https://img.shields.io/github/stars/sekwah41/Naruto-Mod.svg?style=for-the-badge&logo=github)](https://github.com/sekwah41/Naruto-Mod/stargazers)
 
 
