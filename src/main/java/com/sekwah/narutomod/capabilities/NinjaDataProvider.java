@@ -1,35 +1,34 @@
 package com.sekwah.narutomod.capabilities;
 
-import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class NinjaDataProvider implements ICapabilitySerializable<INBT> {
+public class NinjaDataProvider implements ICapabilityProvider, ICapabilitySerializable<CompoundNBT> {
 
-    @CapabilityInject(INinjaData.class)
-    public static final Capability<INinjaData> NINJA_DATA = null;
+    private final INinjaData ninjaData = NarutoCapabilities.NINJA_DATA.getDefaultInstance();
 
-    private LazyOptional<INinjaData> instance = LazyOptional.of(NINJA_DATA::getDefaultInstance);
+    private final LazyOptional<INinjaData> optional = LazyOptional.of(() -> ninjaData);
 
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        return cap == NINJA_DATA ? instance.cast() : LazyOptional.empty();
+        return cap == NarutoCapabilities.NINJA_DATA ? optional.cast() : LazyOptional.empty();
     }
 
     @Override
-    public INBT serializeNBT() {
-        return NINJA_DATA.getStorage().writeNBT(NINJA_DATA, this.instance.orElse(null), null);
+    public CompoundNBT serializeNBT() {
+        return ninjaData.serializeNBT();
     }
 
     @Override
-    public void deserializeNBT(INBT nbt) {
-        NINJA_DATA.getStorage().readNBT(NINJA_DATA, this.instance.orElse(null), null, nbt);
+    public void deserializeNBT(CompoundNBT nbt) {
+        ninjaData.deserializeNBT(nbt);
     }
 }
