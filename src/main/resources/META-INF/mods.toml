@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[34,)"
+loaderVersion="[35,)"
 issueTrackerURL="https://github.com/sekwah41/Naruto-Mod/issues"
 license="All rights reserved"
 [[mods]]
@@ -16,7 +16,7 @@ license="All rights reserved"
 [[dependencies.narutomod]]
     modId="forge"
     mandatory=true
-    versionRange="[34,)"
+    versionRange="[35,)"
     ordering="NONE"
     side="BOTH"
 
@@ -24,6 +24,6 @@ license="All rights reserved"
 [[dependencies.narutomod]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.3]"
+    versionRange="[1.16.4]"
     ordering="NONE"
     side="BOTH"
