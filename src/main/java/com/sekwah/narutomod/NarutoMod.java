@@ -1,6 +1,8 @@
 package com.sekwah.narutomod;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
+import com.sekwah.narutomod.client.renderer.entity.NarutoEntityRenderers;
+import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.network.PacketHandler;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -29,10 +31,12 @@ public class NarutoMod {
 
         NarutoItems.register(eventBus);
         NarutoBlocks.register(eventBus);
+        NarutoEntities.register(eventBus);
     }
 
-    private void clientSetup(final FMLClientSetupEvent event) {
 
+    private void clientSetup(final FMLClientSetupEvent event) {
+        NarutoEntityRenderers.register();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
