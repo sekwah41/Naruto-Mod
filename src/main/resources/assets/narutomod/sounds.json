@@ -1,0 +1,7 @@
+{
+  "kunai_thud": {
+    "category": "neutral",
+    "sounds": ["narutomod:kunai_thud"],
+    "subtitle": "narutomod.subtitle.kunai_thud"
+  }
+}

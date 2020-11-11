@@ -32,6 +32,7 @@ public class NarutoMod {
         NarutoItems.register(eventBus);
         NarutoBlocks.register(eventBus);
         NarutoEntities.register(eventBus);
+        NarutoSounds.register(eventBus);
     }
 
 
