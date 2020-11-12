@@ -134,6 +134,10 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:' + project.forge_version
 
+    compile fg.deobf("curse.maven:neat:${project.neat_fileid}")
+
+    compile fg.deobf("curse.maven:hwyla:${project.hwyla_fileid}")
+
     //include('org.ow2.asm:asm-debug-all:5.2')
 
     // You may put jars on which you depend on in ./libs or you may define them like so..

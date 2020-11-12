@@ -1,13 +1,13 @@
 package com.sekwah.narutomod.network;
 
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.network.client.ClientTestPacket;
+import com.sekwah.narutomod.network.server.ServerTestPacket;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
-import com.sekwah.narutomod.network.client.ClientTestPacket;
-import com.sekwah.narutomod.network.server.ServerTestPacket;
 
 public class PacketHandler {
 
