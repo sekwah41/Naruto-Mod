@@ -1,4 +1,4 @@
-package com.sekwah.narutomod;
+package com.sekwah.narutomod.sounds;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;

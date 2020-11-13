@@ -5,6 +5,7 @@ import com.sekwah.narutomod.client.renderer.entity.NarutoEntityRenderers;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.network.PacketHandler;
+import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
