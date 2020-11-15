@@ -1,6 +1,7 @@
 package com.sekwah.narutomod;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
+import com.sekwah.narutomod.capabilities.CapabilityHandler;
 import com.sekwah.narutomod.client.renderer.entity.NarutoEntityRenderers;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
@@ -43,6 +44,7 @@ public class NarutoMod {
 
     private void setup(final FMLCommonSetupEvent event) {
         PacketHandler.init();
+        CapabilityHandler.register();
     }
 
     @SubscribeEvent
