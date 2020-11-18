@@ -34,12 +34,10 @@ public class KunaiItem extends Item {
 
         worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + 0.5F);
         if (!worldIn.isRemote) {
-            KunaiEntity kunaiEntity = new KunaiEntity(worldIn, playerIn);
+            AbstractArrowEntity kunaiEntity = createShootingEntity(worldIn, playerIn);
 
             kunaiEntity.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 3.0F, 1.0F);
-
-            kunaiEntity.pickupStatus = playerIn.abilities.isCreativeMode ?
-                    AbstractArrowEntity.PickupStatus.CREATIVE_ONLY: AbstractArrowEntity.PickupStatus.ALLOWED;
+            kunaiEntity.setDamage(2);
 
             worldIn.addEntity(kunaiEntity);
         }
@@ -51,6 +49,16 @@ public class KunaiItem extends Item {
 
         return ActionResult.func_233538_a_(usedItem, worldIn.isRemote);
 
+    }
+
+    public AbstractArrowEntity createShootingEntity(World worldIn, PlayerEntity playerIn) {
+
+        KunaiEntity entity = new KunaiEntity(worldIn, playerIn);
+
+        entity.pickupStatus = playerIn.abilities.isCreativeMode ?
+                AbstractArrowEntity.PickupStatus.CREATIVE_ONLY: AbstractArrowEntity.PickupStatus.ALLOWED;
+
+        return entity;
     }
 
     @Override

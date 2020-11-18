@@ -1,0 +1,6 @@
+{
+  "parent": "narutomod:item/kunai",
+  "textures": {
+    "layer0": "narutomod:items/explosive_kunai"
+  }
+}

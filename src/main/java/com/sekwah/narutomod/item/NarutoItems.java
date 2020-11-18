@@ -24,6 +24,9 @@ public class NarutoItems {
     public static final RegistryObject<Item> KUNAI = ITEMS.register("kunai", ()
             -> new KunaiItem(new Item.Properties().group(NINJA_WEAPONS)));
 
+    public static final RegistryObject<Item> EXPLOSIVE_KUNAI = ITEMS.register("explosive_kunai", ()
+            -> new ExplosiveKunaiItem(new Item.Properties().group(NINJA_WEAPONS)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

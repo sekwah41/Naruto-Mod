@@ -22,6 +22,10 @@ public class KunaiEntity extends AbstractArrowEntity {
         super(NarutoEntities.KUNAI.get(), shooter, worldIn);
     }
 
+    public KunaiEntity(EntityType<? extends KunaiEntity> kunaiEntityEntityType, LivingEntity shooter, World worldIn) {
+        super(kunaiEntityEntityType, shooter, worldIn);
+    }
+
     @Override
     protected SoundEvent getHitEntitySound() {
         return NarutoSounds.KUNAI_THUD.get();

@@ -7,6 +7,7 @@ public class NarutoEntityRenderers {
 
     public static void register() {
         RenderingRegistry.registerEntityRenderingHandler(NarutoEntities.KUNAI.get(), KunaiRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(NarutoEntities.EXPLOSIVE_KUNAI.get(), ExplosiveKunaiRenderer::new);
     }
 
 }
