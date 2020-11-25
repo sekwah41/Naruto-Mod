@@ -1,6 +1,7 @@
 {
   "item.narutomod.kunai":"Kunai",
+  "item.narutomod.shuriken":"Shuriken",
   "item.narutomod.explosive_kunai":"Explosive Kunai",
-  "narutomod.subtitle.kunai_thud": "Kunai Thud",
+  "narutomod.subtitle.kunai_thud": "Projectile Thud",
   "itemGroup.narutomod_weapons": "Ninja Weapons"
 }
