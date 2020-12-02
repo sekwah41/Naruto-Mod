@@ -1,5 +1,9 @@
 package com.sekwah.narutomod.item;
 
+import com.sekwah.narutomod.item.weapons.ExplosiveKunaiItem;
+import com.sekwah.narutomod.item.weapons.KunaiItem;
+import com.sekwah.narutomod.item.weapons.SenbonItem;
+import com.sekwah.narutomod.item.weapons.ShurikenItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -23,6 +27,9 @@ public class NarutoItems {
 
     public static final RegistryObject<Item> KUNAI = ITEMS.register("kunai", ()
             -> new KunaiItem(new Item.Properties().group(NINJA_WEAPONS)));
+
+    public static final RegistryObject<Item> SENBON = ITEMS.register("senbon", ()
+            -> new SenbonItem(new Item.Properties().group(NINJA_WEAPONS)));
 
     public static final RegistryObject<Item> EXPLOSIVE_KUNAI = ITEMS.register("explosive_kunai", ()
             -> new ExplosiveKunaiItem(new Item.Properties().group(NINJA_WEAPONS)));

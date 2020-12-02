@@ -1,7 +1,12 @@
 {
   "kunai_thud": {
     "category": "neutral",
-    "sounds": ["narutomod:kunai_thud"],
+    "sounds": ["narutomod:weapons/kunai_thud"],
     "subtitle": "narutomod.subtitle.kunai_thud"
+  },
+  "needle_hit": {
+    "category": "neutral",
+    "sounds": ["narutomod:weapons/needle_hit"],
+    "subtitle": "narutomod.subtitle.needle_hit"
   }
 }

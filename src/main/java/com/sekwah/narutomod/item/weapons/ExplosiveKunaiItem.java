@@ -1,7 +1,6 @@
-package com.sekwah.narutomod.item;
+package com.sekwah.narutomod.item.weapons;
 
 import com.sekwah.narutomod.entity.projectile.ExplosiveKunaiEntity;
-import com.sekwah.narutomod.entity.projectile.KunaiEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;

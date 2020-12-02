@@ -1,4 +1,4 @@
-package com.sekwah.narutomod.item;
+package com.sekwah.narutomod.item.weapons;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;

@@ -14,6 +14,8 @@ public class NarutoSounds {
 
     public static final RegistryObject<SoundEvent> KUNAI_THUD = register("kunai_thud");
 
+    public static final RegistryObject<SoundEvent> NEEDLE_HIT = register("needle_hit");
+
     private static RegistryObject<SoundEvent> register(String key) {
         return SOUNDS.register(key, () -> new SoundEvent(new ResourceLocation(MOD_ID, key)));
     }

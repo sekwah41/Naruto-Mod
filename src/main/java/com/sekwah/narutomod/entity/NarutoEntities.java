@@ -2,6 +2,7 @@ package com.sekwah.narutomod.entity;
 
 import com.sekwah.narutomod.entity.projectile.ExplosiveKunaiEntity;
 import com.sekwah.narutomod.entity.projectile.KunaiEntity;
+import com.sekwah.narutomod.entity.projectile.SenbonEntity;
 import com.sekwah.narutomod.entity.projectile.ShurikenEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -19,6 +20,9 @@ public class NarutoEntities {
 
     public static final RegistryObject<EntityType<KunaiEntity>> KUNAI = register("kunai",
             EntityType.Builder.<KunaiEntity>create(KunaiEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).trackingRange(8));
+
+    public static final RegistryObject<EntityType<SenbonEntity>> SENBON = register("senbon",
+            EntityType.Builder.<SenbonEntity>create(SenbonEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).trackingRange(8));
 
     public static final RegistryObject<EntityType<ExplosiveKunaiEntity>> EXPLOSIVE_KUNAI = register("explosive_kunai",
             EntityType.Builder.<ExplosiveKunaiEntity>create(ExplosiveKunaiEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).trackingRange(8));
