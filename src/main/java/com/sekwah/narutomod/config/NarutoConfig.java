@@ -6,10 +6,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 
-import java.util.Collections;
-import java.util.List;
-
-
 @Mod.EventBusSubscriber(modid = NarutoMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NarutoConfig {
 
@@ -32,7 +28,7 @@ public class NarutoConfig {
                 .define("kunaiExplosionBreakBlocks ", true);
 
         CONFIG_KUNAI_EXPLOSION_RADIUS = configBuilder.comment("Explosive Kunai explosion radius")
-                .defineInRange("kunaiExplosionRadius ",  3d ,  1d, 1000d);
+                .defineInRange("kunaiExplosionRadius ",  3d ,  1d, 100d);
 
         configBuilder.pop();
 
