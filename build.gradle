@@ -69,7 +69,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                narutomod {
                     source sourceSets.main
                 }
             }
@@ -86,7 +86,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                narutomod {
                     source sourceSets.main
                 }
             }
