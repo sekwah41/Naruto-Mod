@@ -34,9 +34,6 @@ public class NarutoItems {
     public static final RegistryObject<Item> SHURIKEN = ITEMS.register("shuriken", ()
             -> new ShurikenItem(new Item.Properties().group(NINJA_WEAPONS)));
 
-    public static final RegistryObject<Item> PAPER_BOMB = ITEMS.register("paper_bomb", ()
-            -> new PaperBombItem(new Item.Properties().group(NINJA_WEAPONS)));
-
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
