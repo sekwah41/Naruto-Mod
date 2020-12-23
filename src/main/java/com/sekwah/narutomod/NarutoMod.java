@@ -2,8 +2,7 @@ package com.sekwah.narutomod;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
-import com.sekwah.narutomod.client.renderer.block.NarutoRenderTypes;
-import com.sekwah.narutomod.client.renderer.entity.NarutoEntityRenderers;
+import com.sekwah.narutomod.client.renderer.NarutoRenderers;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
@@ -46,12 +45,13 @@ public class NarutoMod {
 
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        NarutoEntityRenderers.register();
-        NarutoRenderTypes.register();
+        NarutoRenderers.registerEntity();
+        NarutoRenderers.registerRenderTypes();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         PacketHandler.init();
+        NarutoBlocks.setFlammableData();
         NinjaCapabilityHandler.register();
     }
 

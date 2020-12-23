@@ -1,22 +1,30 @@
 package com.sekwah.narutomod.block.weapons;
 
 import com.sekwah.narutomod.block.NarutoBlockStates;
+import com.sekwah.narutomod.entity.item.PaperBombEntity;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFaceBlock;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.TNTEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class PaperBombBlock extends HorizontalFaceBlock {
@@ -44,6 +52,9 @@ public class PaperBombBlock extends HorizontalFaceBlock {
         this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(HIDDEN, Boolean.valueOf(false)).with(FACE, AttachFace.WALL));
     }
 
+    public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn) {
+        spawnPaperbomb(null, worldIn, pos, explosionIn.getExplosivePlacedBy(), true);
+    }
 
 
     @Override
@@ -85,15 +96,49 @@ public class PaperBombBlock extends HorizontalFaceBlock {
     }
 
     @Override
+    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+        if (worldIn.isBlockPowered(pos)) {
+            catchFire(state, worldIn, pos, null, null);
+            worldIn.removeBlock(pos, false);
+        }
+
+    }
+
+    @Override
     public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
         super.onBlockAdded(state, worldIn, pos, oldState, isMoving);
-        System.out.println("I AM HERE THINGS BE PLACING");
         worldIn.getPendingBlockTicks().scheduleTick(new BlockPos(pos), this, TRANSPARENT_DELAY);
     }
 
+    public void catchFire(BlockState state, World worldIn, BlockPos pos, @Nullable net.minecraft.util.Direction face, @Nullable LivingEntity igniter) {
+        spawnPaperbomb(state, worldIn, pos, igniter);
+    }
+
+
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if(!worldIn.isRemote) {
+            spawnPaperbomb(state, worldIn, pos, player);;
+            worldIn.removeBlock(pos, false);
+        }
+        return ActionResultType.func_233537_a_(worldIn.isRemote);
+    }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING, HIDDEN, FACE);
+    }
+
+    public void spawnPaperbomb(@Nullable BlockState state, World worldIn, BlockPos pos, @Nullable LivingEntity igniter) {
+        spawnPaperbomb(state, worldIn, pos, igniter, false);
+    }
+
+    public void spawnPaperbomb(@Nullable BlockState state, World worldIn, BlockPos pos, @Nullable LivingEntity igniter, boolean shortFuse) {
+        if (!worldIn.isRemote) {
+            PaperBombEntity paperBombEntity = new PaperBombEntity(worldIn, (double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D, igniter);
+            worldIn.addEntity(paperBombEntity);
+            if(shortFuse) {
+                paperBombEntity.setFuse((short)(worldIn.rand.nextInt(paperBombEntity.getFuse() / 8) + paperBombEntity.getFuse() / 16));
+            }
+        }
     }
 
 }

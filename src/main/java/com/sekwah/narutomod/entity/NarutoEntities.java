@@ -1,5 +1,6 @@
 package com.sekwah.narutomod.entity;
 
+import com.sekwah.narutomod.entity.item.PaperBombEntity;
 import com.sekwah.narutomod.entity.projectile.ExplosiveKunaiEntity;
 import com.sekwah.narutomod.entity.projectile.KunaiEntity;
 import com.sekwah.narutomod.entity.projectile.SenbonEntity;
@@ -29,6 +30,10 @@ public class NarutoEntities {
 
     public static final RegistryObject<EntityType<ShurikenEntity>> SHURIKEN = register("shuriken",
             EntityType.Builder.<ShurikenEntity>create(ShurikenEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).trackingRange(8));
+
+    // func_233608_b_ is updateInterval
+    public static final RegistryObject<EntityType<PaperBombEntity>> PAPER_BOMB = register("paper_bomb",
+            EntityType.Builder.<PaperBombEntity>create(PaperBombEntity::new, EntityClassification.MISC).immuneToFire().size(0.5F, 0.5F).trackingRange(10).func_233608_b_(10));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String key, EntityType.Builder<T> builder) {
         return ENTITIES.register(key, () -> builder.build(key));

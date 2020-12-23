@@ -9,9 +9,9 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = NarutoMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NarutoClientModEvents {
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void colorHandlerEvent(ColorHandlerEvent.Item event) {
         // Add color handlers here
-    }
+    }*/
 
 }

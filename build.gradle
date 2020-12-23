@@ -52,7 +52,7 @@ minecraft {
     // This is for personal local tests i was doing ignore it ;)
     //mappings channel: 'snapshot', version: '20200706-unofficialtest-1.16.1'
 
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
