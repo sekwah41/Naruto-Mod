@@ -6,9 +6,14 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFaceBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.TNTEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
@@ -49,7 +54,7 @@ public class PaperBombBlock extends HorizontalFaceBlock {
     // TODO interaction when exploded due to another explosion
     public PaperBombBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(HIDDEN, Boolean.valueOf(false)).with(FACE, AttachFace.WALL));
+        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(HIDDEN, Boolean.valueOf(false)).with(FACE, AttachFace.FLOOR));
     }
 
     public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn) {
@@ -123,6 +128,13 @@ public class PaperBombBlock extends HorizontalFaceBlock {
         return ActionResultType.func_233537_a_(worldIn.isRemote);
     }
 
+    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+        if(!worldIn.isRemote) {
+            spawnPaperbomb(state, worldIn, pos, entityIn instanceof LivingEntity ? (LivingEntity) entityIn : null, true);
+            worldIn.removeBlock(pos, false);
+        }
+    }
+
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING, HIDDEN, FACE);
     }
@@ -136,7 +148,7 @@ public class PaperBombBlock extends HorizontalFaceBlock {
             PaperBombEntity paperBombEntity = new PaperBombEntity(worldIn, (double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D, igniter);
             worldIn.addEntity(paperBombEntity);
             if(shortFuse) {
-                paperBombEntity.setFuse((short)(worldIn.rand.nextInt(paperBombEntity.getFuse() / 8) + paperBombEntity.getFuse() / 16));
+                paperBombEntity.setFuse((short)(paperBombEntity.getFuse() / 32));
             }
         }
     }
