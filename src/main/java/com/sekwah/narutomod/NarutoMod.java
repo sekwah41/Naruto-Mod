@@ -30,7 +30,7 @@ public class NarutoMod {
     public NarutoMod() {
 
         ModLoadingContext loadingContext = ModLoadingContext.get();
-        loadingContext.registerConfig(ModConfig.Type.COMMON, NarutoConfig.SERVER_CONFIG, "naruto-mod.toml");
+        loadingContext.registerConfig(ModConfig.Type.COMMON, NarutoConfig.MOD_CONFIG, "naruto-mod.toml");
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 

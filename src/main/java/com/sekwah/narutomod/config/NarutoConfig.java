@@ -11,7 +11,7 @@ public class NarutoConfig {
 
     public static final String CATEGORY_WEAPONS = "weapons";
 
-    public static final ForgeConfigSpec SERVER_CONFIG;
+    public static final ForgeConfigSpec MOD_CONFIG;
 
     private static final ForgeConfigSpec.BooleanValue CONFIG_KUNAI_BLOCK_DAMAGE;
     public static boolean KUNAI_BLOCK_DAMAGE;
@@ -22,7 +22,7 @@ public class NarutoConfig {
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
 
-        configBuilder.comment("Server side variable allowing transparent skins to be set.").push(CATEGORY_WEAPONS);
+        configBuilder.comment("Variables for weapons").push(CATEGORY_WEAPONS);
 
         CONFIG_KUNAI_BLOCK_DAMAGE = configBuilder.comment("Explosive Kunai block damage")
                 .define("kunaiExplosionBreakBlocks ", true);
@@ -32,7 +32,7 @@ public class NarutoConfig {
 
         configBuilder.pop();
 
-        SERVER_CONFIG = configBuilder.build();
+        MOD_CONFIG = configBuilder.build();
     }
 
     public static void loadVariables() {
