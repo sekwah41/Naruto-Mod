@@ -8,12 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.TNTEntity;
-import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
@@ -145,7 +140,9 @@ public class PaperBombBlock extends HorizontalFaceBlock {
 
     public void spawnPaperbomb(@Nullable BlockState state, World worldIn, BlockPos pos, @Nullable LivingEntity igniter, boolean shortFuse) {
         if (!worldIn.isRemote) {
-            PaperBombEntity paperBombEntity = new PaperBombEntity(worldIn, (double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D, igniter);
+            PaperBombEntity paperBombEntity = new PaperBombEntity(worldIn,
+                    (double)pos.getX() + 0.5D, pos.getY(),(double)pos.getZ() + 0.5D,
+                    igniter, Direction.EAST, AttachFace.CEILING, null);
             worldIn.addEntity(paperBombEntity);
             if(shortFuse) {
                 paperBombEntity.setFuse((short)(paperBombEntity.getFuse() / 32));

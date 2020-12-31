@@ -1,5 +1,7 @@
 package com.sekwah.narutomod.util;
 
+import net.minecraft.state.properties.AttachFace;
+
 import java.awt.Color;
 
 public class Util {

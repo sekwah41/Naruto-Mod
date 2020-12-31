@@ -102,10 +102,10 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'narutomod', '--all', '--output', file('src/generated/resources/')
 
             mods {
-                examplemod {
+                narutomod {
                     source sourceSets.main
                 }
             }

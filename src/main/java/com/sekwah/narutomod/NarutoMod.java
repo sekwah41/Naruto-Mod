@@ -4,6 +4,7 @@ import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.client.renderer.NarutoRenderers;
 import com.sekwah.narutomod.config.NarutoConfig;
+import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.network.PacketHandler;
@@ -40,6 +41,7 @@ public class NarutoMod {
         NarutoItems.register(eventBus);
         NarutoBlocks.register(eventBus);
         NarutoEntities.register(eventBus);
+        NarutoDataSerialisers.register(eventBus);
         NarutoSounds.register(eventBus);
     }
 
