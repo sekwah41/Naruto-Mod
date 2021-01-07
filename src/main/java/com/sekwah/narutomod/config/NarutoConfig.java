@@ -17,7 +17,13 @@ public class NarutoConfig {
     public static boolean KUNAI_BLOCK_DAMAGE;
 
     private static final ForgeConfigSpec.DoubleValue CONFIG_KUNAI_EXPLOSION_RADIUS;
-    public static double KUNAI_EXPLOSION_RADIUS;
+    public static float KUNAI_EXPLOSION_RADIUS;
+
+    private static final ForgeConfigSpec.DoubleValue CONFIG_PAPERBOMB_EXPLOSION_RADIUS;
+    public static float PAPERBOMB_EXPLOSION_RADIUS;
+
+    private static final ForgeConfigSpec.BooleanValue CONFIG_PAPERBOMB_BLOCK_DAMAGE;
+    public static boolean PAPERBOMB_BLOCK_DAMAGE;
 
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
@@ -30,6 +36,12 @@ public class NarutoConfig {
         CONFIG_KUNAI_EXPLOSION_RADIUS = configBuilder.comment("Explosive Kunai explosion radius")
                 .defineInRange("kunaiExplosionRadius ",  3d ,  1d, 100d);
 
+        CONFIG_PAPERBOMB_EXPLOSION_RADIUS = configBuilder.comment("Paper Bomb explosion radius")
+                .defineInRange("paperBombExplosionRadius ",  4.0F ,  1d, 100d);
+
+        CONFIG_PAPERBOMB_BLOCK_DAMAGE = configBuilder.comment("Paper Bomb block damage")
+                .define("paperBombExplosionBreakBlocks ", true);
+
         configBuilder.pop();
 
         MOD_CONFIG = configBuilder.build();
@@ -37,7 +49,9 @@ public class NarutoConfig {
 
     public static void loadVariables() {
         KUNAI_BLOCK_DAMAGE = CONFIG_KUNAI_BLOCK_DAMAGE.get();
-        KUNAI_EXPLOSION_RADIUS = CONFIG_KUNAI_EXPLOSION_RADIUS.get();
+        KUNAI_EXPLOSION_RADIUS = CONFIG_KUNAI_EXPLOSION_RADIUS.get().floatValue();
+        PAPERBOMB_EXPLOSION_RADIUS = CONFIG_PAPERBOMB_EXPLOSION_RADIUS.get().floatValue();
+        PAPERBOMB_BLOCK_DAMAGE = CONFIG_PAPERBOMB_BLOCK_DAMAGE.get();
     }
 
     @SubscribeEvent

@@ -43,7 +43,7 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
     }
 
     public static void explodeKunai(Entity entity) {
-        entity.world.createExplosion(null, entity.getPosX(), entity.getPosY(), entity.getPosZ(), (float) NarutoConfig.KUNAI_EXPLOSION_RADIUS,
+        entity.world.createExplosion(null, entity.getPosX(), entity.getPosY(), entity.getPosZ(), NarutoConfig.KUNAI_EXPLOSION_RADIUS,
                 NarutoConfig.KUNAI_BLOCK_DAMAGE ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
     }
 

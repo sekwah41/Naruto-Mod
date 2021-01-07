@@ -1,15 +1,14 @@
 package com.sekwah.narutomod.entity.item;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
+import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
-import com.sekwah.narutomod.util.StateUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.TNTEntity;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -17,6 +16,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
@@ -28,9 +28,6 @@ public class PaperBombEntity extends TNTEntity {
     private static final DataParameter<Direction> ROTATION = EntityDataManager.createKey(PaperBombEntity.class, NarutoDataSerialisers.BLOCK_DIRECTION);
     private static final DataParameter<AttachFace> VERT_ROT = EntityDataManager.createKey(PaperBombEntity.class, NarutoDataSerialisers.ATTACH_FACE);
     protected static final DataParameter<BlockPos> ORIGIN = EntityDataManager.createKey(PaperBombEntity.class, DataSerializers.BLOCK_POS);
-
-    private static final String ROTATION_NBT = "Rotation";
-    private static final String VERT_ROTATION_NBT = "Vert_Rotation";
 
     private BlockPos anchorLoc;
 
@@ -131,6 +128,13 @@ public class PaperBombEntity extends TNTEntity {
                     .with(HIDDEN, Boolean.valueOf(false))
                     .with(FACE, this.getVertRotation());
         }
+    }
+
+    @Override
+    protected void explode() {
+        this.world.createExplosion(this, this.getPosX(), this.getPosYHeight(0.0625D), this.getPosZ(),
+                NarutoConfig.PAPERBOMB_EXPLOSION_RADIUS,
+                NarutoConfig.PAPERBOMB_BLOCK_DAMAGE ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
     }
 
     @Override
