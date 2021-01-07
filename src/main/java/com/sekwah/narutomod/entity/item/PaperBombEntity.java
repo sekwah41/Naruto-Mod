@@ -29,8 +29,6 @@ public class PaperBombEntity extends TNTEntity {
     private static final DataParameter<AttachFace> VERT_ROT = EntityDataManager.createKey(PaperBombEntity.class, NarutoDataSerialisers.ATTACH_FACE);
     protected static final DataParameter<BlockPos> ORIGIN = EntityDataManager.createKey(PaperBombEntity.class, DataSerializers.BLOCK_POS);
 
-    protected static final DataParameter<Boolean> ANCHORED = EntityDataManager.createKey(PaperBombEntity.class, DataSerializers.BOOLEAN);
-
     private static final String ROTATION_NBT = "Rotation";
     private static final String VERT_ROTATION_NBT = "Vert_Rotation";
 
@@ -42,20 +40,20 @@ public class PaperBombEntity extends TNTEntity {
         super(type, worldIn);
     }
 
-    public PaperBombEntity(World worldIn, double x, int y, double z, LivingEntity igniter,
+    public PaperBombEntity(World worldIn, double x, double y, double z, LivingEntity igniter,
                            Direction direction, AttachFace face, BlockPos anchorTo) {
         this(worldIn, x, y, z, igniter);
         this.anchorLoc = anchorTo;
         this.setRotation(direction);
         this.setVertRotation(face);
+        this.setAnchored(!this.isAnchoredBlockAir());
     }
 
-    public PaperBombEntity(World worldIn, double x, int y, double z, LivingEntity igniter) {
+    public PaperBombEntity(World worldIn, double x, double y, double z, LivingEntity igniter) {
         this(NarutoEntities.PAPER_BOMB.get(), worldIn);
         this.setPosition(x, y, z);
         double d0 = worldIn.rand.nextDouble() * (double)((float)Math.PI * 2F);
         //this.setMotion(-Math.sin(d0) * 0.02D, (double)0.2F, -Math.cos(d0) * 0.02D);
-        this.setFuse(80000);
         this.prevPosX = x;
         this.prevPosY = y;
         this.prevPosZ = z;
@@ -68,7 +66,6 @@ public class PaperBombEntity extends TNTEntity {
         this.dataManager.register(ROTATION, Direction.NORTH);
         this.dataManager.register(VERT_ROT, AttachFace.FLOOR);
         this.dataManager.register(ORIGIN, BlockPos.ZERO);
-        this.dataManager.register(ANCHORED, false);
     }
 
     public void setOrigin(BlockPos origin) {
@@ -95,12 +92,35 @@ public class PaperBombEntity extends TNTEntity {
         this.dataManager.set(VERT_ROT, rotation);
     }
 
-    public boolean getAnchored() {
-        return this.dataManager.get(ANCHORED);
+    @Override
+    public void tick() {
+        super.tick();
+        if(!world.isRemote()) {
+            if(anchorLoc != null) {
+                if (this.isAnchoredBlockAir()) {
+                    this.setAnchored(false);
+                }
+            }
+            if((anchorLoc == null && this.hasNoGravity())
+                    || (this.prevPosX != this.getPosX()
+                    || this.prevPosY != this.getPosY()
+                    || this.prevPosZ != this.getPosZ())) {
+                this.setAnchored(false);
+            }
+        }
+    }
+
+    public boolean isAnchoredBlockAir() {
+        BlockState state = this.world.getBlockState(anchorLoc);
+        return state.getBlock().isAir(state, world, anchorLoc);
     }
 
     public void setAnchored(boolean anchored) {
-        this.dataManager.set(ANCHORED, anchored);
+        if(!anchored) {
+            anchorLoc = null;
+            this.setVertRotation(AttachFace.FLOOR);
+        }
+        this.setNoGravity(anchored);
     }
 
     public void notifyDataManagerChange(DataParameter<?> key) {
@@ -111,20 +131,6 @@ public class PaperBombEntity extends TNTEntity {
                     .with(HIDDEN, Boolean.valueOf(false))
                     .with(FACE, this.getVertRotation());
         }
-    }
-
-    @Override
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        compound.putByte(ROTATION_NBT, (byte) this.getRotation().getIndex());
-        compound.putByte(VERT_ROTATION_NBT, StateUtils.faceToByte(this.getVertRotation()));
-    }
-
-    @Override
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        this.setRotation(Direction.byHorizontalIndex(compound.getByte(ROTATION_NBT)));
-        this.setVertRotation(StateUtils.byteToFace(compound.getByte(VERT_ROTATION_NBT)));
     }
 
     @Override

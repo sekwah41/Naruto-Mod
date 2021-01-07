@@ -2,6 +2,7 @@ package com.sekwah.narutomod.block.weapons;
 
 import com.sekwah.narutomod.block.NarutoBlockStates;
 import com.sekwah.narutomod.entity.item.PaperBombEntity;
+import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,13 +13,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -140,10 +140,39 @@ public class PaperBombBlock extends HorizontalFaceBlock {
 
     public void spawnPaperbomb(@Nullable BlockState state, World worldIn, BlockPos pos, @Nullable LivingEntity igniter, boolean shortFuse) {
         if (!worldIn.isRemote) {
+            Direction dir = state != null ? state.get(HORIZONTAL_FACING) : Direction.NORTH;
+            Vector3i dirVec = dir.getDirectionVec();
+            AttachFace face = state != null ? state.get(FACE) : AttachFace.FLOOR;
+
+            BlockPos attachBlock;
+
+            double xOffset = 0.5D;
+            double yOffset = 0;
+            double zOffset = 0.5D;
+
+            if(face.equals(AttachFace.CEILING)) {
+                yOffset += 0.5;
+
+                attachBlock = pos.up();
+            }
+            else if(face.equals(AttachFace.WALL)) {
+                attachBlock = pos.subtract(dirVec);
+                yOffset += 0.25;
+                xOffset -= 0.25D * dirVec.getX();
+                zOffset -= 0.25D * dirVec.getZ();
+            }
+            else {
+                attachBlock = pos.down();
+            }
+
+
             PaperBombEntity paperBombEntity = new PaperBombEntity(worldIn,
-                    (double)pos.getX() + 0.5D, pos.getY(),(double)pos.getZ() + 0.5D,
-                    igniter, Direction.EAST, AttachFace.CEILING, null);
+                    (double)pos.getX() + xOffset, (double)pos.getY() + yOffset,(double)pos.getZ() + zOffset,
+                    igniter, dir, face, attachBlock);
             worldIn.addEntity(paperBombEntity);
+
+            worldIn.playSound(null, paperBombEntity.getPosX(), paperBombEntity.getPosY(), paperBombEntity.getPosZ(), NarutoSounds.SIZZLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+
             if(shortFuse) {
                 paperBombEntity.setFuse((short)(paperBombEntity.getFuse() / 32));
             }

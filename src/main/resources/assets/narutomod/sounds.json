@@ -10,7 +10,7 @@
     "subtitle": "narutomod.subtitle.needle_hit"
   },
   "sizzle": {
-    "category": "neutral",
+    "category": "block",
     "sounds": ["narutomod:weapons/sizzle"],
     "subtitle": "narutomod.subtitle.sizzle"
   }
