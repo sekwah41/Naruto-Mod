@@ -40,6 +40,7 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
 
         if(!this.world.isRemote)
             explodeKunai(this);
+            this.setDead();
     }
 
     public static void explodeKunai(Entity entity) {
