@@ -171,10 +171,11 @@ public class PaperBombBlock extends HorizontalFaceBlock {
                     igniter, dir, face, attachBlock);
             worldIn.addEntity(paperBombEntity);
 
-            worldIn.playSound(null, paperBombEntity.getPosX(), paperBombEntity.getPosY(), paperBombEntity.getPosZ(), NarutoSounds.SIZZLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
-
             if(shortFuse) {
                 paperBombEntity.setFuse((short)(paperBombEntity.getFuse() / 32));
+            }
+            else {
+                worldIn.playSound(null, paperBombEntity.getPosX(), paperBombEntity.getPosY(), paperBombEntity.getPosZ(), NarutoSounds.SIZZLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
         }
     }
