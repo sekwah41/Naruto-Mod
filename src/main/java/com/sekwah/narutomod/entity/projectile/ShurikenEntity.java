@@ -1,14 +1,11 @@
 package com.sekwah.narutomod.entity.projectile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.sounds.NarutoSounds;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.SoundEvent;

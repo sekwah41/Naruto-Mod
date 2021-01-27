@@ -20,6 +20,7 @@ public class SenbonRenderer extends ArrowRenderer<SenbonEntity> {
       super(manager);
    }
 
+   @Override
    public void render(SenbonEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
       matrixStackIn.push();
       matrixStackIn.rotate(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationYaw, entityIn.rotationYaw) - 90.0F));

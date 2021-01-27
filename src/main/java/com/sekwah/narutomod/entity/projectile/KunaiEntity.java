@@ -1,8 +1,8 @@
 package com.sekwah.narutomod.entity.projectile;
 
-import com.sekwah.narutomod.sounds.NarutoSounds;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
+import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;

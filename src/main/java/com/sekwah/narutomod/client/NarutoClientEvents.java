@@ -15,7 +15,7 @@ public class NarutoClientEvents {
      */
     @SubscribeEvent
     public static void playerRenderEvent(RenderPlayerEvent.Pre event) {
-        event.setCanceled(true);
+        //event.setCanceled(true);
     }
 
 }

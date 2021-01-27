@@ -1,15 +1,11 @@
 package com.sekwah.narutomod.item.weapons;
 
-import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.sekwah.narutomod.entity.projectile.KunaiEntity;
 import com.sekwah.narutomod.entity.projectile.ShurikenEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;

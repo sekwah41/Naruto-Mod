@@ -58,6 +58,7 @@ public class PaperBombEntity extends TNTEntity {
         this.setOrigin(this.getPosition());
     }
 
+    @Override
     protected void registerData() {
         super.registerData();
         this.dataManager.register(ROTATION, Direction.NORTH);
@@ -120,6 +121,7 @@ public class PaperBombEntity extends TNTEntity {
         this.setNoGravity(anchored);
     }
 
+    @Override
     public void notifyDataManagerChange(DataParameter<?> key) {
         super.notifyDataManagerChange(key);
         if((ROTATION.equals(key) || VERT_ROT.equals(key)) && this.world.isRemote) {

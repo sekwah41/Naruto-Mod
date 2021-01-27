@@ -13,7 +13,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -52,6 +55,7 @@ public class PaperBombBlock extends HorizontalFaceBlock {
         this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(HIDDEN, Boolean.valueOf(false)).with(FACE, AttachFace.FLOOR));
     }
 
+    @Override
     public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn) {
         spawnPaperbomb(null, worldIn, pos, explosionIn.getExplosivePlacedBy(), true);
     }
@@ -110,19 +114,21 @@ public class PaperBombBlock extends HorizontalFaceBlock {
         worldIn.getPendingBlockTicks().scheduleTick(new BlockPos(pos), this, TRANSPARENT_DELAY);
     }
 
+    @Override
     public void catchFire(BlockState state, World worldIn, BlockPos pos, @Nullable net.minecraft.util.Direction face, @Nullable LivingEntity igniter) {
         spawnPaperbomb(state, worldIn, pos, igniter);
     }
 
-
+    @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(!worldIn.isRemote) {
-            spawnPaperbomb(state, worldIn, pos, player);;
+            spawnPaperbomb(state, worldIn, pos, player);
             worldIn.removeBlock(pos, false);
         }
         return ActionResultType.func_233537_a_(worldIn.isRemote);
     }
 
+    @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if(!worldIn.isRemote) {
             spawnPaperbomb(state, worldIn, pos, entityIn instanceof LivingEntity ? (LivingEntity) entityIn : null, true);
@@ -130,6 +136,7 @@ public class PaperBombBlock extends HorizontalFaceBlock {
         }
     }
 
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING, HIDDEN, FACE);
     }

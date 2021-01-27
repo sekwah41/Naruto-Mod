@@ -59,7 +59,7 @@ public class NarutoMod {
 
     @SubscribeEvent
     public static void onServerStarting(RegisterCommandsEvent event) {
-
+        // TODO we haven't implemented server stuff yet
     }
 
 }

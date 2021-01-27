@@ -1,6 +1,9 @@
 package com.sekwah.narutomod.item;
 
-import com.sekwah.narutomod.item.weapons.*;
+import com.sekwah.narutomod.item.weapons.ExplosiveKunaiItem;
+import com.sekwah.narutomod.item.weapons.KunaiItem;
+import com.sekwah.narutomod.item.weapons.SenbonItem;
+import com.sekwah.narutomod.item.weapons.ShurikenItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

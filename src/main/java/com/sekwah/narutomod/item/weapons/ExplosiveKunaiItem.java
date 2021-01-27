@@ -15,6 +15,7 @@ public class ExplosiveKunaiItem extends KunaiItem {
         super(properties);
     }
 
+    @Override
     public AbstractArrowEntity createShootingEntity(World worldIn, PlayerEntity playerIn) {
         return new ExplosiveKunaiEntity(worldIn, playerIn);
     }

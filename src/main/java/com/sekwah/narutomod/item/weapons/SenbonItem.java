@@ -2,7 +2,6 @@ package com.sekwah.narutomod.item.weapons;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.sekwah.narutomod.entity.projectile.KunaiEntity;
 import com.sekwah.narutomod.entity.projectile.SenbonEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
