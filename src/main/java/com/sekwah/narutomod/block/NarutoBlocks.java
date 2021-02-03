@@ -24,11 +24,12 @@ public class NarutoBlocks {
     public static final RegistryObject<Item> ITEM_PAPER_BOMB = BLOCK_ITEMS.register("paper_bomb", ()
             -> new BlockItem(PAPER_BOMB.get(), new Item.Properties().group(NarutoItems.NINJA_WEAPONS)));
 
-//    public static final RegistryObject<Block> BONSAI_TREE = BLOCKS.register("bonsai_tree",
-//            () -> new Block(AbstractBlock.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
-//
-//    public static final RegistryObject<Item> ITEM_BONSAI_TREE = BLOCK_ITEMS.register("bonsai_tree", ()
-//            -> new BlockItem(BONSAI_TREE.get(), new Item.Properties().group(NarutoItems.NINJA_WEAPONS)));
+    public static final RegistryObject<Block> BONSAI_TREE = BLOCKS.register("bonsai_tree",
+            () -> new RotatableDecorativeBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).notSolid().hardnessAndResistance(0.5F).sound(SoundType.PLANT)
+                    , Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)));
+
+    public static final RegistryObject<Item> ITEM_BONSAI_TREE = BLOCK_ITEMS.register("bonsai_tree", ()
+            -> new BlockItem(BONSAI_TREE.get(), new Item.Properties().group(NarutoItems.NINJA_WEAPONS)));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

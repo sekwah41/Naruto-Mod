@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "narutomod:block/bonsai_tree"
+    },
+    "facing=south": {
+      "model": "narutomod:block/bonsai_tree",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "narutomod:block/bonsai_tree",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "narutomod:block/bonsai_tree",
+      "y": 270
     }
   }
 }
