@@ -27,3 +27,10 @@ license="All rights reserved"
     versionRange="[1.16.1,)"
     ordering="NONE"
     side="BOTH"
+
+[[dependencies.narutomod]]
+    modId="sekclib"
+    mandatory=true
+    versionRange="[0.1.0,)"
+    ordering="NONE"
+    side="BOTH"

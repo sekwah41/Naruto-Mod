@@ -9,6 +9,7 @@ import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.sounds.NarutoSounds;
+import com.sekwah.sekclib.datamanager.CustomDataManager;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -43,6 +44,8 @@ public class NarutoMod {
         NarutoEntities.register(eventBus);
         NarutoDataSerialisers.register(eventBus);
         NarutoSounds.register(eventBus);
+
+        new CustomDataManager();
     }
 
 

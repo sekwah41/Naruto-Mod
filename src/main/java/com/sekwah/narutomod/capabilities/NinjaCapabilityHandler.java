@@ -31,12 +31,26 @@ public class NinjaCapabilityHandler {
     public static void playerClone(PlayerEvent.Clone event) {
         // TODO need to implement copying data
     }
+
+    /**
+     * Server side event
+     * @param event
+     */
     @SubscribeEvent
     public static void playerTracking(PlayerEvent.StartTracking event) {
+        // TODO triggers on any entity. trigger on players send over the original data
+    }
+
+    /**
+     * Server side event
+     * @param event
+     */
+    @SubscribeEvent
+    public static void playerStopTracking(PlayerEvent.StopTracking event) {
         // TODO trigger on players send over the original data
     }
 
-    public static final EntitySize STANDING_SIZE = EntitySize.flexible(0.1F, 0.1F);
+    //public static final EntitySize STANDING_SIZE = EntitySize.flexible(0.1F, 0.1F);
 
     // For things like the transformation jutsus (make sure to trigger it manually when you change)
     @SubscribeEvent
