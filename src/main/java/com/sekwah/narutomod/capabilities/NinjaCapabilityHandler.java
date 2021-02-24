@@ -30,6 +30,11 @@ public class NinjaCapabilityHandler {
     @SubscribeEvent
     public static void playerClone(PlayerEvent.Clone event) {
         // TODO need to implement copying data
+        event.getOriginal().getCapability(NarutoCapabilities.NINJA_DATA).ifPresent(original -> {
+            event.getPlayer().getCapability(NarutoCapabilities.NINJA_DATA).ifPresent(future -> {
+                future.deserializeNBT(original.serializeNBT());
+            });
+        });
     }
 
     /**
