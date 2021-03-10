@@ -26,20 +26,19 @@ public class KunaiEntity extends AbstractArrowEntity {
         super(kunaiEntityEntityType, shooter, worldIn);
     }
 
-    @Override
-    protected SoundEvent getHitEntitySound() {
+    protected SoundEvent getDefaultHitGroundSoundEvent() {
         return NarutoSounds.KUNAI_THUD.get();
     }
 
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(NarutoItems.KUNAI.get());
     }
 }

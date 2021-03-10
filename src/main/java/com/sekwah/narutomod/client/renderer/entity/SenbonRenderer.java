@@ -22,34 +22,36 @@ public class SenbonRenderer extends ArrowRenderer<SenbonEntity> {
 
    @Override
    public void render(SenbonEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-      matrixStackIn.push();
-      matrixStackIn.rotate(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationYaw, entityIn.rotationYaw) - 90.0F));
-      matrixStackIn.rotate(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationPitch, entityIn.rotationPitch)));
+      matrixStackIn.pushPose();
+      matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.yRotO, entityIn.yRot) - 90.0F));
+      matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.xRotO, entityIn.xRot)));
       matrixStackIn.scale(0.5f, 0.5f, 0.5f);
 
-      matrixStackIn.rotate(Vector3f.XP.rotationDegrees(45.0F));
+      matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(45.0F));
       matrixStackIn.scale(0.05625F, 0.05625F, 0.05625F);
       matrixStackIn.translate(-4.0D, 0.0D, 0.0D);
-      IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.getEntityCutout(this.getEntityTexture(entityIn)));
-      MatrixStack.Entry matrixstack$entry = matrixStackIn.getLast();
-      Matrix4f matrix4f = matrixstack$entry.getMatrix();
-      Matrix3f matrix3f = matrixstack$entry.getNormal();
+      IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.entityCutout(this.getTextureLocation(entityIn)));
+      MatrixStack.Entry matrixstack$entry = matrixStackIn.last();
+      Matrix4f matrix4f = matrixstack$entry.pose();
+      Matrix3f matrix3f = matrixstack$entry.normal();
 
       for(int j = 0; j < 4; ++j) {
-         matrixStackIn.rotate(Vector3f.XP.rotationDegrees(90.0F));
-         this.drawVertex(matrix4f, matrix3f, ivertexbuilder, -8, -2, 0, 0.0F, 0.0F, 0, 1, 0, packedLightIn);
-         this.drawVertex(matrix4f, matrix3f, ivertexbuilder, 8, -2, 0, 0.5F, 0.0F, 0, 1, 0, packedLightIn);
-         this.drawVertex(matrix4f, matrix3f, ivertexbuilder, 8, 2, 0, 0.5F, 0.15625F, 0, 1, 0, packedLightIn);
-         this.drawVertex(matrix4f, matrix3f, ivertexbuilder, -8, 2, 0, 0.0F, 0.15625F, 0, 1, 0, packedLightIn);
+         matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+         this.vertex(matrix4f, matrix3f, ivertexbuilder, -8, -2, 0, 0.0F, 0.0F, 0, 1, 0, packedLightIn);
+         this.vertex(matrix4f, matrix3f, ivertexbuilder, 8, -2, 0, 0.5F, 0.0F, 0, 1, 0, packedLightIn);
+         this.vertex(matrix4f, matrix3f, ivertexbuilder, 8, 2, 0, 0.5F, 0.15625F, 0, 1, 0, packedLightIn);
+         this.vertex(matrix4f, matrix3f, ivertexbuilder, -8, 2, 0, 0.0F, 0.15625F, 0, 1, 0, packedLightIn);
       }
 
-      matrixStackIn.pop();
+      matrixStackIn.popPose();
    }
 
-      /**
-       * Returns the location of an entity's texture.
-       */
-   public ResourceLocation getEntityTexture(SenbonEntity entity) {
+
+   /**
+    * Returns the location of an entity's texture.
+    */
+   @Override
+   public ResourceLocation getTextureLocation(SenbonEntity entity) {
       return RES_ARROW;
    }
 }

@@ -40,31 +40,31 @@ public class PaperBombBlock extends HorizontalFaceBlock {
 
     protected static final int TRANSPARENT_DELAY = 5 * 20;
 
-    protected static final VoxelShape AABB_CEILING_X = Block.makeCuboidShape(8.0D - (LENGTH / 2D), 16, 8.0D - (WIDTH / 2D), 8.0D + (LENGTH / 2D), 16D - HEIGHT, 8.0D + (WIDTH / 2D));
-    protected static final VoxelShape AABB_CEILING_Z = Block.makeCuboidShape(8.0D - (WIDTH / 2D), 16, 8.0D - (LENGTH / 2D), 8.0D + (WIDTH / 2D), 16D - HEIGHT, 8.0D + (LENGTH / 2D));
-    protected static final VoxelShape AABB_FLOOR_X = Block.makeCuboidShape(8.0D - (LENGTH / 2D), 0, 8.0D - (WIDTH / 2D), 8.0D + (LENGTH / 2D), HEIGHT, 8.0D + (WIDTH / 2D));
-    protected static final VoxelShape AABB_FLOOR_Z = Block.makeCuboidShape(8.0D - (WIDTH / 2D), 0, 8.0D - (LENGTH / 2D), 8.0D + (WIDTH / 2D), HEIGHT, 8.0D + (LENGTH / 2D));
-    protected static final VoxelShape AABB_NORTH = Block.makeCuboidShape(8.0D - (WIDTH / 2D), 8.0D - (LENGTH / 2D), 16.0D - HEIGHT, 8.0D + (WIDTH / 2D), 8.0D + (LENGTH / 2D), 16.0D);
-    protected static final VoxelShape AABB_SOUTH = Block.makeCuboidShape(8.0D - (WIDTH / 2D), 8.0D - (LENGTH / 2D), HEIGHT, 8.0D + (WIDTH / 2D), 8.0D + (LENGTH / 2D), 0.0D);
-    protected static final VoxelShape AABB_WEST = Block.makeCuboidShape(16.0D - HEIGHT, 8.0D - (LENGTH / 2D), 8.0D - (WIDTH / 2D), 16.0D, 8.0D + (LENGTH / 2D), 8.0D + (WIDTH / 2D));
-    protected static final VoxelShape AABB_EAST = Block.makeCuboidShape(HEIGHT, 8.0D - (LENGTH / 2D), 8.0D - (WIDTH / 2D), 0D, 8.0D + (LENGTH / 2D), 8.0D + (WIDTH / 2D));
+    protected static final VoxelShape AABB_CEILING_X = Block.box(8.0D - (LENGTH / 2D), 16, 8.0D - (WIDTH / 2D), 8.0D + (LENGTH / 2D), 16D - HEIGHT, 8.0D + (WIDTH / 2D));
+    protected static final VoxelShape AABB_CEILING_Z = Block.box(8.0D - (WIDTH / 2D), 16, 8.0D - (LENGTH / 2D), 8.0D + (WIDTH / 2D), 16D - HEIGHT, 8.0D + (LENGTH / 2D));
+    protected static final VoxelShape AABB_FLOOR_X = Block.box(8.0D - (LENGTH / 2D), 0, 8.0D - (WIDTH / 2D), 8.0D + (LENGTH / 2D), HEIGHT, 8.0D + (WIDTH / 2D));
+    protected static final VoxelShape AABB_FLOOR_Z = Block.box(8.0D - (WIDTH / 2D), 0, 8.0D - (LENGTH / 2D), 8.0D + (WIDTH / 2D), HEIGHT, 8.0D + (LENGTH / 2D));
+    protected static final VoxelShape AABB_NORTH = Block.box(8.0D - (WIDTH / 2D), 8.0D - (LENGTH / 2D), 16.0D - HEIGHT, 8.0D + (WIDTH / 2D), 8.0D + (LENGTH / 2D), 16.0D);
+    protected static final VoxelShape AABB_SOUTH = Block.box(8.0D - (WIDTH / 2D), 8.0D - (LENGTH / 2D), HEIGHT, 8.0D + (WIDTH / 2D), 8.0D + (LENGTH / 2D), 0.0D);
+    protected static final VoxelShape AABB_WEST = Block.box(16.0D - HEIGHT, 8.0D - (LENGTH / 2D), 8.0D - (WIDTH / 2D), 16.0D, 8.0D + (LENGTH / 2D), 8.0D + (WIDTH / 2D));
+    protected static final VoxelShape AABB_EAST = Block.box(HEIGHT, 8.0D - (LENGTH / 2D), 8.0D - (WIDTH / 2D), 0D, 8.0D + (LENGTH / 2D), 8.0D + (WIDTH / 2D));
 
     // TODO interaction when exploded due to another explosion
     public PaperBombBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(HIDDEN, Boolean.valueOf(false)).with(FACE, AttachFace.FLOOR));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HIDDEN, Boolean.valueOf(false)).setValue(FACE, AttachFace.FLOOR));
     }
 
     @Override
-    public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn) {
-        spawnPaperbomb(null, worldIn, pos, explosionIn.getExplosivePlacedBy(), true);
+    public void wasExploded(World worldIn, BlockPos pos, Explosion explosionIn) {
+        spawnPaperbomb(null, worldIn, pos, explosionIn.getSourceMob(), true);
     }
 
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        Direction direction = state.get(HORIZONTAL_FACING);
-        switch(state.get(FACE)) {
+        Direction direction = state.getValue(FACING);
+        switch(state.getValue(FACE)) {
             case FLOOR:
                 if (direction.getAxis() == Direction.Axis.X) {
                     return AABB_FLOOR_X;
@@ -94,14 +94,14 @@ public class PaperBombBlock extends HorizontalFaceBlock {
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (!state.get(HIDDEN)) {
-            worldIn.setBlockState(pos, state.with(HIDDEN, Boolean.valueOf(true)), 3);
+        if (!state.getValue(HIDDEN)) {
+            worldIn.setBlock(pos, state.setValue(HIDDEN, Boolean.TRUE), 3);
         }
     }
 
     @Override
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-        if (worldIn.isBlockPowered(pos)) {
+        if (worldIn.hasNeighborSignal(pos)) {
             catchFire(state, worldIn, pos, null, null);
             worldIn.removeBlock(pos, false);
         }
@@ -109,9 +109,9 @@ public class PaperBombBlock extends HorizontalFaceBlock {
     }
 
     @Override
-    public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-        super.onBlockAdded(state, worldIn, pos, oldState, isMoving);
-        worldIn.getPendingBlockTicks().scheduleTick(new BlockPos(pos), this, TRANSPARENT_DELAY);
+    public void onPlace(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
+        super.onPlace(state, worldIn, pos, oldState, isMoving);
+        worldIn.getBlockTicks().scheduleTick(new BlockPos(pos), this, TRANSPARENT_DELAY);
     }
 
     @Override
@@ -120,25 +120,25 @@ public class PaperBombBlock extends HorizontalFaceBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(!worldIn.isRemote) {
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if(!worldIn.isClientSide) {
             spawnPaperbomb(state, worldIn, pos, player);
             worldIn.removeBlock(pos, false);
         }
-        return ActionResultType.func_233537_a_(worldIn.isRemote);
+        return ActionResultType.sidedSuccess(worldIn.isClientSide);
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if(!worldIn.isRemote) {
+    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+        if(!worldIn.isClientSide) {
             spawnPaperbomb(state, worldIn, pos, entityIn instanceof LivingEntity ? (LivingEntity) entityIn : null, true);
             worldIn.removeBlock(pos, false);
         }
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(HORIZONTAL_FACING, HIDDEN, FACE);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(FACING, HIDDEN, FACE);
     }
 
     public void spawnPaperbomb(@Nullable BlockState state, World worldIn, BlockPos pos, @Nullable LivingEntity igniter) {
@@ -146,10 +146,10 @@ public class PaperBombBlock extends HorizontalFaceBlock {
     }
 
     public void spawnPaperbomb(@Nullable BlockState state, World worldIn, BlockPos pos, @Nullable LivingEntity igniter, boolean shortFuse) {
-        if (!worldIn.isRemote) {
-            Direction dir = state != null ? state.get(HORIZONTAL_FACING) : Direction.NORTH;
-            Vector3i dirVec = dir.getDirectionVec();
-            AttachFace face = state != null ? state.get(FACE) : AttachFace.FLOOR;
+        if (!worldIn.isClientSide) {
+            Direction dir = state != null ? state.getValue(FACING) : Direction.NORTH;
+            Vector3i dirVec = dir.getNormal();
+            AttachFace face = state != null ? state.getValue(FACE) : AttachFace.FLOOR;
 
             BlockPos attachBlock;
 
@@ -160,7 +160,7 @@ public class PaperBombBlock extends HorizontalFaceBlock {
             if(face.equals(AttachFace.CEILING)) {
                 yOffset += 0.5;
 
-                attachBlock = pos.up();
+                attachBlock = pos.above();
             }
             else if(face.equals(AttachFace.WALL)) {
                 attachBlock = pos.subtract(dirVec);
@@ -169,20 +169,20 @@ public class PaperBombBlock extends HorizontalFaceBlock {
                 zOffset -= 0.25D * dirVec.getZ();
             }
             else {
-                attachBlock = pos.down();
+                attachBlock = pos.below();
             }
 
 
             PaperBombEntity paperBombEntity = new PaperBombEntity(worldIn,
                     (double)pos.getX() + xOffset, (double)pos.getY() + yOffset,(double)pos.getZ() + zOffset,
                     igniter, dir, face, attachBlock);
-            worldIn.addEntity(paperBombEntity);
+            worldIn.addFreshEntity(paperBombEntity);
 
             if(shortFuse) {
                 paperBombEntity.setFuse((short)(paperBombEntity.getFuse() / 32));
             }
             else {
-                worldIn.playSound(null, paperBombEntity.getPosX(), paperBombEntity.getPosY(), paperBombEntity.getPosZ(), NarutoSounds.SIZZLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+                worldIn.playSound(null, paperBombEntity.getX(), paperBombEntity.getY(), paperBombEntity.getZ(), NarutoSounds.SIZZLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
         }
     }

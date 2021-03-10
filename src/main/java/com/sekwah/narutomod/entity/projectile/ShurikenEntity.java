@@ -22,8 +22,8 @@ public class ShurikenEntity extends AbstractArrowEntity {
 
     public ShurikenEntity(EntityType<? extends ShurikenEntity> type, World worldIn) {
         super(type, worldIn);
-        this.rotateTicks = worldIn.rand.nextInt(140);
-        this.rotOffset = (worldIn.rand.nextInt(100) - 50);
+        this.rotateTicks = worldIn.random.nextInt(140);
+        this.rotOffset = (worldIn.random.nextInt(100) - 50);
     }
 
     public ShurikenEntity(World worldIn, LivingEntity shooter) {
@@ -55,20 +55,19 @@ public class ShurikenEntity extends AbstractArrowEntity {
         return rotOffset;
     }
 
-    @Override
-    protected SoundEvent getHitEntitySound() {
+    protected SoundEvent getDefaultHitGroundSoundEvent() {
         return NarutoSounds.KUNAI_THUD.get();
     }
 
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(NarutoItems.SHURIKEN.get());
     }
 }

@@ -21,15 +21,15 @@ public class ClientTestPacket {
     }
 
     public static void encode(ClientTestPacket msg, PacketBuffer outBuffer) {
-        outBuffer.writeString(msg.uuid);
-        outBuffer.writeString(msg.url);
+        outBuffer.writeUtf(msg.uuid);
+        outBuffer.writeUtf(msg.url);
         outBuffer.writeBoolean(msg.isTransparent);
     }
 
     public static ClientTestPacket decode(PacketBuffer inBuffer) {
 
-        String uuid = inBuffer.readString();
-        String url = inBuffer.readString();
+        String uuid = inBuffer.readUtf();
+        String url = inBuffer.readUtf();
         boolean isTransparent = inBuffer.readBoolean();
 
         return new ClientTestPacket(uuid, url, isTransparent);

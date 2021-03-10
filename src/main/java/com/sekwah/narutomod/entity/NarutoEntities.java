@@ -20,20 +20,20 @@ public class NarutoEntities {
     private static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, MOD_ID);
 
     public static final RegistryObject<EntityType<KunaiEntity>> KUNAI = register("kunai",
-            EntityType.Builder.<KunaiEntity>create(KunaiEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).trackingRange(8));
+            EntityType.Builder.<KunaiEntity>of(KunaiEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
 
     public static final RegistryObject<EntityType<SenbonEntity>> SENBON = register("senbon",
-            EntityType.Builder.<SenbonEntity>create(SenbonEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).trackingRange(8));
+            EntityType.Builder.<SenbonEntity>of(SenbonEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
 
     public static final RegistryObject<EntityType<ExplosiveKunaiEntity>> EXPLOSIVE_KUNAI = register("explosive_kunai",
-            EntityType.Builder.<ExplosiveKunaiEntity>create(ExplosiveKunaiEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).trackingRange(8));
+            EntityType.Builder.<ExplosiveKunaiEntity>of(ExplosiveKunaiEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
 
     public static final RegistryObject<EntityType<ShurikenEntity>> SHURIKEN = register("shuriken",
-            EntityType.Builder.<ShurikenEntity>create(ShurikenEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).trackingRange(8));
+            EntityType.Builder.<ShurikenEntity>of(ShurikenEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
 
     // func_233608_b_ is updateInterval
     public static final RegistryObject<EntityType<PaperBombEntity>> PAPER_BOMB = register("paper_bomb",
-            EntityType.Builder.<PaperBombEntity>create(PaperBombEntity::new, EntityClassification.MISC).immuneToFire().size(0.5F, 0.5F).trackingRange(10).func_233608_b_(10));
+            EntityType.Builder.<PaperBombEntity>of(PaperBombEntity::new, EntityClassification.MISC).fireImmune().sized(0.5F, 0.5F).setTrackingRange(10).clientTrackingRange(10));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String key, EntityType.Builder<T> builder) {
         return ENTITIES.register(key, () -> builder.build(key));

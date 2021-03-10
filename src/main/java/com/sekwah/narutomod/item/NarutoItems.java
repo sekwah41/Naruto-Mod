@@ -18,7 +18,7 @@ public class NarutoItems {
 
     public static ItemGroup NINJA_WEAPONS = new ItemGroup("narutomod_weapons") {
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(KUNAI.get());
         }
     };
@@ -26,16 +26,16 @@ public class NarutoItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
     public static final RegistryObject<Item> KUNAI = ITEMS.register("kunai", ()
-            -> new KunaiItem(new Item.Properties().group(NINJA_WEAPONS)));
+            -> new KunaiItem(new Item.Properties().tab(NINJA_WEAPONS)));
 
     public static final RegistryObject<Item> SENBON = ITEMS.register("senbon", ()
-            -> new SenbonItem(new Item.Properties().group(NINJA_WEAPONS)));
+            -> new SenbonItem(new Item.Properties().tab(NINJA_WEAPONS)));
 
     public static final RegistryObject<Item> EXPLOSIVE_KUNAI = ITEMS.register("explosive_kunai", ()
-            -> new ExplosiveKunaiItem(new Item.Properties().group(NINJA_WEAPONS)));
+            -> new ExplosiveKunaiItem(new Item.Properties().stacksTo(16).tab(NINJA_WEAPONS)));
 
     public static final RegistryObject<Item> SHURIKEN = ITEMS.register("shuriken", ()
-            -> new ShurikenItem(new Item.Properties().group(NINJA_WEAPONS)));
+            -> new ShurikenItem(new Item.Properties().tab(NINJA_WEAPONS)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

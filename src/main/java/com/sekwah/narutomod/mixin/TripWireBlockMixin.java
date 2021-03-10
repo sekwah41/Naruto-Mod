@@ -26,31 +26,31 @@ public class TripWireBlockMixin {
         }
     }
 
-    @Inject(method = "notifyHook", at = @At(value = "RETURN"))
+    @Inject(method = "updateSource", at = @At(value = "RETURN"))
     public void notifyHook(World worldIn, BlockPos pos, BlockState state, CallbackInfo ci) {
         for(Direction direction : new Direction[]{Direction.SOUTH, Direction.WEST}) {
             mainCheckLoop: for(int i = 1; i < 42; ++i) {
-                BlockPos blockpos = pos.offset(direction, i);
+                BlockPos blockpos = pos.relative(direction, i);
                 BlockState blockstate = worldIn.getBlockState(blockpos);
-                if (blockstate.isIn(NarutoBlocks.PAPER_BOMB.get()) && state.get(TripWireBlock.POWERED).equals(Boolean.TRUE)) {
+                if (blockstate.is(NarutoBlocks.PAPER_BOMB.get()) && state.getValue(TripWireBlock.POWERED).equals(Boolean.TRUE)) {
                     for(int j = 1; j < 42; ++j) {
-                        BlockPos checkOpposite = pos.offset(direction, -j);
+                        BlockPos checkOpposite = pos.relative(direction, -j);
                         BlockState blockStateOpposite = worldIn.getBlockState(checkOpposite);
-                        if (blockStateOpposite.isIn(NarutoBlocks.PAPER_BOMB.get()) && state.get(TripWireBlock.POWERED).equals(Boolean.TRUE)) {
+                        if (blockStateOpposite.is(NarutoBlocks.PAPER_BOMB.get()) && state.getValue(TripWireBlock.POWERED).equals(Boolean.TRUE)) {
                             ((PaperBombBlock) NarutoBlocks.PAPER_BOMB.get()).spawnPaperbomb(blockstate, worldIn, blockpos, null, true);
                             worldIn.removeBlock(blockpos, false);
 
                             ((PaperBombBlock) NarutoBlocks.PAPER_BOMB.get()).spawnPaperbomb(blockStateOpposite, worldIn, checkOpposite, null, true);
                             worldIn.removeBlock(blockpos, false);
                         }
-                        if (!blockStateOpposite.isIn((Block)(Object)this)) {
+                        if (!blockStateOpposite.is((Block)(Object)this)) {
                             break mainCheckLoop;
                         }
                     }
                     break;
                 }
 
-                if (!blockstate.isIn((Block)(Object)this)) {
+                if (!blockstate.is((Block)(Object)this)) {
                     break;
                 }
             }

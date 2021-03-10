@@ -28,7 +28,7 @@ public class PacketHandler {
     }
 
     public static void sendToPlayer(Object obj, ServerPlayerEntity player) {
-        NARUTO_CHANNEL.sendTo(obj, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
+        NARUTO_CHANNEL.sendTo(obj, player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
     }
 
     public static void sentToTrackingAndSelf(Object obj, ServerPlayerEntity player) {

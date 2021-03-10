@@ -18,7 +18,7 @@ public class NarutoRenderers {
     }
 
     public static void registerRenderTypes() {
-        RenderTypeLookup.setRenderLayer(NarutoBlocks.PAPER_BOMB.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(NarutoBlocks.PAPER_BOMB.get(), RenderType.translucent());
     }
 
 }

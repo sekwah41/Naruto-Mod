@@ -23,25 +23,25 @@ public class ShurikenItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack usedItem = playerIn.getHeldItem(handIn);
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack usedItem = playerIn.getItemInHand(handIn);
 
-        worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + 0.5F);
-        if (!worldIn.isRemote) {
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + 0.5F);
+        if (!worldIn.isClientSide) {
             AbstractArrowEntity kunaiEntity = createShootingEntity(worldIn, playerIn);
 
-            kunaiEntity.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 3.0F, 1.0F);
-            kunaiEntity.setDamage(2.5);
+            kunaiEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 3.0F, 1.0F);
+            kunaiEntity.setBaseDamage(2.5);
 
-            worldIn.addEntity(kunaiEntity);
+            worldIn.addFreshEntity(kunaiEntity);
         }
 
 
-        if (!playerIn.abilities.isCreativeMode) {
+        if (!playerIn.abilities.instabuild) {
             usedItem.shrink(1);
         }
 
-        return ActionResult.func_233538_a_(usedItem, worldIn.isRemote);
+        return ActionResult.sidedSuccess(usedItem, worldIn.isClientSide);
 
     }
 
@@ -49,7 +49,7 @@ public class ShurikenItem extends Item {
 
         ShurikenEntity entity = new ShurikenEntity(worldIn, playerIn);
 
-        entity.pickupStatus = playerIn.abilities.isCreativeMode ?
+        entity.pickup = playerIn.abilities.instabuild ?
                 AbstractArrowEntity.PickupStatus.CREATIVE_ONLY: AbstractArrowEntity.PickupStatus.ALLOWED;
 
         return entity;

@@ -25,13 +25,13 @@ import static net.minecraft.block.HorizontalFaceBlock.FACE;
 
 public class PaperBombEntity extends TNTEntity {
 
-    private static final DataParameter<Direction> ROTATION = EntityDataManager.createKey(PaperBombEntity.class, NarutoDataSerialisers.BLOCK_DIRECTION);
-    private static final DataParameter<AttachFace> VERT_ROT = EntityDataManager.createKey(PaperBombEntity.class, NarutoDataSerialisers.ATTACH_FACE);
-    protected static final DataParameter<BlockPos> ORIGIN = EntityDataManager.createKey(PaperBombEntity.class, DataSerializers.BLOCK_POS);
+    private static final DataParameter<Direction> ROTATION = EntityDataManager.defineId(PaperBombEntity.class, NarutoDataSerialisers.BLOCK_DIRECTION);
+    private static final DataParameter<AttachFace> VERT_ROT = EntityDataManager.defineId(PaperBombEntity.class, NarutoDataSerialisers.ATTACH_FACE);
+    protected static final DataParameter<BlockPos> ORIGIN = EntityDataManager.defineId(PaperBombEntity.class, DataSerializers.BLOCK_POS);
 
     private BlockPos anchorLoc;
 
-    public BlockState renderBlockState = NarutoBlocks.PAPER_BOMB.get().getDefaultState();
+    public BlockState renderBlockState = NarutoBlocks.PAPER_BOMB.get().defaultBlockState();
 
     public PaperBombEntity(EntityType<? extends PaperBombEntity> type, World worldIn) {
         super(type, worldIn);
@@ -46,71 +46,69 @@ public class PaperBombEntity extends TNTEntity {
         this.setAnchored(!this.isAnchoredBlockAir());
     }
 
-    public PaperBombEntity(World worldIn, double x, double y, double z, LivingEntity igniter) {
+    public PaperBombEntity(World worldIn, double x, double y, double z, LivingEntity owner) {
         this(NarutoEntities.PAPER_BOMB.get(), worldIn);
-        this.setPosition(x, y, z);
-        double d0 = worldIn.rand.nextDouble() * (double)((float)Math.PI * 2F);
-        //this.setMotion(-Math.sin(d0) * 0.02D, (double)0.2F, -Math.cos(d0) * 0.02D);
-        this.prevPosX = x;
-        this.prevPosY = y;
-        this.prevPosZ = z;
-        this.tntPlacedBy = igniter;
-        this.setOrigin(this.getPosition());
+        this.setPos(x, y, z);
+        this.xo = x;
+        this.yo = y;
+        this.zo = z;
+        this.owner = owner;
+        this.setOrigin(this.getOrigin());
     }
 
     @Override
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(ROTATION, Direction.NORTH);
-        this.dataManager.register(VERT_ROT, AttachFace.FLOOR);
-        this.dataManager.register(ORIGIN, BlockPos.ZERO);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(ROTATION, Direction.NORTH);
+        this.entityData.define(VERT_ROT, AttachFace.FLOOR);
+        this.entityData.define(ORIGIN, BlockPos.ZERO);
     }
 
     public void setOrigin(BlockPos origin) {
-        this.dataManager.set(ORIGIN, origin);
+        this.entityData.set(ORIGIN, origin);
     }
 
     public BlockPos getOrigin() {
-        return this.dataManager.get(ORIGIN);
+        return this.entityData.get(ORIGIN);
     }
 
     public Direction getRotation() {
-        return this.dataManager.get(ROTATION);
+        return this.entityData.get(ROTATION);
     }
 
     public void setRotation(Direction rotation) {
-        this.dataManager.set(ROTATION, rotation);
+        this.entityData.set(ROTATION, rotation);
     }
 
     public AttachFace getVertRotation() {
-        return this.dataManager.get(VERT_ROT);
+        return this.entityData.get(VERT_ROT);
     }
 
     public void setVertRotation(AttachFace rotation) {
-        this.dataManager.set(VERT_ROT, rotation);
+        this.entityData.set(VERT_ROT, rotation);
     }
 
     @Override
     public void tick() {
         super.tick();
-        if(!world.isRemote()) {
+        if(!level.isClientSide()) {
             if(anchorLoc != null) {
                 if (this.isAnchoredBlockAir()) {
                     this.setAnchored(false);
                 }
             }
-            if((anchorLoc == null && this.hasNoGravity())
-                    || (this.prevPosX != this.getPosX()
-                    || this.prevPosY != this.getPosY()
-                    || this.prevPosZ != this.getPosZ())) {
+            if((anchorLoc == null && this.isNoGravity())
+                    || (this.xo != this.getX()
+                    || this.yo != this.getY()
+                    || this.zo != this.getZ())) {
                 this.setAnchored(false);
             }
         }
     }
 
     public boolean isAnchoredBlockAir() {
-        BlockState state = this.world.getBlockState(anchorLoc);
-        return state.getBlock().isAir(state, world, anchorLoc);
+        BlockState state = this.level.getBlockState(anchorLoc);
+        return state.getBlock().isAir(state, level, anchorLoc);
     }
 
     public void setAnchored(boolean anchored) {
@@ -122,25 +120,25 @@ public class PaperBombEntity extends TNTEntity {
     }
 
     @Override
-    public void notifyDataManagerChange(DataParameter<?> key) {
-        super.notifyDataManagerChange(key);
-        if((ROTATION.equals(key) || VERT_ROT.equals(key)) && this.world.isRemote) {
-            this.renderBlockState = NarutoBlocks.PAPER_BOMB.get().getDefaultState()
-                    .with(HorizontalBlock.HORIZONTAL_FACING, this.getRotation())
-                    .with(HIDDEN, Boolean.valueOf(false))
-                    .with(FACE, this.getVertRotation());
+    public void onSyncedDataUpdated(DataParameter<?> key) {
+        super.onSyncedDataUpdated(key);
+        if((ROTATION.equals(key) || VERT_ROT.equals(key)) && this.level.isClientSide) {
+            this.renderBlockState = NarutoBlocks.PAPER_BOMB.get().defaultBlockState()
+                    .setValue(HorizontalBlock.FACING, this.getRotation())
+                    .setValue(HIDDEN, Boolean.FALSE)
+                    .setValue(FACE, this.getVertRotation());
         }
     }
 
     @Override
     protected void explode() {
-        this.world.createExplosion(this, this.getPosX(), this.getPosYHeight(0.0625D), this.getPosZ(),
+        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(),
                 NarutoConfig.PAPERBOMB_EXPLOSION_RADIUS,
                 NarutoConfig.PAPERBOMB_BLOCK_DAMAGE ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

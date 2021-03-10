@@ -21,13 +21,13 @@ public class ExplosiveKunaiItem extends KunaiItem {
     }
 
     @Override
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 
-        if (!(attacker instanceof PlayerEntity) || !((PlayerEntity) attacker).abilities.isCreativeMode) {
+        if (!(attacker instanceof PlayerEntity) || !((PlayerEntity) attacker).abilities.instabuild) {
             stack.shrink(1);
         }
 
-        if(!attacker.world.isRemote) {
+        if(!attacker.level.isClientSide) {
             ExplosiveKunaiEntity.explodeKunai(attacker);
         }
 
@@ -35,8 +35,8 @@ public class ExplosiveKunaiItem extends KunaiItem {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ActionResult<ItemStack> action = super.onItemRightClick(worldIn, playerIn, handIn);
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ActionResult<ItemStack> action = super.use(worldIn, playerIn, handIn);
 
         return action;
     }

@@ -28,41 +28,40 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
     @Override
     public void tick() {
         super.tick();
-        if(!this.world.isRemote && this.timeInGround >= 10) {
+        if(!this.level.isClientSide && this.inGroundTime >= 10) {
             explodeKunai(this);
-            this.setDead();
+            this.remove();
         }
     }
 
     @Override
-    protected void onEntityHit(EntityRayTraceResult rayTraceResult) {
-        super.onEntityHit(rayTraceResult);
+    protected void onHitEntity(EntityRayTraceResult rayTraceResult) {
+        super.onHitEntity(rayTraceResult);
 
-        if(!this.world.isRemote) {
+        if(!this.level.isClientSide) {
             explodeKunai(this);
-            this.setDead();
+            this.remove();
         }
     }
 
     public static void explodeKunai(Entity entity) {
-        entity.world.createExplosion(null, entity.getPosX(), entity.getPosY(), entity.getPosZ(), NarutoConfig.KUNAI_EXPLOSION_RADIUS,
+        entity.level.explode(null, entity.getX(), entity.getY(), entity.getZ(), NarutoConfig.KUNAI_EXPLOSION_RADIUS,
                 NarutoConfig.KUNAI_BLOCK_DAMAGE ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
     }
 
-    @Override
-    protected SoundEvent getHitEntitySound() {
+    protected SoundEvent getDefaultHitGroundSoundEvent() {
         return NarutoSounds.KUNAI_THUD.get();
     }
 
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(NarutoItems.EXPLOSIVE_KUNAI.get());
     }
 }

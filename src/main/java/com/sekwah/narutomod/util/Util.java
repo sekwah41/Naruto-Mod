@@ -11,11 +11,11 @@ public class Util {
      * @return
      */
     public static net.minecraft.util.text.Color toMCColor(Color color) {
-        return net.minecraft.util.text.Color.fromHex(String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue()));
+        return net.minecraft.util.text.Color.parseColor(String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue()));
     }
 
     public int colorToInt(Color color) {
-        return toMCColor(color).getColor();
+        return toMCColor(color).getValue();
     }
 
 }

@@ -10,6 +10,10 @@ public class NinjaData implements INinjaData {
     private static final String CHAKRA_NBT = "CHAKRA";
     private static final String STAMINA_NBT = "STAMINA";
 
+    public NinjaData() {
+        System.out.println("HELLO");
+    }
+
     @Override
     public float getChakra() {
         return this.chakra;

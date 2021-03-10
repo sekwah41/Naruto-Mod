@@ -34,23 +34,23 @@ public class ShurikenRenderer extends ArrowRenderer<ShurikenEntity> {
 
    @Override
    public void render(ShurikenEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-      matrixStackIn.push();
+      matrixStackIn.pushPose();
       float rotateSpeed = -50;
-      matrixStackIn.rotate(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationYaw, entityIn.rotationYaw) - 90.0F));
-      matrixStackIn.rotate(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationPitch, entityIn.rotationPitch)));
-      matrixStackIn.rotate(Vector3f.XP.rotationDegrees(entityIn.getRotOffset()));
-      matrixStackIn.rotate(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.getPrevRotateTicks() * rotateSpeed, entityIn.getRotateTicks() * rotateSpeed)));
+      matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.yRotO, entityIn.yRot) - 90.0F));
+      matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.xRotO, entityIn.xRot)));
+      matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(entityIn.getRotOffset()));
+      matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.getPrevRotateTicks() * rotateSpeed, entityIn.getRotateTicks() * rotateSpeed)));
       matrixStackIn.scale(0.5f, 0.5f, 0.5f);
-      IBakedModel ibakedmodel = itemRenderer.getItemModelWithOverrides(this.renderingItem, entityIn.world, (LivingEntity)null);
-      itemRenderer.renderItem(this.renderingItem, ItemCameraTransforms.TransformType.FIXED, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
-      matrixStackIn.pop();
+      IBakedModel ibakedmodel = itemRenderer.getModel(this.renderingItem, entityIn.level, null);
+      itemRenderer.render(this.renderingItem, ItemCameraTransforms.TransformType.FIXED, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
+      matrixStackIn.popPose();
    }
 
 
    /**
     * Returns the location of an entity's texture.
     */
-   public ResourceLocation getEntityTexture(ShurikenEntity entity) {
+   public ResourceLocation getTextureLocation(ShurikenEntity entity) {
       return RES_ARROW;
    }
 }

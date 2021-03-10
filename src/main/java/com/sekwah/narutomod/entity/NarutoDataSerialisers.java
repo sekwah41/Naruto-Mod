@@ -25,21 +25,22 @@ public class NarutoDataSerialisers {
             return StateUtils.byteToFace(buf.readByte());
         }
 
-        public AttachFace copyValue(AttachFace value) {
+        @Override
+        public AttachFace copy(AttachFace value) {
             return value;
         }
     };
 
     public static final IDataSerializer<Direction> BLOCK_DIRECTION = new IDataSerializer<Direction>() {
         public void write(PacketBuffer buf, Direction value) {
-            buf.writeByte(value.getIndex());
+            buf.writeByte(value.get2DDataValue());
         }
 
         public Direction read(PacketBuffer buf) {
-            return Direction.byHorizontalIndex(buf.readByte());
+            return Direction.from2DDataValue(buf.readByte());
         }
 
-        public Direction copyValue(Direction value) {
+        public Direction copy(Direction value) {
             return value;
         }
     };

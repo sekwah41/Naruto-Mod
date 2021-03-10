@@ -28,12 +28,12 @@ public class PaperBombRenderer extends EntityRenderer<PaperBombEntity> {
     @Override
     public void render(PaperBombEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 
-        matrixStackIn.push();
+        matrixStackIn.pushPose();
 
         matrixStackIn.translate(-0.5D, -0.25D, -0.5D);
 
-        Vector3i dir = entityIn.renderBlockState.get(HORIZONTAL_FACING).getDirectionVec();
-        AttachFace face = entityIn.renderBlockState.get(FACE);
+        Vector3i dir = entityIn.renderBlockState.getValue(HORIZONTAL_FACING).getNormal();
+        AttachFace face = entityIn.renderBlockState.getValue(FACE);
 
         switch (face) {
             case FLOOR:
@@ -47,27 +47,27 @@ public class PaperBombRenderer extends EntityRenderer<PaperBombEntity> {
                 break;
         }
 
-        BlockPos blockpos = new BlockPos(entityIn.getPosX(), entityIn.getBoundingBox().maxY, entityIn.getPosZ());
-        BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
-        for (net.minecraft.client.renderer.RenderType type : net.minecraft.client.renderer.RenderType.getBlockRenderTypes()) {
+        BlockPos blockpos = new BlockPos(entityIn.getX(), entityIn.getBoundingBox().maxY, entityIn.getZ());
+        BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
+        for (net.minecraft.client.renderer.RenderType type : net.minecraft.client.renderer.RenderType.chunkBufferLayers()) {
             if (RenderTypeLookup.canRenderInLayer(entityIn.renderBlockState, type)) {
-                blockrendererdispatcher.getBlockModelRenderer().renderModel(entityIn.world,
-                        blockrendererdispatcher.getModelForState(entityIn.renderBlockState),
+                blockrendererdispatcher.getModelRenderer().tesselateWithoutAO(entityIn.level,
+                        blockrendererdispatcher.getBlockModel(entityIn.renderBlockState),
                         entityIn.renderBlockState, blockpos, matrixStackIn,
                         bufferIn.getBuffer(type),
                         false,
                         new Random(),
-                        entityIn.renderBlockState.getPositionRandom(entityIn.getOrigin()),
+                        entityIn.renderBlockState.getSeed(entityIn.getOrigin()),
                         OverlayTexture.NO_OVERLAY);
             }
         }
 
-        matrixStackIn.pop();
+        matrixStackIn.popPose();
 
     }
 
     @Override
-    public ResourceLocation getEntityTexture(PaperBombEntity entity) {
+    public ResourceLocation getTextureLocation(PaperBombEntity entity) {
         return null;
     }
 }

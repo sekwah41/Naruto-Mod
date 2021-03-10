@@ -16,7 +16,9 @@ public class ExplosiveKunaiRenderer extends ArrowRenderer<KunaiEntity> {
    /**
     * Returns the location of an entity's texture.
     */
-   public ResourceLocation getEntityTexture(KunaiEntity entity) {
+   @Override
+   public ResourceLocation getTextureLocation(KunaiEntity p_110775_1_) {
       return RES_ARROW;
    }
+
 }
