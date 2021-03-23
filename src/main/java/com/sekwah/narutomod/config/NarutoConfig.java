@@ -31,16 +31,16 @@ public class NarutoConfig {
         configBuilder.comment("Variables for weapons").push(CATEGORY_WEAPONS);
 
         CONFIG_KUNAI_BLOCK_DAMAGE = configBuilder.comment("Explosive Kunai block damage")
-                .define("kunaiExplosionBreakBlocks ", true);
+                .define("kunaiExplosionBreakBlocks", true);
 
         CONFIG_KUNAI_EXPLOSION_RADIUS = configBuilder.comment("Explosive Kunai explosion radius")
-                .defineInRange("kunaiExplosionRadius ",  3d ,  1d, 100d);
+                .defineInRange("kunaiExplosionRadius",  3d ,  1d, 100d);
 
         CONFIG_PAPERBOMB_EXPLOSION_RADIUS = configBuilder.comment("Paper Bomb explosion radius")
-                .defineInRange("paperBombExplosionRadius ",  4.0F ,  1d, 100d);
+                .defineInRange("paperBombExplosionRadius",  4.0F ,  1d, 100d);
 
         CONFIG_PAPERBOMB_BLOCK_DAMAGE = configBuilder.comment("Paper Bomb block damage")
-                .define("paperBombExplosionBreakBlocks ", true);
+                .define("paperBombExplosionBreakBlocks", true);
 
         configBuilder.pop();
 
