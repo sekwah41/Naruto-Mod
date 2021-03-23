@@ -1,4 +1,4 @@
-# Naruto-Mod Advanced Portals ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sekwah41/Naruto-Mod/Java%20CI)
+# Naruto-Mod Advanced Portals ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sekwah41/Naruto-Mod/Java%20CI/forge-1-16)
 
 [![Discord](https://img.shields.io/discord/168282484037910528.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/fAJ3xJg)
 [![](https://img.shields.io/github/contributors/sekwah41/Naruto-Mod.svg?style=for-the-badge&logo=github)](https://github.com/sekwah41/Naruto-Mod/graphs/contributors)
