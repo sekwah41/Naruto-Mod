@@ -2,7 +2,7 @@ package com.sekwah.narutomod;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
-import com.sekwah.narutomod.client.gui.NarutoChakraAndStamina;
+import com.sekwah.narutomod.client.gui.NarutoInGameGUI;
 import com.sekwah.narutomod.client.renderer.NarutoRenderers;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoDataSerialisers;
@@ -11,7 +11,6 @@ import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -49,7 +48,7 @@ public class NarutoMod {
         NarutoDataSerialisers.register(eventBus);
         NarutoSounds.register(eventBus);
 
-        DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> NarutoChakraAndStamina::new);
+        DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> NarutoInGameGUI::new);
     }
 
 

@@ -1,17 +1,12 @@
 package com.sekwah.narutomod.client.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.sekwah.narutomod.NarutoMod;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class NarutoChakraAndStamina {
+public class ChakraAndStaminaGUI {
 
     private static final ResourceLocation DEFAULTTEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/defaultbar.png");
     private static final ResourceLocation KATANATEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/katana.png");
@@ -29,21 +24,45 @@ public class NarutoChakraAndStamina {
 
     private static final int[] barXOffset = {6,5,3,9,8,5,6,3};
 
-    public NarutoChakraAndStamina(){
-        MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlay);
+    private final Minecraft minecraft;
+    private int screenWidth;
+    private int screenHeight;
+
+    /*private PlayerEntity getCameraPlayer() {
+        return !(this.minecraft.getCameraEntity() instanceof PlayerEntity) ? null : (PlayerEntity)this.minecraft.getCameraEntity();
+    }*/
+
+    public ChakraAndStaminaGUI(Minecraft mc) {
+        this.minecraft = mc;
     }
 
-    @SubscribeEvent
-    public void renderGameOverlay(RenderGameOverlayEvent.Pre event) {
-        /*TextureManager textureManager = Minecraft.getInstance().getTextureManager();
-        MatrixStack stack = event.getMatrixStack();
-        stack.pushPose();
-        RenderSystem.enableBlend();
-        RenderSystem.enableAlphaTest();
-        //textureManager.bind(DEFAULTTEXTURE);
-        Screen.blit(stack, 0, 0, 0, 0, barWidths[0], 22, event.getWindow().getGuiScaledWidth(), event.getWindow().getGuiScaledHeight());
-        RenderSystem.disableBlend();
-        RenderSystem.disableAlphaTest();
-        stack.popPose();*/
+    public void render(MatrixStack stack) {
+        this.screenWidth = this.minecraft.getWindow().getGuiScaledWidth();
+        this.screenHeight = this.minecraft.getWindow().getGuiScaledHeight();
+
+        int barDesign = 0;
+
+        int width = 100;
+        int offset = 128;
+
+        this.minecraft.getTextureManager().bind(barDesigns[barDesign]);
+        // stack, x, y, tx, ty, width, height, textureWidth, textureHeight
+        AbstractGui.blit(stack, this.screenWidth / 2 - width - offset, this.screenHeight - 22,
+                0, 22,
+                100, 22,
+                100, 44);
+        AbstractGui.blit(stack, this.screenWidth / 2 - width - offset, this.screenHeight - 22,
+                0, 0,
+                100, 22,
+                100, 44);
+
+        AbstractGui.blit(stack, this.screenWidth / 2 + offset, this.screenHeight - 22,
+                0, 22,
+                100, 22,
+                -100, 44);
+        AbstractGui.blit(stack, this.screenWidth / 2 + offset, this.screenHeight - 22,
+                0, 0,
+                100, 22,
+                -100, 44);
     }
 }

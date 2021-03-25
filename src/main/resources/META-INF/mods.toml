@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[35,)"
+loaderVersion="[32,)"
 issueTrackerURL="https://github.com/sekwah41/Naruto-Mod/issues"
 license="All rights reserved"
 [[mods]]
@@ -10,13 +10,13 @@ license="All rights reserved"
     displayURL="http://www.planetminecraft.com/mod/naruto-mod-1750133/"
     authors="Sekwah41"
     description='''
-        A mod that adds new items and other features to the game that are from/based on the Naturo manga.
-        '''
+    A mod that adds new items and other features to the game that are from/based on the Naturo manga.
+    '''
 
 [[dependencies.narutomod]]
     modId="forge"
     mandatory=true
-    versionRange="[35,)"
+    versionRange="[32,)"
     ordering="NONE"
     side="BOTH"
 
