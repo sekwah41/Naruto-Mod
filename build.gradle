@@ -231,7 +231,7 @@ task discordupload {
                     .createMessage({messageSpec ->
                         // Get commit message or something or maybe info from the changelog.
                         messageSpec.content = "New automated dev build for <@&736039724124471356>\n\n" +
-                                "Current Features: https://github.com/sekwah41/Naruto-Mod/blob/${sha}/CHANGELOG.md"
+                                "Current Features: <https://github.com/sekwah41/Naruto-Mod/blob/${sha}/CHANGELOG.md>"
                         messageSpec.addFile(jar.archiveName, file(jar.archiveFile).newInputStream())
                         return messageSpec
                     }).block();
