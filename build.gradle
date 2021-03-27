@@ -217,7 +217,11 @@ publishing {
 task discordupload {
     dependsOn(jar)
     doLast {
-        String discordToken = System.getenv("DISCORD_TOKEN");
+        String discordToken = System.getenv("DISCORD_TOKEN")
+
+        println("CURRENT BRANCH ${branch}")
+        println("${branch.replace('refs/heads/','')}")
+
         if(discordToken != null) {
             println("Logging Into Discord")
             DiscordClient client = DiscordClient.create(discordToken)
@@ -226,7 +230,7 @@ task discordupload {
                     .createMessage({messageSpec ->
                         // Get commit message or something or maybe info from the changelog.
                         messageSpec.content = "This is an automated test build.\n\n" +
-                                "Current Features: https://github.com/sekwah41/Naruto-Mod/blob/${branch.replace("refs/heads/","")}/CHANGELOG.md"
+                                "Current Features: https://github.com/sekwah41/Naruto-Mod/blob/${branch.replace('refs/heads/','')}/CHANGELOG.md"
                         messageSpec.addFile(jar.archiveName, file(jar.archiveFile).newInputStream())
                         return messageSpec
                     }).block();
