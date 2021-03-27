@@ -230,7 +230,7 @@ task discordupload {
                     .createMessage({messageSpec ->
                         // Get commit message or something or maybe info from the changelog.
                         messageSpec.content = "This is an automated test build.\n\n" +
-                                "Current Features: https://github.com/sekwah41/Naruto-Mod/blob/${branch.replace('refs/heads/','')}/CHANGELOG.md"
+                                "Current Features: https://github.com/sekwah41/Naruto-Mod/blob/${System.getenv('GITHUB_SHA')}/CHANGELOG.md"
                         messageSpec.addFile(jar.archiveName, file(jar.archiveFile).newInputStream())
                         return messageSpec
                     }).block();
@@ -252,7 +252,7 @@ curseforge {
     project {
         id = '342729'
         // TODO add code to reference this but also cut the latest change logs in for the files
-        changelog = '''https://github.com/sekwah41/Naruto-Mod/blob/release-forge-1.16/CHANGELOG.md'''
+        changelog = "https://github.com/sekwah41/Naruto-Mod/blob/${System.getenv('GITHUB_SHA')}/CHANGELOG.md"
         changelogType = 'markdown'
         releaseType = 'beta'
         addGameVersion '1.16.1'
