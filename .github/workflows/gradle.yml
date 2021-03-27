@@ -18,7 +18,7 @@ jobs:
       - name: Upload to Discord (If dev branch)
         if: startsWith(github.ref, 'refs/heads/dev-')
         env:
-          CURSE_API: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
         run: ./gradlew discordupload
       - name: Publish to Curseforge (If release branch)
         if: startsWith(github.ref, 'refs/heads/release-')
