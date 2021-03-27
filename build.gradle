@@ -1,3 +1,8 @@
+import discord4j.core.DiscordClient;
+import discord4j.core.GatewayDiscordClient;
+import discord4j.common.util.Snowflake;
+import discord4j.core.object.entity.channel.TextChannel;
+
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
@@ -18,11 +23,6 @@ buildscript {
 plugins {
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
-
-import discord4j.core.DiscordClient;
-import discord4j.core.GatewayDiscordClient;
-import discord4j.common.util.Snowflake
-import discord4j.core.object.entity.channel.TextChannel;
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: "java"
@@ -142,7 +142,8 @@ dependencies {
     minecraft 'net.minecraftforge:forge:' + "${project.minecraft_version}-${project.forge_version}"
 
     //compile "com.sekwah:SekCLib:${sekclib_version}:deobf"
-    compile "com.discord4j:discord4j-core:3.1.3"
+    // Trick intellij to allow for better editing in here for the discord task
+    //compile "com.discord4j:discord4j-core:3.1.3"
 
     // compile fg.deobf("curse.maven:neat:${project.neat_fileid}")
 
