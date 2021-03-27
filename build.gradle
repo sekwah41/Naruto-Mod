@@ -33,7 +33,8 @@ apply plugin: 'maven-publish'
 apply plugin: "org.spongepowered.mixin"
 apply plugin: "com.wynprice.cursemaven"
 
-def branch = System.getenv("BRANCH");
+def branch = System.getenv("GITHUB_REF");
+def sha = System.getenv("GITHUB_SHA");
 def isDevBranch = !(branch && branch.startsWith("refs/heads/release-"));
 
 version = "${project.version}${isDevBranch ? '-dev' : ''}"
@@ -230,7 +231,7 @@ task discordupload {
                     .createMessage({messageSpec ->
                         // Get commit message or something or maybe info from the changelog.
                         messageSpec.content = "This is an automated test build.\n\n" +
-                                "Current Features: https://github.com/sekwah41/Naruto-Mod/blob/${System.getenv('GITHUB_SHA')}/CHANGELOG.md"
+                                "Current Features: https://github.com/sekwah41/Naruto-Mod/blob/${sha}/CHANGELOG.md"
                         messageSpec.addFile(jar.archiveName, file(jar.archiveFile).newInputStream())
                         return messageSpec
                     }).block();
@@ -252,7 +253,7 @@ curseforge {
     project {
         id = '342729'
         // TODO add code to reference this but also cut the latest change logs in for the files
-        changelog = "https://github.com/sekwah41/Naruto-Mod/blob/${System.getenv('GITHUB_SHA')}/CHANGELOG.md"
+        changelog = "https://github.com/sekwah41/Naruto-Mod/blob/${sha}/CHANGELOG.md"
         changelogType = 'markdown'
         releaseType = 'beta'
         addGameVersion '1.16.1'
