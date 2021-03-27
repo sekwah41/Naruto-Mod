@@ -230,7 +230,7 @@ task discordupload {
             ((TextChannel) gateway.getChannelById(Snowflake.of(project.discord_testing_channel)).block())
                     .createMessage({messageSpec ->
                         // Get commit message or something or maybe info from the changelog.
-                        messageSpec.content = "This is an automated test build.\n\n" +
+                        messageSpec.content = "New automated dev build for <@&736039724124471356>\n\n" +
                                 "Current Features: https://github.com/sekwah41/Naruto-Mod/blob/${sha}/CHANGELOG.md"
                         messageSpec.addFile(jar.archiveName, file(jar.archiveFile).newInputStream())
                         return messageSpec
