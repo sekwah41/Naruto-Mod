@@ -12,8 +12,17 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
         classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
         classpath "com.wynprice.cursemaven:CurseMaven:2.1.1"
+        classpath "com.discord4j:discord4j-core:3.1.3"
     }
 }
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.4.0"
+}
+
+import discord4j.core.DiscordClient;
+import discord4j.core.GatewayDiscordClient;
+import discord4j.common.util.Snowflake
+import discord4j.core.object.entity.channel.TextChannel;
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: "java"
@@ -24,7 +33,10 @@ apply plugin: 'maven-publish'
 apply plugin: "org.spongepowered.mixin"
 apply plugin: "com.wynprice.cursemaven"
 
-version = "${project.version}"
+def branch = System.getenv("BRANCH");
+def isDevBranch = !(branch && branch.startsWith("refs/heads/release-"));
+
+version = "${project.version}${isDevBranch ? '-dev' : ''}"
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.archive
 
@@ -70,7 +82,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                narutomod {
+                "${project.modid}" {
                     source sourceSets.main
                 }
             }
@@ -87,7 +99,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                narutomod {
+                "${project.modid}" {
                     source sourceSets.main
                 }
             }
@@ -103,10 +115,10 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'narutomod', '--all', '--output', file('src/generated/resources/')
+            args '--mod', project.modid, '--all', '--output', file('src/generated/resources/')
 
             mods {
-                narutomod {
+                "${project.modid}" {
                     source sourceSets.main
                 }
             }
@@ -130,6 +142,7 @@ dependencies {
     minecraft 'net.minecraftforge:forge:' + "${project.minecraft_version}-${project.forge_version}"
 
     //compile "com.sekwah:SekCLib:${sekclib_version}:deobf"
+    compile "com.discord4j:discord4j-core:3.1.3"
 
     // compile fg.deobf("curse.maven:neat:${project.neat_fileid}")
 
@@ -152,7 +165,7 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, "mixins.narutomod.json"
+    add sourceSets.main, "mixins.${project.modid}.json"
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -165,10 +178,10 @@ jar {
                 "Specification-Vendor": project.vendor,
                 "Specification-Version": "1", // We are version 1 of ourselves
                 "Implementation-Title": project.name,
-                "Implementation-Version": "${version}",
+                "Implementation-Version": "${getArchiveVersion()}",
                 "Implementation-Vendor" :project.vendor,
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs": "mixins.narutomod.json"
+                "MixinConfigs": "mixins.${project.modid}.json"
         ])
     }
 }
@@ -192,5 +205,62 @@ publishing {
         maven {
             url "file:///${project.projectDir}/mcmodsrepo"
         }
+    }
+}
+
+/** For pre-releases and testers to be able to try the latest commits if they want.
+ * If the builds start exceeding 8MB then we may want to upload to s3 instead and periodically clear.
+ * TODO possibly add a task that announces when builds are made?
+ * Though add a note that it may take a while for Curse to approve the files.
+ */
+task discordupload {
+    dependsOn(jar)
+    doLast {
+        String discordToken = System.getenv("DISCORD_TOKEN");
+        if(discordToken != null) {
+            println("Logging Into Discord")
+            DiscordClient client = DiscordClient.create(discordToken)
+            final GatewayDiscordClient gateway = client.login().block();
+            ((TextChannel) gateway.getChannelById(Snowflake.of(project.discord_testing_channel)).block())
+                    .createMessage({messageSpec ->
+                        // Get commit message or something or maybe info from the changelog.
+                        messageSpec.content = "This is an automated test build.\n\n" +
+                                "Current Features: https://github.com/sekwah41/Naruto-Mod/blob/${branch.replace("refs/heads/","")}/CHANGELOG.md"
+                        messageSpec.addFile(jar.archiveName, file(jar.archiveFile).newInputStream())
+                        return messageSpec
+                    }).block();
+            println("Posted build")
+
+        } else {
+            println("Discord token unspecified")
+        }
+    }
+}
+
+tasks.curseforge.enabled = System.getenv("CURSE_API") != null
+
+curseforge {
+    logger.info("Curse api: " + System.getenv("CURSE_API"))
+    if (System.getenv("CURSE_API") != null) {
+        apiKey = System.getenv("CURSE_API")
+    }
+    project {
+        id = '342729'
+        // TODO add code to reference this but also cut the latest change logs in for the files
+        changelog = '''https://github.com/sekwah41/Naruto-Mod/blob/release-forge-1.16/CHANGELOG.md'''
+        changelogType = 'markdown'
+        releaseType = 'beta'
+        addGameVersion '1.16.1'
+        addGameVersion '1.16.2'
+        addGameVersion '1.16.3'
+        addGameVersion '1.16.4'
+        addGameVersion '1.16.5'
+
+        mainArtifact(jar){
+
+        }
+        //addArtifact sourcesJar
+        //addArtifact deobfJar
+        //addArtifact javadocJar
     }
 }
