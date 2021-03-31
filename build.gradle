@@ -244,7 +244,7 @@ task discordupload {
             println("Posted build")
 
         } else {
-            println("Discord token unspecified")
+            println("Discord webhook unspecified")
         }
     }
 }
