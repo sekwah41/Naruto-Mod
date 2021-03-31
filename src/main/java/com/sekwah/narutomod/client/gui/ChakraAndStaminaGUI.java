@@ -28,6 +28,11 @@ public class ChakraAndStaminaGUI {
     private int screenWidth;
     private int screenHeight;
 
+    private int chakra;
+    private int stamina;
+
+    private float barDesignLoop;
+
     /*private PlayerEntity getCameraPlayer() {
         return !(this.minecraft.getCameraEntity() instanceof PlayerEntity) ? null : (PlayerEntity)this.minecraft.getCameraEntity();
     }*/
@@ -39,14 +44,19 @@ public class ChakraAndStaminaGUI {
     public void render(MatrixStack stack) {
         this.screenWidth = this.minecraft.getWindow().getGuiScaledWidth();
         this.screenHeight = this.minecraft.getWindow().getGuiScaledHeight();
+        int barDesign = (int) barDesignLoop % barDesigns.length;
 
-        int barDesign = 0;
+        float maxOfEach = 100;
+
+        float currentChakraPercent = (chakra % maxOfEach) / maxOfEach;
+        float currentStaminaPercent = (chakra % maxOfEach) / maxOfEach;
 
         int width = 100;
         int offset = 128;
 
         this.minecraft.getTextureManager().bind(barDesigns[barDesign]);
         // stack, x, y, tx, ty, width, height, textureWidth, textureHeight
+
         AbstractGui.blit(stack, this.screenWidth / 2 - width - offset, this.screenHeight - 22,
                 0, 22,
                 100, 22,
@@ -64,5 +74,12 @@ public class ChakraAndStaminaGUI {
                 0, 0,
                 100, 22,
                 -100, 44);
+    }
+
+    public void tick() {
+        chakra++;
+        stamina++;
+
+        barDesignLoop += 0.01;
     }
 }

@@ -8,3 +8,5 @@
 * Remade Blocks
     * Paper Bomb
     * Bonsai Tree
+ * Remade UI
+    * Charkra & Stamina (in progress)

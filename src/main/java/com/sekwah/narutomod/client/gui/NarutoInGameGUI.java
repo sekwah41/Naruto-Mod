@@ -1,14 +1,10 @@
 package com.sekwah.narutomod.client.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.sekwah.narutomod.NarutoMod;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class NarutoInGameGUI {
@@ -19,6 +15,11 @@ public class NarutoInGameGUI {
         Minecraft mc = Minecraft.getInstance();
         this.charkaOverlay = new ChakraAndStaminaGUI(mc);
         MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlay);
+    }
+
+    @SubscribeEvent
+    public void clientTickEvent(TickEvent.ClientTickEvent event) {
+        this.charkaOverlay.tick();
     }
 
     @SubscribeEvent
