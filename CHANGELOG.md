@@ -9,4 +9,5 @@
     * Paper Bomb
     * Bonsai Tree
  * Remade UI
-    * Charkra & Stamina (in progress)
+    * Charkra & Stamina Bars  
+      Currently rendering but there is no chakra implemented.

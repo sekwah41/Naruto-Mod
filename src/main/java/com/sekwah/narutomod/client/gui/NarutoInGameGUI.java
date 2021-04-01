@@ -15,6 +15,7 @@ public class NarutoInGameGUI {
         Minecraft mc = Minecraft.getInstance();
         this.charkaOverlay = new ChakraAndStaminaGUI(mc);
         MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlay);
+        MinecraftForge.EVENT_BUS.addListener(this::clientTickEvent);
     }
 
     @SubscribeEvent
@@ -29,13 +30,5 @@ public class NarutoInGameGUI {
         }
         MatrixStack stack = event.getMatrixStack();
         this.charkaOverlay.render(stack);
-        /*stack.pushPose();
-        RenderSystem.enableBlend();
-        RenderSystem.enableAlphaTest();
-        textureManager.bind(DEFAULTTEXTURE);
-        Screen.blit(stack, 0, 0, 0, 0, barWidths[0], 22, event.getWindow().getGuiScaledWidth(), event.getWindow().getGuiScaledHeight());
-        //RenderSystem.disableBlend();
-        RenderSystem.disableAlphaTest();
-        stack.popPose();*/
     }
 }
