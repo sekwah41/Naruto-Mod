@@ -230,7 +230,7 @@ task discordupload {
             HttpPost uploadFile = new HttpPost(discordWebhook)
 
             MultipartEntityBuilder builder = MultipartEntityBuilder.create()
-            builder.addTextBody("content", "New automated dev build for <@&736039724124471356>\n\n" +
+            builder.addTextBody("content", "New automated dev build\n\n" +
                     "Current Features: <${project.github}/blob/${sha}/CHANGELOG.md>")
 
             builder.addBinaryBody("file", file(jar.archiveFile).newInputStream(), ContentType.APPLICATION_OCTET_STREAM, jar.archiveName)
