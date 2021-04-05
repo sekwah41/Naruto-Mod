@@ -38,7 +38,7 @@ apply plugin: "com.wynprice.cursemaven"
 
 def branch = System.getenv("GITHUB_REF");
 def sha = System.getenv("GITHUB_SHA");
-def isDevBranch = !(branch && branch.startsWith("refs/heads/release-"));
+def isDevBranch = !(branch.startsWith("refs/heads/release/") || branch.startsWith("refs/tags/"));
 
 version = "${project.version}${isDevBranch ? '-dev' : ''}"
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
