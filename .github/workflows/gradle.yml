@@ -1,6 +1,11 @@
 name: Build Project
 
-on: [push, pull_request]
+on:
+  push:
+    - 'dev/*'
+    tags:
+    - '*'
+  pull_request:
 
 jobs:
   build:
@@ -16,12 +21,12 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: Upload to Discord (If dev branch)
-        if: startsWith(github.ref, 'refs/heads/dev-')
+        if: startsWith(github.ref, 'refs/heads/dev/')
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: ./gradlew discordupload
       - name: Publish to Curseforge (If release branch)
-        if: startsWith(github.ref, 'refs/heads/release-')
+        if: startsWith(github.ref, 'refs/heads/release/')
         env:
           CURSE_API: ${{ secrets.CURSE_API }}
         run: ./gradlew curseforge
