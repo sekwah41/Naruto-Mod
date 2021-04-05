@@ -4,7 +4,7 @@ on:
   push:
     - 'dev/*'
     tags:
-    - '*'
+      - '*'
   pull_request:
 
 jobs:
