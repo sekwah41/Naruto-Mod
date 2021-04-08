@@ -11,3 +11,7 @@
  * Remade UI
     * Charkra & Stamina Bars  
       Currently rendering but there is no chakra implemented.
+ * API (useful for devs to make addons/expansion packs)
+    * Jutsu Registry
+    * Clan Registry
+

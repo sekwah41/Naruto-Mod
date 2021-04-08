@@ -8,10 +8,14 @@ import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
+import com.sekwah.narutomod.jutsus.Jutsu;
+import com.sekwah.narutomod.jutsus.NarutoJutsus;
 import com.sekwah.narutomod.network.PacketHandler;
+import com.sekwah.narutomod.registries.NarutoRegistries;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -41,6 +45,7 @@ public class NarutoMod {
 
         eventBus.addListener(this::clientSetup);
         eventBus.addListener(this::setup);
+        eventBus.addListener(this::newRegistryEvent);
 
         NarutoItems.register(eventBus);
         NarutoBlocks.register(eventBus);
@@ -52,12 +57,12 @@ public class NarutoMod {
     }
 
 
-    private void clientSetup(final FMLClientSetupEvent event) {
+    private void clientSetup(FMLClientSetupEvent event) {
         NarutoRenderers.registerEntity();
         NarutoRenderers.registerRenderTypes();
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
+    private void setup(FMLCommonSetupEvent event) {
         PacketHandler.init();
         NarutoBlocks.setFlammableData();
         NinjaCapabilityHandler.register();
@@ -65,7 +70,11 @@ public class NarutoMod {
 
     @SubscribeEvent
     public static void onServerStarting(RegisterCommandsEvent event) {
-        // TODO we haven't implemented server stuff yet
+        System.out.println("Should register commands here");
+    }
+
+    private void newRegistryEvent(RegistryEvent.NewRegistry event) {
+        NarutoRegistries.init();
     }
 
 }
