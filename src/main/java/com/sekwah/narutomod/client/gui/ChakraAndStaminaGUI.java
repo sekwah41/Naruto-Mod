@@ -81,12 +81,14 @@ public class ChakraAndStaminaGUI {
         float currentStaminaPercent = (stamina) / maxOfEach;
 
         int width = 100;
-        int offset = 185;
+        int offset = 128;
 
         this.minecraft.getTextureManager().bind(barTypes[barDesign].texture);
         int barWidth = barTypes[barDesign].width;
         int xOffset = barTypes[barDesign].offset;
-        int valuesOffset = 150;
+
+        int valuesOffset = 128 + (barWidth / 2);
+        int valuesHeight = 26;
         // stack, x, y, tx, ty, width, height, textureWidth, textureHeight
 
         int screenMid = this.screenWidth / 2;
@@ -134,7 +136,7 @@ public class ChakraAndStaminaGUI {
         this.centeredTextOutlined(matrixStack,
                 chakraText,
                 screenMid - valuesOffset,
-                this.screenHeight - 14,
+                this.screenHeight - valuesHeight,
                 ColorUtil.toMCColor(chakraColor).getValue(),
                 ColorUtil.toMCColor(new Color((int) (chakraColor.getRed() * darkenFactor),
                         (int) (chakraColor.getGreen() * darkenFactor),
@@ -145,7 +147,7 @@ public class ChakraAndStaminaGUI {
         this.centeredTextOutlined(matrixStack,
                 staminaText,
                 screenMid + valuesOffset,
-                this.screenHeight - 14,
+                this.screenHeight - valuesHeight,
                 ColorUtil.toMCColor(staminaColor).getValue(),
                 ColorUtil.toMCColor(new Color((int) (staminaColor.getRed() * darkenFactor),
                         (int) (staminaColor.getGreen() * darkenFactor),
