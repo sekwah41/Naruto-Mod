@@ -89,7 +89,6 @@ public class ChakraAndStaminaGUI {
 
         int valuesOffset = 128 + (barWidth / 2);
         int valuesHeight = 26;
-        // stack, x, y, tx, ty, width, height, textureWidth, textureHeight
 
         int screenMid = this.screenWidth / 2;
 
@@ -101,6 +100,7 @@ public class ChakraAndStaminaGUI {
         // Charka Bar underlay
         int chakraWidth = (int) (barWidth * currentChakraPercent);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        // stack, x, y, tx, ty, width, height, textureWidth, textureHeight
         AbstractGui.blit(matrixStack, screenMid - width - offset, this.screenHeight - 22,
                 0 , 22,
                 width, 22,
