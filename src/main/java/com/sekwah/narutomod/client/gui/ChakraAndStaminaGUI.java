@@ -3,9 +3,13 @@ package com.sekwah.narutomod.client.gui;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.ResourceLocation;
+
+import java.awt.*;
 
 public class ChakraAndStaminaGUI {
 
@@ -27,7 +31,7 @@ public class ChakraAndStaminaGUI {
         LAMP(LAMPSHADETEXTURE, 86, 8),
         SCEPTER(SCEPTERTEXTURE, 86, 9),
         SCROLL(SCROLLTEXTURE, 86, 8),
-        UNNAMED(UNNAMEDTEXTURE, 97, 3),
+        UNNAMED(UNNAMEDTEXTURE, 74, 23),
         ;
 
         private final ResourceLocation texture;
@@ -48,8 +52,8 @@ public class ChakraAndStaminaGUI {
     private int screenWidth;
     private int screenHeight;
 
-    private int chakra;
-    private int stamina;
+    private float chakra;
+    private float stamina;
 
     private float barDesignLoop;
 
@@ -61,51 +65,100 @@ public class ChakraAndStaminaGUI {
         this.minecraft = mc;
     }
 
-    public void render(MatrixStack stack) {
+    public void render(MatrixStack matrixStack) {
         this.screenWidth = this.minecraft.getWindow().getGuiScaledWidth();
         this.screenHeight = this.minecraft.getWindow().getGuiScaledHeight();
         int barDesign = (int) barDesignLoop % barTypes.length;
 
         float maxOfEach = 100;
+        float maxChakra = 100;
+        float maxStamina = 100;
 
-        float currentChakraPercent = (chakra % maxOfEach) / maxOfEach;
-        float currentStaminaPercent = (chakra % maxOfEach) / maxOfEach;
+        chakra %= maxOfEach;
+        stamina %= maxOfEach;
+
+        float currentChakraPercent = (chakra ) / maxOfEach;
+        float currentStaminaPercent = (stamina) / maxOfEach;
 
         int width = 100;
-        int offset = 128;
+        int offset = 185;
 
         this.minecraft.getTextureManager().bind(barTypes[barDesign].texture);
         int barWidth = barTypes[barDesign].width;
         int xOffset = barTypes[barDesign].offset;
+        int valuesOffset = 150;
         // stack, x, y, tx, ty, width, height, textureWidth, textureHeight
 
-        // Charka Bar
+        int screenMid = this.screenWidth / 2;
+
+
+
+        Color chakraColor = new Color(255,0,0);
+        Color staminaColor = new Color(0,255,0);
+
+        // Charka Bar underlay
         int chakraWidth = (int) (barWidth * currentChakraPercent);
-        AbstractGui.blit(stack, this.screenWidth / 2 - width - offset, this.screenHeight - 22,
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        AbstractGui.blit(matrixStack, screenMid - width - offset, this.screenHeight - 22,
                 0 , 22,
                 width, 22,
                 width, 44);
 
-        RenderSystem.color4f(1.0F, 0.0F, 0.0F, 1.0F);
-        AbstractGui.blit(stack, this.screenWidth / 2 - chakraWidth - offset - (width - xOffset - barWidth), this.screenHeight - 22,
-                xOffset + (barWidth - chakraWidth), 0,
-                chakraWidth, 22,
-                width, 44);
 
-        // Stamina Bar
-        int staminaWidth = (int) (barWidth * currentChakraPercent);
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        AbstractGui.blit(stack, this.screenWidth / 2 + offset, this.screenHeight - 22,
+        // Stamina Bar underlay
+        int staminaWidth = (int) (barWidth * currentStaminaPercent);
+        AbstractGui.blit(matrixStack, screenMid + offset, this.screenHeight - 22,
                 0, 22,
                 width, 22,
                 -width, 44);
 
-        RenderSystem.color4f(0.0F, 1.0F, 0.0F, 1.0F);
-        AbstractGui.blit(stack, this.screenWidth / 2 + offset + (100 - barWidth - xOffset), this.screenHeight - 22,
+
+        // Chakra Bar color
+        this.setColor(chakraColor);
+        AbstractGui.blit(matrixStack, screenMid - chakraWidth - offset - (width - xOffset - barWidth), this.screenHeight - 22,
+                xOffset + (barWidth - chakraWidth), 0,
+                chakraWidth, 22,
+                width, 44);
+
+        // Stamina Bar color
+        this.setColor(staminaColor);
+        AbstractGui.blit(matrixStack, screenMid + offset + (100 - barWidth - xOffset), this.screenHeight - 22,
                 -barWidth - xOffset, 0,
                 staminaWidth, 22,
                 -width, 44);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+        float darkenFactor = 0.25f;
+
+        String chakraText = (int) chakra + "/" + (int) maxChakra;
+        this.centeredTextOutlined(matrixStack,
+                chakraText,
+                screenMid - valuesOffset,
+                this.screenHeight - 14,
+                ColorUtil.toMCColor(chakraColor).getValue(),
+                ColorUtil.toMCColor(new Color((int) (chakraColor.getRed() * darkenFactor),
+                        (int) (chakraColor.getGreen() * darkenFactor),
+                        (int) (chakraColor.getBlue() * darkenFactor))).getValue());
+
+
+        String staminaText = (int) chakra + "/" + (int) maxStamina;
+        this.centeredTextOutlined(matrixStack,
+                staminaText,
+                screenMid + valuesOffset,
+                this.screenHeight - 14,
+                ColorUtil.toMCColor(staminaColor).getValue(),
+                ColorUtil.toMCColor(new Color((int) (staminaColor.getRed() * darkenFactor),
+                        (int) (staminaColor.getGreen() * darkenFactor),
+                        (int) (staminaColor.getBlue() * darkenFactor))).getValue());
+    }
+
+    private void centeredTextOutlined(MatrixStack matrixStack, String text, int x, int y, int color, int backgroundColor) {
+        int width = this.getFont().width(text) / 2;
+        this.getFont().draw(matrixStack, text, x+1 - width, y, backgroundColor);
+        this.getFont().draw(matrixStack, text, x-1 - width, y, backgroundColor);
+        this.getFont().draw(matrixStack, text, x - width, y+1, backgroundColor);
+        this.getFont().draw(matrixStack, text, x - width, y-1, backgroundColor);
+        this.getFont().draw(matrixStack, text, x - width, y, color);
     }
 
     public void tick() {
@@ -113,5 +166,15 @@ public class ChakraAndStaminaGUI {
         stamina++;
 
         barDesignLoop += (0.01 * barTypes.length);
+    }
+
+    private FontRenderer getFont() {
+        return this.minecraft.font;
+    }
+    private void setColor(Color color) {
+        RenderSystem.color4f(color.getRed() / 255f,
+                color.getGreen() / 255f,
+                color.getBlue() / 255f,
+                1.0F);
     }
 }
