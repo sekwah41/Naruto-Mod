@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_8",
   "package": "com.sekwah.narutomod.mixin",
-  "refmap": "mixins.narutomod.json",
+  "refmap": "mixins.narutomod.refmap.json",
   "mixins": [
   ],
   "client": [
