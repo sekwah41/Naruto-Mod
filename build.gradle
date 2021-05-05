@@ -10,7 +10,6 @@ buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
         maven { url = "https://repo.spongepowered.org/maven" }
-        maven { url = "https://maven.sekwah.com" }
         maven {url "https://plugins.gradle.org/m2/"}
         // Only temporary
         jcenter()
@@ -36,11 +35,12 @@ apply plugin: 'maven-publish'
 apply plugin: "org.spongepowered.mixin"
 apply plugin: "com.wynprice.cursemaven"
 
-def branch = System.getenv("GITHUB_REF");
-def sha = System.getenv("GITHUB_SHA");
-def isDevBranch = branch != null && (!(branch.startsWith("refs/heads/release/") || branch.startsWith("refs/tags/")));
+def branch = System.getenv("GITHUB_REF")
+def sha = System.getenv("GITHUB_SHA")
+def isDevBranch = branch == null || (!(branch.startsWith("refs/heads/release/") || branch.startsWith("refs/tags/")))
 
-version = "${project.version}${isDevBranch ? '-dev' : ''}"
+
+version = "${project.version}${isDevBranch ? '-SNAPSHOT' : ''}"
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.archive
 
@@ -52,6 +52,7 @@ repositories {
     maven {
         url 'https://dvs1.progwml6.com/files/maven'
     }
+    maven { url = "https://maven.sekwah.com" }
     maven {
         url "https://minecraft.curseforge.com/api/maven/"
     }
@@ -150,7 +151,7 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 
-    //compile "com.sekwah:SekCLib:${sekclib_version}:deobf"
+    compile "com.sekwah:SekCLib:${sekclib_version}:deobf"
     // Trick intellij to allow for better editing in here for the discord task
     // compile "org.apache.httpcomponents:httpmime:4.5.13"
 
@@ -205,15 +206,35 @@ def reobfArtifact = artifacts.add('default', reobfFile) {
     type 'jar'
     builtBy 'reobfJar'
 }
+
+task srcJar(type: Jar) {
+    build.dependsOn it
+    from sourceSets.main.allSource
+    classifier = 'sources'
+    from file("LICENSE")
+}
+
+task deobfJar(type: Jar) {
+    build.dependsOn it
+    from sourceSets.main.output
+    classifier = 'deobf'
+    from file("LICENSE")
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
             artifact reobfArtifact
+            artifact srcJar
+            artifact deobfJar
         }
     }
     repositories {
         maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
+            url "s3://sekwah-maven/"
+            authentication {
+                awsIm(AwsImAuthentication)
+            }
         }
     }
 }
