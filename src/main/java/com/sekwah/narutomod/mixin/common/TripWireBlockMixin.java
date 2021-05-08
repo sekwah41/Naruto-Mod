@@ -1,4 +1,4 @@
-package com.sekwah.narutomod.mixin;
+package com.sekwah.narutomod.mixin.common;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.block.weapons.PaperBombBlock;
