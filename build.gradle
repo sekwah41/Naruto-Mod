@@ -297,8 +297,8 @@ curseforge {
         mainArtifact(jar){
 
         }
-        //addArtifact sourcesJar
-        //addArtifact deobfJar
-        //addArtifact javadocJar
+        addArtifact srcJar
+        addArtifact deobfJar
     }
 }
+
