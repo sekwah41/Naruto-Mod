@@ -1,4 +1,4 @@
-### 1.0.0
+### 1.0.0-0
 * Complete recode of the mod.
 * Remade Items
     * Kunai
