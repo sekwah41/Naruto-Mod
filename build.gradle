@@ -144,6 +144,10 @@ configurations {
 }
 
 dependencies {
+
+    // to stop IntelliJ complaining about this build script
+    testCompile "org.apache.httpcomponents:httpmime:4.5.13"
+
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
@@ -257,7 +261,7 @@ task discordupload {
 
             MultipartEntityBuilder builder = MultipartEntityBuilder.create()
             builder.addTextBody("content", "New automated dev build\n\n" +
-                    "Current Features: <${project.github}/blob/${sha}/CHANGELOG.md>")
+                    "Current Features: <${project.github}/blob/${sha}/docs/SNAPSHOT_CHANGELOG.md>")
 
             builder.addBinaryBody("file", file(jar.archiveFile).newInputStream(), ContentType.APPLICATION_OCTET_STREAM, jar.archiveName)
 
@@ -285,7 +289,7 @@ curseforge {
     project {
         id = project.curse_project_id
         // TODO add code to reference this but also cut the latest change logs in for the files
-        changelog = "${project.github}/blob/${sha}/CHANGELOG.md"
+        changelog = "${project.github}/blob/${sha}/docs/CHANGELOG.md"
         changelogType = 'markdown'
         releaseType = 'release'
         addGameVersion '1.16.1'
