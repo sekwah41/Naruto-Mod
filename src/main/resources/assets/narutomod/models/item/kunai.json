@@ -1,7 +1,7 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "narutomod:items/kunai"
+    "layer0": "narutomod:items/weapons/kunai"
   },
   "display": {
     "thirdperson_righthand": {

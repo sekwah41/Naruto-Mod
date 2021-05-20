@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "narutomod:blocks/paperbomb",
-		"particle": "narutomod:blocks/paperbomb"
+		"0": "narutomod:blocks/weapons/paperbomb",
+		"particle": "narutomod:blocks/weapons/paperbomb"
 	},
 	"elements": [
 		{

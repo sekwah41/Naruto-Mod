@@ -1,6 +1,6 @@
 {
   "parent": "narutomod:item/kunai",
   "textures": {
-    "layer0": "narutomod:items/senbon"
+    "layer0": "narutomod:items/weapons/senbon"
   }
 }

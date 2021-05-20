@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 32],
 	"textures": {
-		"0": "narutomod:blocks/bonsaitree",
-		"particle": "narutomod:blocks/bonsaitree"
+		"0": "narutomod:blocks/deco/bonsaitree",
+		"particle": "narutomod:blocks/deco/bonsaitree"
 	},
 	"elements": [
 		{
