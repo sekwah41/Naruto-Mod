@@ -2,6 +2,7 @@
 eclipse/
 forge/
 out/
+src/generated
 *.iml
 *.ipr
 *.iws
