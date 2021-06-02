@@ -7,6 +7,7 @@ import com.sekwah.narutomod.client.renderer.NarutoRenderers;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
+import com.sekwah.narutomod.item.NarutoItemModels;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.jutsus.Jutsu;
 import com.sekwah.narutomod.jutsus.NarutoJutsus;
@@ -60,6 +61,7 @@ public class NarutoMod {
     private void clientSetup(FMLClientSetupEvent event) {
         NarutoRenderers.registerEntity();
         NarutoRenderers.registerRenderTypes();
+        NarutoItemModels.setItemModels();
     }
 
     private void setup(FMLCommonSetupEvent event) {
