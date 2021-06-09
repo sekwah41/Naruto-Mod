@@ -15,7 +15,9 @@ import java.util.function.Supplier;
  */
 public enum NarutoArmorMaterial implements IArmorMaterial {
 
-    ANBU_MAT("anbu", 35, new int[]{2, 8, 5, 2}, 8, null, 2.1F, 0.0F, () -> null);
+    ANBU_MAT("anbu", 35, new int[]{2, 8, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
+    HEADBAND("headband", 35, new int[]{2, 8, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
+    ;
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;

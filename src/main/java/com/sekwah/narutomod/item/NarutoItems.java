@@ -31,6 +31,13 @@ public class NarutoItems {
         }
     };
 
+    public static ItemGroup HEADBANDS = new ItemGroup("narutomod_headbands") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(BLUE_HEADBAND.get());
+        }
+    };
+
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
     // Weapons
@@ -51,6 +58,18 @@ public class NarutoItems {
 
     public static final RegistryObject<Item> ANBU_MASK = ITEMS.register("anbu_mask", ()
             -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR)));
+
+
+    // Ninja Masks
+
+    public static final RegistryObject<Item> BLUE_HEADBAND = ITEMS.register("blue_headband", ()
+            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlotType.HEAD,  new Item.Properties().tab(HEADBANDS)));
+
+    public static final RegistryObject<Item> BLACK_HEADBAND = ITEMS.register("black_headband", ()
+            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlotType.HEAD,  new Item.Properties().tab(HEADBANDS)));
+
+    public static final RegistryObject<Item> HEAD_HEADBAND = ITEMS.register("red_headband", ()
+            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlotType.HEAD,  new Item.Properties().tab(HEADBANDS)));
 
     // Materials
 
