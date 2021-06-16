@@ -15,21 +15,67 @@ public class RecipeGen extends RecipeProvider {
     @Override
     protected void buildShapelessRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
 
-        ShapedRecipeBuilder.shaped(NarutoItems.ANBU_MASK.get()).define('W', Items.WHITE_TERRACOTTA).define('R', Items.RED_DYE)
+        ShapedRecipeBuilder.shaped(NarutoItems.RED_ANBU_MASK.get())
+                .define('W', Items.WHITE_TERRACOTTA)
+                .define('R', Items.RED_DYE)
                 .pattern("WRW")
                 .pattern("WWW")
                 .pattern(" W ")
                 .unlockedBy("has_rose_red", has(Items.RED_DYE))
-                .unlockedBy("has_iron_ingot", has(Items.WHITE_TERRACOTTA))
+                .unlockedBy("has_white_terracotta", has(Items.WHITE_TERRACOTTA))
                 .save(recipeConsumer);
 
-        ShapedRecipeBuilder.shaped(NarutoItems.KUNAI.get(), 8).define('I', Items.IRON_INGOT).define('S', Items.STICK)
+        ShapedRecipeBuilder.shaped(NarutoItems.YELLOW_ANBU_MASK.get())
+                .define('W', Items.WHITE_TERRACOTTA)
+                .define('Y', Items.YELLOW_DYE)
+                .pattern("WYW")
+                .pattern("WWW")
+                .pattern(" W ")
+                .unlockedBy("has_yellow_dye", has(Items.YELLOW_DYE))
+                .unlockedBy("has_white_terracotta", has(Items.WHITE_TERRACOTTA))
+                .save(recipeConsumer);
+
+        ShapedRecipeBuilder.shaped(NarutoItems.BLUE_ANBU_MASK.get())
+                .define('W', Items.WHITE_TERRACOTTA)
+                .define('B', Items.BLUE_DYE)
+                .pattern("WBW")
+                .pattern("WWW")
+                .pattern(" W ")
+                .unlockedBy("has_blue_dye", has(Items.BLUE_DYE))
+                .unlockedBy("has_white_terracotta", has(Items.WHITE_TERRACOTTA))
+                .save(recipeConsumer);
+
+        ShapedRecipeBuilder.shaped(NarutoItems.GREEN_ANBU_MASK.get())
+                .define('W', Items.WHITE_TERRACOTTA)
+                .define('G', Items.GREEN_DYE)
+                .pattern("WGW")
+                .pattern("WWW")
+                .pattern(" W ")
+                .unlockedBy("has_blue_dye", has(Items.GREEN_DYE))
+                .unlockedBy("has_white_terracotta", has(Items.WHITE_TERRACOTTA))
+                .save(recipeConsumer);
+
+        ShapedRecipeBuilder.shaped(NarutoItems.MIST_ANBU_MASK.get())
+                .define('W', Items.WHITE_TERRACOTTA)
+                .define('R', Items.RED_DYE)
+                .pattern("WWW")
+                .pattern("WRW")
+                .pattern(" W ")
+                .unlockedBy("has_rose_red", has(Items.RED_DYE))
+                .unlockedBy("has_white_terracotta", has(Items.WHITE_TERRACOTTA))
+                .save(recipeConsumer);
+
+        ShapedRecipeBuilder.shaped(NarutoItems.KUNAI.get(), 8)
+                .define('I', Items.IRON_INGOT)
+                .define('S', Items.STICK)
                 .pattern(" I")
                 .pattern("S ")
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
                 .save(recipeConsumer);
 
-        ShapedRecipeBuilder.shaped(NarutoItems.SHURIKEN.get(), 16).define('I', Items.IRON_INGOT).define('F', Items.FLINT)
+        ShapedRecipeBuilder.shaped(NarutoItems.SHURIKEN.get(), 16)
+                .define('I', Items.IRON_INGOT)
+                .define('F', Items.FLINT)
                 .pattern(" F ")
                 .pattern("FIF")
                 .pattern(" F ")
@@ -37,7 +83,8 @@ public class RecipeGen extends RecipeProvider {
                 .unlockedBy("has_flint", has(Items.FLINT))
                 .save(recipeConsumer);
 
-        ShapedRecipeBuilder.shaped(NarutoItems.SENBON.get(), 16).define('N', Items.IRON_NUGGET)
+        ShapedRecipeBuilder.shaped(NarutoItems.SENBON.get(), 16)
+                .define('N', Items.IRON_NUGGET)
                 .pattern("  N")
                 .pattern(" N ")
                 .pattern("N  ")

@@ -30,7 +30,7 @@ public class NarutoArmorItem extends ArmorItem {
         return armorTexture;
     }
 
-    public NarutoArmorItem setArmorModel(BipedModel armorModel) {
+    public NarutoArmorItem setArmorModel(BipedModel<? extends LivingEntity> armorModel) {
         this.armorModel = armorModel;
         return this;
     }
