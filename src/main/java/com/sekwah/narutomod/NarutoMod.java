@@ -9,8 +9,6 @@ import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItemModels;
 import com.sekwah.narutomod.item.NarutoItems;
-import com.sekwah.narutomod.jutsus.Jutsu;
-import com.sekwah.narutomod.jutsus.NarutoJutsus;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.registries.NarutoRegistries;
 import com.sekwah.narutomod.sounds.NarutoSounds;

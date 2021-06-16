@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "narutomod:items/armor/mist_anbu_mask"
+  }
+}
