@@ -24,7 +24,7 @@ public class AnbuMaskModel<T extends LivingEntity> extends BipedModel<T>
 
     public ModelRenderer headLock;
 
-    public AnbuMaskModel(float modelSize)
+    public AnbuMaskModel(float modelSize, boolean hasEars)
     {
         super(modelSize);
         int textureWidth = 64;
@@ -60,18 +60,20 @@ public class AnbuMaskModel<T extends LivingEntity> extends BipedModel<T>
         nose.setTexSize(textureWidth, textureHeight);
         nose.mirror = true;
         setRotation(nose, 0F, 0F, 0F);
-        rightEar = new ModelRenderer(this, 50, 0);
-        rightEar.addBox(-8.066667F, -6F, -4.3F, 2, 2, 1);
-        rightEar.setPos(-0.35F, 0.04F, 0F);
-        rightEar.setTexSize(textureWidth, textureHeight);
-        rightEar.mirror = true;
-        setRotation(rightEar, 0F, 0F, 0.7853982F);
-        leftEar = new ModelRenderer(this, 50, 0);
-        leftEar.addBox(-5F, -9F, -4.3F, 2, 2, 1);
-        leftEar.setPos(-0.9333333F, 0F, 0F);
-        leftEar.setTexSize(textureWidth, textureHeight);
-        leftEar.mirror = true;
-        setRotation(leftEar, 0F, 0F, 0.7853982F);
+        if(hasEars) {
+            rightEar = new ModelRenderer(this, 50, 0);
+            rightEar.addBox(-8.066667F, -6F, -4.3F, 2, 2, 1);
+            rightEar.setPos(-0.35F, 0.04F, 0F);
+            rightEar.setTexSize(textureWidth, textureHeight);
+            rightEar.mirror = true;
+            setRotation(rightEar, 0F, 0F, 0.7853982F);
+            leftEar = new ModelRenderer(this, 50, 0);
+            leftEar.addBox(-5F, -9F, -4.3F, 2, 2, 1);
+            leftEar.setPos(-0.9333333F, 0F, 0F);
+            leftEar.setTexSize(textureWidth, textureHeight);
+            leftEar.mirror = true;
+            setRotation(leftEar, 0F, 0F, 0.7853982F);
+        }
         headBandLeft = new ModelRenderer(this, 60, 23);
         headBandLeft.addBox(3.1F, -3.6F, 3F, 1, 8, 1);
         headBandLeft.setPos(0F, 0F, 0F);
@@ -100,8 +102,10 @@ public class AnbuMaskModel<T extends LivingEntity> extends BipedModel<T>
         headLock.addChild(eyebrowLeft);
         headLock.addChild(eyebrowRight);
         headLock.addChild(nose);
-        headLock.addChild(rightEar);
-        headLock.addChild(leftEar);
+        if(hasEars) {
+            headLock.addChild(rightEar);
+            headLock.addChild(leftEar);
+        }
         headLock.addChild(headBandLeft);
         headLock.addChild(headbandRight);
         headLock.addChild(headbandBack);

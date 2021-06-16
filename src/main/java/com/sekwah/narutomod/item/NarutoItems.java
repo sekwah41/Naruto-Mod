@@ -27,7 +27,7 @@ public class NarutoItems {
     public static ItemGroup NINJA_ARMOR = new ItemGroup("narutomod_armor") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ANBU_MASK.get());
+            return new ItemStack(RED_ANBU_MASK.get());
         }
     };
 
@@ -56,8 +56,22 @@ public class NarutoItems {
 
     // Armor
 
-    public static final RegistryObject<Item> ANBU_MASK = ITEMS.register("anbu_mask", ()
+    public static final RegistryObject<Item> RED_ANBU_MASK = ITEMS.register("red_anbu_mask", ()
             -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR)));
+
+    public static final RegistryObject<Item> YELLOW_ANBU_MASK = ITEMS.register("yellow_anbu_mask", ()
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR)));
+
+    public static final RegistryObject<Item> GREEN_ANBU_MASK = ITEMS.register("green_anbu_mask", ()
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR)));
+
+    public static final RegistryObject<Item> BLUE_ANBU_MASK = ITEMS.register("blue_anbu_mask", ()
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR)));
+
+    public static final RegistryObject<Item> MIST_ANBU_MASK = ITEMS.register("mist_anbu_mask", ()
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR)));
+
+
 
 
     // Ninja Masks
@@ -68,7 +82,7 @@ public class NarutoItems {
     public static final RegistryObject<Item> BLACK_HEADBAND = ITEMS.register("black_headband", ()
             -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlotType.HEAD,  new Item.Properties().tab(HEADBANDS)));
 
-    public static final RegistryObject<Item> HEAD_HEADBAND = ITEMS.register("red_headband", ()
+    public static final RegistryObject<Item> RED_HEADBAND = ITEMS.register("red_headband", ()
             -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlotType.HEAD,  new Item.Properties().tab(HEADBANDS)));
 
     // Materials
