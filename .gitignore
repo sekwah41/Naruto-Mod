@@ -6,9 +6,10 @@ src/generated
 *.iml
 *.ipr
 *.iws
-
+/src/generated/
 
 \.idea/
 \classes/
 run/
 build/
+.env
