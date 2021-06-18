@@ -24,39 +24,40 @@ buildscript {
 }
 plugins {
     id "com.matthewprenger.cursegradle" version "1.4.0"
+    id 'net.researchgate.release' version '2.8.1'
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: "java"
 apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
+//apply plugin: 'maven-publish'
 
 // May be able to remove it
 apply plugin: "org.spongepowered.mixin"
 apply plugin: "com.wynprice.cursemaven"
 
 def branch = System.getenv("GITHUB_REF")
-def sha = System.getenv("GITHUB_SHA")
-def isDevBranch = branch == null || (!(branch.startsWith("refs/heads/release/") || branch.startsWith("refs/tags/")))
+if(branch != null) {
+    branch = branch.replace('refs/heads/', '')
+}
+def isCanary = version.toString().contains('canary')
 
-
-version = "${project.version}${isDevBranch ? '-SNAPSHOT' : ''}"
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.archive
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    maven {
-        url 'https://dvs1.progwml6.com/files/maven'
-    }
-    maven { url = "https://maven.sekwah.com" }
-    maven {
-        url "https://minecraft.curseforge.com/api/maven/"
-    }
-}
+//repositories {
+//    mavenLocal()
+//    mavenCentral()
+//    maven {
+//        url 'https://dvs1.progwml6.com/files/maven'
+//    }
+//    maven { url = "https://maven.sekwah.com" }
+//    maven {
+//        url "https://minecraft.curseforge.com/api/maven/"
+//    }
+//}
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
@@ -158,7 +159,7 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 
-    compile "com.sekwah:SekCLib:${sekclib_version}:deobf"
+    //compile "com.sekwah:SekCLib:${sekclib_version}:deobf"
     // Trick intellij to allow for better editing in here for the discord task
     // compile "org.apache.httpcomponents:httpmime:4.5.13"
 
@@ -228,23 +229,23 @@ task deobfJar(type: Jar) {
     from file("LICENSE")
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact reobfArtifact
-            artifact srcJar
-            artifact deobfJar
-        }
-    }
-    repositories {
-        maven {
-            url "s3://sekwah-maven/"
-            authentication {
-                awsIm(AwsImAuthentication)
-            }
-        }
-    }
-}
+//publishing {
+//    publications {
+//        mavenJava(MavenPublication) {
+//            artifact reobfArtifact
+//            artifact srcJar
+//            artifact deobfJar
+//        }
+//    }
+//    repositories {
+//        maven {
+//            url "s3://sekwah-maven/"
+//            authentication {
+//                awsIm(AwsImAuthentication)
+//            }
+//        }
+//    }
+//}
 
 /** For pre-releases and testers to be able to try the latest commits if they want.
  * If the builds start exceeding 8MB then we may want to upload to s3 instead and periodically clear.
@@ -263,8 +264,12 @@ task discordupload {
             HttpPost uploadFile = new HttpPost(discordWebhook)
 
             MultipartEntityBuilder builder = MultipartEntityBuilder.create()
-            builder.addTextBody("content", "New automated dev build\n\n" +
-                    "Current Features: <${project.github}/blob/${sha}/docs/SNAPSHOT_CHANGELOG.md>")
+            if(isCanary) {
+                builder.addTextBody("content", "New canary Build")
+            } else {
+                builder.addTextBody("content", "New release build\n\n" +
+                        "Current Features: <${project.github}/blob/${branch}/CHANGELOG.md>")
+            }
 
             builder.addBinaryBody("file", file(jar.archiveFile).newInputStream(), ContentType.APPLICATION_OCTET_STREAM, jar.archiveName)
 
@@ -292,7 +297,7 @@ curseforge {
     project {
         id = project.curse_project_id
         // TODO add code to reference this but also cut the latest change logs in for the files
-        changelog = "${project.github}/blob/${sha}/docs/CHANGELOG.md"
+        changelog = "${project.github}/blob/${branch}/docs/CHANGELOG.md"
         changelogType = 'markdown'
         releaseType = 'release'
         addGameVersion '1.16.1'
@@ -309,42 +314,30 @@ curseforge {
     }
 }
 
-/**
- * These are needed as standard-version doesnt allow for the ability to skip tag versions for the changelog.
- * Well it does but not on purpose and it breaks things.
- *
- * Tagging is skipped so that the release can be merged and confirmed (A little long winded but just to stop mistakes)
- */
-task release {
-    doLast{
-        exec {
-            commandLine 'cmd', '/c', 'npx standard-version@9.3.0 -i docs/CHANGELOG.md -t (v)[0-9]+.[0-9]+.[0-9]+(?!-) --skip.tag'
-            ext.output = {
-                return standardOutput.toString()
-            }
-        }
-        exec {
-            commandLine 'cmd', '/c', 'npx standard-version@9.3.0 --skip.changelog --skip.bump --skip.tag'
-            ext.output = {
-                return standardOutput.toString()
-            }
-        }
+// https://github.com/researchgate/gradle-release
+// Only other plugin I can find using auto & gradle https://github.com/intuit/hooks
+release {
+    failOnPublishNeeded = false
+    failOnSnapshotDependencies = false
+    git {
+        requireBranch = ''
     }
+
+
+    // Disable tasks because something we have is causing -x to be ignored
+    createReleaseTag.enabled = false
+    preTagCommit.enabled = false
+    commitNewVersion.enabled = false
 }
 
-task preRelease(type: Exec) {
-    commandLine 'cmd', '/c', 'npx standard-version@9.3.0 --prerelease -i docs/SNAPSHOT_CHANGELOG.md --skip.tag'
-    ext.output = {
-        return standardOutput.toString()
-    }
+task publish {
+    println "This is a dummy task to run others for version: ${version}"
 }
 
-/**
- * Just to stop having to manually tagging. Probably could do this easier but meh stops typos or other issues.
- */
-task tagRelease(type: Exec) {
-    commandLine 'cmd', '/c', 'npx standard-version@9.3.0 --prerelease -i docs/SNAPSHOT_CHANGELOG.md --skip.changelog --skip.bump'
-    ext.output = {
-        return standardOutput.toString()
-    }
+// Publish rules
+// Current behavior seems to be canary or release. Though pre-releases may break this pattern.
+publish.dependsOn 'build'
+publish.finalizedBy 'discordupload'
+if (!isCanary) {
+    publish.finalizedBy 'curseforge'
 }
