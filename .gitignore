@@ -7,7 +7,7 @@ src/generated
 *.ipr
 *.iws
 /src/generated/
-
+node_modules/
 \.idea/
 \classes/
 run/
