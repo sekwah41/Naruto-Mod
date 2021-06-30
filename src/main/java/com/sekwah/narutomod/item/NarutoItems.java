@@ -57,19 +57,24 @@ public class NarutoItems {
     // Armor
 
     public static final RegistryObject<Item> RED_ANBU_MASK = ITEMS.register("red_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR)));
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            .setShouldHideNameplate(true));
 
     public static final RegistryObject<Item> YELLOW_ANBU_MASK = ITEMS.register("yellow_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR)));
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            .setShouldHideNameplate(true));
 
     public static final RegistryObject<Item> GREEN_ANBU_MASK = ITEMS.register("green_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR)));
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            .setShouldHideNameplate(true));
 
     public static final RegistryObject<Item> BLUE_ANBU_MASK = ITEMS.register("blue_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR)));
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            .setShouldHideNameplate(true));
 
     public static final RegistryObject<Item> MIST_ANBU_MASK = ITEMS.register("mist_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR)));
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            .setShouldHideNameplate(true));
 
 
 

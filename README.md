@@ -11,9 +11,6 @@ If you would like to contribute to the language files by creating another langua
 
 Where to get the mod http://www.planetminecraft.com/mod/naruto-mod-1750133/
 
-## To enable the mixins you will need to run forge with this program argument
-`--mixin.config=mixins.narutomod.json`
-
 # Useful Tools/Info
 Hotswapping that I didn't know existed for far too long
 https://dcevm.github.io/.
