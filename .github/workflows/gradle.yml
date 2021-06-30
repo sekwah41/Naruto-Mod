@@ -32,8 +32,7 @@ jobs:
       - name: Prepare repository
         run: |
           git fetch --unshallow --tags
-          yarn install --frozen-lockfile
-          echo $(yarn bin) >> $GITHUB_PATH
+          yarn install --immutable
       - name: Download MC assets
         run: ./gradlew downloadAssets || ./gradlew downloadAssets || (sleep 30s && ./gradlew downloadAssets)
       - name: Run DataGen
@@ -51,4 +50,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          npx auto shipit -v
+          yarn shipit
