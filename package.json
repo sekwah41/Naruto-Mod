@@ -8,8 +8,5 @@
     "@auto-it/upload-assets": "^10.20.6",
     "auto": "^10.20.6",
     "conventional-changelog-angular": "^5.0.12"
-  },
-  "scripts": {
-    "shipit": "auto shipit -v"
   }
 }
