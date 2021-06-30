@@ -15,12 +15,6 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-      - name: Cache Node packages
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
-          restore-keys: ${{ runner.os }}-node
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
@@ -39,8 +33,6 @@ jobs:
         run: ./gradlew runData
       - name: Build with Gradle
         run: ./gradlew build
-      - name: Clear build folder(cleans up releases)
-        run: rm -rfv ./build/libs/
       - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
