@@ -10,6 +10,6 @@
     "conventional-changelog-angular": "^5.0.12"
   },
   "scripts": {
-    "shipit": "auto shipit"
+    "shipit": "auto shipit -v"
   }
 }
