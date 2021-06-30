@@ -1,6 +1,5 @@
 {
-  "prereleaseBranches": ["dev-forge-1.16"],
-  "baseBranch": "release-forge-1.16",
+  "baseBranch": "forge-1.16",
   "plugins": [
     [
       "gradle",
