@@ -12,7 +12,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@auto-it/conventional-commits@npm:^10.20.6":
+"@auto-it/conventional-commits@npm:10.29.3":
   version: 10.29.3
   resolution: "@auto-it/conventional-commits@npm:10.29.3"
   dependencies:
@@ -79,7 +79,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@auto-it/exec@npm:^10.20.6":
+"@auto-it/exec@npm:10.29.3":
   version: 10.29.3
   resolution: "@auto-it/exec@npm:10.29.3"
   dependencies:
@@ -93,7 +93,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@auto-it/first-time-contributor@npm:^10.20.6":
+"@auto-it/first-time-contributor@npm:10.29.3":
   version: 10.29.3
   resolution: "@auto-it/first-time-contributor@npm:10.29.3"
   dependencies:
@@ -107,7 +107,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@auto-it/gradle@npm:^10.20.6":
+"@auto-it/gradle@npm:10.29.3":
   version: 10.29.3
   resolution: "@auto-it/gradle@npm:10.29.3"
   dependencies:
@@ -152,7 +152,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@auto-it/released@npm:10.29.3, @auto-it/released@npm:^10.20.6":
+"@auto-it/released@npm:10.29.3":
   version: 10.29.3
   resolution: "@auto-it/released@npm:10.29.3"
   dependencies:
@@ -166,7 +166,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@auto-it/upload-assets@npm:^10.20.6":
+"@auto-it/upload-assets@npm:10.29.3":
   version: 10.29.3
   resolution: "@auto-it/upload-assets@npm:10.29.3"
   dependencies:
@@ -618,7 +618,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"auto@npm:^10.20.6":
+"auto@npm:10.29.3":
   version: 10.29.3
   resolution: "auto@npm:10.29.3"
   dependencies:
@@ -855,7 +855,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-angular@npm:^5.0.12":
+"conventional-changelog-angular@npm:5.0.12":
   version: 5.0.12
   resolution: "conventional-changelog-angular@npm:5.0.12"
   dependencies:
@@ -2837,14 +2837,14 @@ resolve@~1.7.1:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@auto-it/conventional-commits": ^10.20.6
-    "@auto-it/exec": ^10.20.6
-    "@auto-it/first-time-contributor": ^10.20.6
-    "@auto-it/gradle": ^10.20.6
-    "@auto-it/released": ^10.20.6
-    "@auto-it/upload-assets": ^10.20.6
-    auto: ^10.20.6
-    conventional-changelog-angular: ^5.0.12
+    "@auto-it/conventional-commits": 10.29.3
+    "@auto-it/exec": 10.29.3
+    "@auto-it/first-time-contributor": 10.29.3
+    "@auto-it/gradle": 10.29.3
+    "@auto-it/released": 10.29.3
+    "@auto-it/upload-assets": 10.29.3
+    auto: 10.29.3
+    conventional-changelog-angular: 5.0.12
   languageName: unknown
   linkType: soft
 
