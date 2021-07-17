@@ -1,5 +1,15 @@
 {
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "commitMessagePrefix": "chore(ci):",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "branch",
+      "groupName": "Dep Updates",
+      "schedule": ["every weekend"]
+    }
   ]
 }
