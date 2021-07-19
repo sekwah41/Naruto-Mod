@@ -1,0 +1,22 @@
+{
+  "item.narutomod.kunai":"Kunai",
+  "item.narutomod.shuriken":"Shuriken",
+  "item.narutomod.explosive_kunai":"Explosives Kunai",
+  "item.narutomod.senbon":"Nadel",
+  "block.narutomod.paper_bomb":"Papierbombe",
+  "narutomod.subtitle.kunai_thud": "Projektilschlag",
+  "narutomod.subtitle.needle_hit": "Nadeltreffer",
+  "itemGroup.narutomod_weapons": "Ninja-Waffen",
+  "item.narutomod.red_anbu_mask": "Rote Anbu-Maske",
+  "item.narutomod.yellow_anbu_mask": "Gelbe Anbu-Maske",
+  "item.narutomod.green_anbu_mask": "Grüne Anbu-Maske",
+  "item.narutomod.blue_anbu_mask": "Blaue Anbu-Maske",
+  "item.narutomod.mist_anbu_mask": "Anbu-Maske(Haku)",
+  "item.narutomod.blue_headband": "Blaues Stirnband (leer)",
+  "item.narutomod.black_headband": "Schwarzes Stirnband (leer)",
+  "item.narutomod.red_headband": "Rotes Stirnband (leer)",
+  "block.narutomod.bonsai_tree":"Bonsai Baum",
+  "itemGroup.narutomod_armor": "Ninja-Rüstung",
+  "narutomod.subtitle.sizzle": "Zischende Papierbombe",
+  "itemGroup.narutomod_headbands": "Ninja-Handwickel"
+}
