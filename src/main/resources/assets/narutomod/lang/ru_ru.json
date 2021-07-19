@@ -6,5 +6,17 @@
   "block.narutomod.paper_bomb":"Бумажная Бомба",
   "narutomod.subtitle.kunai_thud": "Удар Снарядом",
   "narutomod.subtitle.needle_hit": "Попадание Иглы",
-  "itemGroup.narutomod_weapons": "Оружия Ниндзя"
+  "itemGroup.narutomod_weapons": "Оружия Ниндзя",
+  "item.narutomod.red_anbu_mask": "Красная Маска Анбу",
+  "item.narutomod.yellow_anbu_mask": "Желтая Маска Анбу",
+  "item.narutomod.green_anbu_mask": "Зеленая Маска Анбу",
+  "item.narutomod.blue_anbu_mask": "Синяя Маска Анбу",
+  "item.narutomod.mist_anbu_mask": "Маска Анбу(Хаку)",
+  "item.narutomod.blue_headband": "Синяя повязка(Пустая)",
+  "item.narutomod.black_headband": "Черная повязка(Пустая)",
+  "item.narutomod.red_headband": "Красная повязка(Пустая)",
+  "block.narutomod.bonsai_tree":"Дерево Бонсай",
+  "itemGroup.narutomod_armor": "Броня Ниндзя",
+  "narutomod.subtitle.sizzle": "Шипящая Бумажная Бомба",
+  "itemGroup.narutomod_headbands": "Повязки Ниндзя"
 }
