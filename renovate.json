@@ -2,6 +2,7 @@
   "extends": [
     "config:base"
   ],
+  "ignoreDeps": ["net.minecraftforge.gradle:ForgeGradle"],
   "packageRules": [
     {
       "commitMessagePrefix": "chore(ci):",
@@ -9,7 +10,8 @@
       "automerge": true,
       "automergeType": "branch",
       "groupName": "Deps",
-      "schedule": ["every weekend"]
+      "schedule": ["every weekend"],
+      "excludePackageNames": ["net.minecraftforge.gradle:ForgeGradle"]
     }
   ]
 }
