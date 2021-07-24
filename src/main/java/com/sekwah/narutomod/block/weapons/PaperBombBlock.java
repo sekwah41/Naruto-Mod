@@ -60,6 +60,15 @@ public class PaperBombBlock extends HorizontalFaceBlock {
         spawnPaperbomb(null, worldIn, pos, explosionIn.getSourceMob(), true);
     }
 
+    @Override
+    public boolean isFlammable(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+        return true;
+    }
+
+    @Override
+    public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+        return 100;
+    }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
