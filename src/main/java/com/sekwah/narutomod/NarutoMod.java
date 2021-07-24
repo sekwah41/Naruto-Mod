@@ -5,6 +5,7 @@ import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.client.keybinds.NarutoKeyHandler;
 import com.sekwah.narutomod.client.gui.NarutoInGameGUI;
 import com.sekwah.narutomod.client.renderer.NarutoRenderers;
+import com.sekwah.narutomod.commands.NarutoCommands;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
@@ -71,7 +72,7 @@ public class NarutoMod {
 
     @SubscribeEvent
     public static void onServerStarting(RegisterCommandsEvent event) {
-        System.out.println("Should register commands here");
+        NarutoCommands.register(event.getDispatcher());
     }
 
     private void newRegistryEvent(RegistryEvent.NewRegistry event) {

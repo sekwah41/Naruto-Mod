@@ -18,6 +18,10 @@ public class NarutoSounds {
 
     public static final RegistryObject<SoundEvent> SIZZLE = register("sizzle");
 
+    public static final RegistryObject<SoundEvent> SEAL_A = register("seal_a");
+    public static final RegistryObject<SoundEvent> SEAL_B = register("seal_b");
+    public static final RegistryObject<SoundEvent> SEAL_C = register("seal_c");
+
     private static RegistryObject<SoundEvent> register(String key) {
         return SOUNDS.register(key, () -> new SoundEvent(new ResourceLocation(MOD_ID, key)));
     }

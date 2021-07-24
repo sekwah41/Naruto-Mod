@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.client.keybinds;
 
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.config.NarutoConfig;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
@@ -19,8 +20,6 @@ public class NarutoKeyHandler {
     private static final Map<String, KeyBindingTickHeld> keys = new HashMap<>();
 
     private static final String NARUTO_KEY_CATEGORY = "narutomod.keys.category";
-
-    private static boolean jutsuKeyInHeldState = false;
 
     private static String currentJutsuCombo = "";
     private static int ticksSinceLastKey = 0;
@@ -47,6 +46,10 @@ public class NarutoKeyHandler {
         return null;
     }
 
+    public static void handleKeyPress(int keyBind) {
+
+    }
+
     /**
      * TODO Configure a held key threshold and block other keys from being able to be pressed while keys are held (to stop messing up combos)
      * @param event
@@ -55,18 +58,23 @@ public class NarutoKeyHandler {
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         ticksSinceLastKey++;
 
+        int keyHoldThreshold = NarutoConfig.JUTSU_KEYBIND_HOLD_THRESHOLD;
+
         Set<Map.Entry<String, KeyBindingTickHeld>> keySet = keys.entrySet();
 
         // TODO handle when this state should be true. Make sure when the held threshold is met that is the last key in the combo.
-        if(!jutsuKeyInHeldState) {
-            // System.out.printf("CURRENT COMBO '%s'%n", currentJutsuCombo);
-            for (Map.Entry<String, KeyBindingTickHeld> entry:
-                    keys.entrySet()) {
-                KeyBindingTickHeld key = entry.getValue();
-                KeyBindingTickHeld.KeyState test = key.consumeClickState();
-                if(test != KeyBindingTickHeld.KeyState.NOT_PRESSED) {
-                    System.out.printf("KEYBIND %s %s%n", test.toString(), (char)key.getKey().getValue());
-                }
+        // System.out.printf("CURRENT COMBO '%s'%n", currentJutsuCombo);
+        for (Map.Entry<String, KeyBindingTickHeld> entry:
+                keys.entrySet()) {
+            KeyBindingTickHeld key = entry.getValue();
+            KeyBindingTickHeld.KeyState test = key.consumeClickState();
+            key.update();
+            if(test != KeyBindingTickHeld.KeyState.NOT_PRESSED) {
+                System.out.printf("KEYBIND %s %s %s%n", test.toString(), (char)key.getKey().getValue(), key.currentHeldValue());
+            }
+            int releaseDuration = key.consumeReleaseDuration();
+            if(releaseDuration > 0) {
+                System.out.printf("RELEASED %s %s%n", (char)key.getKey().getValue(), releaseDuration);
             }
         }
     }

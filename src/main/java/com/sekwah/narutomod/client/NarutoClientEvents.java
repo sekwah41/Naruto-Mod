@@ -8,7 +8,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -20,6 +19,7 @@ public class NarutoClientEvents {
 
     /**
      * {@link net.minecraftforge.client.event.RenderPlayerEvent}
+     *
      * @param event
      */
     @SubscribeEvent
@@ -29,15 +29,13 @@ public class NarutoClientEvents {
 
     @SubscribeEvent
     public static void renderNameplateEvent(RenderNameplateEvent event) {
-        if(event.getResult() != Event.Result.DENY) {
+        if (event.getResult() != Event.Result.DENY) {
             Entity entity = event.getEntity();
-            if(entity instanceof PlayerEntity) {
+            if (entity instanceof PlayerEntity) {
                 ItemStack itemStack = ((PlayerEntity) entity).getItemBySlot(EquipmentSlotType.HEAD);
                 Item item = itemStack.getItem();
-                if(item instanceof IShouldHideNameplate) {
-                    if(((IShouldHideNameplate) item).shouldHideNameplate(entity)) {
-                        event.setResult(Event.Result.DENY);
-                    }
+                if (item instanceof IShouldHideNameplate && (((IShouldHideNameplate) item).shouldHideNameplate(entity))) {
+                    event.setResult(Event.Result.DENY);
                 }
             }
         }
