@@ -9,6 +9,21 @@
     "sounds": ["narutomod:weapons/needle_hit"],
     "subtitle": "narutomod.subtitle.needle_hit"
   },
+  "seal_a": {
+    "category": "neutral",
+    "sounds": ["narutomod:jutsu/seal_a"],
+    "subtitle": "narutomod.subtitle.jutsu_seal"
+  },
+  "seal_b": {
+    "category": "neutral",
+    "sounds": ["narutomod:jutsu/seal_b"],
+    "subtitle": "narutomod.subtitle.jutsu_seal"
+  },
+  "seal_c": {
+    "category": "neutral",
+    "sounds": ["narutomod:jutsu/seal_c"],
+    "subtitle": "narutomod.subtitle.jutsu_seal"
+  },
   "sizzle": {
     "category": "block",
     "sounds": ["narutomod:weapons/sizzle"],

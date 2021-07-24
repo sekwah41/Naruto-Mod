@@ -7,7 +7,7 @@ public class KeyBindingTickHeld extends KeyBinding {
 
     boolean hasConsumedClickState = false;
 
-    int release = 0;
+    int heldTicks = 0;
 
     public KeyBindingTickHeld(String name, int keyCode, String category) {
         super(name, keyCode, category);
@@ -17,6 +17,12 @@ public class KeyBindingTickHeld extends KeyBinding {
         CLICK,
         HELD,
         NOT_PRESSED
+    }
+
+    public void update() {
+        if(this.isDown()) {
+            heldTicks++;
+        }
     }
 
     // Could be a little overkill though should make keys more consistent
@@ -39,12 +45,27 @@ public class KeyBindingTickHeld extends KeyBinding {
 
     /**
      * People wont be rapidly using this so its fine to miss this by mistake. Its more to help abilities like the leap.
+     *
+     * Depending on the key you may want to check against a held threshold to see if it should be activated or not
+     *
      * @return
      */
     public int consumeReleaseDuration() {
-        int returnValue = release;
-        release = 0;
+        if (this.isDown()) {
+            return 0;
+        }
+
+        int returnValue = heldTicks;
+        heldTicks = 0;
         return returnValue;
+    }
+
+    /**
+     * Helpful for animations and checking if its past the threshold
+     * @return
+     */
+    public int currentHeldValue() {
+        return heldTicks;
     }
 
     @Override

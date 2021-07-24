@@ -25,6 +25,9 @@ public class NarutoConfig {
     private static final ForgeConfigSpec.BooleanValue CONFIG_PAPERBOMB_BLOCK_DAMAGE;
     public static boolean PAPERBOMB_BLOCK_DAMAGE;
 
+    private static final ForgeConfigSpec.IntValue CONFIG_JUTSU_KEYBIND_HOLD_THRESHOLD;
+    public static int JUTSU_KEYBIND_HOLD_THRESHOLD;
+
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
 
@@ -41,6 +44,9 @@ public class NarutoConfig {
 
         CONFIG_PAPERBOMB_BLOCK_DAMAGE = configBuilder.comment("Paper Bomb block damage")
                 .define("paperBombExplosionBreakBlocks", true);
+
+        CONFIG_JUTSU_KEYBIND_HOLD_THRESHOLD = configBuilder.comment("Key hold threshold (how long to hold a key before it starts charging)")
+                .defineInRange("jutsuKeyHoldThreshold", 15, 0, Integer.MAX_VALUE);
 
         configBuilder.pop();
 
