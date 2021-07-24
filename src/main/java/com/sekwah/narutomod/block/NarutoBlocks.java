@@ -35,9 +35,4 @@ public class NarutoBlocks {
         BLOCKS.register(eventBus);
         BLOCK_ITEMS.register(eventBus);
     }
-
-    public static void setFlammableData() {
-        FireBlock fireblock = (FireBlock)Blocks.FIRE;
-        fireblock.setFlammable(PAPER_BOMB.get(), 15, 100);
-    }
 }
