@@ -14,19 +14,22 @@ public class NarutoConfig {
     public static final ForgeConfigSpec MOD_CONFIG;
 
     private static final ForgeConfigSpec.BooleanValue CONFIG_KUNAI_BLOCK_DAMAGE;
-    public static boolean KUNAI_BLOCK_DAMAGE;
+    public static boolean kunaiBlockDamage;
 
     private static final ForgeConfigSpec.DoubleValue CONFIG_KUNAI_EXPLOSION_RADIUS;
-    public static float KUNAI_EXPLOSION_RADIUS;
+    public static float kunaiExplosionRadius;
 
     private static final ForgeConfigSpec.DoubleValue CONFIG_PAPERBOMB_EXPLOSION_RADIUS;
-    public static float PAPERBOMB_EXPLOSION_RADIUS;
+    public static float paperbombExplosionRadius;
 
     private static final ForgeConfigSpec.BooleanValue CONFIG_PAPERBOMB_BLOCK_DAMAGE;
-    public static boolean PAPERBOMB_BLOCK_DAMAGE;
+    public static boolean paperbombBlockDamage;
 
     private static final ForgeConfigSpec.IntValue CONFIG_JUTSU_KEYBIND_HOLD_THRESHOLD;
-    public static int JUTSU_KEYBIND_HOLD_THRESHOLD;
+    public static int jutsuKeybindHoldThreshold;
+
+    private static final ForgeConfigSpec.IntValue CONFIG_JUTSU_CAST_DELAY;
+    public static int jutsuCastDelay;
 
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
@@ -45,8 +48,11 @@ public class NarutoConfig {
         CONFIG_PAPERBOMB_BLOCK_DAMAGE = configBuilder.comment("Paper Bomb block damage")
                 .define("paperBombExplosionBreakBlocks", true);
 
-        CONFIG_JUTSU_KEYBIND_HOLD_THRESHOLD = configBuilder.comment("Key hold threshold (how long to hold a key before it starts charging)")
+        CONFIG_JUTSU_KEYBIND_HOLD_THRESHOLD = configBuilder.comment("Key hold threshold in ticks (20 per second)")
                 .defineInRange("jutsuKeyHoldThreshold", 15, 0, Integer.MAX_VALUE);
+
+        CONFIG_JUTSU_CAST_DELAY = configBuilder.comment("Jutsu activation delay (20 per second)")
+                .defineInRange("jutsuActivateDelay", 15, 0, Integer.MAX_VALUE);
 
         configBuilder.pop();
 
@@ -54,10 +60,13 @@ public class NarutoConfig {
     }
 
     public static void loadVariables() {
-        KUNAI_BLOCK_DAMAGE = CONFIG_KUNAI_BLOCK_DAMAGE.get();
-        KUNAI_EXPLOSION_RADIUS = CONFIG_KUNAI_EXPLOSION_RADIUS.get().floatValue();
-        PAPERBOMB_EXPLOSION_RADIUS = CONFIG_PAPERBOMB_EXPLOSION_RADIUS.get().floatValue();
-        PAPERBOMB_BLOCK_DAMAGE = CONFIG_PAPERBOMB_BLOCK_DAMAGE.get();
+        kunaiBlockDamage = CONFIG_KUNAI_BLOCK_DAMAGE.get();
+        kunaiExplosionRadius = CONFIG_KUNAI_EXPLOSION_RADIUS.get().floatValue();
+        paperbombExplosionRadius = CONFIG_PAPERBOMB_EXPLOSION_RADIUS.get().floatValue();
+        paperbombBlockDamage = CONFIG_PAPERBOMB_BLOCK_DAMAGE.get();
+        jutsuKeybindHoldThreshold = CONFIG_JUTSU_KEYBIND_HOLD_THRESHOLD.get();
+        jutsuCastDelay = CONFIG_JUTSU_CAST_DELAY
+                .get();
     }
 
     @SubscribeEvent
