@@ -2,16 +2,27 @@
   "extends": [
     "config:base"
   ],
-  "ignoreDeps": ["net.minecraftforge.gradle:ForgeGradle", "net.minecraftforge:forge"],
   "packageRules": [
     {
-      "commitMessagePrefix": "chore(ci):",
+      "commitMessagePrefix": "chore(deps):",
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "branch",
       "groupName": "Deps",
       "schedule": ["every weekend"],
       "excludePackageNames": ["net.minecraftforge.gradle:ForgeGradle", "net.minecraftforge:forge"]
+    },
+    {
+      "commitMessagePrefix": "chore(deps):",
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Forge",
+      "matchPackageNames": ["net.minecraftforge:forge"]
+    },
+    {
+      "commitMessagePrefix": "chore(deps):",
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Forge Gradle",
+      "matchPackageNames": ["net.minecraftforge.gradle:ForgeGradle"]
     }
   ]
 }
