@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.item.TNTEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
@@ -217,8 +216,8 @@ public class PaperBombEntity extends Entity {
 
     protected void explode() {
         this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(),
-                NarutoConfig.PAPERBOMB_EXPLOSION_RADIUS,
-                NarutoConfig.PAPERBOMB_BLOCK_DAMAGE ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+                NarutoConfig.paperbombExplosionRadius,
+                NarutoConfig.paperbombBlockDamage ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
     }
 
     @Override

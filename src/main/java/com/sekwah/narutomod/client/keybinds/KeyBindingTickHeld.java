@@ -3,14 +3,23 @@ package com.sekwah.narutomod.client.keybinds;
 import net.minecraft.client.settings.KeyBinding;
 
 // TODO add a way to store or handle what the value was when the key was released
+
+/**
+ * If a click consumer is added then update will automatically consume the clicks.
+ */
 public class KeyBindingTickHeld extends KeyBinding {
 
     boolean hasConsumedClickState = false;
 
     int heldTicks = 0;
+    private Runnable onClick = null;
 
     public KeyBindingTickHeld(String name, int keyCode, String category) {
         super(name, keyCode, category);
+    }
+
+    public void registerClickConsumer(Runnable runnable) {
+        this.onClick = runnable;
     }
 
     public enum KeyState {
@@ -20,8 +29,14 @@ public class KeyBindingTickHeld extends KeyBinding {
     }
 
     public void update() {
-        if(this.isDown()) {
+        if (this.isDown()) {
             heldTicks++;
+        }
+        if (this.onClick != null) {
+            KeyState clickState = this.consumeClickState();
+            if(clickState == KeyState.CLICK) {
+                onClick.run();
+            }
         }
     }
 
