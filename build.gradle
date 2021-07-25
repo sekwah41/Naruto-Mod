@@ -11,12 +11,10 @@ buildscript {
         maven { url = 'https://files.minecraftforge.net/maven' }
         maven { url = "https://repo.spongepowered.org/maven" }
         maven {url "https://plugins.gradle.org/m2/"}
-        // Only temporary
-        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.0.14', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
         classpath "org.apache.httpcomponents:httpmime:4.5.13"
     }
@@ -43,7 +41,7 @@ def isCanary = version.toString().contains('canary')
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.archive
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
 //repositories {
 //    mavenLocal()
@@ -136,14 +134,16 @@ minecraft {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+configurations {
+    annotationProcessor.extendsFrom minecraft
+}
+
 dependencies {
 
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.16.5-36.1.33'
-
-    annotationProcessor 'org.spongepowered:mixin:0.8.3:processor'
+    minecraft 'net.minecraftforge:forge:1.17.1-37.0.8'
 
     //compile "com.sekwah:SekCLib:${sekclib_version}:deobf"
     // Trick intellij to allow for better editing in here for the discord task
@@ -286,11 +286,7 @@ curseforge {
         changelog = "${project.github}/blob/${branch}/docs/CHANGELOG.md"
         changelogType = 'markdown'
         releaseType = 'release'
-        addGameVersion '1.16.1'
-        addGameVersion '1.16.2'
-        addGameVersion '1.16.3'
-        addGameVersion '1.16.4'
-        addGameVersion '1.16.5'
+        addGameVersion '1.17.1'
 
         mainArtifact(jar){
 
