@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.model.Model;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
-public class ModelRendererScaled extends ModelRenderer {
+public class ModelRendererScaled extends ModelPart {
     private final float scale;
 
     public ModelRendererScaled(Model p_i46358_1_, int p_i46358_2_, int p_i46358_3_, float scale) {
@@ -12,7 +12,7 @@ public class ModelRendererScaled extends ModelRenderer {
         this.scale = scale;
     }
 
-    public void translateAndRotate(MatrixStack matrixStack) {
+    public void translateAndRotate(PoseStack matrixStack) {
         super.translateAndRotate(matrixStack);
         matrixStack.scale(this.scale, this.scale, this.scale);
     }

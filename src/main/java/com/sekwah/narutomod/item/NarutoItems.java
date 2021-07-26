@@ -1,15 +1,16 @@
 package com.sekwah.narutomod.item;
 
-import com.sekwah.narutomod.item.armor.NarutoArmorMaterial;
 import com.sekwah.narutomod.item.armor.NarutoArmorItem;
+import com.sekwah.narutomod.item.armor.NarutoArmorMaterial;
 import com.sekwah.narutomod.item.weapons.ExplosiveKunaiItem;
 import com.sekwah.narutomod.item.weapons.KunaiItem;
 import com.sekwah.narutomod.item.weapons.SenbonItem;
 import com.sekwah.narutomod.item.weapons.ShurikenItem;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -17,21 +18,21 @@ import static com.sekwah.narutomod.NarutoMod.MOD_ID;
 
 public class NarutoItems {
 
-    public static ItemGroup NINJA_WEAPONS = new ItemGroup("narutomod_weapons") {
+    public static CreativeModeTab NINJA_WEAPONS = new CreativeModeTab("narutomod_weapons") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(KUNAI.get());
         }
     };
 
-    public static ItemGroup NINJA_ARMOR = new ItemGroup("narutomod_armor") {
+    public static CreativeModeTab NINJA_ARMOR = new CreativeModeTab("narutomod_armor") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(RED_ANBU_MASK.get());
         }
     };
 
-    public static ItemGroup HEADBANDS = new ItemGroup("narutomod_headbands") {
+    public static CreativeModeTab HEADBANDS = new CreativeModeTab("narutomod_headbands") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(BLUE_HEADBAND.get());

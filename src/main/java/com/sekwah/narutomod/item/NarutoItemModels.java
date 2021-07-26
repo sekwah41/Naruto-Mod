@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.item;
 
-import com.sekwah.narutomod.client.renderer.item.model.*;
+import com.sekwah.narutomod.client.renderer.item.model.AnbuMaskModel;
+import com.sekwah.narutomod.client.renderer.item.model.HeadbandModel;
 import com.sekwah.narutomod.item.armor.NarutoArmorItem;
 
 public class NarutoItemModels {

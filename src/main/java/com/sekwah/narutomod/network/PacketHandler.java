@@ -4,13 +4,13 @@ import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.network.client.ClientTestPacket;
 import com.sekwah.narutomod.network.server.JutsuCastingPacket;
 import com.sekwah.narutomod.network.server.ServerTestPacket;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.PacketDistributor;
-import net.minecraftforge.fml.network.NetworkDirection;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraftforge.fmllegacy.network.NetworkDirection;
+import net.minecraftforge.fmllegacy.network.NetworkRegistry;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
+import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
 public class PacketHandler {
 
@@ -38,11 +38,11 @@ public class PacketHandler {
     }
 
     // These are for handling from server side to players.
-    public static void sendToPlayer(Object obj, ServerPlayerEntity player) {
+    public static void sendToPlayer(Object obj, ServerPlayer player) {
         NARUTO_CHANNEL.sendTo(obj, player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
     }
 
-    public static void sentToTrackingAndSelf(Object obj, ServerPlayerEntity player) {
+    public static void sentToTrackingAndSelf(Object obj, ServerPlayer player) {
         NARUTO_CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player), obj);
     }
 

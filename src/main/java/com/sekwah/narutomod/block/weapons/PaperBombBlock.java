@@ -3,34 +3,34 @@ package com.sekwah.narutomod.block.weapons;
 import com.sekwah.narutomod.block.NarutoBlockStates;
 import com.sekwah.narutomod.entity.item.PaperBombEntity;
 import com.sekwah.narutomod.sounds.NarutoSounds;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFaceBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.AttachFace;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3i;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FaceAttachedHorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class PaperBombBlock extends HorizontalFaceBlock {
+public class PaperBombBlock extends FaceAttachedHorizontalDirectionalBlock {
 
     public static final BooleanProperty HIDDEN = NarutoBlockStates.HIDDEN;
 
@@ -49,29 +49,28 @@ public class PaperBombBlock extends HorizontalFaceBlock {
     protected static final VoxelShape AABB_WEST = Block.box(16.0D - HEIGHT, 8.0D - (LENGTH / 2D), 8.0D - (WIDTH / 2D), 16.0D, 8.0D + (LENGTH / 2D), 8.0D + (WIDTH / 2D));
     protected static final VoxelShape AABB_EAST = Block.box(HEIGHT, 8.0D - (LENGTH / 2D), 8.0D - (WIDTH / 2D), 0D, 8.0D + (LENGTH / 2D), 8.0D + (WIDTH / 2D));
 
-    // TODO interaction when exploded due to another explosion
-    public PaperBombBlock(AbstractBlock.Properties properties) {
+    public PaperBombBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HIDDEN, Boolean.valueOf(false)).setValue(FACE, AttachFace.FLOOR));
     }
 
     @Override
-    public void wasExploded(World worldIn, BlockPos pos, Explosion explosionIn) {
-        spawnPaperbomb(null, worldIn, pos, explosionIn.getSourceMob(), true);
+    public void wasExploded(Level levelIn, BlockPos pos, Explosion explosionIn) {
+        spawnPaperbomb(null, levelIn, pos, explosionIn.getSourceMob(), true);
     }
 
     @Override
-    public boolean isFlammable(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+    public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
         return true;
     }
 
     @Override
-    public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+    public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
         return 100;
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
         switch(state.getValue(FACE)) {
             case FLOOR:
@@ -102,14 +101,14 @@ public class PaperBombBlock extends HorizontalFaceBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
         if (!state.getValue(HIDDEN)) {
             worldIn.setBlock(pos, state.setValue(HIDDEN, Boolean.TRUE), 3);
         }
     }
 
     @Override
-    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (worldIn.hasNeighborSignal(pos)) {
             catchFire(state, worldIn, pos, null, null);
             worldIn.removeBlock(pos, false);
@@ -118,27 +117,27 @@ public class PaperBombBlock extends HorizontalFaceBlock {
     }
 
     @Override
-    public void onPlace(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
+    public void onPlace(BlockState state, Level worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
         super.onPlace(state, worldIn, pos, oldState, isMoving);
         worldIn.getBlockTicks().scheduleTick(new BlockPos(pos), this, TRANSPARENT_DELAY);
     }
 
     @Override
-    public void catchFire(BlockState state, World worldIn, BlockPos pos, @Nullable net.minecraft.util.Direction face, @Nullable LivingEntity igniter) {
+    public void catchFire(BlockState state, Level worldIn, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
         spawnPaperbomb(state, worldIn, pos, igniter);
     }
 
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         if(!worldIn.isClientSide) {
             spawnPaperbomb(state, worldIn, pos, player);
             worldIn.removeBlock(pos, false);
         }
-        return ActionResultType.sidedSuccess(worldIn.isClientSide);
+        return InteractionResult.sidedSuccess(worldIn.isClientSide);
     }
 
     @Override
-    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if(!worldIn.isClientSide) {
             spawnPaperbomb(state, worldIn, pos, entityIn instanceof LivingEntity ? (LivingEntity) entityIn : null, true);
             worldIn.removeBlock(pos, false);
@@ -146,18 +145,18 @@ public class PaperBombBlock extends HorizontalFaceBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, HIDDEN, FACE);
     }
 
-    public void spawnPaperbomb(@Nullable BlockState state, World worldIn, BlockPos pos, @Nullable LivingEntity igniter) {
+    public void spawnPaperbomb(@Nullable BlockState state, Level worldIn, BlockPos pos, @Nullable LivingEntity igniter) {
         spawnPaperbomb(state, worldIn, pos, igniter, false);
     }
 
-    public void spawnPaperbomb(@Nullable BlockState state, World worldIn, BlockPos pos, @Nullable LivingEntity igniter, boolean shortFuse) {
+    public void spawnPaperbomb(@Nullable BlockState state, Level worldIn, BlockPos pos, @Nullable LivingEntity igniter, boolean shortFuse) {
         if (!worldIn.isClientSide) {
             Direction dir = state != null ? state.getValue(FACING) : Direction.NORTH;
-            Vector3i dirVec = dir.getNormal();
+            Vec3i dirVec = dir.getNormal();
             AttachFace face = state != null ? state.getValue(FACE) : AttachFace.FLOOR;
 
             BlockPos attachBlock;
@@ -191,7 +190,7 @@ public class PaperBombBlock extends HorizontalFaceBlock {
                 paperBombEntity.setFuse((short)(paperBombEntity.getFuse() / 32));
             }
             else {
-                worldIn.playSound(null, paperBombEntity.getX(), paperBombEntity.getY(), paperBombEntity.getZ(), NarutoSounds.SIZZLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+                worldIn.playSound(null, paperBombEntity.getX(), paperBombEntity.getY(), paperBombEntity.getZ(), NarutoSounds.SIZZLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             }
         }
     }

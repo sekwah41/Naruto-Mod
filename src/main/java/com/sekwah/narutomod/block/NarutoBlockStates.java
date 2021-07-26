@@ -1,6 +1,6 @@
 package com.sekwah.narutomod.block;
 
-import net.minecraft.state.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 public class NarutoBlockStates {
 

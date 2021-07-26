@@ -4,24 +4,17 @@ import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.sounds.NarutoSounds;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 
 public class ExplosiveKunaiEntity extends KunaiEntity {
 
-    public ExplosiveKunaiEntity(EntityType<? extends ExplosiveKunaiEntity> type, World worldIn) {
+    public ExplosiveKunaiEntity(EntityType<? extends ExplosiveKunaiEntity> type, Level worldIn) {
         super(type, worldIn);
     }
 
-    public ExplosiveKunaiEntity(World worldIn, LivingEntity shooter) {
+    public ExplosiveKunaiEntity(Level worldIn, LivingEntity shooter) {
         super(NarutoEntities.EXPLOSIVE_KUNAI.get(), shooter, worldIn);
     }
 

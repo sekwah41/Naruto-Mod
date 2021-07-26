@@ -2,8 +2,8 @@ package com.sekwah.narutomod;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
-import com.sekwah.narutomod.client.keybinds.NarutoKeyHandler;
 import com.sekwah.narutomod.client.gui.NarutoInGameGUI;
+import com.sekwah.narutomod.client.keybinds.NarutoKeyHandler;
 import com.sekwah.narutomod.client.renderer.NarutoRenderers;
 import com.sekwah.narutomod.commands.NarutoCommands;
 import com.sekwah.narutomod.config.NarutoConfig;

@@ -1,28 +1,26 @@
 package com.sekwah.narutomod.client.renderer.item.model;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.util.Collections;
 
-public class AnbuMaskModel<T extends LivingEntity> extends BipedModel<T>
+public class AnbuMaskModel<T extends LivingEntity> extends HumanoidModel<T>
 {
-    public ModelRenderer mask;
-    public ModelRenderer mouth;
-    public ModelRenderer eyebrowLeft;
-    public ModelRenderer eyebrowRight;
-    public ModelRenderer nose;
-    public ModelRenderer rightEar;
-    public ModelRenderer leftEar;
-    public ModelRenderer headBandLeft;
-    public ModelRenderer headbandRight;
-    public ModelRenderer headbandBack;
+    public ModelPart mask;
+    public ModelPart mouth;
+    public ModelPart eyebrowLeft;
+    public ModelPart eyebrowRight;
+    public ModelPart nose;
+    public ModelPart rightEar;
+    public ModelPart leftEar;
+    public ModelPart headBandLeft;
+    public ModelPart headbandRight;
+    public ModelPart headbandBack;
 
-    public ModelRenderer headLock;
+    public ModelPart headLock;
 
     public AnbuMaskModel(float modelSize, boolean hasEars)
     {
@@ -30,8 +28,8 @@ public class AnbuMaskModel<T extends LivingEntity> extends BipedModel<T>
         int textureWidth = 64;
         int textureHeight = 32;
 
-        mask = new ModelRenderer(this, 32, 0);
-        mask.addBox(-4F, -8.466666F, -4.266667F, 8, 9, 1, 0.01F);
+        mask = new ModelPart(this, 32, 0);
+        mask.add(-4F, -8.466666F, -4.266667F, 8, 9, 1, 0.01F);
         mask.setPos(0F, 0F, 0F);
         mask.setTexSize(textureWidth, textureHeight);
         mask.mirror = true;
@@ -120,19 +118,19 @@ public class AnbuMaskModel<T extends LivingEntity> extends BipedModel<T>
         return Collections.emptyList();
     }
 
-    private void updateLockedLocations(ModelRenderer trackedPart, ModelRenderer lockBlock) {
+    private void updateLockedLocations(ModelPart trackedPart, ModelPart lockBlock) {
 
         setRotation(lockBlock, trackedPart.xRot, trackedPart.yRot, trackedPart.zRot);
 
         lockBlock.setPos(trackedPart.x,trackedPart.y,trackedPart.z);
     }
     @Override
-    public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder p_225598_2_, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
+    public void renderToBuffer(PoseStack matrixStack, IVertexBuilder p_225598_2_, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
         this.updateLockedLocations(this.head, this.headLock);
         super.renderToBuffer(matrixStack, p_225598_2_, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
     }
 
-    private void setRotation(ModelRenderer model, float x, float y, float z)
+    private void setRotation(ModelPart model, float x, float y, float z)
     {
         model.xRot = x;
         model.yRot = y;

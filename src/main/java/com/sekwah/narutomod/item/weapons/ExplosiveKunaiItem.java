@@ -8,6 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class ExplosiveKunaiItem extends KunaiItem {
 
@@ -16,7 +20,7 @@ public class ExplosiveKunaiItem extends KunaiItem {
     }
 
     @Override
-    public AbstractArrowEntity createShootingEntity(World worldIn, PlayerEntity playerIn) {
+    public AbstractArrow createShootingEntity(Level worldIn, Player playerIn) {
         return new ExplosiveKunaiEntity(worldIn, playerIn);
     }
 
@@ -35,7 +39,7 @@ public class ExplosiveKunaiItem extends KunaiItem {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ActionResult<ItemStack> action = super.use(worldIn, playerIn, handIn);
 
         return action;

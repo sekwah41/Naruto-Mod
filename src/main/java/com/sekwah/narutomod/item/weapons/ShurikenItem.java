@@ -23,12 +23,12 @@ public class ShurikenItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> use(Level worldIn, PlayerEntity playerIn, InteractionHand handIn) {
         ItemStack usedItem = playerIn.getItemInHand(handIn);
 
         worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + 0.5F);
         if (!worldIn.isClientSide) {
-            AbstractArrowEntity kunaiEntity = createShootingEntity(worldIn, playerIn);
+            AbstractArrow kunaiEntity = createShootingEntity(worldIn, playerIn);
 
             kunaiEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 3.0F, 1.0F);
             kunaiEntity.setBaseDamage(2.5);
@@ -45,7 +45,7 @@ public class ShurikenItem extends Item {
 
     }
 
-    public AbstractArrowEntity createShootingEntity(World worldIn, PlayerEntity playerIn) {
+    public AbstractArrow createShootingEntity(Level worldIn, PlayerEntity playerIn) {
 
         ShurikenEntity entity = new ShurikenEntity(worldIn, playerIn);
 

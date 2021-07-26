@@ -1,11 +1,11 @@
 package com.sekwah.narutomod.capabilities;
 
 import com.sekwah.narutomod.NarutoMod;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityEvent;
@@ -16,22 +16,25 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = NarutoMod.MOD_ID)
 public class NinjaCapabilityHandler {
 
+    @CapabilityInject(INinjaData.class)
+    public static final Capability<INinjaData> NINJA_DATA = null;
+
     public static void register() {
-        CapabilityManager.INSTANCE.register(INinjaData.class, NBTCapabilityStorage.create(CompoundNBT.class), NinjaData::new);
+        CapabilityManager.INSTANCE.register(INinjaData.class);
     }
 
     @SubscribeEvent
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
-        if (event.getObject() instanceof PlayerEntity) {
-            event.addCapability(new ResourceLocation(NarutoMod.MOD_ID, "ninja_data"), new NinjaDataProvider());
+        if (event.getObject() instanceof Player) {
+            event.addCapability(new ResourceLocation(NarutoMod.MOD_ID, "ninja_data"), new NinjaData());
         }
     }
 
     @SubscribeEvent
     public static void playerClone(PlayerEvent.Clone event) {
         // TODO need to implement copying data
-        event.getOriginal().getCapability(NarutoCapabilities.NINJA_DATA).ifPresent(original -> {
-            event.getPlayer().getCapability(NarutoCapabilities.NINJA_DATA).ifPresent(future -> {
+        event.getOriginal().getCapability(NINJA_DATA).ifPresent(original -> {
+            event.getPlayer().getCapability(NINJA_DATA).ifPresent(future -> {
                 future.deserializeNBT(original.serializeNBT());
             });
         });

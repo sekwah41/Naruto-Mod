@@ -2,7 +2,7 @@ package com.sekwah.narutomod.datagen;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.item.NarutoItems;
-import net.minecraft.data.*;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Items;
 
 import java.util.function.Consumer;

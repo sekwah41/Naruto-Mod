@@ -1,29 +1,25 @@
 package com.sekwah.narutomod.client.renderer.item.model;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.sekwah.narutomod.NarutoMod;
-import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.util.Collections;
 
-public class HeadbandModel<T extends LivingEntity> extends BipedModel<T>
+public class HeadbandModel<T extends LivingEntity> extends HumanoidModel<T>
 {
-    public ModelRenderer Shape3;
-    public ModelRenderer Shape4;
-    public ModelRenderer Shape2;
-    public ModelRenderer Shape5;
-    public ModelRenderer Shape1;
+    public ModelPart Shape3;
+    public ModelPart Shape4;
+    public ModelPart Shape2;
+    public ModelPart Shape5;
+    public ModelPart Shape1;
 
-    public ModelRenderer Shape8;
-    public ModelRenderer Shape9;
-    public ModelRenderer Shape10;
+    public ModelPart Shape8;
+    public ModelPart Shape9;
+    public ModelPart Shape10;
 
-    public ModelRenderer headLock;
+    public ModelPart headLock;
 
     public HeadbandModel(float modelSize)
     {
@@ -107,19 +103,19 @@ public class HeadbandModel<T extends LivingEntity> extends BipedModel<T>
         return Collections.emptyList();
     }
 
-    private void updateLockedLocations(ModelRenderer trackedPart, ModelRenderer lockBlock) {
+    private void updateLockedLocations(ModelPart trackedPart, ModelPart lockBlock) {
 
         setRotation(lockBlock, trackedPart.xRot, trackedPart.yRot, trackedPart.zRot);
 
         lockBlock.setPos(trackedPart.x,trackedPart.y,trackedPart.z);
     }
     @Override
-    public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder p_225598_2_, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
+    public void renderToBuffer(PoseStack matrixStack, IVertexBuilder p_225598_2_, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
         this.updateLockedLocations(this.head, this.headLock);
         super.renderToBuffer(matrixStack, p_225598_2_, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
     }
 
-    private void setRotation(ModelRenderer model, float x, float y, float z)
+    private void setRotation(ModelPart model, float x, float y, float z)
     {
         model.xRot = x;
         model.yRot = y;

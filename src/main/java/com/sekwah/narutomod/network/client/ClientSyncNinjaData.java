@@ -1,7 +1,9 @@
 package com.sekwah.narutomod.network.client;
 
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -20,13 +22,13 @@ public class ClientSyncNinjaData {
         this.isTransparent = isTransparent;
     }
 
-    public static void encode(ClientSyncNinjaData msg, PacketBuffer outBuffer) {
+    public static void encode(ClientSyncNinjaData msg, FriendlyByteBuf outBuffer) {
         outBuffer.writeUtf(msg.uuid);
         outBuffer.writeUtf(msg.url);
         outBuffer.writeBoolean(msg.isTransparent);
     }
 
-    public static ClientSyncNinjaData decode(PacketBuffer inBuffer) {
+    public static ClientSyncNinjaData decode(FriendlyByteBuf inBuffer) {
 
         String uuid = inBuffer.readUtf();
         String url = inBuffer.readUtf();

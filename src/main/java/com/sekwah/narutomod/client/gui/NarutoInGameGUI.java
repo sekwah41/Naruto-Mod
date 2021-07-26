@@ -1,6 +1,6 @@
 package com.sekwah.narutomod.client.gui;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,7 +28,7 @@ public class NarutoInGameGUI {
         if(event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
             return;
         }
-        MatrixStack stack = event.getMatrixStack();
+        PoseStack stack = event.getMatrixStack();
         this.charkaOverlay.render(stack);
     }
 }
