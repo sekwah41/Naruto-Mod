@@ -19,6 +19,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -26,6 +27,7 @@ import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import static com.sekwah.narutomod.block.NarutoBlockStates.HIDDEN;
+import static net.minecraft.world.level.block.FaceAttachedHorizontalDirectionalBlock.FACE;
 
 public class PaperBombEntity extends Entity {
     private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(PaperBombEntity.class, EntityDataSerializers.INT);
@@ -182,7 +184,7 @@ public class PaperBombEntity extends Entity {
         }
         else  if((ROTATION.equals(key) || VERT_ROT.equals(key)) && this.level.isClientSide) {
             this.renderBlockState = NarutoBlocks.PAPER_BOMB.get().defaultBlockState()
-                    .setValue(HorizontalBlock.FACING, this.getRotation())
+                    .setValue(HorizontalDirectionalBlock.FACING, this.getRotation())
                     .setValue(HIDDEN, Boolean.FALSE)
                     .setValue(FACE, this.getVertRotation());
         }
