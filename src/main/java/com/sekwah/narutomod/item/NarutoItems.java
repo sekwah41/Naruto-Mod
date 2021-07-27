@@ -6,6 +6,7 @@ import com.sekwah.narutomod.item.weapons.ExplosiveKunaiItem;
 import com.sekwah.narutomod.item.weapons.KunaiItem;
 import com.sekwah.narutomod.item.weapons.SenbonItem;
 import com.sekwah.narutomod.item.weapons.ShurikenItem;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -58,23 +59,23 @@ public class NarutoItems {
     // Armor
 
     public static final RegistryObject<Item> RED_ANBU_MASK = ITEMS.register("red_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
             .setShouldHideNameplate(true));
 
     public static final RegistryObject<Item> YELLOW_ANBU_MASK = ITEMS.register("yellow_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
             .setShouldHideNameplate(true));
 
     public static final RegistryObject<Item> GREEN_ANBU_MASK = ITEMS.register("green_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
             .setShouldHideNameplate(true));
 
     public static final RegistryObject<Item> BLUE_ANBU_MASK = ITEMS.register("blue_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
             .setShouldHideNameplate(true));
 
     public static final RegistryObject<Item> MIST_ANBU_MASK = ITEMS.register("mist_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlotType.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
             .setShouldHideNameplate(true));
 
 
@@ -83,13 +84,13 @@ public class NarutoItems {
     // Ninja Masks
 
     public static final RegistryObject<Item> BLUE_HEADBAND = ITEMS.register("blue_headband", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlotType.HEAD,  new Item.Properties().tab(HEADBANDS)));
+            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
 
     public static final RegistryObject<Item> BLACK_HEADBAND = ITEMS.register("black_headband", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlotType.HEAD,  new Item.Properties().tab(HEADBANDS)));
+            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
 
     public static final RegistryObject<Item> RED_HEADBAND = ITEMS.register("red_headband", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlotType.HEAD,  new Item.Properties().tab(HEADBANDS)));
+            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
 
     // Materials
 

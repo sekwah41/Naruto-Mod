@@ -6,7 +6,7 @@ import com.sekwah.narutomod.entity.projectile.KunaiEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -30,10 +30,10 @@ public class KunaiItem extends Item {
     }
 
     @Override
-    public InteractionResult<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack usedItem = playerIn.getItemInHand(handIn);
 
-        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + 0.5F);
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (worldIn.random.nextFloat() * 0.4F + 1.2F) + 0.5F);
         if (!worldIn.isClientSide) {
             AbstractArrow kunaiEntity = createShootingEntity(worldIn, playerIn);
 
@@ -48,7 +48,7 @@ public class KunaiItem extends Item {
             usedItem.shrink(1);
         }
 
-        return InteractionResult.sidedSuccess(usedItem, worldIn.isClientSide);
+        return InteractionResultHolder.sidedSuccess(usedItem, worldIn.isClientSide);
 
     }
 

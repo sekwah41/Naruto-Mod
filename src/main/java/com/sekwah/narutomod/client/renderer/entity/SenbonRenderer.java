@@ -18,8 +18,8 @@ public class SenbonRenderer extends ArrowRenderer<SenbonEntity> {
    @Override
    public void render(SenbonEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
       matrixStackIn.pushPose();
-      matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.yRotO, entityIn.yRot) - 90.0F));
-      matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.xRotO, entityIn.xRot)));
+      matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(Mth.lerp(partialTicks, entityIn.yRotO, entityIn.yRot) - 90.0F));
+      matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerp(partialTicks, entityIn.xRotO, entityIn.xRot)));
       matrixStackIn.scale(0.5f, 0.5f, 0.5f);
 
       matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(45.0F));

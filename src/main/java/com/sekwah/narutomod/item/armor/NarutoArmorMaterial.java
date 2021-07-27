@@ -1,19 +1,19 @@
 package com.sekwah.narutomod.item.armor;
 
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.util.LazyLoadedValue;
 
 import java.util.function.Supplier;
 
 /**
- * Balance against {@link net.minecraft.item.ArmorMaterial}
+ * Balance against {@link net.minecraft.world.item.ArmorMaterial}
  */
-public enum NarutoArmorMaterial implements IArmorMaterial {
+public enum NarutoArmorMaterial implements ArmorMaterial {
 
     ANBU_MAT("anbu", 35, new int[]{2, 8, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
     HEADBAND("headband", 35, new int[]{2, 8, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
@@ -27,7 +27,10 @@ public enum NarutoArmorMaterial implements IArmorMaterial {
     private final SoundEvent sound;
     private final float toughness;
     private final float knockbackResistance;
-    private final LazyValue<Ingredient> repairIngredient;
+    /**
+     * May be Deprecated but is used in the vanilla materials
+     */
+    private final LazyLoadedValue<Ingredient> repairIngredient;
 
     NarutoArmorMaterial(String name, int durabilityMultiplier, int[] slotProtections, int enchantmentValue, SoundEvent soundEvent, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
         this.name = name;
@@ -37,15 +40,15 @@ public enum NarutoArmorMaterial implements IArmorMaterial {
         this.sound = soundEvent;
         this.toughness = toughness;
         this.knockbackResistance = knockbackResistance;
-        this.repairIngredient = new LazyValue<>(repairIngredient);
+        this.repairIngredient = new LazyLoadedValue<>(repairIngredient);
     }
 
-    public int getDurabilityForSlot(EquipmentSlotType p_200896_1_) {
+    public int getDurabilityForSlot(EquipmentSlot p_200896_1_) {
         return HEALTH_PER_SLOT[p_200896_1_.getIndex()] * this.durabilityMultiplier;
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlotType p_200902_1_) {
+    public int getDefenseForSlot(EquipmentSlot p_200902_1_) {
         return this.slotProtections[p_200902_1_.getIndex()];
     }
 
