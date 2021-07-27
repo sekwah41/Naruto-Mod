@@ -3,7 +3,7 @@ package com.sekwah.narutomod.registries;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.clans.Clans;
 import com.sekwah.narutomod.jutsus.Jutsu;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.RegistryBuilder;
 
 /**

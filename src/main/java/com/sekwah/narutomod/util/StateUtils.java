@@ -1,6 +1,6 @@
 package com.sekwah.narutomod.util;
 
-import net.minecraft.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.AttachFace;
 
 public class StateUtils {
 
