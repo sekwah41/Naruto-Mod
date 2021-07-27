@@ -59,7 +59,6 @@ public class NarutoMod {
 
 
     private void clientSetup(FMLClientSetupEvent event) {
-        NarutoRenderers.registerEntity();
         NarutoRenderers.registerRenderTypes();
         NarutoItemModels.setItemModels();
         NarutoKeyHandler.registerKeyBinds();

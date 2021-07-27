@@ -1,24 +1,41 @@
 package com.sekwah.narutomod.client.renderer;
 
+import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.client.renderer.entity.*;
 import com.sekwah.narutomod.entity.NarutoEntities;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+/**
+ * Example of new entity render events
+ * https://github.com/MinecraftForge/MinecraftForge/blob/1.17.x/src/test/java/net/minecraftforge/debug/client/rendering/EntityRendererEventsTest.java
+ */
+@Mod.EventBusSubscriber(value=Dist.CLIENT, modid=NarutoMod.MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class NarutoRenderers {
 
-    public static void registerEntity() {
-        RenderingRegistry.registerEntityRenderingHandler(NarutoEntities.KUNAI.get(), KunaiRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(NarutoEntities.EXPLOSIVE_KUNAI.get(), ExplosiveKunaiRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(NarutoEntities.SENBON.get(), SenbonRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(NarutoEntities.SHURIKEN.get(), ShurikenRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(NarutoEntities.PAPER_BOMB.get(), PaperBombRenderer::new);
+    @SubscribeEvent
+    public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(NarutoEntities.KUNAI.get(), KunaiRenderer::new);
+        event.registerEntityRenderer(NarutoEntities.EXPLOSIVE_KUNAI.get(), ExplosiveKunaiRenderer::new);
+        event.registerEntityRenderer(NarutoEntities.SENBON.get(), SenbonRenderer::new);
+        event.registerEntityRenderer(NarutoEntities.SHURIKEN.get(), ShurikenRenderer::new);
+        event.registerEntityRenderer(NarutoEntities.PAPER_BOMB.get(), PaperBombRenderer::new);
+
     }
 
     public static void registerRenderTypes() {
-        RenderTypeLookup.setRenderLayer(NarutoBlocks.PAPER_BOMB.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(NarutoBlocks.PAPER_BOMB.get(), RenderType.translucent());
     }
+
+    // Add layers to renderers
+//    @SubscribeEvent
+//    public static void entityLayers(EntityRenderersEvent.AddLayers event)
+//    {
+//    }
 
 }
