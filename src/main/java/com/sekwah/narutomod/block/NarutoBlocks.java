@@ -21,7 +21,13 @@ public class NarutoBlocks {
     public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
     public static final RegistryObject<Block> PAPER_BOMB = BLOCKS.register("paper_bomb",
-            () -> new PaperBombBlock(BlockBehaviour.Properties.of(Material.EXPLOSIVE).noCollission().strength(0.5F).sound(SoundType.CROP)));
+            () -> {
+                BlockBehaviour.Properties blockBehavior = BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .noCollission()
+                        .strength(0.5F)
+                        .sound(SoundType.CROP);
+        return new PaperBombBlock(blockBehavior);
+            });
 
     public static final RegistryObject<Item> ITEM_PAPER_BOMB = BLOCK_ITEMS.register("paper_bomb", ()
             -> new BlockItem(PAPER_BOMB.get(), new Item.Properties().tab(NarutoItems.NINJA_WEAPONS)));

@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
@@ -40,14 +41,14 @@ public class PaperBombBlock extends FaceAttachedHorizontalDirectionalBlock {
 
     protected static final int TRANSPARENT_DELAY = 5 * 20;
 
-    protected static final VoxelShape AABB_CEILING_X = Block.box(8.0D - (LENGTH / 2D), 16, 8.0D - (WIDTH / 2D), 8.0D + (LENGTH / 2D), 16D - HEIGHT, 8.0D + (WIDTH / 2D));
-    protected static final VoxelShape AABB_CEILING_Z = Block.box(8.0D - (WIDTH / 2D), 16, 8.0D - (LENGTH / 2D), 8.0D + (WIDTH / 2D), 16D - HEIGHT, 8.0D + (LENGTH / 2D));
+    protected static final VoxelShape AABB_CEILING_X = Block.box(8.0D - (LENGTH / 2D), 16 - HEIGHT, 8.0D - (WIDTH / 2D), 8.0D + (LENGTH / 2D), 16D, 8.0D + (WIDTH / 2D));
+    protected static final VoxelShape AABB_CEILING_Z = Block.box(8.0D - (WIDTH / 2D), 16 - HEIGHT, 8.0D - (LENGTH / 2D), 8.0D + (WIDTH / 2D), 16D, 8.0D + (LENGTH / 2D));
     protected static final VoxelShape AABB_FLOOR_X = Block.box(8.0D - (LENGTH / 2D), 0, 8.0D - (WIDTH / 2D), 8.0D + (LENGTH / 2D), HEIGHT, 8.0D + (WIDTH / 2D));
     protected static final VoxelShape AABB_FLOOR_Z = Block.box(8.0D - (WIDTH / 2D), 0, 8.0D - (LENGTH / 2D), 8.0D + (WIDTH / 2D), HEIGHT, 8.0D + (LENGTH / 2D));
     protected static final VoxelShape AABB_NORTH = Block.box(8.0D - (WIDTH / 2D), 8.0D - (LENGTH / 2D), 16.0D - HEIGHT, 8.0D + (WIDTH / 2D), 8.0D + (LENGTH / 2D), 16.0D);
-    protected static final VoxelShape AABB_SOUTH = Block.box(8.0D - (WIDTH / 2D), 8.0D - (LENGTH / 2D), HEIGHT, 8.0D + (WIDTH / 2D), 8.0D + (LENGTH / 2D), 0.0D);
+    protected static final VoxelShape AABB_SOUTH = Block.box(8.0D - (WIDTH / 2D), 8.0D - (LENGTH / 2D), 0, 8.0D + (WIDTH / 2D), 8.0D + (LENGTH / 2D), HEIGHT);
     protected static final VoxelShape AABB_WEST = Block.box(16.0D - HEIGHT, 8.0D - (LENGTH / 2D), 8.0D - (WIDTH / 2D), 16.0D, 8.0D + (LENGTH / 2D), 8.0D + (WIDTH / 2D));
-    protected static final VoxelShape AABB_EAST = Block.box(HEIGHT, 8.0D - (LENGTH / 2D), 8.0D - (WIDTH / 2D), 0D, 8.0D + (LENGTH / 2D), 8.0D + (WIDTH / 2D));
+    protected static final VoxelShape AABB_EAST = Block.box(0D, 8.0D - (LENGTH / 2D), 8.0D - (WIDTH / 2D), HEIGHT, 8.0D + (LENGTH / 2D), 8.0D + (WIDTH / 2D));
 
     public PaperBombBlock(BlockBehaviour.Properties properties) {
         super(properties);

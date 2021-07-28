@@ -2,15 +2,19 @@ package com.sekwah.narutomod.item.armor;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.item.interfaces.IShouldHideNameplate;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.IItemRenderProperties;
 
 import javax.annotation.Nullable;
+import java.util.function.Consumer;
 
 public class NarutoArmorItem extends ArmorItem implements IShouldHideNameplate {
 
@@ -20,10 +24,6 @@ public class NarutoArmorItem extends ArmorItem implements IShouldHideNameplate {
 
     public NarutoArmorItem(ArmorMaterial p_i48534_1_, EquipmentSlot p_i48534_2_, Properties p_i48534_3_) {
         super(p_i48534_1_, p_i48534_2_, p_i48534_3_);
-    }
-
-    public HumanoidModel getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel _default) {
-        return armorModel;
     }
 
     @Nullable
@@ -50,5 +50,22 @@ public class NarutoArmorItem extends ArmorItem implements IShouldHideNameplate {
     @Override
     public boolean shouldHideNameplate(Entity entity) {
         return this.forceHideName;
+    }
+
+
+    // A little confusing but this is how it works now
+    @Override
+    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+        super.initializeClient(consumer);
+        consumer.accept(new IItemRenderProperties() {
+
+            final BlockEntityWithoutLevelRenderer myRenderer
+                    = new NarutoItemRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
+
+            @Override
+            public HumanoidModel getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel _default) {
+                return armorModel;
+            }
+        });
     }
 }
