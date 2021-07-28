@@ -7,6 +7,7 @@ import com.sekwah.narutomod.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 import java.awt.*;
@@ -83,7 +84,8 @@ public class ChakraAndStaminaGUI extends GuiComponent {
         int width = 100;
         int offset = 128;
 
-        this.minecraft.getTextureManager().bindForSetup(barTypes[barDesign].texture);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0, barTypes[barDesign].texture);
         int barWidth = barTypes[barDesign].width;
         int xOffset = barTypes[barDesign].offset;
 
@@ -91,8 +93,6 @@ public class ChakraAndStaminaGUI extends GuiComponent {
         int valuesHeight = 26;
 
         int screenMid = this.screenWidth / 2;
-
-
 
         float darkenFactor = 0.25f;
 
@@ -112,6 +112,7 @@ public class ChakraAndStaminaGUI extends GuiComponent {
         // Charka Bar underlay
         int chakraWidth = (int) (barWidth * currentChakraPercent);
         // stack, x, y, tx, ty, width, height, textureWidth, textureHeight
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         this.blit(matrixStack, screenMid - width - offset, this.screenHeight - 22,
                 0 , 22,
                 width, 22,
@@ -128,6 +129,7 @@ public class ChakraAndStaminaGUI extends GuiComponent {
 
         // Chakra Bar color
         // TODO pass this data into the render this.setColor(chakraColor);
+        this.setColor(chakraColor);
         this.blit(matrixStack, screenMid - chakraWidth - offset - (width - xOffset - barWidth), this.screenHeight - 22,
                 xOffset + (barWidth - chakraWidth), 0,
                 chakraWidth, 22,
@@ -135,6 +137,7 @@ public class ChakraAndStaminaGUI extends GuiComponent {
 
         // Stamina Bar color
         // TODO pass this data into the render this.setColor(staminaColor);
+        this.setColor(staminaColor);
         this.blit(matrixStack, screenMid + offset + (100 - barWidth - xOffset), this.screenHeight - 22,
                 -barWidth - xOffset, 0,
                 staminaWidth, 22,
@@ -172,6 +175,13 @@ public class ChakraAndStaminaGUI extends GuiComponent {
         stamina++;
 
         barDesignLoop += (0.01 * barTypes.length);
+    }
+
+    private void setColor(Color color) {
+        RenderSystem.setShaderColor(color.getRed() / 255f,
+                color.getGreen() / 255f,
+                color.getBlue() / 255f,
+                1.0F);
     }
 
     private Font getFont() {
