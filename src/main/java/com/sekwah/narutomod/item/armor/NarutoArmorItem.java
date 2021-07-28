@@ -54,7 +54,7 @@ public class NarutoArmorItem extends ArmorItem implements IShouldHideNameplate {
 
 
     // A little confusing but this is how it works now
-    @Override
+    /*@Override
     public void initializeClient(Consumer<IItemRenderProperties> consumer) {
         super.initializeClient(consumer);
         consumer.accept(new IItemRenderProperties() {
@@ -67,5 +67,5 @@ public class NarutoArmorItem extends ArmorItem implements IShouldHideNameplate {
                 return armorModel;
             }
         });
-    }
+    }*/
 }
