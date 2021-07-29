@@ -3,6 +3,7 @@ package com.sekwah.narutomod.client.renderer.item.model;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.sekwah.narutomod.util.ModelUtils;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -102,7 +103,7 @@ public class HeadbandModel<T extends LivingEntity> extends HumanoidModel<T>
     }
 
     public static LayerDefinition createLayer() {
-        MeshDefinition definition = new MeshDefinition();
+        MeshDefinition definition = ModelUtils.createBlankHumanoidMesh();
         PartDefinition partdefinition = definition.getRoot();
         PartDefinition root = definition.getRoot();
         float f = -16.0F;
@@ -117,9 +118,9 @@ public class HeadbandModel<T extends LivingEntity> extends HumanoidModel<T>
         return ImmutableList.of(this.headLock);
     }*/
 
-    protected Iterable<ModelPart> bodyParts() {
+    /*protected Iterable<ModelPart> bodyParts() {
         return Collections.emptyList();
-    }
+    }*/
 
     private void updateLockedLocations(ModelPart trackedPart, ModelPart lockBlock) {
 

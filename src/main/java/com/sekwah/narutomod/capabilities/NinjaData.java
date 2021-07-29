@@ -22,7 +22,6 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     private final LazyOptional<INinjaData> holder = LazyOptional.of(() -> this);
 
     public NinjaData() {
-        System.out.println("HELLO");
     }
 
     @Override

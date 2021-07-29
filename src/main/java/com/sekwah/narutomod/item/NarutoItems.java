@@ -79,8 +79,6 @@ public class NarutoItems {
             .setShouldHideNameplate(true));
 
 
-
-
     // Ninja Masks
 
     public static final RegistryObject<Item> BLUE_HEADBAND = ITEMS.register("blue_headband", ()

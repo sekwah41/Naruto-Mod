@@ -3,18 +3,19 @@ package com.sekwah.narutomod.client.renderer.item.model;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.Model;
+import com.sekwah.narutomod.util.ModelUtils;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.util.Collections;
 
-public class AnbuMaskModel extends Model {
+public class AnbuMaskModel<T extends LivingEntity> extends HumanoidModel<T> {
 
     private final ModelPart head;
 
@@ -33,7 +34,7 @@ public class AnbuMaskModel extends Model {
 
     public AnbuMaskModel(ModelPart modelPart, boolean hasEars)
     {
-        super(RenderType::entityTranslucent);
+        super(modelPart);
         this.head = modelPart.getChild("head");
 
         /*int textureWidth = 64;
@@ -122,7 +123,7 @@ public class AnbuMaskModel extends Model {
     }
 
     public static LayerDefinition createLayer() {
-        MeshDefinition definition = new MeshDefinition();
+        MeshDefinition definition = ModelUtils.createBlankHumanoidMesh();
         PartDefinition partdefinition = definition.getRoot();
         PartDefinition root = definition.getRoot();
         float f = -16.0F;
@@ -130,14 +131,6 @@ public class AnbuMaskModel extends Model {
         partdefinition1.addOrReplaceChild("jaw", CubeListBuilder.create().texOffs(176, 65).addBox("jaw", -6.0F, 0.0F, -16.0F, 12.0F, 4.0F, 16.0F), PartPose.offset(0.0F, 4.0F, -8.0F));
 
         return LayerDefinition.create(definition, 64, 32);
-    }
-
-    protected Iterable<ModelPart> headParts() {
-        return ImmutableList.of(this.headLock);
-    }
-
-    protected Iterable<ModelPart> bodyParts() {
-        return Collections.emptyList();
     }
 
     private void updateLockedLocations(ModelPart trackedPart, ModelPart lockBlock) {
@@ -150,7 +143,8 @@ public class AnbuMaskModel extends Model {
     @Override
     public void renderToBuffer(PoseStack matrixStack, VertexConsumer p_225598_2_, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
         matrixStack.pushPose();
-        //this.head.render(p_104192_, p_104193_, p_104194_, p_104195_, p_104196_, p_104197_, p_104198_, p_104199_);
+        matrixStack.scale(0.75F, 0.75F, 0.75F);
+        this.head.render(matrixStack, p_225598_2_, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
         matrixStack.popPose();
     }
 
