@@ -3,26 +3,26 @@ package com.sekwah.narutomod.entity.projectile;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.sounds.NarutoSounds;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
-public class KunaiEntity extends AbstractArrowEntity {
+public class KunaiEntity extends AbstractArrow {
 
-    public KunaiEntity(EntityType<? extends KunaiEntity> type, World worldIn) {
+    public KunaiEntity(EntityType<? extends KunaiEntity> type, Level worldIn) {
         super(type, worldIn);
     }
 
-    public KunaiEntity(World worldIn, LivingEntity shooter) {
+    public KunaiEntity(Level worldIn, LivingEntity shooter) {
         super(NarutoEntities.KUNAI.get(), shooter, worldIn);
     }
 
-    public KunaiEntity(EntityType<? extends KunaiEntity> kunaiEntityEntityType, LivingEntity shooter, World worldIn) {
+    public KunaiEntity(EntityType<? extends KunaiEntity> kunaiEntityEntityType, LivingEntity shooter, Level worldIn) {
         super(kunaiEntityEntityType, shooter, worldIn);
     }
 
@@ -32,7 +32,7 @@ public class KunaiEntity extends AbstractArrowEntity {
 
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

@@ -2,14 +2,13 @@ package com.sekwah.narutomod;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
-import com.sekwah.narutomod.client.keybinds.NarutoKeyHandler;
 import com.sekwah.narutomod.client.gui.NarutoInGameGUI;
-import com.sekwah.narutomod.client.renderer.NarutoRenderers;
+import com.sekwah.narutomod.client.keybinds.NarutoKeyHandler;
+import com.sekwah.narutomod.client.renderer.NarutoRenderEvents;
 import com.sekwah.narutomod.commands.NarutoCommands;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
-import com.sekwah.narutomod.item.NarutoItemModels;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.registries.NarutoRegistries;
@@ -59,9 +58,7 @@ public class NarutoMod {
 
 
     private void clientSetup(FMLClientSetupEvent event) {
-        NarutoRenderers.registerEntity();
-        NarutoRenderers.registerRenderTypes();
-        NarutoItemModels.setItemModels();
+        NarutoRenderEvents.registerRenderTypes();
         NarutoKeyHandler.registerKeyBinds();
     }
 

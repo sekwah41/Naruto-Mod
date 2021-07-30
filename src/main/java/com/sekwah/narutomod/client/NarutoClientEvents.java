@@ -2,11 +2,11 @@ package com.sekwah.narutomod.client;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.item.interfaces.IShouldHideNameplate;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -31,10 +31,10 @@ public class NarutoClientEvents {
     public static void renderNameplateEvent(RenderNameplateEvent event) {
         if (event.getResult() != Event.Result.DENY) {
             Entity entity = event.getEntity();
-            if (entity instanceof PlayerEntity) {
-                ItemStack itemStack = ((PlayerEntity) entity).getItemBySlot(EquipmentSlotType.HEAD);
+            if (entity instanceof Player player) {
+                ItemStack itemStack = player.getItemBySlot(EquipmentSlot.HEAD);
                 Item item = itemStack.getItem();
-                if (item instanceof IShouldHideNameplate && (((IShouldHideNameplate) item).shouldHideNameplate(entity))) {
+                if (item instanceof IShouldHideNameplate hideNameplate && (hideNameplate.shouldHideNameplate(entity))) {
                     event.setResult(Event.Result.DENY);
                 }
             }

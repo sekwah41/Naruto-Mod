@@ -5,11 +5,11 @@ import com.sekwah.narutomod.entity.projectile.ExplosiveKunaiEntity;
 import com.sekwah.narutomod.entity.projectile.KunaiEntity;
 import com.sekwah.narutomod.entity.projectile.SenbonEntity;
 import com.sekwah.narutomod.entity.projectile.ShurikenEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntityType;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -20,20 +20,20 @@ public class NarutoEntities {
     private static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, MOD_ID);
 
     public static final RegistryObject<EntityType<KunaiEntity>> KUNAI = register("kunai",
-            EntityType.Builder.<KunaiEntity>of(KunaiEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
+            EntityType.Builder.<KunaiEntity>of(KunaiEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
 
     public static final RegistryObject<EntityType<SenbonEntity>> SENBON = register("senbon",
-            EntityType.Builder.<SenbonEntity>of(SenbonEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
+            EntityType.Builder.<SenbonEntity>of(SenbonEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
 
     public static final RegistryObject<EntityType<ExplosiveKunaiEntity>> EXPLOSIVE_KUNAI = register("explosive_kunai",
-            EntityType.Builder.<ExplosiveKunaiEntity>of(ExplosiveKunaiEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
+            EntityType.Builder.<ExplosiveKunaiEntity>of(ExplosiveKunaiEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
 
     public static final RegistryObject<EntityType<ShurikenEntity>> SHURIKEN = register("shuriken",
-            EntityType.Builder.<ShurikenEntity>of(ShurikenEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
+            EntityType.Builder.<ShurikenEntity>of(ShurikenEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).setTrackingRange(8));
 
     // func_233608_b_ is updateInterval
     public static final RegistryObject<EntityType<PaperBombEntity>> PAPER_BOMB = register("paper_bomb",
-            EntityType.Builder.<PaperBombEntity>of(PaperBombEntity::new, EntityClassification.MISC).fireImmune().sized(0.5F, 0.5F).setTrackingRange(10).clientTrackingRange(10));
+            EntityType.Builder.<PaperBombEntity>of(PaperBombEntity::new, MobCategory.MISC).fireImmune().sized(0.5F, 0.5F).setTrackingRange(10).clientTrackingRange(10));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String key, EntityType.Builder<T> builder) {
         return ENTITIES.register(key, () -> builder.build(key));

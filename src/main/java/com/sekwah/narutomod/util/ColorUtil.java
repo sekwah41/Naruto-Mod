@@ -1,5 +1,6 @@
 package com.sekwah.narutomod.util;
 
+import net.minecraft.network.chat.TextColor;
 import java.awt.*;
 
 public class ColorUtil {
@@ -34,8 +35,8 @@ public class ColorUtil {
      * @param color
      * @return
      */
-    public static net.minecraft.util.text.Color toMCColor(Color color) {
-        return net.minecraft.util.text.Color.parseColor(String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue()));
+    public static TextColor toMCColor(Color color) {
+        return TextColor.parseColor(String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue()));
     }
 
 }

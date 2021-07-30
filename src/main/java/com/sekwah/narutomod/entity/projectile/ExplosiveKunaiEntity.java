@@ -4,24 +4,24 @@ import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.sounds.NarutoSounds;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 public class ExplosiveKunaiEntity extends KunaiEntity {
 
-    public ExplosiveKunaiEntity(EntityType<? extends ExplosiveKunaiEntity> type, World worldIn) {
+    public ExplosiveKunaiEntity(EntityType<? extends ExplosiveKunaiEntity> type, Level worldIn) {
         super(type, worldIn);
     }
 
-    public ExplosiveKunaiEntity(World worldIn, LivingEntity shooter) {
+    public ExplosiveKunaiEntity(Level worldIn, LivingEntity shooter) {
         super(NarutoEntities.EXPLOSIVE_KUNAI.get(), shooter, worldIn);
     }
 
@@ -30,23 +30,23 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
         super.tick();
         if(!this.level.isClientSide && this.inGroundTime >= 10) {
             explodeKunai(this);
-            this.remove();
+            this.remove(false);
         }
     }
 
     @Override
-    protected void onHitEntity(EntityRayTraceResult rayTraceResult) {
+    protected void onHitEntity(EntityHitResult rayTraceResult) {
         super.onHitEntity(rayTraceResult);
 
         if(!this.level.isClientSide) {
             explodeKunai(this);
-            this.remove();
+            this.remove(false);
         }
     }
 
     public static void explodeKunai(Entity entity) {
         entity.level.explode(null, entity.getX(), entity.getY(), entity.getZ(), NarutoConfig.kunaiExplosionRadius,
-                NarutoConfig.kunaiBlockDamage ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+                NarutoConfig.kunaiBlockDamage ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
     }
 
     protected SoundEvent getDefaultHitGroundSoundEvent() {
@@ -55,7 +55,7 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
 
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

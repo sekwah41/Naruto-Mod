@@ -1,12 +1,12 @@
 package com.sekwah.narutomod.entity;
 
 import com.sekwah.narutomod.util.StateUtils;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.datasync.IDataSerializer;
-import net.minecraft.state.properties.AttachFace;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.syncher.EntityDataSerializer;
+import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DataSerializerEntry;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -16,12 +16,12 @@ import static com.sekwah.narutomod.NarutoMod.MOD_ID;
 public class NarutoDataSerialisers {
 
 
-    public static final IDataSerializer<AttachFace> ATTACH_FACE = new IDataSerializer<AttachFace>() {
-        public void write(PacketBuffer buf, AttachFace value) {
+    public static final EntityDataSerializer<AttachFace> ATTACH_FACE = new EntityDataSerializer<AttachFace>() {
+        public void write(FriendlyByteBuf buf, AttachFace value) {
             buf.writeByte(StateUtils.faceToByte(value));
         }
 
-        public AttachFace read(PacketBuffer buf) {
+        public AttachFace read(FriendlyByteBuf buf) {
             return StateUtils.byteToFace(buf.readByte());
         }
 
@@ -31,12 +31,12 @@ public class NarutoDataSerialisers {
         }
     };
 
-    public static final IDataSerializer<Direction> BLOCK_DIRECTION = new IDataSerializer<Direction>() {
-        public void write(PacketBuffer buf, Direction value) {
+    public static final EntityDataSerializer<Direction> BLOCK_DIRECTION = new EntityDataSerializer<Direction>() {
+        public void write(FriendlyByteBuf buf, Direction value) {
             buf.writeByte(value.get2DDataValue());
         }
 
-        public Direction read(PacketBuffer buf) {
+        public Direction read(FriendlyByteBuf buf) {
             return Direction.from2DDataValue(buf.readByte());
         }
 
