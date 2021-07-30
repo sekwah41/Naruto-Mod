@@ -1,142 +1,92 @@
 package com.sekwah.narutomod.client.renderer.item.model;
 
-import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.LivingEntity;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.sekwah.narutomod.util.ModelUtils;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.world.entity.LivingEntity;
 
-import java.util.Collections;
 
-public class AnbuMaskModel<T extends LivingEntity> extends BipedModel<T>
-{
-    public ModelRenderer mask;
-    public ModelRenderer mouth;
-    public ModelRenderer eyebrowLeft;
-    public ModelRenderer eyebrowRight;
-    public ModelRenderer nose;
-    public ModelRenderer rightEar;
-    public ModelRenderer leftEar;
-    public ModelRenderer headBandLeft;
-    public ModelRenderer headbandRight;
-    public ModelRenderer headbandBack;
+public class AnbuMaskModel<T extends LivingEntity> extends HumanoidModel<T> {
 
-    public ModelRenderer headLock;
+    private final ModelPart head;
 
-    public AnbuMaskModel(float modelSize, boolean hasEars)
+    public AnbuMaskModel(ModelPart modelPart)
     {
-        super(modelSize);
-        int textureWidth = 64;
-        int textureHeight = 32;
+        super(modelPart);
+        this.head = modelPart.getChild("head");
+    }
 
-        mask = new ModelRenderer(this, 32, 0);
-        mask.addBox(-4F, -8.466666F, -4.266667F, 8, 9, 1, 0.01F);
-        mask.setPos(0F, 0F, 0F);
-        mask.setTexSize(textureWidth, textureHeight);
-        mask.mirror = true;
-        setRotation(mask, 0F, 0F, 0F);
-        mouth = new ModelRenderer(this, 50, 8);
-        mouth.addBox(-2F, -5F, -5F, 4, 5, 1);
-        mouth.setPos(0F, 0F, 0F);
-        mouth.setTexSize(textureWidth, textureHeight);
-        mouth.mirror = true;
-        setRotation(mouth, -0.0743572F, 0F, 0F);
-        eyebrowLeft = new ModelRenderer(this, 50, 3);
-        eyebrowLeft.addBox(1F, -6F, -5F, 2, 1, 1);
-        eyebrowLeft.setPos(0F, 0F, 0F);
-        eyebrowLeft.setTexSize(textureWidth, textureHeight);
-        eyebrowLeft.mirror = true;
-        setRotation(eyebrowLeft, 0F, 0F, 0F);
-        eyebrowRight = new ModelRenderer(this, 50, 3);
-        eyebrowRight.addBox(-3F, -6F, -5F, 2, 1, 1);
-        eyebrowRight.setPos(0F, 0F, 0F);
-        eyebrowRight.setTexSize(textureWidth, textureHeight);
-        eyebrowRight.mirror = true;
-        setRotation(eyebrowRight, 0F, 0F, 0F);
-        nose = new ModelRenderer(this, 50, 5);
-        nose.addBox(-1F, -5F, -5F, 2, 2, 1);
-        nose.setPos(0F, 0F, 0F);
-        nose.setTexSize(textureWidth, textureHeight);
-        nose.mirror = true;
-        setRotation(nose, 0F, 0F, 0F);
+    public static LayerDefinition createLayer(boolean hasEars) {
+        MeshDefinition definition = ModelUtils.createBlankHumanoidMesh();
+        PartDefinition root = definition.getRoot();
+        PartDefinition partdefinition1 = root.addOrReplaceChild("head",
+                CubeListBuilder.create()
+                        // comment, originX, originY, originZ, dimensionX, dimensionY, dimensionZ, xTexOffs, yTexOffs
+                        // May need to add some box deformation (original additional value was 0.01f
+                        .mirror(true)
+                        .texOffs(32, 0)
+                        .addBox("mask", -4F, -8.466666F, -4.266667F, 8, 9, 1,
+                                new CubeDeformation(0.01F))
+                        .texOffs(50, 3)
+                        .addBox("eyebrow_left", 1F, -6F, -5F, 2, 1, 1)
+                        .addBox("eyebrow_right", -3F, -6F, -5F, 2, 1, 1)
+                        .addBox("nose",-1F, -5F, -5F, 2, 2, 1, 50, 5)
+                , PartPose.ZERO);
+
+        partdefinition1.addOrReplaceChild("mouth",
+                CubeListBuilder.create()
+                        .texOffs(50, 8)
+                        .addBox(-2F, -5F, -5F, 4, 5, 1),
+                PartPose.offsetAndRotation(0,0,0, -0.0743572F, 0F, 0F));
+
+        partdefinition1.addOrReplaceChild("headband_left",
+                CubeListBuilder.create()
+                        .texOffs(60, 23)
+                        .addBox(3.1F, -3.6F, 3F, 1, 8, 1),
+                PartPose.offsetAndRotation(0,0,0, 1.570796F, 0F, 0F));
+
+        partdefinition1.addOrReplaceChild("headband_right",
+                CubeListBuilder.create()
+                        .texOffs(60, 23)
+                        .addBox(-4.1F, -3.733333F, 3F, 1, 8, 1),
+                PartPose.offsetAndRotation(0,0,0, 1.570796F, 0F, 0F));
+
+        partdefinition1.addOrReplaceChild("headband_back",
+                CubeListBuilder.create()
+                        .texOffs(60, 23)
+                        .addBox(-4.4F, -4F, 3F, 1, 8, 1),
+                PartPose.offsetAndRotation(0,0,0,  1.570796F, 1.570796F, 0F));
+
         if(hasEars) {
-            rightEar = new ModelRenderer(this, 50, 0);
-            rightEar.addBox(-8.066667F, -6F, -4.3F, 2, 2, 1);
-            rightEar.setPos(-0.35F, 0.04F, 0F);
-            rightEar.setTexSize(textureWidth, textureHeight);
-            rightEar.mirror = true;
-            setRotation(rightEar, 0F, 0F, 0.7853982F);
-            leftEar = new ModelRenderer(this, 50, 0);
-            leftEar.addBox(-5F, -9F, -4.3F, 2, 2, 1);
-            leftEar.setPos(-0.9333333F, 0F, 0F);
-            leftEar.setTexSize(textureWidth, textureHeight);
-            leftEar.mirror = true;
-            setRotation(leftEar, 0F, 0F, 0.7853982F);
+            partdefinition1.addOrReplaceChild("left_ear",
+                    CubeListBuilder.create()
+                            .texOffs(50, 0)
+                            .addBox(-5F, -9F, -4.3F, 2, 2, 1),
+                    PartPose.offsetAndRotation(-0.9333333F, 0F, 0F, 0F, 0F, 0.7853982F));
+            partdefinition1.addOrReplaceChild("right_ear",
+                    CubeListBuilder.create()
+                            .texOffs(50, 0)
+                            .addBox(-8.066667F, -6F, -4.3F, 2, 2, 1),
+                    PartPose.offsetAndRotation(-0.35F, 0.04F, 0F, 0F, 0F, 0.7853982F));
         }
-        headBandLeft = new ModelRenderer(this, 60, 23);
-        headBandLeft.addBox(3.1F, -3.6F, 3F, 1, 8, 1);
-        headBandLeft.setPos(0F, 0F, 0F);
-        headBandLeft.setTexSize(textureWidth, textureHeight);
-        headBandLeft.mirror = true;
-        setRotation(headBandLeft, 1.570796F, 0F, 0F);
-        headbandRight = new ModelRenderer(this, 60, 23);
-        headbandRight.addBox(-4.1F, -3.733333F, 3F, 1, 8, 1);
-        headbandRight.setPos(0F, 0F, 0F);
-        headbandRight.setTexSize(textureWidth, textureHeight);
-        headbandRight.mirror = true;
-        setRotation(headbandRight, 1.570796F, 0F, 0F);
-        headbandBack = new ModelRenderer(this, 60, 23);
-        headbandBack.addBox(-4.4F, -4F, 3F, 1, 8, 1);
-        headbandBack.setPos(0F, 0F, 0F);
-        headbandBack.setTexSize(textureWidth, textureHeight);
-        headbandBack.mirror = true;
-        setRotation(headbandBack, 1.570796F, 1.570796F, 0F);
 
-        headLock = new ModelRendererScaled(this, 1, 1, 1.1f);
-        headLock.addBox(0F, 0F, 0F, 0, 0, 0);
-        headLock.setPos(0F, 0F, 0F);
-
-        headLock.addChild(mask);
-        headLock.addChild(mouth);
-        headLock.addChild(eyebrowLeft);
-        headLock.addChild(eyebrowRight);
-        headLock.addChild(nose);
-        if(hasEars) {
-            headLock.addChild(rightEar);
-            headLock.addChild(leftEar);
-        }
-        headLock.addChild(headBandLeft);
-        headLock.addChild(headbandRight);
-        headLock.addChild(headbandBack);
+        return LayerDefinition.create(definition, 64, 32);
     }
 
-
-    protected Iterable<ModelRenderer> headParts() {
-        return ImmutableList.of(this.headLock);
-    }
-
-    protected Iterable<ModelRenderer> bodyParts() {
-        return Collections.emptyList();
-    }
-
-    private void updateLockedLocations(ModelRenderer trackedPart, ModelRenderer lockBlock) {
-
-        setRotation(lockBlock, trackedPart.xRot, trackedPart.yRot, trackedPart.zRot);
-
-        lockBlock.setPos(trackedPart.x,trackedPart.y,trackedPart.z);
-    }
     @Override
-    public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder p_225598_2_, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
-        this.updateLockedLocations(this.head, this.headLock);
-        super.renderToBuffer(matrixStack, p_225598_2_, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
-    }
-
-    private void setRotation(ModelRenderer model, float x, float y, float z)
-    {
-        model.xRot = x;
-        model.yRot = y;
-        model.zRot = z;
+    public void renderToBuffer(PoseStack matrixStack, VertexConsumer vertexConsumer, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
+        matrixStack.pushPose();
+        // Don't do this normally, its just the model needs to be modified to be slighty bigger :(
+        // Fix this at some point if there are issues or write a script to scale everything up manually.
+        matrixStack.translate((this.head.x / 16.0F), (this.head.y / 16.0F), (this.head.z / 16.0F));
+        this.head.setPos(0,0,0);
+        matrixStack.scale(1.1f, 1.1f, 1.1f);
+        this.head.render(matrixStack, vertexConsumer, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
+        matrixStack.popPose();
     }
 
 }

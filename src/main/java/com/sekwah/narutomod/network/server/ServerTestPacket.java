@@ -1,7 +1,7 @@
 package com.sekwah.narutomod.network.server;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -10,10 +10,10 @@ import java.util.function.Supplier;
  */
 public class ServerTestPacket {
 
-    public static void encode(ServerTestPacket msg, PacketBuffer outBuffer) {
+    public static void encode(ServerTestPacket msg, FriendlyByteBuf outBuffer) {
     }
 
-    public static ServerTestPacket decode(PacketBuffer inBuffer) {
+    public static ServerTestPacket decode(FriendlyByteBuf inBuffer) {
         return new ServerTestPacket();
     }
 

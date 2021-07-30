@@ -4,41 +4,40 @@ import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MoverType;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.properties.AttachFace;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3i;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-
 import static com.sekwah.narutomod.block.NarutoBlockStates.HIDDEN;
-import static net.minecraft.block.HorizontalFaceBlock.FACE;
-import static net.minecraft.state.properties.BlockStateProperties.HORIZONTAL_FACING;
+import static net.minecraft.world.level.block.FaceAttachedHorizontalDirectionalBlock.FACE;
 
 public class PaperBombEntity extends Entity {
-    private static final DataParameter<Integer> DATA_FUSE_ID = EntityDataManager.defineId(PaperBombEntity.class, DataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(PaperBombEntity.class, EntityDataSerializers.INT);
 
     @Nullable
     public LivingEntity owner;
 
-    private static final DataParameter<Direction> ROTATION = EntityDataManager.defineId(PaperBombEntity.class, NarutoDataSerialisers.BLOCK_DIRECTION);
-    private static final DataParameter<AttachFace> VERT_ROT = EntityDataManager.defineId(PaperBombEntity.class, NarutoDataSerialisers.ATTACH_FACE);
-    protected static final DataParameter<BlockPos> ORIGIN = EntityDataManager.defineId(PaperBombEntity.class, DataSerializers.BLOCK_POS);
+    private static final EntityDataAccessor<Direction> ROTATION = SynchedEntityData.defineId(PaperBombEntity.class, NarutoDataSerialisers.BLOCK_DIRECTION);
+    private static final EntityDataAccessor<AttachFace> VERT_ROT = SynchedEntityData.defineId(PaperBombEntity.class, NarutoDataSerialisers.ATTACH_FACE);
+    protected static final EntityDataAccessor<BlockPos> ORIGIN = SynchedEntityData.defineId(PaperBombEntity.class, EntityDataSerializers.BLOCK_POS);
 
     private int life = 80;
 
@@ -46,11 +45,11 @@ public class PaperBombEntity extends Entity {
 
     public BlockState renderBlockState = NarutoBlocks.PAPER_BOMB.get().defaultBlockState();
 
-    public PaperBombEntity(EntityType<? extends PaperBombEntity> type, World worldIn) {
+    public PaperBombEntity(EntityType<? extends PaperBombEntity> type, Level worldIn) {
         super(type, worldIn);
     }
 
-    public PaperBombEntity(World worldIn, double x, double y, double z, LivingEntity igniter,
+    public PaperBombEntity(Level worldIn, double x, double y, double z, LivingEntity igniter,
                            Direction direction, AttachFace face, BlockPos anchorTo) {
         this(worldIn, x, y, z, igniter);
         this.anchorLoc = anchorTo;
@@ -59,7 +58,7 @@ public class PaperBombEntity extends Entity {
         this.setAnchored(!this.isAnchoredBlockAir());
     }
 
-    public PaperBombEntity(World worldIn, double x, double y, double z, LivingEntity owner) {
+    public PaperBombEntity(Level worldIn, double x, double y, double z, LivingEntity owner) {
         this(NarutoEntities.PAPER_BOMB.get(), worldIn);
         this.setPos(x, y, z);
         this.xo = x;
@@ -115,7 +114,7 @@ public class PaperBombEntity extends Entity {
 
         --this.life;
         if (this.life <= 0) {
-            this.remove();
+            this.remove(false);
             if (!this.level.isClientSide) {
                 this.explode();
             }
@@ -123,7 +122,7 @@ public class PaperBombEntity extends Entity {
             this.updateInWaterStateAndDoFluidPushing();
             if (this.level.isClientSide) {
                 if(this.random.nextFloat() < 0.3f) {
-                    Vector3i dir = this.renderBlockState.getValue(HORIZONTAL_FACING).getNormal();
+                    Vec3i dir = this.renderBlockState.getValue(BlockStateProperties.HORIZONTAL_FACING).getNormal();
 
                     float yOffset = 0;
                     float dirMulti = 0.25f;
@@ -167,7 +166,7 @@ public class PaperBombEntity extends Entity {
 
     public boolean isAnchoredBlockAir() {
         BlockState state = this.level.getBlockState(anchorLoc);
-        return state.getBlock().isAir(state, level, anchorLoc);
+        return state.isAir();
     }
 
     public void setAnchored(boolean anchored) {
@@ -179,13 +178,13 @@ public class PaperBombEntity extends Entity {
     }
 
 
-    public void onSyncedDataUpdated(DataParameter<?> key) {
+    public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
         if (DATA_FUSE_ID.equals(key)) {
             this.life = this.getFuse();
         }
         else  if((ROTATION.equals(key) || VERT_ROT.equals(key)) && this.level.isClientSide) {
             this.renderBlockState = NarutoBlocks.PAPER_BOMB.get().defaultBlockState()
-                    .setValue(HorizontalBlock.FACING, this.getRotation())
+                    .setValue(HorizontalDirectionalBlock.FACING, this.getRotation())
                     .setValue(HIDDEN, Boolean.FALSE)
                     .setValue(FACE, this.getVertRotation());
         }
@@ -201,8 +200,8 @@ public class PaperBombEntity extends Entity {
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundNBT p_213281_1_) {
-        p_213281_1_.putShort("Fuse", (short)this.getLife());
+    protected void addAdditionalSaveData(CompoundTag tag) {
+        tag.putShort("Fuse", (short)this.getLife());
     }
 
     public int getLife() {
@@ -210,18 +209,18 @@ public class PaperBombEntity extends Entity {
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundNBT p_70037_1_) {
-        this.setFuse(p_70037_1_.getShort("Fuse"));
+    protected void readAdditionalSaveData(CompoundTag tag) {
+        this.setFuse(tag.getShort("Fuse"));
     }
 
     protected void explode() {
         this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(),
                 NarutoConfig.paperbombExplosionRadius,
-                NarutoConfig.paperbombBlockDamage ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+                NarutoConfig.paperbombBlockDamage ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

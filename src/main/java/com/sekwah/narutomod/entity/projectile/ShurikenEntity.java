@@ -3,16 +3,16 @@ package com.sekwah.narutomod.entity.projectile;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.sounds.NarutoSounds;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
-public class ShurikenEntity extends AbstractArrowEntity {
+public class ShurikenEntity extends AbstractArrow {
 
     private int prevRotateTicks = 0;
 
@@ -20,17 +20,17 @@ public class ShurikenEntity extends AbstractArrowEntity {
 
     private int rotOffset = 0;
 
-    public ShurikenEntity(EntityType<? extends ShurikenEntity> type, World worldIn) {
+    public ShurikenEntity(EntityType<? extends ShurikenEntity> type, Level worldIn) {
         super(type, worldIn);
         this.rotateTicks = worldIn.random.nextInt(140);
         this.rotOffset = (worldIn.random.nextInt(100) - 50);
     }
 
-    public ShurikenEntity(World worldIn, LivingEntity shooter) {
+    public ShurikenEntity(Level worldIn, LivingEntity shooter) {
         super(NarutoEntities.SHURIKEN.get(), shooter, worldIn);
     }
 
-    public ShurikenEntity(EntityType<? extends ShurikenEntity> kunaiEntityEntityType, LivingEntity shooter, World worldIn) {
+    public ShurikenEntity(EntityType<? extends ShurikenEntity> kunaiEntityEntityType, LivingEntity shooter, Level worldIn) {
         super(kunaiEntityEntityType, shooter, worldIn);
     }
 
@@ -61,7 +61,7 @@ public class ShurikenEntity extends AbstractArrowEntity {
 
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
