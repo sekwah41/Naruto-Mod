@@ -29,6 +29,9 @@ public class NarutoRenderEvents {
     public static final ModelLayerLocation ANBU_MASK_LAYER =
             new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "anbu_mask"), "main");
 
+    public static final ModelLayerLocation ANBU_MASK_WITHOUT_EARS_LAYER =
+            new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "anbu_mask_without_ears"), "main");
+
     public static final ModelLayerLocation HEADBAND_LAYER =
             new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "headband"), "main");
 
@@ -54,7 +57,8 @@ public class NarutoRenderEvents {
     @SubscribeEvent
     public static void layerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event)
     {
-        event.registerLayerDefinition(ANBU_MASK_LAYER, AnbuMaskModel::createLayer);
+        event.registerLayerDefinition(ANBU_MASK_LAYER, () -> AnbuMaskModel.createLayer(true));
+        event.registerLayerDefinition(ANBU_MASK_WITHOUT_EARS_LAYER, () -> AnbuMaskModel.createLayer(false));
         event.registerLayerDefinition(HEADBAND_LAYER, HeadbandModel::createLayer);
     }
 

@@ -19,19 +19,19 @@ public class NarutoRenderer extends BlockEntityWithoutLevelRenderer {
         EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();
 
         ((NarutoArmorItem) NarutoItems.RED_ANBU_MASK.get())
-                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_LAYER), true))
+                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_LAYER)))
                 .setArmorTexture("textures/models/armor/red_anbu_mask.png");
         ((NarutoArmorItem) NarutoItems.BLUE_ANBU_MASK.get())
-                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_LAYER), true))
+                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_LAYER)))
                 .setArmorTexture("textures/models/armor/blue_anbu_mask.png");
         ((NarutoArmorItem) NarutoItems.GREEN_ANBU_MASK.get())
-                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_LAYER), false))
+                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_WITHOUT_EARS_LAYER)))
                 .setArmorTexture("textures/models/armor/green_anbu_mask.png");
         ((NarutoArmorItem) NarutoItems.MIST_ANBU_MASK.get())
-                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_LAYER), false))
+                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_WITHOUT_EARS_LAYER)))
                 .setArmorTexture("textures/models/armor/mist_anbu_mask.png");
         ((NarutoArmorItem) NarutoItems.YELLOW_ANBU_MASK.get())
-                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_LAYER), false))
+                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_WITHOUT_EARS_LAYER)))
                 .setArmorTexture("textures/models/armor/yellow_anbu_mask.png");
 
 
