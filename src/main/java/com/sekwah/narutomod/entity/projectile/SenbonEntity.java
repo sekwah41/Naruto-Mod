@@ -27,6 +27,7 @@ public class SenbonEntity extends AbstractArrow {
         super(kunaiEntityEntityType, shooter, worldIn);
     }
 
+    @Override
     protected SoundEvent getDefaultHitGroundSoundEvent() {
         return NarutoSounds.NEEDLE_HIT.get();
     }
@@ -35,6 +36,11 @@ public class SenbonEntity extends AbstractArrow {
     @Override
     public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    @Override
+    public void setSoundEvent(SoundEvent pSound) {
+        super.setSoundEvent(this.getDefaultHitGroundSoundEvent());
     }
 
 

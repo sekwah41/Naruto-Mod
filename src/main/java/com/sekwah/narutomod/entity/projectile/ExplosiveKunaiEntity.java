@@ -49,10 +49,15 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
                 NarutoConfig.kunaiBlockDamage ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
     }
 
+    @Override
     protected SoundEvent getDefaultHitGroundSoundEvent() {
         return NarutoSounds.KUNAI_THUD.get();
     }
 
+    @Override
+    public void setSoundEvent(SoundEvent pSound) {
+        super.setSoundEvent(this.getDefaultHitGroundSoundEvent());
+    }
 
     @Override
     public Packet<?> getAddEntityPacket() {
