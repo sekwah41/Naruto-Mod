@@ -1,7 +1,7 @@
 package com.sekwah.narutomod.client.renderer;
 
-import com.sekwah.narutomod.client.renderer.item.model.AnbuMaskModel;
-import com.sekwah.narutomod.client.renderer.item.model.HeadbandModel;
+import com.sekwah.narutomod.client.model.item.model.AnbuMaskModel;
+import com.sekwah.narutomod.client.model.item.model.HeadbandModel;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.item.armor.NarutoArmorItem;
 import net.minecraft.client.Minecraft;
