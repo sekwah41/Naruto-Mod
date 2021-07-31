@@ -43,6 +43,11 @@ public class ShurikenEntity extends AbstractArrow {
         }
     }
 
+    @Override
+    public void setSoundEvent(SoundEvent pSound) {
+        super.setSoundEvent(this.getDefaultHitGroundSoundEvent());
+    }
+
     public int getRotateTicks() {
         return rotateTicks;
     }
@@ -55,6 +60,7 @@ public class ShurikenEntity extends AbstractArrow {
         return rotOffset;
     }
 
+    @Override
     protected SoundEvent getDefaultHitGroundSoundEvent() {
         return NarutoSounds.KUNAI_THUD.get();
     }
