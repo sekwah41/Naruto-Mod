@@ -1,6 +1,5 @@
-package com.sekwah.narutomod.client.renderer.item.model;
+package com.sekwah.narutomod.client.model.item.model;
 
-import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.sekwah.narutomod.util.ModelUtils;
@@ -9,8 +8,6 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.LivingEntity;
-
-import java.util.Collections;
 
 public class HeadbandModel<T extends LivingEntity> extends HumanoidModel<T>
 {
@@ -97,6 +94,9 @@ public class HeadbandModel<T extends LivingEntity> extends HumanoidModel<T>
     @Override
     public void renderToBuffer(PoseStack matrixStack, VertexConsumer vertexConsumer, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
         matrixStack.pushPose();
+        matrixStack.translate((this.head.x / 16.0F), (this.head.y / 16.0F), (this.head.z / 16.0F));
+        this.head.setPos(0,0,0);
+        matrixStack.scale(1.1f, 1.1f, 1.1f);
         this.head.render(matrixStack, vertexConsumer, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
         matrixStack.popPose();
     }
