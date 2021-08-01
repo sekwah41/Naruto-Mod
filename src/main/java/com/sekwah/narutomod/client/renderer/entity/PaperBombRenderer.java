@@ -1,10 +1,12 @@
 package com.sekwah.narutomod.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.sekwah.narutomod.entity.item.PaperBombEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -48,18 +50,17 @@ public class PaperBombRenderer extends EntityRenderer<PaperBombEntity> {
 
         BlockPos blockpos = new BlockPos(entityIn.getX(), entityIn.getBoundingBox().maxY, entityIn.getZ());
         BlockRenderDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
-        for (net.minecraft.client.renderer.RenderType type : net.minecraft.client.renderer.RenderType.chunkBufferLayers()) {
-            if (ItemBlockRenderTypes.canRenderInLayer(entityIn.renderBlockState, type)) {
-                blockrendererdispatcher.getModelRenderer().tesselateWithoutAO(entityIn.level,
-                        blockrendererdispatcher.getBlockModel(entityIn.renderBlockState),
-                        entityIn.renderBlockState, blockpos, matrixStackIn,
-                        bufferIn.getBuffer(type),
-                        false,
-                        new Random(),
-                        entityIn.renderBlockState.getSeed(entityIn.getOrigin()),
-                        OverlayTexture.NO_OVERLAY);
-            }
-        }
+
+        RenderType rendertype = ItemBlockRenderTypes.getMovingBlockRenderType(entityIn.renderBlockState);
+        VertexConsumer vertexconsumer = bufferIn.getBuffer(rendertype);
+        blockrendererdispatcher.getModelRenderer().tesselateBlock(entityIn.level,
+                blockrendererdispatcher.getBlockModel(entityIn.renderBlockState),
+                entityIn.renderBlockState, blockpos, matrixStackIn,
+                vertexconsumer,
+                false,
+                new Random(),
+                entityIn.renderBlockState.getSeed(entityIn.getOrigin()),
+                OverlayTexture.NO_OVERLAY);
 
         matrixStackIn.popPose();
 
