@@ -8,6 +8,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.fmllegacy.RegistryObject;
 
 public class NarutoRenderer extends BlockEntityWithoutLevelRenderer {
 
@@ -34,16 +36,15 @@ public class NarutoRenderer extends BlockEntityWithoutLevelRenderer {
                 .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_WITHOUT_EARS_LAYER)))
                 .setArmorTexture("textures/models/armor/yellow_anbu_mask.png");
 
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLUE, "textures/models/armor/headband_blue_blank.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLACK, "textures/models/armor/headband_black_blank.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_RED, "textures/models/armor/headband_red_blank.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_CUSTARD, "textures/models/armor/headband_custard.png");
+    }
 
-        ((NarutoArmorItem) NarutoItems.BLUE_HEADBAND.get())
+    public void setHeadbandRenderer(EntityModelSet modelSet, RegistryObject<Item> item, String texture) {
+        ((NarutoArmorItem) item.get())
                 .setArmorModel(new HeadbandModel(modelSet.bakeLayer(NarutoRenderEvents.HEADBAND_LAYER)))
-                .setArmorTexture("textures/models/armor/blank_blue_headband.png");
-        ((NarutoArmorItem) NarutoItems.BLACK_HEADBAND.get())
-                .setArmorModel(new HeadbandModel(modelSet.bakeLayer(NarutoRenderEvents.HEADBAND_LAYER)))
-                .setArmorTexture("textures/models/armor/blank_black_headband.png");
-        ((NarutoArmorItem) NarutoItems.RED_HEADBAND.get())
-                .setArmorModel(new HeadbandModel(modelSet.bakeLayer(NarutoRenderEvents.HEADBAND_LAYER)))
-                .setArmorTexture("textures/models/armor/blank_red_headband.png");
-
+                .setArmorTexture(texture);
     }
 }

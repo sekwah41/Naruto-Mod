@@ -47,11 +47,11 @@ public class NarutoMod {
         eventBus.addListener(this::setup);
         eventBus.addListener(this::newRegistryEvent);
 
+        NarutoSounds.register(eventBus);
+        NarutoDataSerialisers.register(eventBus);
         NarutoItems.register(eventBus);
         NarutoBlocks.register(eventBus);
         NarutoEntities.register(eventBus);
-        NarutoDataSerialisers.register(eventBus);
-        NarutoSounds.register(eventBus);
 
         DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> NarutoInGameGUI::new);
     }
