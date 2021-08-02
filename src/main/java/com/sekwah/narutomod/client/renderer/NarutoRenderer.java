@@ -36,13 +36,36 @@ public class NarutoRenderer extends BlockEntityWithoutLevelRenderer {
                 .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_WITHOUT_EARS_LAYER)))
                 .setArmorTexture("textures/models/armor/yellow_anbu_mask.png");
 
-        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLUE, "textures/models/armor/headband_blue_blank.png");
-        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLACK, "textures/models/armor/headband_black_blank.png");
-        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_RED, "textures/models/armor/headband_red_blank.png");
-        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_CUSTARD, "textures/models/armor/headband_custard.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLUE, "textures/models/armor/headband/headband_blue_blank.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLACK, "textures/models/armor/headband/headband_black_blank.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_RED, "textures/models/armor/headband/headband_red_blank.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_CUSTARD, "textures/models/armor/headband/headband_custard.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_LEAF, "textures/models/armor/headband/headband_leafvillage.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_LEAF_SCRATCHED, "textures/models/armor/headband/headband_leafvillage_scratched.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_LEAF_BLACK, "textures/models/armor/headband/headband_leafvillage_black.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_LEAF_BLACK_SCRATCHED, "textures/models/armor/headband/headband_leafvillage_black_scratched.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_ROCK, "textures/models/armor/headband/headband_rock.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_ROCK_SCRATCHED, "textures/models/armor/headband/headband_rock_scratched.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_SAND, "textures/models/armor/headband/headband_sandblack.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_SAND_SCRATCHED, "textures/models/armor/headband/headband_sandblack_scratched.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_SOUND, "textures/models/armor/headband/headband_soundvillage.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_SOUND_SCRATCHED, "textures/models/armor/headband/headband_soundvillage_scratched.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_MIST, "textures/models/armor/headband/headband_mistblack.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_MIST_SCRATCHED, "textures/models/armor/headband/headband_mistblack_scratched.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_WATERFALL, "textures/models/armor/headband/headband_waterfallblack.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_WATERFALL_SCRATCHED, "textures/models/armor/headband/headband_waterfallblack_scratched.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_CLOUD, "textures/models/armor/headband/headband_cloudblack.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_CLOUD_SCRATCHED, "textures/models/armor/headband/headband_cloudblack_scratched.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_RAIN, "textures/models/armor/headband/headband_rainblack.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_RAIN_SCRATCHED, "textures/models/armor/headband/headband_rainblack_scratched.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_GRASS, "textures/models/armor/headband/headband_grassblack.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_GRASS_SCRATCHED, "textures/models/armor/headband/headband_grassblack_scratched.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_PRIDE, "textures/models/armor/headband/headband_pride.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_YOUTUBE, "textures/models/armor/headband/headband_youtube.png");
+        setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_LAVA, "textures/models/armor/headband/headband_lavavillage.png");
     }
 
-    public void setHeadbandRenderer(EntityModelSet modelSet, RegistryObject<Item> item, String texture) {
+    private void setHeadbandRenderer(EntityModelSet modelSet, RegistryObject<Item> item, String texture) {
         ((NarutoArmorItem) item.get())
                 .setArmorModel(new HeadbandModel(modelSet.bakeLayer(NarutoRenderEvents.HEADBAND_LAYER)))
                 .setArmorTexture(texture);

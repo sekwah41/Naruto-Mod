@@ -58,7 +58,6 @@ public class HeadbandModel<T extends LivingEntity> extends HumanoidModel<T>
                 , PartPose.offsetAndRotation(-4.2F, -8F + yOffset, 4F, 0F, 1.570796F, 0F));
         partdefinition1.addOrReplaceChild("metal_plate",
                 CubeListBuilder.create()
-                        .mirror(true)
                         .texOffs(19, 0)
                         .addBox(0F, 0F, 0F, 3, 2, 1,
                                 new CubeDeformation(0.01F))
