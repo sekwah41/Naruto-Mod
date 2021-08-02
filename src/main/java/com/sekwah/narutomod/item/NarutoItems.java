@@ -83,17 +83,54 @@ public class NarutoItems {
 
     // Ninja Masks
 
-    public static final RegistryObject<Item> HEADBAND_BLUE = ITEMS.register("headband_blue", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
+    private static RegistryObject<Item> createHeadband(String itemName) {
+        return ITEMS.register(itemName, ()
+                -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
+    }
 
-    public static final RegistryObject<Item> HEADBAND_BLACK = ITEMS.register("headband_black", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
+    //    BLANK(0, "blankBlueHeadBand", "headband_blank);"),
+    public static final RegistryObject<Item> HEADBAND_BLUE = createHeadband("headband_blue");
+    //    BLANK_BLACK(1, "blankBlackHeadBand", "headband_black);"),
+    public static final RegistryObject<Item> HEADBAND_BLACK = createHeadband("headband_black");
+    //    BLANK_RED(2, "blankRedHeadBand", "headband_kred);"),
+    public static final RegistryObject<Item> HEADBAND_RED = createHeadband("headband_red");
+    //    CUSTARD(4, "custardHeadband", "headband_custard);"),
+    public static final RegistryObject<Item> HEADBAND_CUSTARD = createHeadband("headband_custard");
 
-    public static final RegistryObject<Item> HEADBAND_RED = ITEMS.register("headband_red", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
 
-    public static final RegistryObject<Item> HEADBAND_CUSTARD = ITEMS.register("headband_custard", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
+    public static final RegistryObject<Item> HEADBAND_LEAF = createHeadband("headband_leaf");
+    public static final RegistryObject<Item> HEADBAND_LEAF_SCRATCHED = createHeadband("headband_leaf_scratched");
+    public static final RegistryObject<Item> HEADBAND_LEAF_BLACK = createHeadband("headband_leaf_black");
+    public static final RegistryObject<Item> HEADBAND_LEAF_BLACK_SCRATCHED = createHeadband("headband_leaf_black_scratched");
+
+    public static final RegistryObject<Item> HEADBAND_ROCK = createHeadband("headband_rock");
+    public static final RegistryObject<Item> HEADBAND_ROCK_SCRATCHED = createHeadband("headband_rock_scratched");
+
+    public static final RegistryObject<Item> HEADBAND_SAND = createHeadband("headband_sand");
+    public static final RegistryObject<Item> HEADBAND_SAND_SCRATCHED = createHeadband("headband_sand_scratched");
+
+    public static final RegistryObject<Item> HEADBAND_SOUND = createHeadband("headband_sound");
+    public static final RegistryObject<Item> HEADBAND_SOUND_SCRATCHED = createHeadband("headband_sound_scratched");
+
+    public static final RegistryObject<Item> HEADBAND_MIST = createHeadband("headband_mist");
+    public static final RegistryObject<Item> HEADBAND_MIST_SCRATCHED = createHeadband("headband_mist_scratched");
+
+    public static final RegistryObject<Item> HEADBAND_WATERFALL = createHeadband("headband_waterfall");
+    public static final RegistryObject<Item> HEADBAND_WATERFALL_SCRATCHED = createHeadband("headband_waterfall_scratched");
+
+    public static final RegistryObject<Item> HEADBAND_CLOUD = createHeadband("headband_cloud");
+    public static final RegistryObject<Item> HEADBAND_CLOUD_SCRATCHED = createHeadband("headband_cloud_scratched");
+
+    public static final RegistryObject<Item> HEADBAND_RAIN = createHeadband("headband_rain");
+    public static final RegistryObject<Item> HEADBAND_RAIN_SCRATCHED = createHeadband("headband_rain_scratched");
+
+    public static final RegistryObject<Item> HEADBAND_GRASS = createHeadband("headband_grass");
+    public static final RegistryObject<Item> HEADBAND_GRASS_SCRATCHED = createHeadband("headband_grass_scratched");
+
+
+    public static final RegistryObject<Item> HEADBAND_PRIDE = createHeadband("headband_pride");
+    public static final RegistryObject<Item> HEADBAND_YOUTUBE = createHeadband("headband_youtube");
+    public static final RegistryObject<Item> HEADBAND_LAVA = createHeadband("headband_lava");
 
     // Materials
 
