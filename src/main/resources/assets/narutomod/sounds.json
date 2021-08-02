@@ -28,5 +28,9 @@
     "category": "block",
     "sounds": ["narutomod:weapons/sizzle"],
     "subtitle": "narutomod.subtitle.sizzle"
+  },
+  "lonely_march": {
+    "category": "record",
+    "sounds": [{"name": "narutomod:records/lonely_march","stream": true}]
   }
 }

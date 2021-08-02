@@ -6,10 +6,9 @@ import com.sekwah.narutomod.item.weapons.ExplosiveKunaiItem;
 import com.sekwah.narutomod.item.weapons.KunaiItem;
 import com.sekwah.narutomod.item.weapons.SenbonItem;
 import com.sekwah.narutomod.item.weapons.ShurikenItem;
+import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -36,7 +35,7 @@ public class NarutoItems {
     public static CreativeModeTab HEADBANDS = new CreativeModeTab("narutomod_headbands") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(BLUE_HEADBAND.get());
+            return new ItemStack(HEADBAND_BLUE.get());
         }
     };
 
@@ -78,16 +77,22 @@ public class NarutoItems {
             -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
             .setShouldHideNameplate(true));
 
+    public static final RegistryObject<Item> LONELY_MARCH = ITEMS.register("lonely_march", ()
+            -> new RecordItem(41, NarutoSounds.LONELY_MARCH,  new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1).rarity(Rarity.RARE)));
+
 
     // Ninja Masks
 
-    public static final RegistryObject<Item> BLUE_HEADBAND = ITEMS.register("blue_headband", ()
+    public static final RegistryObject<Item> HEADBAND_BLUE = ITEMS.register("headband_blue", ()
             -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
 
-    public static final RegistryObject<Item> BLACK_HEADBAND = ITEMS.register("black_headband", ()
+    public static final RegistryObject<Item> HEADBAND_BLACK = ITEMS.register("headband_black", ()
             -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
 
-    public static final RegistryObject<Item> RED_HEADBAND = ITEMS.register("red_headband", ()
+    public static final RegistryObject<Item> HEADBAND_RED = ITEMS.register("headband_red", ()
+            -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
+
+    public static final RegistryObject<Item> HEADBAND_CUSTARD = ITEMS.register("headband_custard", ()
             -> new NarutoArmorItem(NarutoArmorMaterial.HEADBAND, EquipmentSlot.HEAD,  new Item.Properties().tab(HEADBANDS)));
 
     // Materials
