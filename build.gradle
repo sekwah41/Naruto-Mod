@@ -286,7 +286,7 @@ curseforge {
     project {
         id = project.curse_project_id
         // TODO add code to reference this but also cut the latest change logs in for the files
-        changelog = "${project.github}/blob/${branch}/docs/CHANGELOG.md"
+        changelog = "${project.github}/blob/${branch}/CHANGELOG.md"
         changelogType = 'markdown'
         releaseType = 'release'
         addGameVersion '1.17.1'
