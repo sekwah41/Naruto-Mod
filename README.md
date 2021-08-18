@@ -16,6 +16,10 @@ Hotswapping that I didn't know existed for far too long
 https://dcevm.github.io/.
 Check https://aur.archlinux.org/packages/jdk8-openjdk-dcevm for an easy install on arch.
 
+# SekCLib
+For now until some of the main dev tools are ready and SekCLib has more features/is needed for other mods
+it will be included inside the packages of this mod. However, soon it will be split into a second mod for public use.
+
 # Contributing
 Please ensure that your commits are in the following style for PR's
 
