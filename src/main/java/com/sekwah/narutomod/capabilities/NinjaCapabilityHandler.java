@@ -6,7 +6,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -18,10 +17,6 @@ public class NinjaCapabilityHandler {
 
     @CapabilityInject(INinjaData.class)
     public static final Capability<INinjaData> NINJA_DATA = null;
-
-    public static void register() {
-        CapabilityManager.INSTANCE.register(INinjaData.class);
-    }
 
     @SubscribeEvent
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
