@@ -1,19 +1,21 @@
 package com.sekwah.narutomod.capabilities;
 
+import com.sekwah.sekclib.capabilitysync.annotation.Sync;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class NinjaData implements INinjaData, ICapabilityProvider {
 
+    @Sync
     private float chakra;
+
+    @Sync
     private float stamina;
 
     private static final String CHAKRA_TAG = "chakra";

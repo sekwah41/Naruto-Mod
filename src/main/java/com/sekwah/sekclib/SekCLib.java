@@ -33,9 +33,4 @@ public class SekCLib {
         PacketHandler.init();
     }
 
-    @SubscribeEvent
-    public static void onServerStarting(RegisterCommandsEvent event) {
-
-    }
-
 }
