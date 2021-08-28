@@ -114,7 +114,7 @@ public class PaperBombEntity extends Entity {
 
         --this.life;
         if (this.life <= 0) {
-            this.remove(false);
+            this.discard();
             if (!this.level.isClientSide) {
                 this.explode();
             }
