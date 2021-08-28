@@ -1,16 +1,15 @@
 package com.sekwah.narutomod.events;
 
 import com.sekwah.narutomod.NarutoMod;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = NarutoMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = NarutoMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerEvents {
 
     @SubscribeEvent
-    public void onEntityUpdate(LivingEvent.LivingUpdateEvent event) {
+    public static void onEntityUpdate(LivingEvent.LivingUpdateEvent event) {
         // Do chakra updates and other stuff here unless handled in capabilities
     }
 
