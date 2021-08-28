@@ -1,7 +1,7 @@
 package com.sekwah.narutomod;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
-import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
+import com.sekwah.narutomod.capabilities.INinjaData;
 import com.sekwah.narutomod.client.gui.NarutoInGameGUI;
 import com.sekwah.narutomod.client.keybinds.NarutoKeyHandler;
 import com.sekwah.narutomod.client.renderer.NarutoRenderEvents;
@@ -15,6 +15,7 @@ import com.sekwah.narutomod.registries.NarutoRegistries;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import com.sekwah.sekclib.SekCLib;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -67,7 +68,11 @@ public class NarutoMod {
 
     private void setup(FMLCommonSetupEvent event) {
         PacketHandler.init();
-        NinjaCapabilityHandler.register();
+    }
+
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(INinjaData.class);
     }
 
     @SubscribeEvent

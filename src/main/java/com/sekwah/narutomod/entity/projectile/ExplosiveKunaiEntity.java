@@ -30,7 +30,7 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
         super.tick();
         if(!this.level.isClientSide && this.inGroundTime >= 10) {
             explodeKunai(this);
-            this.remove(false);
+            this.discard();
         }
     }
 
@@ -40,7 +40,7 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
 
         if(!this.level.isClientSide) {
             explodeKunai(this);
-            this.remove(false);
+            this.discard();
         }
     }
 
