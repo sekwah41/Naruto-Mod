@@ -23,9 +23,6 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     private final LazyOptional<INinjaData> holder = LazyOptional.of(() -> this);
 
-    public NinjaData() {
-    }
-
     @Override
     public float getChakra() {
         return this.chakra;

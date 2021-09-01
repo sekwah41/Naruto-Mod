@@ -1,4 +1,4 @@
-package com.sekwah.sekclib.capabilitysync;
+package com.sekwah.sekclib.api.capability;
 
 import com.sekwah.sekclib.capabilitysync.annotation.Sync;
 import net.minecraftforge.common.capabilities.Capability;

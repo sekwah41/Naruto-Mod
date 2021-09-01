@@ -1,7 +1,7 @@
 package com.sekwah.sekclib.event;
 
 import com.sekwah.sekclib.SekCLib;
-import com.sekwah.sekclib.capabilitysync.CapabilitySyncRegistry;
+import com.sekwah.sekclib.api.capability.CapabilitySyncRegistry;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -16,7 +16,7 @@ public class EntityEvents {
         if(event.getEntity() instanceof Player player) {
             for (Capability<?> cap : CapabilitySyncRegistry.getPlayerCapabilities()) {
                 player.getCapability(cap).ifPresent(data -> {
-                    SekCLib.LOGGER.info(data);
+                    //SekCLib.LOGGER.info("Capability {}", data);
                 });
             }
         }
