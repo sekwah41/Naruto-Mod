@@ -16,7 +16,7 @@ import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.registries.NarutoRegistries;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import com.sekwah.sekclib.SekCLib;
-import com.sekwah.sekclib.capabilitysync.CapabilitySyncRegistry;
+import com.sekwah.sekclib.api.capability.CapabilitySyncRegistry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -51,6 +51,7 @@ public class NarutoMod {
         eventBus.addListener(this::clientSetup);
         eventBus.addListener(this::setup);
         eventBus.addListener(this::newRegistryEvent);
+        eventBus.addListener(this::registerCapabilities);
 
         NarutoSounds.register(eventBus);
         NarutoDataSerialisers.register(eventBus);
@@ -75,8 +76,7 @@ public class NarutoMod {
         CapabilitySyncRegistry.registerPlayerCap(NinjaCapabilityHandler.NINJA_DATA, NinjaData.class);
     }
 
-    @SubscribeEvent
-    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.register(INinjaData.class);
     }
 

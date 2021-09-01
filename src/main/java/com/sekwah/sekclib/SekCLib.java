@@ -1,10 +1,14 @@
 package com.sekwah.sekclib;
 
+import com.sekwah.sekclib.capability.ISyncData;
 import com.sekwah.sekclib.network.PacketHandler;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,10 +31,18 @@ public class SekCLib {
 
         ModLoadingContext loadingContext = ModLoadingContext.get();
 
+
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        eventBus.addListener(this::registerCapabilities);
+
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         PacketHandler.init();
+    }
+
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(ISyncData.class);
     }
 
 }
