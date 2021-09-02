@@ -2,11 +2,14 @@ package com.sekwah.sekclib.capabilitysync;
 
 import java.lang.reflect.Field;
 
-public class SyncEntry {
+/**
+ * For tracking the specific data entry
+ */
+public class SyncTracker {
     private String name;
     private Field field;
 
-    public SyncEntry(String name, Field field) {
+    public SyncTracker(String name, Field field) {
         this.name = name;
         this.field = field;
     }
