@@ -23,28 +23,11 @@ public class SyncDataCapabilityHandler {
     @CapabilityInject(ISyncData.class)
     public static final Capability<ISyncData> SYNC_DATA = null;
 
+
     @SubscribeEvent
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player) {
             event.addCapability(new ResourceLocation(SekCLib.MOD_ID, "sync_data"), new SyncData());
         }
-    }
-
-    /**
-     * Server side event
-     * @param event
-     */
-    @SubscribeEvent
-    public static void playerTracking(PlayerEvent.StartTracking event) {
-        // TODO triggers on any entity. trigger on players send over the original data
-    }
-
-    /**
-     * Server side event
-     * @param event
-     */
-    @SubscribeEvent
-    public static void playerStopTracking(PlayerEvent.StopTracking event) {
-        // TODO trigger on players send over the original data
     }
 }
