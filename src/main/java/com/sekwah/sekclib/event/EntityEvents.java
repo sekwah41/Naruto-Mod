@@ -5,13 +5,9 @@ import com.sekwah.sekclib.api.capability.CapabilitySyncRegistry;
 import com.sekwah.sekclib.capability.SyncData;
 import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -37,12 +33,32 @@ public class EntityEvents {
         }
     }
 
+    @SubscribeEvent
+    public static void playerJoin(EntityJoinWorldEvent event) {
+        if (event.getEntity() instanceof Player player) {
+
+        }
+    }
+
+    @SubscribeEvent
+    public static void dimensionChange(EntityJoinWorldEvent event) {
+        // TODO Handle syncing the players own data
+    }
+
+    @SubscribeEvent
+    public static void dimensionChange(PlayerEvent.PlayerChangedDimensionEvent event) {
+        // TODO Handle syncing the players own data
+    }
+
     /**
      * Server side event
      * @param event
      */
     @SubscribeEvent
     public static void playerTracking(PlayerEvent.StartTracking event) {
+        if(event.getTarget() instanceof Player) {
+            SekCLib.LOGGER.info("HELLO");
+        }
         // TODO triggers on any entity. trigger on players send over the original data
     }
 
@@ -52,6 +68,9 @@ public class EntityEvents {
      */
     @SubscribeEvent
     public static void playerStopTracking(PlayerEvent.StopTracking event) {
+        if(event.getTarget() instanceof Player) {
+            SekCLib.LOGGER.info("STOP TRACKING");
+        }
         // TODO trigger on players send over the original data
     }
 
