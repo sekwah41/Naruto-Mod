@@ -1,8 +1,8 @@
 package com.sekwah.sekclib;
 
-import com.sekwah.sekclib.api.capability.RegisterCapabilitySyncEvent;
-import com.sekwah.sekclib.api.capability.RegisterSyncTrackerTypeEvent;
-import com.sekwah.sekclib.capability.ISyncData;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.RegisterCapabilitySyncEvent;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.RegisterSyncTrackerTypeEvent;
+import com.sekwah.sekclib.capabilitysync.synctracker.capability.ISyncData;
 import com.sekwah.sekclib.network.PacketHandler;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;

@@ -1,19 +1,14 @@
-package com.sekwah.sekclib.capability;
+package com.sekwah.sekclib.capabilitysync.synctracker.capability;
 
 import com.sekwah.narutomod.NarutoMod;
-import com.sekwah.narutomod.capabilities.INinjaData;
-import com.sekwah.narutomod.capabilities.NinjaData;
 import com.sekwah.sekclib.SekCLib;
-import com.sekwah.sekclib.capability.ISyncData;
-import com.sekwah.sekclib.capability.SyncData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -24,10 +19,11 @@ public class SyncDataCapabilityHandler {
     public static final Capability<ISyncData> SYNC_DATA = null;
 
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player) {
             event.addCapability(new ResourceLocation(SekCLib.MOD_ID, "sync_data"), new SyncData());
+            // TODO handle creating the capability trackers.
         }
     }
 }

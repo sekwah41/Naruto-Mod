@@ -113,7 +113,7 @@ public class ChakraAndStaminaGUI extends GuiComponent {
         int chakraWidth = (int) (barWidth * currentChakraPercent);
         // stack, x, y, tx, ty, width, height, textureWidth, textureHeight
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        this.blit(matrixStack, screenMid - width - offset, this.screenHeight - 22,
+        blit(matrixStack, screenMid - width - offset, this.screenHeight - 22,
                 0 , 22,
                 width, 22,
                 width, 44);
@@ -121,24 +121,22 @@ public class ChakraAndStaminaGUI extends GuiComponent {
 
         // Stamina Bar underlay
         int staminaWidth = (int) (barWidth * currentStaminaPercent);
-        this.blit(matrixStack, screenMid + offset, this.screenHeight - 22,
+        blit(matrixStack, screenMid + offset, this.screenHeight - 22,
                 0, 22,
                 width, 22,
                 -width, 44);
 
 
         // Chakra Bar color
-        // TODO pass this data into the render this.setColor(chakraColor);
         this.setColor(chakraColor);
-        this.blit(matrixStack, screenMid - chakraWidth - offset - (width - xOffset - barWidth), this.screenHeight - 22,
+        blit(matrixStack, screenMid - chakraWidth - offset - (width - xOffset - barWidth), this.screenHeight - 22,
                 xOffset + (barWidth - chakraWidth), 0,
                 chakraWidth, 22,
                 width, 44);
 
         // Stamina Bar color
-        // TODO pass this data into the render this.setColor(staminaColor);
         this.setColor(staminaColor);
-        this.blit(matrixStack, screenMid + offset + (100 - barWidth - xOffset), this.screenHeight - 22,
+        blit(matrixStack, screenMid + offset + (100 - barWidth - xOffset), this.screenHeight - 22,
                 -barWidth - xOffset, 0,
                 staminaWidth, 22,
                 -width, 44);

@@ -1,7 +1,7 @@
-package com.sekwah.sekclib.capabilitysync.synctracker;
+package com.sekwah.sekclib.capabilitysync.synctracker.trackers;
 
 import com.sekwah.sekclib.SekCLib;
-import com.sekwah.sekclib.api.capability.RegisterSyncTrackerTypeEvent;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.RegisterSyncTrackerTypeEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

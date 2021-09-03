@@ -1,6 +1,6 @@
 package com.sekwah.narutomod.capabilities;
 
-import com.sekwah.sekclib.capabilitysync.annotation.Sync;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.annotation.Sync;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;

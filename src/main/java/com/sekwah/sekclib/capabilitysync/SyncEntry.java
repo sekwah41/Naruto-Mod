@@ -22,4 +22,12 @@ public class SyncEntry {
     public Field getField() {
         return field;
     }
+
+    public int getMinTicks() {
+        return minTicks;
+    }
+
+    public boolean isSyncGlobally() {
+        return syncGlobally;
+    }
 }

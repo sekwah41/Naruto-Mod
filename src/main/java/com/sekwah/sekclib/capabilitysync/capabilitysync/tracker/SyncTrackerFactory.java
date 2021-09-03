@@ -1,4 +1,4 @@
-package com.sekwah.sekclib.capabilitysync.synctracker;
+package com.sekwah.sekclib.capabilitysync.capabilitysync.tracker;
 
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
 
