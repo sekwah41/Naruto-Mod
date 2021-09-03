@@ -1,4 +1,4 @@
-package com.sekwah.sekclib.api.capability;
+package com.sekwah.sekclib.capabilitysync.capabilitysync;
 
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.eventbus.api.Event;

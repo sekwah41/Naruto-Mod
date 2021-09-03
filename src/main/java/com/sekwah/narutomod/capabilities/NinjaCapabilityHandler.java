@@ -1,10 +1,6 @@
 package com.sekwah.narutomod.capabilities;
 
 import com.sekwah.narutomod.NarutoMod;
-import com.sekwah.sekclib.SekCLib;
-import com.sekwah.sekclib.api.capability.CapabilitySyncRegistry;
-import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
-import com.sekwah.sekclib.capabilitysync.SyncEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -13,7 +9,6 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -43,21 +38,11 @@ public class NinjaCapabilityHandler {
 
     @SubscribeEvent
     public static void playerClone(PlayerEvent.Clone event) {
-        // TODO need to implement copying data
         event.getOriginal().getCapability(NINJA_DATA).ifPresent(original -> {
             event.getPlayer().getCapability(NINJA_DATA).ifPresent(future -> {
                 future.deserializeNBT(original.serializeNBT());
             });
         });
-    }
-
-    /**
-     * Server side event
-     * @param event
-     */
-    @SubscribeEvent
-    public static void playerTracking(PlayerEvent.StartTracking event) {
-        // TODO triggers on any entity. trigger on players send over the original data
     }
 
     //public static final EntitySize STANDING_SIZE = EntitySize.flexible(0.1F, 0.1F);

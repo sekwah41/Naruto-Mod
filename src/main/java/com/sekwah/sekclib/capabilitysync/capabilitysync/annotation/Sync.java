@@ -1,4 +1,4 @@
-package com.sekwah.sekclib.capabilitysync.annotation;
+package com.sekwah.sekclib.capabilitysync.capabilitysync.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * For now these can only be primitives and strings.
+ * Make sure that the Capabilities are not registered on EventPriority.LOWEST so that SekCLib can find it.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})

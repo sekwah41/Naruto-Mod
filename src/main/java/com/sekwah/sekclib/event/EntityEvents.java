@@ -1,8 +1,8 @@
 package com.sekwah.sekclib.event;
 
 import com.sekwah.sekclib.SekCLib;
-import com.sekwah.sekclib.api.capability.CapabilitySyncRegistry;
-import com.sekwah.sekclib.capability.SyncData;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.CapabilitySyncRegistry;
+import com.sekwah.sekclib.capabilitysync.synctracker.capability.SyncDataCapabilityHandler;
 import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
 import net.minecraft.world.entity.player.Player;
@@ -19,17 +19,19 @@ public class EntityEvents {
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
         if(event.side.isServer()) {
             Player player = event.player;
-            for (CapabilityEntry capabilityEntry : CapabilitySyncRegistry.getPlayerCapabilities()) {
-                player.getCapability(capabilityEntry.getCapability()).ifPresent(data -> {
-                    for (SyncEntry entry: capabilityEntry.getSyncEntries()) {
+            player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
+                for (CapabilityEntry capabilityEntry : CapabilitySyncRegistry.getPlayerCapabilities()) {
+                    player.getCapability(capabilityEntry.getCapability()).ifPresent(data -> {
+                        for (SyncEntry entry: capabilityEntry.getSyncEntries()) {
                         /*try {
                             SekCLib.LOGGER.info("Field data {} {}", entry.getName(), entry.getField().get(data));
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
                         }*/
-                    }
-                });
-            }
+                        }
+                    });
+                }
+            });
         }
     }
 
