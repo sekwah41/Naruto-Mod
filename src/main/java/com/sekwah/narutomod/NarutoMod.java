@@ -17,6 +17,7 @@ import com.sekwah.narutomod.registries.NarutoRegistries;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.api.capability.CapabilitySyncRegistry;
+import com.sekwah.sekclib.api.capability.RegisterCapabilitySyncEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -52,6 +53,7 @@ public class NarutoMod {
         eventBus.addListener(this::setup);
         eventBus.addListener(this::newRegistryEvent);
         eventBus.addListener(this::registerCapabilities);
+        eventBus.addListener(this::registerCapabilitySync);
 
         NarutoSounds.register(eventBus);
         NarutoDataSerialisers.register(eventBus);
@@ -72,8 +74,6 @@ public class NarutoMod {
 
     private void setup(FMLCommonSetupEvent event) {
         PacketHandler.init();
-
-        CapabilitySyncRegistry.registerPlayerCap(NinjaCapabilityHandler.NINJA_DATA, NinjaData.class);
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -83,6 +83,10 @@ public class NarutoMod {
     @SubscribeEvent
     public static void onServerStarting(RegisterCommandsEvent event) {
         NarutoCommands.register(event.getDispatcher());
+    }
+
+    public void registerCapabilitySync(RegisterCapabilitySyncEvent event) {
+        event.registerPlayerCap(NinjaCapabilityHandler.NINJA_DATA, NinjaData.class);
     }
 
     private void newRegistryEvent(RegistryEvent.NewRegistry event) {
