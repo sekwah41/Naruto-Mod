@@ -2,7 +2,7 @@ package com.sekwah.sekclib.event;
 
 import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.CapabilitySyncRegistry;
-import com.sekwah.sekclib.capabilitysync.synctracker.capability.SyncDataCapabilityHandler;
+import com.sekwah.sekclib.capabilitysync.capability.SyncDataCapabilityHandler;
 import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
 import net.minecraft.world.entity.player.Player;

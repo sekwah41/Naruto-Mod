@@ -1,4 +1,4 @@
-package com.sekwah.sekclib.capabilitysync.synctracker.capability;
+package com.sekwah.sekclib.capabilitysync.capability;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.sekclib.SekCLib;

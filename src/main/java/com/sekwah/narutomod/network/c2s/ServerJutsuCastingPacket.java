@@ -1,4 +1,4 @@
-package com.sekwah.narutomod.network.server;
+package com.sekwah.narutomod.network.c2s;
 
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.network.FriendlyByteBuf;
@@ -12,25 +12,25 @@ import java.util.function.Supplier;
 /**
  * Tells the server that the user is entering jutsu keys
  */
-public class JutsuCastingPacket {
+public class ServerJutsuCastingPacket {
 
     private final int jutsuKey;
 
-    public JutsuCastingPacket(int jutsuKey) {
+    public ServerJutsuCastingPacket(int jutsuKey) {
         this.jutsuKey = jutsuKey;
     }
 
-    public static void encode(JutsuCastingPacket msg, FriendlyByteBuf outBuffer) {
+    public static void encode(ServerJutsuCastingPacket msg, FriendlyByteBuf outBuffer) {
         outBuffer.writeInt(msg.jutsuKey);
     }
 
-    public static JutsuCastingPacket decode(FriendlyByteBuf inBuffer) {
+    public static ServerJutsuCastingPacket decode(FriendlyByteBuf inBuffer) {
         int jutsuKey = inBuffer.readInt();
-        return new JutsuCastingPacket(jutsuKey);
+        return new ServerJutsuCastingPacket(jutsuKey);
     }
 
     public static class Handler {
-        public static void handle(JutsuCastingPacket msg, Supplier<NetworkEvent.Context> ctx) {
+        public static void handle(ServerJutsuCastingPacket msg, Supplier<NetworkEvent.Context> ctx) {
             ctx.get().enqueueWork(() -> {
                 ServerPlayer player = ctx.get().getSender();
                 if(player != null) {

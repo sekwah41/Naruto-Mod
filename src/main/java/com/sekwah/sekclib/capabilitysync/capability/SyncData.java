@@ -1,4 +1,4 @@
-package com.sekwah.sekclib.capabilitysync.synctracker.capability;
+package com.sekwah.sekclib.capabilitysync.capability;
 
 import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.Capability;
