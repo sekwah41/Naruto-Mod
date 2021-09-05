@@ -4,6 +4,7 @@ import com.sekwah.sekclib.capabilitysync.capabilitysync.RegisterCapabilitySyncEv
 import com.sekwah.sekclib.capabilitysync.capabilitysync.RegisterSyncTrackerTypeEvent;
 import com.sekwah.sekclib.capabilitysync.capability.ISyncData;
 import com.sekwah.sekclib.network.PacketHandler;
+import com.sekwah.sekclib.registries.SekCLibRegistries;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoader;
@@ -33,13 +34,16 @@ public class SekCLib {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::registerCapabilities);
         eventBus.addListener(this::setup);
+        eventBus.addListener(SekCLibRegistries::registerRegistries);
 
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         PacketHandler.init();
+        SekCLibRegistries.capabilityRegistry.unfreeze();
         ModLoader.get().postEvent(new RegisterSyncTrackerTypeEvent());
         ModLoader.get().postEvent(new RegisterCapabilitySyncEvent());
+        SekCLibRegistries.capabilityRegistry.freeze();
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
