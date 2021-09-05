@@ -5,6 +5,16 @@ import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/**
+ * Structure
+ * int how many capabilities
+ *
+ * int capability sync id
+ * int how many fields to sync
+ *
+ * int id for which field on the capability to sync. (this stops types needing to by synced with a registry)
+ * (push to the tracker to handle the encoding and decoding)
+ */
 public class ClientCapabilitySyncPacket {
 
     private final int id;

@@ -21,8 +21,6 @@ import java.util.stream.Collectors;
  */
 public class CapabilitySyncRegistry {
 
-    private static final Map<ResourceLocation, CapabilityEntry> SYNC_PLAYER_CAPABILITIES_MAP = new HashMap<>();
-
     private static final Map<Class, SyncTrackerFactory> CLASS_SYNC_TRACKER_FACTORY_MAP = new HashMap<>();
 
     /**
@@ -36,7 +34,6 @@ public class CapabilitySyncRegistry {
                 .sorted(Comparator.comparing(Field::getName)).toList();
         CapabilityEntry capabilityEntry = new CapabilityEntry(resourceSyncName, capability);
         SekCLibRegistries.capabilityRegistry.register(capabilityEntry);
-        SYNC_PLAYER_CAPABILITIES_MAP.put(resourceSyncName, capabilityEntry);
         List<ModLoadingException> errors = new ArrayList<>();
         for (Field field : values) {
             Sync sync = field.getAnnotation(Sync.class);
@@ -65,6 +62,6 @@ public class CapabilitySyncRegistry {
      * @return list of capabilities for syncing later
      */
     public static Collection<CapabilityEntry> getPlayerCapabilities() {
-        return SYNC_PLAYER_CAPABILITIES_MAP.values();
+        return SekCLibRegistries.capabilityRegistry.getValues();
     }
 }
