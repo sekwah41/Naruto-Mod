@@ -1,13 +1,14 @@
 package com.sekwah.narutomod.jutsus;
 
 import com.sekwah.narutomod.NarutoMod;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder(NarutoMod.MOD_ID)
-@Mod.EventBusSubscriber(modid = NarutoMod.MOD_ID)
+@Mod.EventBusSubscriber(modid = NarutoMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NarutoJutsus {
 
     public static Jutsu TEST_JUTSU;
@@ -16,7 +17,7 @@ public class NarutoJutsus {
     public static void registerJutsus(RegistryEvent.Register<Jutsu> event) {
 
         TEST_JUTSU = new Jutsu();
-        event.getRegistry().register(TEST_JUTSU);
+        event.getRegistry().register(TEST_JUTSU.setRegistryName(new ResourceLocation(NarutoMod.MOD_ID, "test_jutsu")));
 
     }
 }

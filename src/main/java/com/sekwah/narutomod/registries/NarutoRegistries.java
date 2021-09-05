@@ -4,6 +4,7 @@ import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.clans.Clans;
 import com.sekwah.narutomod.jutsus.Jutsu;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.RegistryBuilder;
 
 /**
@@ -12,7 +13,7 @@ import net.minecraftforge.registries.RegistryBuilder;
  */
 public class NarutoRegistries {
 
-    public static void init() {
+    public static void init(RegistryEvent.NewRegistry event) {
         RegistryBuilder<Jutsu> jutsu = new RegistryBuilder<>();
         jutsu.setName(new ResourceLocation(NarutoMod.MOD_ID, "jutsus"));
         jutsu.setType(Jutsu.class);
