@@ -12,9 +12,6 @@ import net.minecraftforge.registries.RegistryBuilder;
  */
 public class NarutoRegistries {
 
-    /**
-     * To be called during
-     */
     public static void init() {
         RegistryBuilder<Jutsu> jutsu = new RegistryBuilder<>();
         jutsu.setName(new ResourceLocation(NarutoMod.MOD_ID, "jutsus"));

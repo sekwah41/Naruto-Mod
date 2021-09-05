@@ -1,9 +1,9 @@
 package com.sekwah.narutomod.network;
 
 import com.sekwah.narutomod.NarutoMod;
-import com.sekwah.narutomod.network.client.ClientTestPacket;
-import com.sekwah.narutomod.network.server.JutsuCastingPacket;
-import com.sekwah.narutomod.network.server.ServerTestPacket;
+import com.sekwah.narutomod.network.s2c.ClientTestPacket;
+import com.sekwah.narutomod.network.c2s.ServerJutsuCastingPacket;
+import com.sekwah.narutomod.network.c2s.ServerTestPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -29,7 +29,7 @@ public class PacketHandler {
 
         // Client to server packets
         NARUTO_CHANNEL.registerMessage(100, ServerTestPacket.class, ServerTestPacket::encode, ServerTestPacket::decode, ServerTestPacket.Handler::handle);
-        NARUTO_CHANNEL.registerMessage(101, JutsuCastingPacket.class, JutsuCastingPacket::encode, JutsuCastingPacket::decode, JutsuCastingPacket.Handler::handle);
+        NARUTO_CHANNEL.registerMessage(101, ServerJutsuCastingPacket.class, ServerJutsuCastingPacket::encode, ServerJutsuCastingPacket::decode, ServerJutsuCastingPacket.Handler::handle);
     }
 
 

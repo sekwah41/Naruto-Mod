@@ -3,7 +3,7 @@ package com.sekwah.narutomod.client.keybinds;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.network.PacketHandler;
-import com.sekwah.narutomod.network.server.JutsuCastingPacket;
+import com.sekwah.narutomod.network.c2s.ServerJutsuCastingPacket;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -73,7 +73,7 @@ public class NarutoKeyHandler {
      * @param i - jutsu key id
      */
     public static void handleJustuKey(int i) {
-        PacketHandler.sendToServer(new JutsuCastingPacket(i));
+        PacketHandler.sendToServer(new ServerJutsuCastingPacket(i));
         ticksSinceLastKey = 0;
         if (currentJutsuCombo < MAX_JUTSU_VALUE) {
             currentJutsuCombo *= 10;
