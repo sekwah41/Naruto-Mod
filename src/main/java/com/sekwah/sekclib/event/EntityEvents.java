@@ -25,6 +25,7 @@ public class EntityEvents {
                     player.getCapability(capabilityEntry.getCapability()).ifPresent(data -> {
                         for (SyncEntry entry: capabilityEntry.getSyncEntries()) {
                             try {
+                                // TODO do some benchmarks for getter and setter calls vs lambda versions.
                                 System.out.println(entry.getGetter().invoke(data));
                             } catch (Throwable throwable) {
                                 throwable.printStackTrace();

@@ -12,8 +12,7 @@ import net.minecraftforge.fml.LoadingFailedException;
 import net.minecraftforge.fml.ModLoadingException;
 import net.minecraftforge.fml.ModLoadingStage;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
+import java.lang.invoke.*;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -51,13 +50,22 @@ public class CapabilitySyncRegistry {
             MethodHandle setter;
             try {
                 getter = lookup.unreflectGetter(field);
+                CallSite getterCall = LambdaMetafactory.metafactory(lookup,
+                        "getter", MethodType.methodType(field.getType()),
+                        MethodType.methodType(field.getType()),
+                        getter, getter.type());
                 setter = lookup.unreflectSetter(field);
+                CallSite setterCall = LambdaMetafactory.metafactory(lookup,
+                        "setter", MethodType.methodType(field.getType()),
+                        MethodType.methodType(field.getType()),
+                        setter, setter.type());
 
-                SyncEntry entry = new SyncEntry(field.getName(), getter, setter, sync.minTicks(), sync.syncGlobally());
+                SyncEntry entry = new SyncEntry(field.getName(), getter, setter, getterCall, setterCall, sync.minTicks(), sync.syncGlobally());
                 capabilityEntry.addSyncEntry(entry);
-            } catch (IllegalAccessException e) {
+            } catch (IllegalAccessException | LambdaConversionException e) {
                 String message = String.format("There was a problem un-reflecting (Class: %s, Field: %s)", clazz.getName(), field.getName());
                 SekCLib.LOGGER.error(message);
+                e.printStackTrace();
                 errors.add(new ModLoadingException(null, ModLoadingStage.COMMON_SETUP, message, null));
             }
         }
