@@ -20,9 +20,15 @@ public class EntityEvents {
         if(event.side.isServer()) {
             Player player = event.player;
             player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
+                // TODO collect two arrays of data, grouped by capability entry and decide when and what data to send.
                 for (CapabilityEntry capabilityEntry : CapabilitySyncRegistry.getPlayerCapabilities()) {
                     player.getCapability(capabilityEntry.getCapability()).ifPresent(data -> {
                         for (SyncEntry entry: capabilityEntry.getSyncEntries()) {
+                            try {
+                                System.out.println(entry.getGetter().invoke(data));
+                            } catch (Throwable throwable) {
+                                throwable.printStackTrace();
+                            }
                         /*try {
                             SekCLib.LOGGER.info("Field data {} {}", entry.getName(), entry.getField().get(data));
                         } catch (IllegalAccessException e) {
