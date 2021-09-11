@@ -855,13 +855,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-angular@npm:5.0.12":
-  version: 5.0.12
-  resolution: "conventional-changelog-angular@npm:5.0.12"
+"conventional-changelog-angular@npm:5.0.13":
+  version: 5.0.13
+  resolution: "conventional-changelog-angular@npm:5.0.13"
   dependencies:
     compare-func: ^2.0.0
     q: ^1.5.1
-  checksum: 984545414fecb06d61a1af3cf2eefaa8cc71adb309f7e517f4dca65945a55d1f25813a7644934f372e7ea8bef5336ed92e9325a65af739f23f843dd1a363fc63
+  checksum: c35fc766bb10626c6fdcdda312bd1ed8ef7e746a8fec96e695a860fa851869b6b902c284d6d1cb9c253ec34ca1f3db34d29e2cd7d75cd2bceb36e05a076a9da0
   languageName: node
   linkType: hard
 
@@ -2844,7 +2844,7 @@ resolve@~1.7.1:
     "@auto-it/released": 10.31.0
     "@auto-it/upload-assets": 10.31.0
     auto: 10.31.0
-    conventional-changelog-angular: 5.0.12
+    conventional-changelog-angular: 5.0.13
   languageName: unknown
   linkType: soft
 
