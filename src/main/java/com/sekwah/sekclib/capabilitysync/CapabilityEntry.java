@@ -1,6 +1,5 @@
 package com.sekwah.sekclib.capabilitysync;
 
-import com.sekwah.narutomod.jutsus.Jutsu;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.registries.ForgeRegistryEntry;
