@@ -16,7 +16,6 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Currently only designed for players though if there is demand we can add entity syncing too.
@@ -37,7 +36,6 @@ public class CapabilitySyncRegistry {
         CapabilityEntry capabilityEntry = new CapabilityEntry(resourceSyncName, capability);
         SekCLibRegistries.capabilityRegistry.register(capabilityEntry);
         List<ModLoadingException> errors = new ArrayList<>();
-        MethodHandles.Lookup lookup = MethodHandles.publicLookup();
         for (Field field : values) {
             Sync sync = field.getAnnotation(Sync.class);
             if(!CLASS_SYNC_TRACKER_FACTORY_MAP.containsKey(field.getType())) {
@@ -45,15 +43,10 @@ public class CapabilitySyncRegistry {
                 SekCLib.LOGGER.error(message);
                 errors.add(new ModLoadingException(null, ModLoadingStage.COMMON_SETUP, message, null));
             }
-            // So that it doesnt have to be accessible
+            // So that it doesn't have to be accessible
             field.setAccessible(true);
-            MethodHandle getter;
-            MethodHandle setter;
             try {
-                getter = lookup.unreflectGetter(field);
-                setter = lookup.unreflectSetter(field);
-
-                SyncEntry entry = new SyncEntry(field.getName(), getter, setter, sync.minTicks(), sync.syncGlobally());
+                SyncEntry entry = new SyncEntry(field.getName(), field, sync.minTicks(), sync.syncGlobally());
                 capabilityEntry.addSyncEntry(entry);
             } catch (IllegalAccessException e) {
                 String message = String.format("There was a problem un-reflecting (Class: %s, Field: %s)", clazz.getName(), field.getName());
@@ -67,9 +60,13 @@ public class CapabilitySyncRegistry {
     }
 
     static void registerSyncTrackerType(Class clazz, SyncTrackerFactory syncTracker) {
-        // TODO start registering the map.
         CLASS_SYNC_TRACKER_FACTORY_MAP.put(clazz, syncTracker);
     }
+
+    public static SyncTrackerFactory getTrackerFactory(Class clazz) {
+        return CLASS_SYNC_TRACKER_FACTORY_MAP.get(clazz);
+    }
+
 
 
     /**

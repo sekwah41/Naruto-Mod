@@ -1,10 +1,7 @@
 package com.sekwah.sekclib.event;
 
 import com.sekwah.sekclib.SekCLib;
-import com.sekwah.sekclib.capabilitysync.capabilitysync.CapabilitySyncRegistry;
-import com.sekwah.sekclib.capabilitysync.capability.SyncDataCapabilityHandler;
-import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
-import com.sekwah.sekclib.capabilitysync.SyncEntry;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.broadcaster.CapabilityBroadcaster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -19,43 +16,22 @@ public class EntityEvents {
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
         if(event.side.isServer()) {
             Player player = event.player;
-            player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
-                // TODO collect two arrays of data, grouped by capability entry and decide when and what data to send.
-                for (CapabilityEntry capabilityEntry : CapabilitySyncRegistry.getPlayerCapabilities()) {
-                    player.getCapability(capabilityEntry.getCapability()).ifPresent(data -> {
-                        for (SyncEntry entry: capabilityEntry.getSyncEntries()) {
-                            try {
-                                System.out.println(entry.getGetter().invoke(data));
-                            } catch (Throwable throwable) {
-                                throwable.printStackTrace();
-                            }
-                        /*try {
-                            SekCLib.LOGGER.info("Field data {} {}", entry.getName(), entry.getField().get(data));
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        }*/
-                        }
-                    });
-                }
-            });
-        }
-    }
-
-    @SubscribeEvent
-    public static void playerJoin(EntityJoinWorldEvent event) {
-        if (event.getEntity() instanceof Player player) {
-
+            CapabilityBroadcaster.checkPlayerCapData(player);
         }
     }
 
     @SubscribeEvent
     public static void dimensionChange(EntityJoinWorldEvent event) {
         // TODO Handle syncing the players own data
+        if(event.getEntity() instanceof Player) {
+            System.out.println("JOINED WORLD");
+        }
     }
 
     @SubscribeEvent
     public static void dimensionChange(PlayerEvent.PlayerChangedDimensionEvent event) {
         // TODO Handle syncing the players own data
+        System.out.println("DIMENSION");
     }
 
     /**

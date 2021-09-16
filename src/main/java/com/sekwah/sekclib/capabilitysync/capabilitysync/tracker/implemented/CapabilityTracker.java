@@ -1,4 +1,4 @@
-package com.sekwah.sekclib.capabilitysync.synctracker.trackers;
+package com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.implemented;
 
 import com.sekwah.narutomod.jutsus.Jutsu;
 import net.minecraftforge.registries.ForgeRegistryEntry;

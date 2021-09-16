@@ -12,16 +12,16 @@ import net.minecraft.network.FriendlyByteBuf;
  * If you are going to add tracker types that are not custom classes please consider making a pr to the main library.
  */
 public abstract class SyncTracker<T> {
-    private SyncEntry syncEntry;
+    protected SyncEntry syncEntry;
     /**
      * Will always start as null.
      */
-    private T lastSentValue;
+    protected T lastSentValue;
 
     /**
      * Whenever the data is sent this will be set back to the minTicks value from this.syncEntry.
      */
-    private int minTicksLeft = 0;
+    protected int minTicksLeft = 0;
 
     public SyncTracker(SyncEntry syncEntry) {
         this.syncEntry = syncEntry;
@@ -35,7 +35,8 @@ public abstract class SyncTracker<T> {
 
     public abstract T decode(FriendlyByteBuf inBuffer);
 
-    public void sent() {
+    public void sent(T dataSent) {
+        this.lastSentValue = dataSent;
         this.minTicksLeft = this.syncEntry.getMinTicks();
     }
 
