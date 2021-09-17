@@ -3,6 +3,7 @@ package com.sekwah.sekclib.capabilitysync.capabilitysync;
 import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerFactory;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.annotation.Sync;
 import com.sekwah.sekclib.registries.SekCLibRegistries;
@@ -33,7 +34,7 @@ public class CapabilitySyncRegistry {
         List<Field> values = Arrays.stream(clazz.getDeclaredFields())
                 .filter(value -> value.isAnnotationPresent(Sync.class))
                 .sorted(Comparator.comparing(Field::getName)).toList();
-        CapabilityEntry capabilityEntry = new CapabilityEntry(resourceSyncName, capability);
+        CapabilityEntry capabilityEntry = new CapabilityEntry(resourceSyncName, capability, clazz);
         SekCLibRegistries.capabilityRegistry.register(capabilityEntry);
         List<ModLoadingException> errors = new ArrayList<>();
         for (Field field : values) {
@@ -74,5 +75,19 @@ public class CapabilitySyncRegistry {
      */
     public static Collection<CapabilityEntry> getPlayerCapabilities() {
         return SekCLibRegistries.capabilityRegistry.getValues();
+    }
+
+    /**
+     *
+     * @param entry
+     * @return null if the there is no tracker factory for the field type
+     */
+    public static SyncTracker createTracker(SyncEntry entry) {
+        SyncTrackerFactory trackerFactory = getTrackerFactory(entry.getField().getType());
+        if(trackerFactory != null) {
+            return trackerFactory.create(entry);
+        } else {
+            return null;
+        }
     }
 }

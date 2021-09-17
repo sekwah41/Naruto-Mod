@@ -11,13 +11,15 @@ import java.util.Map;
 
 public class CapabilityEntry extends ForgeRegistryEntry<CapabilityEntry> {
     private Capability<?> capability;
+    private Class clazz;
 
     private List<SyncEntry> syncEntries = new ArrayList<>();
 
     private Map<String, SyncEntry> syncEntryHashMap = new HashMap<>();
 
-    public CapabilityEntry(ResourceLocation resourceSyncName, Capability<?> capability) {
+    public CapabilityEntry(ResourceLocation resourceSyncName, Capability<?> capability, Class clazz) {
         this.capability = capability;
+        this.clazz = clazz;
         this.setRegistryName(resourceSyncName);
     }
 
@@ -38,5 +40,9 @@ public class CapabilityEntry extends ForgeRegistryEntry<CapabilityEntry> {
             this.syncEntries.add(entry);
             this.syncEntryHashMap.put(entry.getName(), entry);
         }
+    }
+
+    public Class getCapabilityClass() {
+        return clazz;
     }
 }
