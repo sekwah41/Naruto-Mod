@@ -7,4 +7,8 @@ public class CapabilityTracker {
 
     public List<SyncTracker> syncTrackerList = new ArrayList<>();
 
+    public void addSyncTracker(SyncTracker syncTracker) {
+        syncTrackerList.add(syncTracker);
+    }
+
 }

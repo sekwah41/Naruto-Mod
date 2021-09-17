@@ -16,6 +16,10 @@ public class SyncData implements ISyncData, ICapabilityProvider {
 
     public ArrayList<CapabilityTracker> capabilityTrackers = new ArrayList<>();
 
+    public void addCapabilityTracker(CapabilityTracker syncTracker) {
+        capabilityTrackers.add(syncTracker);
+    }
+
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {

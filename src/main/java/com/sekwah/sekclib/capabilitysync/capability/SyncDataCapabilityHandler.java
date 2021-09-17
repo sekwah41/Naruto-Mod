@@ -4,7 +4,8 @@ import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.CapabilitySyncRegistry;
-import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerFactory;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.CapabilityTracker;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -24,30 +25,38 @@ public class SyncDataCapabilityHandler {
     @CapabilityInject(ISyncData.class)
     public static final Capability<ISyncData> SYNC_DATA = null;
 
+    public static void createSyncData(AttachCapabilitiesEvent<Entity> event) {
+        SyncData syncData = new SyncData();
+
+        Map<ResourceLocation, ICapabilityProvider> registeredCaps = event.getCapabilities();
+
+        checkCapability:
+        for (Map.Entry<ResourceLocation, ICapabilityProvider> capEntry : registeredCaps.entrySet()) {
+            for (CapabilityEntry capabilityEntry : CapabilitySyncRegistry.getPlayerCapabilities()) {
+                Class<? extends ICapabilityProvider> capClass = capEntry.getValue().getClass();
+                if (capabilityEntry.getCapabilityClass() == capClass) {
+                    CapabilityTracker capabilityTracker = new CapabilityTracker();
+                    for (SyncEntry entry : capabilityEntry.getSyncEntries()) {
+                        SyncTracker syncTracker = CapabilitySyncRegistry.createTracker(entry);
+                        capabilityTracker.addSyncTracker(syncTracker);
+
+                        // TODO possibly trigger trackers so they can get their initial values
+                    }
+                    syncData.addCapabilityTracker(capabilityTracker);
+
+                    continue checkCapability;
+                }
+            }
+        }
+
+        event.addCapability(new ResourceLocation(SekCLib.MOD_ID, "sync_data"), syncData);
+    }
+
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
-        if (event.getObject() instanceof Player player)
-            if (!event.getObject().level.isClientSide()) {
-                SyncData syncData = new SyncData();
-
-                // TODO handle creating the capability trackers.
-
-                // TODO loop over this rather than the created capabilities
-
-                Map<ResourceLocation, ICapabilityProvider> registeredCaps = event.getCapabilities();
-
-
-                /*for (CapabilityEntry capabilityEntry : CapabilitySyncRegistry.getPlayerCapabilities()) {
-                    player.getCapability(capabilityEntry.getCapability()).ifPresent(data -> {
-                        for (SyncEntry entry : capabilityEntry.getSyncEntries()) {
-                            SyncTrackerFactory tracker = CapabilitySyncRegistry.getTrackerFactory(entry.getField().getType());
-                            System.out.println(tracker);
-                        }
-                    });
-                }*/
-
-                event.addCapability(new ResourceLocation(SekCLib.MOD_ID, "sync_data"), syncData);
-            }
+        if (event.getObject() instanceof Player && !event.getObject().level.isClientSide()) {
+            createSyncData(event);
+        }
     }
 }
