@@ -30,7 +30,7 @@ public class SyncDataCapabilityHandler {
 
         Map<ResourceLocation, ICapabilityProvider> registeredCaps = event.getCapabilities();
 
-        checkCapability:
+
         for (Map.Entry<ResourceLocation, ICapabilityProvider> capEntry : registeredCaps.entrySet()) {
             for (CapabilityEntry capabilityEntry : CapabilitySyncRegistry.getPlayerCapabilities()) {
                 Class<? extends ICapabilityProvider> capClass = capEntry.getValue().getClass();
@@ -44,7 +44,7 @@ public class SyncDataCapabilityHandler {
                     }
                     syncData.addCapabilityTracker(capabilityTracker);
 
-                    continue checkCapability;
+                    break;
                 }
             }
         }
