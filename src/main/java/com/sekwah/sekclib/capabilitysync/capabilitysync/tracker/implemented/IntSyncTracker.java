@@ -19,9 +19,4 @@ public class IntSyncTracker extends SyncTracker<Integer> {
     public Integer decode(FriendlyByteBuf inBuffer) {
         return null;
     }
-
-    @Override
-    public boolean shouldSend(Integer currentValue) {
-        return false;
-    }
 }

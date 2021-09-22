@@ -3,6 +3,8 @@ package com.sekwah.sekclib.capabilitysync.capabilitysync.tracker;
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
 import net.minecraft.network.FriendlyByteBuf;
 
+import java.util.Objects;
+
 /**
  * For tracking the specific data entry. This will contain the main logic,
  * though each supported type should have its own special sync tracker.
@@ -14,20 +16,19 @@ import net.minecraft.network.FriendlyByteBuf;
 public abstract class SyncTracker<T> {
     protected SyncEntry syncEntry;
     /**
-     * Will always start as null.
+     * Will always start as null. Will only update when the value when ticks reach 0 and the value has been updated.
+     * If data is forced to be sent, then this will sync up all the clients to exactly the same state even if joined later.
      */
-    protected T lastSentValue;
+    protected T sendValue;
 
     /**
      * Whenever the data is sent this will be set back to the minTicks value from this.syncEntry.
      */
     protected int minTicksLeft = 0;
 
-    public SyncTracker(SyncEntry syncEntry) {
-        this.syncEntry = syncEntry;
-    }
+    protected boolean markedForSend = false;
 
-    public void setSyncEntry(SyncEntry syncEntry) {
+    public SyncTracker(SyncEntry syncEntry) {
         this.syncEntry = syncEntry;
     }
 
@@ -35,9 +36,23 @@ public abstract class SyncTracker<T> {
 
     public abstract T decode(FriendlyByteBuf inBuffer);
 
-    public void sent(T dataSent) {
-        this.lastSentValue = dataSent;
-        this.minTicksLeft = this.syncEntry.getMinTicks();
+    /**
+     * Update the ticks left and clear any info on if it should be sent this tick.
+     * @param data
+     */
+    public void tick(Object data) throws Throwable {
+        if(--this.minTicksLeft <= 0) {
+            T currentData = (T) syncEntry.getGetter().invoke(data);
+            if(this.shouldSend(currentData)) {
+                this.markedForSend = true;
+                this.sendValue = currentData;
+                this.minTicksLeft = this.syncEntry.getMinTicks();
+            } else {
+                this.markedForSend = false;
+            }
+        } else {
+            this.markedForSend = false;
+        }
     }
 
     /**
@@ -45,5 +60,7 @@ public abstract class SyncTracker<T> {
      * @param currentValue - The current server side value
      * @return
      */
-    public abstract boolean shouldSend(T currentValue);
+    public boolean shouldSend(T currentValue) {
+        return !Objects.equals(this.sendValue, currentValue);
+    }
 }
