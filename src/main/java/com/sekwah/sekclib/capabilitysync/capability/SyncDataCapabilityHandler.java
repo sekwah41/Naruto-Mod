@@ -39,12 +39,10 @@ public class SyncDataCapabilityHandler {
             for (CapabilityEntry capabilityEntry : CapabilitySyncRegistry.getPlayerCapabilities()) {
                 Class<? extends ICapabilityProvider> capClass = capEntry.getValue().getClass();
                 if (capabilityEntry.getCapabilityClass() == capClass) {
-                    CapabilityTracker capabilityTracker = new CapabilityTracker();
+                    CapabilityTracker capabilityTracker = new CapabilityTracker(capabilityEntry.getCapability());
                     for (SyncEntry entry : capabilityEntry.getSyncEntries()) {
                         SyncTracker syncTracker = CapabilitySyncRegistry.createTracker(entry);
                         capabilityTracker.addSyncTracker(syncTracker);
-
-                        // TODO possibly trigger trackers so they can get their initial values
                     }
                     syncData.addCapabilityTracker(capabilityTracker);
 
@@ -64,7 +62,7 @@ public class SyncDataCapabilityHandler {
     }
 
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
         if(event.side.isServer()) {
             Player player = event.player;

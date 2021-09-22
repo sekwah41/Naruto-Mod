@@ -4,6 +4,8 @@ import com.sekwah.sekclib.capabilitysync.SyncEntry;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
 import net.minecraft.network.FriendlyByteBuf;
 
+import java.util.Objects;
+
 public class FloatSyncTracker extends SyncTracker<Float> {
 
     public FloatSyncTracker(SyncEntry syncEntry) {
@@ -18,10 +20,5 @@ public class FloatSyncTracker extends SyncTracker<Float> {
     @Override
     public Float decode(FriendlyByteBuf inBuffer) {
         return null;
-    }
-
-    @Override
-    public boolean shouldSend(Float currentValue) {
-        return false;
     }
 }
