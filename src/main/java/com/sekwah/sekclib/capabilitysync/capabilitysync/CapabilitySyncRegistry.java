@@ -12,14 +12,13 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.LoadingFailedException;
 import net.minecraftforge.fml.ModLoadingException;
 import net.minecraftforge.fml.ModLoadingStage;
-
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 import java.util.*;
 
 /**
  * Currently only designed for players though if there is demand we can add entity syncing too.
+ *
+ * Though entities should probably just use DataWatchers.
  */
 public class CapabilitySyncRegistry {
 
@@ -37,6 +36,7 @@ public class CapabilitySyncRegistry {
         CapabilityEntry capabilityEntry = new CapabilityEntry(resourceSyncName, capability, clazz);
         SekCLibRegistries.capabilityRegistry.register(capabilityEntry);
         List<ModLoadingException> errors = new ArrayList<>();
+        int trackerId = 0;
         for (Field field : values) {
             Sync sync = field.getAnnotation(Sync.class);
             if(!CLASS_SYNC_TRACKER_FACTORY_MAP.containsKey(field.getType())) {
@@ -44,11 +44,11 @@ public class CapabilitySyncRegistry {
                 SekCLib.LOGGER.error(message);
                 errors.add(new ModLoadingException(null, ModLoadingStage.COMMON_SETUP, message, null));
             }
-            // So that it doesn't have to be accessible
             field.setAccessible(true);
             try {
-                SyncEntry entry = new SyncEntry(field.getName(), field, sync.minTicks(), sync.syncGlobally());
+                SyncEntry entry = new SyncEntry(field.getName(), field, sync.minTicks(), trackerId, sync.syncGlobally());
                 capabilityEntry.addSyncEntry(entry);
+                trackerId++;
             } catch (IllegalAccessException e) {
                 String message = String.format("There was a problem un-reflecting (Class: %s, Field: %s)", clazz.getName(), field.getName());
                 SekCLib.LOGGER.error(message);

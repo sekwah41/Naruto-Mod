@@ -39,7 +39,7 @@ public class SyncDataCapabilityHandler {
             for (CapabilityEntry capabilityEntry : CapabilitySyncRegistry.getPlayerCapabilities()) {
                 Class<? extends ICapabilityProvider> capClass = capEntry.getValue().getClass();
                 if (capabilityEntry.getCapabilityClass() == capClass) {
-                    CapabilityTracker capabilityTracker = new CapabilityTracker(capabilityEntry.getCapability());
+                    CapabilityTracker capabilityTracker = new CapabilityTracker(capabilityEntry);
                     for (SyncEntry entry : capabilityEntry.getSyncEntries()) {
                         SyncTracker syncTracker = CapabilitySyncRegistry.createTracker(entry);
                         capabilityTracker.addSyncTracker(syncTracker);

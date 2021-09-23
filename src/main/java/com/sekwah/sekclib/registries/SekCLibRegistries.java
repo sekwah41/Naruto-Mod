@@ -1,7 +1,5 @@
 package com.sekwah.sekclib.registries;
 
-import com.sekwah.narutomod.NarutoMod;
-import com.sekwah.narutomod.jutsus.Jutsu;
 import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import net.minecraft.resources.ResourceLocation;

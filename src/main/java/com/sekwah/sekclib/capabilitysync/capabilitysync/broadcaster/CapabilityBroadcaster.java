@@ -1,12 +1,16 @@
 package com.sekwah.sekclib.capabilitysync.capabilitysync.broadcaster;
 
 import com.sekwah.sekclib.SekCLib;
+import com.sekwah.sekclib.capabilitysync.SyncEntry;
 import com.sekwah.sekclib.capabilitysync.capability.SyncDataCapabilityHandler;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.CapabilityTracker;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
+import com.sekwah.sekclib.registries.SekCLibRegistries;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,16 +20,16 @@ public class CapabilityBroadcaster {
 
     /**
      * Also tick the sync trackers to make sure the data is up to date and flag what should be sent.
+     *
      * @param player
      */
     public static void checkPlayerCapData(Player player) {
         player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
             List<CapabilityTracker> capTrackers = syncData.getCapabilityTrackers();
-            for(CapabilityTracker capTracker: capTrackers) {
+            for (CapabilityTracker capTracker : capTrackers) {
                 Capability<?> cap = capTracker.getCapability();
-                List<SyncTracker> syncTrackers = capTracker.getSyncTrackers();
                 player.getCapability(cap).ifPresent(data -> {
-                    for(SyncTracker syncTracker : syncTrackers) {
+                    for (SyncTracker syncTracker : capTracker.getSyncTrackers()) {
                         try {
                             syncTracker.tick(data);
                         } catch (Throwable e) {
@@ -35,37 +39,60 @@ public class CapabilityBroadcaster {
                 });
             }
         });
-        // TODO change back, tho to make sure data sends force send always
-        sendPlayerCapData(player, true);
+
+        broadcastCapChanges(player);
+    }
+
+
+    private static List<CapabilityInfo> collectEntries(Player player) {
+        return collectEntries(player, false);
+    }
+
+    private static List<CapabilityInfo> collectEntries(Player player, boolean returnAll) {
+        List<CapabilityInfo> capInfoList = new ArrayList<>();
+        player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
+            List<CapabilityTracker> capTrackers = syncData.getCapabilityTrackers();
+            for (CapabilityTracker capTracker : capTrackers) {
+                CapabilityInfo capInfo = new CapabilityInfo(SekCLibRegistries.capabilityRegistry.getID(capTracker.getCapabilityEntry()));
+                for (SyncTracker syncTracker : capTracker.getSyncTrackers()) {
+                    if (returnAll || syncTracker.isMarkedForSend()) {
+                        SyncEntry syncEntry = syncTracker.getSyncEntry();
+                        if(syncEntry.isSyncGlobally()) {
+                            capInfo.changedEntries.add(syncTracker);
+                        } else {
+                            capInfo.changedPrivateEntries.add(syncTracker);
+                        }
+                    }
+                }
+                if(!capInfo.changedEntries.isEmpty() || !capInfo.changedPrivateEntries.isEmpty()) {
+                    capInfoList.add(capInfo);
+                }
+            }
+        });
+        return capInfoList;
+    }
+
+
+    /**
+     * Send all the data about this player to another.
+     *
+     * @param tracked
+     * @param reciever
+     */
+    public static void broadcastCapability(Player tracked, Player reciever) {
+
     }
 
     /**
+     * Collect player
      *
      * @param player - what player to get the data off to check the syncing.
-     * @param forceSend - send all fields they should have even if it's not time to.
      */
-    public static void sendPlayerCapData(Player player, boolean forceSend) {
-        /*player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
-            List<CapabilityTracker> capTrackers = syncData.getCapabilityTrackers();
-            for(CapabilityTracker capTracker: capTrackers) {
-                Capability<?> cap = capTracker.getCapability();
-                List<SyncTracker> syncTrackers = capTracker.getSyncTrackers();
-                player.getCapability(cap).ifPresent(data -> {
-                    for(SyncTracker syncTracker : syncTrackers) {
-                        try {
-                            syncTracker.tick(data);
-                        } catch (Throwable e) {
-                            SekCLib.LOGGER.error(e);
-                        }
-                    }
-                });
-            }
-            SekCLib.LOGGER.info(syncData);
-        });*/
+    public static void broadcastCapChanges(Player player) {
 
-        // TODO check if there is any data to send and if there is none do not send the packet.
+        List<CapabilityInfo> dataToSend = collectEntries(player);
+
+
+
     }
-
-
-    // TODO add a function for creating a sync packet, for self or for others. Then the data can be broadcasted to different targets.
 }

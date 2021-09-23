@@ -55,12 +55,20 @@ public abstract class SyncTracker<T> {
         }
     }
 
+    public SyncEntry getSyncEntry() {
+        return this.syncEntry;
+    }
+
     /**
      * This will only be called when the minTicks has passed.
      * @param currentValue - The current server side value
      * @return
      */
-    public boolean shouldSend(T currentValue) {
+    protected boolean shouldSend(T currentValue) {
         return !Objects.equals(this.sendValue, currentValue);
+    }
+
+    public boolean isMarkedForSend() {
+        return markedForSend;
     }
 }
