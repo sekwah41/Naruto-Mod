@@ -3,7 +3,7 @@ package com.sekwah.sekclib;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.RegisterCapabilitySyncEvent;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.RegisterSyncTrackerTypeEvent;
 import com.sekwah.sekclib.capabilitysync.capability.ISyncData;
-import com.sekwah.sekclib.network.PacketHandler;
+import com.sekwah.sekclib.network.SekCPacketHandler;
 import com.sekwah.sekclib.registries.SekCLibRegistries;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -39,7 +39,7 @@ public class SekCLib {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        PacketHandler.init();
+        SekCPacketHandler.init();
         SekCLibRegistries.capabilityRegistry.unfreeze();
         ModLoader.get().postEvent(new RegisterSyncTrackerTypeEvent());
         ModLoader.get().postEvent(new RegisterCapabilitySyncEvent());

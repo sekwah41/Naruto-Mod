@@ -32,6 +32,7 @@ public class NinjaCapabilityHandler {
             Player player = event.player;
             player.getCapability(NINJA_DATA).ifPresent(data -> {
                 data.setChakra((data.getChakra() + 1) % 1000);
+                data.setStamina((data.getStamina() + 1) % 500);
             });
         }
     }

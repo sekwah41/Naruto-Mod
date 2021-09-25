@@ -8,6 +8,7 @@ import com.sekwah.sekclib.capabilitysync.capabilitysync.broadcaster.CapabilityBr
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.CapabilityTracker;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
@@ -64,9 +65,8 @@ public class SyncDataCapabilityHandler {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
-        if(event.side.isServer()) {
-            Player player = event.player;
-            CapabilityBroadcaster.checkPlayerCapData(player);
+        if(event.side.isServer() && event.player instanceof ServerPlayer serverPlayer) {
+            CapabilityBroadcaster.checkPlayerCapData(serverPlayer);
         }
     }
 
