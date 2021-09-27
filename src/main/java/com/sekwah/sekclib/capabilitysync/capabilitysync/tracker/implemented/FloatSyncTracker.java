@@ -1,16 +1,11 @@
 package com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.implemented;
 
-import com.sekwah.sekclib.capabilitysync.SyncEntry;
-import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerSerializer;
 import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.Objects;
 
-public class FloatSyncTracker extends SyncTracker<Float> {
-
-    public FloatSyncTracker(SyncEntry syncEntry) {
-        super(syncEntry);
-    }
+public class FloatSyncTracker implements SyncTrackerSerializer<Float> {
 
     @Override
     public void encode(Float objectToSend, FriendlyByteBuf outBuffer) {

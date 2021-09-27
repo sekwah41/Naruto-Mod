@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * If you are going to add tracker types that are not custom classes please consider making a pr to the main library.
  */
-public abstract class SyncTracker<T> {
+public class SyncTracker<T> {
     protected SyncEntry syncEntry;
     /**
      * Will always start as null. Will only update when the value when ticks reach 0 and the value has been updated.
@@ -31,10 +31,6 @@ public abstract class SyncTracker<T> {
     public SyncTracker(SyncEntry syncEntry) {
         this.syncEntry = syncEntry;
     }
-
-    public abstract void encode(T objectToSend, FriendlyByteBuf outBuffer);
-
-    public abstract T decode(FriendlyByteBuf inBuffer);
 
     /**
      * Update the ticks left and clear any info on if it should be sent this tick.

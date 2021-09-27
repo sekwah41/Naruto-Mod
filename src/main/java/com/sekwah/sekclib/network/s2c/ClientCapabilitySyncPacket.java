@@ -48,7 +48,7 @@ public class ClientCapabilitySyncPacket {
             this.capabilityData.removeIf(data -> data.changedEntries.isEmpty());
         }
     }
-    
+
     private ClientCapabilitySyncPacket(int player, List<CapabilityInfo> capabilityData) {
         this.playerId = player;
         this.capabilityData = capabilityData;
@@ -57,6 +57,7 @@ public class ClientCapabilitySyncPacket {
     public static void encodeSyncTrackers(List<SyncTracker> trackers, FriendlyByteBuf outBuffer) {
         for (SyncTracker tracker: trackers) {
             outBuffer.writeByte(tracker.getSyncEntry().getTrackerId());
+            tracker.encode(outBuffer);
             // TODO lookup tracker encode logic
         }
     }
@@ -65,6 +66,7 @@ public class ClientCapabilitySyncPacket {
         int trackerCount = inBuffer.readInt();
         for (int i = 0; i < trackerCount; i++) {
             int trackerId = inBuffer.readByte();
+
             SekCLib.LOGGER.info("Received Tracker Id {}", trackerId);
             // TODO lookup sync tracker and find decode logic
         }
