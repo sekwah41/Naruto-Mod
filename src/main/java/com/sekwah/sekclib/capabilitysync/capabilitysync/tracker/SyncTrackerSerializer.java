@@ -2,8 +2,8 @@ package com.sekwah.sekclib.capabilitysync.capabilitysync.tracker;
 
 import net.minecraft.network.FriendlyByteBuf;
 
-public interface SyncTrackerSerializer<T> {
-    void encode(T objectToSend, FriendlyByteBuf outBuffer);
+public interface SyncTrackerSerializer {
+    void encode(Object objectToSend, FriendlyByteBuf outBuffer);
 
-    T decode(FriendlyByteBuf inBuffer);
+    Object decode(FriendlyByteBuf inBuffer);
 }

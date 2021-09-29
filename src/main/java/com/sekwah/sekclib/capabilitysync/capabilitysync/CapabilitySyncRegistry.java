@@ -3,9 +3,8 @@ package com.sekwah.sekclib.capabilitysync.capabilitysync;
 import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
-import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
-import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerFactory;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.annotation.Sync;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerSerializer;
 import com.sekwah.sekclib.registries.SekCLibRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
@@ -22,7 +21,7 @@ import java.util.*;
  */
 public class CapabilitySyncRegistry {
 
-    private static final Map<Class, SyncTrackerFactory> CLASS_SYNC_TRACKER_FACTORY_MAP = new HashMap<>();
+    private static final Map<Class, SyncTrackerSerializer> CLASS_SYNC_TRACKER_SERIALIZER = new HashMap<>();
 
     /**
      * @param capability the capability to process
@@ -39,7 +38,7 @@ public class CapabilitySyncRegistry {
         int trackerId = 0;
         for (Field field : values) {
             Sync sync = field.getAnnotation(Sync.class);
-            if(!CLASS_SYNC_TRACKER_FACTORY_MAP.containsKey(field.getType())) {
+            if(!CLASS_SYNC_TRACKER_SERIALIZER.containsKey(field.getType())) {
                 String message = String.format("@Sync used on unsupported type %s. (Class: %s, Field: %s)", field.getType().getName(), clazz.getName(), field.getName());
                 SekCLib.LOGGER.error(message);
                 errors.add(new ModLoadingException(null, ModLoadingStage.COMMON_SETUP, message, null));
@@ -60,12 +59,12 @@ public class CapabilitySyncRegistry {
         }
     }
 
-    static void registerSyncTrackerType(Class clazz, SyncTrackerFactory syncTracker) {
-        CLASS_SYNC_TRACKER_FACTORY_MAP.put(clazz, syncTracker);
+    static void registerSyncTrackerType(Class clazz, SyncTrackerSerializer syncTracker) {
+        CLASS_SYNC_TRACKER_SERIALIZER.put(clazz, syncTracker);
     }
 
-    public static SyncTrackerFactory getTrackerFactory(Class clazz) {
-        return CLASS_SYNC_TRACKER_FACTORY_MAP.get(clazz);
+    public static SyncTrackerSerializer getTrackerSerializer(Class clazz) {
+        return CLASS_SYNC_TRACKER_SERIALIZER.get(clazz);
     }
 
 
@@ -75,19 +74,5 @@ public class CapabilitySyncRegistry {
      */
     public static Collection<CapabilityEntry> getPlayerCapabilities() {
         return SekCLibRegistries.capabilityRegistry.getValues();
-    }
-
-    /**
-     *
-     * @param entry
-     * @return null if the there is no tracker factory for the field type
-     */
-    public static SyncTracker createTracker(SyncEntry entry) {
-        SyncTrackerFactory trackerFactory = getTrackerFactory(entry.getField().getType());
-        if(trackerFactory != null) {
-            return trackerFactory.create(entry);
-        } else {
-            return null;
-        }
     }
 }

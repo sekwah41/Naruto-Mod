@@ -1,6 +1,7 @@
 package com.sekwah.sekclib.capabilitysync.capabilitysync.tracker;
 
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.CapabilitySyncRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.Objects;
@@ -13,13 +14,15 @@ import java.util.Objects;
  *
  * If you are going to add tracker types that are not custom classes please consider making a pr to the main library.
  */
-public class SyncTracker<T> {
+public class SyncTracker {
+
+    private final SyncTrackerSerializer serializer;
     protected SyncEntry syncEntry;
     /**
      * Will always start as null. Will only update when the value when ticks reach 0 and the value has been updated.
      * If data is forced to be sent, then this will sync up all the clients to exactly the same state even if joined later.
      */
-    protected T sendValue;
+    protected Object sendValue;
 
     /**
      * Whenever the data is sent this will be set back to the minTicks value from this.syncEntry.
@@ -30,6 +33,7 @@ public class SyncTracker<T> {
 
     public SyncTracker(SyncEntry syncEntry) {
         this.syncEntry = syncEntry;
+        this.serializer = CapabilitySyncRegistry.getTrackerSerializer(syncEntry.getField().getType());
     }
 
     /**
@@ -38,7 +42,7 @@ public class SyncTracker<T> {
      */
     public void tick(Object data) throws Throwable {
         if(--this.minTicksLeft <= 0) {
-            T currentData = (T) syncEntry.getGetter().invoke(data);
+            Object currentData = syncEntry.getGetter().invoke(data);
             if(this.shouldSend(currentData)) {
                 this.markedForSend = true;
                 this.sendValue = currentData;
@@ -60,11 +64,15 @@ public class SyncTracker<T> {
      * @param currentValue - The current server side value
      * @return
      */
-    protected boolean shouldSend(T currentValue) {
+    protected boolean shouldSend(Object currentValue) {
         return !Objects.equals(this.sendValue, currentValue);
     }
 
     public boolean isMarkedForSend() {
         return markedForSend;
+    }
+
+    public void encode(FriendlyByteBuf outBuffer) {
+        this.serializer.encode(sendValue, outBuffer);
     }
 }

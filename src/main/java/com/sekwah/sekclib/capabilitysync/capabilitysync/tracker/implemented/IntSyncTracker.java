@@ -1,19 +1,17 @@
 package com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.implemented;
 
-import com.sekwah.sekclib.capabilitysync.SyncEntry;
-import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerSerializer;
 import net.minecraft.network.FriendlyByteBuf;
 
-public class IntSyncTracker implements SyncTrackerSerializer<Integer> {
+public class IntSyncTracker implements SyncTrackerSerializer {
 
     @Override
-    public void encode(Integer objectToSend, FriendlyByteBuf outBuffer) {
-
+    public void encode(Object objectToSend, FriendlyByteBuf outBuffer) {
+        // TODO document why this method is empty
     }
 
     @Override
-    public Integer decode(FriendlyByteBuf inBuffer) {
+    public Object decode(FriendlyByteBuf inBuffer) {
         return null;
     }
 }

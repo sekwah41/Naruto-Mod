@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 public class BaseSyncTrackers {
     @SubscribeEvent
     public static void onServerStarting(RegisterSyncTrackerTypeEvent event) {
-        event.registerSyncTracker(int.class, IntSyncTracker::new);
-        event.registerSyncTracker(float.class, FloatSyncTracker::new);
+        event.registerSyncTracker(int.class, new IntSyncTracker());
+        event.registerSyncTracker(float.class, new FloatSyncTracker());
     }
 }
