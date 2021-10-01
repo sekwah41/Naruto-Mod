@@ -1,7 +1,7 @@
 package com.sekwah.sekclib.capabilitysync.capabilitysync.broadcaster;
 
 import com.sekwah.sekclib.SekCLib;
-import com.sekwah.sekclib.capabilitysync.SyncEntry;
+import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import com.sekwah.sekclib.capabilitysync.capability.SyncDataCapabilityHandler;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.CapabilityTracker;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
@@ -55,7 +55,8 @@ public class CapabilityBroadcaster {
         player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
             List<CapabilityTracker> capTrackers = syncData.getCapabilityTrackers();
             for (CapabilityTracker capTracker : capTrackers) {
-                CapabilityInfo capInfo = new CapabilityInfo(SekCLibRegistries.capabilityRegistry.getID(capTracker.getCapabilityEntry()));
+                CapabilityEntry capEntry = capTracker.getCapabilityEntry();
+                CapabilityInfo capInfo = new CapabilityInfo(SekCLibRegistries.capabilityRegistry.getID(capEntry), capEntry);
                 for (SyncTracker syncTracker : capTracker.getSyncTrackers()) {
                     if (returnAll || syncTracker.isMarkedForSend()) {
                         capInfo.changedEntries.add(syncTracker);

@@ -3,8 +3,11 @@ package com.sekwah.sekclib.network.s2c;
 import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
+import com.sekwah.sekclib.capabilitysync.capability.SyncDataCapabilityHandler;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.broadcaster.CapabilityInfo;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.CapabilityTracker;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.ISyncTrackerData;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerData;
 import com.sekwah.sekclib.registries.SekCLibRegistries;
 import net.minecraft.client.Minecraft;
@@ -19,7 +22,9 @@ import net.minecraftforge.fmllegacy.network.NetworkEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  * Structure
@@ -80,7 +85,6 @@ public class ClientCapabilitySyncPacket {
             SyncEntry tracker = capability.getSyncEntries().get(trackerId);
             Object data = tracker.getSerializer().decode(inBuffer);
             syncTrackerDataList.add(new SyncTrackerData(tracker, data));
-            SekCLib.LOGGER.info("Received Tracker {}: {}", tracker.getName(), data);
         }
         return syncTrackerDataList;
     }
@@ -109,7 +113,7 @@ public class ClientCapabilitySyncPacket {
             CapabilityEntry capability = SekCLibRegistries.capabilityRegistry.getValue(capId);
             List<ISyncTrackerData> syncTrackers = decodeSyncTrackers(capability, inBuffer);
             if(!syncTrackers.isEmpty()) {
-                CapabilityInfo capInfo = new CapabilityInfo(capId);
+                CapabilityInfo capInfo = new CapabilityInfo(capId, capability);
                 capInfo.changedEntries.addAll(syncTrackers);
                 capabilityInfoList.add(capInfo);
             }
@@ -120,14 +124,34 @@ public class ClientCapabilitySyncPacket {
 
     public static class Handler {
         public static void handle(ClientCapabilitySyncPacket msg, Supplier<NetworkEvent.Context> ctx) {
-            /*ctx.get().enqueueWork(() ->
-                    ClientSkinManager.setSkin(UUID.fromString(msg.uuid), msg.url, msg.isTransparent));*/
             NetworkEvent.Context context = ctx.get();
             context.enqueueWork(() ->
                     DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
                         ClientLevel level = Minecraft.getInstance().level;
                         Entity entity = level.getEntity(msg.playerId);
-                        SekCLib.LOGGER.info(entity);
+                        if(entity instanceof Player player) {
+                            player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
+                                Stream<CapabilityTracker> capTrackers = syncData.getCapabilityTrackers().stream();
+                                for (CapabilityInfo capInfo: msg.capabilityData) {
+                                    Optional<CapabilityTracker> capability = capTrackers.filter(cap -> cap.getCapabilityEntry() == capInfo.capability).findFirst();
+                                    if(capability.isPresent()) {
+                                        CapabilityTracker capTracker = capability.get();
+                                        player.getCapability(capTracker.getCapability()).ifPresent(targetCap -> {
+                                            List<SyncTracker> syncTrackers = capTracker.getSyncTrackers();
+                                            for(ISyncTrackerData syncTrackerData: capInfo.changedEntries) {
+                                                SyncTracker tracker = syncTrackers.get(syncTrackerData.getSyncEntry().getTrackerId());
+                                                try {
+                                                    tracker.getSyncEntry().getSetter().invoke(targetCap, tracker.getSendValue());
+                                                    SekCLib.LOGGER.info("Set value {} {}", targetCap, tracker);
+                                                } catch (Throwable e) {
+                                                    SekCLib.LOGGER.error("There was a problem setting a value", e);
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        }
                     }));
             context.setPacketHandled(true);
         }
