@@ -19,6 +19,7 @@ public @interface Sync {
 
     /**
      * Should this be synced with other players
+     * TODO check if the player is spectating another player and send the data. This will sync UI while in spectator mode.
      * @return
      */
     boolean syncGlobally() default false;

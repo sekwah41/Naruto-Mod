@@ -3,12 +3,15 @@ package com.sekwah.narutomod.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
+import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 
 import java.awt.*;
 
@@ -69,16 +72,13 @@ public class ChakraAndStaminaGUI extends GuiComponent {
     public void render(PoseStack matrixStack) {
         this.screenWidth = this.minecraft.getWindow().getGuiScaledWidth();
         this.screenHeight = this.minecraft.getWindow().getGuiScaledHeight();
-        int barDesign = (int) barDesignLoop % barTypes.length;
+        int barDesign = NarutoConfig.chakraBarDesign;
 
         float maxOfEach = 100;
         float maxChakra = 100;
         float maxStamina = 100;
 
-        chakra %= maxOfEach;
-        stamina %= maxOfEach;
-
-        float currentChakraPercent = (chakra ) / maxOfEach;
+        float currentChakraPercent = (chakra) / maxOfEach;
         float currentStaminaPercent = (stamina) / maxOfEach;
 
         int width = 100;
@@ -150,7 +150,7 @@ public class ChakraAndStaminaGUI extends GuiComponent {
                 intChakraColorDarker);
 
 
-        String staminaText = (int) chakra + "/" + (int) maxStamina;
+        String staminaText = (int) stamina + "/" + (int) maxStamina;
         this.centeredTextOutlined(matrixStack,
                 staminaText,
                 screenMid + valuesOffset,
@@ -169,8 +169,13 @@ public class ChakraAndStaminaGUI extends GuiComponent {
     }
 
     public void tick() {
-        chakra++;
-        stamina++;
+        Player player = (Player)this.minecraft.getCameraEntity();
+        if(player != null) {
+            player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
+                chakra = ninjaData.getChakra();
+                stamina = ninjaData.getStamina();
+            });
+        }
 
         barDesignLoop += (0.01 * barTypes.length);
     }

@@ -65,7 +65,7 @@ public class SyncDataCapabilityHandler {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
-        if(event.side.isServer() && event.player instanceof ServerPlayer serverPlayer) {
+        if(event.phase == TickEvent.Phase.END && event.side.isServer() && event.player instanceof ServerPlayer serverPlayer) {
             CapabilityBroadcaster.checkPlayerCapData(serverPlayer);
         }
     }

@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.config;
 
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.client.gui.ChakraAndStaminaGUI;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 public class NarutoConfig {
 
     public static final String CATEGORY_WEAPONS = "weapons";
+    public static final String CATEGORY_UI = "ui";
 
     public static final ForgeConfigSpec MOD_CONFIG;
 
@@ -32,8 +34,17 @@ public class NarutoConfig {
     private static final ForgeConfigSpec.IntValue CONFIG_JUTSU_CAST_DELAY;
     public static int jutsuCastDelay;
 
+    private static final ForgeConfigSpec.IntValue CONFIG_CHAKRA_BAR_DESIGN;
+    public static int chakraBarDesign;
+
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
+
+        configBuilder.comment("Variables for UI").push(CATEGORY_UI);
+        CONFIG_CHAKRA_BAR_DESIGN = configBuilder.comment("Key hold threshold in ticks (20 per second)")
+                .defineInRange("chakraBarDesign", 0, 0, ChakraAndStaminaGUI.barTypes.length);
+
+        configBuilder.pop();
 
         configBuilder.comment("Variables for weapons").push(CATEGORY_WEAPONS);
 
@@ -66,6 +77,7 @@ public class NarutoConfig {
         paperbombExplosionRadius = CONFIG_PAPERBOMB_EXPLOSION_RADIUS.get().floatValue();
         paperbombBlockDamage = CONFIG_PAPERBOMB_BLOCK_DAMAGE.get();
         jutsuKeybindHoldThreshold = CONFIG_JUTSU_KEYBIND_HOLD_THRESHOLD.get();
+        chakraBarDesign = CONFIG_CHAKRA_BAR_DESIGN.get();
         jutsuCastDelay = CONFIG_JUTSU_CAST_DELAY
                 .get();
     }
