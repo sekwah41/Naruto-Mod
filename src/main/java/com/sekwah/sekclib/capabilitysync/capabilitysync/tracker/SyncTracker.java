@@ -1,7 +1,6 @@
 package com.sekwah.sekclib.capabilitysync.capabilitysync.tracker;
 
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
-import com.sekwah.sekclib.capabilitysync.capabilitysync.CapabilitySyncRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.Objects;
@@ -14,7 +13,7 @@ import java.util.Objects;
  *
  * If you are going to add tracker types that are not custom classes please consider making a pr to the main library.
  */
-public class SyncTracker {
+public class SyncTracker implements ISyncTrackerData {
 
     protected SyncEntry syncEntry;
     /**
@@ -57,6 +56,11 @@ public class SyncTracker {
         return this.syncEntry;
     }
 
+    @Override
+    public Object getSendValue() {
+        return this.sendValue;
+    }
+
     /**
      * This will only be called when the minTicks has passed.
      * @param currentValue - The current server side value
@@ -68,9 +72,5 @@ public class SyncTracker {
 
     public boolean isMarkedForSend() {
         return markedForSend;
-    }
-
-    public void encode(FriendlyByteBuf outBuffer) {
-        this.syncEntry.getSerializer().encode(sendValue, outBuffer);
     }
 }
