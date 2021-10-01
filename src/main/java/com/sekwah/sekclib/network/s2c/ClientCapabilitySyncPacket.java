@@ -3,7 +3,6 @@ package com.sekwah.sekclib.network.s2c;
 import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
-import com.sekwah.sekclib.capabilitysync.capability.SyncDataCapabilityHandler;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.broadcaster.CapabilityInfo;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.CapabilityTracker;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.ISyncTrackerData;
@@ -20,9 +19,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -65,7 +62,7 @@ public class ClientCapabilitySyncPacket {
     }
 
     public static void encodeSyncTrackers(List<ISyncTrackerData> trackers, FriendlyByteBuf outBuffer) {
-        for (ISyncTrackerData tracker: trackers) {
+        for (ISyncTrackerData tracker : trackers) {
             outBuffer.writeByte(tracker.getSyncEntry().getTrackerId());
             tracker.getSyncEntry().getSerializer().encode(tracker.getSendValue(), outBuffer);
         }
@@ -73,6 +70,7 @@ public class ClientCapabilitySyncPacket {
 
     /**
      * TODO replace return type with a temporary data only object ready for processing back into the list.
+     *
      * @param capability for context on how to de-code the capabilities
      * @param inBuffer
      * @return
@@ -112,7 +110,7 @@ public class ClientCapabilitySyncPacket {
             int capId = inBuffer.readInt();
             CapabilityEntry capability = SekCLibRegistries.capabilityRegistry.getValue(capId);
             List<ISyncTrackerData> syncTrackers = decodeSyncTrackers(capability, inBuffer);
-            if(!syncTrackers.isEmpty()) {
+            if (!syncTrackers.isEmpty()) {
                 CapabilityInfo capInfo = new CapabilityInfo(capId, capability);
                 capInfo.changedEntries.addAll(syncTrackers);
                 capabilityInfoList.add(capInfo);
@@ -129,28 +127,20 @@ public class ClientCapabilitySyncPacket {
                     DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
                         ClientLevel level = Minecraft.getInstance().level;
                         Entity entity = level.getEntity(msg.playerId);
-                        if(entity instanceof Player player) {
-                            player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
-                                Stream<CapabilityTracker> capTrackers = syncData.getCapabilityTrackers().stream();
-                                for (CapabilityInfo capInfo: msg.capabilityData) {
-                                    Optional<CapabilityTracker> capability = capTrackers.filter(cap -> cap.getCapabilityEntry() == capInfo.capability).findFirst();
-                                    if(capability.isPresent()) {
-                                        CapabilityTracker capTracker = capability.get();
-                                        player.getCapability(capTracker.getCapability()).ifPresent(targetCap -> {
-                                            List<SyncTracker> syncTrackers = capTracker.getSyncTrackers();
-                                            for(ISyncTrackerData syncTrackerData: capInfo.changedEntries) {
-                                                SyncTracker tracker = syncTrackers.get(syncTrackerData.getSyncEntry().getTrackerId());
-                                                try {
-                                                    tracker.getSyncEntry().getSetter().invoke(targetCap, tracker.getSendValue());
-                                                    SekCLib.LOGGER.info("Set value {} {}", targetCap, tracker);
-                                                } catch (Throwable e) {
-                                                    SekCLib.LOGGER.error("There was a problem setting a value", e);
-                                                }
-                                            }
-                                        });
+                        if (entity instanceof Player player) {
+                            for (CapabilityInfo capInfo : msg.capabilityData) {
+                                player.getCapability(capInfo.capability.getCapability()).ifPresent(targetCap -> {
+                                    List<SyncEntry> syncEntries = capInfo.capability.getSyncEntries();
+                                    for (ISyncTrackerData syncTrackerData : capInfo.changedEntries) {
+                                        SyncEntry syncEntry = syncEntries.get(syncTrackerData.getSyncEntry().getTrackerId());
+                                        try {
+                                            syncEntry.getSetter().invoke(targetCap, syncTrackerData.getSendValue());
+                                        } catch (Throwable e) {
+                                            SekCLib.LOGGER.error("There was a problem setting a value", e);
+                                        }
                                     }
-                                }
-                            });
+                                });
+                            }
                         }
                     }));
             context.setPacketHandled(true);
