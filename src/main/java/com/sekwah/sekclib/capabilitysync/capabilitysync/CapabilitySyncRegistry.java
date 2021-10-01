@@ -45,7 +45,7 @@ public class CapabilitySyncRegistry {
             }
             field.setAccessible(true);
             try {
-                SyncEntry entry = new SyncEntry(field.getName(), field, sync.minTicks(), trackerId, sync.syncGlobally());
+                SyncEntry entry = new SyncEntry(field.getName(), field, sync.minTicks(), trackerId, sync.syncGlobally(), CLASS_SYNC_TRACKER_SERIALIZER.get(field.getType()));
                 capabilityEntry.addSyncEntry(entry);
                 trackerId++;
             } catch (IllegalAccessException e) {

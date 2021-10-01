@@ -1,8 +1,11 @@
 package com.sekwah.sekclib.network.s2c;
 
 import com.sekwah.sekclib.SekCLib;
+import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
+import com.sekwah.sekclib.capabilitysync.SyncEntry;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.broadcaster.CapabilityInfo;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
+import com.sekwah.sekclib.registries.SekCLibRegistries;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.FriendlyByteBuf;
@@ -58,17 +61,23 @@ public class ClientCapabilitySyncPacket {
         for (SyncTracker tracker: trackers) {
             outBuffer.writeByte(tracker.getSyncEntry().getTrackerId());
             tracker.encode(outBuffer);
-            // TODO lookup tracker encode logic
         }
     }
 
-    public static List<SyncTracker> decodeSyncTrackers(FriendlyByteBuf inBuffer) {
+    /**
+     * TODO replace return type with a temporary data only object ready for processing back into the list.
+     * @param capability for context on how to de-code the capabilities
+     * @param inBuffer
+     * @return
+     */
+    public static List<SyncTracker> decodeSyncTrackers(CapabilityEntry capability, FriendlyByteBuf inBuffer) {
         int trackerCount = inBuffer.readInt();
         for (int i = 0; i < trackerCount; i++) {
             int trackerId = inBuffer.readByte();
-
-            SekCLib.LOGGER.info("Received Tracker Id {}", trackerId);
-            // TODO lookup sync tracker and find decode logic
+            SyncEntry tracker = capability.getSyncEntries().get(trackerId);
+            Object data = tracker.getSerializer().decode(inBuffer);
+            // TODO store data to be then applied in the processing stage
+            SekCLib.LOGGER.info("Received Tracker {}: {}", tracker.getName(), data);
         }
         return null;
     }
@@ -93,8 +102,8 @@ public class ClientCapabilitySyncPacket {
         int capCount = inBuffer.readInt();
         for (int i = 0; i < capCount; i++) {
             int capId = inBuffer.readInt();
-            List<SyncTracker> syncTrackers = decodeSyncTrackers(inBuffer);
-            SekCLib.LOGGER.info("Received Id {} syncTrackers {}", capId, syncTrackers);
+            CapabilityEntry capability = SekCLibRegistries.capabilityRegistry.getValue(capId);
+            List<SyncTracker> syncTrackers = decodeSyncTrackers(capability, inBuffer);
         }
 
         return new ClientCapabilitySyncPacket(playerId, null);

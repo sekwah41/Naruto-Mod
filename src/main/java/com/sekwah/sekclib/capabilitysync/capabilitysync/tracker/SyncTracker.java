@@ -16,7 +16,6 @@ import java.util.Objects;
  */
 public class SyncTracker {
 
-    private final SyncTrackerSerializer serializer;
     protected SyncEntry syncEntry;
     /**
      * Will always start as null. Will only update when the value when ticks reach 0 and the value has been updated.
@@ -33,7 +32,6 @@ public class SyncTracker {
 
     public SyncTracker(SyncEntry syncEntry) {
         this.syncEntry = syncEntry;
-        this.serializer = CapabilitySyncRegistry.getTrackerSerializer(syncEntry.getField().getType());
     }
 
     /**
@@ -73,6 +71,6 @@ public class SyncTracker {
     }
 
     public void encode(FriendlyByteBuf outBuffer) {
-        this.serializer.encode(sendValue, outBuffer);
+        this.syncEntry.getSerializer().encode(sendValue, outBuffer);
     }
 }

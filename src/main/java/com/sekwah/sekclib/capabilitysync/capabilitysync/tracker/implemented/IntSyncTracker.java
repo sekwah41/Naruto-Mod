@@ -7,11 +7,11 @@ public class IntSyncTracker implements SyncTrackerSerializer {
 
     @Override
     public void encode(Object objectToSend, FriendlyByteBuf outBuffer) {
-        // TODO document why this method is empty
+        outBuffer.writeInt((Integer) objectToSend);
     }
 
     @Override
     public Object decode(FriendlyByteBuf inBuffer) {
-        return null;
+        return inBuffer.readInt();
     }
 }
