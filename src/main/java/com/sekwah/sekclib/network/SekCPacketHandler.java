@@ -5,9 +5,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fmllegacy.network.NetworkDirection;
 import net.minecraftforge.fmllegacy.network.NetworkRegistry;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
-public class PacketHandler {
+public class SekCPacketHandler {
 
     public static final String PROTOCOL_VERSION = "1";
 
@@ -24,6 +25,14 @@ public class PacketHandler {
 
     public static void sendToPlayer(Object obj, ServerPlayer player) {
         SYNC_CHANNEL.sendTo(obj, player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
+    }
+
+    public static void sendToAll(Object obj) {
+        SYNC_CHANNEL.send(PacketDistributor.ALL.noArg(), obj);
+    }
+
+    public static void sendToTracking(Object obj, ServerPlayer player) {
+        SYNC_CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> player), obj);
     }
 
 }
