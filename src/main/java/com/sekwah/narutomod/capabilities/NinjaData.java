@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 
 public class NinjaData implements INinjaData, ICapabilityProvider {
 
-    @Sync
+    @Sync(minTicks = 1)
     private float chakra;
 
     @Sync(minTicks = 20)
