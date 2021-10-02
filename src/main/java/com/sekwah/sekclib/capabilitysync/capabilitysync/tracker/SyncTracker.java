@@ -13,13 +13,14 @@ import java.util.Objects;
  *
  * If you are going to add tracker types that are not custom classes please consider making a pr to the main library.
  */
-public abstract class SyncTracker<T> {
+public class SyncTracker implements ISyncTrackerData {
+
     protected SyncEntry syncEntry;
     /**
      * Will always start as null. Will only update when the value when ticks reach 0 and the value has been updated.
      * If data is forced to be sent, then this will sync up all the clients to exactly the same state even if joined later.
      */
-    protected T sendValue;
+    protected Object sendValue;
 
     /**
      * Whenever the data is sent this will be set back to the minTicks value from this.syncEntry.
@@ -32,17 +33,13 @@ public abstract class SyncTracker<T> {
         this.syncEntry = syncEntry;
     }
 
-    public abstract void encode(T objectToSend, FriendlyByteBuf outBuffer);
-
-    public abstract T decode(FriendlyByteBuf inBuffer);
-
     /**
      * Update the ticks left and clear any info on if it should be sent this tick.
      * @param data
      */
     public void tick(Object data) throws Throwable {
         if(--this.minTicksLeft <= 0) {
-            T currentData = (T) syncEntry.getGetter().invoke(data);
+            Object currentData = syncEntry.getGetter().invoke(data);
             if(this.shouldSend(currentData)) {
                 this.markedForSend = true;
                 this.sendValue = currentData;
@@ -59,12 +56,17 @@ public abstract class SyncTracker<T> {
         return this.syncEntry;
     }
 
+    @Override
+    public Object getSendValue() {
+        return this.sendValue;
+    }
+
     /**
      * This will only be called when the minTicks has passed.
      * @param currentValue - The current server side value
      * @return
      */
-    protected boolean shouldSend(T currentValue) {
+    protected boolean shouldSend(Object currentValue) {
         return !Objects.equals(this.sendValue, currentValue);
     }
 

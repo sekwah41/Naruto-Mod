@@ -1,16 +1,18 @@
 package com.sekwah.sekclib.capabilitysync.capabilitysync.broadcaster;
 
 import com.sekwah.sekclib.SekCLib;
-import com.sekwah.sekclib.capabilitysync.SyncEntry;
+import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import com.sekwah.sekclib.capabilitysync.capability.SyncDataCapabilityHandler;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.CapabilityTracker;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
+import com.sekwah.sekclib.network.SekCPacketHandler;
+import com.sekwah.sekclib.network.s2c.ClientCapabilitySyncPacket;
 import com.sekwah.sekclib.registries.SekCLibRegistries;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,7 +25,7 @@ public class CapabilityBroadcaster {
      *
      * @param player
      */
-    public static void checkPlayerCapData(Player player) {
+    public static void checkPlayerCapData(ServerPlayer player) {
         player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
             List<CapabilityTracker> capTrackers = syncData.getCapabilityTrackers();
             for (CapabilityTracker capTracker : capTrackers) {
@@ -53,18 +55,14 @@ public class CapabilityBroadcaster {
         player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
             List<CapabilityTracker> capTrackers = syncData.getCapabilityTrackers();
             for (CapabilityTracker capTracker : capTrackers) {
-                CapabilityInfo capInfo = new CapabilityInfo(SekCLibRegistries.capabilityRegistry.getID(capTracker.getCapabilityEntry()));
+                CapabilityEntry capEntry = capTracker.getCapabilityEntry();
+                CapabilityInfo capInfo = new CapabilityInfo(SekCLibRegistries.capabilityRegistry.getID(capEntry), capEntry);
                 for (SyncTracker syncTracker : capTracker.getSyncTrackers()) {
                     if (returnAll || syncTracker.isMarkedForSend()) {
-                        SyncEntry syncEntry = syncTracker.getSyncEntry();
-                        if(syncEntry.isSyncGlobally()) {
-                            capInfo.changedEntries.add(syncTracker);
-                        } else {
-                            capInfo.changedPrivateEntries.add(syncTracker);
-                        }
+                        capInfo.changedEntries.add(syncTracker);
                     }
                 }
-                if(!capInfo.changedEntries.isEmpty() || !capInfo.changedPrivateEntries.isEmpty()) {
+                if(!capInfo.changedEntries.isEmpty()) {
                     capInfoList.add(capInfo);
                 }
             }
@@ -88,11 +86,23 @@ public class CapabilityBroadcaster {
      *
      * @param player - what player to get the data off to check the syncing.
      */
-    public static void broadcastCapChanges(Player player) {
+    public static void broadcastCapChanges(ServerPlayer player) {
 
         List<CapabilityInfo> dataToSend = collectEntries(player);
 
+        if(dataToSend.isEmpty()) {
+            return;
+        }
 
+        ClientCapabilitySyncPacket selfData = new ClientCapabilitySyncPacket(player, dataToSend, true);
+        if(!selfData.capabilityData.isEmpty()) {
+            SekCPacketHandler.sendToPlayer(selfData, player);
+        }
+
+        ClientCapabilitySyncPacket forOthers = new ClientCapabilitySyncPacket(player, dataToSend, false);
+        if(!forOthers.capabilityData.isEmpty()) {
+            SekCPacketHandler.sendToTracking(forOthers, player);
+        }
 
     }
 }
