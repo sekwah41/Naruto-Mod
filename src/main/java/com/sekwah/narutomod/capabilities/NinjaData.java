@@ -15,7 +15,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Sync(minTicks = 1)
     private float chakra;
 
-    @Sync(minTicks = 20)
+    @Sync(minTicks = 1)
     private float stamina;
 
     private static final String CHAKRA_TAG = "chakra";
