@@ -1,11 +1,10 @@
 package com.sekwah.narutomod.config;
 
 import com.sekwah.narutomod.NarutoMod;
-import com.sekwah.narutomod.client.gui.ChakraAndStaminaGUI;
+import com.sekwah.narutomod.client.gui.BarDesigns;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 
 @Mod.EventBusSubscriber(modid = NarutoMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -13,8 +12,15 @@ public class NarutoConfig {
 
     public static final String CATEGORY_WEAPONS = "weapons";
     public static final String CATEGORY_UI = "ui";
+    public static final String ENERGY_BARS = "energy_bars";
 
     public static final ForgeConfigSpec MOD_CONFIG;
+
+    private static final ForgeConfigSpec.DoubleValue CONFIG_MAX_CHAKRA;
+    public static float maxChakra;
+
+    private static final ForgeConfigSpec.DoubleValue CONFIG_MAX_STAMINA;
+    public static float maxStamina;
 
     private static final ForgeConfigSpec.BooleanValue CONFIG_KUNAI_BLOCK_DAMAGE;
     public static boolean kunaiBlockDamage;
@@ -40,9 +46,19 @@ public class NarutoConfig {
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
 
+        configBuilder.comment("Stuff such as regen rates and maximum (will likely change with updates, e.g. stats system)").push(ENERGY_BARS);
+
+        CONFIG_MAX_CHAKRA = configBuilder.comment("Max Chakra")
+                .defineInRange("maxChakra",  100F ,  0d, Integer.MAX_VALUE);
+
+        CONFIG_MAX_STAMINA = configBuilder.comment("Max Stamina")
+                .defineInRange("maxStamina",  100F ,  0d, Integer.MAX_VALUE);
+
+        configBuilder.pop();
+
         configBuilder.comment("Variables for UI").push(CATEGORY_UI);
         CONFIG_CHAKRA_BAR_DESIGN = configBuilder.comment("Key hold threshold in ticks (20 per second)")
-                .defineInRange("chakraBarDesign", 0, 0, ChakraAndStaminaGUI.barTypes.length);
+                .defineInRange("chakraBarDesign", 0, 0,  BarDesigns.BarInfo.values().length);
 
         configBuilder.pop();
 
@@ -72,6 +88,9 @@ public class NarutoConfig {
     }
 
     public static void loadVariables() {
+        maxChakra = CONFIG_MAX_CHAKRA.get().floatValue();
+        maxStamina = CONFIG_MAX_STAMINA.get().floatValue();
+        kunaiBlockDamage = CONFIG_KUNAI_BLOCK_DAMAGE.get();
         kunaiBlockDamage = CONFIG_KUNAI_BLOCK_DAMAGE.get();
         kunaiExplosionRadius = CONFIG_KUNAI_EXPLOSION_RADIUS.get().floatValue();
         paperbombExplosionRadius = CONFIG_PAPERBOMB_EXPLOSION_RADIUS.get().floatValue();
