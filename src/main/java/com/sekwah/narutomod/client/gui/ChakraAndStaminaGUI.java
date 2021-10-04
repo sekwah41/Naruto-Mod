@@ -26,31 +26,8 @@ public class ChakraAndStaminaGUI extends GuiComponent {
     private static final ResourceLocation SCROLLTEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/scroll.png");
     private static final ResourceLocation UNNAMEDTEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/unnamedbar.png");
 
-    public enum BarInfo {
 
-        DEFAULT(DEFAULTTEXTURE, 86, 8),
-        KATANA(KATANATEXTURE, 94, 1),
-        KUBI(KUBITEXTURE, 86, 11),
-        KUNAI(KUNAITEXTURE, 86, 9),
-        LAMP(LAMPSHADETEXTURE, 86, 8),
-        SCEPTER(SCEPTERTEXTURE, 86, 9),
-        SCROLL(SCROLLTEXTURE, 86, 8),
-        UNNAMED(UNNAMEDTEXTURE, 74, 23),
-        ;
-
-        private final ResourceLocation texture;
-        private final int width;
-        private final int offset;
-
-        BarInfo(ResourceLocation texture, int width, int offset) {
-
-            this.texture = texture;
-            this.width = width;
-            this.offset = offset;
-        }
-    }
-
-    public static final BarInfo[] barTypes = BarInfo.values();
+    public static final BarDesigns.BarInfo[] barTypes = BarDesigns.BarInfo.values();
 
     private final Minecraft minecraft;
     private int screenWidth;
@@ -58,6 +35,9 @@ public class ChakraAndStaminaGUI extends GuiComponent {
 
     private float chakra;
     private float stamina;
+
+    private float maxChakra;
+    private float maxStamina;
 
     private float barDesignLoop;
 
@@ -74,12 +54,8 @@ public class ChakraAndStaminaGUI extends GuiComponent {
         this.screenHeight = this.minecraft.getWindow().getGuiScaledHeight();
         int barDesign = NarutoConfig.chakraBarDesign;
 
-        float maxOfEach = 100;
-        float maxChakra = 100;
-        float maxStamina = 100;
-
-        float currentChakraPercent = (chakra) / maxOfEach;
-        float currentStaminaPercent = (stamina) / maxOfEach;
+        float currentChakraPercent = maxChakra > 0 ? (chakra) / maxChakra : 0;
+        float currentStaminaPercent = maxStamina > 0 ? (stamina) / maxStamina : 0;
 
         int width = 100;
         int offset = 128;
@@ -174,6 +150,8 @@ public class ChakraAndStaminaGUI extends GuiComponent {
             player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
                 chakra = ninjaData.getChakra();
                 stamina = ninjaData.getStamina();
+                maxChakra = ninjaData.getMaxChakra();
+                maxStamina = ninjaData.getMaxStamina();
             });
         }
 

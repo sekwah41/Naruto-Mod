@@ -1,5 +1,6 @@
 package com.sekwah.narutomod.capabilities;
 
+import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.annotation.Sync;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -18,6 +19,36 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Sync(minTicks = 1)
     private float stamina;
 
+    @Sync
+    private float maxChakra = NarutoConfig.maxChakra;
+
+    @Sync
+    private float maxStamina = NarutoConfig.maxStamina;
+
+    class RegenInfo {
+        public float regenRate;
+        public int cooldown;
+
+        public RegenInfo(float regenRate) {
+            this.regenRate = regenRate;
+        }
+
+        /**
+         * Tick down when checked
+         * @return if regen should take place
+         */
+        public boolean canRegen() {
+            if(this.cooldown > 0) {
+                this.cooldown--;
+                return false;
+            }
+            return true;
+        }
+    }
+
+    private RegenInfo chakraRegenInfo = new RegenInfo(0.025f);
+    private RegenInfo staminaRegenInfo = new RegenInfo(0.3f);
+
     private static final String CHAKRA_TAG = "chakra";
     private static final String STAMINA_TAG = "stamina";
 
@@ -29,8 +60,18 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
+    public float getMaxChakra() {
+        return this.maxChakra;
+    }
+
+    @Override
     public float getStamina() {
         return this.stamina;
+    }
+
+    @Override
+    public float getMaxStamina() {
+        return this.maxStamina;
     }
 
     @Override
@@ -41,6 +82,16 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Override
     public void setStamina(float stamina) {
         this.stamina = stamina;
+    }
+
+    @Override
+    public void updateChakra() {
+        if(this.staminaRegenInfo.canRegen()) {
+            this.stamina += staminaRegenInfo.regenRate;
+        }
+        if(this.chakraRegenInfo.canRegen()) {
+            this.chakra += chakraRegenInfo.regenRate;
+        }
     }
 
     @Override
