@@ -33,23 +33,25 @@ public class ChakraAndStaminaGUI extends GuiComponent {
     private int screenWidth;
     private int screenHeight;
 
+    /**
+     * Will be false if the entity is not a ninja
+     */
+    private boolean shouldRender;
+
     private float chakra;
     private float stamina;
 
     private float maxChakra;
     private float maxStamina;
 
-    private float barDesignLoop;
-
-    /*private PlayerEntity getCameraPlayer() {
-        return !(this.minecraft.getCameraEntity() instanceof PlayerEntity) ? null : (PlayerEntity)this.minecraft.getCameraEntity();
-    }*/
-
     public ChakraAndStaminaGUI(Minecraft mc) {
         this.minecraft = mc;
     }
 
     public void render(PoseStack matrixStack) {
+        if(!shouldRender) {
+            return;
+        }
         this.screenWidth = this.minecraft.getWindow().getGuiScaledWidth();
         this.screenHeight = this.minecraft.getWindow().getGuiScaledHeight();
         int barDesign = NarutoConfig.chakraBarDesign;
@@ -145,17 +147,19 @@ public class ChakraAndStaminaGUI extends GuiComponent {
     }
 
     public void tick() {
-        Player player = (Player)this.minecraft.getCameraEntity();
-        if(player != null) {
-            player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
-                chakra = ninjaData.getChakra();
-                stamina = ninjaData.getStamina();
-                maxChakra = ninjaData.getMaxChakra();
-                maxStamina = ninjaData.getMaxStamina();
-            });
+        if(this.minecraft.getCameraEntity() instanceof Player player) {
+            shouldRender = true;
+            if(player != null) {
+                player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
+                    chakra = ninjaData.getChakra();
+                    stamina = ninjaData.getStamina();
+                    maxChakra = ninjaData.getMaxChakra();
+                    maxStamina = ninjaData.getMaxStamina();
+                });
+            }
+        } else {
+            shouldRender = false;
         }
-
-        barDesignLoop += (0.01 * barTypes.length);
     }
 
     private void setColor(Color color) {
