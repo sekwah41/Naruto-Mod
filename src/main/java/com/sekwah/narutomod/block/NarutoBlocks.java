@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,8 +23,9 @@ public class NarutoBlocks {
 
     public static final RegistryObject<Block> PAPER_BOMB = BLOCKS.register("paper_bomb",
             () -> {
-                BlockBehaviour.Properties blockBehavior = BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                BlockBehaviour.Properties blockBehavior = BlockBehaviour.Properties.of(NarutoMaterial.UNSTABLE_EXPLOSIVE)
                         .noCollission()
+                        .instabreak()
                         .strength(0.5F)
                         .sound(SoundType.CROP);
         return new PaperBombBlock(blockBehavior);
