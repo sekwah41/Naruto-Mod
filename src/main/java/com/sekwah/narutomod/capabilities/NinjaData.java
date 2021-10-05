@@ -20,10 +20,17 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     private float stamina;
 
     @Sync
-    private float maxChakra = NarutoConfig.maxChakra;
+    private float maxChakra;
 
     @Sync
-    private float maxStamina = NarutoConfig.maxStamina;
+    private float maxStamina;
+
+    public NinjaData(boolean isServer) {
+        if(isServer) {
+            this.maxChakra = NarutoConfig.maxChakra;
+            this.maxStamina = NarutoConfig.maxStamina;
+        }
+    }
 
     class RegenInfo {
         public float regenRate;
@@ -92,6 +99,8 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         if(this.chakraRegenInfo.canRegen()) {
             this.chakra += chakraRegenInfo.regenRate;
         }
+        this.stamina = Math.min(Math.max(this.stamina, 0), maxStamina);
+        this.chakra = Math.min(Math.max(this.chakra, 0), maxChakra);
     }
 
     @Override
