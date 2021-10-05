@@ -59,10 +59,14 @@ public class CapabilityBroadcaster {
                 CapabilityInfo capInfo = new CapabilityInfo(SekCLibRegistries.capabilityRegistry.getID(capEntry), capEntry);
                 for (SyncTracker syncTracker : capTracker.getSyncTrackers()) {
                     if (returnAll || syncTracker.isMarkedForSend()) {
-                        capInfo.changedEntries.add(syncTracker);
+                        if(syncTracker.getSyncEntry().isSyncGlobally()) {
+                            capInfo.changedEntries.add(syncTracker);
+                        } else {
+                            capInfo.changedPrivateEntries.add(syncTracker);
+                        }
                     }
                 }
-                if(!capInfo.changedEntries.isEmpty()) {
+                if(!capInfo.changedEntries.isEmpty() || !capInfo.changedPrivateEntries.isEmpty()) {
                     capInfoList.add(capInfo);
                 }
             }
