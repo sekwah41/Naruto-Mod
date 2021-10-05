@@ -74,14 +74,14 @@ public class SyncDataCapabilityHandler {
     public static void dimensionChange(EntityJoinWorldEvent event) {
         // TODO Handle syncing the players own data
         if(event.getEntity() instanceof Player) {
-            System.out.println("JOINED WORLD");
+            SekCLib.LOGGER.info("JOINED WORLD");
         }
     }
 
     @SubscribeEvent
     public static void dimensionChange(PlayerEvent.PlayerChangedDimensionEvent event) {
         // TODO Handle syncing the players own data
-        System.out.println("DIMENSION");
+        SekCLib.LOGGER.info("DIMENSION CHANGE");
     }
 
     /**
@@ -91,7 +91,7 @@ public class SyncDataCapabilityHandler {
     @SubscribeEvent
     public static void playerTracking(PlayerEvent.StartTracking event) {
         if(event.getTarget() instanceof Player) {
-            SekCLib.LOGGER.info("HELLO");
+            SekCLib.LOGGER.info("Started Tracking");
         }
         // TODO triggers on any entity. trigger on players send over the original data
     }
