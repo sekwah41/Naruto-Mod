@@ -13,6 +13,7 @@ public class KeyBindingTickHeld extends KeyMapping {
 
     int heldTicks = 0;
     private Runnable onClick = null;
+    private Runnable onHeldRelease = null;
 
     public KeyBindingTickHeld(String name, int keyCode, String category) {
         super(name, keyCode, category);
@@ -81,6 +82,14 @@ public class KeyBindingTickHeld extends KeyMapping {
      */
     public int currentHeldValue() {
         return heldTicks;
+    }
+
+    /**
+     * Check if the key is currently being held
+     * @return
+     */
+    public boolean isCurrentlyHeld() {
+        return heldTicks > 0;
     }
 
     @Override

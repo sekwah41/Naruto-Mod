@@ -17,15 +17,6 @@ import java.awt.*;
 
 public class ChakraAndStaminaGUI extends GuiComponent {
 
-    private static final ResourceLocation DEFAULTTEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/defaultbar.png");
-    private static final ResourceLocation KATANATEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/katana.png");
-    private static final ResourceLocation KUBITEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/kubi.png");
-    private static final ResourceLocation KUNAITEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/kunai.png");
-    private static final ResourceLocation LAMPSHADETEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/lampshade.png");
-    private static final ResourceLocation SCEPTERTEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/scepter.png");
-    private static final ResourceLocation SCROLLTEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/scroll.png");
-    private static final ResourceLocation UNNAMEDTEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/chakrabars/unnamedbar.png");
-
 
     public static final BarDesigns.BarInfo[] barTypes = BarDesigns.BarInfo.values();
 
@@ -139,11 +130,11 @@ public class ChakraAndStaminaGUI extends GuiComponent {
 
     private void centeredTextOutlined(PoseStack matrixStack, String text, int x, int y, int color, int backgroundColor) {
         int width = this.getFont().width(text) / 2;
-        this.getFont().draw(matrixStack, text, x+1 - width, y, backgroundColor);
-        this.getFont().draw(matrixStack, text, x-1 - width, y, backgroundColor);
-        this.getFont().draw(matrixStack, text, x - width, y+1, backgroundColor);
-        this.getFont().draw(matrixStack, text, x - width, y-1, backgroundColor);
-        this.getFont().draw(matrixStack, text, x - width, y, color);
+        this.getFont().draw(matrixStack, text, (float) x+1 - width, y, backgroundColor);
+        this.getFont().draw(matrixStack, text, (float) x-1 - width, y, backgroundColor);
+        this.getFont().draw(matrixStack, text, (float) x - width, (float) y+1, backgroundColor);
+        this.getFont().draw(matrixStack, text, (float) x - width, (float) y-1, backgroundColor);
+        this.getFont().draw(matrixStack, text, (float) x - width, y, color);
     }
 
     public void tick() {
