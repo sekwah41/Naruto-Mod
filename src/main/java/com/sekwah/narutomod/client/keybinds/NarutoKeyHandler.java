@@ -4,6 +4,8 @@ import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.network.c2s.ServerJutsuCastingPacket;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -51,6 +53,14 @@ public class NarutoKeyHandler {
         JUTSU_KEYS.add(JUTSU_C_KEY);
         JUTSU_KEYS.add(JUTSU_V_KEY);
         JUTSU_KEYS.add(JUTSU_B_KEY);
+        JUTSU_KEYS.add(LEAP_KEY);
+
+        LEAP_KEY.registerClickConsumer( () -> {
+            Minecraft mc = Minecraft.getInstance();
+            if(mc.player != null ) {
+                mc.player.sendMessage(new TranslatableComponent("gonna.try.to.leap"), null);
+            }
+        });
 
         JUTSU_C_KEY.registerClickConsumer(() -> handleJustuKey(1));
         JUTSU_V_KEY.registerClickConsumer(() -> handleJustuKey(2));
@@ -93,11 +103,31 @@ public class NarutoKeyHandler {
             ticksSinceLastKey++;
         }
 
-        if(ticksSinceLastKey > NarutoConfig.jutsuCastDelay) {
+        int lastKey = (int) (currentJutsuCombo % 10);
+        boolean lastKeyHeld = false;
+
+        // TODO fix keys held states
+        /*if(lastKey > 0 && lastKey < JUTSU_KEYS.size()) {
+            KeyBindingTickHeld key = JUTSU_KEYS.get(lastKey);
+            key.isCurrentlyHeld();
+            System.out.println(key.heldTicks);
+            // TODO check if above a current held threshold in case animations should be started.
+            lastKeyHeld = true;
+        }*/
+
+        if(/*!lastKeyHeld &&*/ ticksSinceLastKey > NarutoConfig.jutsuCastDelay) {
             NarutoMod.LOGGER.info("Would cast jutsu {}", currentJutsuCombo);
+            Minecraft mc = Minecraft.getInstance();
+            if(mc.player != null ) {
+                mc.player.sendMessage(new TranslatableComponent("jutsu.cast.debug", currentJutsuCombo), null);
+            }
+
+
             ticksSinceLastKey = 0;
             currentJutsuCombo = 0;
         }
+
+        System.out.println("Value is " + (currentJutsuCombo % 10));
 
         for (KeyBindingTickHeld key : JUTSU_KEYS) {
             key.update();

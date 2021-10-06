@@ -2,9 +2,10 @@ package com.sekwah.narutomod.registries;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.clans.Clans;
-import com.sekwah.narutomod.jutsus.Jutsu;
+import com.sekwah.narutomod.jutsus.Ability;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
 
 /**
@@ -13,16 +14,19 @@ import net.minecraftforge.registries.RegistryBuilder;
  */
 public class NarutoRegistries {
 
+    private static IForgeRegistry<Ability> ABILITY;
+    private static IForgeRegistry<Clans> CLANS;
+
     public static void init(RegistryEvent.NewRegistry event) {
-        RegistryBuilder<Jutsu> jutsu = new RegistryBuilder<>();
-        jutsu.setName(new ResourceLocation(NarutoMod.MOD_ID, "jutsus"));
-        jutsu.setType(Jutsu.class);
-        jutsu.create();
+        RegistryBuilder<Ability> abilities = new RegistryBuilder<>();
+        abilities.setName(new ResourceLocation(NarutoMod.MOD_ID, "abilities"));
+        abilities.setType(Ability.class);
+        ABILITY = abilities.create();
 
         RegistryBuilder<Clans> clans = new RegistryBuilder<>();
         clans.setName(new ResourceLocation(NarutoMod.MOD_ID, "clans"));
         clans.setType(Clans.class);
-        clans.create();
+        CLANS = clans.create();
 
     }
 }

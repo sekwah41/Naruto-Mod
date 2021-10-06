@@ -45,5 +45,6 @@
   "narutomod.subtitle.sizzle": "Paper Bomb Sizzle",
   "itemGroup.narutomod_weapons": "Ninja Weapons",
   "itemGroup.narutomod_armor": "Ninja Armor",
-  "itemGroup.narutomod_headbands": "Ninja Headbands"
+  "itemGroup.narutomod_headbands": "Ninja Headbands",
+  "jutsu.cast.debug": "Combo entered: %s"
 }
