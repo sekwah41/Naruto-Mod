@@ -92,6 +92,16 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
+    public void useChakra(float amount) {
+        this.chakra -= amount;
+    }
+
+    @Override
+    public void useStamina(float amount) {
+        this.stamina -= amount;
+    }
+
+    @Override
     public void updateChakra() {
         if(this.staminaRegenInfo.canRegen()) {
             this.stamina += staminaRegenInfo.regenRate;

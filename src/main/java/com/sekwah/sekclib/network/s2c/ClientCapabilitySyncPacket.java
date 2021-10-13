@@ -4,9 +4,7 @@ import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.capabilitysync.CapabilityEntry;
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.broadcaster.CapabilityInfo;
-import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.CapabilityTracker;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.ISyncTrackerData;
-import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerData;
 import com.sekwah.sekclib.registries.SekCLibRegistries;
 import net.minecraft.client.Minecraft;
@@ -21,7 +19,6 @@ import net.minecraftforge.fmllegacy.network.NetworkEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 /**
  * Structure
@@ -108,7 +105,7 @@ public class ClientCapabilitySyncPacket {
         List<CapabilityInfo> capabilityInfoList = new ArrayList<>();
         for (int i = 0; i < capCount; i++) {
             int capId = inBuffer.readInt();
-            CapabilityEntry capability = SekCLibRegistries.capabilityRegistry.getValue(capId);
+            CapabilityEntry capability = SekCLibRegistries.CAPABILITY_REGISTRY.getValue(capId);
             List<ISyncTrackerData> syncTrackers = decodeSyncTrackers(capability, inBuffer);
             if (!syncTrackers.isEmpty()) {
                 CapabilityInfo capInfo = new CapabilityInfo(capId, capability);
@@ -124,25 +121,25 @@ public class ClientCapabilitySyncPacket {
         public static void handle(ClientCapabilitySyncPacket msg, Supplier<NetworkEvent.Context> ctx) {
             NetworkEvent.Context context = ctx.get();
             context.enqueueWork(() ->
-                    DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-                        ClientLevel level = Minecraft.getInstance().level;
-                        Entity entity = level.getEntity(msg.playerId);
-                        if (entity instanceof Player player) {
-                            for (CapabilityInfo capInfo : msg.capabilityData) {
-                                player.getCapability(capInfo.capability.getCapability()).ifPresent(targetCap -> {
-                                    List<SyncEntry> syncEntries = capInfo.capability.getSyncEntries();
-                                    for (ISyncTrackerData syncTrackerData : capInfo.changedEntries) {
-                                        SyncEntry syncEntry = syncEntries.get(syncTrackerData.getSyncEntry().getTrackerId());
-                                        try {
-                                            syncEntry.getSetter().invoke(targetCap, syncTrackerData.getSendValue());
-                                        } catch (Throwable e) {
-                                            SekCLib.LOGGER.error("There was a problem setting a value", e);
-                                        }
+                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+                    ClientLevel level = Minecraft.getInstance().level;
+                    Entity entity = level.getEntity(msg.playerId);
+                    if (entity instanceof Player player) {
+                        for (CapabilityInfo capInfo : msg.capabilityData) {
+                            player.getCapability(capInfo.capability.getCapability()).ifPresent(targetCap -> {
+                                List<SyncEntry> syncEntries = capInfo.capability.getSyncEntries();
+                                for (ISyncTrackerData syncTrackerData : capInfo.changedEntries) {
+                                    SyncEntry syncEntry = syncEntries.get(syncTrackerData.getSyncEntry().getTrackerId());
+                                    try {
+                                        syncEntry.getSetter().invoke(targetCap, syncTrackerData.getSendValue());
+                                    } catch (Throwable e) {
+                                        SekCLib.LOGGER.error("There was a problem setting a value", e);
                                     }
-                                });
-                            }
+                                }
+                            });
                         }
-                    }));
+                    }
+                }));
             context.setPacketHandled(true);
         }
     }

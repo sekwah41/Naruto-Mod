@@ -34,21 +34,12 @@ public class ServerJutsuCastingPacket {
             ctx.get().enqueueWork(() -> {
                 ServerPlayer player = ctx.get().getSender();
                 if(player != null) {
-                    SoundEvent playSound;
-                    switch (msg.jutsuKey) {
-                        case 1:
-                            playSound = NarutoSounds.SEAL_A.get();
-                            break;
-                        case 2:
-                            playSound = NarutoSounds.SEAL_B.get();
-                            break;
-                        case 3:
-                            playSound = NarutoSounds.SEAL_C.get();
-                            break;
-                        default:
-                            playSound = null;
-                            break;
-                    }
+                    SoundEvent playSound = switch (msg.jutsuKey) {
+                        case 1 -> NarutoSounds.SEAL_A.get();
+                        case 2 -> NarutoSounds.SEAL_B.get();
+                        case 3 -> NarutoSounds.SEAL_C.get();
+                        default -> null;
+                    };
                     if(playSound != null) {
                         player.getCommandSenderWorld().playSound(null,
                                 player.getX(), player.getY(), player.getZ(),

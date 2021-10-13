@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.client.keybinds;
 
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.network.c2s.ServerJutsuCastingPacket;
@@ -59,6 +60,7 @@ public class NarutoKeyHandler {
             Minecraft mc = Minecraft.getInstance();
             if(mc.player != null ) {
                 mc.player.sendMessage(new TranslatableComponent("gonna.try.to.leap"), null);
+                NarutoAbilities.triggerAbility(NarutoAbilities.LEAP.getId());
             }
         });
 
@@ -121,13 +123,17 @@ public class NarutoKeyHandler {
             if(mc.player != null ) {
                 mc.player.sendMessage(new TranslatableComponent("jutsu.cast.debug", currentJutsuCombo), null);
             }
-
+            if(!NarutoAbilities.triggerAbility(currentJutsuCombo)) {
+                mc.player.sendMessage(new TranslatableComponent("no.combo.found", currentJutsuCombo), null);
+            } else {
+                mc.player.sendMessage(new TranslatableComponent("trying.jutsu", currentJutsuCombo), null);
+            }
 
             ticksSinceLastKey = 0;
             currentJutsuCombo = 0;
         }
 
-        System.out.println("Value is " + (currentJutsuCombo % 10));
+        NarutoMod.LOGGER.info("Value is " + (currentJutsuCombo % 10));
 
         for (KeyBindingTickHeld key : JUTSU_KEYS) {
             key.update();

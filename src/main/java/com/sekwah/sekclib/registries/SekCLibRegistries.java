@@ -9,7 +9,7 @@ import net.minecraftforge.registries.RegistryBuilder;
 
 public class SekCLibRegistries {
 
-    public static ForgeRegistry<CapabilityEntry> capabilityRegistry;
+    public static ForgeRegistry<CapabilityEntry> CAPABILITY_REGISTRY;
 
     /**
      * There may be a better way of doing this though this is to sync the id's between client and server
@@ -24,7 +24,7 @@ public class SekCLibRegistries {
         capabilityEntries.setName(new ResourceLocation(SekCLib.MOD_ID, "capability_sync"));
         capabilityEntries.setType(CapabilityEntry.class);
         capabilityEntries.disableSaving();
-        capabilityRegistry = (ForgeRegistry<CapabilityEntry>) capabilityEntries.create();
+        CAPABILITY_REGISTRY = (ForgeRegistry<CapabilityEntry>) capabilityEntries.create();
     }
 
 }
