@@ -11,11 +11,6 @@ If you would like to contribute to the language files by creating another langua
 
 Where to get the mod http://www.planetminecraft.com/mod/naruto-mod-1750133/
 
-# Useful Tools/Info
-Hotswapping that I didn't know existed for far too long
-https://dcevm.github.io/.
-Check https://aur.archlinux.org/packages/jdk8-openjdk-dcevm for an easy install on arch.
-
 # SekCLib
 For now until some of the main dev tools are ready and SekCLib has more features/is needed for other mods
 it will be included inside the packages of this mod. However, soon it will be split into a second mod for public use.

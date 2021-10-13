@@ -2,7 +2,7 @@ package com.sekwah.narutomod.registries;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.clans.Clans;
-import com.sekwah.narutomod.jutsus.Ability;
+import com.sekwah.narutomod.abilities.Ability;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;

@@ -40,10 +40,10 @@ public class SekCLib {
 
     private void setup(final FMLCommonSetupEvent event) {
         SekCPacketHandler.init();
-        SekCLibRegistries.capabilityRegistry.unfreeze();
+        SekCLibRegistries.CAPABILITY_REGISTRY.unfreeze();
         ModLoader.get().postEvent(new RegisterSyncTrackerTypeEvent());
         ModLoader.get().postEvent(new RegisterCapabilitySyncEvent());
-        SekCLibRegistries.capabilityRegistry.freeze();
+        SekCLibRegistries.CAPABILITY_REGISTRY.freeze();
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {

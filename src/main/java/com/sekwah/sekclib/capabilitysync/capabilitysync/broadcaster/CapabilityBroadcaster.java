@@ -56,7 +56,7 @@ public class CapabilityBroadcaster {
             List<CapabilityTracker> capTrackers = syncData.getCapabilityTrackers();
             for (CapabilityTracker capTracker : capTrackers) {
                 CapabilityEntry capEntry = capTracker.getCapabilityEntry();
-                CapabilityInfo capInfo = new CapabilityInfo(SekCLibRegistries.capabilityRegistry.getID(capEntry), capEntry);
+                CapabilityInfo capInfo = new CapabilityInfo(SekCLibRegistries.CAPABILITY_REGISTRY.getID(capEntry), capEntry);
                 for (SyncTracker syncTracker : capTracker.getSyncTrackers()) {
                     if (returnAll || syncTracker.isMarkedForSend()) {
                         if(syncTracker.getSyncEntry().isSyncGlobally()) {

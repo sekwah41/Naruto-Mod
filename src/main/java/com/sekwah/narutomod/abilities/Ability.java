@@ -1,5 +1,6 @@
-package com.sekwah.narutomod.jutsus;
+package com.sekwah.narutomod.abilities;
 
+import com.sekwah.narutomod.capabilities.INinjaData;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -19,8 +20,8 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      * For now the combo to register the ability with. May be overrideable in the future.
      * @return
      */
-    public int defaultCombo() {
-        return 0;
+    public long defaultCombo() {
+        return -1;
     }
 
     public abstract ActivationType activationType();
@@ -35,12 +36,28 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      * @param player
      * @return if the jutsu cost was able to be fufilled. If this is true then perform will be triggered.
      */
-    public abstract boolean handleCost(Player player, int chargeAmount);
+    public abstract boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount);
+
+    /**
+     * Do not overwrite this, use {@link Ability#handleCost(Player, INinjaData, int)}
+     * @param player
+     */
+    public boolean handleCost(Player player, INinjaData ninjaData) {
+        return handleCost(player, ninjaData, 0);
+    }
 
     /**
      *
      * @param player the entity casting the jutsu. Will just be players for now. Though may be entity in the future.
      */
-    public abstract void perform(Player player, int chargeAmount);
+    public abstract void perform(Player player, INinjaData ninjaData, int chargeAmount);
+
+    /**
+     * Do not overwrite this, use {@link Ability#perform(Player, INinjaData, int)}
+     * @param player
+     */
+    public void perform(Player player, INinjaData ninjaData) {
+        this.perform(player, ninjaData, 0);
+    }
 
 }

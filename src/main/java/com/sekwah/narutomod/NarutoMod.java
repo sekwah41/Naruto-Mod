@@ -1,5 +1,6 @@
 package com.sekwah.narutomod;
 
+import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.capabilities.INinjaData;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
@@ -59,6 +60,7 @@ public class NarutoMod {
         NarutoItems.register(eventBus);
         NarutoBlocks.register(eventBus);
         NarutoEntities.register(eventBus);
+        NarutoAbilities.register(eventBus);
 
         DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> NarutoInGameGUI::new);
 

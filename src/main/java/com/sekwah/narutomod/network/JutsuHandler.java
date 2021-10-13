@@ -1,6 +1,6 @@
 package com.sekwah.narutomod.network;
 
-import com.sekwah.narutomod.jutsus.Ability;
+import com.sekwah.narutomod.abilities.Ability;
 
 public class JutsuHandler {
 
