@@ -22,4 +22,7 @@ public class PlayerUtil {
         }
     }
 
+    public static void setVelocity(Player player, double x, double y, double z) {
+        setVelocity(player, new Vec3(x, y, z));
+    }
 }

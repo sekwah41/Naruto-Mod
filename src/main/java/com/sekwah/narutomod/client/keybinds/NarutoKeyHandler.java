@@ -59,7 +59,6 @@ public class NarutoKeyHandler {
         LEAP_KEY.registerClickConsumer( () -> {
             Minecraft mc = Minecraft.getInstance();
             if(mc.player != null ) {
-                mc.player.sendMessage(new TranslatableComponent("gonna.try.to.leap"), null);
                 NarutoAbilities.triggerAbility(NarutoAbilities.LEAP.getId());
             }
         });
@@ -133,7 +132,7 @@ public class NarutoKeyHandler {
             currentJutsuCombo = 0;
         }
 
-        NarutoMod.LOGGER.info("Value is " + (currentJutsuCombo % 10));
+        //NarutoMod.LOGGER.info("Value is " + (currentJutsuCombo % 10));
 
         for (KeyBindingTickHeld key : JUTSU_KEYS) {
             key.update();
