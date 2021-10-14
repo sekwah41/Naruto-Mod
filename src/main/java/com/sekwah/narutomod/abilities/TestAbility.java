@@ -15,7 +15,7 @@ public class TestAbility extends Ability {
     public boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount) {
         player.sendMessage(new TextComponent("Cost stuff"), null);
         if(ninjaData.getStamina() > 20) {
-            ninjaData.useStamina(20);
+            ninjaData.useStamina(20, 40);
             return true;
         }
         player.sendMessage(new TextComponent("Not enough"), null);

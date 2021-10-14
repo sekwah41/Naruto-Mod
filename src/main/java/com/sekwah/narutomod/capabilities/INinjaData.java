@@ -10,8 +10,8 @@ public interface INinjaData extends INBTSerializable<Tag> {
     float getMaxStamina();
     void setChakra(float amount);
     void setStamina(float amount);
-    void useChakra(float amount);
-    void useStamina(float amount);
+    void useChakra(float amount, int cooldown);
+    void useStamina(float amount, int cooldown);
 
     /**
      * Handle basic regen and updates for a tick.
