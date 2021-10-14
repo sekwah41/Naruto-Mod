@@ -21,10 +21,11 @@ public class LeapAbility extends Ability {
     @Override
     public boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount) {
         if(!player.isOnGround()) {
-            player.sendMessage(new TranslatableComponent("fail.notonground", new TranslatableComponent("jutsu.leap").withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
+            player.sendMessage(new TranslatableComponent("jutsu.fail.notonground", new TranslatableComponent("jutsu.leap").withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
             return false;
         }
         if(ninjaData.getStamina() > 10) {
+            player.sendMessage(new TranslatableComponent("jutsu.fail.nostamina", new TranslatableComponent("jutsu.leap").withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
             ninjaData.useStamina(10, 40);
             return true;
         }

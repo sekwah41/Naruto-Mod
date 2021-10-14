@@ -30,8 +30,6 @@ public class NarutoAbilities {
 
     public static RegistryObject<LeapAbility> LEAP = ABILITY.register("leap", () -> new LeapAbility());
 
-    public static RegistryObject<TestAbility> TEST = ABILITY.register("test", () -> new TestAbility());
-
     public static void register(IEventBus eventBus) {
         ABILITY.register(eventBus);
     }
