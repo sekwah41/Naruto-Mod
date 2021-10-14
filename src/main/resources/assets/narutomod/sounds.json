@@ -1,36 +1,61 @@
 {
   "kunai_thud": {
     "category": "neutral",
-    "sounds": ["narutomod:weapons/kunai_thud"],
+    "sounds": [
+      "narutomod:weapons/kunai_thud"
+    ],
     "subtitle": "narutomod.subtitle.kunai_thud"
   },
   "needle_hit": {
     "category": "neutral",
-    "sounds": ["narutomod:weapons/needle_hit"],
+    "sounds": [
+      "narutomod:weapons/needle_hit"
+    ],
     "subtitle": "narutomod.subtitle.needle_hit"
   },
   "seal_a": {
     "category": "neutral",
-    "sounds": ["narutomod:jutsu/seal_a"],
+    "sounds": [
+      "narutomod:jutsu/seal_a"
+    ],
     "subtitle": "narutomod.subtitle.jutsu_seal"
   },
   "seal_b": {
     "category": "neutral",
-    "sounds": ["narutomod:jutsu/seal_b"],
+    "sounds": [
+      "narutomod:jutsu/seal_b"
+    ],
     "subtitle": "narutomod.subtitle.jutsu_seal"
   },
   "seal_c": {
     "category": "neutral",
-    "sounds": ["narutomod:jutsu/seal_c"],
+    "sounds": [
+      "narutomod:jutsu/seal_c"
+    ],
     "subtitle": "narutomod.subtitle.jutsu_seal"
   },
   "sizzle": {
     "category": "block",
-    "sounds": ["narutomod:weapons/sizzle"],
+    "sounds": [
+      "narutomod:weapons/sizzle"
+    ],
     "subtitle": "narutomod.subtitle.sizzle"
   },
   "lonely_march": {
     "category": "record",
-    "sounds": [{"name": "narutomod:records/lonely_march","stream": true}]
+    "sounds": [
+      {
+        "name": "narutomod:records/lonely_march",
+        "stream": true
+      }
+    ]
+  },
+  "leap": {
+    "category": "player",
+    "sounds": [
+      "narutomod:abilities/leap",
+      "narutomod:abilities/leap2"
+    ],
+    "subtitle": "narutomod.subtitle.leap"
   }
 }

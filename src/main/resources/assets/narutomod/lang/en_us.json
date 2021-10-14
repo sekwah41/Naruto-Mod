@@ -43,8 +43,13 @@
   "narutomod.subtitle.needle_hit": "Needle Hit",
   "narutomod.subtitle.jutsu_seal": "Jutsu Seal",
   "narutomod.subtitle.sizzle": "Paper Bomb Sizzle",
+  "narutomod.subtitle.leap": "Leap",
   "itemGroup.narutomod_weapons": "Ninja Weapons",
   "itemGroup.narutomod_armor": "Ninja Armor",
   "itemGroup.narutomod_headbands": "Ninja Headbands",
+  "fail.notonground": "You must be on the ground to use %s",
+  "jutsu.leap": "Leap",
+  "jutsu.notenoughstamina": "You do not have enough stamina to perform %s",
+  "jutsu.notenoughchakra": "You do not have enough stamina to perform %s",
   "jutsu.cast.debug": "Combo entered: %s"
 }
