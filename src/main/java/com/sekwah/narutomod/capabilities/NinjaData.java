@@ -92,13 +92,15 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
-    public void useChakra(float amount) {
+    public void useChakra(float amount, int cooldown) {
         this.chakra -= amount;
+        this.chakraRegenInfo.cooldown = Math.max(cooldown, this.chakraRegenInfo.cooldown);
     }
 
     @Override
-    public void useStamina(float amount) {
+    public void useStamina(float amount, int cooldown) {
         this.stamina -= amount;
+        this.staminaRegenInfo.cooldown = Math.max(cooldown, this.staminaRegenInfo.cooldown);
     }
 
     @Override
