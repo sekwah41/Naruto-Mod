@@ -5,9 +5,9 @@
   "package": "com.sekwah.narutomod.mixin",
   "refmap": "mixins.narutomod.refmap.json",
   "mixins": [
+    "common.TripWireBlockMixin"
   ],
   "client": [
-    "common.TripWireBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
