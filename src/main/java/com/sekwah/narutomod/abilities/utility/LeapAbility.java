@@ -5,8 +5,6 @@ import com.sekwah.narutomod.capabilities.INinjaData;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import com.sekwah.sekclib.player.PlayerUtil;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
@@ -21,15 +19,15 @@ public class LeapAbility extends Ability {
     @Override
     public boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount) {
         if(!player.isOnGround()) {
-            player.sendMessage(new TranslatableComponent("jutsu.fail.notonground", new TranslatableComponent("jutsu.leap").withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
+            player.displayClientMessage(new TranslatableComponent("jutsu.fail.notonground", new TranslatableComponent("jutsu.leap").withStyle(ChatFormatting.YELLOW)), true);
             return false;
         }
-        if(ninjaData.getStamina() > 10) {
-            player.sendMessage(new TranslatableComponent("jutsu.fail.nostamina", new TranslatableComponent("jutsu.leap").withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
-            ninjaData.useStamina(10, 40);
-            return true;
+        if(ninjaData.getStamina() < 10) {
+            player.displayClientMessage(new TranslatableComponent("jutsu.fail.notenoughstamina", new TranslatableComponent("jutsu.leap").withStyle(ChatFormatting.YELLOW)), true);
+            return false;
         }
-        return false;
+        ninjaData.useStamina(10, 40);
+        return true;
     }
 
     @Override
