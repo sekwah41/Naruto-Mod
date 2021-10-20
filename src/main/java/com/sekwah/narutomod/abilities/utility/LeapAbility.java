@@ -33,8 +33,6 @@ public class LeapAbility extends Ability {
     @Override
     public void perform(Player player, INinjaData ninjaData, int chargeAmount) {
         Vec3 lookVector = player.getLookAngle();
-        Vec3 move = player.getDeltaMovement();
-        System.out.println(move.x);
         float horScale = 2.0f;
         PlayerUtil.setVelocity(player, lookVector.x * horScale, (lookVector.y + 0.8F)
                 , lookVector.z * horScale, true);
