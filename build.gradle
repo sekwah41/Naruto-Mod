@@ -137,16 +137,15 @@ minecraft {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-configurations {
-    annotationProcessor.extendsFrom minecraft
-}
-
 dependencies {
 
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.17.1-37.0.45'
+
+    implementation 'org.spongepowered:mixin:0.8.4'
+    annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
 
     //compile "com.sekwah:SekCLib:${sekclib_version}:deobf"
     // Trick intellij to allow for better editing in here for the discord task
@@ -172,9 +171,9 @@ dependencies {
 
 }
 
-/*mixin {
+mixin {
     add sourceSets.main, "mixins.${project.modid}.refmap.json"
-}*/
+}
 
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
@@ -189,7 +188,7 @@ jar {
                 "Implementation-Version": "${version}",
                 "Implementation-Vendor" :project.vendor,
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                //"MixinConfigs": "mixins.${project.modid}.json"
+                "MixinConfigs": "mixins.${project.modid}.json"
         ])
     }
 }

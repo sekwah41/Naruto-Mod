@@ -2,11 +2,22 @@ package com.sekwah.narutomod.mixin.common;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.block.weapons.PaperBombBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.TripWireBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-//@Mixin(TripWireBlock.class)
+@Mixin(TripWireBlock.class)
 public class TripWireBlockMixin {
 
-    /*@Inject(method = "shouldConnectTo", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "shouldConnectTo", at = @At("RETURN"), cancellable = true)
     public void shouldConnectTo(BlockState state, Direction direction, CallbackInfoReturnable<Boolean> callback) {
         boolean shouldCheck = callback.getReturnValueZ();
         Block block = state.getBlock();
@@ -44,6 +55,6 @@ public class TripWireBlockMixin {
                 }
             }
         }
-    }*/
+    }
 
 }
