@@ -48,8 +48,8 @@
   "itemGroup.narutomod_armor": "Ninja Armor",
   "itemGroup.narutomod_headbands": "Ninja Headbands",
   "jutsu.fail.notonground": "You must be on the ground to use %s",
-  "jutsu.fail.notenoughstamina": "You do not have enough stamina to perform %s",
-  "jutsu.fail.notenoughchakra": "You do not have enough stamina to perform %s",
+  "jutsu.fail.notenoughstamina": "You do not have enough stamina to use %s",
+  "jutsu.fail.notenoughchakra": "You do not have enough stamina to use %s",
   "jutsu.leap": "Leap",
   "jutsu.cast.debug": "Combo entered: %s"
 }
