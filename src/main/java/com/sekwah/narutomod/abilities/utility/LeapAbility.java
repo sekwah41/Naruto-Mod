@@ -35,9 +35,9 @@ public class LeapAbility extends Ability {
         Vec3 lookVector = player.getLookAngle();
         Vec3 move = player.getDeltaMovement();
         System.out.println(move.x);
-        float horScale = 2.8f;
+        float horScale = 2.0f;
         PlayerUtil.setVelocity(player, lookVector.x * horScale, (lookVector.y + 0.8F)
-                , lookVector.z * horScale);
+                , lookVector.z * horScale, true);
         player.getCommandSenderWorld().playSound(null,
                 player.getX(), player.getY(), player.getZ(),
                 NarutoSounds.LEAP.get(), SoundSource.PLAYERS, 0.5f, 1.0f);
