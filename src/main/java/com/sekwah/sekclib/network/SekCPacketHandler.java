@@ -1,6 +1,7 @@
 package com.sekwah.sekclib.network;
 import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.network.s2c.ClientCapabilitySyncPacket;
+import com.sekwah.sekclib.network.s2c.ClientVelocityPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fmllegacy.network.NetworkDirection;
@@ -21,6 +22,7 @@ public class SekCPacketHandler {
 
     public static void init() {
         SYNC_CHANNEL.registerMessage(0, ClientCapabilitySyncPacket.class, ClientCapabilitySyncPacket::encode, ClientCapabilitySyncPacket::decode, ClientCapabilitySyncPacket.Handler::handle);
+        SYNC_CHANNEL.registerMessage(1, ClientVelocityPacket.class, ClientVelocityPacket::encode, ClientVelocityPacket::decode, ClientVelocityPacket.Handler::handle);
     }
 
     public static void sendToPlayer(Object obj, ServerPlayer player) {
