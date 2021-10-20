@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(TripWireBlock.class)
 public class TripWireBlockMixin {
 
-    @Inject(method = "shouldConnectTo", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "shouldConnectTo", at = @At("HEAD"), cancellable = true)
     public void shouldConnectTo(BlockState state, Direction direction, CallbackInfoReturnable<Boolean> callback) {
         boolean shouldCheck = callback.getReturnValueZ();
         Block block = state.getBlock();
