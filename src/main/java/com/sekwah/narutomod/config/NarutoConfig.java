@@ -10,9 +10,13 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 @Mod.EventBusSubscriber(modid = NarutoMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NarutoConfig {
 
+    public static final String SERVER = "server";
+    public static final String CLIENT = "client";
+
     public static final String CATEGORY_WEAPONS = "weapons";
     public static final String CATEGORY_UI = "ui";
     public static final String ENERGY_BARS = "energy_bars";
+    public static final String PLAYER = "player";
 
     public static final ForgeConfigSpec MOD_CONFIG;
 
@@ -43,8 +47,13 @@ public class NarutoConfig {
     private static final ForgeConfigSpec.IntValue CONFIG_CHAKRA_BAR_DESIGN;
     public static int chakraBarDesign;
 
+    private static final ForgeConfigSpec.BooleanValue CONFIG_STARTS_AS_NINJA;
+    public static boolean startsAsNinja;
+
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
+
+        configBuilder.comment("Server based settings").push(SERVER);
 
         configBuilder.comment("Stuff such as regen rates and maximum (will likely change with updates, e.g. stats system)").push(ENERGY_BARS);
 
@@ -84,6 +93,19 @@ public class NarutoConfig {
 
         configBuilder.pop();
 
+        configBuilder.pop();
+
+        configBuilder.comment("Client based settings").push(CLIENT);
+
+        configBuilder.comment("Player settings").push(PLAYER);
+
+        CONFIG_STARTS_AS_NINJA = configBuilder.comment("Does the player start as a ninja by default?")
+                .define("startsAsNinja", true);
+
+        configBuilder.pop();
+
+        configBuilder.pop();
+
         MOD_CONFIG = configBuilder.build();
     }
 
@@ -98,6 +120,8 @@ public class NarutoConfig {
         jutsuKeybindHoldThreshold = CONFIG_JUTSU_KEYBIND_HOLD_THRESHOLD.get();
         chakraBarDesign = CONFIG_CHAKRA_BAR_DESIGN.get();
         jutsuCastDelay = CONFIG_JUTSU_CAST_DELAY
+                .get();
+        startsAsNinja = CONFIG_STARTS_AS_NINJA
                 .get();
     }
 
