@@ -1,5 +1,6 @@
 package com.sekwah.narutomod.capabilities;
 
+import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.annotation.Sync;
 import net.minecraft.core.Direction;
@@ -24,6 +25,9 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     @Sync
     private float maxStamina;
+
+    // Possibly change to another type called ability info.
+    private Ability currentlyChanneled;
 
     public NinjaData(boolean isServer) {
         if(isServer) {
@@ -101,6 +105,16 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     public void useStamina(float amount, int cooldown) {
         this.stamina -= amount;
         this.staminaRegenInfo.cooldown = Math.max(cooldown, this.staminaRegenInfo.cooldown);
+    }
+
+    @Override
+    public Ability currentlyChanneledAbility() {
+        return this.currentlyChanneled;
+    }
+
+    @Override
+    public void setCurrentlyChanneledAbility(Ability ability) {
+        this.currentlyChanneled = ability;
     }
 
     @Override
