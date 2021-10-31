@@ -6,6 +6,7 @@ import com.sekwah.sekclib.capabilitysync.SyncEntry;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.broadcaster.CapabilityInfo;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.ISyncTrackerData;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerData;
+import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerUpdater;
 import com.sekwah.sekclib.registries.SekCLibRegistries;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -131,7 +132,11 @@ public class ClientCapabilitySyncPacket {
                                 for (ISyncTrackerData syncTrackerData : capInfo.changedEntries) {
                                     SyncEntry syncEntry = syncEntries.get(syncTrackerData.getSyncEntry().getTrackerId());
                                     try {
-                                        syncEntry.getSetter().invoke(targetCap, syncTrackerData.getSendValue());
+                                        Object syncValue = syncTrackerData.getSendValue();
+                                        if(syncTrackerData.getSyncEntry().getSerializer() instanceof SyncTrackerUpdater updater)   {
+                                            updater.updateTracker(syncValue, syncEntry.getGetter().invoke(targetCap));
+                                        }
+                                        syncEntry.getSetter().invoke(targetCap, syncValue);
                                     } catch (Throwable e) {
                                         SekCLib.LOGGER.error("There was a problem setting a value", e);
                                     }
