@@ -6,6 +6,7 @@ import com.sekwah.sekclib.capabilitysync.capabilitysync.annotation.Sync;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
@@ -27,7 +28,11 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     private float maxStamina;
 
     // Possibly change to another type called ability info.
-    private Ability currentlyChanneled;
+    @Sync(minTicks = 1)
+    private ResourceLocation currentlyChanneled;
+
+    @Sync(minTicks = 1)
+    private int ticksChanneled;
 
     public NinjaData(boolean isServer) {
         if(isServer) {
@@ -108,12 +113,12 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
-    public Ability currentlyChanneledAbility() {
+    public ResourceLocation currentlyChanneledAbility() {
         return this.currentlyChanneled;
     }
 
     @Override
-    public void setCurrentlyChanneledAbility(Ability ability) {
+    public void setCurrentlyChanneledAbility(ResourceLocation ability) {
         this.currentlyChanneled = ability;
     }
 
