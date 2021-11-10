@@ -1,7 +1,9 @@
 package com.sekwah.narutomod.events;
 
 import com.sekwah.narutomod.NarutoMod;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -15,18 +17,20 @@ public class PlayerEvents {
 
 // Handle if they have some agility perk or leaps.
 //
-//    @SubscribeEvent
-//    public void livingFall(LivingFallEvent event) {
-//        if (event.getEntity() instanceof Player player){
-//          //NarutoMod.logger.info(event.distance);
-//            if(event.distance < 9){
-//                event.distance *= 0.3f;
-//            }
-//            if(event.distance > 3) {
-//                event.distance -= 5f;
-//                event.distance *= 0.6f;
-//            }
-//        }
-//    }
+    @SubscribeEvent
+    public static void livingFall(LivingFallEvent event) {
+        if (event.getEntity() instanceof Player player){
+          //NarutoMod.logger.info(event.distance);
+            float distance = event.getDistance();
+            if(distance < 9){
+                distance *= 0.3f;
+            }
+            if(distance > 3) {
+                distance -= 5f;
+                distance *= 0.6f;
+            }
+            event.setDistance(distance);
+        }
+    }
 
 }

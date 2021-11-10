@@ -2,6 +2,7 @@ package com.sekwah.narutomod.capabilities;
 
 import com.sekwah.narutomod.abilities.Ability;
 import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public interface INinjaData extends INBTSerializable<Tag> {
@@ -14,8 +15,8 @@ public interface INinjaData extends INBTSerializable<Tag> {
     void useChakra(float amount, int cooldown);
     void useStamina(float amount, int cooldown);
 
-    Ability currentlyChanneledAbility();
-    void setCurrentlyChanneledAbility(Ability ability);
+    ResourceLocation currentlyChanneledAbility();
+    void setCurrentlyChanneledAbility(ResourceLocation ability);
 
     /**
      * Handle basic regen and updates for a tick.

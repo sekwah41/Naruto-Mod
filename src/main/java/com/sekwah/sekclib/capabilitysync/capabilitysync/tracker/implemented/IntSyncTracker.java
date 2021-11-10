@@ -14,4 +14,5 @@ public class IntSyncTracker implements SyncTrackerSerializer<Integer> {
     public Integer decode(FriendlyByteBuf inBuffer) {
         return inBuffer.readInt();
     }
+
 }
