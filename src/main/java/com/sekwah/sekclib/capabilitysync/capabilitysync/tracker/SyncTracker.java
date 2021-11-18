@@ -42,7 +42,11 @@ public class SyncTracker implements ISyncTrackerData {
             Object currentData = syncEntry.getGetter().invoke(data);
             if(this.shouldSend(currentData)) {
                 this.markedForSend = true;
-                this.sendValue = currentData;
+                if(syncEntry.getSerializer() instanceof SyncTrackerClone cloner) {
+                    this.sendValue = cloner.clone(currentData);
+                } else {
+                    this.sendValue = currentData;
+                }
                 this.minTicksLeft = this.syncEntry.getMinTicks();
             } else {
                 this.markedForSend = false;
