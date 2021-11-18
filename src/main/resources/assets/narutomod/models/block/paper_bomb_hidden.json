@@ -1,7 +1,7 @@
 {
-	"parent": "narutomod:block/paper_bomb",
-	"textures": {
-		"0": "narutomod:blocks/weapons/paperbomb_trans",
-		"particle": "narutomod:blocks/weapons/paperbomb"
-	}
+    "parent": "narutomod:block/paper_bomb",
+    "textures": {
+        "0": "narutomod:blocks/weapons/paperbomb_trans",
+        "particle": "narutomod:blocks/weapons/paperbomb"
+    }
 }
