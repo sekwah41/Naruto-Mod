@@ -1,30 +1,30 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
-		"0": "narutomod:blocks/weapons/paperbomb",
-		"particle": "narutomod:blocks/weapons/paperbomb"
-	},
-	"elements": [
-		{
-			"name": "paperbomb_0",
-			"from": [5, 1, 4],
-			"to": [11, 1, 12],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9, 8]},
-			"faces": {
-				"north": {"uv": [11, 4, 5, 5], "texture": "#0"},
-				"east": {"uv": [10, 4, 11, 12], "rotation": 90, "texture": "#0"},
-				"south": {"uv": [5, 11, 11, 12], "texture": "#0"},
-				"west": {"uv": [5, 4, 6, 12], "rotation": 270, "texture": "#0"},
-				"up": {"uv": [5, 4, 11, 12], "texture": "#0"},
-				"down": {"uv": [5, 12, 11, 4], "texture": "#0"}
-			}
-		}
-	],
-	"groups": [
-		{
-			"name": "paperbomb",
-			"origin": [8, 8, 8],
-			"children": [0]
-		}
-	]
+    "credit": "Made with Blockbench",
+    "textures": {
+        "0": "narutomod:blocks/weapons/paperbomb",
+        "particle": "narutomod:blocks/weapons/paperbomb"
+    },
+    "elements": [
+        {
+            "name": "paperbomb_0",
+            "from": [5, 1, 4],
+            "to": [11, 1, 12],
+            "rotation": {"angle": 0, "axis": "y", "origin": [8, 9, 8]},
+            "faces": {
+                "north": {"uv": [11, 4, 5, 5], "texture": "#0"},
+                "east": {"uv": [10, 4, 11, 12], "rotation": 90, "texture": "#0"},
+                "south": {"uv": [5, 11, 11, 12], "texture": "#0"},
+                "west": {"uv": [5, 4, 6, 12], "rotation": 270, "texture": "#0"},
+                "up": {"uv": [5, 4, 11, 12], "texture": "#0"},
+                "down": {"uv": [5, 12, 11, 4], "texture": "#0"}
+            }
+        }
+    ],
+    "groups": [
+        {
+            "name": "paperbomb",
+            "origin": [8, 8, 8],
+            "children": [0]
+        }
+    ]
 }
