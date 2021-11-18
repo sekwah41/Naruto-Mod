@@ -27,7 +27,9 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Sync
     private float maxStamina;
 
-    // Possibly change to another type called ability info.
+    /**
+     * The current ability being charged/channeled
+     */
     @Sync(minTicks = 1)
     private ResourceLocation currentlyChanneled;
 
