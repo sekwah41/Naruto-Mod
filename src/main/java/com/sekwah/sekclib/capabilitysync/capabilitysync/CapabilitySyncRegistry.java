@@ -45,7 +45,13 @@ public class CapabilitySyncRegistry {
                 SekCLib.LOGGER.error(message);
                 errors.add(new ModLoadingException(null, ModLoadingStage.COMMON_SETUP, message, null));
             }
-            field.setAccessible(true);
+            try {
+                field.setAccessible(true);
+            } catch(UnsupportedOperationException e) {
+                String message = String.format("Failed to set field accessible. (Class: %s, Field: %s)", clazz.getName(), field.getName());
+                SekCLib.LOGGER.error(message);
+                errors.add(new ModLoadingException(null, ModLoadingStage.COMMON_SETUP, message, null));
+            }
             try {
                 SyncEntry entry = new SyncEntry(field.getName(), field, sync.minTicks(), trackerId, sync.syncGlobally(), CLASS_SYNC_TRACKER_SERIALIZER.get(field.getType()));
                 capabilityEntry.addSyncEntry(entry);
