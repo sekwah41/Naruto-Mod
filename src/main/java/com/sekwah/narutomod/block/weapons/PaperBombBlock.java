@@ -119,7 +119,7 @@ public class PaperBombBlock extends FaceAttachedHorizontalDirectionalBlock {
     @Override
     public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (worldIn.hasNeighborSignal(pos)) {
-            catchFire(state, worldIn, pos, null, null);
+            onCaughtFire(state, worldIn, pos, null, null);
             worldIn.removeBlock(pos, false);
         }
 
@@ -128,11 +128,11 @@ public class PaperBombBlock extends FaceAttachedHorizontalDirectionalBlock {
     @Override
     public void onPlace(BlockState state, Level worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
         super.onPlace(state, worldIn, pos, oldState, isMoving);
-        worldIn.getBlockTicks().scheduleTick(new BlockPos(pos), this, TRANSPARENT_DELAY);
+        worldIn.scheduleTick(new BlockPos(pos), this, TRANSPARENT_DELAY);
     }
 
     @Override
-    public void catchFire(BlockState state, Level worldIn, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
+    public void onCaughtFire(BlockState state, Level worldIn, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
         spawnPaperbomb(state, worldIn, pos, igniter);
     }
 
