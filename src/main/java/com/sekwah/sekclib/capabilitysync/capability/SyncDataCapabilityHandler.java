@@ -12,7 +12,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
@@ -27,8 +28,7 @@ import java.util.Map;
 @Mod.EventBusSubscriber(modid = SekCLib.MOD_ID)
 public class SyncDataCapabilityHandler {
 
-    @CapabilityInject(ISyncData.class)
-    public static final Capability<ISyncData> SYNC_DATA = null;
+    public static final Capability<ISyncData> SYNC_DATA = CapabilityManager.get(new CapabilityToken<>(){});
 
     public static void createSyncData(AttachCapabilitiesEvent<Entity> event) {
         SyncData syncData = new SyncData();
