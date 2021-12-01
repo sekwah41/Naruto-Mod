@@ -10,6 +10,8 @@ import java.lang.annotation.Target;
  * Make sure that the Capabilities are not registered on EventPriority.LOWEST so that SekCLib can find it.
  *
  * Ensure that the same class is client and server side. If there are miss-matched parameters with @Sync the game will likely crash.
+ *
+ * These will have to be public due to setAccessible being disabled
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})

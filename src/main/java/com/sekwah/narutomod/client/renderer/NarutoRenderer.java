@@ -9,7 +9,7 @@ import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 public class NarutoRenderer extends BlockEntityWithoutLevelRenderer {
 

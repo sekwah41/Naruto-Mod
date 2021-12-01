@@ -43,7 +43,7 @@ def isCanary = version.toString().contains('canary')
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.archive
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 //repositories {
 //    mavenLocal()
@@ -64,7 +64,7 @@ minecraft {
     // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'official', version: '1.17.1'
+    mappings channel: 'official', version: '1.18'
     //mappings channel: 'parchment', version: '2021.07.21-1.17'
 
     // This is for personal local tests i was doing ignore it ;)
@@ -142,7 +142,7 @@ dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.17.1-37.0.97'
+    minecraft 'net.minecraftforge:forge:1.18-38.0.2'
 
     implementation 'org.spongepowered:mixin:0.8.4'
     annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
