@@ -1,5 +1,6 @@
 package com.sekwah.narutomod.network.c2s;
 
+import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
@@ -39,10 +40,24 @@ public class ServerAbilityActivatePacket {
             ctx.get().enqueueWork(() -> {
                 final ServerPlayer player = ctx.get().getSender();
                 player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
+
                     Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(msg.abilityId);
-                    if (ability.activationType() == Ability.ActivationType.INSTANT && ability.handleCost(player, ninjaData)) {
-                        ability.perform(player, ninjaData);
+                    if (ability.activationType() == Ability.ActivationType.INSTANT) {
+                        if(ability.handleCost(player, ninjaData)) {
+                            ability.perform(player, ninjaData);
+                        }
+                    } else if(ability.activationType() == Ability.ActivationType.TOGGLE) {
+                        if(ninjaData.getToogleAbilityData().abilities.contains(ability.getRegistryName())) {
+                            // Toggle ability off
+                            ninjaData.getToogleAbilityData().abilities.remove(ability.getRegistryName());
+                        } else {
+                            // Toggle ability on
+                            ninjaData.getToogleAbilityData().abilities.add(ability.getRegistryName());
+                        }
                     }
+
+                    // TODO look into a way to
+
                 });
             });
             ctx.get().setPacketHandled(true);
