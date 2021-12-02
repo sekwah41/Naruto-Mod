@@ -1,7 +1,9 @@
 package com.sekwah.narutomod.abilities;
 
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.abilities.utility.ChakraDashAbility;
 import com.sekwah.narutomod.abilities.utility.LeapAbility;
+import com.sekwah.narutomod.abilities.utility.WaterWalkAbility;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.network.c2s.ServerAbilityActivatePacket;
 import net.minecraft.resources.ResourceLocation;
@@ -28,7 +30,11 @@ public class NarutoAbilities {
 
     public static ForgeRegistry<Ability> ABILITY_REGISTRY;
 
-    public static RegistryObject<LeapAbility> LEAP = ABILITY.register("leap", () -> new LeapAbility());
+    public static final RegistryObject<LeapAbility> LEAP = ABILITY.register("leap", LeapAbility::new);
+
+    public static final RegistryObject<ChakraDashAbility> CHAKRA_DASH = ABILITY.register("chakra_dash", ChakraDashAbility::new);
+
+    public static final RegistryObject<WaterWalkAbility> WATER_WALK = ABILITY.register("water_walk", WaterWalkAbility::new);
 
     public static void register(IEventBus eventBus) {
         ABILITY.register(eventBus);

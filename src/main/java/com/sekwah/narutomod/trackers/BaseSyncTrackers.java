@@ -1,9 +1,8 @@
 package com.sekwah.narutomod.trackers;
 
+import com.sekwah.narutomod.capabilities.ToggleAbilityData;
 import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.RegisterSyncTrackerTypeEvent;
-import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.implemented.IntSyncTracker;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -11,6 +10,6 @@ import net.minecraftforge.fml.common.Mod;
 public class BaseSyncTrackers {
     @SubscribeEvent
     public static void registerSyncTrackerEvent(RegisterSyncTrackerTypeEvent event) {
-        event.registerSyncTracker(int.class, new IntSyncTracker());
+        event.registerSyncTracker(ToggleAbilityData.class, new ToggleAbilityDataSyncTracker());
     }
 }

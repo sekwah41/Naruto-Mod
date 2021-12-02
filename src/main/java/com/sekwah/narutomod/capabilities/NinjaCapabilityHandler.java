@@ -28,12 +28,18 @@ public class NinjaCapabilityHandler {
 
     @SubscribeEvent
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
-        if(event.side.isServer()) {
+        if(event.phase.equals(TickEvent.Phase.START)) {
             Player player = event.player;
             player.getCapability(NINJA_DATA).ifPresent(data -> {
-                data.updateChakra();
+                if(event.side.isServer()) {
+                    data.updateChakra();
+                }
+                data.getToogleAbilityData().abilities.forEach(ability -> {
+                    NarutoMod.LOGGER.info("Updating ability: " + ability);
+                });
             });
         }
+
     }
 
     @SubscribeEvent

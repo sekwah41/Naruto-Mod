@@ -36,11 +36,15 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Sync(minTicks = 1)
     private int ticksChanneled;
 
+    @Sync
+    private ToggleAbilityData toggleAbilityData;
+
     public NinjaData(boolean isServer) {
         if(isServer) {
             this.maxChakra = NarutoConfig.maxChakra;
             this.maxStamina = NarutoConfig.maxStamina;
         }
+        this.toggleAbilityData = new ToggleAbilityData();
     }
 
     class RegenInfo {
@@ -64,8 +68,8 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         }
     }
 
-    private RegenInfo chakraRegenInfo = new RegenInfo(0.025f);
-    private RegenInfo staminaRegenInfo = new RegenInfo(0.3f);
+    private RegenInfo chakraRegenInfo = new RegenInfo(0.05f);
+    private RegenInfo staminaRegenInfo = new RegenInfo(0.6f);
 
     private static final String CHAKRA_TAG = "chakra";
     private static final String STAMINA_TAG = "stamina";
@@ -122,6 +126,11 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Override
     public void setCurrentlyChanneledAbility(ResourceLocation ability) {
         this.currentlyChanneled = ability;
+    }
+
+    @Override
+    public ToggleAbilityData getToogleAbilityData() {
+        return this.toggleAbilityData;
     }
 
     @Override

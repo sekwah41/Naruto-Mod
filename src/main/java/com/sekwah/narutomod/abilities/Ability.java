@@ -11,9 +11,10 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
 
     public enum ActivationType {
         INSTANT,
-        CHANNELED,
-        CHARGED,
         TOGGLE,
+        // TODO needs implementation to be activatable and handled, they may end up using the same logic
+        //CHANNELED,
+        //CHARGED,
     }
 
     /**
@@ -40,11 +41,24 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
 
     /**
      * Do not overwrite this, use {@link Ability#handleCost(Player, INinjaData, int)}
+     *
+     * This is just to allow code to call the cost without the charge amount.
      * @param player
      */
     public boolean handleCost(Player player, INinjaData ninjaData) {
         return handleCost(player, ninjaData, 0);
     }
+
+    /**
+     * This will trigger on the player when they are no longer able to cast the ability or when they re-active
+     * the ability to cancel it.
+     *
+     * This will be triggered on ActivationType.TOGGLE, ActivationType.CHANNELED and ActivationType.CHARGED.
+     *
+     * @param player
+     * @param ninjaData
+     */
+    public void handleAbilityEnded(Player player, INinjaData ninjaData) {}
 
     /**
      *
