@@ -1,6 +1,6 @@
 package com.sekwah.narutomod.capabilities;
 
-import com.sekwah.narutomod.abilities.Ability;
+import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.util.INBTSerializable;

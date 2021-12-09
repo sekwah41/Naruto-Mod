@@ -35,6 +35,8 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      * In channeled abilities, this will be triggered every tick. And the charge amount will be increased by 1 each tick.
      *
      * @param player
+     * @param ninjaData
+     * @param chargeAmount
      * @return if the jutsu cost was able to be fufilled. If this is true then perform will be triggered.
      */
     public abstract boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount);
@@ -44,6 +46,7 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      *
      * This is just to allow code to call the cost without the charge amount.
      * @param player
+     * @param ninjaData
      */
     public boolean handleCost(Player player, INinjaData ninjaData) {
         return handleCost(player, ninjaData, 0);
@@ -63,12 +66,26 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
     /**
      *
      * @param player the entity casting the jutsu. Will just be players for now. Though may be entity in the future.
+     * @param ninjaData
+     * @param chargeAmount
      */
     public abstract void perform(Player player, INinjaData ninjaData, int chargeAmount);
 
     /**
+     *
+     * For if abilities need to do anything client side (atm its only triggered with toggle to stop a spam of packets)
+     *
+     * @param player
+     * @param ninjaData
+     */
+    public void performToggleClient(Player player, INinjaData ninjaData) {
+
+    }
+
+    /**
      * Do not overwrite this, use {@link Ability#perform(Player, INinjaData, int)}
      * @param player
+     * @param ninjaData
      */
     public void perform(Player player, INinjaData ninjaData) {
         this.perform(player, ninjaData, 0);
