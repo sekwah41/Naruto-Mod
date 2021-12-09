@@ -1,6 +1,6 @@
 package com.sekwah.narutomod.trackers;
 
-import com.sekwah.narutomod.capabilities.ToggleAbilityData;
+import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerClone;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTrackerSerializer;
 import net.minecraft.network.FriendlyByteBuf;
@@ -10,8 +10,8 @@ public class ToggleAbilityDataSyncTracker implements SyncTrackerSerializer<Toggl
 
     @Override
     public void encode(ToggleAbilityData objectToSend, FriendlyByteBuf outBuffer) {
-        outBuffer.writeInt(objectToSend.abilities.size());
-        for (ResourceLocation ability : objectToSend.abilities) {
+        outBuffer.writeInt(objectToSend.getAbilitiesHashSet().size());
+        for (ResourceLocation ability : objectToSend.getAbilitiesHashSet()) {
             outBuffer.writeUtf(ability.toString());
         }
     }
@@ -21,15 +21,15 @@ public class ToggleAbilityDataSyncTracker implements SyncTrackerSerializer<Toggl
         final int size = inBuffer.readInt();
         ToggleAbilityData data = new ToggleAbilityData(size);
         for(int i = 0; i < size; i++) {
-            data.abilities.add(new ResourceLocation(inBuffer.readUtf()));
+            data.getAbilitiesHashSet().add(new ResourceLocation(inBuffer.readUtf()));
         }
         return data;
     }
 
     @Override
     public ToggleAbilityData clone(ToggleAbilityData data) {
-        ToggleAbilityData cloned = new ToggleAbilityData(data.abilities.size());
-        cloned.abilities.addAll(data.abilities);
+        ToggleAbilityData cloned = new ToggleAbilityData(data.getAbilitiesHashSet().size());
+        cloned.getAbilitiesHashSet().addAll(data.getAbilitiesHashSet());
         return cloned;
     }
 }

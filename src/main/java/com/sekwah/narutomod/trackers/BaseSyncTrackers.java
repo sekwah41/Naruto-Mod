@@ -1,6 +1,6 @@
 package com.sekwah.narutomod.trackers;
 
-import com.sekwah.narutomod.capabilities.ToggleAbilityData;
+import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
 import com.sekwah.sekclib.SekCLib;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.RegisterSyncTrackerTypeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

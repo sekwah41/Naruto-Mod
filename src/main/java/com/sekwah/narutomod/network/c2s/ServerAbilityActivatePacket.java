@@ -1,14 +1,15 @@
 package com.sekwah.narutomod.network.c2s;
 
-import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
+import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 
+import java.util.HashSet;
 import java.util.function.Supplier;
 
 /**
@@ -47,12 +48,14 @@ public class ServerAbilityActivatePacket {
                             ability.perform(player, ninjaData);
                         }
                     } else if(ability.activationType() == Ability.ActivationType.TOGGLE) {
-                        if(ninjaData.getToogleAbilityData().abilities.contains(ability.getRegistryName())) {
+                        ToggleAbilityData abilityTracker = ninjaData.getToogleAbilityData();
+                        HashSet<ResourceLocation> abilities = abilityTracker.getAbilitiesHashSet();
+                        if(abilities.contains(ability.getRegistryName())) {
                             // Toggle ability off
-                            ninjaData.getToogleAbilityData().abilities.remove(ability.getRegistryName());
+                            abilityTracker.removeAbility(ability.getRegistryName());
                         } else {
                             // Toggle ability on
-                            ninjaData.getToogleAbilityData().abilities.add(ability.getRegistryName());
+                            abilityTracker.addAbility(ability.getRegistryName());
                         }
                     }
 

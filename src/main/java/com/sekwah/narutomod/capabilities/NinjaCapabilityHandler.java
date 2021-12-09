@@ -1,6 +1,8 @@
 package com.sekwah.narutomod.capabilities;
 
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.abilities.Ability;
+import com.sekwah.narutomod.abilities.NarutoAbilities;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -34,8 +36,15 @@ public class NinjaCapabilityHandler {
                 if(event.side.isServer()) {
                     data.updateChakra();
                 }
-                data.getToogleAbilityData().abilities.forEach(ability -> {
-                    NarutoMod.LOGGER.info("Updating ability: " + ability);
+                data.getToogleAbilityData().getAbilitiesHashSet().forEach(abilityName -> {
+                    Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(abilityName);
+                    if(event.side.isServer()) {
+                        if(ability.handleCost(player, data)) {
+                            ability.perform(player, data);
+                        }
+                    } else {
+                        ability.performToggleClient(player, data);
+                    }
                 });
             });
         }
