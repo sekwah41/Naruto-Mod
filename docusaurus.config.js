@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Sekwah41\'s Naruto Mod',
   tagline: 'A mod based of the hit anime series Naruto',
-  url: 'https://advancedportals.sekwah.com/',
+  url: 'https://narutomod.sekwah.com/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -40,7 +40,7 @@ const config = {
       navbar: {
         title: 'Naruto Mod',
         logo: {
-          alt: 'Advanced Portals Logo',
+          alt: 'Naruto Mod Logo',
           src: 'img/narutomod.png',
         },
         items: [

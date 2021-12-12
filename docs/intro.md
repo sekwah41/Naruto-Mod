@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: Quick introduction to Advanced Portals.
+description: Quick introduction to the Naruto Mod.
 ---
 
 # Getting Started
