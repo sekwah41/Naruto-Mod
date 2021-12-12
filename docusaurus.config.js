@@ -108,6 +108,7 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      image: 'img/narutomodbanner.png',
     }),
 };
 
