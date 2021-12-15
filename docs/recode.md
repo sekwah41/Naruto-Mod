@@ -13,7 +13,7 @@ For the 1.18+ copies I have done a complete recode of the mod however reused the
 I plan to release a copy around Christmas showing of the basics of the new systems minus the animation system.
 Though that will be high on the priority list once most of the old jutsus are back.
 
-For more info check the [trello board](https://trello.com/invite/b/qMqwZMkU/3e38bfb635dc5331b93bcd4fc19c07eb/naruto-mod).
+For more info check the [trello board](https://trello.com/b/qMqwZMkU/naruto-mod).
 
 ## Going forward
 Rather than large content updates I plan to release content as it is created to avoid burnout and large gaps where no updates are seen for months/years.
