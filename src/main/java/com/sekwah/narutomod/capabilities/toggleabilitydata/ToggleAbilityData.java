@@ -1,6 +1,9 @@
 package com.sekwah.narutomod.capabilities.toggleabilitydata;
 
+import com.sekwah.narutomod.abilities.Ability;
+import com.sekwah.narutomod.capabilities.INinjaData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -27,6 +30,11 @@ public class ToggleAbilityData {
 
     public boolean addAbility(ResourceLocation ability) {
         return this.abilities.add(ability);
+    }
+
+    public boolean removeAbilityEnded(Player player, INinjaData ninjaData, Ability ability) {
+        ability.handleAbilityEnded(player, ninjaData);
+        return this.removeAbility(ability.getRegistryName());
     }
 
     public boolean removeAbility(ResourceLocation ability) {

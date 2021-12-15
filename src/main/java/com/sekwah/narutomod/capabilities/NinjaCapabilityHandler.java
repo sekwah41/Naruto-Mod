@@ -41,6 +41,8 @@ public class NinjaCapabilityHandler {
                     if(event.side.isServer()) {
                         if(ability.handleCost(player, data)) {
                             ability.perform(player, data);
+                        } else {
+                            data.getToogleAbilityData().removeAbilityEnded(player, data, ability);
                         }
                     } else {
                         ability.performToggleClient(player, data);

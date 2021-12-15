@@ -52,7 +52,7 @@ public class ServerAbilityActivatePacket {
                         HashSet<ResourceLocation> abilities = abilityTracker.getAbilitiesHashSet();
                         if(abilities.contains(ability.getRegistryName())) {
                             // Toggle ability off
-                            abilityTracker.removeAbility(ability.getRegistryName());
+                            abilityTracker.removeAbilityEnded(player, ninjaData, ability);
                         } else {
                             // Toggle ability on
                             abilityTracker.addAbility(ability.getRegistryName());
