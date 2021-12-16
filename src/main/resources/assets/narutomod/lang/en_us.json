@@ -51,6 +51,6 @@
   "jutsu.fail.notenoughstamina": "You do not have enough stamina to use %s",
   "jutsu.fail.notenoughchakra": "You do not have enough chakra to use %s",
   "jutsu.leap": "Leap",
-  "jutsu.waterwalk": "Water Walk",
+  "jutsu.waterwalk": "Water Walking",
   "jutsu.cast.debug": "Combo entered: %s"
 }

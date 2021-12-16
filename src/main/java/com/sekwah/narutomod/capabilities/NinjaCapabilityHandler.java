@@ -30,9 +30,13 @@ public class NinjaCapabilityHandler {
 
     @SubscribeEvent
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
-        if(event.phase.equals(TickEvent.Phase.START)) {
+        if(event.phase.equals(TickEvent.Phase.END)) {
             Player player = event.player;
             player.getCapability(NINJA_DATA).ifPresent(data -> {
+                if(player.isCreative()) {
+                    data.setChakra(data.getMaxChakra());
+                    data.setStamina(data.getMaxStamina());
+                }
                 if(event.side.isServer()) {
                     data.updateChakra();
                 }

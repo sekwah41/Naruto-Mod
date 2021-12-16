@@ -4,11 +4,11 @@ import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 
 /**
@@ -25,18 +25,25 @@ public class WaterWalkAbility extends Ability {
     public long defaultCombo() {
         return 3;
     }
-
-    private final float CHAKRA_COST = 0.1F;
     private final int CHARKA_COOLDOWN = 15;
 
     @Override
     public boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount) {
-        System.out.println("Cost Walk???");
-        if(ninjaData.getChakra() < CHAKRA_COST) {
+        WaterChecks checks = this.checkSteadyNormalFastPush(player);
+
+        // TODO fix why this is costing a lot more than it should be (client and server dont match up)
+        // Check if the server actually updates the location or if the player is sending the wrong location and when it chooses what to send the server.
+        float fullCost = 0;
+        if (checks.pushUpFast) {
+            fullCost += 1f;
+        } else if (checks.steadyCheck) {
+            fullCost += 0.12F;
+        }
+        if(ninjaData.getChakra() < fullCost) {
             player.displayClientMessage(new TranslatableComponent("jutsu.fail.notenoughchakra", new TranslatableComponent("jutsu.waterwalk").withStyle(ChatFormatting.YELLOW)), true);
             return false;
         }
-        ninjaData.useChakra(CHAKRA_COST, CHARKA_COOLDOWN);
+        ninjaData.useChakra(fullCost, CHARKA_COOLDOWN);
         return true;
     }
 
@@ -44,10 +51,38 @@ public class WaterWalkAbility extends Ability {
     public void handleAbilityEnded(Player player, INinjaData ninjaData) {
     }
 
+    public record WaterChecks(boolean steadyCheck, boolean pushUpFast, boolean pushUpNormal) {}
+
+    public WaterChecks checkSteadyNormalFastPush(Player player) {
+        final int block1 = (int) Math.round(player.getY() - 0.56f);
+        boolean steadyCheck = triggerWaterWalk(player.level, new BlockPos((int) player.getX(), block1, (int) player.getZ()));
+
+        int block2 = (int) Math.round(player.getY());
+        boolean pushUpFast = triggerWaterWalk(player.level, new BlockPos((int) player.getX(), block2, (int) player.getZ()));
+
+        int block3 = (int) Math.round(player.getY() - 0.47f);
+        boolean pushUpNormal = triggerWaterWalk(player.level, new BlockPos((int) player.getX(), block3, (int) player.getZ()));
+
+        return new WaterChecks(steadyCheck, pushUpFast, pushUpNormal);
+    }
+
     @Override
     public void perform(Player player, INinjaData ninjaData, int chargeAmount) {
         // TODO validation that the player is above water
-        player.fallDistance = 0.0F;
+        WaterChecks checks = this.checkSteadyNormalFastPush(player);
+
+        if (!checks.pushUpFast && !checks.pushUpNormal && checks.steadyCheck) {
+            player.fallDistance = 0.0F;
+            Vec3 delta = player.getDeltaMovement();
+            // Every tick it reduces the player's velocity by that much but may have trouble in mods that alter gravity.
+            player.setDeltaMovement(delta.x, 0.0D, delta.z);
+            player.setOnGround(true);
+        }
+    }
+
+    public boolean triggerWaterWalk(Level level, BlockPos blockPos) {
+        FluidState fluidState = level.getFluidState(blockPos);
+        return fluidState.is(Fluids.WATER) || fluidState.is(Fluids.FLOWING_WATER);
     }
 
     @Override
@@ -55,33 +90,27 @@ public class WaterWalkAbility extends Ability {
 
         // TODO rewrite as this is the old way of doing it ported over
         // TODO also check if the block is waterlogged and non solid
-        final int block1 = (int) Math.round(player.getY() - 0.96f);
-        Block feetBlock = player.level.getBlockState(new BlockPos((int) player.getX(), block1, (int) player.getZ())).getBlock();
-
-        int block2 = (int) Math.round(player.getY() - 0.4f);
-        Block midBlock = player.level.getBlockState(new BlockPos((int) player.getX(), block2, (int) player.getZ())).getBlock();
-
-        int block3 = (int) Math.round(player.getY() - 0.87f);
-        Block headBlock = player.level.getBlockState(new BlockPos((int) player.getX(), block3, (int) player.getZ())).getBlock();
+        WaterChecks checks = this.checkSteadyNormalFastPush(player);
 
 
         // TODO sort offset
         Vec3 vec = player.getDeltaMovement();
         double resultingYSpeed = vec.y();
-        if (midBlock == Blocks.WATER) {
+        if (checks.pushUpFast) {
             resultingYSpeed += 0.2D;
             if (resultingYSpeed > 0.6D) {
                 resultingYSpeed = 0.6D;
             }
         }
-        else if (headBlock == Blocks.WATER) {
+        else if (checks.pushUpNormal) {
             resultingYSpeed += 0.1D;
             if (resultingYSpeed > 0.2D) {
                 resultingYSpeed = 0.2D;
             }
-        } else if ((feetBlock == Blocks.WATER) && resultingYSpeed < 0.0D) {
+        } else if (checks.steadyCheck && resultingYSpeed < 0.0D) {
             resultingYSpeed = 0.0D;
             player.setOnGround(true);
+            player.stopFallFlying();
         }
         player.lerpMotion(vec.x(), resultingYSpeed, vec.z());
     }

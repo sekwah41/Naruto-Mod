@@ -11,6 +11,7 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 public class NarutoConfig {
 
     public static final String SERVER = "server";
+    public static final String DEBUG = "debug";
     public static final String CLIENT = "client";
 
     public static final String CATEGORY_WEAPONS = "weapons";
@@ -50,8 +51,18 @@ public class NarutoConfig {
     private static final ForgeConfigSpec.BooleanValue CONFIG_STARTS_AS_NINJA;
     public static boolean startsAsNinja;
 
+    private static final ForgeConfigSpec.DoubleValue CONFIG_CUSTOM_TEST_DOUBLE;
+    public static double customTestDouble;
+
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
+
+        configBuilder.comment("Debug test settings (cauz hot reloading doesnt always work)").push(DEBUG);
+
+        CONFIG_CUSTOM_TEST_DOUBLE = configBuilder.comment("Test Value (Shouldn't do anything, blame sekwah if it does)")
+                .defineInRange("customTestDouble",  0F ,  Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+
+        configBuilder.pop();
 
         configBuilder.comment("Server based settings").push(SERVER);
 
@@ -122,6 +133,8 @@ public class NarutoConfig {
         jutsuCastDelay = CONFIG_JUTSU_CAST_DELAY
                 .get();
         startsAsNinja = CONFIG_STARTS_AS_NINJA
+                .get();
+        customTestDouble = CONFIG_CUSTOM_TEST_DOUBLE
                 .get();
     }
 
