@@ -68,25 +68,10 @@ public class WaterWalkAbility extends Ability {
 
     @Override
     public void perform(Player player, INinjaData ninjaData, int chargeAmount) {
-        // TODO validation that the player is above water
-        WaterChecks checks = this.checkSteadyNormalFastPush(player);
-
-        if (!checks.pushUpFast && !checks.pushUpNormal && checks.steadyCheck) {
-            player.fallDistance = 0.0F;
-            Vec3 delta = player.getDeltaMovement();
-            // Every tick it reduces the player's velocity by that much but may have trouble in mods that alter gravity.
-            player.setDeltaMovement(delta.x, 0.0D, delta.z);
-            player.setOnGround(true);
-        }
+        updatePlayerMovement(player);
     }
 
-    public boolean triggerWaterWalk(Level level, BlockPos blockPos) {
-        FluidState fluidState = level.getFluidState(blockPos);
-        return fluidState.is(Fluids.WATER) || fluidState.is(Fluids.FLOWING_WATER);
-    }
-
-    @Override
-    public void performToggleClient(Player player, INinjaData ninjaData) {
+    private void updatePlayerMovement(Player player) {
 
         // TODO rewrite as this is the old way of doing it ported over
         // TODO also check if the block is waterlogged and non solid
@@ -109,9 +94,21 @@ public class WaterWalkAbility extends Ability {
             }
         } else if (checks.steadyCheck && resultingYSpeed < 0.0D) {
             resultingYSpeed = 0.0D;
+            player.resetFallDistance();
             player.setOnGround(true);
             player.stopFallFlying();
         }
         player.lerpMotion(vec.x(), resultingYSpeed, vec.z());
+
+    }
+
+    public boolean triggerWaterWalk(Level level, BlockPos blockPos) {
+        FluidState fluidState = level.getFluidState(blockPos);
+        return fluidState.is(Fluids.WATER) || fluidState.is(Fluids.FLOWING_WATER);
+    }
+
+    @Override
+    public void performToggleClient(Player player, INinjaData ninjaData) {
+        updatePlayerMovement(player);
     }
 }
