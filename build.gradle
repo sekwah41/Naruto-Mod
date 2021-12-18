@@ -290,6 +290,7 @@ curseforge {
         changelogType = 'markdown'
         releaseType = 'release'
         addGameVersion '1.18'
+        addGameVersion '1.18.1'
 
         mainArtifact(jar){
 
