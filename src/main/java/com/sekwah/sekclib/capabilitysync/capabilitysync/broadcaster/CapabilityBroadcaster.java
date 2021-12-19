@@ -42,12 +42,7 @@ public class CapabilityBroadcaster {
             }
         });
 
-        broadcastCapChanges(player);
-    }
-
-
-    private static List<CapabilityInfo> collectEntries(Player player) {
-        return collectEntries(player, false);
+        broadcastCapChanges(player, false);
     }
 
     private static List<CapabilityInfo> collectEntries(Player player, boolean returnAll) {
@@ -58,7 +53,7 @@ public class CapabilityBroadcaster {
                 CapabilityEntry capEntry = capTracker.getCapabilityEntry();
                 CapabilityInfo capInfo = new CapabilityInfo(SekCLibRegistries.CAPABILITY_REGISTRY.getID(capEntry), capEntry);
                 for (SyncTracker syncTracker : capTracker.getSyncTrackers()) {
-                    if (returnAll || syncTracker.isMarkedForSend()) {
+                    if ((returnAll || syncTracker.isMarkedForSend()) && syncTracker.getSendValue() != null) {
                         if(syncTracker.getSyncEntry().isSyncGlobally()) {
                             capInfo.changedEntries.add(syncTracker);
                         } else {
@@ -90,9 +85,9 @@ public class CapabilityBroadcaster {
      *
      * @param player - what player to get the data off to check the syncing.
      */
-    public static void broadcastCapChanges(ServerPlayer player) {
+    public static void broadcastCapChanges(ServerPlayer player, boolean sendAll) {
 
-        List<CapabilityInfo> dataToSend = collectEntries(player);
+        List<CapabilityInfo> dataToSend = collectEntries(player, sendAll);
 
         if(dataToSend.isEmpty()) {
             return;

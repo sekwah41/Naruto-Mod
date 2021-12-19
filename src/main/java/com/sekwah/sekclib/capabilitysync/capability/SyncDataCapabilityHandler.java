@@ -70,41 +70,42 @@ public class SyncDataCapabilityHandler {
         }
     }
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void dimensionChange(EntityJoinWorldEvent event) {
         // TODO Handle syncing the players own data
         if(event.getEntity() instanceof Player) {
             SekCLib.LOGGER.info("JOINED WORLD");
         }
-    }
+    }*/
 
     @SubscribeEvent
     public static void dimensionChange(PlayerEvent.PlayerChangedDimensionEvent event) {
-        // TODO Handle syncing the players own data
-        SekCLib.LOGGER.info("DIMENSION CHANGE");
+        if(event.getPlayer() instanceof ServerPlayer serverPlayer) {
+            CapabilityBroadcaster.broadcastCapChanges(serverPlayer, true);
+        }
     }
 
     /**
      * Server side event
      * @param event
      */
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void playerTracking(PlayerEvent.StartTracking event) {
         if(event.getTarget() instanceof Player) {
             SekCLib.LOGGER.info("Started Tracking");
         }
         // TODO triggers on any entity. trigger on players send over the original data
-    }
+    }*/
 
     /**
      * Server side event
      * @param event
      */
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void playerStopTracking(PlayerEvent.StopTracking event) {
         if(event.getTarget() instanceof Player) {
             SekCLib.LOGGER.info("STOP TRACKING");
         }
         // TODO trigger on players send over the original data
-    }
+    }*/
 }
