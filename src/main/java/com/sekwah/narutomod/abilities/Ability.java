@@ -53,6 +53,18 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
     }
 
     /**
+     * If the ability should say its status in chat
+     * @return
+     */
+    public boolean logInChat() {
+        return true;
+    }
+
+    public String getTranslationKey() {
+        return this.getRegistryName().toString();
+    }
+
+    /**
      * This will trigger on the player when they are no longer able to cast the ability or when they re-active
      * the ability to cancel it.
      *
@@ -61,7 +73,9 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      * @param player
      * @param ninjaData
      */
-    public void handleAbilityEnded(Player player, INinjaData ninjaData) {}
+    public void handleAbilityEnded(Player player, INinjaData ninjaData) {
+
+    }
 
     /**
      *

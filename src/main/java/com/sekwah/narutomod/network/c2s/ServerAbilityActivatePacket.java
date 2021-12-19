@@ -55,7 +55,7 @@ public class ServerAbilityActivatePacket {
                             abilityTracker.removeAbilityEnded(player, ninjaData, ability);
                         } else {
                             // Toggle ability on
-                            abilityTracker.addAbility(ability.getRegistryName());
+                            abilityTracker.addAbilityStarted(player, ninjaData, ability);
                         }
                     }
 
