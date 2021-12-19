@@ -56,5 +56,6 @@
   "jutsu.error.notfound": "Invalid jutsu combo.",
   "narutomod:water_walk": "Water Walking",
   "jutsu.toggle.enabled": "You have activated %s!",
-  "jutsu.toggle.disabled": "You have deactivated %s!"
+  "jutsu.toggle.disabled": "You have deactivated %s!",
+  "jutsu.toggle.perform": "%s!"
 }

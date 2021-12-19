@@ -4,7 +4,9 @@ import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
@@ -45,6 +47,9 @@ public class ServerAbilityActivatePacket {
                     Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(msg.abilityId);
                     if (ability.activationType() == Ability.ActivationType.INSTANT) {
                         if(ability.handleCost(player, ninjaData)) {
+                            if (ability.logInChat()) {
+                                player.sendMessage(new TranslatableComponent("jutsu.toggle.perform", new TranslatableComponent(ability.getTranslationKey())).withStyle(ChatFormatting.GREEN), null);
+                            }
                             ability.perform(player, ninjaData);
                         }
                     } else if(ability.activationType() == Ability.ActivationType.TOGGLE) {
