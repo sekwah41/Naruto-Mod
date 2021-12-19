@@ -96,7 +96,12 @@ public class WaterWalkAbility extends Ability {
             resultingYSpeed = 0.0D;
             player.resetFallDistance();
             player.setOnGround(true);
-            player.stopFallFlying();
+            if(player.isFallFlying()) {
+                player.stopFallFlying();
+            }
+            // This adds the hand bobbing back to the player
+            float f = (float)Math.min(0.1D, player.getDeltaMovement().horizontalDistance());
+            player.bob += (f - player.bob) * 0.4F;
         }
         player.lerpMotion(vec.x(), resultingYSpeed, vec.z());
 
