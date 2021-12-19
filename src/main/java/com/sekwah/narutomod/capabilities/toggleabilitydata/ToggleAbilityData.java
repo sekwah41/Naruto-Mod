@@ -2,6 +2,8 @@ package com.sekwah.narutomod.capabilities.toggleabilitydata;
 
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
@@ -32,8 +34,18 @@ public class ToggleAbilityData {
         return this.abilities.add(ability);
     }
 
+    public boolean addAbilityStarted(Player player, INinjaData ninjaData, Ability ability) {
+        if (ability.activationType() == Ability.ActivationType.TOGGLE && ability.logInChat()) {
+            player.sendMessage(new TranslatableComponent("jutsu.toggle.enabled", new TranslatableComponent(ability.getTranslationKey())).withStyle(ChatFormatting.GREEN), null);
+        }
+        return this.addAbility(ability.getRegistryName());
+    }
+
     public boolean removeAbilityEnded(Player player, INinjaData ninjaData, Ability ability) {
         ability.handleAbilityEnded(player, ninjaData);
+        if (ability.activationType() == Ability.ActivationType.TOGGLE && ability.logInChat()) {
+            player.sendMessage(new TranslatableComponent("jutsu.toggle.disabled", new TranslatableComponent(ability.getTranslationKey())).withStyle(ChatFormatting.RED), null);
+        }
         return this.removeAbility(ability.getRegistryName());
     }
 

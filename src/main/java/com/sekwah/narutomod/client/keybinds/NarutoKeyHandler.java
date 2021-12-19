@@ -5,6 +5,7 @@ import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.network.c2s.ServerJutsuCastingPacket;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -120,12 +121,12 @@ public class NarutoKeyHandler {
             NarutoMod.LOGGER.info("Would cast jutsu {}", currentJutsuCombo);
             Minecraft mc = Minecraft.getInstance();
             if(mc.player != null ) {
-                mc.player.sendMessage(new TranslatableComponent("jutsu.cast.debug", currentJutsuCombo), null);
-            }
-            if(!NarutoAbilities.triggerAbility(currentJutsuCombo)) {
-                mc.player.sendMessage(new TranslatableComponent("no.combo.found", currentJutsuCombo), null);
-            } else {
-                mc.player.sendMessage(new TranslatableComponent("trying.jutsu", currentJutsuCombo), null);
+                NarutoMod.LOGGER.debug("Casting jutsu {}", currentJutsuCombo);
+                if(!NarutoAbilities.triggerAbility(currentJutsuCombo)) {
+                    mc.player.sendMessage((new TranslatableComponent("jutsu.error.notfound", currentJutsuCombo)).withStyle(ChatFormatting.RED), null);
+                } else {
+                    //mc.player.sendMessage(new TranslatableComponent("trying.jutsu", currentJutsuCombo), null);
+                }
             }
 
             ticksSinceLastKey = 0;
