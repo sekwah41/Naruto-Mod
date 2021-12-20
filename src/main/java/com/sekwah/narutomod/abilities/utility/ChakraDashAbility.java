@@ -37,7 +37,7 @@ public class ChakraDashAbility extends Ability {
     }
 
     @Override
-    public void perform(Player player, INinjaData ninjaData, int chargeAmount) {
+    public void performServer(Player player, INinjaData ninjaData, int chargeAmount) {
         System.out.println("CHANNELLING Dash!!!!");
     }
 }

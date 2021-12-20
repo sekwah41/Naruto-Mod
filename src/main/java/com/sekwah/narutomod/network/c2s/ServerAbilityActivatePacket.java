@@ -50,7 +50,7 @@ public class ServerAbilityActivatePacket {
                             if (ability.logInChat()) {
                                 player.sendMessage(new TranslatableComponent("jutsu.toggle.perform", new TranslatableComponent(ability.getTranslationKey())).withStyle(ChatFormatting.GREEN), null);
                             }
-                            ability.perform(player, ninjaData);
+                            ability.performServer(player, ninjaData);
                         }
                     } else if(ability.activationType() == Ability.ActivationType.TOGGLE) {
                         ToggleAbilityData abilityTracker = ninjaData.getToogleAbilityData();

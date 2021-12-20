@@ -44,7 +44,7 @@ public class NinjaCapabilityHandler {
                     Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(abilityName);
                     if(event.side.isServer()) {
                         if(ability.handleCost(player, data)) {
-                            ability.perform(player, data);
+                            ability.performServer(player, data);
                         } else {
                             data.getToogleAbilityData().removeAbilityEnded(player, data, ability);
                         }
