@@ -83,7 +83,7 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      * @param ninjaData
      * @param chargeAmount
      */
-    public abstract void perform(Player player, INinjaData ninjaData, int chargeAmount);
+    public abstract void performServer(Player player, INinjaData ninjaData, int chargeAmount);
 
     /**
      *
@@ -97,12 +97,12 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
     }
 
     /**
-     * Do not overwrite this, use {@link Ability#perform(Player, INinjaData, int)}
+     * Do not overwrite this, use {@link Ability#performServer(Player, INinjaData, int)}
      * @param player
      * @param ninjaData
      */
-    public void perform(Player player, INinjaData ninjaData) {
-        this.perform(player, ninjaData, 0);
+    public void performServer(Player player, INinjaData ninjaData) {
+        this.performServer(player, ninjaData, 0);
     }
 
 }
