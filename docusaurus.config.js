@@ -45,9 +45,9 @@ const config = {
         },
         items: [
           {
-            to: '/docs/intro',
+            to: '/docs/recode',
             position: 'left',
-            label: 'Getting Started',
+            label: 'Recode Info',
           },
           //{to: '/blog', label: 'Blog', position: 'left'},
           //{to: '/docs/commands', label: 'Commands', position: 'left'},
