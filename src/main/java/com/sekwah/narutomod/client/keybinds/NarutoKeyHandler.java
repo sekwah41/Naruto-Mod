@@ -116,11 +116,12 @@ public class NarutoKeyHandler {
         int lastKey = (int) (currentJutsuCombo % 10);
         boolean lastKeyHeld = false;
         boolean isPossibleAbilityCharged = currentJutsuComboAbility != null && currentJutsuComboAbility.activationType() == Ability.ActivationType.CHARGED;
+        KeyBindingTickHeld currentKey = null;
 
         // TODO fix keys held states
         if(lastKey > 0 && lastKey < JUTSU_KEYS.size()) {
-            KeyBindingTickHeld key = JUTSU_KEYS.get(lastKey);
-            if(key.isDown()) {
+            currentKey = JUTSU_KEYS.get(lastKey);
+            if(currentKey.isDown()) {
                 lastKeyHeld = true;
             }
             //NarutoMod.LOGGER.info("Key " + lastKey + "key" + key.getName() + " is held: " + key.isCurrentlyHeld() + " held: " + key.heldTicks + " isDown: " + key.isDown());
@@ -129,7 +130,7 @@ public class NarutoKeyHandler {
         }
 
         if(isPossibleAbilityCharged) {
-
+            checkCharging(currentKey, lastKeyHeld);
         } else {
             checkNonCharging();
         }
@@ -139,6 +140,30 @@ public class NarutoKeyHandler {
         for (KeyBindingTickHeld key : JUTSU_KEYS) {
             key.update();
         }
+    }
+
+    private static void checkCharging(KeyBindingTickHeld currentKey, boolean isHoldingLastKey) {
+        if(isHoldingLastKey && currentKey.heldTicks >= NarutoConfig.jutsuKeybindHoldThreshold) {
+            isCurrentlyChargingAbility = true;
+            NarutoMod.LOGGER.info("Charging ability " + currentJutsuComboAbility);
+        } else if(!isHoldingLastKey) {
+            int releaseTicks = currentKey.consumeReleaseDuration();
+            if(isCurrentlyChargingAbility) {
+                NarutoMod.LOGGER.info("Charging ability stopped " + currentJutsuComboAbility + " held for releaseTicks" + releaseTicks);
+            } else {
+                NarutoMod.LOGGER.info("Charging ability stopped (minticks) " + currentJutsuComboAbility + " held for releaseTicks" + releaseTicks);
+            }
+            isCurrentlyChargingAbility = false;
+            resetJutsuCasting();
+        }
+        // TODO add logic to trigger starting and stopping an ability. As well as a packet for firing at the min power if charged below the hold threshold.
+    }
+
+    private static void resetJutsuCasting() {
+        ticksSinceLastKey = 0;
+        currentJutsuCombo = 0;
+        currentJutsuComboAbility = null;
+        isCurrentlyChargingAbility = false;
     }
 
     /**
@@ -156,9 +181,7 @@ public class NarutoKeyHandler {
                     //mc.player.sendMessage(new TranslatableComponent("trying.jutsu", currentJutsuCombo), null);
                 }
             }
-
-            ticksSinceLastKey = 0;
-            currentJutsuCombo = 0;
+            resetJutsuCasting();
         }
     }
 }

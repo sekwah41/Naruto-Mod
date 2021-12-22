@@ -6,6 +6,7 @@ import com.sekwah.narutomod.sounds.NarutoSounds;
 import com.sekwah.sekclib.player.PlayerUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
@@ -19,6 +20,10 @@ public class LeapAbility extends Ability {
     @Override
     public boolean logInChat() {
         return false;
+    }
+
+    public SoundEvent castingSound() {
+        return null;
     }
 
     @Override

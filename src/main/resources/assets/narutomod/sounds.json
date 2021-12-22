@@ -27,6 +27,13 @@
     ],
     "subtitle": "narutomod.subtitle.jutsu_seal"
   },
+  "jutsu_cast": {
+    "category": "neutral",
+    "sounds": [
+      "narutomod:jutsu/jutsu_cast"
+    ],
+    "subtitle": "narutomod.subtitle.jutsu_cast"
+  },
   "seal_c": {
     "category": "neutral",
     "sounds": [

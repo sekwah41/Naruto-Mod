@@ -1,6 +1,8 @@
 package com.sekwah.narutomod.abilities;
 
 import com.sekwah.narutomod.capabilities.INinjaData;
+import com.sekwah.narutomod.sounds.NarutoSounds;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -56,6 +58,14 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      */
     public boolean logInChat() {
         return true;
+    }
+
+    /**
+     *
+     * @return sound to play, if null no sound should be played
+     */
+    public SoundEvent castingSound() {
+       return NarutoSounds.JUTSU_CAST.get();
     }
 
     public String getTranslationKey() {
