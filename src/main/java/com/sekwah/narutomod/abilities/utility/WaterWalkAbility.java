@@ -5,6 +5,7 @@ import com.sekwah.narutomod.capabilities.INinjaData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FluidState;
@@ -49,6 +50,11 @@ public class WaterWalkAbility extends Ability {
 
     @Override
     public void handleAbilityEnded(Player player, INinjaData ninjaData, int ticksActive) {
+    }
+
+
+    public SoundEvent castingSound() {
+        return null;
     }
 
     public record WaterChecks(boolean steadyCheck, boolean pushUpFast, boolean pushUpNormal) {}

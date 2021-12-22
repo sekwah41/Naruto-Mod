@@ -22,6 +22,8 @@ public class NarutoSounds {
     public static final RegistryObject<SoundEvent> SEAL_B = register("seal_b");
     public static final RegistryObject<SoundEvent> SEAL_C = register("seal_c");
 
+    public static final RegistryObject<SoundEvent> JUTSU_CAST = register("jutsu_cast");
+
     public static final RegistryObject<SoundEvent> LEAP = register("leap");
 
     public static final RegistryObject<SoundEvent> LONELY_MARCH = register("lonely_march");
