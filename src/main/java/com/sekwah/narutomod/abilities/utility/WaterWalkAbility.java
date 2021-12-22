@@ -48,7 +48,7 @@ public class WaterWalkAbility extends Ability {
     }
 
     @Override
-    public void handleAbilityEnded(Player player, INinjaData ninjaData) {
+    public void handleAbilityEnded(Player player, INinjaData ninjaData, int ticksActive) {
     }
 
     public record WaterChecks(boolean steadyCheck, boolean pushUpFast, boolean pushUpNormal) {}
@@ -67,7 +67,7 @@ public class WaterWalkAbility extends Ability {
     }
 
     @Override
-    public void performServer(Player player, INinjaData ninjaData, int chargeAmount) {
+    public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
         updatePlayerMovement(player);
     }
 

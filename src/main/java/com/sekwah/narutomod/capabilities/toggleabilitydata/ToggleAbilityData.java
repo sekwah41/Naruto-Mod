@@ -42,7 +42,7 @@ public class ToggleAbilityData {
     }
 
     public boolean removeAbilityEnded(Player player, INinjaData ninjaData, Ability ability) {
-        ability.handleAbilityEnded(player, ninjaData);
+        ability.handleAbilityEnded(player, ninjaData, 0);
         if (ability.activationType() == Ability.ActivationType.TOGGLE && ability.logInChat()) {
             player.sendMessage(new TranslatableComponent("jutsu.toggle.disabled", new TranslatableComponent(ability.getTranslationKey())).withStyle(ChatFormatting.RED), null);
         }

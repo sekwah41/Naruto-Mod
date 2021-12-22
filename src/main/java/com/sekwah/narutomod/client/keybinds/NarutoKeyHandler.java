@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.client.keybinds;
 
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.network.PacketHandler;
@@ -34,11 +35,13 @@ public class NarutoKeyHandler {
      * storing it as a giant long string.
      */
     private static long currentJutsuCombo = 0;
+    private static Ability currentJutsuComboAbility = null;
     /**
      * This will limit the jutsu value to 10 keys long
      */
     private static final long MAX_JUTSU_VALUE = 9999999999L;
     private static int ticksSinceLastKey = 0;
+    private static boolean isCurrentlyChargingAbility = false;
 
     private static KeyBindingTickHeld LEAP_KEY;
 
@@ -52,10 +55,10 @@ public class NarutoKeyHandler {
         JUTSU_V_KEY = registerKeyBind("naruto.keys.key2", KeyEvent.VK_V);
         JUTSU_B_KEY = registerKeyBind("naruto.keys.key3", KeyEvent.VK_B);
 
+        JUTSU_KEYS.add(LEAP_KEY);
         JUTSU_KEYS.add(JUTSU_C_KEY);
         JUTSU_KEYS.add(JUTSU_V_KEY);
         JUTSU_KEYS.add(JUTSU_B_KEY);
-        JUTSU_KEYS.add(LEAP_KEY);
 
         LEAP_KEY.registerClickConsumer( () -> {
             Minecraft mc = Minecraft.getInstance();
@@ -85,11 +88,16 @@ public class NarutoKeyHandler {
      * @param i - jutsu key id
      */
     public static void handleJustuKey(int i) {
+        // To cancel accidentally altering the value while the ability is charging
+        if(isCurrentlyChargingAbility) {
+            return;
+        }
         PacketHandler.sendToServer(new ServerJutsuCastingPacket(i));
         ticksSinceLastKey = 0;
         if (currentJutsuCombo < MAX_JUTSU_VALUE) {
             currentJutsuCombo *= 10;
             currentJutsuCombo += i;
+            currentJutsuComboAbility = NarutoAbilities.getAbilityFromCombo(currentJutsuCombo);
         } else {
             NarutoMod.LOGGER.info("Combo too long, ignoring keypress");
         }
@@ -107,17 +115,37 @@ public class NarutoKeyHandler {
 
         int lastKey = (int) (currentJutsuCombo % 10);
         boolean lastKeyHeld = false;
+        boolean isPossibleAbilityCharged = currentJutsuComboAbility != null && currentJutsuComboAbility.activationType() == Ability.ActivationType.CHARGED;
 
         // TODO fix keys held states
-        /*if(lastKey > 0 && lastKey < JUTSU_KEYS.size()) {
+        if(lastKey > 0 && lastKey < JUTSU_KEYS.size()) {
             KeyBindingTickHeld key = JUTSU_KEYS.get(lastKey);
-            key.isCurrentlyHeld();
-            System.out.println(key.heldTicks);
+            if(key.isDown()) {
+                lastKeyHeld = true;
+            }
+            //NarutoMod.LOGGER.info("Key " + lastKey + "key" + key.getName() + " is held: " + key.isCurrentlyHeld() + " held: " + key.heldTicks + " isDown: " + key.isDown());
             // TODO check if above a current held threshold in case animations should be started.
-            lastKeyHeld = true;
-        }*/
+            //lastKeyHeld = true;
+        }
 
-        if(/*!lastKeyHeld &&*/ ticksSinceLastKey > NarutoConfig.jutsuCastDelay) {
+        if(isPossibleAbilityCharged) {
+
+        } else {
+            checkNonCharging();
+        }
+
+        //NarutoMod.LOGGER.info("Value is " + (currentJutsuCombo % 10));
+
+        for (KeyBindingTickHeld key : JUTSU_KEYS) {
+            key.update();
+        }
+    }
+
+    /**
+     * Check the logic if a charging jutsu isn't found or casting.
+     */
+    private static void checkNonCharging() {
+        if(ticksSinceLastKey > NarutoConfig.jutsuCastDelay) {
             NarutoMod.LOGGER.info("Would cast jutsu {}", currentJutsuCombo);
             Minecraft mc = Minecraft.getInstance();
             if(mc.player != null ) {
@@ -131,12 +159,6 @@ public class NarutoKeyHandler {
 
             ticksSinceLastKey = 0;
             currentJutsuCombo = 0;
-        }
-
-        //NarutoMod.LOGGER.info("Value is " + (currentJutsuCombo % 10));
-
-        for (KeyBindingTickHeld key : JUTSU_KEYS) {
-            key.update();
         }
     }
 }
