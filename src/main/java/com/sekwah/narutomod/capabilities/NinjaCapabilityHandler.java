@@ -49,7 +49,7 @@ public class NinjaCapabilityHandler {
                             data.getToogleAbilityData().removeAbilityEnded(player, data, ability);
                         }
                     } else {
-                        ability.performToggleClient(player, data);
+                        if(ability instanceof Ability.Toggled toggleAbility) toggleAbility.performToggleClient(player, data);
                     }
                 });
             });

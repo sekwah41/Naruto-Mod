@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 /**
  * More of a slight speed boost than an actual dash
  */
-public class ChakraChargeAbility extends Ability {
+public class ChakraChargeAbility extends Ability implements Ability.Channeled {
 
     @Override
     public ActivationType activationType() {
@@ -26,12 +26,12 @@ public class ChakraChargeAbility extends Ability {
     }
 
     @Override
-    public void handleAbilityEnded(Player player, INinjaData ninjaData, int ticksActive) {
-        System.out.println("Ability ended");
+    public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
+        System.out.println("CHANNELLING Dash!!!!");
     }
 
     @Override
-    public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
-        System.out.println("CHANNELLING Dash!!!!");
+    public boolean canActivateBelowMinCharge() {
+        return false;
     }
 }
