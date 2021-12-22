@@ -73,22 +73,6 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
     }
 
     /**
-     * This will trigger on the player when they are no longer able to cast the ability or when they re-active
-     * the ability to cancel it.
-     *
-     * For now the toggle abilities will return 0, though will return how long they lasted in the future
-     * e.g. if a jutsu should hurt you more if it was left on for longer.
-     *
-     * This will be triggered on ActivationType.TOGGLE, ActivationType.CHANNELED and ActivationType.CHARGED.
-     *
-     * @param player
-     * @param ninjaData
-     */
-    public void handleAbilityEnded(Player player, INinjaData ninjaData, int ticksActive) {
-
-    }
-
-    /**
      *
      * @param player the entity casting the jutsu. Will just be players for now. Though may be entity in the future.
      * @param ninjaData
@@ -97,23 +81,53 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
     public abstract void performServer(Player player, INinjaData ninjaData, int ticksActive);
 
     /**
-     *
-     * For if abilities need to do anything client side (atm its only triggered with toggle to stop a spam of packets)
-     *
-     * @param player
-     * @param ninjaData
-     */
-    public void performToggleClient(Player player, INinjaData ninjaData) {
-
-    }
-
-    /**
      * Do not overwrite this, use {@link Ability#performServer(Player, INinjaData, int)}
      * @param player
      * @param ninjaData
      */
     public void performServer(Player player, INinjaData ninjaData) {
         this.performServer(player, ninjaData, 0);
+    }
+
+    public interface Toggled {
+
+        /**
+         *
+         * For if abilities need to do anything client side (atm its only triggered with toggle to stop a spam of packets)
+         *
+         * @param player
+         * @param ninjaData
+         */
+        void performToggleClient(Player player, INinjaData ninjaData);
+
+    }
+
+    public interface Channeled {
+
+        /**
+         * If the jutsu is not channeled at all, should the jutsu activate? Stops abilities like the channeling activating for a single tick.
+         *
+         * @return
+         */
+        default boolean canActivateBelowMinCharge() {
+            return true;
+        }
+    }
+
+    public interface HandleEnded {
+        /**
+         * This will trigger on the player when they are no longer able to cast the ability or when they re-active
+         * the ability to cancel it.
+         *
+         * For now the toggle abilities will return 0, though will return how long they lasted in the future
+         * e.g. if a jutsu should hurt you more if it was left on for longer.
+         *
+         * This will be triggered on ActivationType.TOGGLE and ActivationType.CHARGED.
+         *
+         * @param player
+         * @param ninjaData
+         */
+        void handleAbilityEnded(Player player, INinjaData ninjaData, int ticksActive);
     }
 
 }

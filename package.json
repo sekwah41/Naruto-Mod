@@ -8,5 +8,8 @@
     "@auto-it/upload-assets": "10.32.5",
     "auto": "10.32.5",
     "conventional-changelog-angular": "5.0.13"
+  },
+  "scripts": {
+    "changelog-test": "auto changelog --dry-run"
   }
 }

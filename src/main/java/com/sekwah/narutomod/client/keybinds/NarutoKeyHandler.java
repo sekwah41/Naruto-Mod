@@ -144,6 +144,9 @@ public class NarutoKeyHandler {
 
     private static void checkCharging(KeyBindingTickHeld currentKey, boolean isHoldingLastKey) {
         if(isHoldingLastKey && currentKey.heldTicks >= NarutoConfig.jutsuKeybindHoldThreshold) {
+            if(!isCurrentlyChargingAbility) {
+                NarutoMod.LOGGER.info("Started charging ability " + currentJutsuComboAbility);
+            }
             isCurrentlyChargingAbility = true;
             NarutoMod.LOGGER.info("Charging ability " + currentJutsuComboAbility);
         } else if(!isHoldingLastKey) {

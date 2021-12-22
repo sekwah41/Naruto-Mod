@@ -32,11 +32,6 @@ public class ChakraDashAbility extends Ability {
     }
 
     @Override
-    public void handleAbilityEnded(Player player, INinjaData ninjaData, int ticksActive) {
-        System.out.println("Ability ended");
-    }
-
-    @Override
     public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
         System.out.println("CHANNELLING Dash!!!!");
     }

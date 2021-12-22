@@ -15,7 +15,7 @@ import net.minecraft.world.phys.Vec3;
 /**
  * More of a slight speed boost than an actual dash
  */
-public class WaterWalkAbility extends Ability {
+public class WaterWalkAbility extends Ability implements Ability.Toggled {
 
     @Override
     public ActivationType activationType() {
@@ -48,10 +48,6 @@ public class WaterWalkAbility extends Ability {
         return true;
     }
 
-    @Override
-    public void handleAbilityEnded(Player player, INinjaData ninjaData, int ticksActive) {
-    }
-
 
     public SoundEvent castingSound() {
         return null;
@@ -70,11 +66,6 @@ public class WaterWalkAbility extends Ability {
         boolean pushUpNormal = triggerWaterWalk(player.level, new BlockPos((int) player.getX(), block3, (int) player.getZ()));
 
         return new WaterChecks(steadyCheck, pushUpFast, pushUpNormal);
-    }
-
-    @Override
-    public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
-        updatePlayerMovement(player);
     }
 
     private void updatePlayerMovement(Player player) {
@@ -116,6 +107,11 @@ public class WaterWalkAbility extends Ability {
     public boolean triggerWaterWalk(Level level, BlockPos blockPos) {
         FluidState fluidState = level.getFluidState(blockPos);
         return fluidState.is(Fluids.WATER) || fluidState.is(Fluids.FLOWING_WATER);
+    }
+
+    @Override
+    public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
+        updatePlayerMovement(player);
     }
 
     @Override
