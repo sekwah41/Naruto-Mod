@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.abilities;
 
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.abilities.utility.ChakraChargeAbility;
 import com.sekwah.narutomod.abilities.utility.ChakraDashAbility;
 import com.sekwah.narutomod.abilities.utility.LeapAbility;
 import com.sekwah.narutomod.abilities.utility.WaterWalkAbility;
@@ -32,9 +33,11 @@ public class NarutoAbilities {
 
     public static final RegistryObject<LeapAbility> LEAP = ABILITY.register("leap", LeapAbility::new);
 
-    public static final RegistryObject<ChakraDashAbility> CHAKRA_DASH = ABILITY.register("chakra_dash", ChakraDashAbility::new);
+    //public static final RegistryObject<ChakraDashAbility> CHAKRA_DASH = ABILITY.register("chakra_dash", ChakraDashAbility::new);
 
     public static final RegistryObject<WaterWalkAbility> WATER_WALK = ABILITY.register("water_walk", WaterWalkAbility::new);
+
+    public static final RegistryObject<ChakraChargeAbility> CHAKRA_CHARGE = ABILITY.register("chakra_charge", ChakraChargeAbility::new);
 
     public static void register(IEventBus eventBus) {
         ABILITY.register(eventBus);
@@ -67,6 +70,14 @@ public class NarutoAbilities {
      */
     public static void triggerAbility(ResourceLocation ability) {
         PacketHandler.sendToServer(new ServerAbilityActivatePacket(ability));
+    }
+
+    public static Ability getAbilityFromCombo(long combo) {
+        if(COMBO_MAP.containsKey(combo)) {
+            return ABILITY_REGISTRY.getValue(COMBO_MAP.get(combo));
+        } else {
+            return null;
+        }
     }
 
     public static boolean triggerAbility(long combo) {

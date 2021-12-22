@@ -89,7 +89,7 @@ public class KeyBindingTickHeld extends KeyMapping {
      * @return
      */
     public boolean isCurrentlyHeld() {
-        return heldTicks > 0;
+        return heldTicks > 20 && this.isDown();
     }
 
     @Override
@@ -100,6 +100,9 @@ public class KeyBindingTickHeld extends KeyMapping {
                 this.clickCount = 0;
             }
             hasConsumedClickState = false;
+        }
+        else if(!this.isDown() && down) {
+            this.heldTicks = 0;
         }
 
         super.setDown(down);

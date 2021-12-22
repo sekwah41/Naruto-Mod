@@ -12,9 +12,7 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
     public enum ActivationType {
         INSTANT,
         TOGGLE,
-        // TODO needs implementation to be activatable and handled, they may end up using the same logic
-        //CHANNELED,
-        //CHARGED,
+        CHARGED,
     }
 
     /**
@@ -68,12 +66,15 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      * This will trigger on the player when they are no longer able to cast the ability or when they re-active
      * the ability to cancel it.
      *
+     * For now the toggle abilities will return 0, though will return how long they lasted in the future
+     * e.g. if a jutsu should hurt you more if it was left on for longer.
+     *
      * This will be triggered on ActivationType.TOGGLE, ActivationType.CHANNELED and ActivationType.CHARGED.
      *
      * @param player
      * @param ninjaData
      */
-    public void handleAbilityEnded(Player player, INinjaData ninjaData) {
+    public void handleAbilityEnded(Player player, INinjaData ninjaData, int ticksActive) {
 
     }
 
@@ -81,9 +82,9 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      *
      * @param player the entity casting the jutsu. Will just be players for now. Though may be entity in the future.
      * @param ninjaData
-     * @param chargeAmount
+     * @param ticksActive
      */
-    public abstract void performServer(Player player, INinjaData ninjaData, int chargeAmount);
+    public abstract void performServer(Player player, INinjaData ninjaData, int ticksActive);
 
     /**
      *
