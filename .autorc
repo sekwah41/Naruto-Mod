@@ -14,7 +14,12 @@
         "canary": "./gradlew build discord"
       }
     ],
-    ["conventional-commits", { "preset": "angular" }],
+    ["conventional-commits"],
+    ["omit-commits",
+      {
+        "subject": ["chore(", "docs:", "ci("],
+      }
+    ],
     "released",
     ["upload-assets", ["./build/libs/*.jar"]]
   ],

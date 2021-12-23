@@ -142,6 +142,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@auto-it/omit-commits@npm:^10.32.5":
+  version: 10.32.5
+  resolution: "@auto-it/omit-commits@npm:10.32.5"
+  dependencies:
+    "@auto-it/core": 10.32.5
+    fp-ts: ^2.5.3
+    io-ts: ^2.1.2
+    tslib: 2.1.0
+  checksum: 83e91cc179bd8014092a08cfbe0caf5a22b0d9e6d05823f5d7d8322825c442fc277f73e458e6cba777f985f22af57a80c3f566af04ab823af611f09566d8ee4b
+  languageName: node
+  linkType: hard
+
 "@auto-it/package-json-utils@npm:10.32.5":
   version: 10.32.5
   resolution: "@auto-it/package-json-utils@npm:10.32.5"
@@ -2841,6 +2853,7 @@ resolve@~1.7.1:
     "@auto-it/exec": 10.32.5
     "@auto-it/first-time-contributor": 10.32.5
     "@auto-it/gradle": 10.32.5
+    "@auto-it/omit-commits": ^10.32.5
     "@auto-it/released": 10.32.5
     "@auto-it/upload-assets": 10.32.5
     auto: 10.32.5
