@@ -185,7 +185,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             if(ability != null && ability.activationType() == Ability.ActivationType.CHANNELED) {
                 if(ability.handleCost(player, this, this.ticksChanneled)) {
                     if(ability instanceof Ability.Channeled channeled) {
-                        channeled.handleCharging(player, this, this.ticksChanneled);
+                        channeled.handleChannelling(player, this, this.ticksChanneled);
                     }
                 } else {
                     if(this.ticksChanneled > 0) {
