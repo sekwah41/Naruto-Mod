@@ -10,6 +10,10 @@ That will be high on the priority list once most of the old jutsus are back.
 
 For more info, check the [trello board](https://trello.com/b/qMqwZMkU/naruto-mod).
 
+Some parts may not be added for the christmas release but will be added shortly after and to save time will be partially ported into the new ability system.
+
+The plan is to revamp and add new particle effects and alter parts however trying to get it back up to speed I may port some parts over just to get the content in before re-introducing it.
+
 ## Versioning going forwards
 Rather than following the general Minecraft updating logic (never changing the 1.x.x). I will follow the general software versioning logic to help with other modders making addons. For those who don't know what this means, versions are major.minor.patch and I have provided a mini summary of those below.
 ### What do these mean?
