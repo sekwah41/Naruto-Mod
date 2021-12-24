@@ -60,11 +60,6 @@ public class ServerAbilityChannelPacket {
                             ninjaData.setCurrentlyChanneledAbility(player, ability);
                         } else if (msg.status == ChannelStatus.STOP) {
                             if(ninjaData.getCurrentlyChanneledAbility().equals(ability.getRegistryName())) {
-                                if(ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
-                                    player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
-                                } else {
-                                    player.sendMessage(new TranslatableComponent("jutsu.channel.stop", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
-                                }
                                 ability.performServer(player, ninjaData, ninjaData.getCurrentlyChanneledTicks());
                                 ninjaData.setCurrentlyChanneledAbility(player, null);
                             }
