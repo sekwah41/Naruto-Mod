@@ -21,18 +21,23 @@ public class ChakraChargeAbility extends Ability implements Ability.Channeled {
 
     @Override
     public boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount) {
-        System.out.println("Check Cost!!!");
+        // This jutsu can always be cast
         return true;
     }
 
     @Override
     public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
-        System.out.println("CHANNELLING Dash!!!!");
+        // Add particle effects n stuff
     }
+
 
     @Override
     public void handleChannelling(Player player, INinjaData ninjaData, int ticksChanneled) {
-        System.out.println("Channelling");
+       if(player.isSprinting() || player.isOnGround()) {
+           ninjaData.addChakra(0.2f);
+       } else {
+           ninjaData.addChakra(1f);
+       }
     }
 
     @Override

@@ -12,6 +12,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -128,6 +129,16 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
+    public void addChakra(float amount) {
+        this.chakra = Math.min(Math.max(this.chakra + amount, 0), maxChakra);
+    }
+
+    @Override
+    public void addStamina(float amount) {
+        this.stamina = Math.min(Math.max(this.stamina + amount, 0), maxStamina);
+    }
+
+    @Override
     public ResourceLocation getCurrentlyChanneledAbility() {
         return this.currentlyChanneled;
     }
@@ -140,6 +151,9 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Override
     public void setCurrentlyChanneledAbility(Player player, Ability ability) {
         if(ability != null) {
+            if(ability.castingSound() != null) {
+                player.getLevel().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
+            }
             if(ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
                 player.sendMessage(new TranslatableComponent("jutsu.charge.start", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
             } else {
