@@ -175,7 +175,7 @@ public class NarutoKeyHandler {
      */
     private static void checkNonCharging() {
         if(ticksSinceLastKey > NarutoConfig.jutsuCastDelay) {
-            NarutoMod.LOGGER.info("Would cast jutsu {}", currentJutsuCombo);
+            //NarutoMod.LOGGER.info("Would cast jutsu {}", currentJutsuCombo);
             Minecraft mc = Minecraft.getInstance();
             if(mc.player != null ) {
                 NarutoMod.LOGGER.debug("Casting jutsu {}", currentJutsuCombo);

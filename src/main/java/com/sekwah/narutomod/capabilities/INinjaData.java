@@ -16,6 +16,8 @@ public interface INinjaData extends INBTSerializable<Tag> {
     void setStamina(float amount);
     void useChakra(float amount, int cooldown);
     void useStamina(float amount, int cooldown);
+    void addChakra(float amount);
+    void addStamina(float amount);
 
     ResourceLocation getCurrentlyChanneledAbility();
     int getCurrentlyChanneledTicks();
