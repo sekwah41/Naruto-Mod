@@ -36,7 +36,7 @@ public class ToggleAbilityData {
 
     public boolean addAbilityStarted(Player player, INinjaData ninjaData, Ability ability) {
         if (ability.activationType() == Ability.ActivationType.TOGGLE && ability.logInChat()) {
-            player.sendMessage(new TranslatableComponent("jutsu.toggle.enabled", new TranslatableComponent(ability.getTranslationKey())).withStyle(ChatFormatting.GREEN), null);
+            player.sendMessage(new TranslatableComponent("jutsu.toggle.enabled", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
         }
         return this.addAbility(ability.getRegistryName());
     }
@@ -44,7 +44,7 @@ public class ToggleAbilityData {
     public boolean removeAbilityEnded(Player player, INinjaData ninjaData, Ability ability) {
         if(ability instanceof Ability.HandleEnded endedAbility) endedAbility.handleAbilityEnded(player, ninjaData, 0);
         if (ability.activationType() == Ability.ActivationType.TOGGLE && ability.logInChat()) {
-            player.sendMessage(new TranslatableComponent("jutsu.toggle.disabled", new TranslatableComponent(ability.getTranslationKey())).withStyle(ChatFormatting.RED), null);
+            player.sendMessage(new TranslatableComponent("jutsu.toggle.disabled", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
         }
         return this.removeAbility(ability.getRegistryName());
     }

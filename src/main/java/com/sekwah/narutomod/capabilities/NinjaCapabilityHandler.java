@@ -38,7 +38,7 @@ public class NinjaCapabilityHandler {
                     data.setStamina(data.getMaxStamina());
                 }
                 if(event.side.isServer()) {
-                    data.updateChakra();
+                    data.updateData();
                 }
                 data.getToogleAbilityData().getAbilitiesHashSet().forEach(abilityName -> {
                     Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(abilityName);

@@ -126,6 +126,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Override
     public void setCurrentlyChanneledAbility(ResourceLocation ability) {
         this.currentlyChanneled = ability;
+        this.ticksChanneled = 0;
     }
 
     @Override
@@ -134,7 +135,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
-    public void updateChakra() {
+    public void updateData() {
         if(this.staminaRegenInfo.canRegen()) {
             this.stamina += staminaRegenInfo.regenRate;
         }
@@ -143,6 +144,10 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         }
         this.stamina = Math.min(Math.max(this.stamina, 0), maxStamina);
         this.chakra = Math.min(Math.max(this.chakra, 0), maxChakra);
+
+        if(this.currentlyChanneled != null) {
+            this.ticksChanneled++;
+        }
     }
 
     @Override

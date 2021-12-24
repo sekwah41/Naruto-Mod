@@ -14,7 +14,7 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
     public enum ActivationType {
         INSTANT,
         TOGGLE,
-        CHARGED,
+        CHANNELED,
     }
 
     /**
@@ -25,6 +25,11 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
         return -1;
     }
 
+    /**
+     * When returning different activation types make sure you have the correct methods implemented otherwise certain things may not happen
+     * see {@link Toggled} and {@link Channeled}
+     * @return
+     */
     public abstract ActivationType activationType();
 
     /**
@@ -33,6 +38,10 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      * Handle the activation message in perform.
      *
      * In channeled abilities, this will be triggered every tick. And the charge amount will be increased by 1 each tick.
+     *
+     * If the minticks is allowed then it will just be triggered.
+     *
+     * When the ability can no longer handle the cost it will try to end.
      *
      * @param player
      * @param ninjaData

@@ -7,6 +7,7 @@ import com.sekwah.narutomod.abilities.utility.LeapAbility;
 import com.sekwah.narutomod.abilities.utility.WaterWalkAbility;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.network.c2s.ServerAbilityActivatePacket;
+import com.sekwah.narutomod.network.c2s.ServerAbilityChannelPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -77,6 +78,16 @@ public class NarutoAbilities {
             return ABILITY_REGISTRY.getValue(COMBO_MAP.get(combo));
         } else {
             return null;
+        }
+    }
+
+    public static boolean handleCharging(long combo, ServerAbilityChannelPacket.ChannelStatus channelStatus) {
+        if(COMBO_MAP.containsKey(combo)) {
+            ResourceLocation abilityResource = COMBO_MAP.get(combo);
+            PacketHandler.sendToServer(new ServerAbilityChannelPacket(abilityResource, channelStatus));
+            return true;
+        } else {
+            return false;
         }
     }
 
