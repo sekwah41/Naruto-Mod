@@ -14,7 +14,7 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
     public enum ActivationType {
         INSTANT,
         TOGGLE,
-        CHANNELED,
+        CHANNELED
     }
 
     /**
@@ -39,9 +39,10 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      *
      * In channeled abilities, this will be triggered every tick. And the charge amount will be increased by 1 each tick.
      *
-     * If the minticks is allowed then it will just be triggered.
+     * If this fails and is above 0 for charge amount the last successful will call perform.
      *
-     * When the ability can no longer handle the cost it will try to end.
+     * If channeled and chargeAmount is 0, it will either be a minCast (if enabled) or the stop packet is
+     * received at the same time. If this returns false then perform will not be called.
      *
      * @param player
      * @param ninjaData
@@ -111,6 +112,9 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
 
     }
 
+    /**
+     * Channeled and charged abilities are handled the same way as there is so much overlap.
+     */
     public interface Channeled {
 
         /**
@@ -121,6 +125,27 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
         default boolean canActivateBelowMinCharge() {
             return true;
         }
+
+        /**
+         * If to use the charged translation strings instead of charged.
+         *
+         * This alters if the chat should show the ability as stopped or activated or charged and cast.
+         *
+         * @return
+         */
+        default boolean useChargedMessages() {
+            return false;
+        }
+
+        /**
+         * Call every tick handleCost passes on server side.
+         *
+         * This is the main behavior that seperates a "channeled" ability from a "charged" ability as the behaviors are the same.
+         *  @param player
+         * @param ninjaData
+         * @param ticksChanneled
+         */
+        default void handleCharging(Player player, INinjaData ninjaData, int ticksChanneled) {}
     }
 
     public interface HandleEnded {

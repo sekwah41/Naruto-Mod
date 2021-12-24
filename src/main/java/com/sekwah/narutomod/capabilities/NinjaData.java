@@ -1,12 +1,18 @@
 package com.sekwah.narutomod.capabilities;
 
+import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.abilities.Ability;
+import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.annotation.Sync;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
@@ -29,6 +35,9 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     /**
      * The current ability being charged/channeled
+     *
+     * TODO make this global then expand the channeled logic to be able to handle any visual effects easier.
+     * TODO possibly swap the type of this over to an Ability type so that it needs to be looked up less.
      */
     @Sync(minTicks = 1)
     private ResourceLocation currentlyChanneled;
@@ -119,23 +128,39 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
-    public ResourceLocation currentlyChanneledAbility() {
+    public ResourceLocation getCurrentlyChanneledAbility() {
         return this.currentlyChanneled;
     }
 
     @Override
-    public void setCurrentlyChanneledAbility(ResourceLocation ability) {
-        this.currentlyChanneled = ability;
+    public int getCurrentlyChanneledTicks() {
+        return this.ticksChanneled;
+    }
+
+    @Override
+    public void setCurrentlyChanneledAbility(Player player, Ability ability) {
+        if(ability != null) {
+            if(ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
+                player.sendMessage(new TranslatableComponent("jutsu.charge.start", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
+            } else {
+                player.sendMessage(new TranslatableComponent("jutsu.channel.start", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
+            }
+
+            this.currentlyChanneled = ability.getRegistryName();
+        }
+        else {
+            this.currentlyChanneled = null;
+        }
         this.ticksChanneled = 0;
     }
 
     @Override
-    public ToggleAbilityData getToogleAbilityData() {
+    public ToggleAbilityData getToggleAbilityData() {
         return this.toggleAbilityData;
     }
 
     @Override
-    public void updateData() {
+    public void updateServerData(Player player) {
         if(this.staminaRegenInfo.canRegen()) {
             this.stamina += staminaRegenInfo.regenRate;
         }
@@ -146,6 +171,26 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         this.chakra = Math.min(Math.max(this.chakra, 0), maxChakra);
 
         if(this.currentlyChanneled != null) {
+            Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(this.currentlyChanneled);
+            if(ability != null && ability.activationType() == Ability.ActivationType.CHANNELED) {
+                if(ability.handleCost(player, this, this.ticksChanneled)) {
+                    if(ability instanceof Ability.Channeled channeled) {
+                        channeled.handleCharging(player, this, this.ticksChanneled);
+                    }
+                } else {
+                    if(this.ticksChanneled > 0) {
+                        if(ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
+                            player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
+                        } else {
+                            player.sendMessage(new TranslatableComponent("jutsu.channel.stop", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
+                        }
+                        ability.performServer(player, this, this.ticksChanneled - 1);
+                        this.setCurrentlyChanneledAbility(player, null);
+                    }
+                }
+            } else {
+                NarutoMod.LOGGER.error("Somehow non channeled ability has been set to ninja data {}", this.currentlyChanneled);
+            }
             this.ticksChanneled++;
         }
     }
