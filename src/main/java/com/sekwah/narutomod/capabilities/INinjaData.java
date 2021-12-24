@@ -23,5 +23,5 @@ public interface INinjaData extends INBTSerializable<Tag> {
     /**
      * Handle basic regen and updates for a tick.
      */
-    void updateChakra();
+    void updateData();
 }

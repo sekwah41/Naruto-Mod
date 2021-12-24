@@ -4,11 +4,13 @@ import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
+import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.HashSet;
@@ -49,6 +51,11 @@ public class ServerAbilityActivatePacket {
                         if(ability.handleCost(player, ninjaData)) {
                             if (ability.logInChat()) {
                                 player.sendMessage(new TranslatableComponent("jutsu.toggle.perform", new TranslatableComponent(ability.getTranslationKey())).withStyle(ChatFormatting.GREEN), null);
+                            }
+                            if(ability.castingSound() != null) {
+
+                                player.getLevel().playSound(null,
+                                        player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
                             }
                             ability.performServer(player, ninjaData);
                         }

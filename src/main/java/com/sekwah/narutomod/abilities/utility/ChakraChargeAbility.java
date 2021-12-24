@@ -11,7 +11,7 @@ public class ChakraChargeAbility extends Ability implements Ability.Channeled {
 
     @Override
     public ActivationType activationType() {
-        return ActivationType.CHARGED;
+        return ActivationType.CHANNELED;
     }
 
     @Override

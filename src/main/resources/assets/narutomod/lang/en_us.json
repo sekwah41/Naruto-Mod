@@ -56,6 +56,8 @@
   "jutsu.cast.debug": "Combo entered: %s",
   "jutsu.error.notfound": "Invalid jutsu combo.",
   "narutomod:water_walk": "Water Walking",
+  "narutomod:chakra_charge": "Chakra Charge",
+  "jutsu.channel.needed": "You need to channel %s!",
   "jutsu.toggle.enabled": "You have activated %s!",
   "jutsu.toggle.disabled": "You have deactivated %s!",
   "jutsu.toggle.perform": "%s!"

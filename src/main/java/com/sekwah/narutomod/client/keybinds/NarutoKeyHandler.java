@@ -5,6 +5,7 @@ import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.network.PacketHandler;
+import com.sekwah.narutomod.network.c2s.ServerAbilityChannelPacket;
 import com.sekwah.narutomod.network.c2s.ServerJutsuCastingPacket;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -115,7 +116,7 @@ public class NarutoKeyHandler {
 
         int lastKey = (int) (currentJutsuCombo % 10);
         boolean lastKeyHeld = false;
-        boolean isPossibleAbilityCharged = currentJutsuComboAbility != null && currentJutsuComboAbility.activationType() == Ability.ActivationType.CHARGED;
+        boolean isPossibleAbilityCharged = currentJutsuComboAbility != null && currentJutsuComboAbility.activationType() == Ability.ActivationType.CHANNELED;
         KeyBindingTickHeld currentKey = null;
 
         // TODO fix keys held states
@@ -145,6 +146,7 @@ public class NarutoKeyHandler {
     private static void checkCharging(KeyBindingTickHeld currentKey, boolean isHoldingLastKey) {
         if(isHoldingLastKey && currentKey.heldTicks >= NarutoConfig.jutsuKeybindHoldThreshold) {
             if(!isCurrentlyChargingAbility) {
+                NarutoAbilities.handleCharging(currentJutsuCombo, ServerAbilityChannelPacket.ChannelStatus.START);
                 NarutoMod.LOGGER.info("Started charging ability " + currentJutsuComboAbility);
             }
             isCurrentlyChargingAbility = true;
@@ -152,8 +154,10 @@ public class NarutoKeyHandler {
         } else if(!isHoldingLastKey) {
             int releaseTicks = currentKey.consumeReleaseDuration();
             if(isCurrentlyChargingAbility) {
+                NarutoAbilities.handleCharging(currentJutsuCombo, ServerAbilityChannelPacket.ChannelStatus.STOP);
                 NarutoMod.LOGGER.info("Charging ability stopped " + currentJutsuComboAbility + " held for releaseTicks" + releaseTicks);
             } else {
+                NarutoAbilities.handleCharging(currentJutsuCombo, ServerAbilityChannelPacket.ChannelStatus.MIN_ACTIVATE);
                 NarutoMod.LOGGER.info("Charging ability stopped (minticks) " + currentJutsuComboAbility + " held for releaseTicks" + releaseTicks);
             }
             isCurrentlyChargingAbility = false;

@@ -46,8 +46,7 @@ public class LeapAbility extends Ability {
         float horScale = 2.0f;
         PlayerUtil.setVelocity(player, lookVector.x * horScale, (lookVector.y + 0.8F)
                 , lookVector.z * horScale, true);
-        player.getCommandSenderWorld().playSound(null,
-                player.getX(), player.getY(), player.getZ(),
-                NarutoSounds.LEAP.get(), SoundSource.PLAYERS, 0.5f, 1.0f);
+        player.getLevel().playSound(null,
+                player, NarutoSounds.LEAP.get(), SoundSource.PLAYERS, 0.5f, 1.0f);
     }
 }
