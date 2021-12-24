@@ -56,14 +56,17 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
     public record WaterChecks(boolean steadyCheck, boolean pushUpFast, boolean pushUpNormal) {}
 
     public WaterChecks checkSteadyNormalFastPush(Player player) {
+
+        int blockX = (int)Math.floor(player.getX());
+        int blockZ = (int)Math.floor(player.getZ());
         final int block1 = (int) Math.round(player.getY() - 0.56f);
-        boolean steadyCheck = triggerWaterWalk(player.level, new BlockPos((int) player.getX(), block1, (int) player.getZ()));
+        boolean steadyCheck = triggerWaterWalk(player.level, new BlockPos(blockX, block1, blockZ));
 
         int block2 = (int) Math.round(player.getY());
-        boolean pushUpFast = triggerWaterWalk(player.level, new BlockPos((int) player.getX(), block2, (int) player.getZ()));
+        boolean pushUpFast = triggerWaterWalk(player.level, new BlockPos(blockX, block2, blockZ));
 
         int block3 = (int) Math.round(player.getY() - 0.47f);
-        boolean pushUpNormal = triggerWaterWalk(player.level, new BlockPos((int) player.getX(), block3, (int) player.getZ()));
+        boolean pushUpNormal = triggerWaterWalk(player.level, new BlockPos(blockX, block3, blockZ));
 
         return new WaterChecks(steadyCheck, pushUpFast, pushUpNormal);
     }
