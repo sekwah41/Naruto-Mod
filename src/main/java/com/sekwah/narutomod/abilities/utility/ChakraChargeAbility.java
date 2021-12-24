@@ -31,6 +31,11 @@ public class ChakraChargeAbility extends Ability implements Ability.Channeled {
     }
 
     @Override
+    public void handleChannelling(Player player, INinjaData ninjaData, int ticksChanneled) {
+        System.out.println("Channelling");
+    }
+
+    @Override
     public boolean canActivateBelowMinCharge() {
         return false;
     }

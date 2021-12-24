@@ -145,7 +145,7 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
          * @param ninjaData
          * @param ticksChanneled
          */
-        default void handleCharging(Player player, INinjaData ninjaData, int ticksChanneled) {}
+        default void handleChannelling(Player player, INinjaData ninjaData, int ticksChanneled) {}
     }
 
     public interface HandleEnded {
