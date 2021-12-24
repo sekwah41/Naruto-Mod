@@ -57,24 +57,24 @@ public class ServerAbilityChannelPacket {
                     // Just check if its
                     if (ability.activationType() == Ability.ActivationType.CHANNELED) {
                         if (msg.status == ChannelStatus.START) {
-
+                            ninjaData.setCurrentlyChanneledAbility(player, ability);
                         } else if (msg.status == ChannelStatus.STOP) {
-                            // TODO check if the ability was being channeled before to ensure it wasnt triggered with no charge.
+                            if(ninjaData.getCurrentlyChanneledAbility().equals(ability.getRegistryName())) {
+                                if(ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
+                                    player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
+                                } else {
+                                    player.sendMessage(new TranslatableComponent("jutsu.channel.stop", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
+                                }
+                                ability.performServer(player, ninjaData, ninjaData.getCurrentlyChanneledTicks());
+                                ninjaData.setCurrentlyChanneledAbility(player, null);
+                            }
                         } else if(msg.status == ChannelStatus.MIN_ACTIVATE) {
                             if (ability instanceof Ability.Channeled channeled && channeled.canActivateBelowMinCharge()) {
                                 if(ability.handleCost(player, ninjaData, 0)) {
-
                                 }
                             } else {
                                 player.sendMessage(new TranslatableComponent("jutsu.channel.needed", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
                             }
-                        }
-                        if (ability.handleCost(player, ninjaData, 0)) {
-
-                            /*if (ability.logInChat()) {
-                                player.sendMessage(new TranslatableComponent("jutsu.toggle.perform", new TranslatableComponent(ability.getTranslationKey())).withStyle(ChatFormatting.GREEN), null);
-                            }*/
-                            ability.performServer(player, ninjaData);
                         }
                     }
                 });

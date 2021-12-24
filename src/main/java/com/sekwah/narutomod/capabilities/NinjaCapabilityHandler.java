@@ -38,15 +38,15 @@ public class NinjaCapabilityHandler {
                     data.setStamina(data.getMaxStamina());
                 }
                 if(event.side.isServer()) {
-                    data.updateData();
+                    data.updateServerData(player);
                 }
-                data.getToogleAbilityData().getAbilitiesHashSet().forEach(abilityName -> {
+                data.getToggleAbilityData().getAbilitiesHashSet().forEach(abilityName -> {
                     Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(abilityName);
                     if(event.side.isServer()) {
                         if(ability.handleCost(player, data)) {
                             ability.performServer(player, data);
                         } else {
-                            data.getToogleAbilityData().removeAbilityEnded(player, data, ability);
+                            data.getToggleAbilityData().removeAbilityEnded(player, data, ability);
                         }
                     } else {
                         if(ability instanceof Ability.Toggled toggleAbility) toggleAbility.performToggleClient(player, data);

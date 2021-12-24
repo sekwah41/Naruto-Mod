@@ -1,8 +1,10 @@
 package com.sekwah.narutomod.capabilities;
 
+import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public interface INinjaData extends INBTSerializable<Tag> {
@@ -15,13 +17,11 @@ public interface INinjaData extends INBTSerializable<Tag> {
     void useChakra(float amount, int cooldown);
     void useStamina(float amount, int cooldown);
 
-    ResourceLocation currentlyChanneledAbility();
-    void setCurrentlyChanneledAbility(ResourceLocation ability);
+    ResourceLocation getCurrentlyChanneledAbility();
+    int getCurrentlyChanneledTicks();
+    void setCurrentlyChanneledAbility(Player player, Ability ability);
 
-    ToggleAbilityData getToogleAbilityData();
+    ToggleAbilityData getToggleAbilityData();
 
-    /**
-     * Handle basic regen and updates for a tick.
-     */
-    void updateData();
+    void updateServerData(Player player);
 }

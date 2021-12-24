@@ -4,7 +4,6 @@ import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
-import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -60,7 +59,7 @@ public class ServerAbilityActivatePacket {
                             ability.performServer(player, ninjaData);
                         }
                     } else if(ability.activationType() == Ability.ActivationType.TOGGLE) {
-                        ToggleAbilityData abilityTracker = ninjaData.getToogleAbilityData();
+                        ToggleAbilityData abilityTracker = ninjaData.getToggleAbilityData();
                         HashSet<ResourceLocation> abilities = abilityTracker.getAbilitiesHashSet();
                         if(abilities.contains(ability.getRegistryName())) {
                             // Toggle ability off
@@ -70,9 +69,6 @@ public class ServerAbilityActivatePacket {
                             abilityTracker.addAbilityStarted(player, ninjaData, ability);
                         }
                     }
-
-                    // TODO look into a way to
-
                 });
             });
             ctx.get().setPacketHandled(true);

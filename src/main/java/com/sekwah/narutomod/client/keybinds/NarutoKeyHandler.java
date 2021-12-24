@@ -147,23 +147,20 @@ public class NarutoKeyHandler {
         if(isHoldingLastKey && currentKey.heldTicks >= NarutoConfig.jutsuKeybindHoldThreshold) {
             if(!isCurrentlyChargingAbility) {
                 NarutoAbilities.handleCharging(currentJutsuCombo, ServerAbilityChannelPacket.ChannelStatus.START);
-                NarutoMod.LOGGER.info("Started charging ability " + currentJutsuComboAbility);
             }
             isCurrentlyChargingAbility = true;
-            NarutoMod.LOGGER.info("Charging ability " + currentJutsuComboAbility);
         } else if(!isHoldingLastKey) {
-            int releaseTicks = currentKey.consumeReleaseDuration();
+            // Just saying that the held amount has been handled. Though may want to use in the future.
+            currentKey.consumeReleaseDuration();
             if(isCurrentlyChargingAbility) {
                 NarutoAbilities.handleCharging(currentJutsuCombo, ServerAbilityChannelPacket.ChannelStatus.STOP);
-                NarutoMod.LOGGER.info("Charging ability stopped " + currentJutsuComboAbility + " held for releaseTicks" + releaseTicks);
-            } else {
+                resetJutsuCasting();
+            } else if(ticksSinceLastKey > NarutoConfig.jutsuCastDelay){
                 NarutoAbilities.handleCharging(currentJutsuCombo, ServerAbilityChannelPacket.ChannelStatus.MIN_ACTIVATE);
-                NarutoMod.LOGGER.info("Charging ability stopped (minticks) " + currentJutsuComboAbility + " held for releaseTicks" + releaseTicks);
+                resetJutsuCasting();
             }
             isCurrentlyChargingAbility = false;
-            resetJutsuCasting();
         }
-        // TODO add logic to trigger starting and stopping an ability. As well as a packet for firing at the min power if charged below the hold threshold.
     }
 
     private static void resetJutsuCasting() {
