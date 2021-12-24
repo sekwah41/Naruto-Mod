@@ -149,6 +149,16 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             this.currentlyChanneled = ability.getRegistryName();
         }
         else {
+            if(this.currentlyChanneled != null) {
+                Ability currentAbility = NarutoAbilities.ABILITY_REGISTRY.getValue(this.currentlyChanneled);
+                if(currentAbility != null) {
+                    if(currentAbility instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
+                        player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(currentAbility.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
+                    } else {
+                        player.sendMessage(new TranslatableComponent("jutsu.channel.stop", new TranslatableComponent(currentAbility.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
+                    }
+                }
+            }
             this.currentlyChanneled = null;
         }
         this.ticksChanneled = 0;
@@ -179,11 +189,6 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
                     }
                 } else {
                     if(this.ticksChanneled > 0) {
-                        if(ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
-                            player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
-                        } else {
-                            player.sendMessage(new TranslatableComponent("jutsu.channel.stop", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
-                        }
                         ability.performServer(player, this, this.ticksChanneled - 1);
                         this.setCurrentlyChanneledAbility(player, null);
                     }
