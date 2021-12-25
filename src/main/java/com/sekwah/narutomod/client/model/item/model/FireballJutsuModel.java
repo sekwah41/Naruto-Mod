@@ -62,7 +62,7 @@ public class FireballJutsuModel extends Model
                         .addBox(-5F, -5F, -13F, 10, 10, 26)
                 , PartPose.ZERO);
 
-        return LayerDefinition.create(meshdefinition, 128, 128);
+        return LayerDefinition.create(meshdefinition, 128, 64);
     }
 
     @Override
