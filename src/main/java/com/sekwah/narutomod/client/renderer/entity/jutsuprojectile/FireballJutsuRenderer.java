@@ -2,6 +2,8 @@ package com.sekwah.narutomod.client.renderer.entity.jutsuprojectile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Quaternion;
+import com.mojang.math.Vector3f;
 import com.sekwah.narutomod.client.model.item.model.FireballJutsuModel;
 import com.sekwah.narutomod.client.renderer.NarutoRenderEvents;
 import com.sekwah.narutomod.entity.jutsuprojectile.FireballJutsuEntity;
@@ -10,7 +12,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.projectile.DragonFireball;
 
 
 public class FireballJutsuRenderer extends EntityRenderer<FireballJutsuEntity> {
@@ -24,10 +28,26 @@ public class FireballJutsuRenderer extends EntityRenderer<FireballJutsuEntity> {
    }
 
    @Override
-   public void render(FireballJutsuEntity p_114485_, float p_114486_, float p_114487_, PoseStack p_114488_, MultiBufferSource multiBufferSource, int p_114490_) {
+   public void render(FireballJutsuEntity fireballJutsuEntity, float p_114486_, float partial, PoseStack poseStack, MultiBufferSource multiBufferSource, int p_114490_) {
       VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RENDER_TYPE);
-      this.model.renderToBuffer(p_114488_, vertexconsumer, p_114490_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-      super.render(p_114485_, p_114486_, p_114487_, p_114488_, multiBufferSource, p_114490_);
+      poseStack.pushPose();
+      poseStack.translate(0,fireballJutsuEntity.getBbHeight() / 2f,0);
+      float time = (fireballJutsuEntity.time + partial) * 10.0F;
+      float scaleTime = 2 * 20 * 10;
+      if(time < scaleTime) {
+         float scale = 0.1f + (0.9f - (0.9f * ((scaleTime - time) / scaleTime)));
+         poseStack.scale(scale, scale, scale);
+      }
+      poseStack.mulPose(new Vector3f(1.0F, 0.0F, 0.0F).rotationDegrees(time));
+      poseStack.mulPose(new Vector3f(0.0F, 1.0F, 0.0F).rotationDegrees(time));
+      this.model.renderToBuffer(poseStack, vertexconsumer, p_114490_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+      poseStack.popPose();
+      super.render(fireballJutsuEntity, p_114486_, partial, poseStack, multiBufferSource, p_114490_);
+   }
+
+   @Override
+   protected int getBlockLightLevel(FireballJutsuEntity p_114087_, BlockPos p_114088_) {
+      return 15;
    }
 
    @Override

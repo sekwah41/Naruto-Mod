@@ -38,7 +38,7 @@ public class NarutoEntities {
 
 
     public static final RegistryObject<EntityType<FireballJutsuEntity>> FIREBALL_JUTSU = register("fireball_jutsu",
-            EntityType.Builder.of(FireballJutsuEntity::new, MobCategory.MISC).sized(2F, 2F).clientTrackingRange(4).updateInterval(10));
+            EntityType.Builder.<FireballJutsuEntity>of(FireballJutsuEntity::new, MobCategory.MISC).sized(1.5F, 1.5F).clientTrackingRange(4).updateInterval(10));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String key, EntityType.Builder<T> builder) {
         return ENTITIES.register(key, () -> builder.build(key));
