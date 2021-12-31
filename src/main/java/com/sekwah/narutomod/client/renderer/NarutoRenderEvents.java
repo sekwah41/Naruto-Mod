@@ -2,7 +2,7 @@ package com.sekwah.narutomod.client.renderer;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.block.NarutoBlocks;
-import com.sekwah.narutomod.client.model.item.model.FireballJutsuModel;
+import com.sekwah.narutomod.client.model.jutsu.FireballJutsuModel;
 import com.sekwah.narutomod.client.renderer.entity.*;
 import com.sekwah.narutomod.client.model.item.model.AnbuMaskModel;
 import com.sekwah.narutomod.client.model.item.model.HeadbandModel;

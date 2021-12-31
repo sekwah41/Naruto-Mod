@@ -1,4 +1,4 @@
-package com.sekwah.narutomod.client.model.item.model;
+package com.sekwah.narutomod.client.model.jutsu;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -67,7 +67,11 @@ public class FireballJutsuModel extends Model
 
     @Override
     public void renderToBuffer(PoseStack matrixStack, VertexConsumer vertexConsumer, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
+        matrixStack.pushPose();
+        float scale = 2.4f;
+        matrixStack.scale(scale, scale, scale);
         this.main.render(matrixStack, vertexConsumer, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
+        matrixStack.popPose();
     }
 
 }

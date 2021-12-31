@@ -1,15 +1,17 @@
-package com.sekwah.narutomod.abilities.utility;
+package com.sekwah.narutomod.abilities.jutsus;
 
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
+import com.sekwah.narutomod.entity.jutsuprojectile.FireballJutsuEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 
 /**
  * More of a slight speed boost than an actual dash
  */
-public class FireballAbility extends Ability {
+public class FireballJutsuAbility extends Ability {
 
     @Override
     public ActivationType activationType() {
@@ -33,6 +35,8 @@ public class FireballAbility extends Ability {
 
     @Override
     public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
-        System.out.println("Shoot the damn thing");
+        Vec3 shootSpeed = player.getLookAngle();
+        FireballJutsuEntity fireball = new FireballJutsuEntity(player, shootSpeed.x, shootSpeed.y, shootSpeed.z);
+        player.getLevel().addFreshEntity(fireball);
     }
 }

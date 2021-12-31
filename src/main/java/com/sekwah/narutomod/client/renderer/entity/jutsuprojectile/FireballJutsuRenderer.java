@@ -2,9 +2,8 @@ package com.sekwah.narutomod.client.renderer.entity.jutsuprojectile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
-import com.sekwah.narutomod.client.model.item.model.FireballJutsuModel;
+import com.sekwah.narutomod.client.model.jutsu.FireballJutsuModel;
 import com.sekwah.narutomod.client.renderer.NarutoRenderEvents;
 import com.sekwah.narutomod.entity.jutsuprojectile.FireballJutsuEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -14,7 +13,6 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.projectile.DragonFireball;
 
 
 public class FireballJutsuRenderer extends EntityRenderer<FireballJutsuEntity> {
@@ -33,9 +31,10 @@ public class FireballJutsuRenderer extends EntityRenderer<FireballJutsuEntity> {
       poseStack.pushPose();
       poseStack.translate(0,fireballJutsuEntity.getBbHeight() / 2f,0);
       float time = (fireballJutsuEntity.time + partial) * 10.0F;
-      float scaleTime = 2 * 20 * 10;
+      float scaleTime = FireballJutsuEntity.GROW_TIME * 10;
       if(time < scaleTime) {
-         float scale = 0.1f + (0.9f - (0.9f * ((scaleTime - time) / scaleTime)));
+         float scale = FireballJutsuEntity.INITIAL_SCALE
+                 + (FireballJutsuEntity.GROW_SCALE - (FireballJutsuEntity.GROW_SCALE * ((scaleTime - time) / scaleTime)));
          poseStack.scale(scale, scale, scale);
       }
       poseStack.mulPose(new Vector3f(1.0F, 0.0F, 0.0F).rotationDegrees(time));
