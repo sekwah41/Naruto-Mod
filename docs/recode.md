@@ -5,6 +5,8 @@ For now, I will be pointing all of the mod pages here to keep everything up to d
 For the 1.18+ copies, I have done a complete recode of the mod however reused the old textures models and sounds.
 
 ## Christmas release
+Note: This has been delayed though is almost ready so that I can relax a little more over the Christmas holidays. The first update starting to show the new systems in 1.18 should be coming out in the first week of the new year.
+
 I plan to release a copy around Christmas showing the basics of the new systems minus the animation system.
 That will be high on the priority list once most of the old jutsus are back.
 
