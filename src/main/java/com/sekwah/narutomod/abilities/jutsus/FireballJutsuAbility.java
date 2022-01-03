@@ -42,7 +42,7 @@ public class FireballJutsuAbility extends Ability {
             Vec3 shootSpeed = player.getLookAngle();
             FireballJutsuEntity fireball = new FireballJutsuEntity(player, shootSpeed.x, shootSpeed.y, shootSpeed.z);
             player.getLevel().addFreshEntity(fireball);
-            player.getLevel().playSound(null, player, SoundEvents.GHAST_SHOOT, SoundSource.PLAYERS, 0.5f, 1.0f);
+            player.getLevel().playSound(null, player, SoundEvents.GHAST_SHOOT, SoundSource.PLAYERS, 1f, 1.0f);
         }, 10);
     }
 }

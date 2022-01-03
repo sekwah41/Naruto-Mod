@@ -159,7 +159,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     public void setCurrentlyChanneledAbility(Player player, Ability ability) {
         if(ability != null) {
             if(ability.castingSound() != null) {
-                player.getLevel().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
+                player.getLevel().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 1f, 1.0f);
             }
             if(ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
                 player.sendMessage(new TranslatableComponent("jutsu.charge.start", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
