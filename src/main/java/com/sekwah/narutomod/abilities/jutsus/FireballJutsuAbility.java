@@ -5,6 +5,9 @@ import com.sekwah.narutomod.capabilities.INinjaData;
 import com.sekwah.narutomod.entity.jutsuprojectile.FireballJutsuEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
@@ -35,8 +38,11 @@ public class FireballJutsuAbility extends Ability {
 
     @Override
     public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
-        Vec3 shootSpeed = player.getLookAngle();
-        FireballJutsuEntity fireball = new FireballJutsuEntity(player, shootSpeed.x, shootSpeed.y, shootSpeed.z);
-        player.getLevel().addFreshEntity(fireball);
+        ninjaData.scheduleDelayedTickEvent((delayedPlayer) -> {
+            Vec3 shootSpeed = player.getLookAngle();
+            FireballJutsuEntity fireball = new FireballJutsuEntity(player, shootSpeed.x, shootSpeed.y, shootSpeed.z);
+            player.getLevel().addFreshEntity(fireball);
+            player.getLevel().playSound(null, player, SoundEvents.GHAST_SHOOT, SoundSource.PLAYERS, 0.5f, 1.0f);
+        }, 10);
     }
 }
