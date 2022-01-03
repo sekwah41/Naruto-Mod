@@ -259,7 +259,7 @@ task discordupload {
                 builder.addTextBody("content", "New canary Build")
             } else {
                 builder.addTextBody("content", "New release build\n\n" +
-                        "Current Features: <${project.github}/blob/${branch}/CHANGELOG.md>")
+                        "Current Features: <${project.github}/blob/master/CHANGELOG.md>")
             }
 
             builder.addBinaryBody("file", file(jar.archiveFile).newInputStream(), ContentType.APPLICATION_OCTET_STREAM, jar.archiveName)
