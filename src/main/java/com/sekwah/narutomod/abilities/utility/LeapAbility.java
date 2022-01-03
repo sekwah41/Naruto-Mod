@@ -43,7 +43,7 @@ public class LeapAbility extends Ability {
     @Override
     public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
         Vec3 lookVector = player.getLookAngle();
-        float horScale = 2.0f;
+        float horScale = 2.41f;
         PlayerUtil.setVelocity(player, lookVector.x * horScale, (lookVector.y + 0.8F)
                 , lookVector.z * horScale, true);
         player.getLevel().playSound(null,

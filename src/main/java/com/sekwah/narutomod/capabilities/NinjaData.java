@@ -86,7 +86,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     private RegenInfo chakraRegenInfo = new RegenInfo(0.05f);
-    private RegenInfo staminaRegenInfo = new RegenInfo(0.6f);
+    private RegenInfo staminaRegenInfo = new RegenInfo(0.4f);
 
     private static final String CHAKRA_TAG = "chakra";
     private static final String STAMINA_TAG = "stamina";
