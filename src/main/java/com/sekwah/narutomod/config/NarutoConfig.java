@@ -11,13 +11,15 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 public class NarutoConfig {
 
     public static final String SERVER = "server";
-    public static final String DEBUG = "debug";
+    public static final String CATEGORY_WEAPONS = "weapons";
+
+    // Settings about players
+    public static final String CATEGORY_PLAYER = "player";
+
     public static final String CLIENT = "client";
 
-    public static final String CATEGORY_WEAPONS = "weapons";
     public static final String CATEGORY_UI = "ui";
     public static final String ENERGY_BARS = "energy_bars";
-    public static final String PLAYER = "player";
 
     public static final ForgeConfigSpec MOD_CONFIG;
 
@@ -51,20 +53,18 @@ public class NarutoConfig {
     private static final ForgeConfigSpec.BooleanValue CONFIG_STARTS_AS_NINJA;
     public static boolean startsAsNinja;
 
-    private static final ForgeConfigSpec.DoubleValue CONFIG_CUSTOM_TEST_DOUBLE;
-    public static double customTestDouble;
-
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
 
-        configBuilder.comment("Debug test settings (cauz hot reloading doesnt always work)").push(DEBUG);
-
-        CONFIG_CUSTOM_TEST_DOUBLE = configBuilder.comment("Test Value (Shouldn't do anything, blame sekwah if it does)")
-                .defineInRange("customTestDouble",  0F ,  Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
-
-        configBuilder.pop();
-
+        // ===========================================================
+        // Server Settings
+        // ===========================================================
         configBuilder.comment("Server based settings").push(SERVER);
+
+        configBuilder.comment("Player settings").push(CATEGORY_PLAYER);
+
+        CONFIG_STARTS_AS_NINJA = configBuilder.comment("Does the player start as a ninja by default?")
+                .define("startsAsNinja", true);
 
         configBuilder.comment("Stuff such as regen rates and maximum (will likely change with updates, e.g. stats system)").push(ENERGY_BARS);
 
@@ -75,10 +75,6 @@ public class NarutoConfig {
                 .defineInRange("maxStamina",  100F ,  0d, Integer.MAX_VALUE);
 
         configBuilder.pop();
-
-        configBuilder.comment("Variables for UI").push(CATEGORY_UI);
-        CONFIG_CHAKRA_BAR_DESIGN = configBuilder.comment("Key hold threshold in ticks (20 per second)")
-                .defineInRange("chakraBarDesign", 0, 0,  BarDesigns.BarInfo.values().length);
 
         configBuilder.pop();
 
@@ -106,12 +102,14 @@ public class NarutoConfig {
 
         configBuilder.pop();
 
+        // ===========================================================
+        // Client Settings
+        // ===========================================================
         configBuilder.comment("Client based settings").push(CLIENT);
 
-        configBuilder.comment("Player settings").push(PLAYER);
-
-        CONFIG_STARTS_AS_NINJA = configBuilder.comment("Does the player start as a ninja by default?")
-                .define("startsAsNinja", true);
+        configBuilder.comment("Variables for UI").push(CATEGORY_UI);
+        CONFIG_CHAKRA_BAR_DESIGN = configBuilder.comment("Design for the chara bar")
+                .defineInRange("chakraBarDesign", 0, 0,  BarDesigns.BarInfo.values().length);
 
         configBuilder.pop();
 
@@ -133,8 +131,6 @@ public class NarutoConfig {
         jutsuCastDelay = CONFIG_JUTSU_CAST_DELAY
                 .get();
         startsAsNinja = CONFIG_STARTS_AS_NINJA
-                .get();
-        customTestDouble = CONFIG_CUSTOM_TEST_DOUBLE
                 .get();
     }
 

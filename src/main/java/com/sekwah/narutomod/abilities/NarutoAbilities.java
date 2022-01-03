@@ -1,10 +1,8 @@
 package com.sekwah.narutomod.abilities;
 
 import com.sekwah.narutomod.NarutoMod;
-import com.sekwah.narutomod.abilities.utility.ChakraChargeAbility;
-import com.sekwah.narutomod.abilities.utility.ChakraDashAbility;
-import com.sekwah.narutomod.abilities.utility.LeapAbility;
-import com.sekwah.narutomod.abilities.utility.WaterWalkAbility;
+import com.sekwah.narutomod.abilities.jutsus.FireballJutsuAbility;
+import com.sekwah.narutomod.abilities.utility.*;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.network.c2s.ServerAbilityActivatePacket;
 import com.sekwah.narutomod.network.c2s.ServerAbilityChannelPacket;
@@ -37,6 +35,8 @@ public class NarutoAbilities {
     //public static final RegistryObject<ChakraDashAbility> CHAKRA_DASH = ABILITY.register("chakra_dash", ChakraDashAbility::new);
 
     public static final RegistryObject<WaterWalkAbility> WATER_WALK = ABILITY.register("water_walk", WaterWalkAbility::new);
+
+    public static final RegistryObject<FireballJutsuAbility> FIREBALL = ABILITY.register("fireball", FireballJutsuAbility::new);
 
     public static final RegistryObject<ChakraChargeAbility> CHAKRA_CHARGE = ABILITY.register("chakra_charge", ChakraChargeAbility::new);
 

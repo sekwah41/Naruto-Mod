@@ -45,17 +45,15 @@ archivesBaseName = project.archive
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-//repositories {
-//    mavenLocal()
-//    mavenCentral()
-//    maven {
-//        url 'https://dvs1.progwml6.com/files/maven'
-//    }
+repositories {
 //    maven { url = "https://maven.sekwah.com" }
-//    maven {
-//        url "https://minecraft.curseforge.com/api/maven/"
-//    }
-//}
+    maven {
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
@@ -150,10 +148,9 @@ dependencies {
     //compile "com.sekwah:SekCLib:${sekclib_version}:deobf"
     // Trick intellij to allow for better editing in here for the discord task
     // compile "org.apache.httpcomponents:httpmime:4.5.13"
+    implementation fg.deobf("curse.maven:torohealth-damage-indicators-245733:3556931")
 
-    // compile fg.deobf("curse.maven:neat:${project.neat_fileid}")
-
-    // compile fg.deobf("curse.maven:hwyla:${project.hwyla_fileid}")
+    //implementation fg.deobf("curse.maven:hwyla:${project.hwyla_fileid}")
 
     //include('org.ow2.asm:asm-debug-all:5.2')
 

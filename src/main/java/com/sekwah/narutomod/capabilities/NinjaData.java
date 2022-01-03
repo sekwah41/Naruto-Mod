@@ -1,5 +1,6 @@
 package com.sekwah.narutomod.capabilities;
 
+import com.mojang.datafixers.kinds.Monoid;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
@@ -19,6 +20,9 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.function.Consumer;
 
 public class NinjaData implements INinjaData, ICapabilityProvider {
 
@@ -48,6 +52,9 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     @Sync
     private ToggleAbilityData toggleAbilityData;
+
+
+    private ArrayList<DelayedPlayerTickEvent> delayedTickEvents = new ArrayList<>();
 
     public NinjaData(boolean isServer) {
         if(isServer) {
@@ -185,6 +192,15 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     @Override
     public void updateServerData(Player player) {
+        Iterator<DelayedPlayerTickEvent> iterator = this.delayedTickEvents.iterator();
+        while(iterator.hasNext()) {
+            DelayedPlayerTickEvent event = iterator.next();
+            event.tick();
+            if(event.shouldRun()) {
+                event.run(player);
+                iterator.remove();
+            }
+        }
         if(this.staminaRegenInfo.canRegen()) {
             this.stamina += staminaRegenInfo.regenRate;
         }
@@ -212,6 +228,11 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             }
             this.ticksChanneled++;
         }
+    }
+
+    @Override
+    public void scheduleDelayedTickEvent(Consumer<Player> consumer, int tickDelay) {
+        this.delayedTickEvents.add(new DelayedPlayerTickEvent(consumer, tickDelay));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.entity;
 
 import com.sekwah.narutomod.entity.item.PaperBombEntity;
+import com.sekwah.narutomod.entity.jutsuprojectile.FireballJutsuEntity;
 import com.sekwah.narutomod.entity.projectile.ExplosiveKunaiEntity;
 import com.sekwah.narutomod.entity.projectile.KunaiEntity;
 import com.sekwah.narutomod.entity.projectile.SenbonEntity;
@@ -34,6 +35,10 @@ public class NarutoEntities {
     // func_233608_b_ is updateInterval
     public static final RegistryObject<EntityType<PaperBombEntity>> PAPER_BOMB = register("paper_bomb",
             EntityType.Builder.<PaperBombEntity>of(PaperBombEntity::new, MobCategory.MISC).fireImmune().sized(0.5F, 0.5F).setTrackingRange(10).clientTrackingRange(10));
+
+
+    public static final RegistryObject<EntityType<FireballJutsuEntity>> FIREBALL_JUTSU = register("fireball_jutsu",
+            EntityType.Builder.<FireballJutsuEntity>of(FireballJutsuEntity::new, MobCategory.MISC).sized(1.5F, 1.5F).clientTrackingRange(4).updateInterval(10));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String key, EntityType.Builder<T> builder) {
         return ENTITIES.register(key, () -> builder.build(key));
