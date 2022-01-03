@@ -21,7 +21,7 @@ public class NarutoDamageSource {
      * @return
      */
     public static DamageSource fireball(Entity fireball, @Nullable Entity shooter) {
-        return shooter == null ? (new IndirectEntityDamageSource("onFire", fireball, fireball)).setIsFire().setProjectile() : (new IndirectEntityDamageSource("fireball", fireball, shooter)).setIsFire().setProjectile();
+        return shooter == null ? (new IndirectEntityDamageSource("onFire", fireball, fireball)).setProjectile() : (new IndirectEntityDamageSource("fireball", fireball, shooter)).setProjectile();
     }
 
 }
