@@ -7,6 +7,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.INBTSerializable;
 
+import java.util.function.Consumer;
+
 public interface INinjaData extends INBTSerializable<Tag> {
     float getChakra();
     float getMaxChakra();
@@ -26,4 +28,6 @@ public interface INinjaData extends INBTSerializable<Tag> {
     ToggleAbilityData getToggleAbilityData();
 
     void updateServerData(Player player);
+
+    void scheduleDelayedTickEvent(Consumer<Player> consumer, int tickDelay);
 }

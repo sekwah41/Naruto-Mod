@@ -49,10 +49,9 @@ public class ServerAbilityActivatePacket {
                     if (ability.activationType() == Ability.ActivationType.INSTANT) {
                         if(ability.handleCost(player, ninjaData)) {
                             if (ability.logInChat()) {
-                                player.sendMessage(new TranslatableComponent("jutsu.toggle.perform", new TranslatableComponent(ability.getTranslationKey())).withStyle(ChatFormatting.GREEN), null);
+                                player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
                             }
                             if(ability.castingSound() != null) {
-
                                 player.getLevel().playSound(null,
                                         player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
                             }
