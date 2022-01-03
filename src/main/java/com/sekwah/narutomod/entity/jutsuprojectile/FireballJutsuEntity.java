@@ -19,7 +19,7 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
 
     public int time;
     // Ticks in rain before destroying
-    public int rainWeakening = 50;
+    public int lifeSpan = 70;
     // For now flat but may want to alter or make customisable later
     public float explosionPower = 2;
 
@@ -65,13 +65,13 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
 
 
         if (this.isInWaterOrRain()) {
-            rainWeakening--;
-            if (rainWeakening % 5 == 0) {
-                this.playSound(SoundEvents.FIRE_EXTINGUISH, 0.5F, 1.0F);
+            lifeSpan--;
+            if (lifeSpan % 5 == 0) {
+                this.playSound(SoundEvents.FIRE_EXTINGUISH, 1F, 1.0F);
             }
         }
 
-        if (this.isInWater() || rainWeakening-- <= 0) {
+        if (this.isInWater() || lifeSpan-- <= 0) {
 
             if(this.level instanceof ServerLevel serverLevel) {
                 serverLevel.sendParticles(ParticleTypes.CLOUD,
@@ -81,7 +81,7 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
                         100,
                         0.5, 0.2, 0.5, 0);
             }
-            this.playSound(SoundEvents.FIRE_EXTINGUISH, 0.5F, 1.0F);
+            this.playSound(SoundEvents.FIRE_EXTINGUISH, 1F, 1.0F);
             this.discard();
         }
     }
@@ -135,7 +135,7 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
                 }
             }
 
-            this.playSound(SoundEvents.GENERIC_EXPLODE, 0.5f, 1.0f);
+            this.playSound(SoundEvents.GENERIC_EXPLODE, 4f, 1.0f);
 
             this.discard();
         }
