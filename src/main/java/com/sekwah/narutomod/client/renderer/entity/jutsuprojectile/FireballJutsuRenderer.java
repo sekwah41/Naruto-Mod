@@ -37,8 +37,8 @@ public class FireballJutsuRenderer extends EntityRenderer<FireballJutsuEntity> {
                  + (FireballJutsuEntity.GROW_SCALE - (FireballJutsuEntity.GROW_SCALE * ((scaleTime - time) / scaleTime)));
          poseStack.scale(scale, scale, scale);
       }
-      poseStack.mulPose(new Vector3f(1.0F, 0.0F, 0.0F).rotationDegrees(time));
-      poseStack.mulPose(new Vector3f(0.0F, 1.0F, 0.0F).rotationDegrees(time));
+      poseStack.mulPose(new Vector3f(1.0F, 0.0F, 0.0F).rotationDegrees(time * 1.5f));
+      poseStack.mulPose(new Vector3f(0.0F, 1.0F, 0.0F).rotationDegrees(time * 1.5f));
       this.model.renderToBuffer(poseStack, vertexconsumer, p_114490_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
       poseStack.popPose();
       super.render(fireballJutsuEntity, p_114486_, partial, poseStack, multiBufferSource, p_114490_);
