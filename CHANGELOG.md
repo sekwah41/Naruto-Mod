@@ -1,9 +1,5 @@
 # v1.0.0 (Mon Jan 03 2022)
 
-#### 💥 Breaking Change
-
-- refactor: Boosted leap distance around 3 blocks, chakra reg 2/3 original [#97](https://github.com/sekwah41/Naruto-Mod/pull/97) ([@sekwah41](https://github.com/sekwah41))
-
 #### 🚀 Enhancement
 
 - feat: Add fireball jutsu & delayed tick scheduler [#107](https://github.com/sekwah41/Naruto-Mod/pull/107) ([@sekwah41](https://github.com/sekwah41))
@@ -63,6 +59,7 @@
 - feat: Added blank headbands [#97](https://github.com/sekwah41/Naruto-Mod/pull/97) ([@sekwah41](https://github.com/sekwah41))
 - feat: Added Anbu mask [#97](https://github.com/sekwah41/Naruto-Mod/pull/97) ([@sekwah41](https://github.com/sekwah41))
 - feat(item): Paper bombs now spawn fire particles ([@sekwah41](https://github.com/sekwah41))
+- refactor: Boosted leap distance around 3 blocks, chakra reg 2/3 original [#97](https://github.com/sekwah41/Naruto-Mod/pull/97) ([@sekwah41](https://github.com/sekwah41))
 
 #### 🐛 Bug Fix
 
