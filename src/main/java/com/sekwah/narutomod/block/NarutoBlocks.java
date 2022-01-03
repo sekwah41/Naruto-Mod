@@ -34,8 +34,8 @@ public class NarutoBlocks {
             -> new BlockItem(PAPER_BOMB.get(), new Item.Properties().tab(NarutoItems.NINJA_WEAPONS)));
 
     public static final RegistryObject<Block> BONSAI_TREE = BLOCKS.register("bonsai_tree",
-            () -> new RotatableDecorativeBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(SoundType.CROP)
-                    , Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)));
+            () -> new RotatableDecorativeBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.5F).sound(SoundType.CROP)
+                    , Block.box(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D)));
 
     public static final RegistryObject<Item> ITEM_BONSAI_TREE = BLOCK_ITEMS.register("bonsai_tree", ()
             -> new BlockItem(BONSAI_TREE.get(), new Item.Properties().tab(NarutoItems.NINJA_WEAPONS)));
