@@ -50,8 +50,8 @@ public class NarutoConfig {
     private static final ForgeConfigSpec.IntValue CONFIG_CHAKRA_BAR_DESIGN;
     public static int chakraBarDesign;
 
-    private static final ForgeConfigSpec.BooleanValue CONFIG_STARTS_AS_NINJA;
-    public static boolean startsAsNinja;
+    //private static final ForgeConfigSpec.BooleanValue CONFIG_STARTS_AS_NINJA;
+    //public static boolean startsAsNinja;
 
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
@@ -63,8 +63,8 @@ public class NarutoConfig {
 
         configBuilder.comment("Player settings").push(CATEGORY_PLAYER);
 
-        CONFIG_STARTS_AS_NINJA = configBuilder.comment("Does the player start as a ninja by default?")
-                .define("startsAsNinja", true);
+//        CONFIG_STARTS_AS_NINJA = configBuilder.comment("Does the player start as a ninja by default?")
+//                .define("startsAsNinja", true);
 
         configBuilder.comment("Stuff such as regen rates and maximum (will likely change with updates, e.g. stats system)").push(ENERGY_BARS);
 
@@ -130,8 +130,7 @@ public class NarutoConfig {
         chakraBarDesign = CONFIG_CHAKRA_BAR_DESIGN.get();
         jutsuCastDelay = CONFIG_JUTSU_CAST_DELAY
                 .get();
-        startsAsNinja = CONFIG_STARTS_AS_NINJA
-                .get();
+        //startsAsNinja = CONFIG_STARTS_AS_NINJA.get();
     }
 
     @SubscribeEvent

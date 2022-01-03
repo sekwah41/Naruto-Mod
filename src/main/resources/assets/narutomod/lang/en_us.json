@@ -64,5 +64,10 @@
   "jutsu.channel.stop": "You stop channelling %s!",
   "jutsu.channel.needed": "You need to channel %s!",
   "jutsu.toggle.enabled": "You have activated %s!",
-  "jutsu.toggle.disabled": "You have deactivated %s!"
+  "jutsu.toggle.disabled": "You have deactivated %s!",
+  "narutomod.keys.category": "Naruto Mod",
+  "naruto.keys.key1": "Jutsu Key 1",
+  "naruto.keys.key2": "Jutsu Key 2",
+  "naruto.keys.key3": "Jutsu Key 3",
+  "naruto.keys.leap": "Leap"
 }
