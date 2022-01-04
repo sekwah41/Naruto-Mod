@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.abilities.jutsus;
 
 import com.sekwah.narutomod.abilities.Ability;
+import com.sekwah.narutomod.capabilities.CooldownTickEvent;
 import com.sekwah.narutomod.capabilities.INinjaData;
 import com.sekwah.narutomod.entity.jutsuprojectile.FireballJutsuEntity;
 import net.minecraft.ChatFormatting;
@@ -32,6 +33,10 @@ public class FireballJutsuAbility extends Ability {
             player.displayClientMessage(new TranslatableComponent("jutsu.fail.notenoughchakra", new TranslatableComponent(this.getTranslationKey()).withStyle(ChatFormatting.YELLOW)), true);
             return false;
         }
+        // used  to check cooldown
+        if(checkCooldown(player, ninjaData)) {
+            return false;
+        }
         ninjaData.useChakra(30, 30);
         return true;
     }
@@ -43,6 +48,13 @@ public class FireballJutsuAbility extends Ability {
             FireballJutsuEntity fireball = new FireballJutsuEntity(player, shootSpeed.x, shootSpeed.y, shootSpeed.z);
             player.getLevel().addFreshEntity(fireball);
             player.getLevel().playSound(null, player, SoundEvents.GHAST_SHOOT, SoundSource.PLAYERS, 1f, 1.0f);
+            // register cooldown
+            registerCooldown(ninjaData);
         }, 10);
+    }
+
+    @Override
+    public int getCooldown() {
+        return  0;
     }
 }
