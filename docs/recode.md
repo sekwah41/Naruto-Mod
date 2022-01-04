@@ -4,17 +4,20 @@ For now, I will be pointing all of the mod pages here to keep everything up to d
 
 For the 1.18+ copies, I have done a complete recode of the mod however reused the old textures models and sounds.
 
-## Christmas release
-Note: This has been delayed though is almost ready so that I can relax a little more over the Christmas holidays. The first update starting to show the new systems in 1.18 should be coming out in the first week of the new year.
+## Current Content
+A lot is missing vs the 1.7 version however we will be adding it in the coming months.
 
-I plan to release a copy around Christmas showing the basics of the new systems minus the animation system.
-That will be high on the priority list once most of the old jutsus are back.
+For the initial 1.18 release there are some of the items, armour and jutsus.
 
-For more info, check the [trello board](https://trello.com/b/qMqwZMkU/naruto-mod).
+Current Jutsus/Abilities(default key):
+ * Leap (X)
+ * Chakra charge (hold C)
+ * Water Walk (B)
+ * Fireball (CVC)
 
-Some parts may not be added for the christmas release but will be added shortly after and to save time will be partially ported into the new ability system.
+There is currently no GUI in game to find these but I will re-add the `/jutsu list` command soon for convenience.
 
-The plan is to revamp and add new particle effects and alter parts however trying to get it back up to speed I may port some parts over just to get the content in before re-introducing it.
+I will be making dedicated pages for the content but this is a quick summary for now.
 
 ## Versioning going forwards
 Rather than following the general Minecraft updating logic (never changing the 1.x.x). I will follow the general software versioning logic to help with other modders making addons. For those who don't know what this means, versions are major.minor.patch and I have provided a mini summary of those below.
