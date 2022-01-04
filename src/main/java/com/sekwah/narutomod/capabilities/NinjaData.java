@@ -56,6 +56,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
 
     private ArrayList<DelayedPlayerTickEvent> delayedTickEvents = new ArrayList<>();
+    // CooldownTickEvent to follow the same style you have for DelayedPlayerTickEvent
     private HashMap<String, CooldownTickEvent> cooldownTickEvents =  new HashMap<>();
 
     public NinjaData(boolean isServer) {
