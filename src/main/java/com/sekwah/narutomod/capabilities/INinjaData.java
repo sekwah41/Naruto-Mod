@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.INBTSerializable;
 
+import java.util.HashMap;
 import java.util.function.Consumer;
 
 public interface INinjaData extends INBTSerializable<Tag> {
@@ -20,6 +21,8 @@ public interface INinjaData extends INBTSerializable<Tag> {
     void useStamina(float amount, int cooldown);
     void addChakra(float amount);
     void addStamina(float amount);
+
+    HashMap<String, CooldownTickEvent> getCooldownEvents();
 
     ResourceLocation getCurrentlyChanneledAbility();
     int getCurrentlyChanneledTicks();

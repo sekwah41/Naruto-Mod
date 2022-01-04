@@ -1,6 +1,5 @@
 package com.sekwah.narutomod.capabilities;
 
-import com.mojang.datafixers.kinds.Monoid;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
@@ -18,9 +17,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
@@ -55,6 +56,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
 
     private ArrayList<DelayedPlayerTickEvent> delayedTickEvents = new ArrayList<>();
+    private HashMap<String, CooldownTickEvent> cooldownTickEvents =  new HashMap<>();
 
     public NinjaData(boolean isServer) {
         if(isServer) {
@@ -201,6 +203,21 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
                 iterator.remove();
             }
         }
+
+        // Compile list of keys from cooldown map
+        ArrayList<String> completeList = new ArrayList<>();
+        completeList.addAll(cooldownTickEvents.keySet());
+        Iterator<String> completeCooldownIterator =  completeList.iterator();
+        //  loop through to tick and then remove cooldown if complete
+        while(completeCooldownIterator.hasNext()){
+            String name = completeCooldownIterator.next();
+            CooldownTickEvent event = cooldownTickEvents.get(name);
+            event.tick();
+            if (event.isComplete()) {
+                cooldownTickEvents.remove(name);
+            }
+        }
+
         if(this.staminaRegenInfo.canRegen()) {
             this.stamina += staminaRegenInfo.regenRate;
         }
@@ -255,5 +272,10 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         return NinjaCapabilityHandler.NINJA_DATA.orEmpty(cap, holder);
+    }
+
+    @Override
+    public HashMap<String, CooldownTickEvent> getCooldownEvents() {
+        return cooldownTickEvents;
     }
 }
