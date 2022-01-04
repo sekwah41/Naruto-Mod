@@ -7,6 +7,9 @@ For the 1.18+ copies, I have done a complete recode of the mod however reused th
 ## Current Content
 A lot is missing vs the 1.7 version however we will be adding it in the coming months.
 
+This is especially important for anyone planning to do YouTube videos with this.
+Please mention if it's a review that a lot will be missing as we've just started releasing 1.18.
+
 For the initial 1.18 release there are some of the items, armour and jutsus.
 
 Current Jutsus/Abilities(default key):
