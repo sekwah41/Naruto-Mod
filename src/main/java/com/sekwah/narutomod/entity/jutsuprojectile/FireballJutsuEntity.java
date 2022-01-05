@@ -104,6 +104,9 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
             int flameRadius = 12;
             this.level.getEntities(this, this.getBoundingBox().inflate(flameRadius, flameRadius, flameRadius)).forEach(entity -> {
                 double distance = this.position().distanceToSqr(entity.position());
+                if(entity == this.getOwner()) {
+                    distance += 5;
+                }
                 // Remember increasing the division reduces the falloff (I keep accidentally moving it the wrong way)
                 float fireSecs = (float) (8f - (distance / 6f)) * 20;
                 float fireDamage = (float) (12f - (distance / 4f));
