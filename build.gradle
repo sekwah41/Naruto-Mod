@@ -140,7 +140,7 @@ dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.5'
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.10'
 
     implementation 'org.spongepowered:mixin:0.8.5'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
@@ -217,6 +217,12 @@ task deobfJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'deobf'
     from file("LICENSE")
+}
+configurations.all {
+    resolutionStrategy.dependencySubstitution {
+        // For more info see https://medium.com/@jonastm/jdk-17-with-dcevm-and-hotswapagent-4fee7095617a on how to enable for java 17
+        substitute module('cpw.mods:securejarhandler') using module('cpw.mods:securejarhandler:0.9.+') because "Fixes support for DCEVM"
+    }
 }
 
 //publishing {
