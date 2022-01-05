@@ -3,6 +3,7 @@ package com.sekwah.narutomod.abilities.jutsus;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
 import com.sekwah.narutomod.entity.jutsuprojectile.FireballJutsuEntity;
+import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
@@ -41,7 +42,7 @@ public class FireballJutsuAbility extends Ability implements Ability.Cooldown {
             Vec3 shootSpeed = player.getLookAngle();
             FireballJutsuEntity fireball = new FireballJutsuEntity(player, shootSpeed.x, shootSpeed.y, shootSpeed.z);
             player.getLevel().addFreshEntity(fireball);
-            player.getLevel().playSound(null, player, SoundEvents.GHAST_SHOOT, SoundSource.PLAYERS, 1f, 1.0f);
+            player.getLevel().playSound(null, player, NarutoSounds.FIREBALL_SHOOT.get(), SoundSource.PLAYERS, 1f, 1.0f);
         }, 10);
     }
 

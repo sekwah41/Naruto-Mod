@@ -2,6 +2,7 @@ package com.sekwah.narutomod.entity.jutsuprojectile;
 
 import com.sekwah.narutomod.damagesource.NarutoDamageSource;
 import com.sekwah.narutomod.entity.NarutoEntities;
+import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -138,7 +139,7 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
                 }
             }
 
-            this.playSound(SoundEvents.GENERIC_EXPLODE, 4f, 1.0f);
+            this.playSound(NarutoSounds.FIREBALL_EXPLODE.get(), 4f, 1.0f);
 
             this.discard();
         }
