@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.network.c2s;
 
 import com.sekwah.narutomod.abilities.Ability;
+import com.sekwah.narutomod.abilities.IJutsuCooldown;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
@@ -47,7 +48,13 @@ public class ServerAbilityActivatePacket {
 
                     Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(msg.abilityId);
                     if (ability.activationType() == Ability.ActivationType.INSTANT) {
-                        if(ability.handleCost(player, ninjaData)) {
+
+                        boolean canTriggerJutsu = true;
+                        if (ability  instanceof IJutsuCooldown) {
+                            canTriggerJutsu = !((IJutsuCooldown) ability).checkCooldown(player, ninjaData, ability.getTranslationKey());
+                        }
+
+                        if(canTriggerJutsu && ability.handleCost(player, ninjaData)) {
                             if (ability.logInChat()) {
                                 player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
                             }
@@ -56,6 +63,10 @@ public class ServerAbilityActivatePacket {
                                         player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
                             }
                             ability.performServer(player, ninjaData);
+
+                            if (ability  instanceof IJutsuCooldown) {
+                               ((IJutsuCooldown) ability).registerCooldown(ninjaData, ability.getTranslationKey());
+                            }
                         }
                     } else if(ability.activationType() == Ability.ActivationType.TOGGLE) {
                         ToggleAbilityData abilityTracker = ninjaData.getToggleAbilityData();

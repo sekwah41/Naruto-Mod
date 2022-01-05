@@ -2,6 +2,7 @@ package com.sekwah.narutomod.capabilities;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
+import com.sekwah.narutomod.abilities.IJutsuCooldown;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
 import com.sekwah.narutomod.config.NarutoConfig;
@@ -41,7 +42,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     /**
      * The current ability being charged/channeled
-     *
+     * <p>
      * TODO make this global then expand the channeled logic to be able to handle any visual effects easier.
      * TODO possibly swap the type of this over to an Ability type so that it needs to be looked up less.
      */
@@ -57,10 +58,10 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     private ArrayList<DelayedPlayerTickEvent> delayedTickEvents = new ArrayList<>();
     // CooldownTickEvent to follow the same style you have for DelayedPlayerTickEvent
-    private HashMap<String, CooldownTickEvent> cooldownTickEvents =  new HashMap<>();
+    private HashMap<String, CooldownTickEvent> cooldownTickEvents = new HashMap<>();
 
     public NinjaData(boolean isServer) {
-        if(isServer) {
+        if (isServer) {
             this.maxChakra = NarutoConfig.maxChakra;
             this.maxStamina = NarutoConfig.maxStamina;
         }
@@ -77,10 +78,11 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
         /**
          * Tick down when checked
+         *
          * @return if regen should take place
          */
         public boolean canRegen() {
-            if(this.cooldown > 0) {
+            if (this.cooldown > 0) {
                 this.cooldown--;
                 return false;
             }
@@ -160,23 +162,22 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     @Override
     public void setCurrentlyChanneledAbility(Player player, Ability ability) {
-        if(ability != null) {
-            if(ability.castingSound() != null) {
+        if (ability != null) {
+            if (ability.castingSound() != null) {
                 player.getLevel().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
             }
-            if(ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
+            if (ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
                 player.sendMessage(new TranslatableComponent("jutsu.charge.start", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
             } else {
                 player.sendMessage(new TranslatableComponent("jutsu.channel.start", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
             }
 
             this.currentlyChanneled = ability.getRegistryName();
-        }
-        else {
-            if(this.currentlyChanneled != null) {
+        } else {
+            if (this.currentlyChanneled != null) {
                 Ability currentAbility = NarutoAbilities.ABILITY_REGISTRY.getValue(this.currentlyChanneled);
-                if(currentAbility != null) {
-                    if(currentAbility instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
+                if (currentAbility != null) {
+                    if (currentAbility instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
                         player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(currentAbility.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
                     } else {
                         player.sendMessage(new TranslatableComponent("jutsu.channel.stop", new TranslatableComponent(currentAbility.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
@@ -196,10 +197,10 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Override
     public void updateServerData(Player player) {
         Iterator<DelayedPlayerTickEvent> iterator = this.delayedTickEvents.iterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             DelayedPlayerTickEvent event = iterator.next();
             event.tick();
-            if(event.shouldRun()) {
+            if (event.shouldRun()) {
                 event.run(player);
                 iterator.remove();
             }
@@ -208,9 +209,9 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         // Compile list of keys from cooldown map
         ArrayList<String> completeList = new ArrayList<>();
         completeList.addAll(cooldownTickEvents.keySet());
-        Iterator<String> completeCooldownIterator =  completeList.iterator();
+        Iterator<String> completeCooldownIterator = completeList.iterator();
         //  loop through to tick and then remove cooldown if complete
-        while(completeCooldownIterator.hasNext()){
+        while (completeCooldownIterator.hasNext()) {
             String name = completeCooldownIterator.next();
             CooldownTickEvent event = cooldownTickEvents.get(name);
             event.tick();
@@ -219,24 +220,24 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             }
         }
 
-        if(this.staminaRegenInfo.canRegen()) {
+        if (this.staminaRegenInfo.canRegen()) {
             this.stamina += staminaRegenInfo.regenRate;
         }
-        if(this.chakraRegenInfo.canRegen()) {
+        if (this.chakraRegenInfo.canRegen()) {
             this.chakra += chakraRegenInfo.regenRate;
         }
         this.stamina = Math.min(Math.max(this.stamina, 0), maxStamina);
         this.chakra = Math.min(Math.max(this.chakra, 0), maxChakra);
 
-        if(this.currentlyChanneled != null) {
+        if (this.currentlyChanneled != null) {
             Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(this.currentlyChanneled);
-            if(ability != null && ability.activationType() == Ability.ActivationType.CHANNELED) {
+            if (ability != null && ability.activationType() == Ability.ActivationType.CHANNELED) {
                 if(ability.handleCost(player, this, this.ticksChanneled)) {
-                    if(ability instanceof Ability.Channeled channeled) {
+                    if (ability instanceof Ability.Channeled channeled) {
                         channeled.handleChannelling(player, this, this.ticksChanneled);
                     }
                 } else {
-                    if(this.ticksChanneled > 0) {
+                    if (this.ticksChanneled > 0) {
                         ability.performServer(player, this, this.ticksChanneled - 1);
                         this.setCurrentlyChanneledAbility(player, null);
                     }
@@ -263,7 +264,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     @Override
     public void deserializeNBT(Tag tag) {
-        if(tag instanceof CompoundTag compoundTag) {
+        if (tag instanceof CompoundTag compoundTag) {
             this.chakra = compoundTag.getFloat(CHAKRA_TAG);
             this.stamina = compoundTag.getFloat(STAMINA_TAG);
         }

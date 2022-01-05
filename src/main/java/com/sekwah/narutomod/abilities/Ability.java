@@ -29,40 +29,6 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
     }
 
     /**
-     * For now this will be used to determin if a jutsu is on cooldown.
-     * @return
-     */
-    public int getCooldown() {
-        return 0;
-    }
-
-
-    /**
-     * Simple register for the cooldowns.
-     * @param ninjaData
-     */
-    public void registerCooldown(INinjaData ninjaData) {
-        if (getCooldown() > 0)  {
-            ninjaData.getCooldownEvents().put(this.getTranslationKey(), new CooldownTickEvent(getCooldown()));
-        }
-    }
-
-    /**
-     * Check if the cooldown still exists.
-     * @param player
-     * @param ninjaData
-     * @return true if the cooldown exists or false if  there is no  more cooldown.
-     */
-    public  boolean checkCooldown(Player player, INinjaData ninjaData)  {
-        if  (getCooldown() > 0  && ninjaData.getCooldownEvents().containsKey(this.getTranslationKey())) {
-            player.displayClientMessage(new TranslatableComponent("jutsu.fail.cooldown", new TranslatableComponent(this.getTranslationKey()).withStyle(ChatFormatting.YELLOW)), true);
-            return  true;
-        }
-        return false;
-    }
-
-
-    /**
      * When returning different activation types make sure you have the correct methods implemented otherwise certain things may not happen
      * see {@link Toggled} and {@link Channeled}
      * @return
