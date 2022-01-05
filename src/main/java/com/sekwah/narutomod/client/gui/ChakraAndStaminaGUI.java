@@ -65,7 +65,7 @@ public class ChakraAndStaminaGUI extends GuiComponent {
 
         float darkenFactor = 0.25f;
 
-        Color chakraColor = new Color(255,0,0);
+        Color chakraColor = new Color(20,179,255);
         Color staminaColor = new Color(0,255,0);
         int intStaminaColor = ColorUtil.toMCColor(staminaColor).getValue();
         int intChakraColor = ColorUtil.toMCColor(chakraColor).getValue();
