@@ -2,6 +2,7 @@ package com.sekwah.narutomod.capabilities;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
+import com.sekwah.narutomod.abilities.IJutsuCooldown;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
