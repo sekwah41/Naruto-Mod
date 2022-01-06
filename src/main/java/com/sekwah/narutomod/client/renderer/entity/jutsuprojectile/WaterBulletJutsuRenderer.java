@@ -40,11 +40,6 @@ public class WaterBulletJutsuRenderer extends EntityRenderer<WaterBulletJutsuEnt
    }
 
    @Override
-   protected int getBlockLightLevel(WaterBulletJutsuEntity p_114087_, BlockPos p_114088_) {
-      return 15;
-   }
-
-   @Override
    public ResourceLocation getTextureLocation(WaterBulletJutsuEntity p_114482_) {
       return WATER_BULLET_TEX;
    }

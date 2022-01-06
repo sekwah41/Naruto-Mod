@@ -163,11 +163,6 @@ public class WaterBulletJutsuEntity extends AbstractHurtingProjectile {
     }
 
     @Override
-    public float getBrightness() {
-        return 1.0F;
-    }
-
-    @Override
     protected boolean shouldBurn() {
         return false;
     }
