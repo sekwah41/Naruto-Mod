@@ -68,7 +68,7 @@ public class ServerAbilityChannelPacket {
                                 if(ability.handleCost(player, ninjaData, 0)) {
                                 }
                             } else {
-                                player.sendMessage(new TranslatableComponent("jutsu.channel.needed", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), null);
+                                player.sendMessage(new TranslatableComponent("jutsu.channel.needed", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());
                             }
                         }
                     }

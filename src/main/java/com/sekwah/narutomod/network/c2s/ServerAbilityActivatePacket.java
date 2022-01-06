@@ -55,7 +55,7 @@ public class ServerAbilityActivatePacket {
 
                         if(canTriggerJutsu && ability.handleCost(player, ninjaData)) {
                             if (ability.logInChat()) {
-                                player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), null);
+                                player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
                             }
                             if(ability.castingSound() != null) {
                                 player.getLevel().playSound(null,

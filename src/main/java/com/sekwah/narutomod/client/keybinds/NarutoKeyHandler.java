@@ -180,7 +180,7 @@ public class NarutoKeyHandler {
             if(mc.player != null ) {
                 NarutoMod.LOGGER.debug("Casting jutsu {}", currentJutsuCombo);
                 if(!NarutoAbilities.triggerAbility(currentJutsuCombo)) {
-                    mc.player.sendMessage((new TranslatableComponent("jutsu.error.notfound", currentJutsuCombo)).withStyle(ChatFormatting.RED), null);
+                    mc.player.sendMessage((new TranslatableComponent("jutsu.error.notfound", currentJutsuCombo)).withStyle(ChatFormatting.RED), mc.player.getUUID());
                 } else {
                     //mc.player.sendMessage(new TranslatableComponent("trying.jutsu", currentJutsuCombo), null);
                 }
