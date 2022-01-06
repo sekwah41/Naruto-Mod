@@ -23,11 +23,10 @@ https://www.conventionalcommits.org/en/v1.0.0/
 Accepted tags mostly follow the Angular style and are meant to only loosely be followed.
 When commits close an issue refer in the commit description in the following style (Refs #1, #2, #3)
 ## Types available
-* **build**: Changes that affect the build system or external dependencies
-* **ci**: Changes to our CI configuration files and scripts
 * **docs**: Documentation only changes
 * **feat**: A new feature
 * **fix**: A bug fix
+* **chore**: updating grunt tasks etc; no production code change
 * **perf**: A code change that improves performance
 * **refactor**: A code change that neither fixes a bug nor adds a feature
 * **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
@@ -41,5 +40,8 @@ Scopes are only needed if relating to specific features just to make them easier
 _I'll expand the list as I work more on the project._
 * **items** (New items e.g. weapons)
 * **blocks** (New blocks e.g. decoration)
+* **ui** (GUI changes)
+* **deps**: Changes to dependencies
+* **ci**: Changes to continuous integration
 * **abilities** (New abilities e.g. leap or fireballs)
 * **entities** (New mobs e.g. leap or fireballs)
