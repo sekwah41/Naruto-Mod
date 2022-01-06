@@ -15,7 +15,7 @@ import net.minecraft.world.phys.Vec3;
 /**
  * More of a slight speed boost than an actual dash
  */
-public class WaterBulletJutsuAbility extends Ability {
+public class WaterBulletJutsuAbility extends Ability implements Ability.Cooldown {
 
     @Override
     public ActivationType activationType() {
@@ -49,5 +49,10 @@ public class WaterBulletJutsuAbility extends Ability {
             }, 10 + i * 15);
         }
 
+    }
+
+    @Override
+    public int getCooldown() {
+        return 5 * 20;
     }
 }
