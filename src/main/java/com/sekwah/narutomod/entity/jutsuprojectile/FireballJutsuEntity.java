@@ -93,20 +93,20 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
 
         if(this.level instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.FLAME,
-                    this.getX() + (double) (this.random.nextFloat() * this.getBbWidth() * 2.0F) - (double) this.getBbWidth(),
-                    this.getY() + this.getBbHeight() / 2 + (double) (this.random.nextFloat() * this.getBbHeight()),
-                    this.getZ() + (double) (this.random.nextFloat() * this.getBbWidth() * 2.0F) - (double) this.getBbWidth(),
+                    this.getX(),
+                    this.getY(),
+                    this.getZ(),
                     200,
                     this.getBbWidth(), this.getBbWidth(), this.getBbHeight(), 1);
         }
 
         if (!this.level.isClientSide) {
 
-            int flameRadius = 12;
+            int flameRadius = 8;
             this.level.getEntities(this, this.getBoundingBox().inflate(flameRadius, flameRadius, flameRadius)).forEach(entity -> {
                 double distance = this.position().distanceToSqr(entity.position());
                 if(entity == this.getOwner()) {
-                    distance += 5;
+                    distance += 16;
                 }
                 // Remember increasing the division reduces the falloff (I keep accidentally moving it the wrong way)
                 float fireSecs = (float) (8f - (distance / 6f)) * 20;

@@ -10,8 +10,9 @@ import javax.annotation.Nullable;
 
 public class NarutoDamageSource {
 
-    public static DamageSource jutsuProjectile(AbstractHurtingProjectile projectile, @Nullable Entity owner) {
-        return (new IndirectEntityDamageSource("arrow", projectile, owner)).setProjectile();
+    public static DamageSource causeWaterBullet(Entity projectile, @Nullable Entity shooter)
+    {
+        return (new IndirectEntityDamageSource("waterBullet", projectile, (shooter == null ? projectile : shooter))).setMagic();
     }
 
     /**
