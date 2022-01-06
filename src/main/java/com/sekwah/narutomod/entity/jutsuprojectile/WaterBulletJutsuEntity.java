@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class WaterBulletJutsuEntity extends AbstractHurtingProjectile {
 
@@ -63,6 +64,11 @@ public class WaterBulletJutsuEntity extends AbstractHurtingProjectile {
             }
             this.playSound(NarutoSounds.WATER_BULLET_SPLASH.get(), 3f, 1.0f);
             this.discard();
+        }
+        if (this.isInWater()) {
+            Vec3 vec3 = this.getDeltaMovement();
+            // To counteract the slowdown by water in super code
+            this.setDeltaMovement(vec3.add(this.xPower, this.yPower, this.zPower).scale(1f));
         }
     }
 
