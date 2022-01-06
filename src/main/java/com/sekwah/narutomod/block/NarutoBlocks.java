@@ -3,6 +3,7 @@ package com.sekwah.narutomod.block;
 import com.sekwah.narutomod.block.weapons.PaperBombBlock;
 import com.sekwah.narutomod.item.NarutoItems;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -38,7 +39,7 @@ public class NarutoBlocks {
                     , Block.box(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D)));
 
     public static final RegistryObject<Item> ITEM_BONSAI_TREE = BLOCK_ITEMS.register("bonsai_tree", ()
-            -> new BlockItem(BONSAI_TREE.get(), new Item.Properties().tab(NarutoItems.NINJA_WEAPONS)));
+            -> new BlockItem(BONSAI_TREE.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
