@@ -1,7 +1,6 @@
 package com.sekwah.narutomod.network.c2s;
 
 import com.sekwah.narutomod.abilities.Ability;
-import com.sekwah.narutomod.abilities.IJutsuCooldown;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
@@ -50,8 +49,8 @@ public class ServerAbilityActivatePacket {
                     if (ability.activationType() == Ability.ActivationType.INSTANT) {
 
                         boolean canTriggerJutsu = true;
-                        if (ability  instanceof IJutsuCooldown) {
-                            canTriggerJutsu = !((IJutsuCooldown) ability).checkCooldown(player, ninjaData, ability.getTranslationKey());
+                        if (ability  instanceof Ability.Cooldown) {
+                            canTriggerJutsu = !((Ability.Cooldown) ability).checkCooldown(player, ninjaData, ability.getTranslationKey());
                         }
 
                         if(canTriggerJutsu && ability.handleCost(player, ninjaData)) {
@@ -64,8 +63,8 @@ public class ServerAbilityActivatePacket {
                             }
                             ability.performServer(player, ninjaData);
 
-                            if (ability  instanceof IJutsuCooldown) {
-                               ((IJutsuCooldown) ability).registerCooldown(ninjaData, ability.getTranslationKey());
+                            if (ability  instanceof Ability.Cooldown) {
+                               ((Ability.Cooldown) ability).registerCooldown(ninjaData, ability.getTranslationKey());
                             }
                         }
                     } else if(ability.activationType() == Ability.ActivationType.TOGGLE) {
