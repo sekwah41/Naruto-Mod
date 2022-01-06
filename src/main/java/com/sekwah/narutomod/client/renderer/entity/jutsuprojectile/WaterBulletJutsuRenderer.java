@@ -33,6 +33,7 @@ public class WaterBulletJutsuRenderer extends EntityRenderer<WaterBulletJutsuEnt
       poseStack.pushPose();
       poseStack.translate(0, 0.16F, 0);
       poseStack.mulPose(Vector3f.YN.rotationDegrees(Mth.lerp(partialTicks, entity.yRotO, entity.getYRot())));
+      poseStack.mulPose(Vector3f.XN.rotationDegrees(Mth.lerp(partialTicks, entity.xRotO, entity.getXRot())));
       this.model.renderToBuffer(poseStack, vertexconsumer, p_114490_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
       poseStack.popPose();
       super.render(entity, p_114486_, partialTicks, poseStack, multiBufferSource, p_114490_);
