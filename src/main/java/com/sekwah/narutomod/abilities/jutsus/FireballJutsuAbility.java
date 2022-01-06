@@ -1,7 +1,6 @@
 package com.sekwah.narutomod.abilities.jutsus;
 
 import com.sekwah.narutomod.abilities.Ability;
-import com.sekwah.narutomod.abilities.IJutsuCooldown;
 import com.sekwah.narutomod.capabilities.INinjaData;
 import com.sekwah.narutomod.entity.jutsuprojectile.FireballJutsuEntity;
 import net.minecraft.ChatFormatting;
@@ -14,7 +13,7 @@ import net.minecraft.world.phys.Vec3;
 /**
  * More of a slight speed boost than an actual dash
  */
-public class FireballJutsuAbility extends Ability implements IJutsuCooldown {
+public class FireballJutsuAbility extends Ability implements Ability.Cooldown {
 
     @Override
     public ActivationType activationType() {
@@ -48,6 +47,6 @@ public class FireballJutsuAbility extends Ability implements IJutsuCooldown {
 
     @Override
     public int getCooldown() {
-        return 100;
+        return 5 * 20;
     }
 }
