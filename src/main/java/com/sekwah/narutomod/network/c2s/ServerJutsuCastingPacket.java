@@ -5,6 +5,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.GameType;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -34,6 +35,9 @@ public class ServerJutsuCastingPacket {
             ctx.get().enqueueWork(() -> {
                 ServerPlayer player = ctx.get().getSender();
                 if(player != null) {
+                    if(player.gameMode.getGameModeForPlayer() == GameType.SPECTATOR) {
+                        return;
+                    }
                     SoundEvent playSound = switch (msg.jutsuKey) {
                         case 1 -> NarutoSounds.SEAL_A.get();
                         case 2 -> NarutoSounds.SEAL_B.get();
