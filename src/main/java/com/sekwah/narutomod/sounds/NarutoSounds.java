@@ -27,6 +27,9 @@ public class NarutoSounds {
     public static final RegistryObject<SoundEvent> FIREBALL_EXPLODE = register("fireball.explosion");
     public static final RegistryObject<SoundEvent> FIREBALL_SHOOT = register("fireball.shoot");
 
+    public static final RegistryObject<SoundEvent> WATER_BULLET_SHOOT = register("waterbullet.shoot");
+    public static final RegistryObject<SoundEvent> WATER_BULLET_SPLASH = register("waterbullet.splash");
+
     public static final RegistryObject<SoundEvent> LEAP = register("leap");
 
     public static final RegistryObject<SoundEvent> LONELY_MARCH = register("lonely_march");

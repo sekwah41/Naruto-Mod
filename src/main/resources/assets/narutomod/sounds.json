@@ -52,6 +52,33 @@
     ],
     "subtitle": "narutomod.subtitle.fireball.explosion"
   },
+  "waterbullet.shoot": {
+    "sounds": [
+      "liquid/swim5",
+      "liquid/swim6",
+      "liquid/swim7",
+      "liquid/swim8",
+      "liquid/swim9",
+      "liquid/swim10",
+      "liquid/swim11",
+      "liquid/swim12",
+      "liquid/swim13",
+      "liquid/swim14",
+      "liquid/swim15",
+      "liquid/swim16",
+      "liquid/swim17",
+      "liquid/swim18"
+    ],
+    "subtitle": "narutomod.subtitle.waterbullet.shoot"
+  },
+  "waterbullet.splash": {
+    "sounds": [
+      "mob/dolphin/splash1",
+      "mob/dolphin/splash2",
+      "mob/dolphin/splash3"
+    ],
+    "subtitle": "narutomod.subtitle.waterbullet.splash"
+  },
   "sizzle": {
     "sounds": [
       "narutomod:weapons/sizzle"
