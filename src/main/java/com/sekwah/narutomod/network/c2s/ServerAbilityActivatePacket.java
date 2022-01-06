@@ -10,6 +10,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.GameType;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.HashSet;
@@ -43,6 +44,9 @@ public class ServerAbilityActivatePacket {
         public static void handle(ServerAbilityActivatePacket msg, Supplier<NetworkEvent.Context> ctx) {
             ctx.get().enqueueWork(() -> {
                 final ServerPlayer player = ctx.get().getSender();
+                if(player != null && player.gameMode.getGameModeForPlayer() == GameType.SPECTATOR) {
+                    return;
+                }
                 player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
 
                     Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(msg.abilityId);
