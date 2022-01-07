@@ -184,6 +184,5 @@ public class WaterBulletJutsuEntity extends AbstractHurtingProjectile {
             this.yPower = d1 / d3 * 0.2D;
             this.zPower = d2 / d3 * 0.2D;
         }
-
     }
 }
