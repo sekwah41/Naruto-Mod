@@ -10,6 +10,7 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -109,19 +110,21 @@ public class WaterBulletJutsuEntity extends AbstractHurtingProjectile {
 
             int splashRadius = 8;
             this.level.getEntities(this, this.getBoundingBox().inflate(splashRadius, splashRadius, splashRadius)).forEach(entity -> {
-                double distance = this.position().distanceToSqr(entity.position());
-                // Remember increasing the division reduces the falloff (I keep accidentally moving it the wrong way)
-                if(entity != this.getOwner()) {
-                    float damage = (float) (5f - (distance / 4f));
-                    if(damage > 0) {
-                        Entity entity1 = this.getOwner();
-                        entity.hurt(NarutoDamageSource.causeWaterBullet(this, entity1), damage);
-                        if (entity1 instanceof LivingEntity) {
-                            this.doEnchantDamageEffects((LivingEntity)entity1, entity);
+                if(entity instanceof LivingEntity) {
+                    double distance = this.position().distanceToSqr(entity.position());
+                    // Remember increasing the division reduces the falloff (I keep accidentally moving it the wrong way)
+                    if(entity != this.getOwner()) {
+                        float damage = (float) (5f - (distance / 4f));
+                        if(damage > 0) {
+                            Entity entity1 = this.getOwner();
+                            entity.hurt(NarutoDamageSource.causeWaterBullet(this, entity1), damage);
+                            if (entity1 instanceof LivingEntity) {
+                                this.doEnchantDamageEffects((LivingEntity)entity1, entity);
+                            }
                         }
                     }
+                    entity.clearFire();
                 }
-                entity.clearFire();
             });
 
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
