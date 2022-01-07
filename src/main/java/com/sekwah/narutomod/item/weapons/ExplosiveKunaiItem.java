@@ -37,6 +37,7 @@ public class ExplosiveKunaiItem extends KunaiItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         InteractionResultHolder<ItemStack> action = super.use(worldIn, playerIn, handIn);
+        playerIn.getCooldowns().addCooldown(this, 10);
 
         return action;
     }
