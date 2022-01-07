@@ -32,7 +32,7 @@ public class KunaiItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack usedItem = playerIn.getItemInHand(handIn);
-
+        playerIn.getCooldowns().addCooldown(this, 10);
         worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (worldIn.random.nextFloat() * 0.4F + 1.2F) + 0.5F);
         if (!worldIn.isClientSide) {
             AbstractArrow kunaiEntity = createShootingEntity(worldIn, playerIn);
