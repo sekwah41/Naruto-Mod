@@ -17,8 +17,9 @@ Current Jutsus/Abilities(default key):
  * Chakra charge (hold C)
  * Water Walk (B)
  * Fireball (CVC)
+ * Water Bullet (CBV) (coming in 1.1.0)
 
-There is currently no GUI in game to find these but I will re-add the `/jutsu list` command soon for convenience.
+There is currently no GUI in game to find these but I will re-add the `/jutsu list` likely in the next week.
 
 I will be making dedicated pages for the content but this is a quick summary for now.
 
