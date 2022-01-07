@@ -77,14 +77,13 @@ public class RecipeGen extends RecipeProvider {
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
                 .save(recipeConsumer);
 
-        ShapedRecipeBuilder.shaped(NarutoItems.SHURIKEN.get(), 16)
-                .define('I', Items.IRON_INGOT)
-                .define('F', Items.FLINT)
-                .pattern(" F ")
-                .pattern("FIF")
-                .pattern(" F ")
+        ShapedRecipeBuilder.shaped(NarutoItems.SHURIKEN.get(), 4)
+                .define('N', Items.IRON_NUGGET)
+                .pattern(" N ")
+                .pattern("N N")
+                .pattern(" N ")
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
-                .unlockedBy("has_flint", has(Items.FLINT))
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
                 .save(recipeConsumer);
 
         ShapedRecipeBuilder.shaped(NarutoItems.SENBON.get(), 16)
@@ -92,6 +91,7 @@ public class RecipeGen extends RecipeProvider {
                 .pattern("  N")
                 .pattern(" N ")
                 .pattern("N  ")
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
                 .save(recipeConsumer);
 
