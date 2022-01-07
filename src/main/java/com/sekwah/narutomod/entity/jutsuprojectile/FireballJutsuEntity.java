@@ -113,7 +113,9 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
                 float fireDamage = (float) (12f - (distance / 4f));
                 if(fireDamage > 0) {
                     Entity entity1 = this.getOwner();
-                    entity.hurt(NarutoDamageSource.fireball(this, entity1), fireDamage);
+                    if(entity1 instanceof LivingEntity) {
+                        entity.hurt(NarutoDamageSource.fireball(this, entity1), fireDamage);
+                    }
                     if (entity1 instanceof LivingEntity) {
                         this.doEnchantDamageEffects((LivingEntity)entity1, entity);
                     }
