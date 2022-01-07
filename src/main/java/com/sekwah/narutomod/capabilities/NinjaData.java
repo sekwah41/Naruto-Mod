@@ -61,8 +61,8 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     public NinjaData(boolean isServer) {
         if (isServer) {
-            this.maxChakra = NarutoConfig.maxChakra;
-            this.maxStamina = NarutoConfig.maxStamina;
+            this.maxChakra = this.stamina = NarutoConfig.maxChakra;
+            this.maxStamina = this.chakra = NarutoConfig.maxStamina;
         }
         this.toggleAbilityData = new ToggleAbilityData();
     }
