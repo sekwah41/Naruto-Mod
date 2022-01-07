@@ -1,3 +1,8 @@
+---
+sidebar_position: 1
+description: Information about the current state and plans of the re-code.
+---
+
 # Recode Info
 
 For now, I will be pointing all of the mod pages here to keep everything up to date easier.
