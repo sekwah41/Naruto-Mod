@@ -1,3 +1,39 @@
+# v1.1.0 (Sat Jan 08 2022)
+
+#### 🚀 Enhancement
+
+- feat(lang): Added Turkish translations [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@Son-Shinobi](https://github.com/Son-Shinobi))
+- feat(items): Add throwing cooldowns for kunai and shuriken [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- feat(ability): Add water jutsu cooldown [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- feat(ability): Water bullet now rotates based on look pitch [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- feat(abilities): Disabled ability casting in spectator mode [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- feat(abilities): Water bullet jutsu [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- feat(abilities): Improve fireball sound effect subtitles [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- refactor(ability): Change cool-down class name and show seconds left [#109](https://github.com/sekwah41/Naruto-Mod/pull/109) ([@sekwah41](https://github.com/sekwah41))
+- feat: changed to using an interface to identify if I jutsu should have a cooldown [#109](https://github.com/sekwah41/Naruto-Mod/pull/109) ([@DiscultDev](https://github.com/DiscultDev))
+- feat: simple cooldown system for jutsus [#109](https://github.com/sekwah41/Naruto-Mod/pull/109) ([@DiscultDev](https://github.com/DiscultDev))
+
+#### 🐛 Bug Fix
+
+- refactor(entities): Stop aoe damage to non living entities [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- refactor(items): Change shuriken recipe [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- refactor(abilities): Chakra and stamina are now full on respawn [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- refactor(ability): Alter cooldowns [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- fix(ability): Brightness of water bullet [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- fix(ability): Water bullet travels at full speed in water [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- fix(abilities): Jutsu cast messages on severs [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- fix(blocks): Moved bonsai tree to the correct creative tab [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- refactor(ui): Change chakra color [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+- refactor(abilities): Fireball, reduce damage to caster [#110](https://github.com/sekwah41/Naruto-Mod/pull/110) ([@sekwah41](https://github.com/sekwah41))
+
+#### Authors: 3
+
+- Jordan Ellison ([@DiscultDev](https://github.com/DiscultDev))
+- Sekwah ([@sekwah41](https://github.com/sekwah41))
+- Son_Shinobi ([@Son-Shinobi](https://github.com/Son-Shinobi))
+
+---
+
 # v1.0.0 (Mon Jan 03 2022)
 
 #### 🚀 Enhancement
