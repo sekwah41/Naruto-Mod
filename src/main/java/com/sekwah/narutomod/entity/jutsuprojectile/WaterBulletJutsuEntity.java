@@ -29,15 +29,15 @@ public class WaterBulletJutsuEntity extends AbstractHurtingProjectile {
         this.time = 0;
     }
 
-    public WaterBulletJutsuEntity(EntityType<? extends AbstractHurtingProjectile> p_36817_, double p_36818_, double p_36819_, double p_36820_, double p_36821_, double p_36822_, double p_36823_, Level p_36824_) {
-        super(p_36817_, p_36824_);
-        this.moveTo(p_36818_, p_36819_, p_36820_, this.getYRot(), this.getXRot());
+    public WaterBulletJutsuEntity(EntityType<? extends AbstractHurtingProjectile> entityType, double posX, double posY, double posZ, double velX, double velY, double velZ, Level p_36824_) {
+        super(entityType, p_36824_);
+        this.moveTo(posX, posY, posZ, this.getYRot(), this.getXRot());
         this.reapplyPosition();
-        double d0 = Math.sqrt(p_36821_ * p_36821_ + p_36822_ * p_36822_ + p_36823_ * p_36823_);
+        double d0 = Math.sqrt(velX * velX + velY * velY + velZ * velZ);
         if (d0 != 0.0D) {
-            this.xPower = p_36821_ / d0 * 0.2D;
-            this.yPower = p_36822_ / d0 * 0.2D;
-            this.zPower = p_36823_ / d0 * 0.2D;
+            this.xPower = velX / d0 * 0.2D;
+            this.yPower = velY / d0 * 0.2D;
+            this.zPower = velZ / d0 * 0.2D;
         }
 
     }
@@ -130,7 +130,7 @@ public class WaterBulletJutsuEntity extends AbstractHurtingProjectile {
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
 
             if(flag) {
-                int extinguish = 2;
+                int extinguish = 4;
                 for (int x = (int) this.getX() - extinguish; x < (int) this.getX() + extinguish - 1; x++) {
                     for (int y = (int) this.getY() - extinguish + 1; y < (int) this.getY() + extinguish; y++) {
                         for (int z = (int) this.getZ() - extinguish + 1; z < (int) this.getZ() + extinguish; z++) {
