@@ -40,18 +40,20 @@ public class NinjaCapabilityHandler {
                 if(event.side.isServer()) {
                     data.updateServerData(player);
                 }
-                data.getToggleAbilityData().getAbilitiesHashSet().forEach(abilityName -> {
-                    Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(abilityName);
-                    if(event.side.isServer()) {
-                        if(ability.handleCost(player, data)) {
-                            ability.performServer(player, data);
+                if(!player.isSpectator()) {
+                    data.getToggleAbilityData().getAbilitiesHashSet().forEach(abilityName -> {
+                        Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(abilityName);
+                        if(event.side.isServer()) {
+                            if(ability.handleCost(player, data)) {
+                                ability.performServer(player, data);
+                            } else {
+                                data.getToggleAbilityData().removeAbilityEnded(player, data, ability);
+                            }
                         } else {
-                            data.getToggleAbilityData().removeAbilityEnded(player, data, ability);
+                            if(ability instanceof Ability.Toggled toggleAbility) toggleAbility.performToggleClient(player, data);
                         }
-                    } else {
-                        if(ability instanceof Ability.Toggled toggleAbility) toggleAbility.performToggleClient(player, data);
-                    }
-                });
+                    });
+                }
             });
         }
 
