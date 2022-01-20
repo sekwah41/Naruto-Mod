@@ -46,8 +46,9 @@ public class DoubleJumpAbility extends Ability {
                     35,
                     0, 0, 0, 0.6F);
         }
+        ninjaData.getDoubleJumpData().canDoubleJumpServer = false;
         player.fallDistance = 0;
-        // Switch to leap sound
+
         player.getLevel().playSound(null,
                 player, NarutoSounds.DOUBLE_JUMP.get(), SoundSource.PLAYERS, 1f, 1.0f);
     }
