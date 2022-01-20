@@ -30,6 +30,10 @@ public class ShurikenEntity extends AbstractArrow {
         super(NarutoEntities.SHURIKEN.get(), shooter, worldIn);
     }
 
+    public ShurikenEntity(Level level, double x, double y, double z) {
+        super(NarutoEntities.SHURIKEN.get(), x, y, z, level);
+    }
+
     public ShurikenEntity(EntityType<? extends ShurikenEntity> kunaiEntityEntityType, LivingEntity shooter, Level worldIn) {
         super(kunaiEntityEntityType, shooter, worldIn);
     }

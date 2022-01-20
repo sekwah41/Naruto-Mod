@@ -25,6 +25,11 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
         super(NarutoEntities.EXPLOSIVE_KUNAI.get(), shooter, worldIn);
     }
 
+    public ExplosiveKunaiEntity(Level level, double x, double y, double z) {
+        super(NarutoEntities.EXPLOSIVE_KUNAI.get(), x, y, z, level);
+    }
+
+
     @Override
     public void tick() {
         super.tick();
@@ -33,6 +38,7 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
             this.discard();
         }
     }
+
 
     @Override
     protected void onHitEntity(EntityHitResult rayTraceResult) {

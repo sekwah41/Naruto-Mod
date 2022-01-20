@@ -26,6 +26,10 @@ public class SenbonEntity extends AbstractArrow {
         super(kunaiEntityEntityType, shooter, worldIn);
     }
 
+    public SenbonEntity(Level level, double x, double y, double z) {
+        super(NarutoEntities.SENBON.get(), x, y, z, level);
+    }
+
     @Override
     protected SoundEvent getDefaultHitGroundSoundEvent() {
         return NarutoSounds.NEEDLE_HIT.get();
