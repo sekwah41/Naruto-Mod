@@ -33,7 +33,7 @@ public class LocalPlayerMixin extends AbstractClientPlayer {
             this.getCapability(NINJA_DATA).ifPresent(ninjaData -> {
                 DoubleJumpData doubleJumpData = ninjaData.getDoubleJumpData();
                 if(doubleJumpData != null) {
-                    if(doubleJumpData.canDoubleJumpClient) {
+                    if(doubleJumpData.canDoubleJumpClient && doubleJumpData.diffUpdateTicksClient > 5) {
                         doubleJumpData.clientJump();
                         Vec3 movement = this.getDeltaMovement();
                         this.lerpMotion(movement.x, 0.5F, movement.z);
