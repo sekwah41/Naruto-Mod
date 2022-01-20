@@ -8,6 +8,7 @@
     "common.TripWireBlockMixin"
   ],
   "client": [
+    "client.LocalPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

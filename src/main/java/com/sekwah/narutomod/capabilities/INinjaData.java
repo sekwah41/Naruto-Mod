@@ -22,6 +22,8 @@ public interface INinjaData extends INBTSerializable<Tag> {
     void addChakra(float amount);
     void addStamina(float amount);
 
+    DoubleJumpData getDoubleJumpData();
+
     HashMap<String, CooldownTickEvent> getCooldownEvents();
 
     ResourceLocation getCurrentlyChanneledAbility();
@@ -30,7 +32,13 @@ public interface INinjaData extends INBTSerializable<Tag> {
 
     ToggleAbilityData getToggleAbilityData();
 
-    void updateServerData(Player player);
+    void updateDataServer(Player player);
 
     void scheduleDelayedTickEvent(Consumer<Player> consumer, int tickDelay);
+
+    /**
+     * Used to update client tracking information
+     * @param player
+     */
+    void updateDataClient(Player player);
 }
