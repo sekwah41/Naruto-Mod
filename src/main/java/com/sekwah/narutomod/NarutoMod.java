@@ -12,6 +12,7 @@ import com.sekwah.narutomod.commands.NarutoCommands;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
+import com.sekwah.narutomod.item.NarutoDispenseItemBehavior;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.registries.NarutoRegistries;
@@ -75,6 +76,7 @@ public class NarutoMod {
 
     private void setup(FMLCommonSetupEvent event) {
         PacketHandler.init();
+        NarutoDispenseItemBehavior.register();
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
