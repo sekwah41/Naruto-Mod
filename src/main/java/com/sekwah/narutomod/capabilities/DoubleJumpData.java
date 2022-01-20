@@ -29,7 +29,8 @@ public class DoubleJumpData {
     }
 
     public void stuckCheck() {
-        if(this.canDoubleJumpClient != this.canDoubleJumpServer && this.diffUpdateTicksClient++ > 20) {
+        this.diffUpdateTicksClient++;
+        if(this.canDoubleJumpClient != this.canDoubleJumpServer && this.diffUpdateTicksClient > 20) {
             this.canDoubleJumpClient = this.canDoubleJumpServer;
         }
     }
