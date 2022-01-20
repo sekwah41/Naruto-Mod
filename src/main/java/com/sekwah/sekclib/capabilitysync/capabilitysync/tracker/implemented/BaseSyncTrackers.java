@@ -15,5 +15,6 @@ public class BaseSyncTrackers {
         event.registerSyncTracker(float.class, new FloatSyncTracker());
         event.registerSyncTracker(ResourceLocation.class, new ResourceLocationSyncTracker());
         event.registerSyncTracker(String.class, new StringSyncTracker());
+        event.registerSyncTracker(boolean.class, new BoolSyncTracker());
     }
 }

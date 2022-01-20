@@ -40,6 +40,16 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     private float maxStamina;
 
     /**
+     * If the player can double jump, will be updated by underlying values server side.
+     *
+     * Will be true if the player has enough chakra as well as
+     */
+    @Sync(minTicks = 1)
+    private DoubleJumpData doubleJumpData;
+
+    private boolean doubleJumpReady;
+
+    /**
      * The current ability being charged/channeled
      * <p>
      * TODO make this global then expand the channeled logic to be able to handle any visual effects easier.
@@ -65,6 +75,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             this.maxStamina = this.chakra = NarutoConfig.maxStamina;
         }
         this.toggleAbilityData = new ToggleAbilityData();
+        this.doubleJumpData = new DoubleJumpData(false);
     }
 
     class RegenInfo {
@@ -150,6 +161,11 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
+    public DoubleJumpData getDoubleJumpData() {
+        return this.doubleJumpData;
+    }
+
+    @Override
     public ResourceLocation getCurrentlyChanneledAbility() {
         return this.currentlyChanneled;
     }
@@ -194,7 +210,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
-    public void updateServerData(Player player) {
+    public void updateDataServer(Player player) {
         Iterator<DelayedPlayerTickEvent> iterator = this.delayedTickEvents.iterator();
         while (iterator.hasNext()) {
             DelayedPlayerTickEvent event = iterator.next();
@@ -246,11 +262,20 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             }
             this.ticksChanneled++;
         }
+
+        if(player.isOnGround()) {
+            this.doubleJumpData.canDoubleJumpServer = true;
+        }
     }
 
     @Override
     public void scheduleDelayedTickEvent(Consumer<Player> consumer, int tickDelay) {
         this.delayedTickEvents.add(new DelayedPlayerTickEvent(consumer, tickDelay));
+    }
+
+    @Override
+    public void updateDataClient(Player player) {
+        this.doubleJumpData.stuckCheck();
     }
 
     @Override

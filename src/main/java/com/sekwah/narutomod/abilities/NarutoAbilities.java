@@ -43,6 +43,8 @@ public class NarutoAbilities {
 
     public static final RegistryObject<ChakraChargeAbility> CHAKRA_CHARGE = ABILITY.register("chakra_charge", ChakraChargeAbility::new);
 
+    public static final RegistryObject<DoubleJumpAbility> DOUBLE_JUMP = ABILITY.register("double_jump", DoubleJumpAbility::new);
+
     public static void register(IEventBus eventBus) {
         ABILITY.register(eventBus);
     }

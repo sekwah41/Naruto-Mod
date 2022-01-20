@@ -13,7 +13,6 @@ public class KeyBindingTickHeld extends KeyMapping {
 
     int heldTicks = 0;
     private Runnable onClick = null;
-    private Runnable onHeldRelease = null;
 
     public KeyBindingTickHeld(String name, int keyCode, String category) {
         super(name, keyCode, category);

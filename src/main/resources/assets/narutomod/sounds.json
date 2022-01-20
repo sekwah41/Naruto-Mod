@@ -99,5 +99,13 @@
       "narutomod:abilities/leap2"
     ],
     "subtitle": "narutomod.subtitle.leap"
+  },
+  "double_jump": {
+    "sounds": [
+      "narutomod:abilities/doublejump",
+      "narutomod:abilities/doublejump2",
+      "narutomod:abilities/doublejump3"
+    ],
+    "subtitle": "narutomod.subtitle.double_jump"
   }
 }

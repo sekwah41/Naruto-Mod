@@ -33,26 +33,30 @@ public class NinjaCapabilityHandler {
         if(event.phase.equals(TickEvent.Phase.END)) {
             Player player = event.player;
             player.getCapability(NINJA_DATA).ifPresent(data -> {
-                if(player.isCreative()) {
-                    data.setChakra(data.getMaxChakra());
-                    data.setStamina(data.getMaxStamina());
-                }
                 if(event.side.isServer()) {
-                    data.updateServerData(player);
-                }
-                if(!player.isSpectator()) {
-                    data.getToggleAbilityData().getAbilitiesHashSet().forEach(abilityName -> {
-                        Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(abilityName);
-                        if(event.side.isServer()) {
+                    if(player.isCreative()) {
+                        data.setChakra(data.getMaxChakra());
+                        data.setStamina(data.getMaxStamina());
+                    }
+                    data.updateDataServer(player);
+                    if(!player.isSpectator()) {
+                        data.getToggleAbilityData().getAbilitiesHashSet().forEach(abilityName -> {
+                            Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(abilityName);
                             if(ability.handleCost(player, data)) {
                                 ability.performServer(player, data);
                             } else {
                                 data.getToggleAbilityData().removeAbilityEnded(player, data, ability);
                             }
-                        } else {
+                        });
+                    }
+                } else {
+                    data.updateDataClient(player);
+                    if(!player.isSpectator()) {
+                        data.getToggleAbilityData().getAbilitiesHashSet().forEach(abilityName -> {
+                            Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(abilityName);
                             if(ability instanceof Ability.Toggled toggleAbility) toggleAbility.performToggleClient(player, data);
-                        }
-                    });
+                        });
+                    }
                 }
             });
         }
