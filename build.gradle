@@ -11,14 +11,15 @@ buildscript {
         maven { url = 'https://files.minecraftforge.net/maven' }
         maven { url = "https://repo.spongepowered.org/maven" }
         //maven { url = 'https://sizableshrimp.me/maven' }
-        maven {url "https://plugins.gradle.org/m2/"}
+        maven { url = "https://plugins.gradle.org/m2/" }
+        maven { url = "https://maven.parchmentmc.org" }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        //classpath group: 'me.sizableshrimp.parchmenttest', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath "org.spongepowered:mixingradle:0.7+"
         classpath "org.apache.httpcomponents:httpmime:4.5.13"
+        classpath "org.parchmentmc:librarian:1.+"
     }
 }
 plugins {
@@ -29,6 +30,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: "java"
 apply plugin: 'eclipse'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 //apply plugin: 'maven-publish'
 
 // May be able to remove it
@@ -62,7 +64,8 @@ minecraft {
     // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'official', version: '1.18.1'
+    //mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'parchment', version: '2021.12.19-1.18.1'
     //mappings channel: 'parchment', version: '2021.07.21-1.17'
 
     // This is for personal local tests i was doing ignore it ;)
