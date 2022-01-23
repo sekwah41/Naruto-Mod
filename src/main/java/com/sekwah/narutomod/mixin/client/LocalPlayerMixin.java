@@ -5,9 +5,11 @@ import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.abilities.utility.DoubleJumpAbility;
 import com.sekwah.narutomod.capabilities.DoubleJumpData;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
@@ -34,9 +36,15 @@ public class LocalPlayerMixin extends AbstractClientPlayer {
             this.getCapability(NINJA_DATA).ifPresent(ninjaData -> {
                 DoubleJumpData doubleJumpData = ninjaData.getDoubleJumpData();
                 if(doubleJumpData != null) {
-                    if(doubleJumpData.canDoubleJumpClient && doubleJumpData.diffUpdateTicksClient > 5
-                            && ninjaData.getChakra() >= DoubleJumpAbility.CHAKRA_COST
-                            && ninjaData.getStamina() >= DoubleJumpAbility.STAMINA_COST) {
+                    if(doubleJumpData.canDoubleJumpClient && doubleJumpData.diffUpdateTicksClient > 5) {
+                        if(ninjaData.getStamina() < DoubleJumpAbility.STAMINA_COST) {
+                            this.displayClientMessage(new TranslatableComponent("jutsu.fail.notenoughstamina", new TranslatableComponent("ability.double_jump").withStyle(ChatFormatting.YELLOW)), true);
+                            return;
+                        }
+                        if(ninjaData.getChakra() < DoubleJumpAbility.CHAKRA_COST) {
+                            this.displayClientMessage(new TranslatableComponent("jutsu.fail.notenoughchakra", new TranslatableComponent("ability.double_jump").withStyle(ChatFormatting.YELLOW)), true);
+                            return;
+                        }
                         doubleJumpData.clientJump();
                         Vec3 movement = this.getDeltaMovement();
                         this.lerpMotion(movement.x, 0.5F, movement.z);
