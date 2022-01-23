@@ -57,6 +57,7 @@
   "jutsu.fail.notonground": "You must be on the ground to use %s",
   "jutsu.fail.notenoughstamina": "You do not have enough stamina to use %s",
   "jutsu.fail.notenoughchakra": "You do not have enough chakra to use %s",
+  "ability.double_jump": "Double Jump",
   "jutsu.leap": "Leap",
   "jutsu.waterwalk": "Water Walking",
   "jutsu.cast.debug": "Combo entered: %s",
