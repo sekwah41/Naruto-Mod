@@ -10,6 +10,10 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 
 public class DoubleJumpAbility extends Ability {
+
+    public static final float CHAKRA_COST = 2f;
+    public static final float STAMINA_COST = 5f;
+
     @Override
     public ActivationType activationType() {
         return ActivationType.INSTANT;
@@ -31,8 +35,8 @@ public class DoubleJumpAbility extends Ability {
 
     @Override
     public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
-        ninjaData.useChakra(2f, 30);
-        ninjaData.useStamina(5f, 40);
+        ninjaData.useChakra(CHAKRA_COST, 30);
+        ninjaData.useStamina(STAMINA_COST, 40);
 
         if(player.level instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.CLOUD,

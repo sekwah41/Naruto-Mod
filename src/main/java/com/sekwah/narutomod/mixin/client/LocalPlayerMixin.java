@@ -3,6 +3,7 @@ package com.sekwah.narutomod.mixin.client;
 import com.mojang.authlib.GameProfile;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
+import com.sekwah.narutomod.abilities.utility.DoubleJumpAbility;
 import com.sekwah.narutomod.capabilities.DoubleJumpData;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -33,7 +34,9 @@ public class LocalPlayerMixin extends AbstractClientPlayer {
             this.getCapability(NINJA_DATA).ifPresent(ninjaData -> {
                 DoubleJumpData doubleJumpData = ninjaData.getDoubleJumpData();
                 if(doubleJumpData != null) {
-                    if(doubleJumpData.canDoubleJumpClient && doubleJumpData.diffUpdateTicksClient > 5) {
+                    if(doubleJumpData.canDoubleJumpClient && doubleJumpData.diffUpdateTicksClient > 5
+                            && ninjaData.getChakra() >= DoubleJumpAbility.CHAKRA_COST
+                            && ninjaData.getStamina() >= DoubleJumpAbility.STAMINA_COST) {
                         doubleJumpData.clientJump();
                         Vec3 movement = this.getDeltaMovement();
                         this.lerpMotion(movement.x, 0.5F, movement.z);
