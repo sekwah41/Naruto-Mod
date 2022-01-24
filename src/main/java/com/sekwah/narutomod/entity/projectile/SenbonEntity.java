@@ -7,12 +7,11 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 
-public class SenbonEntity extends AbstractArrow {
+public class SenbonEntity extends NoArrowAbstractArrow {
 
     public SenbonEntity(EntityType<? extends SenbonEntity> type, Level worldIn) {
         super(type, worldIn);

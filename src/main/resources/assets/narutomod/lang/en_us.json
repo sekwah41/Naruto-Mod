@@ -1,8 +1,12 @@
 {
   "item.narutomod.kunai":"Kunai",
+  "entity.narutomod.kunai": "Kunai",
   "item.narutomod.shuriken":"Shuriken",
+  "entity.narutomod.shuriken": "Shuriken",
   "item.narutomod.explosive_kunai":"Explosive Kunai",
+  "entity.narutomod.explosive_kunai": "Explosive Kunai",
   "item.narutomod.senbon":"Senbon",
+  "entity.narutomod.senbon": "Senbon",
   "item.narutomod.red_anbu_mask": "Anbu Mask",
   "item.narutomod.yellow_anbu_mask": "Anbu Mask",
   "item.narutomod.green_anbu_mask": "Anbu Mask",
