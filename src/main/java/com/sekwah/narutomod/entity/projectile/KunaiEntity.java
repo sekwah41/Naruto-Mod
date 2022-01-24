@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 
-public class KunaiEntity extends AbstractArrow {
+public class KunaiEntity extends NoArrowAbstractArrow {
 
     public KunaiEntity(EntityType<? extends KunaiEntity> type, Level worldIn) {
         super(type, worldIn);

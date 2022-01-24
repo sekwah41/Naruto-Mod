@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 
-public class ShurikenEntity extends AbstractArrow {
+public class ShurikenEntity extends NoArrowAbstractArrow {
 
     private int prevRotateTicks = 0;
 
