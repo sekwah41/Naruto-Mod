@@ -111,6 +111,11 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
                 // Remember increasing the division reduces the falloff (I keep accidentally moving it the wrong way)
                 float fireSecs = (float) (8f - (distance / 6f)) * 20;
                 float fireDamage = (float) (12f - (distance / 4f));
+
+                if(entity.getRemainingFireTicks() < fireSecs) {
+                    entity.setRemainingFireTicks(Math.round(fireSecs));
+                }
+
                 if(fireDamage > 0) {
                     Entity entity1 = this.getOwner();
                     if(entity1 instanceof LivingEntity) {
@@ -119,9 +124,6 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
                     if (entity1 instanceof LivingEntity) {
                         this.doEnchantDamageEffects((LivingEntity)entity1, entity);
                     }
-                }
-                if(entity.getRemainingFireTicks() < fireSecs) {
-                    entity.setRemainingFireTicks(Math.round(fireSecs));
                 }
             });
 
