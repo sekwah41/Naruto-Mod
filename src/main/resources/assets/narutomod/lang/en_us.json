@@ -58,6 +58,7 @@
   "itemGroup.narutomod_armor": "Ninja Armor",
   "itemGroup.narutomod_headbands": "Ninja Headbands",
   "jutsu.fail.cooldown": "%1$s is on cooldown %2$ss",
+  "jutsu.fail.riding": "You must dismount to use %s",
   "jutsu.fail.notonground": "You must be on the ground to use %s",
   "jutsu.fail.notenoughstamina": "You do not have enough stamina to use %s",
   "jutsu.fail.notenoughchakra": "You do not have enough chakra to use %s",

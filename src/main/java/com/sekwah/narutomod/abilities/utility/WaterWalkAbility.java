@@ -32,8 +32,11 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
     public boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount) {
         WaterChecks checks = this.checkSteadyNormalFastPush(player);
 
-        // TODO fix why this is costing a lot more than it should be (client and server dont match up)
-        // Check if the server actually updates the location or if the player is sending the wrong location and when it chooses what to send the server.
+        if(player.getVehicle() != null) {
+            player.displayClientMessage(new TranslatableComponent("jutsu.fail.riding", new TranslatableComponent("jutsu.waterwalk").withStyle(ChatFormatting.YELLOW)), true);
+            return false;
+        }
+
         float fullCost = 0;
         if (checks.pushUpFast) {
             fullCost += 1f;
