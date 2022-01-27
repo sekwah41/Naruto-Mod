@@ -11,7 +11,7 @@ For the 1.18+ copies, I have done a complete recode of the mod however reused th
 
 ## Tasks & Priorities
 
-You can find an up to date list of tasks and plans [here](https://github.com/users/sekwah41/projects/1/views/1).
+You can find an up to date list of tasks and plans [here](https://github.com/users/sekwah41/projects/1/views/4).
 
 ## Current Content
 A lot is missing vs the 1.7 version however we will be adding it in the coming months.
