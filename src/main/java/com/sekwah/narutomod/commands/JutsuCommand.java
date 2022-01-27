@@ -33,10 +33,12 @@ public class JutsuCommand {
 
                         source.sendSuccess(new TranslatableComponent(entry.getKey().location().toString())
                                 .append(" -")
-                                .append(comboComponent),false);
+                                .append(comboComponent), false);
                     });
-
-                    source.sendSuccess(new TranslatableComponent(""),false);
+                    source.sendSuccess(new TranslatableComponent("naruto.keys.leap")
+                            .append(" - ")
+                            .append(new KeybindComponent("naruto.keys.leap")), false);
+                    source.sendSuccess(new TranslatableComponent(""), false);
 
                     return Command.SINGLE_SUCCESS;
                 }));
