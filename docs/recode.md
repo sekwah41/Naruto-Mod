@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 description: Information about the current state and plans of the re-code.
 ---
 
@@ -21,16 +21,7 @@ Please mention if it's a review that a lot will be missing as we've just started
 
 For the initial 1.18 release there are some of the items, armour and jutsus.
 
-Current Jutsus/Abilities(default key):
- * Leap (X)
- * Chakra charge (hold C)
- * Water Walk (B)
- * Fireball (CVC)
- * Water Bullet (CBV)
-
-There is currently no GUI in game to find these but I will re-add the `/jutsu list` likely in the next week.
-
-I will be making dedicated pages for the content but this is a quick summary for now.
+There is currently no GUI in game to find these but `/jutsu list` now exists :)
 
 ## Versioning going forwards
 Rather than following the general Minecraft updating logic (never changing the 1.x.x). I will follow the general software versioning logic to help with other modders making addons. For those who don't know what this means, versions are major.minor.patch and I have provided a mini summary of those below.
