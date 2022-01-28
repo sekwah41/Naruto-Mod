@@ -40,12 +40,12 @@ Granted that you are not claiming to have created the mod yourself, or are imper
 We have had situations where people have "given credit" while showing off features "they added". As long as you don't make these sorts of ridiculous claims, we are 100% fine with it.
 
 ## Will you update to version x.x.x?
-## Updates for latest version
+### Updates for latest version
 We will try to update to the latest version forge supports as much as possible and support the sub-versions as well.
 So typically if the mod reports that it works for 1.18.1 it should work for all versions of 1.18.0 and any future versions,
 its just that we have verified and compiled it against that version. We will only remove support for older minor versions if mc adds a breaking change.
 
-## Supporting older versions
+### Supporting older versions
 Unfortunately due to time constraints and system changes between major versions it isn't really reasonable due to the differnt types of content added to support multiple versions at once.
 We have no plans to actively support older versions of mc even if we have released versions for it.
 
