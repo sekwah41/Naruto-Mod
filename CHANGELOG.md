@@ -1,3 +1,34 @@
+# v1.2.0 (Fri Jan 28 2022)
+
+#### 🚀 Enhancement
+
+- fix: include leap to /jutsu list manually [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- feat: add /jutsu list [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- fix: stop water walk if riding a vehicle [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- fix: fireball not causing mobs to drop cooked food [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- fix: kunai and other projectiles show as arrows in the player [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- fix: made double jump correctly check + added text feedback [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- fix: move Turkish translation to right file [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- fix: make client check for stamina and chakra with double jumps [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- refactor: Reduced leap vertical jump distance [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- fix: Add small delay to stop double jump resetting too quick (singleplayer) [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- feat: Add dispenser behaviors [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- fix: double jump not setting jump flag to false [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- refactor: Improve sample quality [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+- feat: double jump [#125](https://github.com/sekwah41/Naruto-Mod/pull/125) ([@sekwah41](https://github.com/sekwah41))
+
+#### 🐛 Bug Fix
+
+- fix: For some reason the latest version didn't properly release [#131](https://github.com/sekwah41/Naruto-Mod/pull/131) ([@sekwah41](https://github.com/sekwah41))
+- fix: Toggle abilities still active in spectator ([@sekwah41](https://github.com/sekwah41))
+- fix: Make water bullets not flammable ([@sekwah41](https://github.com/sekwah41))
+
+#### Authors: 1
+
+- Sekwah ([@sekwah41](https://github.com/sekwah41))
+
+---
+
 # v1.1.0 (Sat Jan 08 2022)
 
 #### 🚀 Enhancement
