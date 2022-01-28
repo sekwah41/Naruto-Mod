@@ -29,7 +29,7 @@ When commits close an issue refer in the commit description in the following sty
 * **chore**: updating grunt tasks etc; no production code change
 * **perf**: A code change that improves performance
 * **refactor**: A code change that neither fixes a bug nor adds a feature
-* **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+* **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semicolons, etc)
 <!---
 We don't currently do tests. But in case.
  * **test**: Adding missing tests or correcting existing tests
