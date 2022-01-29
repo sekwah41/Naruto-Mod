@@ -272,7 +272,7 @@ This item has multiple variations but they all do the same.
     name: "Lava Headband",
     icon: "headband_lava",
     recipe: "none"
-}].map(item => (<><h4>{item.name}</h4><ItemView src={`/img/mc/item/${item.icon}.png`} /><div>Current Recipe: {item.recipe}</div></>))}</>
+}].map(item => (<div key={item.name}><h4>{item.name}</h4><ItemView src={`/img/mc/item/${item.icon}.png`} /><div>Current Recipe: {item.recipe}</div></div>))}</>
 
 ## Decoration
 
