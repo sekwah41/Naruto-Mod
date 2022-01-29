@@ -28,10 +28,8 @@ export const ItemRender = ({item, style, count}) => (item ?
             height: (16 * scale),
             imageRendering: 'pixelated',
             ...style
-    }} title={capitaliseName(item) + (count ? ` (${count})` : '')}>{count && <div style={{
+    }} title={capitaliseName(item) + (count ? ` (${count})` : '')}>{count && <div className="mc-text" style={{
         position: 'absolute',
-        fontFamily:'Minecraft Regular',
-        fontWeight:'normal',
         transform: 'translateX(-50%)',
         filter: `drop-shadow(${1 * scale}px ${1 * scale}px 0px #0009)`,
         fontSize: (9 * scale),
