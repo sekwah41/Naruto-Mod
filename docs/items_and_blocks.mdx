@@ -8,7 +8,7 @@ description: Information about the main items and recipes.
 export const scale = 3;
 
 export const BackgroundImg = ({clazz, style}) => (
-    <div class={clazz} style={{
+    <div className={clazz} style={{
             background: 'url(/img/mc/gui/crafting_table.png)',
             imageRendering: 'pixelated',
             backgroundSize: (256 * scale),
@@ -21,7 +21,7 @@ export function capitaliseName(name = '') {
 }
 
 export const ItemRender = ({item, style, count}) => (item ?
-    <div class={`item-render`} style={{
+    <div className={`item-render`} style={{
             background: item ? `url(/img/mc/item/${item}.png)` : undefined,
             backgroundSize: (16 * scale),
             width: (16 * scale),
@@ -71,30 +71,30 @@ export const CraftingRecipe = ({keyMap = {}, grid, result, count}) => {
         width: (146 * scale),
         height: (72 * scale)
     }}>
-        <BackgroundImg class="top" style={{
+        <BackgroundImg className="top" style={{
             width: (143 * scale),
             height: (3 * scale),
         }}/>
-        <BackgroundImg class="center" style={{
+        <BackgroundImg className="center" style={{
             marginLeft: (3 * scale),
             width: (140 * scale),
             height: (65 * scale),
             backgroundPositionX: (-20 * scale),
             backgroundPositionY: (-9 * scale),
         }}/>
-        <BackgroundImg class="bottom" style={{
+        <BackgroundImg className="bottom" style={{
             width: (143 * scale),
             height: (4 * scale),
             backgroundPositionY: (-162 * scale),
         }}/>
-        <BackgroundImg class="left" style={{
+        <BackgroundImg className="left" style={{
             position: 'absolute',
             width: (3 * scale),
             height: (65 * scale),
             backgroundPositionY: (-3 * scale),
             top: (3 * scale),
         }}/>
-        <BackgroundImg class="right" style={{
+        <BackgroundImg className="right" style={{
             position: 'absolute',
             width: (3 * scale),
             height: (69 * scale),
@@ -102,7 +102,7 @@ export const CraftingRecipe = ({keyMap = {}, grid, result, count}) => {
             right: (0 * scale),
             top: 0,
         }}/>
-        <BackgroundImg class="bottomright" style={{
+        <BackgroundImg className="bottomright" style={{
             position: 'absolute',
             width: (3 * scale),
             height: (3 * scale),
