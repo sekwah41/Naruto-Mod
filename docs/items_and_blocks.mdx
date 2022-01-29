@@ -130,11 +130,21 @@ export const CraftingRecipe = ({keyMap = {}, grid, result, count}) => {
     </div>
 };
 
-export const ItemView = ({src}) => <img src={src}
+export const ItemView = ({item}) => <div style={{
+    width: 107,
+    height: 107,
+    padding: 5,
+    background: 'url(/img/mc/gui/crafting_table.png)',
+    backgroundSize: 1050,
+    backgroundPositionX: -488,
+    backgroundPositionY: -123,
+    imageRendering: 'pixelated',
+}}><img src={`/img/mc/item/${item}.png`}
     width="100"
     style={{
         imageRendering: 'pixelated',
-    }}/>;
+    }}/>
+</div>;
 
 Crafting recipes can be found in game in the vanilla crafting recipes menu in the crafting bench and can be unlocked by finding the required materials.
 
@@ -142,17 +152,26 @@ If you want to see all in game by default you can also install [JEI](https://www
 
 ## Weapons
 ### Kunai
+<ItemView item="kunai" />
+
+Crafting Recipe:
 <CraftingRecipe keyMap={{
     'I': "iron_ingot",
     'S': "stick"
 }} grid={[" I", "S "]} result={'kunai'} count={8}/>
 
 ### Senbon
+<ItemView item="senbon" />
+
+Crafting Recipe:
 <CraftingRecipe keyMap={{
     'I': "iron_nugget"
 }} grid={["  I", " I ", "I  "]} result={'senbon'} count={16}/>
 
 ### Explosive Kunai
+<ItemView item="explosive_kunai" />
+
+Crafting Recipe:
 <CraftingRecipe keyMap={{
     'k': "kunai",
     'p': "paper_bomb"
@@ -160,11 +179,17 @@ If you want to see all in game by default you can also install [JEI](https://www
 
 
 ### Shuriken
+<ItemView item="shuriken" />
+
+Crafting Recipe:
 <CraftingRecipe keyMap={{
     'I': "iron_nugget"
 }} grid={[" I ", "I I", " I "]} result={'shuriken'} count={4}/>
 
 ### Paper Bomb
+<ItemView item="paper_bomb" />
+
+Crafting Recipe:
 <CraftingRecipe keyMap={{
     'g': "gunpowder",
     'p': "paper"
@@ -175,30 +200,45 @@ If you want to see all in game by default you can also install [JEI](https://www
 ### Anbu Mask
 This item has multiple variations but they all do the same.
 #### Red
+<ItemView item="red_anbu_mask" />
+
+Crafting Recipe:
 <CraftingRecipe keyMap={{
     'w': "white_terracotta",
     'r': "red_dye"
 }} grid={["wrw", "www", " w "]} result={'red_anbu_mask'}/>
 
 #### Yellow
+<ItemView item="yellow_anbu_mask" />
+
+Crafting Recipe:
 <CraftingRecipe keyMap={{
     'w': "white_terracotta",
     'y': "yellow_dye"
 }} grid={["wyw", "www", " w "]} result={'yellow_anbu_mask'}/>
 
 #### Green
+<ItemView item="green_anbu_mask" />
+
+Crafting Recipe:
 <CraftingRecipe keyMap={{
     'w': "white_terracotta",
     'g': "green_dye"
 }} grid={["wgw", "www", " w "]} result={'green_anbu_mask'}/>
 
 #### Blue
+<ItemView item="blue_anbu_mask" />
+
+Crafting Recipe:
 <CraftingRecipe keyMap={{
     'w': "white_terracotta",
     'b': "blue_dye"
 }} grid={["wbw", "www", " w "]} result={'blue_anbu_mask'}/>
 
 #### Mist
+<ItemView item="mist_anbu_mask" />
+
+Crafting Recipe:
 <CraftingRecipe keyMap={{
     'w': "white_terracotta",
     'r': "red_dye"
@@ -278,13 +318,13 @@ This item has multiple variations but they all do the same.
     name: "Lava Headband",
     icon: "headband_lava",
     recipe: "none"
-}].map(item => (<div key={item.name}><h4>{item.name}</h4><ItemView src={`/img/mc/item/${item.icon}.png`} /><div>Current Recipe: {item.recipe}</div></div>))}</>
+}].map(item => (<div key={item.name}><h4>{item.name}</h4><ItemView item={item.icon} /><div>Current Recipe: {item.recipe}</div></div>))}</>
 
 ## Decoration
 
 ## Other
 ### Lonely March
-<ItemView src="/img/mc/item/lonely_march.png" />
+<ItemView item="lonely_march" />
 
 How to obtain: Unobtainable.
 
