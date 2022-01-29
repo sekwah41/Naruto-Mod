@@ -4,6 +4,37 @@
  * work well for content-centric websites.
  */
 
+@font-face {
+  font-family: 'Minecraft Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Minecraft Regular'), url('/static/fonts/1_MinecraftRegular1.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Minecraft Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Minecraft Italic'), url('/static/fonts/2_MinecraftItalic1.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Minecraft Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Minecraft Bold'), url('/static/fonts/3_MinecraftBold1.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Minecraft Bold Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Minecraft Bold Italic'), url('/static/fonts/4_MinecraftBoldItalic1.woff') format('woff');
+}
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #1bb15b;
