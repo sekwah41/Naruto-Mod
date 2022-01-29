@@ -49,6 +49,11 @@ const config = {
             position: 'left',
             label: 'Recode Info',
           },
+          {
+            to: '/docs/getting_started',
+            position: 'left',
+            label: 'Getting Started',
+          },
           //{to: '/blog', label: 'Blog', position: 'left'},
           //{to: '/docs/commands', label: 'Commands', position: 'left'},
           //{to: '/docs/portal-tags', label: 'Portal Tags', position: 'left'},

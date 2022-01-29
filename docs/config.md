@@ -13,5 +13,9 @@ Below are a list of the different options available.
 
 ## Server
 
+### Player
+### Weapons
+
 ## Client
 
+### UI

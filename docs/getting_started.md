@@ -22,4 +22,4 @@ You can find a changelog about what has changed in each version and when they we
 To see a list of the currently available jutsus/abilities, type `/jutsu list`.
 This will show you a list containing the names of the abilities and their key combos.
 
-Some abilities will have additional requirements such as channelling, or a cooldown. More info can be found [here](./jutsus.md).
+Some abilities will have additional requirements such as channelling, or a cooldown. More info can be found [here](./jutsus_and_abilities.md).

@@ -22,7 +22,7 @@ As for major updates such as new jutsus, I have no idea how often they will be t
 
 ## What are the jutsu?
 Check the `/jutsu list` command in game for all the abilities available in your current version.
-We will try to keep [jutsus](./jutsus.md) up to date as much as possible.
+We will try to keep [jutsus](./jutsus_and_abilities.md) up to date as much as possible.
 
 ## Can you add (insert cool jutsu that I like)
 We have a `#mod-suggestions` channel section on our [discord server](https://discord.sekwah.com/) so feel free to make a suggestion there :D
