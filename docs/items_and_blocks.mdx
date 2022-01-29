@@ -47,6 +47,16 @@ export const ItemRender = ({item, style, count}) => (item ?
         }}></div>
 );
 
+export const RowRender = ({row, keyMap}) => {
+    return <>
+        {row && row.split('').map((item, colIndex) => {
+            return <ItemRender key={colIndex} item={keyMap[item]} style={{
+            margin: (1 * scale),
+        }}/>;
+        })}
+    </>
+}
+
 export const ItemGrid = ({keyMap, grid, style}) => {
     return (<div style={{
         ...style
@@ -58,9 +68,7 @@ export const ItemGrid = ({keyMap, grid, style}) => {
             justifyContent: 'center',
             alignItems: 'center',
         }}>
-            {[...row].map((item, colIndex) => (<ItemRender key={colIndex} item={keyMap[item]} style={{
-                margin: (1 * scale),
-            }}/>))}
+            <RowRender keyMap={keyMap} row={row} />
         </div>))}
     </div>)
 }
