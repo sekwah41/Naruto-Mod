@@ -1,0 +1,287 @@
+---
+sidebar_position: 10
+description: Information about the main items and recipes.
+---
+
+export const scale = 3;
+
+export const BackgroundImg = ({clazz, style}) => (
+    <div class={clazz} style={{
+            background: 'url(/img/mc/gui/crafting_table.png)',
+            imageRendering: 'pixelated',
+            backgroundSize: (256 * scale),
+            ...style
+    }}></div>
+);
+
+export function capitaliseName(name = '') {
+    return name.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
+export const ItemRender = ({item, style, count}) => (item ?
+    <div class={`item-render`} style={{
+            background: item ? `url(/img/mc/item/${item}.png)` : undefined,
+            backgroundSize: (16 * scale),
+            width: (16 * scale),
+            height: (16 * scale),
+            imageRendering: 'pixelated',
+            ...style
+    }} title={capitaliseName(item) + (count ? ` (${count})` : '')}>{count && <div style={{
+        position: 'absolute',
+        fontFamily:'Minecraft Regular',
+        fontWeight:'normal',
+        transform: 'translateX(-50%)',
+        filter: `drop-shadow(${1 * scale}px ${1 * scale}px 0px #0009)`,
+        fontSize: (9 * scale),
+        color: '#fff',
+        left: (14 * scale),
+        top: (7 * scale),
+    }}>
+        {count}
+    </div>}</div> : <div style={{
+            width: (16 * scale),
+            height: (16 * scale),
+            ...style
+        }}></div>
+);
+
+export const ItemGrid = ({keyMap, grid, style}) => {
+    console.log(grid);
+    return (<div style={{
+        ...style
+    }}>
+        {grid && grid.map((row, rowIndex) => (<div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'center',
+        }}>
+            {[...row].map((item, colIndex) => (<ItemRender item={keyMap[item]} style={{
+                margin: (1 * scale),
+            }}/>))}
+        </div>))}
+    </div>)
+}
+
+export const CraftingRecipe = ({keyMap = {}, grid, result, count}) => {
+    return <div style={{
+        position: 'relative',
+        width: (146 * scale),
+        height: (72 * scale)
+    }}>
+        <BackgroundImg class="top" style={{
+            width: (143 * scale),
+            height: (3 * scale),
+        }}/>
+        <BackgroundImg class="center" style={{
+            marginLeft: (3 * scale),
+            width: (140 * scale),
+            height: (65 * scale),
+            backgroundPositionX: (-20 * scale),
+            backgroundPositionY: (-9 * scale),
+        }}/>
+        <BackgroundImg class="bottom" style={{
+            width: (143 * scale),
+            height: (4 * scale),
+            backgroundPositionY: (-162 * scale),
+        }}/>
+        <BackgroundImg class="left" style={{
+            position: 'absolute',
+            width: (3 * scale),
+            height: (65 * scale),
+            backgroundPositionY: (-3 * scale),
+            top: (3 * scale),
+        }}/>
+        <BackgroundImg class="right" style={{
+            position: 'absolute',
+            width: (3 * scale),
+            height: (69 * scale),
+            backgroundPositionX: (-173 * scale),
+            right: (0 * scale),
+            top: 0,
+        }}/>
+        <BackgroundImg class="bottomright" style={{
+            position: 'absolute',
+            width: (3 * scale),
+            height: (3 * scale),
+            backgroundPositionX: (-173 * scale),
+            backgroundPositionY: (-163 * scale),
+            right: (0 * scale),
+            top: (69 * scale),
+        }}/>
+        <ItemGrid keyMap={keyMap} grid={grid} style={{
+            position: 'absolute',
+            left: (12 * scale),
+            top: (10 * scale),
+        }}></ItemGrid>
+        <ItemRender item={result} style={{
+            position: 'absolute',
+            left: (107 * scale),
+            top: (29 * scale),
+        }} count={count}/>
+    </div>
+};
+
+export const ItemView = ({src}) => <img src={src}
+    width="100"
+    style={{
+        imageRendering: 'pixelated',
+    }}/>;
+
+# Items & Blocks
+
+Crafting recipes can be found in game in the vanilla crafting recipes menu in the crafting bench and can be unlocked by finding the required materials.
+
+If you want to see all in game by default you can also install [JEI](https://www.curseforge.com/minecraft/mc-mods/jei). If you want to search all items and blocks relating to the naruto mod you can search `@narutomod`.
+
+## Weapons
+### Kunai
+<CraftingRecipe keyMap={{
+    'I': "iron_ingot",
+    'S': "stick"
+}} grid={[" I", "S "]} result={'kunai'} count={8}/>
+
+### Senbon
+<CraftingRecipe keyMap={{
+    'I': "iron_nugget"
+}} grid={["  I", " I ", "I  "]} result={'senbon'} count={16}/>
+
+### Explosive Kunai
+<CraftingRecipe keyMap={{
+    'k': "kunai",
+    'p': "paper_bomb"
+}} grid={["kp"]} result={'explosive_kunai'}/>
+
+
+### Shuriken
+<CraftingRecipe keyMap={{
+    'I': "iron_nugget"
+}} grid={[" I ", "I I", " I "]} result={'shuriken'} count={4}/>
+
+### Paper Bomb
+<CraftingRecipe keyMap={{
+    'g': "gunpowder",
+    'p': "paper"
+}} grid={["ggg", "ppp", "ggg"]} result={'paper_bomb'}/>
+
+## Armour
+
+### Anbu Mask
+This item has multiple variations but they all do the same.
+#### Red
+<CraftingRecipe keyMap={{
+    'w': "white_terracotta",
+    'r': "red_dye"
+}} grid={["wrw", "www", " w "]} result={'red_anbu_mask'}/>
+
+#### Yellow
+<CraftingRecipe keyMap={{
+    'w': "white_terracotta",
+    'y': "yellow_dye"
+}} grid={["wyw", "www", " w "]} result={'yellow_anbu_mask'}/>
+
+#### Green
+<CraftingRecipe keyMap={{
+    'w': "white_terracotta",
+    'g': "green_dye"
+}} grid={["wgw", "www", " w "]} result={'green_anbu_mask'}/>
+
+#### Blue
+<CraftingRecipe keyMap={{
+    'w': "white_terracotta",
+    'b': "blue_dye"
+}} grid={["wbw", "www", " w "]} result={'blue_anbu_mask'}/>
+
+#### Mist
+<CraftingRecipe keyMap={{
+    'w': "white_terracotta",
+    'r': "red_dye"
+}} grid={["www", "wrw", " w "]} result={'mist_anbu_mask'}/>
+
+### Headbands
+
+<>{[{
+    name: "Blank Blue Headband",
+    icon: "headband_blue_blank",
+    recipe: "none"
+}, {
+    name: "Blank Black Headband",
+    icon: "headband_black_blank",
+    recipe: "none"
+}, {
+    name: "Blank Red Headband",
+    icon: "headband_red_blank",
+    recipe: "none"
+}, {
+    name: "Custard Headband",
+    icon: "headband_custard",
+    recipe: "none"
+}, {
+    name: "Hidden In The Leaves Headband (Blue Variant)",
+    icon: "headband_blue",
+    recipe: "none"
+}, {
+    name: "Hidden In The Leaves Headband (Black Variant)",
+    icon: "headband_black",
+    recipe: "none"
+}, {
+    name: "",
+    icon: "headband_blue",
+    recipe: "none"
+}, {
+    name: "Hidden In The Stone Headband",
+    icon: "headband_rock",
+    recipe: "none"
+}, {
+    name: "Hidden In The Sand Headband",
+    icon: "headband_black_rev",
+    recipe: "none"
+}, {
+    name: "Hidden In The Sound Headband",
+    icon: "headband_sound",
+    recipe: "none"
+}, {
+    name: "Hidden In The Mist Headband",
+    icon: "headband_black_block",
+    recipe: "none"
+}, {
+    name: "Hidden In The Waterfall Headband",
+    icon: "headband_black_block",
+    recipe: "none"
+}, {
+    name: "Hidden In The Clouds Headband",
+    icon: "headband_black_block",
+    recipe: "none"
+}, {
+    name: "Hidden In The Rain Headband",
+    icon: "headband_black_block",
+    recipe: "none"
+}, {
+    name: "Hidden In The Grass Headband",
+    icon: "headband_black_block",
+    recipe: "none"
+}, {
+    name: "Hidden In The Pride Headband",
+    icon: "headband_rainbow",
+    recipe: "none"
+}, {
+    name: "Hidden In The Memes Headband",
+    icon: "headband_youtube",
+    recipe: "none"
+}, {
+    name: "Lava Headband",
+    icon: "headband_lava",
+    recipe: "none"
+}].map(item => (<><h4>{item.name}</h4><ItemView src={`/img/mc/item/${item.icon}.png`} /><div>Current Recipe: {item.recipe}</div></>))}</>
+
+## Decoration
+
+## Other
+### Lonely March
+<ItemView src="/img/mc/item/lonely_march.png" />
+
+How to obtain: Unobtainable.
+
+Crafting recipe: None.
+s
