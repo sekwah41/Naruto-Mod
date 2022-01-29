@@ -5,6 +5,7 @@ import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -75,12 +76,12 @@ public class NinjaCapabilityHandler {
     //public static final EntitySize STANDING_SIZE = EntitySize.flexible(0.1F, 0.1F);
 
     // For things like the transformation jutsus (make sure to trigger it manually when you change)
-    @SubscribeEvent
+/*    @SubscribeEvent
     public static void playerSize(EntityEvent.Size event) {
-//        Entity entity = event.getEntity();
-//        if (entity instanceof PlayerEntity) {
-//            event.setNewEyeHeight(5f);
-//            event.setNewSize(EntitySize.flexible(10F, 10F));
-//        }
-    }
+        Entity entity = event.getEntity();
+        if (entity instanceof Player) {
+            event.setNewEyeHeight(5f);
+            event.setNewSize(EntityDimensions.scalable(10F, 10F));
+        }
+    }*/
 }

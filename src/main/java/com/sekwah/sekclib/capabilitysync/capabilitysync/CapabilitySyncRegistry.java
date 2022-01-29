@@ -11,7 +11,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.LoadingFailedException;
 import net.minecraftforge.fml.ModLoadingException;
 import net.minecraftforge.fml.ModLoadingStage;
-import org.codehaus.plexus.util.reflection.Reflector;
 
 import java.lang.reflect.Field;
 import java.util.*;
