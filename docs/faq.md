@@ -12,7 +12,7 @@ Further information may be available in the other pages and will be linked when 
 For any other errors please provide a crash log on the [discord](https://discord.sekwah.com/) in #narutomod, and we will try to help or raise a bug to get it fixed.
 If you are certain it is a bug in the mod please raise a bug report on the [github](https://github.com/sekwah41/Naruto-Mod/issues).
 
-## Animations arn't working
+## Animations aren't working
 We haven't currently re-implemented this in 1.18 yet. Though we will start working on it soon.
 
 ## When is the next update?
@@ -46,7 +46,7 @@ So typically if the mod reports that it works for 1.18.1 it should work for all 
 its just that we have verified and compiled it against that version. We will only remove support for older minor versions if mc adds a breaking change.
 
 ### Supporting older versions
-Unfortunately due to time constraints and system changes between major versions it isn't really reasonable due to the differnt types of content added to support multiple versions at once.
+Unfortunately due to time constraints and system changes between major versions it isn't really reasonable due to the different types of content added to support multiple versions at once.
 We have no plans to actively support older versions of mc even if we have released versions for it.
 
 The excuse of "but most mods are on x version" only stays true if mod authors refuse to update their mod to the latest version or stop maintaining their mods due to other reasons.
@@ -54,4 +54,4 @@ I don't want to become part of that problem by continuing to stay on older versi
 
 ## Can you make a fabric version?
 Due to the underlying library I am writing at this current time there are too many systems relying on forge specific code.
-If the cross compatability mods add the main features I need, I may consider it in the future but forge for now is the priority.
+If the cross compatibility mods add the main features I need, I may consider it in the future but forge for now is the priority.
