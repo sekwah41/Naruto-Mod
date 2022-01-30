@@ -8,6 +8,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
@@ -112,7 +113,8 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
 
     public boolean triggerWaterWalk(Level level, BlockPos blockPos) {
         FluidState fluidState = level.getFluidState(blockPos);
-        return fluidState.is(Fluids.WATER) || fluidState.is(Fluids.FLOWING_WATER);
+        BlockState blockState = level.getBlockState(blockPos);
+        return (fluidState.is(Fluids.WATER) || fluidState.is(Fluids.FLOWING_WATER)) && !blockState.getMaterial().blocksMotion();
     }
 
     @Override
