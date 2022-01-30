@@ -1,3 +1,16 @@
+# v1.2.1 (Sun Jan 30 2022)
+
+#### 🐛 Bug Fix
+
+- fix: stop water walking on solid waterlogged blocks [#133](https://github.com/sekwah41/Naruto-Mod/pull/133) ([@sekwah41](https://github.com/sekwah41))
+- fix: remove unwanted import ([@sekwah41](https://github.com/sekwah41))
+
+#### Authors: 1
+
+- Sekwah ([@sekwah41](https://github.com/sekwah41))
+
+---
+
 # v1.2.0 (Fri Jan 28 2022)
 
 #### 🚀 Enhancement
