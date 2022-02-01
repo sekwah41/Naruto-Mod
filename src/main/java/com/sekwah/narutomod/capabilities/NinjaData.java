@@ -105,6 +105,8 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     private static final String CHAKRA_TAG = "chakra";
     private static final String STAMINA_TAG = "stamina";
+    private static final String SAVE_TIME = "save_time";
+    private static final String COOLDOWN_TAG = "cooldowns";
 
     private final LazyOptional<INinjaData> holder = LazyOptional.of(() -> this);
 
@@ -283,14 +285,29 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         final CompoundTag nbt = new CompoundTag();
         nbt.putFloat(CHAKRA_TAG, this.chakra);
         nbt.putFloat(STAMINA_TAG, this.stamina);
+        long currentTime = System.currentTimeMillis();
+        nbt.putLong(SAVE_TIME, currentTime);
+        final CompoundTag cooldownData = new CompoundTag();
+        for (String key : this.cooldownTickEvents.keySet()) {
+            CooldownTickEvent event = this.cooldownTickEvents.get(key);
+            cooldownData.putInt(key, event.ticks);
+        }
+        nbt.put(COOLDOWN_TAG, cooldownData);
         return nbt;
     }
 
     @Override
     public void deserializeNBT(Tag tag) {
         if (tag instanceof CompoundTag compoundTag) {
+            long currentTime = System.currentTimeMillis();
+            long saveTime = compoundTag.getLong(SAVE_TIME);
+            int ticksPassed = Math.max((int) ((currentTime - saveTime) / 1000 * 20), 0);
             this.chakra = compoundTag.getFloat(CHAKRA_TAG);
             this.stamina = compoundTag.getFloat(STAMINA_TAG);
+            CompoundTag cooldownData = compoundTag.getCompound(COOLDOWN_TAG);
+            for (String key : cooldownData.getAllKeys()) {
+                this.cooldownTickEvents.put(key, new CooldownTickEvent(cooldownData.getInt(key) - ticksPassed));
+            }
         }
     }
 
