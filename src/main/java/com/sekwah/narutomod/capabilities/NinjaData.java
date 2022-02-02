@@ -34,10 +34,16 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     private float stamina;
 
     @Sync
+    private float substitutions;
+
+    @Sync
     private float maxChakra;
 
     @Sync
     private float maxStamina;
+
+    @Sync
+    private float maxSubstitutions;
 
     /**
      * If the player can double jump, will be updated by underlying values server side.
@@ -71,19 +77,18 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     public NinjaData(boolean isServer) {
         if (isServer) {
-            this.maxChakra = this.stamina = NarutoConfig.maxChakra;
-            this.maxStamina = this.chakra = NarutoConfig.maxStamina;
+            this.getConfigData();
+            this.stamina = this.maxChakra;
+            this.chakra = this.maxStamina;
         }
         this.toggleAbilityData = new ToggleAbilityData();
         this.doubleJumpData = new DoubleJumpData(false);
     }
 
     class RegenInfo {
-        public float regenRate;
         public int cooldown;
 
-        public RegenInfo(float regenRate) {
-            this.regenRate = regenRate;
+        public RegenInfo() {
         }
 
         /**
@@ -100,8 +105,8 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         }
     }
 
-    private RegenInfo chakraRegenInfo = new RegenInfo(0.05f);
-    private RegenInfo staminaRegenInfo = new RegenInfo(0.4f);
+    private final RegenInfo chakraRegenInfo = new RegenInfo();
+    private final RegenInfo staminaRegenInfo = new RegenInfo();
 
     private static final String CHAKRA_TAG = "chakra";
     private static final String STAMINA_TAG = "stamina";
@@ -123,6 +128,11 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Override
     public float getStamina() {
         return this.stamina;
+    }
+
+    @Override
+    public float getSubstitutionCount() {
+        return this.substitutions;
     }
 
     @Override
@@ -150,6 +160,11 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     public void useStamina(float amount, int cooldown) {
         this.stamina -= amount;
         this.staminaRegenInfo.cooldown = Math.max(cooldown, this.staminaRegenInfo.cooldown);
+    }
+
+    @Override
+    public void useSubstitution(float amount) {
+        this.substitutions -= amount;
     }
 
     @Override
@@ -213,6 +228,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     @Override
     public void updateDataServer(Player player) {
+        this.getConfigData();
         Iterator<DelayedPlayerTickEvent> iterator = this.delayedTickEvents.iterator();
         while (iterator.hasNext()) {
             DelayedPlayerTickEvent event = iterator.next();
@@ -224,12 +240,9 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         }
 
         // Compile list of keys from cooldown map
-        ArrayList<String> completeList = new ArrayList<>();
-        completeList.addAll(cooldownTickEvents.keySet());
-        Iterator<String> completeCooldownIterator = completeList.iterator();
+        ArrayList<String> completeList = new ArrayList<>(cooldownTickEvents.keySet());
         //  loop through to tick and then remove cooldown if complete
-        while (completeCooldownIterator.hasNext()) {
-            String name = completeCooldownIterator.next();
+        for (String name : completeList) {
             CooldownTickEvent event = cooldownTickEvents.get(name);
             event.tick();
             if (event.isComplete()) {
@@ -238,13 +251,15 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         }
 
         if (this.staminaRegenInfo.canRegen()) {
-            this.stamina += staminaRegenInfo.regenRate;
+            this.stamina += NarutoConfig.staminaRegen;
         }
         if (this.chakraRegenInfo.canRegen()) {
-            this.chakra += chakraRegenInfo.regenRate;
+            this.chakra += NarutoConfig.chakraRegen;
         }
-        this.stamina = Math.min(Math.max(this.stamina, 0), maxStamina);
-        this.chakra = Math.min(Math.max(this.chakra, 0), maxChakra);
+        this.substitutions += NarutoConfig.substitutionRegenRate;
+        this.substitutions = Math.min(Math.max(this.substitutions, 0), this.maxSubstitutions);
+        this.stamina = Math.min(Math.max(this.stamina, 0), this.maxStamina);
+        this.chakra = Math.min(Math.max(this.chakra, 0), this.maxChakra);
 
         if (this.currentlyChanneled != null) {
             Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(this.currentlyChanneled);
@@ -268,6 +283,12 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         if(player.isOnGround()) {
             this.doubleJumpData.canDoubleJumpServer = true;
         }
+    }
+
+    private void getConfigData() {
+        this.maxChakra = NarutoConfig.maxChakra;
+        this.maxStamina = NarutoConfig.maxStamina;
+        this.maxSubstitutions = NarutoConfig.maxSubstitutions;
     }
 
     @Override

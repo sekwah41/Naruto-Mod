@@ -29,6 +29,18 @@ public class NarutoConfig {
     private static final ForgeConfigSpec.DoubleValue CONFIG_MAX_STAMINA;
     public static float maxStamina;
 
+    private static final ForgeConfigSpec.DoubleValue CONFIG_CHAKRA_REGEN;
+    public static float chakraRegen;
+
+    private static final ForgeConfigSpec.DoubleValue CONFIG_STAMINA_REGEN;
+    public static float staminaRegen;
+
+    private static final ForgeConfigSpec.IntValue CONFIG_MAX_SUBSTITUTIONS;
+    public static int maxSubstitutions;
+
+    private static final ForgeConfigSpec.IntValue CONFIG_SUBSTITUTION_REGEN_TIME;
+    public static float substitutionRegenRate;
+
     private static final ForgeConfigSpec.BooleanValue CONFIG_KUNAI_BLOCK_DAMAGE;
     public static boolean kunaiBlockDamage;
 
@@ -69,10 +81,22 @@ public class NarutoConfig {
         configBuilder.comment("Stuff such as regen rates and maximum (will likely change with updates, e.g. stats system)").push(ENERGY_BARS);
 
         CONFIG_MAX_CHAKRA = configBuilder.comment("Max Chakra")
-                .defineInRange("maxChakra",  100F ,  0d, Integer.MAX_VALUE);
+                .defineInRange("maxChakra",  100F ,  0d, Double.MAX_VALUE);
+
+        CONFIG_CHAKRA_REGEN = configBuilder.comment("Chakra Regen")
+                .defineInRange("chakraRegen",  0.05d ,  0d, Double.MAX_VALUE);
 
         CONFIG_MAX_STAMINA = configBuilder.comment("Max Stamina")
-                .defineInRange("maxStamina",  100F ,  0d, Integer.MAX_VALUE);
+                .defineInRange("maxStamina",  100F ,  0d, Double.MAX_VALUE);
+
+        CONFIG_STAMINA_REGEN = configBuilder.comment("Stamina Regen")
+                .defineInRange("staminaRegen",  0.4d ,  0d, Double.MAX_VALUE);
+
+        CONFIG_MAX_SUBSTITUTIONS = configBuilder.comment("Max Substitutions")
+                .defineInRange("maxSubstitutions",  3 ,  0, Integer.MAX_VALUE);
+
+        CONFIG_SUBSTITUTION_REGEN_TIME = configBuilder.comment("Substitution Regen Time (Seconds)")
+                        .defineInRange("substitutionRegenRate",  60 ,  0, Integer.MAX_VALUE);
 
         configBuilder.pop();
 
@@ -121,6 +145,10 @@ public class NarutoConfig {
     public static void loadVariables() {
         maxChakra = CONFIG_MAX_CHAKRA.get().floatValue();
         maxStamina = CONFIG_MAX_STAMINA.get().floatValue();
+        staminaRegen = CONFIG_STAMINA_REGEN.get().floatValue();
+        chakraRegen = CONFIG_CHAKRA_REGEN.get().floatValue();
+        maxSubstitutions = CONFIG_MAX_SUBSTITUTIONS.get();
+        substitutionRegenRate = 1f / (CONFIG_SUBSTITUTION_REGEN_TIME.get() * 20f);
         kunaiBlockDamage = CONFIG_KUNAI_BLOCK_DAMAGE.get();
         kunaiBlockDamage = CONFIG_KUNAI_BLOCK_DAMAGE.get();
         kunaiExplosionRadius = CONFIG_KUNAI_EXPLOSION_RADIUS.get().floatValue();
