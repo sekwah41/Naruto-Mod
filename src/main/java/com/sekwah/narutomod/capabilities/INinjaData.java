@@ -14,11 +14,15 @@ public interface INinjaData extends INBTSerializable<Tag> {
     float getChakra();
     float getMaxChakra();
     float getStamina();
+
+    float getSubstitutionCount();
+
     float getMaxStamina();
     void setChakra(float amount);
     void setStamina(float amount);
     void useChakra(float amount, int cooldown);
     void useStamina(float amount, int cooldown);
+    void useSubstitution(float amount);
     void addChakra(float amount);
     void addStamina(float amount);
 
