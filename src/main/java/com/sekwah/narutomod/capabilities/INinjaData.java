@@ -5,6 +5,7 @@ import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.HashMap;
@@ -25,6 +26,8 @@ public interface INinjaData extends INBTSerializable<Tag> {
     void useSubstitution(float amount);
     void addChakra(float amount);
     void addStamina(float amount);
+
+    Vec3 getSubstitutionLoc();
 
     DoubleJumpData getDoubleJumpData();
 

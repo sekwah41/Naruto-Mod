@@ -14,6 +14,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
@@ -33,7 +34,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Sync(minTicks = 1)
     private float stamina;
 
-    @Sync
+    @Sync(minTicks = 1)
     private float substitutions;
 
     @Sync
@@ -42,8 +43,11 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Sync
     private float maxStamina;
 
-    @Sync
+    // Unless the player needs to know the max for rendering, no point in rendering.
     private float maxSubstitutions;
+
+    @Sync
+    private Vec3 substitutionLocation;
 
     /**
      * If the player can double jump, will be updated by underlying values server side.
@@ -112,6 +116,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     private static final String STAMINA_TAG = "stamina";
     private static final String SAVE_TIME = "save_time";
     private static final String COOLDOWN_TAG = "cooldowns";
+    private static final String SUBSTITUTION_TAG = "substitutions";
 
     private final LazyOptional<INinjaData> holder = LazyOptional.of(() -> this);
 
@@ -175,6 +180,11 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Override
     public void addStamina(float amount) {
         this.stamina = Math.min(Math.max(this.stamina + amount, 0), maxStamina);
+    }
+
+    @Override
+    public Vec3 getSubstitutionLoc() {
+        return this.substitutionLocation;
     }
 
     @Override
@@ -314,6 +324,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             cooldownData.putInt(key, event.ticks);
         }
         nbt.put(COOLDOWN_TAG, cooldownData);
+        nbt.putFloat(SUBSTITUTION_TAG, this.substitutions);
         return nbt;
     }
 
@@ -329,6 +340,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             for (String key : cooldownData.getAllKeys()) {
                 this.cooldownTickEvents.put(key, new CooldownTickEvent(cooldownData.getInt(key) - ticksPassed));
             }
+            this.substitutions = compoundTag.getFloat(SUBSTITUTION_TAG);
         }
     }
 
