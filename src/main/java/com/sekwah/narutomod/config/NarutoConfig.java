@@ -96,7 +96,7 @@ public class NarutoConfig {
                 .defineInRange("maxSubstitutions",  3 ,  0, Integer.MAX_VALUE);
 
         CONFIG_SUBSTITUTION_REGEN_TIME = configBuilder.comment("Substitution Regen Time (Seconds)")
-                        .defineInRange("substitutionRegenRate",  60 ,  0, Integer.MAX_VALUE);
+                        .defineInRange("substitutionRegenTime",  60 ,  0, Integer.MAX_VALUE);
 
         configBuilder.pop();
 

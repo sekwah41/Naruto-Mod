@@ -24,11 +24,6 @@ public class ChakraAndStaminaGUI extends GuiComponent {
     private int screenWidth;
     private int screenHeight;
 
-    /**
-     * Will be false if the entity is not a ninja
-     */
-    private boolean shouldRender;
-
     private float chakra;
     private float stamina;
 
@@ -40,9 +35,6 @@ public class ChakraAndStaminaGUI extends GuiComponent {
     }
 
     public void render(PoseStack matrixStack) {
-        if(!shouldRender) {
-            return;
-        }
         this.screenWidth = this.minecraft.getWindow().getGuiScaledWidth();
         this.screenHeight = this.minecraft.getWindow().getGuiScaledHeight();
         int barDesign = NarutoConfig.chakraBarDesign;
@@ -137,20 +129,13 @@ public class ChakraAndStaminaGUI extends GuiComponent {
         this.getFont().draw(matrixStack, text, (float) x - width, y, color);
     }
 
-    public void tick() {
-        if(this.minecraft.getCameraEntity() instanceof Player player) {
-            shouldRender = true;
-            if(player != null) {
-                player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
-                    chakra = ninjaData.getChakra();
-                    stamina = ninjaData.getStamina();
-                    maxChakra = ninjaData.getMaxChakra();
-                    maxStamina = ninjaData.getMaxStamina();
-                });
-            }
-        } else {
-            shouldRender = false;
-        }
+    public void tick(Player player) {
+        player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
+            this.chakra = ninjaData.getChakra();
+            this.stamina = ninjaData.getStamina();
+            this.maxChakra = ninjaData.getMaxChakra();
+            this.maxStamina = ninjaData.getMaxStamina();
+        });
     }
 
     private void setColor(Color color) {
