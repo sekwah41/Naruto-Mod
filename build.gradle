@@ -166,6 +166,7 @@ dependencies {
     //implementation fg.deobf("curse.maven:torohealth-damage-indicators-245733:3556931")
     implementation fg.deobf("curse.maven:jei-238222:3592081")
     implementation fg.deobf("curse.maven:configured-457570:3559398")
+    implementation fg.deobf("curse.maven:jade-324717:3614180")
 
     //implementation fg.deobf("curse.maven:hwyla:${project.hwyla_fileid}")
 
