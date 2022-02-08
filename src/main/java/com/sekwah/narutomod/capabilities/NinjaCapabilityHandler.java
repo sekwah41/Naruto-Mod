@@ -5,14 +5,12 @@ import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -66,6 +64,7 @@ public class NinjaCapabilityHandler {
 
     @SubscribeEvent
     public static void playerClone(PlayerEvent.Clone event) {
+        event.getOriginal().reviveCaps();
         event.getOriginal().getCapability(NINJA_DATA).ifPresent(original -> {
             event.getPlayer().getCapability(NINJA_DATA).ifPresent(future -> {
                 future.deserializeNBT(original.serializeNBT());
