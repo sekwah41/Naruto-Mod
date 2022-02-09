@@ -1,4 +1,4 @@
-package com.sekwah.narutomod.config;
+package com.sekwah.narutomod.client.renderer.entity.config;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.client.gui.BarDesigns;

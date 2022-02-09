@@ -4,7 +4,7 @@ import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
-import com.sekwah.narutomod.config.NarutoConfig;
+import com.sekwah.narutomod.client.renderer.entity.config.NarutoConfig;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.annotation.Sync;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
@@ -208,10 +208,13 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             if (ability.castingSound() != null) {
                 player.getLevel().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
             }
-            if (ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
-                player.sendMessage(new TranslatableComponent("jutsu.charge.start", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
-            } else {
-                player.sendMessage(new TranslatableComponent("jutsu.channel.start", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+
+            if(!(ability instanceof Ability.Channeled channeled && channeled.hideChannelMessages())) {
+                if (ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
+                    player.sendMessage(new TranslatableComponent("jutsu.charge.start", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                } else {
+                    player.sendMessage(new TranslatableComponent("jutsu.channel.start", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                }
             }
 
             this.currentlyChanneled = ability.getRegistryName();
@@ -219,10 +222,12 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             if (this.currentlyChanneled != null) {
                 Ability currentAbility = NarutoAbilities.ABILITY_REGISTRY.getValue(this.currentlyChanneled);
                 if( currentAbility != null) {
-                    if (currentAbility instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
-                        player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(currentAbility.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
-                    } else {
-                        player.sendMessage(new TranslatableComponent("jutsu.channel.stop", new TranslatableComponent(currentAbility.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());
+                    if(!(currentAbility instanceof Ability.Channeled channeled && channeled.hideChannelMessages())) {
+                        if (currentAbility instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
+                            player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(currentAbility.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                        } else {
+                            player.sendMessage(new TranslatableComponent("jutsu.channel.stop", new TranslatableComponent(currentAbility.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());
+                        }
                     }
                 }
             }

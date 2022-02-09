@@ -3,7 +3,7 @@ package com.sekwah.narutomod.client.keybinds;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
-import com.sekwah.narutomod.config.NarutoConfig;
+import com.sekwah.narutomod.client.renderer.entity.config.NarutoConfig;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.network.c2s.ServerAbilityChannelPacket;
 import com.sekwah.narutomod.network.c2s.ServerJutsuCastingPacket;

@@ -2,6 +2,7 @@ package com.sekwah.narutomod.abilities;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.jutsus.FireballJutsuAbility;
+import com.sekwah.narutomod.abilities.jutsus.SubstitutionJutsuAbility;
 import com.sekwah.narutomod.abilities.jutsus.WaterBulletJutsuAbility;
 import com.sekwah.narutomod.abilities.utility.*;
 import com.sekwah.narutomod.network.PacketHandler;
@@ -44,6 +45,8 @@ public class NarutoAbilities {
     public static final RegistryObject<ChakraChargeAbility> CHAKRA_CHARGE = ABILITY.register("chakra_charge", ChakraChargeAbility::new);
 
     public static final RegistryObject<DoubleJumpAbility> DOUBLE_JUMP = ABILITY.register("double_jump", DoubleJumpAbility::new);
+
+    public static final RegistryObject<SubstitutionJutsuAbility> SUBSTITUTION = ABILITY.register("substitution", SubstitutionJutsuAbility::new);
 
     public static void register(IEventBus eventBus) {
         ABILITY.register(eventBus);

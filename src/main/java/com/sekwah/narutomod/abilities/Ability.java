@@ -142,6 +142,14 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
         }
 
         /**
+         * In case of other use cases where you don't want the messages. for custom states e.g. substitution.
+         * @return
+         */
+        default boolean hideChannelMessages() {
+            return false;
+        }
+
+        /**
          * Call every tick handleCost passes on server side.
          *
          * This is the main behavior that seperates a "channeled" ability from a "charged" ability as the behaviors are the same.
