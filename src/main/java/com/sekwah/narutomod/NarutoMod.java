@@ -9,7 +9,7 @@ import com.sekwah.narutomod.client.gui.NarutoInGameGUI;
 import com.sekwah.narutomod.client.keybinds.NarutoKeyHandler;
 import com.sekwah.narutomod.client.renderer.NarutoRenderEvents;
 import com.sekwah.narutomod.commands.NarutoCommands;
-import com.sekwah.narutomod.config.NarutoConfig;
+import com.sekwah.narutomod.client.renderer.entity.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoDispenseItemBehavior;

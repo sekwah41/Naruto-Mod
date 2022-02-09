@@ -4,7 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
-import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;

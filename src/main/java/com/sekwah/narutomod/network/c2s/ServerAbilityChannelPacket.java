@@ -70,6 +70,7 @@ public class ServerAbilityChannelPacket {
                         } else if(msg.status == ChannelStatus.MIN_ACTIVATE) {
                             if (ability instanceof Ability.Channeled channeled && channeled.canActivateBelowMinCharge()) {
                                 if(ability.handleCost(player, ninjaData, 0)) {
+                                    ability.performServer(player, ninjaData, 0);
                                 }
                             } else {
                                 player.sendMessage(new TranslatableComponent("jutsu.channel.needed", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());
