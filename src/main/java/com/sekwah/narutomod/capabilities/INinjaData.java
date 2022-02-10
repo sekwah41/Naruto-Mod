@@ -28,6 +28,7 @@ public interface INinjaData extends INBTSerializable<Tag> {
     void addStamina(float amount);
 
     Vec3 getSubstitutionLoc();
+    void setSubstitutionLoc(Vec3 loc);
 
     DoubleJumpData getDoubleJumpData();
 
