@@ -16,7 +16,7 @@ import java.awt.*;
 
 public class SubstitutionGUI extends GuiComponent {
 
-    private static final ResourceLocation LOG_TEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/jutsu/jutsu_substiutution.png");
+    public static final ResourceLocation LOG_TEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/jutsu/jutsu_substiutution.png");
 
     private final Minecraft minecraft;
     private int screenWidth;

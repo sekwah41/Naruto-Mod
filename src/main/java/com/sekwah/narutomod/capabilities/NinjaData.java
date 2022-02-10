@@ -188,6 +188,11 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
+    public void setSubstitutionLoc(Vec3 loc) {
+        this.substitutionLocation = loc;
+    }
+
+    @Override
     public DoubleJumpData getDoubleJumpData() {
         return this.doubleJumpData;
     }

@@ -36,8 +36,16 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
             player.displayClientMessage(new TranslatableComponent("jutsu.cast.substitution"), false);
             // Activate
             ninjaData.useSubstitution(1);
+            Vec3 loc = ninjaData.getSubstitutionLoc();
+            if(loc != null) {
+                double distance = player.position().distanceTo(loc);
+                if(distance < 40) {
+                    player.teleportTo(loc.x, loc.y, loc.z);
+                }
+            }
         } else {
             player.displayClientMessage(new TranslatableComponent("jutsu.cast.substitution_mark"), false);
+            ninjaData.setSubstitutionLoc(player.position());
             // Mark
         }
     }
