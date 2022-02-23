@@ -1,6 +1,7 @@
 on:
   push:
     branches:
+      - '*'
       - "!release-please**"
       #- "!master"
 name: Build
