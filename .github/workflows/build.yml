@@ -6,18 +6,12 @@ on:
       #- "!master"
 name: Build
 jobs:
-  test_release:
+  snapshot:
     #if: ${{!startsWith(github.ref.split(’/’)[2], 'release-please')}}
     runs-on: ubuntu-latest
     env:
-      SHA8: ${GITHUB_SHA::8}
     # https://github.com/google-github-actions/release-please-action in case more config is needed
     steps:
-      - name: Echo out branch values
-        run: |
-          echo github.base_ref: ${{ github.base_ref }}
-          echo github.head_ref: ${{ github.head_ref }}
-          echo github.ref: ${{ github.ref }}
       - uses: actions/checkout@v2
         # these if statements ensure that a publication only occurs when
         # a new release is created:
@@ -34,7 +28,7 @@ jobs:
         if: ${{ github.ref }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          #VERSION_TAG: ${{ github.ref.split(’/’)[2] }}-$SHA8
+          IS_SNAPSHOT: true
         run: |
           # Build
           ./gradlew build discordupload

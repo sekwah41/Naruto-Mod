@@ -35,14 +35,14 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 // May be able to remove it
 apply plugin: "org.spongepowered.mixin"
 
-// Get version from file managed by please-release
-setVersion(file('./version.txt').text)
-
 def branch = System.getenv("GITHUB_REF")
-if(branch != null) {
+if(branch != null) {GITHUB_SHA
     branch = branch.replace('refs/heads/', '')
 }
-def isCanary = version.toString().contains('canary')
+def isSnapshot = System.getenv("IS_SNAPSHOT").equalsIgnoreCase("true")
+
+// Get version from file managed by please-release
+setVersion(file('./version.txt').text + (isSnapshot ? "-${branch}-${System.getenv("GITHUB_REF").substring(0, 8)}" : ''))
 
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.archive
@@ -267,8 +267,8 @@ task discordupload {
             HttpPost uploadFile = new HttpPost(discordWebhook)
 
             MultipartEntityBuilder builder = MultipartEntityBuilder.create()
-            if(isCanary) {
-                builder.addTextBody("content", "New canary Build")
+            if(isSnapshot) {
+                builder.addTextBody("content", "New snapshot build")
             } else {
                 builder.addTextBody("content", "New release build\n\n" +
                         "Current Features: <${project.github}/blob/master/CHANGELOG.md>")
