@@ -24,7 +24,6 @@ buildscript {
 }
 plugins {
     id "com.matthewprenger.cursegradle" version "1.4.0"
-    id 'net.researchgate.release' version '2.8.1'
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -35,6 +34,9 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 // May be able to remove it
 apply plugin: "org.spongepowered.mixin"
+
+// Get version from file managed by please-release
+setVersion(file('./version.txt').text)
 
 def branch = System.getenv("GITHUB_REF")
 if(branch != null) {
@@ -82,7 +84,8 @@ minecraft {
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
-            //property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            //property 'forge.logging.markers', 'SCAN,REGISTR
+            //version=1.2.1ES,REGISTRYDUMP'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
@@ -190,7 +193,7 @@ jar {
                 "Specification-Vendor": project.vendor,
                 "Specification-Version": "1", // We are version 1 of ourselves
                 "Implementation-Title": project.name,
-                "Implementation-Version": "${version}",
+                "Implementation-Version": "${archiveVersion}",
                 "Implementation-Vendor" :project.vendor,
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 "MixinConfigs": "mixins.${project.modid}.json"
@@ -309,43 +312,4 @@ curseforge {
         addArtifact srcJar
         addArtifact deobfJar
     }
-}
-
-// https://github.com/researchgate/gradle-release
-// Only other plugin I can find using auto & gradle https://github.com/intuit/hooks
-release {
-    failOnPublishNeeded = false
-    failOnSnapshotDependencies = false
-    git {
-        requireBranch = ''
-    }
-
-
-    // Disable tasks because something we have is causing -x to be ignored
-    createReleaseTag.enabled = false
-    preTagCommit.enabled = false
-    commitNewVersion.enabled = false
-}
-
-task publish {
-    doLast {
-        println "This is a dummy task to run others for version: ${version}"
-    }
-}
-
-task cleanbuildfolder {
-    doLast {
-        println "Cleaning up previous builds (to stop publishing old ones by mistake)"
-        project.delete(files("${buildDir}/libs"))
-    }
-}
-
-compileJava.dependsOn 'cleanbuildfolder'
-
-// Publish rules
-// Current behavior seems to be canary or release. Though pre-releases may break this pattern.
-publish.dependsOn 'build'
-publish.finalizedBy 'discordupload'
-if (!isCanary) {
-    publish.finalizedBy 'curseforge'
 }
