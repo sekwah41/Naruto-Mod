@@ -9,7 +9,6 @@ jobs:
   snapshot:
     #if: ${{!startsWith(github.ref.split(’/’)[2], 'release-please')}}
     runs-on: ubuntu-latest
-    env:
     # https://github.com/google-github-actions/release-please-action in case more config is needed
     steps:
       - uses: actions/checkout@v2
