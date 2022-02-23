@@ -26,7 +26,7 @@ jobs:
       - name: Run DataGen
         run: ./gradlew runData
       - name: Build and upload preview (run for non-release builds)
-        if: ${{ !steps.release.outputs.release_created }}
+        if: ${{ github.ref }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           VERSION_TAG: ${{ github.ref.split(’/’)[2] }}-$SHA8
