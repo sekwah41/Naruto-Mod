@@ -1,19 +1,12 @@
-on:
-  push:
-    branches:
-      - master
-name: release-please
+on: pull_request
 jobs:
-  release-please:
+  test_release:
+    if: !startsWith(process.env.GITHUB_REF.split(’/’)[2], 'release-please')
     runs-on: ubuntu-latest
+    env:
+      SHA8: ${GITHUB_SHA::8}
     # https://github.com/google-github-actions/release-please-action in case more config is needed
     steps:
-      - uses: google-github-actions/release-please-action@v3
-        id: release
-        with:
-          command: manifest
-          # See how to configure file https://github.com/googleapis/release-please/blob/main/docs/manifest-releaser.md
-      # See output info at https://github.com/google-github-actions/release-please-action#configuration for variables
       - uses: actions/checkout@v2
         # these if statements ensure that a publication only occurs when
         # a new release is created:
@@ -24,8 +17,6 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 17
-      - name: List files
-        run: ls
       - name: Download MC assets
         run: ./gradlew downloadAssets || ./gradlew downloadAssets || (sleep 30s && ./gradlew downloadAssets)
       - name: Run DataGen
@@ -34,15 +25,7 @@ jobs:
         if: ${{ !steps.release.outputs.release_created }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          VERSION_TAG: "preview"
+          VERSION_TAG: ${{ process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF && process.env.GITHUB_REF.split(’/’)[2] }}-$SHA8
         run: |
           # Build
           ./gradlew build discordupload
-      - name: Build and publish (release)
-        if: ${{ steps.release.outputs.release_created }}
-        env:
-          CURSE_API: ${{ secrets.CURSE_API }}
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        run: |
-          # Build
-          ./gradlew build discordupload curseforge
