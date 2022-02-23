@@ -1,4 +1,8 @@
-on: pull_request
+on:
+  push:
+    branches:
+      - "!release-please**"
+      #- "!master"
 jobs:
   test_release:
     #if: ${{!startsWith(github.ref.split(’/’)[2], 'release-please')}}
