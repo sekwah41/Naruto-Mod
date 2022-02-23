@@ -1,4 +1,6 @@
-# v1.2.1 (Sun Jan 30 2022)
+# Changelog
+
+## [1.2.1](https://github.com/sekwah41/Naruto-Mod/compare/v1.2.0...v1.2.1) (Sun Jan 30 2022)
 
 #### 🐛 Bug Fix
 
@@ -11,7 +13,7 @@
 
 ---
 
-# v1.2.0 (Fri Jan 28 2022)
+## v1.2.0 (Fri Jan 28 2022)
 
 #### 🚀 Enhancement
 
