@@ -3,6 +3,7 @@ on:
     branches:
       - "!release-please**"
       #- "!master"
+name: Build
 jobs:
   test_release:
     #if: ${{!startsWith(github.ref.split(’/’)[2], 'release-please')}}
