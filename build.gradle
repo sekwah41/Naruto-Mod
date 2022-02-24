@@ -41,6 +41,8 @@ if(branch != null) {GITHUB_SHA
 }
 def isRelease = System.getenv("IS_RELEASE")
 
+print("Is release: " + isRelease)
+
 def snapshotName = branch.startsWith("release-please") ? "SNAPSHOT" : branch
 
 // Get version from file managed by please-release
