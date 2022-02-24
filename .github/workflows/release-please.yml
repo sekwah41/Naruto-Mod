@@ -1,6 +1,6 @@
 on:
   push:
-    branches-ignore:
+    branches:
       - master
 name: release-please
 jobs:

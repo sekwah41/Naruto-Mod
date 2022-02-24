@@ -5,6 +5,10 @@ on:
   pull_request:
   workflow_dispatch:
 name: Build
+on:
+  push:
+    branches-ignore:
+      - master
 jobs:
   snapshot:
     #if: ${{!startsWith(github.ref.split(’/’)[2], 'release-please')}}
