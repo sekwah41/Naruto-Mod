@@ -1,8 +1,6 @@
 name: "Pre-commit consistency check"
 
-on:
-  workflow_dispatch:
-  pull_request:
+on: [push]
 
 concurrency:
   group: ${{ github.head_ref }}-precommit

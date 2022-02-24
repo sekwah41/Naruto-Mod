@@ -15,13 +15,16 @@ jobs:
           # See how to configure file https://github.com/googleapis/release-please/blob/main/docs/manifest-releaser.md
       # See output info at https://github.com/google-github-actions/release-please-action#configuration for variables
       - uses: actions/checkout@v2
+        if: ${{ steps.release.outputs.release_created }}
       - name: Cache Gradle packages
         uses: actions/cache@v2
+        if: ${{ steps.release.outputs.release_created }}
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
       - name: Set up JDK 17
+        if: ${{ steps.release.outputs.release_created }}
         uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
@@ -29,15 +32,8 @@ jobs:
       - name: Download MC assets
         run: ./gradlew downloadAssets || ./gradlew downloadAssets || (sleep 30s && ./gradlew downloadAssets)
       - name: Run DataGen
+        if: ${{ steps.release.outputs.release_created }}
         run: ./gradlew runData
-      - name: Build and publish (preview-snapshot)
-        if: ${{ !steps.release.outputs.release_created }}
-        env:
-          CURSE_API: ${{ secrets.CURSE_API }}
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        run: |
-          # Build
-          ./gradlew build discordupload
       - name: Build and publish (release)
         if: ${{ steps.release.outputs.release_created }}
         env:
