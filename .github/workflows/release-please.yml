@@ -35,7 +35,6 @@ jobs:
         env:
           CURSE_API: ${{ secrets.CURSE_API }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          IS_RELEASE: ${{ steps.release.outputs.release_created }}
         run: |
           # Build
           ./gradlew build discordupload
