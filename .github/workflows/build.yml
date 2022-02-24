@@ -2,8 +2,7 @@ on:
   push:
     branches:
       - '*'
-      - "!release-please**"
-      #- "!master"
+      - "!master"
 name: Build
 jobs:
   snapshot:
@@ -27,7 +26,6 @@ jobs:
         if: ${{ github.ref }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          IS_SNAPSHOT: true
         run: |
           # Build
           ./gradlew build discordupload

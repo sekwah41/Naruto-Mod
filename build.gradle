@@ -39,10 +39,12 @@ def branch = System.getenv("GITHUB_REF")
 if(branch != null) {GITHUB_SHA
     branch = branch.replace('refs/heads/', '')
 }
-def isSnapshot = System.getenv("IS_SNAPSHOT").equalsIgnoreCase("true")
+def isRelease = System.getenv("IS_RELEASE")
+
+def snapshotName = branch.startsWith("release-please") ? "SNAPSHOT" : branch
 
 // Get version from file managed by please-release
-setVersion(file('./version.txt').text + (isSnapshot ? "-${branch}-${System.getenv("GITHUB_REF").substring(0, 8)}" : ''))
+setVersion(file('./version.txt').text + (isRelease ? "" : "-${snapshotName}-${System.getenv("GITHUB_REF").substring(0, 8)}"))
 
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.archive
@@ -267,8 +269,8 @@ task discordupload {
             HttpPost uploadFile = new HttpPost(discordWebhook)
 
             MultipartEntityBuilder builder = MultipartEntityBuilder.create()
-            if(isSnapshot) {
-                builder.addTextBody("content", "New snapshot build")
+            if(!isRelease) {
+                builder.addTextBody("content", "New snapshot or testing build")
             } else {
                 builder.addTextBody("content", "New release build\n\n" +
                         "Current Features: <${project.github}/blob/master/CHANGELOG.md>")
