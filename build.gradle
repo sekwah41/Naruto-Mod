@@ -47,7 +47,7 @@ def shaRef = System.getenv("GITHUB_SHA").substring(0, 8);
 println "Branch ${branch} ${shaRef} isRelease: '${isRelease}'"
 
 // Get version from file managed by please-release
-setVersion(file('./version.txt').text + (isRelease ? "" : "-${snapshotName}-${shaRef}"))
+setVersion((file('./version.txt').text + (isRelease ? "" : "-${snapshotName}-${shaRef}")).replaceAll('\n', ''))
 println "Version: ${getVersion()}"
 
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html

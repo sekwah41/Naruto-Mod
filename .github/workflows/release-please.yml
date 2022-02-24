@@ -21,11 +21,6 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-      - name: Output stuff
-        run: |
-          echo ${{ steps.release.outputs.major }}
-          echo ${{ steps.release.outputs.minor }}
-          echo ${{ steps.release.outputs.patch }}
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
