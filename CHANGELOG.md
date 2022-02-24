@@ -1,5 +1,55 @@
 # Changelog
 
+## [1.3.0](https://github.com/sekwah41/Naruto-Mod/compare/v1.2.1...v1.3.0) (2022-02-24)
+
+
+### Features ✨
+
+* store cooldowns and calculate time passed offline ([4270658](https://github.com/sekwah41/Naruto-Mod/commit/4270658a78dc4e3415013bc0b8bc4990fc7c2353))
+
+
+### Miscellaneous Chores
+
+* **ci:** add cache ([77ea0d4](https://github.com/sekwah41/Naruto-Mod/commit/77ea0d4d2bb1c36e36c6f487452bdf8a8939a6a3))
+* **ci:** alter build file names ([209bba9](https://github.com/sekwah41/Naruto-Mod/commit/209bba9d8dc190a58efda45d1884141bcf4a7b15))
+* **ci:** alter build file names ([3c733dd](https://github.com/sekwah41/Naruto-Mod/commit/3c733ddf54deeb513b2ea7c347d0d0ea091c7e6c))
+* **ci:** alter build file names ([8127dfa](https://github.com/sekwah41/Naruto-Mod/commit/8127dfaf8cad1feee9085ea9e9b7cef5fb0d2b46))
+* **ci:** alter build file names ([b093ad3](https://github.com/sekwah41/Naruto-Mod/commit/b093ad3027e259fec289b1d77ad76070343829f1))
+* **ci:** alter build file names ([66a53f1](https://github.com/sekwah41/Naruto-Mod/commit/66a53f1d93a7bdb9e2ad963371cd6e978c1d1102))
+* **ci:** alter release logic ([be3cafb](https://github.com/sekwah41/Naruto-Mod/commit/be3cafb6fba3f4fd77792174a0c254381c310142))
+* **ci:** alter to do the extra logic in build.gradle ([1a1842f](https://github.com/sekwah41/Naruto-Mod/commit/1a1842fd8202e93294e5789de0f16cee46c0c82f))
+* **ci:** alter to do the extra logic in build.gradle ([140f66e](https://github.com/sekwah41/Naruto-Mod/commit/140f66ede5f7d461a8d814238c60e528cc02bf2e))
+* **ci:** altered wrong value ([c6857f5](https://github.com/sekwah41/Naruto-Mod/commit/c6857f5cae1579e8968736da25288054674f5805))
+* **ci:** altered wrong value ([c74c5fb](https://github.com/sekwah41/Naruto-Mod/commit/c74c5fb05b464c2f86b3e213894d243c20d8ba77))
+* **ci:** check if it runs ([9e9777a](https://github.com/sekwah41/Naruto-Mod/commit/9e9777addd772ca877615e6378698333eef5cea1))
+* **ci:** check if it runs ([770bb58](https://github.com/sekwah41/Naruto-Mod/commit/770bb58f6133174f46c703c5986c99cc9ada3d6e))
+* **ci:** check if it runs ([3dc2330](https://github.com/sekwah41/Naruto-Mod/commit/3dc2330d6c79f2cb28882ccce750bc61a978f9fd))
+* **ci:** check if it runs ([1714a76](https://github.com/sekwah41/Naruto-Mod/commit/1714a767b0aa6b646da7fbb3325dffbe48915e90))
+* **ci:** check if it runs ([6d5f2f7](https://github.com/sekwah41/Naruto-Mod/commit/6d5f2f7e601330d54ce1507369a429121f05c24e))
+* **ci:** check if it runs ([1345e91](https://github.com/sekwah41/Naruto-Mod/commit/1345e91e4d79310198c491a9d74d4abb15393584))
+* **ci:** log release value ([d54890b](https://github.com/sekwah41/Naruto-Mod/commit/d54890b846f812aeb1c3a7c0f493ff731c8ab244))
+* **ci:** log version ([fed2ca4](https://github.com/sekwah41/Naruto-Mod/commit/fed2ca40ac3ba0ed6582e4d74a43e2382f9835a6))
+* **ci:** remove accidental value ([fde372d](https://github.com/sekwah41/Naruto-Mod/commit/fde372d999a3dc5bc1f1af5d96a781d6b12c591a))
+* **ci:** remove ls task ([d1e8031](https://github.com/sekwah41/Naruto-Mod/commit/d1e8031bd195aa789ae68d593883f773b011a82b))
+* **ci:** remove newlines ([e506081](https://github.com/sekwah41/Naruto-Mod/commit/e5060813b4dd1180814ff2e8cf2714d432e128fa))
+* **ci:** snapshot all things for now ([c96d478](https://github.com/sekwah41/Naruto-Mod/commit/c96d478710532fe9eec2d80a953b0de402130812))
+* **ci:** snapshot all things for now ([9f9221d](https://github.com/sekwah41/Naruto-Mod/commit/9f9221d4443dcfc6e8d9de0ce66f306f04304bff))
+* **ci:** snapshot all things for now ([00a4baa](https://github.com/sekwah41/Naruto-Mod/commit/00a4baab756c5dd7a5c248fef7719ae4e2c105a0))
+* **ci:** snapshot all things for now ([be7e46f](https://github.com/sekwah41/Naruto-Mod/commit/be7e46f2b1fe636c978447df6e502366a14d29aa))
+* **ci:** snapshot all things for now ([6f1f942](https://github.com/sekwah41/Naruto-Mod/commit/6f1f942cf82e8e928906458497b7792ea606d4f3))
+* **ci:** snapshot all things for now ([a1f37ba](https://github.com/sekwah41/Naruto-Mod/commit/a1f37ba90cb014457414d36688f76dc6da41963c))
+* **ci:** Switch to release-please ([590f336](https://github.com/sekwah41/Naruto-Mod/commit/590f33643f00c592786d0598c984aa9dc46b4128))
+* **ci:** test branchs-ignore ([6884c3f](https://github.com/sekwah41/Naruto-Mod/commit/6884c3ff25ba5073b63fb7c2809e44eda41a9525))
+* **ci:** test to see why its not running ([35bfd74](https://github.com/sekwah41/Naruto-Mod/commit/35bfd74e45f0eebaabaf54c762c8ce26fe0fcd41))
+* **ci:** test to see why its not running ([4546f0e](https://github.com/sekwah41/Naruto-Mod/commit/4546f0e3020a79eced96d82bcc5452221e4d4d73))
+* **ci:** test to see why its not running ([ae51fea](https://github.com/sekwah41/Naruto-Mod/commit/ae51fea2409364bc4dd967143d317cac69beecc2))
+* **ci:** test to see why its not running ([28c3bf1](https://github.com/sekwah41/Naruto-Mod/commit/28c3bf135bb66f5831fca419937576d6208ec80d))
+* **ci:** test without if ([85c59f0](https://github.com/sekwah41/Naruto-Mod/commit/85c59f09edc1a33fbf8ee1206e2441bba778b9d2))
+* **ci:** testing release as part of release please ([0ff1a80](https://github.com/sekwah41/Naruto-Mod/commit/0ff1a807b57e2f0462c0339625dfb300bb814bca))
+* **ci:** testing unhiding logs ([9718259](https://github.com/sekwah41/Naruto-Mod/commit/9718259b015f41395e1524cd64bd88424684d260))
+* **deps:** Update dependency gradle to v7.4 ([1e7557b](https://github.com/sekwah41/Naruto-Mod/commit/1e7557b1eb431a2c3c55860b7987534a18801a6e))
+* **docs:** update readme to not get deleted by release-please ([f5a714b](https://github.com/sekwah41/Naruto-Mod/commit/f5a714b79167d7ab0b5216f79d2634a833ab06ac))
+
 ## [1.2.1](https://github.com/sekwah41/Naruto-Mod/compare/v1.2.0...v1.2.1) (Sun Jan 30 2022)
 
 #### 🐛 Bug Fix
