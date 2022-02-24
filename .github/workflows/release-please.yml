@@ -30,7 +30,7 @@ jobs:
         run: ./gradlew downloadAssets || ./gradlew downloadAssets || (sleep 30s && ./gradlew downloadAssets)
       - name: Run DataGen
         run: ./gradlew runData
-      - name: Build and publish (release)
+      - name: Build and publish (preview-snapshot)
         if: ${{ !steps.release.outputs.release_created }}
         env:
           CURSE_API: ${{ secrets.CURSE_API }}

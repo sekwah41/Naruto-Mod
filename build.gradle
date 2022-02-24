@@ -39,14 +39,15 @@ def branch = System.getenv("GITHUB_REF")
 if(branch != null) {
     branch = branch.replace('refs/heads/', '')
 }
-def isRelease = System.getenv("IS_RELEASE")
-
-print("Is release: " + isRelease)
+def isRelease = System.getenv("IS_RELEASE") === "true"
 
 def snapshotName = branch.startsWith("release-please") ? "SNAPSHOT" : branch
+def shaRef = System.getenv("GITHUB_REF").substring(0, 8);
+
+println "Branch ${branch} ${shaRef}"
 
 // Get version from file managed by please-release
-setVersion(file('./version.txt').text + (isRelease ? "" : "-${snapshotName}-${System.getenv("GITHUB_REF").substring(0, 8)}"))
+setVersion(file('./version.txt').text + (isRelease ? "" : "-${snapshotName}-${shaRef}"))
 
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.archive
