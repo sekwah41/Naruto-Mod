@@ -48,6 +48,7 @@ println "Branch ${branch} ${shaRef} isRelease: '${isRelease}'"
 
 // Get version from file managed by please-release
 setVersion(file('./version.txt').text + (isRelease ? "" : "-${snapshotName}-${shaRef}"))
+println "Version: ${getVersion()}"
 
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.archive
