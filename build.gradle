@@ -44,7 +44,7 @@ def isRelease = System.getenv("IS_RELEASE") == "true"
 def snapshotName = branch.startsWith("release-please") ? "SNAPSHOT" : branch
 def shaRef = System.getenv("GITHUB_SHA").substring(0, 8);
 
-println "Branch ${branch} ${shaRef}"
+println "Branch ${branch} ${shaRef} isRelease: '${isRelease}'"
 
 // Get version from file managed by please-release
 setVersion(file('./version.txt').text + (isRelease ? "" : "-${snapshotName}-${shaRef}"))
