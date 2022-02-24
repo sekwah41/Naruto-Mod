@@ -23,25 +23,8 @@ https://www.conventionalcommits.org/en/v1.0.0/
 Accepted tags mostly follow the Angular style and are meant to only loosely be followed.
 When commits close an issue refer in the commit description in the following style (Refs #1, #2, #3)
 ## Types available
-* **docs**: Documentation only changes
-* **feat**: A new feature
-* **fix**: A bug fix
-* **chore**: updating grunt tasks etc; no production code change
-* **perf**: A code change that improves performance
-* **refactor**: A code change that neither fixes a bug nor adds a feature
-* **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semicolons, etc)
-<!---
-We don't currently do tests. But in case.
- * **test**: Adding missing tests or correcting existing tests
--->
+See the [Release please config](./release-please-config.json) for the types available.
 
-## Scopes available
-Scopes are only needed if relating to specific features just to make them easier to find.
-_I'll expand the list as I work more on the project._
-* **items** (New items e.g. weapons)
-* **blocks** (New blocks e.g. decoration)
-* **ui** (GUI changes)
-* **deps**: Changes to dependencies
-* **ci**: Changes to continuous integration
-* **abilities** (New abilities e.g. leap or fireballs)
-* **entities** (New mobs e.g. leap or fireballs)
+## Using release-please-actions
+If you are wanting to use the same release configuration check out the [release-please-action](https://github.com/google-github-actions/release-please-action).
+You should be able to leave out the token part though if you also want testing snapshots to automatically post you will need to create a PAT and use that otherwise the actions will not trigger.
