@@ -11,7 +11,7 @@
     { "type": "fix", "section": "Bug Fixes \uD83D\uDC1B" },
     { "type": "perf", "section": "Performance Improvements ⚡️" },
     { "type": "tweak", "section": "Changes to Existing Features \uD83D\uDD27" },
-    { "type": "lang", "section": "Language updates \uD83C\uDF10" },
+    { "type": "lang", "section": "Language updates \uD83C\uDF10", "hidden": true },
     { "type": "revert", "section": "Reverts ⏪️" },
     { "type": "docs", "section": "Documentation", "hidden": true },
     { "type": "style", "section": "Styles", "hidden": true },
