@@ -16,12 +16,18 @@ For now until some of the main dev tools are ready and SekCLib has more features
 it will be included inside the packages of this mod. However, soon it will be split into a second mod for public use.
 
 # Contributing
+## Translations
+Translations can be contributed over at Crowdin: https://crowdin.com/project/naruto-mod
+This will automatically create pr's and should be merged when the next update or patch comes out.
+
+## Code
 Please ensure that your commits are in the following style for PR's
 
 https://www.conventionalcommits.org/en/v1.0.0/
 
 Accepted tags mostly follow the Angular style and are meant to only loosely be followed.
 When commits close an issue refer in the commit description in the following style (Refs #1, #2, #3)
+
 ## Types available
 See the [Release please config](./release-please-config.json) for the types available.
 
