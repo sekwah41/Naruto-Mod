@@ -36,18 +36,21 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: "org.spongepowered.mixin"
 
 def branch = System.getenv("GITHUB_REF")
+def snapshotName = null;
 if(branch != null) {
     branch = branch.replace('refs/heads/', '')
 }
 def isRelease = System.getenv("IS_RELEASE") == "true"
 
-def snapshotName = branch.startsWith("release-please") ? "SNAPSHOT" : branch
-def shaRef = System.getenv("GITHUB_SHA").substring(0, 8);
+snapshotName = (branch == null || branch.startsWith("release-please")) ? "SNAPSHOT" : branch
+def githubSha = System.getenv("GITHUB_SHA")
+def shaRef = githubSha != null ? "-${githubSha.substring(0, 8)}" : ""
 
-println "Branch ${branch} ${shaRef} isRelease: '${isRelease}'"
+println "Branch ${branch}${shaRef} isRelease: '${isRelease}'"
 
 // Get version from file managed by please-release
-setVersion((file('./version.txt').text + (isRelease ? "" : "-${snapshotName}-${shaRef}")).replaceAll('\n', ''))
+def versionString = (file('./version.txt').text + (isRelease ? "" : "-${snapshotName}${shaRef}")).replaceAll('\n', '')
+setVersion(versionString)
 println "Version: ${getVersion()}"
 
 group = project.package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -199,7 +202,7 @@ jar {
                 "Specification-Vendor": project.vendor,
                 "Specification-Version": "1", // We are version 1 of ourselves
                 "Implementation-Title": project.name,
-                "Implementation-Version": "${archiveVersion}",
+                "Implementation-Version": "${versionString}",
                 "Implementation-Vendor" :project.vendor,
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 "MixinConfigs": "mixins.${project.modid}.json"
