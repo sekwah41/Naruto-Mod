@@ -2,6 +2,7 @@ on:
   push:
     branches-ignore:
       - master
+  workflow_dispatch:
 name: Build
 jobs:
   snapshot:
