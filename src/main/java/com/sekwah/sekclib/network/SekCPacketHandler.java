@@ -4,6 +4,7 @@ import com.sekwah.sekclib.network.s2c.ClientCapabilitySyncPacket;
 import com.sekwah.sekclib.network.s2c.ClientVelocityPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
@@ -33,7 +34,7 @@ public class SekCPacketHandler {
         SYNC_CHANNEL.send(PacketDistributor.ALL.noArg(), obj);
     }
 
-    public static void sendToTracking(Object obj, ServerPlayer player) {
+    public static void sendToTracking(Object obj, LivingEntity player) {
         SYNC_CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> player), obj);
     }
 

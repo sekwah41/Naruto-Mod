@@ -28,7 +28,7 @@ public class CapabilitySyncRegistry {
      * @param capability the capability to process
      * @param clazz so that the fields can be pre-grabbed.
      */
-    @java.lang.SuppressWarnings("squid:S3011")
+    @SuppressWarnings("squid:S3011")
     static void registerPlayerCap(ResourceLocation resourceSyncName, Capability<?> capability, Class<?> clazz) {
         List<Field> values = Arrays.stream(clazz.getDeclaredFields())
                 .filter(value -> value.isAnnotationPresent(Sync.class))

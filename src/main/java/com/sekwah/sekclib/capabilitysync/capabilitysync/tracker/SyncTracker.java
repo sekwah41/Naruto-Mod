@@ -1,7 +1,6 @@
 package com.sekwah.sekclib.capabilitysync.capabilitysync.tracker;
 
 import com.sekwah.sekclib.capabilitysync.SyncEntry;
-import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.Objects;
 

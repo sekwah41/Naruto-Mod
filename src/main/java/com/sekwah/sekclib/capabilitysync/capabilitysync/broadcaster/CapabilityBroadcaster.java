@@ -9,6 +9,7 @@ import com.sekwah.sekclib.network.SekCPacketHandler;
 import com.sekwah.sekclib.network.s2c.ClientCapabilitySyncPacket;
 import com.sekwah.sekclib.registries.SekCLibRegistries;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 
@@ -25,7 +26,7 @@ public class CapabilityBroadcaster {
      *
      * @param player
      */
-    public static void checkPlayerCapData(ServerPlayer player) {
+    public static void checkCapData(LivingEntity player) {
         player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
             List<CapabilityTracker> capTrackers = syncData.getCapabilityTrackers();
             for (CapabilityTracker capTracker : capTrackers) {
@@ -45,9 +46,9 @@ public class CapabilityBroadcaster {
         broadcastCapChanges(player, false);
     }
 
-    private static List<CapabilityInfo> collectEntries(Player player, boolean returnAll) {
+    private static List<CapabilityInfo> collectEntries(LivingEntity entity, boolean returnAll) {
         List<CapabilityInfo> capInfoList = new ArrayList<>();
-        player.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
+        entity.getCapability(SyncDataCapabilityHandler.SYNC_DATA).ifPresent(syncData -> {
             List<CapabilityTracker> capTrackers = syncData.getCapabilityTrackers();
             for (CapabilityTracker capTracker : capTrackers) {
                 CapabilityEntry capEntry = capTracker.getCapabilityEntry();
@@ -83,25 +84,39 @@ public class CapabilityBroadcaster {
     /**
      * Collect player
      *
-     * @param player - what player to get the data off to check the syncing.
+     * @param entity - what player to get the data off to check the syncing.
      */
-    public static void broadcastCapChanges(ServerPlayer player, boolean sendAll) {
+    public static void broadcastCapChanges(LivingEntity entity, boolean sendAll) {
 
-        List<CapabilityInfo> dataToSend = collectEntries(player, sendAll);
+        List<CapabilityInfo> dataToSend = collectEntries(entity, sendAll);
 
         if(dataToSend.isEmpty()) {
             return;
         }
 
-        ClientCapabilitySyncPacket selfData = new ClientCapabilitySyncPacket(player, dataToSend, true);
-        if(!selfData.capabilityData.isEmpty()) {
-            SekCPacketHandler.sendToPlayer(selfData, player);
-        }
+        if(entity instanceof ServerPlayer serverPlayer) { {
+            ClientCapabilitySyncPacket selfData = new ClientCapabilitySyncPacket(entity, dataToSend, true);
+            if(!selfData.capabilityData.isEmpty()) {
+                SekCPacketHandler.sendToPlayer(selfData, serverPlayer);
+            }
+        }}
 
-        ClientCapabilitySyncPacket forOthers = new ClientCapabilitySyncPacket(player, dataToSend, false);
+        ClientCapabilitySyncPacket forOthers = new ClientCapabilitySyncPacket(entity, dataToSend, false);
         if(!forOthers.capabilityData.isEmpty()) {
-            SekCPacketHandler.sendToTracking(forOthers, player);
+            SekCPacketHandler.sendToTracking(forOthers, entity);
         }
 
+    }
+
+    public static void broadcastCapToPlayer(LivingEntity entity, ServerPlayer player) {
+        List<CapabilityInfo> dataToSend = collectEntries(entity, true);
+
+        if(dataToSend.isEmpty()) {
+            return;
+        }
+        ClientCapabilitySyncPacket forOthers = new ClientCapabilitySyncPacket(entity, dataToSend, false);
+        if(!forOthers.capabilityData.isEmpty()) {
+            SekCPacketHandler.sendToPlayer(forOthers, player);
+        }
     }
 }

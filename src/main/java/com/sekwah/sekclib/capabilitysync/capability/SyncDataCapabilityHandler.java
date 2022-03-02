@@ -10,14 +10,14 @@ import com.sekwah.sekclib.capabilitysync.capabilitysync.tracker.SyncTracker;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -57,7 +57,7 @@ public class SyncDataCapabilityHandler {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
-        if (event.getObject() instanceof Player && !event.getObject().level.isClientSide()) {
+        if (!event.getObject().level.isClientSide()) {
             createSyncData(event);
         }
     }
@@ -66,17 +66,14 @@ public class SyncDataCapabilityHandler {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
         if(event.phase == TickEvent.Phase.END && event.side.isServer() && event.player instanceof ServerPlayer serverPlayer) {
-            CapabilityBroadcaster.checkPlayerCapData(serverPlayer);
+            CapabilityBroadcaster.checkCapData(serverPlayer);
         }
     }
 
-    /*@SubscribeEvent
-    public static void dimensionChange(EntityJoinWorldEvent event) {
-        // TODO Handle syncing the players own data
-        if(event.getEntity() instanceof Player) {
-            SekCLib.LOGGER.info("JOINED WORLD");
-        }
-    }*/
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void entityLivingUpdate(LivingEvent.LivingUpdateEvent event) {
+        CapabilityBroadcaster.checkCapData(event.getEntityLiving());
+    }
 
     @SubscribeEvent
     public static void dimensionChange(PlayerEvent.PlayerChangedDimensionEvent event) {
@@ -89,23 +86,11 @@ public class SyncDataCapabilityHandler {
      * Server side event
      * @param event
      */
-    /*@SubscribeEvent
+    @SubscribeEvent
     public static void playerTracking(PlayerEvent.StartTracking event) {
-        if(event.getTarget() instanceof Player) {
-            SekCLib.LOGGER.info("Started Tracking");
+        if(event.getPlayer() instanceof ServerPlayer serverPlayer && event.getTarget() instanceof LivingEntity livingEntity) {
+            CapabilityBroadcaster.broadcastCapToPlayer(livingEntity, serverPlayer);
         }
-        // TODO triggers on any entity. trigger on players send over the original data
-    }*/
+    }
 
-    /**
-     * Server side event
-     * @param event
-     */
-    /*@SubscribeEvent
-    public static void playerStopTracking(PlayerEvent.StopTracking event) {
-        if(event.getTarget() instanceof Player) {
-            SekCLib.LOGGER.info("STOP TRACKING");
-        }
-        // TODO trigger on players send over the original data
-    }*/
 }

@@ -12,7 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
@@ -34,19 +34,19 @@ import java.util.function.Supplier;
  */
 public class ClientCapabilitySyncPacket {
 
-    private final int playerId;
+    private final int entityId;
     public List<CapabilityInfo> capabilityData;
     private boolean includePrivate;
 
     /**
      * To construct the data for serialisation
      *
-     * @param player
+     * @param entity
      * @param capabilityData
      * @param includePrivate - should include non global tags
      */
-    public ClientCapabilitySyncPacket(Player player, List<CapabilityInfo> capabilityData, boolean includePrivate) {
-        this.playerId = player.getId();
+    public ClientCapabilitySyncPacket(LivingEntity entity, List<CapabilityInfo> capabilityData, boolean includePrivate) {
+        this.entityId = entity.getId();
         this.capabilityData = new ArrayList<>(capabilityData);
         this.includePrivate = includePrivate;
         if (!includePrivate) {
@@ -55,7 +55,7 @@ public class ClientCapabilitySyncPacket {
     }
 
     private ClientCapabilitySyncPacket(int player, List<CapabilityInfo> capabilityData) {
-        this.playerId = player;
+        this.entityId = player;
         this.capabilityData = capabilityData;
     }
 
@@ -86,7 +86,7 @@ public class ClientCapabilitySyncPacket {
     }
 
     public static void encode(ClientCapabilitySyncPacket msg, FriendlyByteBuf outBuffer) {
-        outBuffer.writeInt(msg.playerId);
+        outBuffer.writeInt(msg.entityId);
         outBuffer.writeInt(msg.capabilityData.size());
         for (CapabilityInfo capInfo : msg.capabilityData) {
             outBuffer.writeInt(capInfo.capabilityId);
@@ -124,10 +124,10 @@ public class ClientCapabilitySyncPacket {
             context.enqueueWork(() ->
                 DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
                     ClientLevel level = Minecraft.getInstance().level;
-                    Entity entity = level.getEntity(msg.playerId);
-                    if (entity instanceof Player player) {
+                    Entity entity = level.getEntity(msg.entityId);
+                    if (entity instanceof LivingEntity livingEntity) {
                         for (CapabilityInfo capInfo : msg.capabilityData) {
-                            player.getCapability(capInfo.capability.getCapability()).ifPresent(targetCap -> {
+                            livingEntity.getCapability(capInfo.capability.getCapability()).ifPresent(targetCap -> {
                                 List<SyncEntry> syncEntries = capInfo.capability.getSyncEntries();
                                 for (ISyncTrackerData syncTrackerData : capInfo.changedEntries) {
                                     SyncEntry syncEntry = syncEntries.get(syncTrackerData.getSyncEntry().getTrackerId());
