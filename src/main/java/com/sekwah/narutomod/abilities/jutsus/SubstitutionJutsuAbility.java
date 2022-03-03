@@ -41,6 +41,7 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
                 double distance = player.position().distanceTo(loc);
                 if(distance < 40) {
                     player.teleportTo(loc.x, loc.y, loc.z);
+                    ninjaData.setSubstitutionLoc(null);
                 }
             }
         } else {

@@ -22,7 +22,7 @@ public class SekCLib {
     /**
      * Switch back to sekclib when split
      */
-    public static final String MOD_ID = "skeppymod";
+    public static final String MOD_ID = "narutomod";
 
     public static final Logger LOGGER = LogManager.getLogger("SekC Lib");
 
