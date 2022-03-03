@@ -73,7 +73,7 @@ public class NarutoMod {
     private void clientSetup(FMLClientSetupEvent event) {
         NarutoRenderEvents.registerRenderTypes();
         NarutoKeyHandler.registerKeyBinds();
-        NarutoWorldRenderEvents.registerEvents();
+        //NarutoWorldRenderEvents.registerEvents();
     }
 
     private void setup(FMLCommonSetupEvent event) {

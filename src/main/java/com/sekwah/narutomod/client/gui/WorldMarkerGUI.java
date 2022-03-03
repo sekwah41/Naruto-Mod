@@ -3,6 +3,7 @@ package com.sekwah.narutomod.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Matrix4f;
+import com.mojang.math.Vector4f;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.util.ColorUtil;
@@ -16,18 +17,22 @@ import net.minecraft.world.phys.Vec3;
 
 import java.awt.*;
 
-public class SubstitutionGUI extends GuiComponent implements PlayerGUI {
+/**
+ * For now this will just render the subsitution locations but modify it to show more in the future.
+ */
+public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
 
     public static final ResourceLocation LOG_TEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/jutsu/jutsu_substiutution.png");
 
     private final Minecraft minecraft;
-
+    private int screenWidth;
+    private int screenHeight;
     private final int intTextColor;
     private final int intTextOutline;
+    private Vec3 substitutionLoc;
+    private Vec3 playerLoc;
 
-    private float substitutions;
-
-    public SubstitutionGUI(Minecraft mc) {
+    public WorldMarkerGUI(Minecraft mc) {
         this.minecraft = mc;
 
         Color textColor = new Color(255, 255, 255);
@@ -37,47 +42,48 @@ public class SubstitutionGUI extends GuiComponent implements PlayerGUI {
     }
 
     public void render(PoseStack matrixStack, Matrix4f worldMatrix, Vec3 cameraPos) {
-        int screenWidth = this.minecraft.getWindow().getGuiScaledWidth();
-        int screenHeight = this.minecraft.getWindow().getGuiScaledHeight();
-        int screenMid = screenWidth / 2;
+        if(substitutionLoc == null) {
+            return;
+        }
+        this.screenWidth = this.minecraft.getWindow().getGuiScaledWidth();
+        this.screenHeight = this.minecraft.getWindow().getGuiScaledHeight();
+        int halfWidth = this.screenWidth / 2;
+        int halfHeight = this.screenHeight / 2;
 
-        int xPos = screenMid + 102;
-        int yOffset = 23;
-        float brightness = 0.4f;
+        float xPos = halfWidth;
+        float yOffset = halfHeight;
 
         int textureWidth = 19;
         int textureHeight = 18;
 
-        float height = this.substitutions % 1;
-
-        if(height == 0) {
-            height = 1;
-        }
-
-        int pixelHeight = Math.round(textureHeight * height);
-
         // stack, x, y, tx, ty, width, height, textureWidth, textureHeight
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.enableDepthTest();
+        RenderSystem.enableBlend();
         RenderSystem.setShaderTexture(0, LOG_TEXTURE);
-        RenderSystem.setShaderColor(brightness, brightness, brightness, 1.0F);
-        blit(matrixStack, xPos, screenHeight - yOffset,
-                6, 7,
-                textureWidth, textureHeight,
-                32, 32);
-        RenderSystem.setShaderColor(1.0f, 1.0f,1.0f,1.0F);
-        blit(matrixStack, xPos, screenHeight - yOffset + textureHeight - pixelHeight,
-                6, 7 + textureHeight - pixelHeight,
-                textureWidth, pixelHeight,
-                32, 32);
+
+        Vector4f vec = new Vector4f((float) (substitutionLoc.x - cameraPos.x), (float) (substitutionLoc.y - cameraPos.y), (float) (substitutionLoc.z - cameraPos.z), 1F);
+        double distance = cameraPos.distanceTo(substitutionLoc);
+        vec.transform(worldMatrix);
+        vec.perspectiveDivide();
+
+        xPos += vec.x() * halfWidth;
+        yOffset -= (vec.y() * halfHeight);
 
 
-
-        this.centeredTextOutlined(matrixStack,
-                String.valueOf((int) Math.floor(substitutions)),
-                xPos + 15,
-                screenHeight - yOffset + 12,
-                intTextColor,
-                intTextOutline);
+        if(vec.z() > 0 && vec.z() < 1) {
+            float fadeOut = (float) Math.max(Math.min(0.4f, ((distance) / 8) - 0.3), 0);
+            RenderSystem.setShaderColor(1, 1, 1, fadeOut);
+            float scale = (float) (0.5 / Math.pow((distance + 30) / 80, 2));
+            matrixStack.pushPose();
+            matrixStack.translate(xPos, yOffset, 0);
+            matrixStack.scale(scale, scale, scale);
+            blit(matrixStack, -textureWidth/2, -textureHeight/2,
+                    6, 7,
+                    textureWidth, textureHeight,
+                    32, 32);
+            matrixStack.popPose();
+        }
 
     }
 
@@ -92,7 +98,7 @@ public class SubstitutionGUI extends GuiComponent implements PlayerGUI {
 
     public void tick(Player player) {
         player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
-            this.substitutions = ninjaData.getSubstitutionCount();
+            this.substitutionLoc = ninjaData.getSubstitutionLoc();
         });
     }
 

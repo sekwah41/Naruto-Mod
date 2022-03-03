@@ -2,6 +2,7 @@ package com.sekwah.narutomod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Matrix4f;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.client.renderer.entity.config.NarutoConfig;
 import com.sekwah.narutomod.util.ColorUtil;
@@ -10,10 +11,11 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 
 import java.awt.*;
 
-public class ChakraAndStaminaGUI extends GuiComponent {
+public class ChakraAndStaminaGUI extends GuiComponent implements PlayerGUI {
 
 
     public static final BarDesigns.BarInfo[] barTypes = BarDesigns.BarInfo.values();
@@ -32,7 +34,7 @@ public class ChakraAndStaminaGUI extends GuiComponent {
         this.minecraft = mc;
     }
 
-    public void render(PoseStack matrixStack) {
+    public void render(PoseStack matrixStack, Matrix4f worldMatrix, Vec3 cameraPos) {
         this.screenWidth = this.minecraft.getWindow().getGuiScaledWidth();
         this.screenHeight = this.minecraft.getWindow().getGuiScaledHeight();
         int barDesign = NarutoConfig.chakraBarDesign;
