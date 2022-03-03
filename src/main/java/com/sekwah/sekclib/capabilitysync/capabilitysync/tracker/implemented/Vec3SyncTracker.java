@@ -15,19 +15,13 @@ public class Vec3SyncTracker implements SyncTrackerSerializer<Vec3> {
 
     @Override
     public void encode(Vec3 objectToSend, FriendlyByteBuf outBuffer) {
-        outBuffer.writeBoolean(objectToSend == null);
-        if(objectToSend != null) {
-            outBuffer.writeDouble(objectToSend.x);
-            outBuffer.writeDouble(objectToSend.y);
-            outBuffer.writeDouble(objectToSend.z);
-        }
+        outBuffer.writeDouble(objectToSend.x);
+        outBuffer.writeDouble(objectToSend.y);
+        outBuffer.writeDouble(objectToSend.z);
     }
 
     @Override
     public Vec3 decode(FriendlyByteBuf inBuffer) {
-        if(inBuffer.readBoolean()) {
-            return null;
-        }
         return new Vec3(inBuffer.readDouble(), inBuffer.readDouble(), inBuffer.readDouble());
     }
 }

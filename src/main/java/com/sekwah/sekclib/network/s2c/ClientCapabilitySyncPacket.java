@@ -30,6 +30,7 @@ import java.util.function.Supplier;
  * int how many fields to sync
  * <p>
  * int id for which field on the capability to sync. (this stops types needing to by synced with a registry)
+ * boolean has data (not null) (if its null skip encoding & decoding)
  * (push to the tracker to handle the encoding and decoding)
  */
 public class ClientCapabilitySyncPacket {
@@ -62,7 +63,10 @@ public class ClientCapabilitySyncPacket {
     public static void encodeSyncTrackers(List<ISyncTrackerData> trackers, FriendlyByteBuf outBuffer) {
         for (ISyncTrackerData tracker : trackers) {
             outBuffer.writeByte(tracker.getSyncEntry().getTrackerId());
-            tracker.getSyncEntry().getSerializer().encode(tracker.getSendValue(), outBuffer);
+            outBuffer.writeBoolean(tracker.getSendValue() != null);
+            if(tracker.getSendValue() != null) {
+                tracker.getSyncEntry().getSerializer().encode(tracker.getSendValue(), outBuffer);
+            }
         }
     }
 
@@ -78,9 +82,11 @@ public class ClientCapabilitySyncPacket {
         List<ISyncTrackerData> syncTrackerDataList = new ArrayList<>();
         for (int i = 0; i < trackerCount; i++) {
             int trackerId = inBuffer.readByte();
+            boolean hasData = inBuffer.readBoolean();
             SyncEntry tracker = capability.getSyncEntries().get(trackerId);
-            Object data = tracker.getSerializer().decode(inBuffer);
+            Object data = hasData ? tracker.getSerializer().decode(inBuffer) : null;
             syncTrackerDataList.add(new SyncTrackerData(tracker, data));
+
         }
         return syncTrackerDataList;
     }
