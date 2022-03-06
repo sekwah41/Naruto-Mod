@@ -133,7 +133,7 @@ public class NarutoConfig {
 
         configBuilder.comment("Variables for UI").push(CATEGORY_UI);
         CONFIG_CHAKRA_BAR_DESIGN = configBuilder.comment("Design for the chara bar")
-                .defineInRange("chakraBarDesign", 0, 0,  BarDesigns.BarInfo.values().length);
+                .defineInRange("chakraBarDesign", 0, 0,  BarDesigns.BarInfo.values().length - 1);
 
         configBuilder.pop();
 
