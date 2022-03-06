@@ -65,8 +65,6 @@ public class NarutoMod {
         NarutoAbilities.register(eventBus);
 
         DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> NarutoInGameGUI::new);
-
-        new SekCLib();
     }
 
 
