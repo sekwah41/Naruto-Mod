@@ -59,7 +59,7 @@ archivesBaseName = project.archive
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 repositories {
-//    maven { url = "https://maven.sekwah.com" }
+    maven { url = "https://maven.sekwah.com" }
     maven {
         url "https://www.cursemaven.com"
         content {
@@ -160,7 +160,7 @@ dependencies {
     implementation 'org.spongepowered:mixin:0.8.5'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    //compile "com.sekwah:SekCLib:${sekclib_version}:deobf"
+    implementation fg.deobf("com.sekwah:SekCLib:0.1.0")
     // Trick intellij to allow for better editing in here for the discord task
     // compile "org.apache.httpcomponents:httpmime:4.5.13"
     //implementation fg.deobf("curse.maven:torohealth-damage-indicators-245733:3556931")

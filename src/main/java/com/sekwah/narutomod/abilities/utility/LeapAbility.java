@@ -3,7 +3,7 @@ package com.sekwah.narutomod.abilities.utility;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
 import com.sekwah.narutomod.sounds.NarutoSounds;
-import com.sekwah.sekclib.player.PlayerUtil;
+import com.sekwah.sekclib.util.PlayerUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvent;
