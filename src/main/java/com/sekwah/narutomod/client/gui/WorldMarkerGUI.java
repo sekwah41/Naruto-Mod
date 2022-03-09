@@ -22,7 +22,7 @@ import java.awt.*;
  */
 public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
 
-    public static final ResourceLocation LOG_TEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/jutsu/jutsu_substiutution.png");
+    public static final ResourceLocation LOG_TEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/jutsu/jutsu_substiutution_marker.png");
 
     private final Minecraft minecraft;
     private int screenWidth;
@@ -53,8 +53,8 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
         float xPos = halfWidth;
         float yOffset = halfHeight;
 
-        int textureWidth = 19;
-        int textureHeight = 18;
+        int textureWidth = 32;
+        int textureHeight = 32;
 
         // stack, x, y, tx, ty, width, height, textureWidth, textureHeight
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -62,7 +62,7 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
         RenderSystem.enableBlend();
         RenderSystem.setShaderTexture(0, LOG_TEXTURE);
 
-        Vector4f vec = new Vector4f((float) (substitutionLoc.x - cameraPos.x), (float) (substitutionLoc.y - cameraPos.y), (float) (substitutionLoc.z - cameraPos.z), 1F);
+        Vector4f vec = new Vector4f((float) (substitutionLoc.x - cameraPos.x), (float) (substitutionLoc.y - cameraPos.y + 1.5), (float) (substitutionLoc.z - cameraPos.z), 1F);
         double distance = cameraPos.distanceTo(substitutionLoc);
         vec.transform(worldMatrix);
         vec.perspectiveDivide();
@@ -79,8 +79,8 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
             matrixStack.translate(xPos, yOffset, 0);
             matrixStack.scale(scale, scale, scale);
             blit(matrixStack, -textureWidth/2, -textureHeight/2,
-                    6, 7,
-                    textureWidth, textureHeight,
+                    0, 0,
+                    32, 32,
                     32, 32);
             matrixStack.popPose();
         }
