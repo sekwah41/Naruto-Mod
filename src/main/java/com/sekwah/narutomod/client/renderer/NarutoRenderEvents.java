@@ -2,6 +2,7 @@ package com.sekwah.narutomod.client.renderer;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.block.NarutoBlocks;
+import com.sekwah.narutomod.client.model.entity.SubstitutionLogModel;
 import com.sekwah.narutomod.client.model.jutsu.FireballJutsuModel;
 import com.sekwah.narutomod.client.model.jutsu.WaterBulletModel;
 import com.sekwah.narutomod.client.renderer.entity.*;
@@ -10,6 +11,7 @@ import com.sekwah.narutomod.client.model.item.model.HeadbandModel;
 import com.sekwah.narutomod.client.renderer.entity.jutsuprojectile.FireballJutsuRenderer;
 import com.sekwah.narutomod.client.renderer.entity.jutsuprojectile.WaterBulletJutsuRenderer;
 import com.sekwah.narutomod.entity.NarutoEntities;
+import com.sekwah.narutomod.entity.SubstitutionLogEntity;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -45,6 +47,9 @@ public class NarutoRenderEvents {
     public static final ModelLayerLocation WATER_BULLET_LAYER =
             new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "water_bullet"), "main");
 
+    public static final ModelLayerLocation SUBSTITUTION_LOG_LAYER =
+            new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "substitution_log"), "main");
+
     @SubscribeEvent
     public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(NarutoEntities.KUNAI.get(), KunaiRenderer::new);
@@ -55,6 +60,8 @@ public class NarutoRenderEvents {
 
         event.registerEntityRenderer(NarutoEntities.FIREBALL_JUTSU.get(), FireballJutsuRenderer::new);
         event.registerEntityRenderer(NarutoEntities.WATER_BULLET_JUTSU.get(), WaterBulletJutsuRenderer::new);
+
+        event.registerEntityRenderer(NarutoEntities.SUBSTITUTION_LOG.get(), SubstitutionLogRenderer::new);
 
     }
 
@@ -73,8 +80,13 @@ public class NarutoRenderEvents {
         event.registerLayerDefinition(ANBU_MASK_LAYER, () -> AnbuMaskModel.createLayer(true));
         event.registerLayerDefinition(ANBU_MASK_WITHOUT_EARS_LAYER, () -> AnbuMaskModel.createLayer(false));
         event.registerLayerDefinition(HEADBAND_LAYER, HeadbandModel::createLayer);
+
+        // Jutsu
         event.registerLayerDefinition(FIREBALL_LAYER, FireballJutsuModel::createLayer);
         event.registerLayerDefinition(WATER_BULLET_LAYER, WaterBulletModel::createLayer);
+
+        // Entity
+        event.registerLayerDefinition(SUBSTITUTION_LOG_LAYER, SubstitutionLogModel::createLayer);
     }
 
 /*    @SubscribeEvent
