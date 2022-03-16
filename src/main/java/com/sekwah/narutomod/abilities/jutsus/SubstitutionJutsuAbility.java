@@ -2,7 +2,9 @@ package com.sekwah.narutomod.abilities.jutsus;
 
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
@@ -35,6 +37,14 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
             if(loc != null) {
                 double distance = player.position().distanceTo(loc);
                 if(distance < 40 && player.level.dimension().location().equals(ninjaData.getSubstitutionDimension())) {
+                    if(player.level instanceof ServerLevel serverLevel) {
+                        serverLevel.sendParticles(ParticleTypes.CLOUD,
+                                player.getX(),
+                                player.getY() + (player.getBbHeight() / 2),
+                                player.getZ(),
+                                100,
+                                0.5, 0.7, 0.5, 0);
+                    }
                     player.teleportTo(loc.x, loc.y, loc.z);
                     ninjaData.setSubstitutionLoc(null, null);
                 }
