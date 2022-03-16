@@ -49,6 +49,9 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Sync
     private Vec3 substitutionLocation;
 
+    @Sync
+    private ResourceLocation substitutionDimension;
+
     /**
      * If the player can double jump, will be updated by underlying values server side.
      *
@@ -188,8 +191,14 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
-    public void setSubstitutionLoc(Vec3 loc) {
+    public ResourceLocation getSubstitutionDimension() {
+        return this.substitutionDimension;
+    }
+
+    @Override
+    public void setSubstitutionLoc(Vec3 loc, ResourceLocation dimension) {
         this.substitutionLocation = loc;
+        this.substitutionDimension = dimension;
     }
 
     @Override

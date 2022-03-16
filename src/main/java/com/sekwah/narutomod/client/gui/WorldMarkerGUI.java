@@ -30,7 +30,6 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
     private final int intTextColor;
     private final int intTextOutline;
     private Vec3 substitutionLoc;
-    private Vec3 playerLoc;
 
     public WorldMarkerGUI(Minecraft mc) {
         this.minecraft = mc;
@@ -98,7 +97,11 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
 
     public void tick(Player player) {
         player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
-            this.substitutionLoc = ninjaData.getSubstitutionLoc();
+            if(player.level.dimension().location().equals(ninjaData.getSubstitutionDimension())) {
+                this.substitutionLoc = ninjaData.getSubstitutionLoc();
+            } else {
+                this.substitutionLoc = null;
+            }
         });
     }
 
