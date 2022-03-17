@@ -32,7 +32,7 @@ public class SubstitutionLogModel extends Model {
                         .mirror(true)
                         .texOffs(0, 0)
                         .addBox(-2F, 0F, -2F, 4, 8, 4)
-                , PartPose.offsetAndRotation(0F, 0F, 0F, (float) Math.PI, 0F, 0F));
+                , PartPose.offsetAndRotation(0F, 5F, 0F, (float) Math.PI, 0F, 0F));
 
         main.addOrReplaceChild("Shape2",
                 CubeListBuilder.create()
