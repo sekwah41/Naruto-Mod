@@ -31,8 +31,8 @@ public class SubstitutionLogRenderer extends EntityRenderer<SubstitutionLogEntit
    public void render(SubstitutionLogEntity substitutionLogEntity, float p_114486_, float partial, PoseStack poseStack, MultiBufferSource multiBufferSource, int p_114490_) {
       VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RENDER_TYPE);
       poseStack.pushPose();
-      poseStack.translate(0,substitutionLogEntity.getBbHeight() / 2f,0);
-
+      poseStack.translate(0,substitutionLogEntity.getBbHeight() * 2,0);
+      poseStack.scale(2,2,2);
       this.model.renderToBuffer(poseStack, vertexconsumer, p_114490_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
       poseStack.popPose();
       super.render(substitutionLogEntity, p_114486_, partial, poseStack, multiBufferSource, p_114490_);
