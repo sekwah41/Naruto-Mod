@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
 import com.sekwah.narutomod.client.model.jutsu.FireballJutsuModel;
-import com.sekwah.narutomod.client.renderer.NarutoRenderEvents;
 import com.sekwah.narutomod.entity.jutsuprojectile.FireballJutsuEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -22,7 +21,7 @@ public class FireballJutsuRenderer extends EntityRenderer<FireballJutsuEntity> {
 
    public FireballJutsuRenderer(EntityRendererProvider.Context manager) {
       super(manager);
-      this.model = new FireballJutsuModel(manager.bakeLayer(NarutoRenderEvents.FIREBALL_LAYER));
+      this.model = new FireballJutsuModel(manager.bakeLayer(FireballJutsuModel.LAYER_LOCATION));
    }
 
    @Override

@@ -1,58 +1,48 @@
 package com.sekwah.narutomod.client.model.entity;
+// Made with Blockbench 4.0.3
+// Exported for Minecraft version 1.17 with Mojang mappings
+// Paste this class into your mod and generate all required imports
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.Model;
+import com.sekwah.narutomod.NarutoMod;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 
-public class SubstitutionLogModel extends Model {
+public class SubstitutionLogModel<T extends Entity> extends EntityModel<T> {
+	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "substitution_log"), "main");
+	private final ModelPart main;
 
-    private final ModelPart main;
+	public SubstitutionLogModel(ModelPart root) {
+		this.main = root.getChild("main");
+	}
 
-    public SubstitutionLogModel(ModelPart modelPart)
-    {
-        super(RenderType::entitySolid);
-        this.main = modelPart.getChild("main");
-    }
+	public static LayerDefinition createBodyLayer() {
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
 
+		PartDefinition main = partdefinition.addOrReplaceChild("main", CubeListBuilder.create().texOffs(0, 0).addBox(-5.1724F, -3.8587F, -2.55F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(2.6724F, 17.8587F, 0.05F));
 
-    public static LayerDefinition createLayer() {
+		PartDefinition leaf_r1 = main.addOrReplaceChild("leaf_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.9449F, -1.2826F, 0.1F, 0.0F, 0.0F, -0.1745F));
 
-        MeshDefinition meshdefinition = new MeshDefinition();
-        PartDefinition partdefinition = meshdefinition.getRoot();
+		PartDefinition branch_r1 = main.addOrReplaceChild("branch_r1", CubeListBuilder.create().texOffs(0, 15).addBox(-0.1F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.1724F, 0.1413F, -0.05F, 0.3491F, 0.0F, 0.0F));
 
-        PartDefinition main = partdefinition.addOrReplaceChild("main",
-                CubeListBuilder.create()
-                        .mirror(true)
-                        .texOffs(0, 0)
-                        .addBox(-2F, 0F, -2F, 4, 8, 4)
-                , PartPose.offsetAndRotation(0F, 5F, 0F, (float) Math.PI, 0F, 0F));
+		return LayerDefinition.create(meshdefinition, 32, 32);
+	}
 
-        main.addOrReplaceChild("Shape2",
-                CubeListBuilder.create()
-                        .mirror(true)
-                        .texOffs(16, 0)
-                        .addBox(-0.2666667F, 2F, -1.866667F, 4, 1, 1)
-                , PartPose.offsetAndRotation(0F, 0F, 0F, 0.4461433F, 0F, 0F));
+	@Override
+	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
-        main.addOrReplaceChild("Shape3",
-                CubeListBuilder.create()
-                        .mirror(true)
-                        .texOffs(26, 0)
-                        .addBox(2.066667F, 1.733333F, 0F, 2, 2, 0)
-                , PartPose.offsetAndRotation(0F, 0F, 0F, 0F, 0F, -0.3717861F));
+	}
 
-        return LayerDefinition.create(meshdefinition, 64, 64);
-    }
-
-    @Override
-    public void renderToBuffer(PoseStack matrixStack, VertexConsumer vertexConsumer, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
-        this.main.render(matrixStack, vertexConsumer, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
-    }
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+		main.render(poseStack, buffer, packedLight, packedOverlay);
+	}
 }

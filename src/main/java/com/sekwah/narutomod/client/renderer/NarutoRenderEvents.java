@@ -11,12 +11,9 @@ import com.sekwah.narutomod.client.model.item.model.HeadbandModel;
 import com.sekwah.narutomod.client.renderer.entity.jutsuprojectile.FireballJutsuRenderer;
 import com.sekwah.narutomod.client.renderer.entity.jutsuprojectile.WaterBulletJutsuRenderer;
 import com.sekwah.narutomod.entity.NarutoEntities;
-import com.sekwah.narutomod.entity.SubstitutionLogEntity;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
@@ -31,24 +28,6 @@ import net.minecraftforge.fml.common.Mod;
 public class NarutoRenderEvents {
 
     public static final BlockEntityWithoutLevelRenderer NARUTO_RENDERER = new NarutoRenderer();
-
-    public static final ModelLayerLocation ANBU_MASK_LAYER =
-            new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "anbu_mask"), "main");
-
-    public static final ModelLayerLocation ANBU_MASK_WITHOUT_EARS_LAYER =
-            new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "anbu_mask_without_ears"), "main");
-
-    public static final ModelLayerLocation HEADBAND_LAYER =
-            new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "headband"), "main");
-
-    public static final ModelLayerLocation FIREBALL_LAYER =
-            new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "fireball"), "main");
-
-    public static final ModelLayerLocation WATER_BULLET_LAYER =
-            new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "water_bullet"), "main");
-
-    public static final ModelLayerLocation SUBSTITUTION_LOG_LAYER =
-            new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "substitution_log"), "main");
 
     @SubscribeEvent
     public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -77,16 +56,16 @@ public class NarutoRenderEvents {
     @SubscribeEvent
     public static void layerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event)
     {
-        event.registerLayerDefinition(ANBU_MASK_LAYER, () -> AnbuMaskModel.createLayer(true));
-        event.registerLayerDefinition(ANBU_MASK_WITHOUT_EARS_LAYER, () -> AnbuMaskModel.createLayer(false));
-        event.registerLayerDefinition(HEADBAND_LAYER, HeadbandModel::createLayer);
+        event.registerLayerDefinition(AnbuMaskModel.LAYER_LOCATION, () -> AnbuMaskModel.createLayer(true));
+        event.registerLayerDefinition(AnbuMaskModel.LAYER_LOCATION_WITHOUT_EARS, () -> AnbuMaskModel.createLayer(false));
+        event.registerLayerDefinition(HeadbandModel.LAYER_LOCATION, HeadbandModel::createLayer);
 
         // Jutsu
-        event.registerLayerDefinition(FIREBALL_LAYER, FireballJutsuModel::createLayer);
-        event.registerLayerDefinition(WATER_BULLET_LAYER, WaterBulletModel::createLayer);
+        event.registerLayerDefinition(FireballJutsuModel.LAYER_LOCATION, FireballJutsuModel::createLayer);
+        event.registerLayerDefinition(WaterBulletModel.LAYER_LOCATION, WaterBulletModel::createLayer);
 
         // Entity
-        event.registerLayerDefinition(SUBSTITUTION_LOG_LAYER, SubstitutionLogModel::createLayer);
+        event.registerLayerDefinition(SubstitutionLogModel.LAYER_LOCATION, SubstitutionLogModel::createBodyLayer);
     }
 
 /*    @SubscribeEvent

@@ -4,15 +4,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
 import com.sekwah.narutomod.client.model.jutsu.WaterBulletModel;
-import com.sekwah.narutomod.client.renderer.NarutoRenderEvents;
-import com.sekwah.narutomod.entity.jutsuprojectile.FireballJutsuEntity;
 import com.sekwah.narutomod.entity.jutsuprojectile.WaterBulletJutsuEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
@@ -24,7 +21,7 @@ public class WaterBulletJutsuRenderer extends EntityRenderer<WaterBulletJutsuEnt
 
    public WaterBulletJutsuRenderer(EntityRendererProvider.Context manager) {
       super(manager);
-      this.model = new WaterBulletModel(manager.bakeLayer(NarutoRenderEvents.WATER_BULLET_LAYER));
+      this.model = new WaterBulletModel(manager.bakeLayer(WaterBulletModel.LAYER_LOCATION));
    }
 
    @Override

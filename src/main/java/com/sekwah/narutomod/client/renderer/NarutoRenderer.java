@@ -21,19 +21,19 @@ public class NarutoRenderer extends BlockEntityWithoutLevelRenderer {
         EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();
 
         ((NarutoArmorItem) NarutoItems.RED_ANBU_MASK.get())
-                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_LAYER)))
+                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION)))
                 .setArmorTexture("textures/models/armor/red_anbu_mask.png");
         ((NarutoArmorItem) NarutoItems.BLUE_ANBU_MASK.get())
-                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_LAYER)))
+                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION)))
                 .setArmorTexture("textures/models/armor/blue_anbu_mask.png");
         ((NarutoArmorItem) NarutoItems.GREEN_ANBU_MASK.get())
-                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_WITHOUT_EARS_LAYER)))
+                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION_WITHOUT_EARS)))
                 .setArmorTexture("textures/models/armor/green_anbu_mask.png");
         ((NarutoArmorItem) NarutoItems.MIST_ANBU_MASK.get())
-                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_WITHOUT_EARS_LAYER)))
+                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION_WITHOUT_EARS)))
                 .setArmorTexture("textures/models/armor/mist_anbu_mask.png");
         ((NarutoArmorItem) NarutoItems.YELLOW_ANBU_MASK.get())
-                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(NarutoRenderEvents.ANBU_MASK_WITHOUT_EARS_LAYER)))
+                .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION_WITHOUT_EARS)))
                 .setArmorTexture("textures/models/armor/yellow_anbu_mask.png");
 
         setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLUE, "textures/models/armor/headband/headband_blue_blank.png");
@@ -67,7 +67,7 @@ public class NarutoRenderer extends BlockEntityWithoutLevelRenderer {
 
     private void setHeadbandRenderer(EntityModelSet modelSet, RegistryObject<Item> item, String texture) {
         ((NarutoArmorItem) item.get())
-                .setArmorModel(new HeadbandModel(modelSet.bakeLayer(NarutoRenderEvents.HEADBAND_LAYER)))
+                .setArmorModel(new HeadbandModel(modelSet.bakeLayer(HeadbandModel.LAYER_LOCATION)))
                 .setArmorTexture(texture);
     }
 }
