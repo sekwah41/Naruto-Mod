@@ -12,6 +12,8 @@ import net.minecraftforge.network.NetworkHooks;
 
 public class SubstitutionLogEntity extends Mob {
 
+    private int aliveTicks = 20;
+
     public SubstitutionLogEntity(EntityType<SubstitutionLogEntity> p_21368_, Level p_21369_) {
         super(p_21368_, p_21369_);
     }
@@ -21,6 +23,15 @@ public class SubstitutionLogEntity extends Mob {
     public boolean hurt(DamageSource pSource, float pAmount) {
         this.setInvulnerable(true);
         return super.hurt(pSource, pAmount);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        this.aliveTicks--;
+        if(this.aliveTicks <= 0) {
+            this.kill();
+        }
     }
 
     public SubstitutionLogEntity(Level worldIn) {
