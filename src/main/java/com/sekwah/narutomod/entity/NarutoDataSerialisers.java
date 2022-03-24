@@ -1,5 +1,6 @@
 package com.sekwah.narutomod.entity;
 
+import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.util.StateUtils;
 import net.minecraft.core.Direction;
 import net.minecraft.network.FriendlyByteBuf;
@@ -10,8 +11,6 @@ import net.minecraftforge.registries.DataSerializerEntry;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import static com.sekwah.narutomod.NarutoMod.MOD_ID;
 
 public class NarutoDataSerialisers {
 
@@ -45,7 +44,7 @@ public class NarutoDataSerialisers {
         }
     };
 
-    private static final DeferredRegister<DataSerializerEntry> DATA_SERIALIZERS = DeferredRegister.create(ForgeRegistries.DATA_SERIALIZERS, MOD_ID);
+    private static final DeferredRegister<DataSerializerEntry> DATA_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.DATA_SERIALIZERS, NarutoMod.MOD_ID);
 
     public static final RegistryObject<DataSerializerEntry> ATTACH_FACE_ENTRY = DATA_SERIALIZERS.register("attach_face", () -> new DataSerializerEntry(ATTACH_FACE));
 
