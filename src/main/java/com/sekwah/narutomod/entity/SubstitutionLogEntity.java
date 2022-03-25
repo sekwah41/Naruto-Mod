@@ -12,7 +12,7 @@ import net.minecraftforge.network.NetworkHooks;
 
 public class SubstitutionLogEntity extends Mob {
 
-    private int aliveTicks = 20;
+    private int aliveTicks = 20 * 3;
 
     public SubstitutionLogEntity(EntityType<SubstitutionLogEntity> p_21368_, Level p_21369_) {
         super(p_21368_, p_21369_);
