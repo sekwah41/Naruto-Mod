@@ -25,13 +25,21 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
         return true;
     }
 
+    @Override
+    public String getTranslationKey(int ticksActive) {
+        if(ticksActive <= 1) {
+            return this.getRegistryName().toString();
+        } else {
+            return this.getRegistryName().toString() + ".mark";
+        }
+    }
+
     /**
      * Due to the nature of this ability all costs and other things will be handled here.
      */
     @Override
     public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
         if(ticksActive == 0) {
-            player.displayClientMessage(new TranslatableComponent("jutsu.cast.substitution"), false);
             // Activate
             ninjaData.useSubstitution(1);
             Vec3 loc = ninjaData.getSubstitutionLoc();
@@ -54,7 +62,6 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
                 }
             }
         } else {
-            player.displayClientMessage(new TranslatableComponent("jutsu.cast.substitution_mark"), false);
             ninjaData.setSubstitutionLoc(player.position(), player.level.dimension().location());
             // Mark
         }
@@ -62,6 +69,11 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
 
     @Override
     public boolean hideChannelMessages() {
+        return false;
+    }
+
+    @Override
+    public boolean useChargedMessages() {
         return true;
     }
 }

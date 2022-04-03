@@ -83,5 +83,7 @@
   "naruto.keys.key1": "Jutsu Key 1",
   "naruto.keys.key2": "Jutsu Key 2",
   "naruto.keys.key3": "Jutsu Key 3",
-  "naruto.keys.leap": "Leap"
+  "naruto.keys.leap": "Leap",
+  "narutomod:substitution": "Substitution",
+  "narutomod:substitution.mark": "Substitution - Location Marked"
 }

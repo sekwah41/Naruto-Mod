@@ -83,6 +83,15 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
     }
 
     public String getTranslationKey() {
+        return this.getTranslationKey(0);
+    }
+
+    /**
+     * Mostly for channeled abilities. but in case an ability evolves as its channeled.
+     * @param ticksActive
+     * @return
+     */
+    public String getTranslationKey(int ticksActive) {
         return this.getRegistryName().toString();
     }
 
