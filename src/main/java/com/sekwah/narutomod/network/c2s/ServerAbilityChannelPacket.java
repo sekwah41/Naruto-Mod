@@ -8,6 +8,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.GameType;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -70,6 +71,9 @@ public class ServerAbilityChannelPacket {
                         } else if(msg.status == ChannelStatus.MIN_ACTIVATE) {
                             if (ability instanceof Ability.Channeled channeled && channeled.canActivateBelowMinCharge()) {
                                 if(ability.handleCost(player, ninjaData, 0)) {
+                                    if (ability.castingSound() != null) {
+                                        player.getLevel().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
+                                    }
                                     player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
                                     ability.performServer(player, ninjaData, 0);
                                 }
