@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.entity;
 
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -45,5 +46,11 @@ public class SubstitutionLogEntity extends Mob {
     @Override
     public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    @Override
+    public void recreateFromPacket(ClientboundAddEntityPacket entityPacket) {
+        super.recreateFromPacket(entityPacket);
+        this.setYBodyRot(entityPacket.getyRot());
     }
 }

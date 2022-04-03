@@ -26,6 +26,8 @@ public interface INinjaData extends INBTSerializable<Tag> {
     void useSubstitution(float amount);
     void addChakra(float amount);
     void addStamina(float amount);
+    void setInvisibleTicks(int ticks);
+    boolean getInvisible();
 
     Vec3 getSubstitutionLoc();
     ResourceLocation getSubstitutionDimension();
