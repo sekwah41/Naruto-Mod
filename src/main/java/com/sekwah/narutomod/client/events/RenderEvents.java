@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.client.events;
 
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.item.interfaces.IShouldHideNameplate;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -24,6 +25,11 @@ public class RenderEvents {
      */
     @SubscribeEvent
     public static void playerRenderEvent(RenderPlayerEvent.Pre event) {
+        event.getPlayer().getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
+            if(ninjaData.getInvisible()) {
+                event.setCanceled(true);
+            }
+        });
         //event.setCanceled(true);
     }
 

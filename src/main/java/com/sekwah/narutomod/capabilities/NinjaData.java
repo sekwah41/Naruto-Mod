@@ -78,6 +78,16 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     private ToggleAbilityData toggleAbilityData;
 
 
+    /**
+     * Depending on what's going might want to swap to a potion effect.
+     * This will make the player truly invisible.
+     */
+    @Sync(minTicks = 1, syncGlobally = true)
+    private boolean isInvisible;
+
+    private int invisibleTicks;
+
+
     private ArrayList<DelayedPlayerTickEvent> delayedTickEvents = new ArrayList<>();
     // CooldownTickEvent to follow the same style you have for DelayedPlayerTickEvent
     private HashMap<String, CooldownTickEvent> cooldownTickEvents = new HashMap<>();
@@ -186,6 +196,16 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
+    public void setInvisibleTicks(int ticks) {
+        this.invisibleTicks = ticks;
+    }
+
+    @Override
+    public boolean getInvisible() {
+        return this.isInvisible;
+    }
+
+    @Override
     public Vec3 getSubstitutionLoc() {
         return this.substitutionLocation;
     }
@@ -257,6 +277,14 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     @Override
     public void updateDataServer(Player player) {
+
+        if(this.invisibleTicks > 0) {
+            this.invisibleTicks--;
+            this.isInvisible = true;
+        } else {
+            this.isInvisible = false;
+        }
+
         this.getConfigData();
         Iterator<DelayedPlayerTickEvent> iterator = this.delayedTickEvents.iterator();
         while (iterator.hasNext()) {
