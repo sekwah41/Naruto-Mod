@@ -29,7 +29,7 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
     }
 
     @Override
-    public String getTranslationKey(int ticksActive) {
+    public String getTranslationKey(INinjaData ninjaData, int ticksActive) {
         if(ticksActive <= 1) {
             return this.getRegistryName().toString();
         } else {

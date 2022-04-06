@@ -36,7 +36,7 @@ public class LingerAbilityData {
 
     public boolean addAbilityStarted(Player player, INinjaData ninjaData, Ability ability) {
         if (ability.activationType() == Ability.ActivationType.TOGGLE && ability.logInChat()) {
-            player.sendMessage(new TranslatableComponent("jutsu.toggle.enabled", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+            player.sendMessage(new TranslatableComponent("jutsu.toggle.enabled", new TranslatableComponent(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
         }
         return this.addAbility(ability.getRegistryName());
     }
@@ -44,7 +44,7 @@ public class LingerAbilityData {
     public boolean removeAbilityEnded(Player player, INinjaData ninjaData, Ability ability) {
         if(ability instanceof Ability.HandleEnded endedAbility) endedAbility.handleAbilityEnded(player, ninjaData, 0);
         if (ability.activationType() == Ability.ActivationType.TOGGLE && ability.logInChat()) {
-            player.sendMessage(new TranslatableComponent("jutsu.toggle.disabled", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());
+            player.sendMessage(new TranslatableComponent("jutsu.toggle.disabled", new TranslatableComponent(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());
         }
         return this.removeAbility(ability.getRegistryName());
     }

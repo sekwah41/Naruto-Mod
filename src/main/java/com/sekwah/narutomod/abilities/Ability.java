@@ -82,8 +82,8 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
        return NarutoSounds.JUTSU_CAST.get();
     }
 
-    public String getTranslationKey() {
-        return this.getTranslationKey(0);
+    public String getTranslationKey(INinjaData ninjaData) {
+        return this.getTranslationKey(ninjaData, 0);
     }
 
     /**
@@ -91,7 +91,7 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      * @param ticksActive
      * @return
      */
-    public String getTranslationKey(int ticksActive) {
+    public String getTranslationKey(INinjaData ninjaData, int ticksActive) {
         return this.getRegistryName().toString();
     }
 

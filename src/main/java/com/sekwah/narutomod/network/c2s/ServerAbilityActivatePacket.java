@@ -54,12 +54,12 @@ public class ServerAbilityActivatePacket {
 
                         boolean canTriggerJutsu = true;
                         if (ability  instanceof Ability.Cooldown) {
-                            canTriggerJutsu = !((Ability.Cooldown) ability).checkCooldown(player, ninjaData, ability.getTranslationKey());
+                            canTriggerJutsu = !((Ability.Cooldown) ability).checkCooldown(player, ninjaData, ability.getTranslationKey(ninjaData));
                         }
 
                         if(canTriggerJutsu && ability.handleCost(player, ninjaData)) {
                             if (ability.logInChat()) {
-                                player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                                player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
                             }
                             if(ability.castingSound() != null) {
                                 player.getLevel().playSound(null,
@@ -68,7 +68,7 @@ public class ServerAbilityActivatePacket {
                             ability.performServer(player, ninjaData);
 
                             if (ability  instanceof Ability.Cooldown) {
-                               ((Ability.Cooldown) ability).registerCooldown(ninjaData, ability.getTranslationKey());
+                               ((Ability.Cooldown) ability).registerCooldown(ninjaData, ability.getTranslationKey(ninjaData));
                             }
                         }
                     } else if(ability.activationType() == Ability.ActivationType.TOGGLE) {
