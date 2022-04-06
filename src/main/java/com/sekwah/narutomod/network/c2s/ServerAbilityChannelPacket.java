@@ -70,12 +70,12 @@ public class ServerAbilityChannelPacket {
                             }
                         } else if(msg.status == ChannelStatus.MIN_ACTIVATE) {
                             if (ability instanceof Ability.Channeled channeled && channeled.canActivateBelowMinCharge()) {
-                                if(ability.handleCost(player, ninjaData, 0)) {
+                                if(ability.handleCost(player, ninjaData, -1)) {
                                     if (ability.castingSound() != null) {
                                         player.getLevel().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
                                     }
                                     player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
-                                    ability.performServer(player, ninjaData, 0);
+                                    ability.performServer(player, ninjaData, -1);
                                 }
                             } else {
                                 player.sendMessage(new TranslatableComponent("jutsu.channel.needed", new TranslatableComponent(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());

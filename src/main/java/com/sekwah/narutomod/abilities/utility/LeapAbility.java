@@ -22,7 +22,13 @@ public class LeapAbility extends Ability {
         return false;
     }
 
+    @Override
     public SoundEvent castingSound() {
+        return null;
+    }
+
+    @Override
+    public SoundEvent castingFailSound() {
         return null;
     }
 

@@ -45,7 +45,7 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      *
      * If this fails and is above 0 for charge amount the last successful will call perform.
      *
-     * If channeled and chargeAmount is 0, it will either be a minCast (if enabled) or the stop packet is
+     * If channeled and chargeAmount is -1, it will either be a minCast (if enabled) or the stop packet is
      * received at the same time. If this returns false then perform will not be called.
      *
      * @param player
@@ -80,6 +80,14 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
      */
     public SoundEvent castingSound() {
        return NarutoSounds.JUTSU_CAST.get();
+    }
+
+    /**
+     * Sound to play when an ability fails to cast.
+     * @return
+     */
+    public SoundEvent castingFailSound() {
+        return NarutoSounds.JUTSU_FAIL.get();
     }
 
     public String getTranslationKey(INinjaData ninjaData) {

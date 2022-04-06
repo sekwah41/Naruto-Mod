@@ -4,6 +4,7 @@ import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
+import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -70,6 +71,8 @@ public class ServerAbilityActivatePacket {
                             if (ability  instanceof Ability.Cooldown) {
                                ((Ability.Cooldown) ability).registerCooldown(ninjaData, ability.getTranslationKey(ninjaData));
                             }
+                        } else if(ability.castingFailSound() != null) {
+                            player.playNotifySound( ability.castingFailSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
                         }
                     } else if(ability.activationType() == Ability.ActivationType.TOGGLE) {
                         ToggleAbilityData abilityTracker = ninjaData.getToggleAbilityData();

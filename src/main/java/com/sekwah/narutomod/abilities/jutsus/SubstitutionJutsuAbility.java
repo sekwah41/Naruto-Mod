@@ -3,9 +3,12 @@ package com.sekwah.narutomod.abilities.jutsus;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
 import com.sekwah.narutomod.entity.SubstitutionLogEntity;
+import com.sekwah.narutomod.sounds.NarutoSounds;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -25,6 +28,11 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
 
     @Override
     public boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount) {
+        if (ninjaData.getSubstitutionCount() < 1 && chargeAmount == -1) {
+            player.displayClientMessage(new TranslatableComponent("jutsu.fail.notenoughcharges", new TranslatableComponent(this.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)), true);
+            player.playNotifySound( NarutoSounds.JUTSU_FAIL.get(), SoundSource.PLAYERS, 0.5f, 1.0f);
+            return false;
+        }
         return true;
     }
 
@@ -42,7 +50,7 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
      */
     @Override
     public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
-        if(ticksActive == 0) {
+        if(ticksActive == -1) {
             // Activate
             ninjaData.useSubstitution(1);
             Vec3 loc = ninjaData.getSubstitutionLoc();
