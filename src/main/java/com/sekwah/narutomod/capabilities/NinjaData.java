@@ -245,9 +245,9 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
             if(!(ability instanceof Ability.Channeled channeled && channeled.hideChannelMessages())) {
                 if (ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
-                    player.sendMessage(new TranslatableComponent("jutsu.charge.start", new TranslatableComponent(ability.getTranslationKey(1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                    player.sendMessage(new TranslatableComponent("jutsu.charge.start", new TranslatableComponent(ability.getTranslationKey(this, 1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
                 } else {
-                    player.sendMessage(new TranslatableComponent("jutsu.channel.start", new TranslatableComponent(ability.getTranslationKey(1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                    player.sendMessage(new TranslatableComponent("jutsu.channel.start", new TranslatableComponent(ability.getTranslationKey(this, 1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
                 }
             }
 
@@ -258,9 +258,9 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
                 if( currentAbility != null) {
                     if(!(currentAbility instanceof Ability.Channeled channeled && channeled.hideChannelMessages())) {
                         if (currentAbility instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
-                            player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(currentAbility.getTranslationKey(this.ticksChanneled - 1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                            player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(currentAbility.getTranslationKey(this, this.ticksChanneled - 1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
                         } else {
-                            player.sendMessage(new TranslatableComponent("jutsu.channel.stop", new TranslatableComponent(currentAbility.getTranslationKey()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());
+                            player.sendMessage(new TranslatableComponent("jutsu.channel.stop", new TranslatableComponent(currentAbility.getTranslationKey(this)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());
                         }
                     }
                 }
