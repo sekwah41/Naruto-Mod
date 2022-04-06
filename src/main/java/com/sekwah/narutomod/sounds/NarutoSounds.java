@@ -23,6 +23,7 @@ public class NarutoSounds {
     public static final RegistryObject<SoundEvent> SEAL_C = register("seal_c");
 
     public static final RegistryObject<SoundEvent> JUTSU_CAST = register("jutsu_cast");
+    public static final RegistryObject<SoundEvent> JUTSU_FAIL = register("jutsu_fail");
 
     public static final RegistryObject<SoundEvent> FIREBALL_EXPLODE = register("fireball.explosion");
     public static final RegistryObject<SoundEvent> FIREBALL_SHOOT = register("fireball.shoot");
