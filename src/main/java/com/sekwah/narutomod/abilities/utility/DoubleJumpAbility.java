@@ -24,7 +24,13 @@ public class DoubleJumpAbility extends Ability {
         return false;
     }
 
+    @Override
     public SoundEvent castingSound() {
+        return null;
+    }
+
+    @Override
+    public SoundEvent castingFailSound() {
         return null;
     }
 
