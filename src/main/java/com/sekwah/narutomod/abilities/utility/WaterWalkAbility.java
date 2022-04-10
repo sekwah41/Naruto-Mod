@@ -1,5 +1,6 @@
 package com.sekwah.narutomod.abilities.utility;
 
+import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
 import net.minecraft.ChatFormatting;
@@ -61,13 +62,25 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
 
     public WaterChecks checkSteadyNormalFastPush(Player player) {
 
+
         int blockX = (int)Math.floor(player.getX());
         int blockZ = (int)Math.floor(player.getZ());
         final int block1 = (int) Math.round(player.getY() - 0.56f);
         boolean steadyCheck = triggerWaterWalk(player.level, new BlockPos(blockX, block1, blockZ));
 
         int block2 = (int) Math.round(player.getY());
+        int beforeBlock2 = (int) Math.round(player.yo);
         boolean pushUpFast = triggerWaterWalk(player.level, new BlockPos(blockX, block2, blockZ));
+        if(player.level.isClientSide() && player.yo > player.getY()) {
+            boolean beforeYCheck = triggerWaterWalk(player.level, new BlockPos(blockX, beforeBlock2, blockZ));
+            if(!beforeYCheck && steadyCheck && player.yo - player.getY() < 0.9f) {
+                Vec3 vec = player.getDeltaMovement();
+                player.lerpMotion(vec.x(), 0, vec.z());
+                player.setPos(player.getX(), block2 + 0.05f, player.getZ());
+            } else {
+                steadyCheck = false;
+            }
+        }
 
         int block3 = (int) Math.round(player.getY() - 0.47f);
         boolean pushUpNormal = triggerWaterWalk(player.level, new BlockPos(blockX, block3, blockZ));
@@ -75,7 +88,7 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
         return new WaterChecks(steadyCheck, pushUpFast, pushUpNormal);
     }
 
-    private void updatePlayerMovement(Player player) {
+    private void updatePlayerMovement(Player player, INinjaData ninjaData) {
 
         // TODO rewrite as this is the old way of doing it ported over
         // TODO also check if the block is waterlogged and non solid
@@ -100,6 +113,7 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
             resultingYSpeed = 0.0D;
             player.resetFallDistance();
             player.setOnGround(true);
+            ninjaData.getDoubleJumpData().canDoubleJumpServer = true;
             if(player.isFallFlying()) {
                 player.stopFallFlying();
             }
@@ -119,11 +133,11 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
 
     @Override
     public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
-        updatePlayerMovement(player);
+        updatePlayerMovement(player, ninjaData);
     }
 
     @Override
     public void performToggleClient(Player player, INinjaData ninjaData) {
-        updatePlayerMovement(player);
+        updatePlayerMovement(player, ninjaData);
     }
 }
