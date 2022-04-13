@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector4f;
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.abilities.jutsus.SubstitutionJutsuAbility;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.util.ColorUtil;
 import net.minecraft.client.Minecraft;
@@ -28,6 +29,7 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
     private int screenWidth;
     private int screenHeight;
     private final int intTextColor;
+    private final int outOfRangeColor;
     private final int intTextOutline;
     private Vec3 substitutionLoc;
 
@@ -36,7 +38,9 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
 
         Color textColor = new Color(255, 255, 255);
         Color textOutline = new Color(0, 0, 0);
+        Color outOfRangeColor = new Color(255, 99, 99);
         this.intTextColor = ColorUtil.toMCColor(textColor).getValue();
+        this.outOfRangeColor = ColorUtil.toMCColor(outOfRangeColor).getValue();
         this.intTextOutline = ColorUtil.toMCColor(textOutline).getValue();
     }
 
@@ -61,7 +65,7 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
         RenderSystem.enableBlend();
         RenderSystem.setShaderTexture(0, LOG_TEXTURE);
 
-        Vector4f vec = new Vector4f((float) (substitutionLoc.x - cameraPos.x), (float) (substitutionLoc.y - cameraPos.y + 1.5), (float) (substitutionLoc.z - cameraPos.z), 1F);
+        Vector4f vec = new Vector4f((float) (substitutionLoc.x - cameraPos.x), (float) (substitutionLoc.y - cameraPos.y), (float) (substitutionLoc.z - cameraPos.z), 1F);
         double distance = cameraPos.distanceTo(substitutionLoc);
         vec.transform(worldMatrix);
         vec.perspectiveDivide();
@@ -71,7 +75,7 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
 
 
         if(vec.z() > 0 && vec.z() < 1) {
-            float fadeOut = (float) Math.max(Math.min(0.4f, ((distance) / 8) - 0.3), 0);
+            float fadeOut = (float) Math.max(Math.min(0.6f, ((distance) / 8) - 0.5), 0);
             RenderSystem.setShaderColor(1, 1, 1, fadeOut);
             float scale = (float) (0.5 / Math.pow((distance + 30) / 80, 2));
             matrixStack.pushPose();
@@ -81,6 +85,7 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
                     0, 0,
                     32, 32,
                     32, 32);
+            centeredTextOutlined(matrixStack, Math.round(distance) + " M", 0, 11, distance < SubstitutionJutsuAbility.MAX_MARKER_DISTANCE ? intTextColor : outOfRangeColor, intTextOutline);
             matrixStack.popPose();
         }
 
