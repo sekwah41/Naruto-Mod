@@ -16,6 +16,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
 public class SubstitutionJutsuAbility extends Ability implements Ability.Channeled {
+
+    public static int MAX_MARKER_DISTANCE = 40;
+
     @Override
     public ActivationType activationType() {
         return ActivationType.CHANNELED;
@@ -54,13 +57,11 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
             // Activate
             ninjaData.useSubstitution(1);
             Vec3 loc = ninjaData.getSubstitutionLoc();
-            if(loc != null) {
-                double distance = player.position().distanceTo(loc);
-                if(distance < 40 && player.level.dimension().location().equals(ninjaData.getSubstitutionDimension())) {
-                    spawnLogAt(player, player.position(), ninjaData);
-                    player.teleportTo(loc.x, loc.y, loc.z);
-                    ninjaData.setSubstitutionLoc(null, null);
-                }
+            double distance = loc != null ? player.position().distanceTo(loc) : 0;
+            if(loc != null && distance < 40 && player.level.dimension().location().equals(ninjaData.getSubstitutionDimension())) {
+                spawnLogAt(player, player.position(), ninjaData);
+                player.teleportTo(loc.x, loc.y - 2, loc.z);
+                ninjaData.setSubstitutionLoc(null, null);
             } else {
                 Vec3 originalPosition = player.position();
                 if(this.randomTeleportPlayer(player, ninjaData)) {
@@ -70,7 +71,7 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
                 }
             }
         } else {
-            ninjaData.setSubstitutionLoc(player.position(), player.level.dimension().location());
+            ninjaData.setSubstitutionLoc(player.position().add(0, 2, 0), player.level.dimension().location());
             // Mark
         }
     }

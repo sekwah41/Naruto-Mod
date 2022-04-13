@@ -39,7 +39,7 @@ public class NarutoInGameGUI {
         this.substitutionOverlay = new SubstitutionGUI(this.minecraft);
         this.worldMarkerOverlay = new WorldMarkerGUI(this.minecraft);
 
-        this.overlays = new PlayerGUI[]{this.charkaOverlay, this.substitutionOverlay, this.worldMarkerOverlay};
+        this.overlays = new PlayerGUI[]{this.worldMarkerOverlay, this.substitutionOverlay, this.charkaOverlay};
 
         MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlay);
         MinecraftForge.EVENT_BUS.addListener(this::clientTickEvent);
@@ -63,7 +63,7 @@ public class NarutoInGameGUI {
     }
 
     @SubscribeEvent
-    public void renderGameOverlay(RenderGameOverlayEvent event) {
+    public void renderGameOverlay(RenderGameOverlayEvent.Pre event) {
         if(event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
             return;
         }
