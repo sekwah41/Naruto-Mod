@@ -55,7 +55,8 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
     public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
         if(ticksActive == -1) {
             // Activate
-            ninjaData.useSubstitution(1);
+            if(!player.isCreative()) ninjaData.useSubstitution(1);
+
             Vec3 loc = ninjaData.getSubstitutionLoc();
             double distance = loc != null ? player.position().distanceTo(loc) : 0;
             if(loc != null && distance < 40 && player.level.dimension().location().equals(ninjaData.getSubstitutionDimension())) {
