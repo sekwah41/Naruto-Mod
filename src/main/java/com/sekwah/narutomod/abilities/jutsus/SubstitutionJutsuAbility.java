@@ -17,7 +17,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class SubstitutionJutsuAbility extends Ability implements Ability.Channeled {
 
-    public static int MAX_MARKER_DISTANCE = 40;
+    public static int MAX_MARKER_DISTANCE = 70;
 
     @Override
     public ActivationType activationType() {
