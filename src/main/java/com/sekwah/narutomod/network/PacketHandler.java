@@ -25,8 +25,22 @@ public class PacketHandler {
     public static final SimpleChannel NARUTO_CHANNEL = NetworkRegistry.ChannelBuilder
             .named(new ResourceLocation(NarutoMod.MOD_ID, "naruto_data"))
             .networkProtocolVersion(() -> PROTOCOL_VERSION)
-            .clientAcceptedVersions(PROTOCOL_VERSION::equals)
-            .serverAcceptedVersions(PROTOCOL_VERSION::equals)
+            .clientAcceptedVersions(version -> {
+                if (version.equals(PROTOCOL_VERSION)) {
+                    return true;
+                } else {
+                    NarutoMod.LOGGER.error("Client attempted to connect with a different version of the mod. Client Version: " + PROTOCOL_VERSION + " Server Version: " + version);
+                    return false;
+                }
+            })
+            .serverAcceptedVersions(version -> {
+                if (version.equals(PROTOCOL_VERSION)) {
+                    return true;
+                } else {
+                    NarutoMod.LOGGER.error("Client attempted to connect with a different version of the mod. Server Version: " + PROTOCOL_VERSION + " Client Version: " + version);
+                    return false;
+                }
+            })
             .simpleChannel();
 
     public static void init() {
