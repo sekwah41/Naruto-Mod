@@ -59,7 +59,7 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
 
             Vec3 loc = ninjaData.getSubstitutionLoc();
             double distance = loc != null ? player.position().distanceTo(loc) : 0;
-            if(loc != null && distance < 40 && player.level.dimension().location().equals(ninjaData.getSubstitutionDimension())) {
+            if(loc != null && distance < MAX_MARKER_DISTANCE && player.level.dimension().location().equals(ninjaData.getSubstitutionDimension())) {
                 spawnLogAt(player, player.position(), ninjaData);
                 player.teleportTo(loc.x, loc.y - 2, loc.z);
                 ninjaData.setSubstitutionLoc(null, null);
@@ -67,8 +67,6 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
                 Vec3 originalPosition = player.position();
                 if(this.randomTeleportPlayer(player, ninjaData)) {
                     spawnLogAt(player, originalPosition, ninjaData);
-                } else {
-                    // TODO add a failed teleport message or handle the tp logic in the calculation.
                 }
             }
         } else {

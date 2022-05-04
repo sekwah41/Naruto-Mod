@@ -9,6 +9,7 @@ import com.sekwah.narutomod.network.c2s.ServerTestPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
@@ -16,7 +17,10 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 public class PacketHandler {
 
-    public static final String PROTOCOL_VERSION = "1";
+    /**
+     * Forces the mod to have the same version as the server.
+     */
+    public static final String PROTOCOL_VERSION = ModList.get().getModFileById(NarutoMod.MOD_ID).versionString();
 
     public static final SimpleChannel NARUTO_CHANNEL = NetworkRegistry.ChannelBuilder
             .named(new ResourceLocation(NarutoMod.MOD_ID, "naruto_data"))
