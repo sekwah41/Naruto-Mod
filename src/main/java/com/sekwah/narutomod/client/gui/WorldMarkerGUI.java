@@ -85,7 +85,8 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
                     0, 0,
                     32, 32,
                     32, 32);
-            centeredTextOutlined(matrixStack, Math.floor(distance) + " M", 0, 11, distance > SubstitutionJutsuAbility.MAX_MARKER_DISTANCE ? intTextColor : outOfRangeColor, intTextOutline);
+            long roundedDistance = Math.round(distance);
+            centeredTextOutlined(matrixStack, roundedDistance + " M", 0, 11, roundedDistance <= SubstitutionJutsuAbility.MAX_MARKER_DISTANCE ? intTextColor : outOfRangeColor, intTextOutline);
             matrixStack.popPose();
         }
 
