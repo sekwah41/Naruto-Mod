@@ -47,6 +47,7 @@
   "narutomod.subtitle.needle_hit": "Needle Hit",
   "narutomod.subtitle.jutsu_seal": "Jutsu Seal",
   "narutomod.subtitle.jutsu_cast": "Jutsu Cast",
+  "narutomod.subtitle.jutsu_fail": "Jutsu Fail",
   "narutomod.subtitle.fireball.shoot": "Fireball Shoot",
   "narutomod.subtitle.fireball.explosion": "Fireball Explosion",
   "narutomod.subtitle.waterbullet.shoot": "Water Bullet Shoot",
@@ -62,6 +63,7 @@
   "jutsu.fail.notonground": "You must be on the ground to use %s",
   "jutsu.fail.notenoughstamina": "You do not have enough stamina to use %s",
   "jutsu.fail.notenoughchakra": "You do not have enough chakra to use %s",
+  "jutsu.fail.notenoughcharges": "You do not have enough charges to use %s",
   "ability.double_jump": "Double Jump",
   "jutsu.leap": "Leap",
   "jutsu.waterwalk": "Water Walking",
@@ -83,5 +85,7 @@
   "naruto.keys.key1": "Jutsu Key 1",
   "naruto.keys.key2": "Jutsu Key 2",
   "naruto.keys.key3": "Jutsu Key 3",
-  "naruto.keys.leap": "Leap"
+  "naruto.keys.leap": "Leap",
+  "narutomod:substitution": "Substitution",
+  "narutomod:substitution.mark": "Substitution - Location Marked"
 }
