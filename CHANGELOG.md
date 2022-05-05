@@ -1,5 +1,46 @@
 # Changelog
 
+## [1.3.0](https://github.com/sekwah41/Naruto-Mod/compare/v1.2.1...v1.3.0) (2022-05-05)
+
+
+### Features ✨
+
+* add distance indicator for substitution marker ([ea16168](https://github.com/sekwah41/Naruto-Mod/commit/ea1616865ea5551ffbfff1ba3623c55cdfe4dfe8))
+* add jutsu failed sounds and switch min-cast to -1 to differentiate ([80b77b9](https://github.com/sekwah41/Naruto-Mod/commit/80b77b932f4c523a47da17ab5265e60eb49b9e40))
+* add messages for substitution ([e3e887e](https://github.com/sekwah41/Naruto-Mod/commit/e3e887ee134f93c55680973fce9b4b4e0279c236))
+* add new substitution log model ([b68e7d3](https://github.com/sekwah41/Naruto-Mod/commit/b68e7d3eac9c0e857cbe5d90a40126a55c4ae80a))
+* add particles to substitution ([69f580d](https://github.com/sekwah41/Naruto-Mod/commit/69f580d97d44ac9e354b9fb82b759af939ffea5e))
+* add substitution log ability ([7369d88](https://github.com/sekwah41/Naruto-Mod/commit/7369d88add1a2afc4becc585779a5c36934f31a4))
+* add SubstitutionLogModel ([cc9e0d6](https://github.com/sekwah41/Naruto-Mod/commit/cc9e0d6795b3c174448cde4401d282d1fd14ed3e))
+* Added UI for rendering the substitution count and progress ([b2d0cd2](https://github.com/sekwah41/Naruto-Mod/commit/b2d0cd2f1d5829f3cf555a043725340ffb63587a))
+* adding logic to render info over the world ([d823e4b](https://github.com/sekwah41/Naruto-Mod/commit/d823e4bc71a0ac379f9f5199447a54151fe1eddd))
+* config values and data syncing for substitution count ([a813057](https://github.com/sekwah41/Naruto-Mod/commit/a813057a0d30523427fc6f31a9f310a559b473d5))
+* store cooldowns and calculate time passed offline ([4270658](https://github.com/sekwah41/Naruto-Mod/commit/4270658a78dc4e3415013bc0b8bc4990fc7c2353))
+* substitution gui visuals & allow data to sync null values ([5c89737](https://github.com/sekwah41/Naruto-Mod/commit/5c8973768c57009832b17dd42c7f1415c1a94742))
+* update channeled logic for substitution ([bbde117](https://github.com/sekwah41/Naruto-Mod/commit/bbde117a8b4125bd37a833a67dcf10c5f4dcb207))
+* update to 1.18.2 ([b4b4354](https://github.com/sekwah41/Naruto-Mod/commit/b4b4354ff5dc48d9649237c74c1808a3c99e9bf9))
+
+
+### Changes to Existing Features 🔧
+
+* buff substitution range to 70 blocks ([85f7a75](https://github.com/sekwah41/Naruto-Mod/commit/85f7a753ef5767b27120cf67906ae70d0deea18c))
+* change world marker to glow a bit ([c579372](https://github.com/sekwah41/Naruto-Mod/commit/c5793729cd1da0abb63f14ac0e5b6ea806d8db00))
+* disable hurt effect on logs and increase lifespan ([8bac4f2](https://github.com/sekwah41/Naruto-Mod/commit/8bac4f2346f7d93a86f314c2ba40aa23e301a07b))
+
+
+### Bug Fixes 🐛
+
+* add casting ability sound on channeled instant cast ([7294e90](https://github.com/sekwah41/Naruto-Mod/commit/7294e90a8af3dd09636099f81de33669863be8d8))
+* add random tp and proper invisibility on substitution ([7dc6e55](https://github.com/sekwah41/Naruto-Mod/commit/7dc6e5558060ea40de41d7dffe581c37454bfe4f))
+* capability data on clone event ([d9152b5](https://github.com/sekwah41/Naruto-Mod/commit/d9152b5b7dcc729e29febf57f8fc7075f75b82b5))
+* force server and client to have same mod version ([6dea6e8](https://github.com/sekwah41/Naruto-Mod/commit/6dea6e8bc9d76ba2cdc133fcdf9548b72b11d50e))
+* network syncing info for entities ([2a87ced](https://github.com/sekwah41/Naruto-Mod/commit/2a87ced2daa10cf9eaf3c1f2e480a2ea5ddedd3d))
+* optifine making water bullets glow ([f7ef4d2](https://github.com/sekwah41/Naruto-Mod/commit/f7ef4d27d2321dab9a8123dcc9a6364e47ba28a5))
+* substitution no longer uses charges in creative ([7202c2b](https://github.com/sekwah41/Naruto-Mod/commit/7202c2bdf9eb53e5c62ea9089d2d7d21ec29b9ee))
+* substitution teleporting when marked in other dimensions ([752970a](https://github.com/sekwah41/Naruto-Mod/commit/752970a712c9f20da0f7b2792c7221a0f4820502))
+* ui config value maximum crashes game ([0e4a015](https://github.com/sekwah41/Naruto-Mod/commit/0e4a0150de77e23907f5f101021add099542b9a0))
+* water walking and double jump on water ([53b341e](https://github.com/sekwah41/Naruto-Mod/commit/53b341ed295082596b66cff3a7272a6fa4f6116a))
+
 ## [1.2.1](https://github.com/sekwah41/Naruto-Mod/compare/v1.2.0...v1.2.1) (Sun Jan 30 2022)
 
 #### 🐛 Bug Fix
