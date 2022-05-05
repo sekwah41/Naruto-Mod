@@ -2,6 +2,7 @@ package com.sekwah.narutomod.entity.jutsuprojectile;
 
 import com.sekwah.narutomod.damagesource.NarutoDamageSource;
 import com.sekwah.narutomod.entity.NarutoEntities;
+import com.sekwah.narutomod.entity.projectile.AbstractNonGlowingHurtingProjectile;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -10,15 +11,13 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class WaterBulletJutsuEntity extends AbstractHurtingProjectile {
+public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile {
 
     public int time;
     // Ticks in rain before destroying
@@ -29,7 +28,7 @@ public class WaterBulletJutsuEntity extends AbstractHurtingProjectile {
         this.time = 0;
     }
 
-    public WaterBulletJutsuEntity(EntityType<? extends AbstractHurtingProjectile> entityType, double posX, double posY, double posZ, double velX, double velY, double velZ, Level p_36824_) {
+    public WaterBulletJutsuEntity(EntityType<? extends AbstractNonGlowingHurtingProjectile> entityType, double posX, double posY, double posZ, double velX, double velY, double velZ, Level p_36824_) {
         super(entityType, p_36824_);
         this.moveTo(posX, posY, posZ, this.getYRot(), this.getXRot());
         this.reapplyPosition();
