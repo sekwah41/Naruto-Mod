@@ -47,6 +47,7 @@
   "narutomod.subtitle.needle_hit": "Senbon Vurdu",
   "narutomod.subtitle.jutsu_seal": "Jutsu Mührü",
   "narutomod.subtitle.jutsu_cast": "Jutsu Aktivasyonu",
+  "narutomod.subtitle.jutsu_fail": "Jutsu Başarısız",
   "narutomod.subtitle.fireball.shoot": "Ateştopu Atıldı",
   "narutomod.subtitle.fireball.explosion": "Ateştopu Patladı",
   "narutomod.subtitle.waterbullet.shoot": "Su Mermisi Atıldı",
@@ -62,6 +63,7 @@
   "jutsu.fail.notonground": "%s kullanmak için yerde olmalısın.",
   "jutsu.fail.notenoughstamina": "%s kullanmak için yeterli dayanıklılığın yok.",
   "jutsu.fail.notenoughchakra": "%s kullanmak için yeterli chakran yok.",
+  "jutsu.fail.notenoughcharges": "%s Kullanmak için yeterli enerjiniz yok.",
   "ability.double_jump": "Çift Zıplama",
   "jutsu.leap": "Sıçrama",
   "jutsu.waterwalk": "Suda Yürüme",
@@ -83,5 +85,7 @@
   "naruto.keys.key1": "Jutsu Anahtarı 1",
   "naruto.keys.key2": "Jutsu Anahtarı 2",
   "naruto.keys.key3": "Jutsu Anahtarı 3",
-  "naruto.keys.leap": "Sıçrama"
+  "naruto.keys.leap": "Sıçrama",
+  "narutomod:substitution": "Yer Değiştirme",
+  "narutomod:substitution.mark": "Yer Değiştirme - Konum İşaretlendi"
 }
