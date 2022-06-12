@@ -1,5 +1,6 @@
 package com.sekwah.narutomod.client.keybinds;
 
+import com.mojang.logging.LogUtils;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
@@ -9,12 +10,13 @@ import com.sekwah.narutomod.network.c2s.ServerAbilityChannelPacket;
 import com.sekwah.narutomod.network.c2s.ServerJutsuCastingPacket;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.slf4j.Logger;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ import java.util.Map;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = NarutoMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class NarutoKeyHandler {
+
+    private static final Logger LOGGER = LogUtils.getLogger();
 
     private static final Map<String, KeyBindingTickHeld> keys = new HashMap<>();
 
@@ -100,7 +104,7 @@ public class NarutoKeyHandler {
             currentJutsuCombo += i;
             currentJutsuComboAbility = NarutoAbilities.getAbilityFromCombo(currentJutsuCombo);
         } else {
-            NarutoMod.LOGGER.info("Combo too long, ignoring keypress");
+            LOGGER.info("Combo too long, ignoring keypress");
         }
     }
 
@@ -178,11 +182,11 @@ public class NarutoKeyHandler {
             //NarutoMod.LOGGER.info("Would cast jutsu {}", currentJutsuCombo);
             Minecraft mc = Minecraft.getInstance();
             if(mc.player != null ) {
-                NarutoMod.LOGGER.debug("Casting jutsu {}", currentJutsuCombo);
+                LOGGER.debug("Casting jutsu {}", currentJutsuCombo);
                 if(!NarutoAbilities.triggerAbility(currentJutsuCombo)) {
-                    mc.player.sendMessage((new TranslatableComponent("jutsu.error.notfound", currentJutsuCombo)).withStyle(ChatFormatting.RED), mc.player.getUUID());
+                    mc.player.displayClientMessage((Component.translatable("jutsu.error.notfound", currentJutsuCombo)).withStyle(ChatFormatting.RED), false);
                 } else {
-                    //mc.player.sendMessage(new TranslatableComponent("trying.jutsu", currentJutsuCombo), null);
+                    //mc.player.sendMessage(Component.translatable("trying.jutsu", currentJutsuCombo), true);
                 }
             }
             resetJutsuCasting();

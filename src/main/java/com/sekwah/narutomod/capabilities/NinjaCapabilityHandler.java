@@ -2,7 +2,7 @@ package com.sekwah.narutomod.capabilities;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
-import com.sekwah.narutomod.abilities.NarutoAbilities;
+import com.sekwah.narutomod.registries.NarutoRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -40,7 +40,7 @@ public class NinjaCapabilityHandler {
                     data.updateDataServer(player);
                     if(!player.isSpectator()) {
                         data.getToggleAbilityData().getAbilitiesHashSet().forEach(abilityName -> {
-                            Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(abilityName);
+                            Ability ability = NarutoRegistries.ABILITIES.getValue(abilityName);
                             if(ability.handleCost(player, data)) {
                                 ability.performServer(player, data);
                             } else {
@@ -52,7 +52,7 @@ public class NinjaCapabilityHandler {
                     data.updateDataClient(player);
                     if(!player.isSpectator()) {
                         data.getToggleAbilityData().getAbilitiesHashSet().forEach(abilityName -> {
-                            Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(abilityName);
+                            Ability ability = NarutoRegistries.ABILITIES.getValue(abilityName);
                             if(ability instanceof Ability.Toggled toggleAbility) toggleAbility.performToggleClient(player, data);
                         });
                     }

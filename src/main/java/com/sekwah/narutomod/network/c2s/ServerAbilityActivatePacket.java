@@ -1,13 +1,12 @@
 package com.sekwah.narutomod.network.c2s;
 
 import com.sekwah.narutomod.abilities.Ability;
-import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
-import com.sekwah.narutomod.sounds.NarutoSounds;
+import com.sekwah.narutomod.registries.NarutoRegistries;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -25,7 +24,7 @@ public class ServerAbilityActivatePacket {
     private final int abilityId;
 
     public ServerAbilityActivatePacket(ResourceLocation ability) {
-        this.abilityId = NarutoAbilities.ABILITY_REGISTRY.getID(ability);
+        this.abilityId = NarutoRegistries.ABILITIES.getID(ability);
     }
 
     public ServerAbilityActivatePacket(int abilityId) {
@@ -45,12 +44,12 @@ public class ServerAbilityActivatePacket {
         public static void handle(ServerAbilityActivatePacket msg, Supplier<NetworkEvent.Context> ctx) {
             ctx.get().enqueueWork(() -> {
                 final ServerPlayer player = ctx.get().getSender();
-                if(player != null && player.gameMode.getGameModeForPlayer() == GameType.SPECTATOR) {
+                if(player == null || player.gameMode.getGameModeForPlayer() == GameType.SPECTATOR) {
                     return;
                 }
                 player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
 
-                    Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(msg.abilityId);
+                    Ability ability = NarutoRegistries.ABILITIES.getValue(msg.abilityId);
                     if (ability.activationType() == Ability.ActivationType.INSTANT) {
 
                         boolean canTriggerJutsu = true;
@@ -60,7 +59,7 @@ public class ServerAbilityActivatePacket {
 
                         if(canTriggerJutsu && ability.handleCost(player, ninjaData)) {
                             if (ability.logInChat()) {
-                                player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                                player.displayClientMessage(Component.translatable("jutsu.cast", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), false);
                             }
                             if(ability.castingSound() != null) {
                                 player.getLevel().playSound(null,
@@ -77,13 +76,16 @@ public class ServerAbilityActivatePacket {
                     } else if(ability.activationType() == Ability.ActivationType.TOGGLE) {
                         ToggleAbilityData abilityTracker = ninjaData.getToggleAbilityData();
                         HashSet<ResourceLocation> abilities = abilityTracker.getAbilitiesHashSet();
-                        if(abilities.contains(ability.getRegistryName())) {
-                            // Toggle ability off
-                            abilityTracker.removeAbilityEnded(player, ninjaData, ability);
-                        } else {
-                            // Toggle ability on
-                            abilityTracker.addAbilityStarted(player, ninjaData, ability);
-                        }
+                        NarutoRegistries.ABILITIES.getResourceKey(ability).ifPresent(abilityResourceKey -> {
+                            var location = abilityResourceKey.location();
+                            if(abilities.contains(location)) {
+                                // Toggle ability off
+                                abilityTracker.removeAbilityEnded(player, ninjaData, ability);
+                            } else {
+                                // Toggle ability on
+                                abilityTracker.addAbilityStarted(player, ninjaData, ability);
+                            }
+                        });
                     }
                 });
             });

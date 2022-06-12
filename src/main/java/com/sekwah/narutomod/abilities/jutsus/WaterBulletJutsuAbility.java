@@ -2,12 +2,10 @@ package com.sekwah.narutomod.abilities.jutsus;
 
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
-import com.sekwah.narutomod.entity.jutsuprojectile.FireballJutsuEntity;
 import com.sekwah.narutomod.entity.jutsuprojectile.WaterBulletJutsuEntity;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
@@ -30,7 +28,7 @@ public class WaterBulletJutsuAbility extends Ability implements Ability.Cooldown
     @Override
     public boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount) {
         if(ninjaData.getChakra() < 30) {
-            player.displayClientMessage(new TranslatableComponent("jutsu.fail.notenoughchakra", new TranslatableComponent(this.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)), true);
+            player.displayClientMessage(Component.translatable("jutsu.fail.notenoughchakra", Component.translatable(this.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)), true);
             return false;
         }
         ninjaData.useChakra(30, 30);

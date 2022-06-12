@@ -3,8 +3,6 @@ package com.sekwah.narutomod.damagesource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
-import net.minecraft.world.entity.projectile.Fireball;
 
 import javax.annotation.Nullable;
 

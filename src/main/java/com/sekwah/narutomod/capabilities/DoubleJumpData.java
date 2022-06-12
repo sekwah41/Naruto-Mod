@@ -1,7 +1,5 @@
 package com.sekwah.narutomod.capabilities;
 
-import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
-
 /**
  * This is to track the double jump status of the player.
  *

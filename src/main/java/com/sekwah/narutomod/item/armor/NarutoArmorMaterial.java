@@ -1,12 +1,12 @@
 package com.sekwah.narutomod.item.armor;
 
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.util.LazyLoadedValue;
 
 import java.util.function.Supplier;
 

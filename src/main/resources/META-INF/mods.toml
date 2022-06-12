@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[40,)"
+loaderVersion="[41,)"
 issueTrackerURL="https://github.com/sekwah41/Naruto-Mod/issues"
 license="All rights reserved"
 [[mods]]
@@ -17,7 +17,7 @@ A mod that adds new items and other features to the game that are from/based on 
 [[dependencies.narutomod]]
     modId="forge"
     mandatory=true
-    versionRange="[40,)"
+    versionRange="[41,)"
     ordering="NONE"
     side="BOTH"
 
@@ -25,13 +25,13 @@ A mod that adds new items and other features to the game that are from/based on 
 [[dependencies.narutomod]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.2,)"
+    versionRange="[1.19]"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.narutomod]]
     modId="sekclib"
     mandatory=true
-    versionRange="[0.3.0,)"
+    versionRange="[0.4.0,)"
     ordering="NONE"
     side="BOTH"

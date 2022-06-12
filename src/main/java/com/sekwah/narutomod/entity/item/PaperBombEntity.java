@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
+
 import static com.sekwah.narutomod.block.NarutoBlockStates.HIDDEN;
 import static net.minecraft.world.level.block.FaceAttachedHorizontalDirectionalBlock.FACE;
 

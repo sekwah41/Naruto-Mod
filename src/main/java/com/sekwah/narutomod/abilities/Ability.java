@@ -2,15 +2,14 @@ package com.sekwah.narutomod.abilities;
 
 import com.sekwah.narutomod.capabilities.CooldownTickEvent;
 import com.sekwah.narutomod.capabilities.INinjaData;
+import com.sekwah.narutomod.registries.NarutoRegistries;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public abstract class Ability extends ForgeRegistryEntry<Ability> {
+public abstract class Ability {
 
     public Ability() {
     }
@@ -91,16 +90,23 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
     }
 
     public String getTranslationKey(INinjaData ninjaData) {
+        var resourceKey = NarutoRegistries.ABILITIES.getResourceKey(this);
         return this.getTranslationKey(ninjaData, 0);
     }
 
     /**
-     * Mostly for channeled abilities. but in case an ability evolves as its channeled.
+     * If something should be added to the end of the translation string to modify what is said.
+     *
+     * No longer can replace based on registry name as those are not longer provided by the forge entries.
      * @param ticksActive
      * @return
      */
     public String getTranslationKey(INinjaData ninjaData, int ticksActive) {
-        return this.getRegistryName().toString();
+        var resourceKey = NarutoRegistries.ABILITIES.getResourceKey(this);
+        if(resourceKey.isPresent()) {
+            return resourceKey.get().location().toString();
+        }
+        return "";
     }
 
     /**
@@ -214,9 +220,9 @@ public abstract class Ability extends ForgeRegistryEntry<Ability> {
          */
         default boolean checkCooldown(Player player, INinjaData ninjaData, String translationKey) {
             if  (getCooldown() > 0 && ninjaData.getCooldownEvents().containsKey(translationKey)) {
-                player.displayClientMessage(new TranslatableComponent("jutsu.fail.cooldown",
-                        new TranslatableComponent(translationKey).withStyle(ChatFormatting.YELLOW),
-                        new TextComponent(String.valueOf((int) Math.ceil(ninjaData.getCooldownEvents().get(translationKey).ticks / 20f))).withStyle(ChatFormatting.YELLOW)
+                player.displayClientMessage(Component.translatable("jutsu.fail.cooldown",
+                        Component.translatable(translationKey).withStyle(ChatFormatting.YELLOW),
+                        Component.literal(String.valueOf((int) Math.ceil(ninjaData.getCooldownEvents().get(translationKey).ticks / 20f))).withStyle(ChatFormatting.YELLOW)
                 ), true);
                 return  true;
             }

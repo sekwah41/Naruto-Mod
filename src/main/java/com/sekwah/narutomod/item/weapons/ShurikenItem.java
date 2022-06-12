@@ -1,6 +1,5 @@
 package com.sekwah.narutomod.item.weapons;
 
-import com.google.common.collect.Multimap;
 import com.sekwah.narutomod.entity.projectile.ShurikenEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
