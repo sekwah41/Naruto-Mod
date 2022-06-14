@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 description: Information about the current state and plans of the re-code.
 ---
 
@@ -11,7 +11,9 @@ For the 1.18+ copies, I have done a complete recode of the mod however reused th
 
 ## Tasks & Priorities
 
-You can find an up to date list of tasks and plans [here](https://github.com/users/sekwah41/projects/1/views/4).
+You can check our what is currently being worked on [here](https://github.com/users/sekwah41/projects/1/views/4).
+
+Or the [roadmap](./roadmap.md) for what is planned.
 
 ## Current Content
 A lot is missing vs the 1.7 version however we will be adding it in the coming months.
