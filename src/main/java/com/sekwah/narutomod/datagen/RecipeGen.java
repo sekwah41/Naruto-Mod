@@ -3,7 +3,10 @@ package com.sekwah.narutomod.datagen;
 import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.item.NarutoItems;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Items;
 
 import java.util.function.Consumer;

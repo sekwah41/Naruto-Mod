@@ -31,8 +31,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Mod(NarutoMod.MOD_ID)
 @Mod.EventBusSubscriber(modid = NarutoMod.MOD_ID)
@@ -40,7 +38,7 @@ public class NarutoMod {
 
     public static final String MOD_ID = "narutomod";
 
-    public static final Logger LOGGER = LogManager.getLogger("Naruto Mod");
+    // private static final Logger LOGGER = LogUtils.getLogger();
 
     public NarutoMod() {
 

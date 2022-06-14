@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.util;
 
 import net.minecraft.network.chat.TextColor;
+
 import java.awt.*;
 
 public class ColorUtil {

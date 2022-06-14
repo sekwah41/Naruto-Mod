@@ -1,22 +1,26 @@
 package com.sekwah.narutomod.abilities;
 
+import com.mojang.logging.LogUtils;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.jutsus.FireballJutsuAbility;
 import com.sekwah.narutomod.abilities.jutsus.SubstitutionJutsuAbility;
 import com.sekwah.narutomod.abilities.jutsus.WaterBulletJutsuAbility;
-import com.sekwah.narutomod.abilities.utility.*;
+import com.sekwah.narutomod.abilities.utility.ChakraChargeAbility;
+import com.sekwah.narutomod.abilities.utility.DoubleJumpAbility;
+import com.sekwah.narutomod.abilities.utility.LeapAbility;
+import com.sekwah.narutomod.abilities.utility.WaterWalkAbility;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.network.c2s.ServerAbilityActivatePacket;
 import com.sekwah.narutomod.network.c2s.ServerAbilityChannelPacket;
+import com.sekwah.narutomod.registries.NarutoRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistry;
 import net.minecraftforge.registries.RegistryObject;
+import org.slf4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,11 +30,12 @@ import static com.sekwah.narutomod.NarutoMod.MOD_ID;
 @Mod.EventBusSubscriber(modid = NarutoMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NarutoAbilities {
 
-    public static final DeferredRegister<Ability> ABILITY = DeferredRegister.create(Ability.class, MOD_ID);
+    private static final Logger LOGGER = LogUtils.getLogger();
+
+    public static final DeferredRegister<Ability> ABILITY = DeferredRegister.create(NarutoRegistries.ABILITY_REGISTRY_LOC, MOD_ID);
 
     public static final Map<Long, ResourceLocation> COMBO_MAP = new HashMap<>();
 
-    public static ForgeRegistry<Ability> ABILITY_REGISTRY;
 
     public static final RegistryObject<LeapAbility> LEAP = ABILITY.register("leap", LeapAbility::new);
 
@@ -52,11 +57,6 @@ public class NarutoAbilities {
         ABILITY.register(eventBus);
     }
 
-    @SubscribeEvent
-    public static void getRegistryObject(RegistryEvent.Register<Ability> event) {
-        ABILITY_REGISTRY = (ForgeRegistry<Ability>) event.getRegistry();
-    }
-
     /**
      * May change how key combos are handled in the future but these will be default
      */
@@ -66,9 +66,9 @@ public class NarutoAbilities {
             long combo = ability.defaultCombo();
             if (combo > 0) {
                 if(COMBO_MAP.containsKey(combo)) {
-                    NarutoMod.LOGGER.error("Ability already registered with that combo {}", combo);
+                    LOGGER.error("Ability already registered with that combo {}", combo);
                 } else {
-                    COMBO_MAP.put(combo, ability.getRegistryName());
+                    NarutoRegistries.ABILITIES.getResourceKey(ability).ifPresent(resourceKey -> COMBO_MAP.put(combo, resourceKey.location()));
                 }
             }
         });
@@ -83,7 +83,7 @@ public class NarutoAbilities {
 
     public static Ability getAbilityFromCombo(long combo) {
         if(COMBO_MAP.containsKey(combo)) {
-            return ABILITY_REGISTRY.getValue(COMBO_MAP.get(combo));
+            return NarutoRegistries.ABILITIES.getValue(COMBO_MAP.get(combo));
         } else {
             return null;
         }

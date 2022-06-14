@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.capabilities.toggleabilitydata;
 
 import com.sekwah.narutomod.abilities.Ability;
+import com.sekwah.narutomod.registries.NarutoRegistries;
 
 import java.util.Objects;
 
@@ -19,6 +20,7 @@ public class AbilityInfo {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(ability.getRegistryName());
+        var resourceKey = NarutoRegistries.ABILITIES.getResourceKey(ability);
+        return resourceKey.map(abilityResourceKey -> Objects.hash(abilityResourceKey.location())).orElseGet(Objects::hash);
     }
 }

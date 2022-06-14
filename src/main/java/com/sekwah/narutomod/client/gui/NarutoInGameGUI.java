@@ -2,12 +2,8 @@ package com.sekwah.narutomod.client.gui;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Matrix4f;
-import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
-import com.sekwah.narutomod.client.renderer.NarutoWorldRenderEvents;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -70,7 +66,7 @@ public class NarutoInGameGUI {
         if(!shouldRender) {
             return;
         }
-        PoseStack stack = event.getMatrixStack();
+        PoseStack stack = event.getPoseStack();
         for (PlayerGUI  overlay : overlays) {
             overlay.render(stack, worldMatrix, cameraPos);
         }

@@ -1,11 +1,10 @@
 package com.sekwah.narutomod.abilities.utility;
 
-import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -35,7 +34,7 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
         WaterChecks checks = this.checkSteadyNormalFastPush(player);
 
         if(player.getVehicle() != null) {
-            player.displayClientMessage(new TranslatableComponent("jutsu.fail.riding", new TranslatableComponent("jutsu.waterwalk").withStyle(ChatFormatting.YELLOW)), true);
+            player.displayClientMessage(Component.translatable("jutsu.fail.riding", Component.translatable("jutsu.waterwalk").withStyle(ChatFormatting.YELLOW)), true);
             return false;
         }
 
@@ -46,7 +45,7 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
             fullCost += 0.12F;
         }
         if(ninjaData.getChakra() < fullCost) {
-            player.displayClientMessage(new TranslatableComponent("jutsu.fail.notenoughchakra", new TranslatableComponent("jutsu.waterwalk").withStyle(ChatFormatting.YELLOW)), true);
+            player.displayClientMessage(Component.translatable("jutsu.fail.notenoughchakra", Component.translatable("jutsu.waterwalk").withStyle(ChatFormatting.YELLOW)), true);
             return false;
         }
         ninjaData.useChakra(fullCost, CHARKA_COOLDOWN);

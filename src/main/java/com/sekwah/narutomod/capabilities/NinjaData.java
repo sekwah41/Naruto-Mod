@@ -1,16 +1,16 @@
 package com.sekwah.narutomod.capabilities;
 
-import com.sekwah.narutomod.NarutoMod;
+import com.mojang.logging.LogUtils;
 import com.sekwah.narutomod.abilities.Ability;
-import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
 import com.sekwah.narutomod.client.renderer.entity.config.NarutoConfig;
+import com.sekwah.narutomod.registries.NarutoRegistries;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.annotation.Sync;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
@@ -18,6 +18,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
+import org.slf4j.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -27,6 +28,8 @@ import java.util.Iterator;
 import java.util.function.Consumer;
 
 public class NinjaData implements INinjaData, ICapabilityProvider {
+
+    private static final Logger LOGGER = LogUtils.getLogger();
 
     @Sync(minTicks = 1)
     private float chakra;
@@ -102,7 +105,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         this.doubleJumpData = new DoubleJumpData(false);
     }
 
-    class RegenInfo {
+    static class RegenInfo {
         public int cooldown;
 
         public RegenInfo() {
@@ -245,22 +248,23 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
             if(!(ability instanceof Ability.Channeled channeled && channeled.hideChannelMessages())) {
                 if (ability instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
-                    player.sendMessage(new TranslatableComponent("jutsu.charge.start", new TranslatableComponent(ability.getTranslationKey(this, 1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                    player.displayClientMessage(Component.translatable("jutsu.charge.start", Component.translatable(ability.getTranslationKey(this, 1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), false);
                 } else {
-                    player.sendMessage(new TranslatableComponent("jutsu.channel.start", new TranslatableComponent(ability.getTranslationKey(this, 1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                    player.displayClientMessage(Component.translatable("jutsu.channel.start", Component.translatable(ability.getTranslationKey(this, 1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), false);
                 }
             }
 
-            this.currentlyChanneled = ability.getRegistryName();
+            NarutoRegistries.ABILITIES.getResourceKey(ability)
+                    .ifPresent(abilityResourceKey -> this.currentlyChanneled = abilityResourceKey.location());
         } else {
             if (this.currentlyChanneled != null) {
-                Ability currentAbility = NarutoAbilities.ABILITY_REGISTRY.getValue(this.currentlyChanneled);
+                Ability currentAbility = NarutoRegistries.ABILITIES.getValue(this.currentlyChanneled);
                 if( currentAbility != null) {
                     if(!(currentAbility instanceof Ability.Channeled channeled && channeled.hideChannelMessages())) {
                         if (currentAbility instanceof Ability.Channeled channeled && channeled.useChargedMessages()) {
-                            player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(currentAbility.getTranslationKey(this, this.ticksChanneled - 1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                            player.displayClientMessage(Component.translatable("jutsu.cast", Component.translatable(currentAbility.getTranslationKey(this, this.ticksChanneled - 1)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), false);
                         } else {
-                            player.sendMessage(new TranslatableComponent("jutsu.channel.stop", new TranslatableComponent(currentAbility.getTranslationKey(this)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());
+                            player.displayClientMessage(Component.translatable("jutsu.channel.stop", Component.translatable(currentAbility.getTranslationKey(this)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), false);
                         }
                     }
                 }
@@ -319,7 +323,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         this.chakra = Math.min(Math.max(this.chakra, 0), this.maxChakra);
 
         if (this.currentlyChanneled != null) {
-            Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(this.currentlyChanneled);
+            Ability ability = NarutoRegistries.ABILITIES.getValue(this.currentlyChanneled);
             if (ability != null && ability.activationType() == Ability.ActivationType.CHANNELED) {
                 if(ability.handleCost(player, this, this.ticksChanneled)) {
                     if (ability instanceof Ability.Channeled channeled) {
@@ -333,7 +337,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
                     }
                 }
             } else {
-                NarutoMod.LOGGER.error("Somehow non channeled ability has been set to ninja data {}", this.currentlyChanneled);
+                LOGGER.error("Somehow non channeled ability has been set to ninja data {}", this.currentlyChanneled);
             }
             this.ticksChanneled++;
         }

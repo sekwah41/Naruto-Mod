@@ -14,11 +14,10 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.FaceAttachedHorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-
-import java.util.Random;
 
 public class PaperBombRenderer extends EntityRenderer<PaperBombEntity> {
 
@@ -58,7 +57,7 @@ public class PaperBombRenderer extends EntityRenderer<PaperBombEntity> {
                 entityIn.renderBlockState, blockpos, matrixStackIn,
                 vertexconsumer,
                 false,
-                new Random(),
+                RandomSource.create(),
                 entityIn.renderBlockState.getSeed(entityIn.getOrigin()),
                 OverlayTexture.NO_OVERLAY);
 

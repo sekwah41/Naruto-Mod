@@ -162,7 +162,7 @@ public abstract class AbstractNonGlowingHurtingProjectile extends Projectile {
    public Packet<?> getAddEntityPacket() {
       Entity entity = this.getOwner();
       int i = entity == null ? 0 : entity.getId();
-      return new ClientboundAddEntityPacket(this.getId(), this.getUUID(), this.getX(), this.getY(), this.getZ(), this.getXRot(), this.getYRot(), this.getType(), i, new Vec3(this.xPower, this.yPower, this.zPower));
+      return new ClientboundAddEntityPacket(this.getId(), this.getUUID(), this.getX(), this.getY(), this.getZ(), this.getXRot(), this.getYRot(), this.getType(), i, new Vec3(this.xPower, this.yPower, this.zPower), 0.0D);
    }
 
    public void recreateFromPacket(ClientboundAddEntityPacket p_150128_) {

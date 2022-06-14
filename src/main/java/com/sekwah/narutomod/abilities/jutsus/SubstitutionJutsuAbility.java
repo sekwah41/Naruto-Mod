@@ -6,7 +6,7 @@ import com.sekwah.narutomod.entity.SubstitutionLogEntity;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -32,7 +32,7 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
     @Override
     public boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount) {
         if (ninjaData.getSubstitutionCount() < 1 && chargeAmount == -1) {
-            player.displayClientMessage(new TranslatableComponent("jutsu.fail.notenoughcharges", new TranslatableComponent(this.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)), true);
+            player.displayClientMessage(Component.translatable("jutsu.fail.notenoughcharges", Component.translatable(this.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)), true);
             player.playNotifySound( NarutoSounds.JUTSU_FAIL.get(), SoundSource.PLAYERS, 0.5f, 1.0f);
             return false;
         }
@@ -41,10 +41,11 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
 
     @Override
     public String getTranslationKey(INinjaData ninjaData, int ticksActive) {
+        var mainString = super.getTranslationKey(ninjaData, ticksActive);
         if(ticksActive <= 1) {
-            return this.getRegistryName().toString();
+            return mainString;
         } else {
-            return this.getRegistryName().toString() + ".mark";
+            return mainString + ".mark";
         }
     }
 
@@ -94,7 +95,7 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
     public boolean randomTeleportPlayer(Player player, INinjaData ninjaData) {
         for(int i = 0; i < 16; i++) {
             double x = player.getX() + (player.getRandom().nextDouble() - 0.5D) * 25.0D;
-            double y = Mth.clamp(player.getY() + (double)(player.getRandom().nextInt(16) - 8), (double)player.level.getMinBuildHeight(), (double)(player.level.getMinBuildHeight() + ((ServerLevel)player.level).getLogicalHeight() - 1));
+            double y = Mth.clamp(player.getY() + (double)(player.getRandom().nextInt(16) - 8), player.level.getMinBuildHeight(), (player.level.getMinBuildHeight() + ((ServerLevel)player.level).getLogicalHeight() - 1));
             double z = player.getZ() + (player.getRandom().nextDouble() - 0.5D) * 25.0D;
             if(Math.sqrt(player.distanceToSqr(x, y, z)) >= 10 && player.randomTeleport(x, y, z, false)) {
                 return true;

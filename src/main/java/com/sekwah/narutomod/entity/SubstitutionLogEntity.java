@@ -51,6 +51,6 @@ public class SubstitutionLogEntity extends Mob {
     @Override
     public void recreateFromPacket(ClientboundAddEntityPacket entityPacket) {
         super.recreateFromPacket(entityPacket);
-        this.setYBodyRot(entityPacket.getyRot());
+        this.setYBodyRot(entityPacket.getYRot());
     }
 }

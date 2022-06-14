@@ -1,16 +1,18 @@
 package com.sekwah.narutomod.network.c2s;
 
+import com.mojang.logging.LogUtils;
 import com.sekwah.narutomod.abilities.Ability;
-import com.sekwah.narutomod.abilities.NarutoAbilities;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
+import com.sekwah.narutomod.registries.NarutoRegistries;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.GameType;
 import net.minecraftforge.network.NetworkEvent;
+import org.slf4j.Logger;
 
 import java.util.function.Supplier;
 
@@ -19,8 +21,15 @@ import java.util.function.Supplier;
  */
 public class ServerAbilityChannelPacket {
 
-    private final int abilityId;
-    private ChannelStatus status;
+    private static final Logger LOGGER = LogUtils.getLogger();
+
+    private final ResourceLocation abilityResource;
+    private final ChannelStatus status;
+
+    public ServerAbilityChannelPacket(ResourceLocation abilityResource, ChannelStatus status) {
+        this.abilityResource = abilityResource;
+        this.status = status;
+    }
 
     public enum ChannelStatus {
         START,
@@ -28,57 +37,52 @@ public class ServerAbilityChannelPacket {
         MIN_ACTIVATE
     }
 
-    public ServerAbilityChannelPacket(ResourceLocation ability, ChannelStatus status) {
-        this.abilityId = NarutoAbilities.ABILITY_REGISTRY.getID(ability);
-        this.status = status;
-    }
-
-    public ServerAbilityChannelPacket(int abilityId, ChannelStatus status) {
-        this.abilityId = abilityId;
-        this.status = status;
-    }
-
     public static void encode(ServerAbilityChannelPacket msg, FriendlyByteBuf outBuffer) {
-        outBuffer.writeInt(msg.abilityId);
+        outBuffer.writeResourceLocation(msg.abilityResource);
         outBuffer.writeInt(msg.status.ordinal());
     }
 
     public static ServerAbilityChannelPacket decode(FriendlyByteBuf inBuffer) {
-        int abilityId = inBuffer.readInt();
+        ResourceLocation abilityResource = inBuffer.readResourceLocation();
         int status = inBuffer.readInt();
-        return new ServerAbilityChannelPacket(abilityId, ChannelStatus.values()[status]);
+        return new ServerAbilityChannelPacket(abilityResource, ChannelStatus.values()[status]);
     }
 
     public static class Handler {
         public static void handle(ServerAbilityChannelPacket msg, Supplier<NetworkEvent.Context> ctx) {
             ctx.get().enqueueWork(() -> {
                 final ServerPlayer player = ctx.get().getSender();
-                if(player != null && player.gameMode.getGameModeForPlayer() == GameType.SPECTATOR) {
+                if(player == null || player.gameMode.getGameModeForPlayer() == GameType.SPECTATOR) {
                     return;
                 }
                 player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
-
-                    Ability ability = NarutoAbilities.ABILITY_REGISTRY.getValue(msg.abilityId);
+                    Ability ability = NarutoRegistries.ABILITIES.getValue(msg.abilityResource);
+                    if(ability == null) {
+                        LOGGER.error("Ability doesnt exist {}", msg.abilityResource);
+                        return;
+                    }
                     // Just check if its
                     if (ability.activationType() == Ability.ActivationType.CHANNELED) {
                         if (msg.status == ChannelStatus.START) {
                             ninjaData.setCurrentlyChanneledAbility(player, ability);
                         } else if (msg.status == ChannelStatus.STOP) {
-                            if(ninjaData.getCurrentlyChanneledAbility().equals(ability.getRegistryName())) {
-                                ability.performServer(player, ninjaData, ninjaData.getCurrentlyChanneledTicks());
-                                ninjaData.setCurrentlyChanneledAbility(player, null);
-                            }
+                            NarutoRegistries.ABILITIES.getResourceKey(ability).ifPresent(resourceKey -> {
+                                if(ninjaData.getCurrentlyChanneledAbility().equals(resourceKey.location())) {
+                                    ability.performServer(player, ninjaData, ninjaData.getCurrentlyChanneledTicks());
+                                    ninjaData.setCurrentlyChanneledAbility(player, null);
+                                }
+                            });
                         } else if(msg.status == ChannelStatus.MIN_ACTIVATE) {
                             if (ability instanceof Ability.Channeled channeled && channeled.canActivateBelowMinCharge()) {
                                 if(ability.handleCost(player, ninjaData, -1)) {
                                     if (ability.castingSound() != null) {
                                         player.getLevel().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
                                     }
-                                    player.sendMessage(new TranslatableComponent("jutsu.cast", new TranslatableComponent(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+                                    player.displayClientMessage(Component.translatable("jutsu.cast", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), false);
                                     ability.performServer(player, ninjaData, -1);
                                 }
                             } else {
-                                player.sendMessage(new TranslatableComponent("jutsu.channel.needed", new TranslatableComponent(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());
+                                player.displayClientMessage(Component.translatable("jutsu.channel.needed", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), false);
                             }
                         }
                     }

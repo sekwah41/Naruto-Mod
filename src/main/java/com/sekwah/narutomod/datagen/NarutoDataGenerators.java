@@ -12,12 +12,6 @@ public class NarutoDataGenerators {
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
 
-        if(event.includeServer()) {
-            gen.addProvider(new RecipeGen(gen));
-        }
-
-        if(event.includeClient()) {
-
-        }
+        gen.addProvider(event.includeServer(), new RecipeGen(gen));
     }
 }

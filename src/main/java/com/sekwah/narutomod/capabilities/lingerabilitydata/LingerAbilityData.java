@@ -2,8 +2,9 @@ package com.sekwah.narutomod.capabilities.lingerabilitydata;
 
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
+import com.sekwah.narutomod.registries.NarutoRegistries;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
@@ -20,7 +21,7 @@ import java.util.Objects;
  */
 public class LingerAbilityData {
 
-    private HashSet<ResourceLocation> abilities;
+    private final HashSet<ResourceLocation> abilities;
 
     public LingerAbilityData(int size) {
         this.abilities = new HashSet<>(size);
@@ -30,27 +31,29 @@ public class LingerAbilityData {
         this.abilities = new HashSet<>();
     }
 
-    public boolean addAbility(ResourceLocation ability) {
-        return this.abilities.add(ability);
+    public boolean addAbility(Ability ability) {
+        var abilityKey = NarutoRegistries.ABILITIES.getResourceKey(ability);
+        return abilityKey.filter(abilityResourceKey -> this.abilities.add(abilityResourceKey.location())).isPresent();
     }
 
     public boolean addAbilityStarted(Player player, INinjaData ninjaData, Ability ability) {
         if (ability.activationType() == Ability.ActivationType.TOGGLE && ability.logInChat()) {
-            player.sendMessage(new TranslatableComponent("jutsu.toggle.enabled", new TranslatableComponent(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), player.getUUID());
+            player.displayClientMessage(Component.translatable("jutsu.toggle.enabled", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), false);
         }
-        return this.addAbility(ability.getRegistryName());
+        return this.addAbility(ability);
     }
 
     public boolean removeAbilityEnded(Player player, INinjaData ninjaData, Ability ability) {
         if(ability instanceof Ability.HandleEnded endedAbility) endedAbility.handleAbilityEnded(player, ninjaData, 0);
         if (ability.activationType() == Ability.ActivationType.TOGGLE && ability.logInChat()) {
-            player.sendMessage(new TranslatableComponent("jutsu.toggle.disabled", new TranslatableComponent(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), player.getUUID());
+            player.displayClientMessage(Component.translatable("jutsu.toggle.disabled", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), false);
         }
-        return this.removeAbility(ability.getRegistryName());
+        return this.removeAbility(ability);
     }
 
-    public boolean removeAbility(ResourceLocation ability) {
-        return this.abilities.remove(ability);
+    public boolean removeAbility(Ability ability) {
+        var resourceKey = NarutoRegistries.ABILITIES.getResourceKey(ability);
+        return resourceKey.filter(abilityResourceKey -> this.abilities.remove(abilityResourceKey.location())).isPresent();
     }
 
     public HashSet<ResourceLocation> getAbilitiesHashSet() {
