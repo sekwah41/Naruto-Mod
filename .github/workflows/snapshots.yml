@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     # https://github.com/google-github-actions/release-please-action in case more config is needed
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         # these if statements ensure that a publication only occurs when
         # a new release is created:
       - name: Cache Gradle packages
