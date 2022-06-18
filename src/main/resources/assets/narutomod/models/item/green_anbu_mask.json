@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "narutomod:items/armor/green_anbu_mask"
+    "layer0": "narutomod:items/armor/anbu_mask/green_anbu_mask"
   }
 }

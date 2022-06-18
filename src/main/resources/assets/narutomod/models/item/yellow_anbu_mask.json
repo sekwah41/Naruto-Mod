@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "narutomod:items/armor/yellow_anbu_mask"
+    "layer0": "narutomod:items/armor/anbu_mask/yellow_anbu_mask"
   }
 }
