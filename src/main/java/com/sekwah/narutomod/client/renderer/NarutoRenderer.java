@@ -22,19 +22,24 @@ public class NarutoRenderer extends BlockEntityWithoutLevelRenderer {
 
         ((NarutoArmorItem) NarutoItems.RED_ANBU_MASK.get())
                 .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION)))
-                .setArmorTexture("textures/models/armor/red_anbu_mask.png");
+                .setArmorTexture("textures/models/armor/anbu_mask/red_anbu_mask.png");
+
+//        ((NarutoArmorItem) NarutoItems.RED_ANBU_MASK.get())
+//                .setArmorModel(new FlakJacketNewModel(modelSet.bakeLayer(FlakJacketNewModel.LAYER_LOCATION)))
+//                .setArmorTexture("textures/models/armor/anbu_mask/red_anbu_mask.png");
+
         ((NarutoArmorItem) NarutoItems.BLUE_ANBU_MASK.get())
                 .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION)))
-                .setArmorTexture("textures/models/armor/blue_anbu_mask.png");
+                .setArmorTexture("textures/models/armor/anbu_mask/blue_anbu_mask.png");
         ((NarutoArmorItem) NarutoItems.GREEN_ANBU_MASK.get())
                 .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION_WITHOUT_EARS)))
-                .setArmorTexture("textures/models/armor/green_anbu_mask.png");
+                .setArmorTexture("textures/models/armor/anbu_mask/green_anbu_mask.png");
         ((NarutoArmorItem) NarutoItems.MIST_ANBU_MASK.get())
                 .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION_WITHOUT_EARS)))
-                .setArmorTexture("textures/models/armor/mist_anbu_mask.png");
+                .setArmorTexture("textures/models/armor/anbu_mask/mist_anbu_mask.png");
         ((NarutoArmorItem) NarutoItems.YELLOW_ANBU_MASK.get())
                 .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION_WITHOUT_EARS)))
-                .setArmorTexture("textures/models/armor/yellow_anbu_mask.png");
+                .setArmorTexture("textures/models/armor/anbu_mask/yellow_anbu_mask.png");
 
         setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLUE, "textures/models/armor/headband/headband_blue_blank.png");
         setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLACK, "textures/models/armor/headband/headband_black_blank.png");
