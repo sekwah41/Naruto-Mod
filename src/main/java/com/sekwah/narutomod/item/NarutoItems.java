@@ -77,6 +77,10 @@ public class NarutoItems {
             -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
             .setShouldHideNameplate(true));
 
+    public static final RegistryObject<Item> FLAK_JACKET_NEW = ITEMS.register("flak_jacket", ()
+            -> new NarutoArmorItem(NarutoArmorMaterial.FLAK_MAT, EquipmentSlot.CHEST,  new Item.Properties().tab(NINJA_ARMOR))
+            .setShouldHideNameplate(true));
+
     public static final RegistryObject<Item> LONELY_MARCH = ITEMS.register("lonely_march", ()
             -> new RecordItem(41, NarutoSounds.LONELY_MARCH,  new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1).rarity(Rarity.RARE)));
 

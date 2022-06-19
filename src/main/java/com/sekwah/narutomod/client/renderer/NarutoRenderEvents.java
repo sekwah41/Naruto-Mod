@@ -4,6 +4,7 @@ import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.client.model.entity.SubstitutionLogModel;
 import com.sekwah.narutomod.client.model.item.model.AnbuMaskModel;
+import com.sekwah.narutomod.client.model.item.model.FlakJacketNewModel;
 import com.sekwah.narutomod.client.model.item.model.HeadbandModel;
 import com.sekwah.narutomod.client.model.jutsu.FireballJutsuModel;
 import com.sekwah.narutomod.client.model.jutsu.WaterBulletModel;
@@ -27,7 +28,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(value=Dist.CLIENT, modid=NarutoMod.MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class NarutoRenderEvents {
 
-    public static final BlockEntityWithoutLevelRenderer NARUTO_RENDERER = new NarutoRenderer();
+    public static final BlockEntityWithoutLevelRenderer NARUTO_RENDERER = new NarutoResourceManager();
 
     @SubscribeEvent
     public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -50,15 +51,18 @@ public class NarutoRenderEvents {
 
     @SubscribeEvent
     public static void reloadListener(RegisterClientReloadListenersEvent event) {
-        event.registerReloadListener(new NarutoRenderer());
+        event.registerReloadListener(new NarutoResourceManager());
     }
 
     @SubscribeEvent
     public static void layerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event)
     {
+        // Items
         event.registerLayerDefinition(AnbuMaskModel.LAYER_LOCATION, () -> AnbuMaskModel.createLayer(true));
         event.registerLayerDefinition(AnbuMaskModel.LAYER_LOCATION_WITHOUT_EARS, () -> AnbuMaskModel.createLayer(false));
         event.registerLayerDefinition(HeadbandModel.LAYER_LOCATION, HeadbandModel::createLayer);
+
+        event.registerLayerDefinition(FlakJacketNewModel.LAYER_LOCATION, FlakJacketNewModel::createLayer);
 
         // Jutsu
         event.registerLayerDefinition(FireballJutsuModel.LAYER_LOCATION, FireballJutsuModel::createLayer);
