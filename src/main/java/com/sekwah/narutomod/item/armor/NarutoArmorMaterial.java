@@ -16,6 +16,7 @@ import java.util.function.Supplier;
 public enum NarutoArmorMaterial implements ArmorMaterial {
 
     ANBU_MAT("anbu", 35, new int[]{2, 8, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
+    FLAK_MAT("anbu", 35, new int[]{2, 7, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
     HEADBAND("headband", 35, new int[]{2, 8, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
     ;
 

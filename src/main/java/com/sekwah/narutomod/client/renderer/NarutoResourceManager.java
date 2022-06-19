@@ -1,6 +1,7 @@
 package com.sekwah.narutomod.client.renderer;
 
 import com.sekwah.narutomod.client.model.item.model.AnbuMaskModel;
+import com.sekwah.narutomod.client.model.item.model.FlakJacketNewModel;
 import com.sekwah.narutomod.client.model.item.model.HeadbandModel;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.item.armor.NarutoArmorItem;
@@ -11,9 +12,9 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 
-public class NarutoRenderer extends BlockEntityWithoutLevelRenderer {
+public class NarutoResourceManager extends BlockEntityWithoutLevelRenderer {
 
-    public NarutoRenderer() {
+    public NarutoResourceManager() {
         super(null, null);
     }
 
@@ -23,10 +24,6 @@ public class NarutoRenderer extends BlockEntityWithoutLevelRenderer {
         ((NarutoArmorItem) NarutoItems.RED_ANBU_MASK.get())
                 .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION)))
                 .setArmorTexture("textures/models/armor/anbu_mask/red_anbu_mask.png");
-
-//        ((NarutoArmorItem) NarutoItems.RED_ANBU_MASK.get())
-//                .setArmorModel(new FlakJacketNewModel(modelSet.bakeLayer(FlakJacketNewModel.LAYER_LOCATION)))
-//                .setArmorTexture("textures/models/armor/anbu_mask/red_anbu_mask.png");
 
         ((NarutoArmorItem) NarutoItems.BLUE_ANBU_MASK.get())
                 .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION)))
@@ -40,6 +37,10 @@ public class NarutoRenderer extends BlockEntityWithoutLevelRenderer {
         ((NarutoArmorItem) NarutoItems.YELLOW_ANBU_MASK.get())
                 .setArmorModel(new AnbuMaskModel(modelSet.bakeLayer(AnbuMaskModel.LAYER_LOCATION_WITHOUT_EARS)))
                 .setArmorTexture("textures/models/armor/anbu_mask/yellow_anbu_mask.png");
+
+        ((NarutoArmorItem) NarutoItems.FLAK_JACKET_NEW.get())
+                .setArmorModel(new FlakJacketNewModel(modelSet.bakeLayer(FlakJacketNewModel.LAYER_LOCATION)))
+                .setArmorTexture("textures/models/armor/flak_jacket_new.png");
 
         setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLUE, "textures/models/armor/headband/headband_blue_blank.png");
         setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLACK, "textures/models/armor/headband/headband_black_blank.png");
