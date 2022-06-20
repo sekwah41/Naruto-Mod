@@ -47,6 +47,7 @@
   "narutomod.subtitle.needle_hit": "Golpe de Jeringuilla",
   "narutomod.subtitle.jutsu_seal": "Sello Jutsu",
   "narutomod.subtitle.jutsu_cast": "Hechizo Jutsu",
+  "narutomod.subtitle.jutsu_fail": "Fallo en el Jutsu",
   "narutomod.subtitle.fireball.shoot": "Disparo Bola de Fuego",
   "narutomod.subtitle.fireball.explosion": "Explosion de Bola de Fuego",
   "narutomod.subtitle.waterbullet.shoot": "Disparo de Bala de Agua",
@@ -59,9 +60,10 @@
   "itemGroup.narutomod_headbands": "Vendas Ninja",
   "jutsu.fail.cooldown": "%1$s esta en recarga %2$ss",
   "jutsu.fail.riding": "Tu debes desmontar para usar %s",
-  "jutsu.fail.notonground": "Debes esta en el suelo para usar %s",
+  "jutsu.fail.notonground": "Debe estar en el suelo para usar %s",
   "jutsu.fail.notenoughstamina": "No tiene suficiente stamina para usar %s",
   "jutsu.fail.notenoughchakra": "No tienes suficiente chakra para usar %s",
+  "jutsu.fail.notenoughcharges": "No tienes suficientes cargas que usar %s",
   "ability.double_jump": "Doble Salto",
   "jutsu.leap": "Salto",
   "jutsu.waterwalk": "Caminar en el Agua",
@@ -83,5 +85,7 @@
   "naruto.keys.key1": "Llave de Jutsu 1",
   "naruto.keys.key2": "Llave de Jutsu 2",
   "naruto.keys.key3": "Llave de Jutsu 3",
-  "naruto.keys.leap": "Salto"
+  "naruto.keys.leap": "Salto",
+  "narutomod:substitution": "Sustitución",
+  "narutomod:substitution.mark": "Sustitución - Localización Marcada"
 }
