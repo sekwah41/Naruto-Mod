@@ -14,7 +14,7 @@ public class FlakJacketNewModel<T extends LivingEntity> extends HumanoidModel<T>
 {
 
     public static final ModelLayerLocation LAYER_LOCATION =
-            new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "flack_jacket"), "main");
+            new ModelLayerLocation(new ResourceLocation(NarutoMod.MOD_ID, "flak_jacket_new"), "main");
 
     public FlakJacketNewModel(ModelPart modelPart) {
         super(modelPart);
