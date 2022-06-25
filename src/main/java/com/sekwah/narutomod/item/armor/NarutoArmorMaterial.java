@@ -17,7 +17,9 @@ public enum NarutoArmorMaterial implements ArmorMaterial {
 
     ANBU_MAT("anbu", 35, new int[]{2, 8, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
     FLAK_MAT("flak", 35, new int[]{2, 7, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
-    HEADBAND("headband", 35, new int[]{2, 8, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
+    CHARACTER_CLOTHES("character_clothes", 35, new int[]{2, 7, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
+    FULL_CHARACTER_CLOTHES("full_character_clothes", 35, new int[]{2, 14, 5, 2}, 6, null, 2.1F, 0.0F, () -> null),
+    HEADBAND("headband", 35, new int[]{2, 18, 5, 2}, 6, null, 2.1F, 0.0F, () -> null),
     ;
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
