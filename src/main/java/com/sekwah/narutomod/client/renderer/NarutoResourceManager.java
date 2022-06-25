@@ -1,9 +1,6 @@
 package com.sekwah.narutomod.client.renderer;
 
-import com.sekwah.narutomod.client.model.item.model.AnbuMaskModel;
-import com.sekwah.narutomod.client.model.item.model.FlakJacketModel;
-import com.sekwah.narutomod.client.model.item.model.FlakJacketNewModel;
-import com.sekwah.narutomod.client.model.item.model.HeadbandModel;
+import com.sekwah.narutomod.client.model.item.model.*;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.item.armor.NarutoArmorItem;
 import net.minecraft.client.Minecraft;
@@ -46,6 +43,10 @@ public class NarutoResourceManager extends BlockEntityWithoutLevelRenderer {
         ((NarutoArmorItem) NarutoItems.FLAK_JACKET.get())
                 .setArmorModel(new FlakJacketModel(modelSet.bakeLayer(FlakJacketModel.LAYER_LOCATION)))
                 .setArmorTexture("textures/models/armor/flak_jacket.png");
+
+        ((NarutoArmorItem) NarutoItems.ANBU_ARMOR.get())
+                .setArmorModel(new AnbuArmorModel(modelSet.bakeLayer(AnbuArmorModel.LAYER_LOCATION)))
+                .setArmorTexture("textures/models/armor/anbu_armor.png");
 
         setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLUE, "textures/models/armor/headband/headband_blue_blank.png");
         setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLACK, "textures/models/armor/headband/headband_black_blank.png");
