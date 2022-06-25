@@ -70,19 +70,21 @@ public class NarutoItems {
             .setShouldHideNameplate(true));
 
     public static final RegistryObject<Item> BLUE_ANBU_MASK = ITEMS.register("blue_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.HEAD, new Item.Properties().tab(NINJA_ARMOR))
             .setShouldHideNameplate(true));
 
     public static final RegistryObject<Item> MIST_ANBU_MASK = ITEMS.register("mist_anbu_mask", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.HEAD,  new Item.Properties().tab(NINJA_ARMOR))
+            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.HEAD, new Item.Properties().tab(NINJA_ARMOR))
             .setShouldHideNameplate(true));
 
-    public static final RegistryObject<Item> FLAK_JACKET_NEW = ITEMS.register("flak_jacket", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.FLAK_MAT, EquipmentSlot.CHEST,  new Item.Properties().tab(NINJA_ARMOR))
-            .setShouldHideNameplate(true));
+    public static final RegistryObject<Item> FLAK_JACKET_NEW = ITEMS.register("flak_jacket_new", ()
+            -> new NarutoArmorItem(NarutoArmorMaterial.FLAK_MAT, EquipmentSlot.CHEST, new Item.Properties().tab(NINJA_ARMOR)));
+
+    public static final RegistryObject<Item> FLAK_JACKET = ITEMS.register("flak_jacket", ()
+            -> new NarutoArmorItem(NarutoArmorMaterial.FLAK_MAT, EquipmentSlot.CHEST, new Item.Properties().tab(NINJA_ARMOR)));
 
     public static final RegistryObject<Item> LONELY_MARCH = ITEMS.register("lonely_march", ()
-            -> new RecordItem(41, NarutoSounds.LONELY_MARCH,  new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1).rarity(Rarity.RARE)));
+            -> new RecordItem(41, NarutoSounds.LONELY_MARCH, new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1).rarity(Rarity.RARE)));
 
 
     // Ninja Masks
