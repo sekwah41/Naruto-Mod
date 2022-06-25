@@ -48,6 +48,10 @@ public class NarutoResourceManager extends BlockEntityWithoutLevelRenderer {
                 .setArmorModel(new AnbuArmorModel(modelSet.bakeLayer(AnbuArmorModel.LAYER_LOCATION)))
                 .setArmorTexture("textures/models/armor/anbu_armor.png");
 
+        ((NarutoArmorItem) NarutoItems.AKATSUKI_CLOAK.get())
+                .setArmorModel(new AkatsukiCloakModel(modelSet.bakeLayer(AkatsukiCloakModel.LAYER_LOCATION)))
+                .setArmorTexture("textures/models/armor/akatsuki_cloak.png");
+
         setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLUE, "textures/models/armor/headband/headband_blue_blank.png");
         setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_BLACK, "textures/models/armor/headband/headband_black_blank.png");
         setHeadbandRenderer(modelSet, NarutoItems.HEADBAND_RED, "textures/models/armor/headband/headband_red_blank.png");
