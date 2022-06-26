@@ -39,6 +39,13 @@ public class NarutoItems {
         }
     };
 
+    public static CreativeModeTab NINJA_MATERIALS = new CreativeModeTab("narutomod_materials") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(FABRIC.get());
+        }
+    };
+
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
     // Weapons
@@ -92,6 +99,23 @@ public class NarutoItems {
     public static final RegistryObject<Item> LONELY_MARCH = ITEMS.register("lonely_march", ()
             -> new RecordItem(41, NarutoSounds.LONELY_MARCH, new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1).rarity(Rarity.RARE)));
 
+    public static final RegistryObject<Item> FABRIC = ITEMS.register("fabric", ()
+            -> new Item(new Item.Properties().tab(NINJA_MATERIALS)));
+
+    public static final RegistryObject<Item> FABRIC_REINFORCED = ITEMS.register("fabric_reinforced", ()
+            -> new Item(new Item.Properties().tab(NINJA_MATERIALS)));
+
+    public static final RegistryObject<Item> FABRIC_REINFORCED_GREEN = ITEMS.register("fabric_reinforced_green", ()
+            -> new Item(new Item.Properties().tab(NINJA_MATERIALS)));
+
+    public static final RegistryObject<Item> FABRIC_REINFORCED_BLACK = ITEMS.register("fabric_reinforced_black", ()
+            -> new Item(new Item.Properties().tab(NINJA_MATERIALS)));
+
+    public static final RegistryObject<Item> ARMOR_PLATE = ITEMS.register("armor_plate", ()
+            -> new Item(new Item.Properties().tab(NINJA_MATERIALS)));
+
+    public static final RegistryObject<Item> ARMOR_PLATE_GREEN = ITEMS.register("armor_plate_green", ()
+            -> new Item(new Item.Properties().tab(NINJA_MATERIALS)));
 
     // Ninja Masks
 
