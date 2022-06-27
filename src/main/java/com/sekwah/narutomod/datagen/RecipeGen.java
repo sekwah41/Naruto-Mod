@@ -7,6 +7,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 
 import java.util.function.Consumer;
@@ -108,6 +109,47 @@ public class RecipeGen extends RecipeProvider {
                 .pattern("PPP")
                 .pattern("GGG")
                 .unlockedBy("has_gunpowder", has(Items.GUNPOWDER))
+                .save(recipeConsumer);
+
+        ShapedRecipeBuilder.shaped(NarutoItems.FABRIC.get())
+                .define('W', ItemTags.WOOL)
+                .pattern("WWW")
+                .pattern("WWW")
+                .unlockedBy("has_wool", has(ItemTags.WOOL))
+                .save(recipeConsumer);
+
+        ShapedRecipeBuilder.shaped(NarutoItems.FABRIC_REINFORCED.get(), 3)
+                .define('F', NarutoItems.FABRIC.get())
+                .define('I', Items.IRON_INGOT)
+                .pattern("III")
+                .pattern("FFF")
+                .unlockedBy("has_fabric", has(NarutoItems.FABRIC.get()))
+                .save(recipeConsumer);
+
+        ShapelessRecipeBuilder.shapeless(NarutoItems.FABRIC_REINFORCED_BLACK.get(), 1)
+                .requires(NarutoItems.FABRIC_REINFORCED.get())
+                .requires(Items.BLACK_DYE)
+                .unlockedBy("has_fabric_reinforced", has(NarutoItems.FABRIC_REINFORCED.get()))
+                .save(recipeConsumer);
+
+        ShapelessRecipeBuilder.shapeless(NarutoItems.FABRIC_REINFORCED_GREEN.get(), 1)
+                .requires(NarutoItems.FABRIC_REINFORCED.get())
+                .requires(Items.GREEN_DYE)
+                .unlockedBy("has_fabric_reinforced", has(NarutoItems.FABRIC_REINFORCED.get()))
+                .save(recipeConsumer);
+
+        ShapedRecipeBuilder.shaped(NarutoItems.ARMOR_PLATE.get(), 3)
+                .define('F', NarutoItems.FABRIC_REINFORCED.get())
+                .define('I', Items.IRON_INGOT)
+                .pattern("III")
+                .pattern("FFF")
+                .unlockedBy("has_fabric_reinforced", has(NarutoItems.FABRIC_REINFORCED.get()))
+                .save(recipeConsumer);
+
+        ShapelessRecipeBuilder.shapeless(NarutoItems.ARMOR_PLATE_GREEN.get(), 1)
+                .requires(NarutoItems.ARMOR_PLATE.get())
+                .requires(Items.GREEN_DYE)
+                .unlockedBy("has_armor_plate", has(NarutoItems.ARMOR_PLATE.get()))
                 .save(recipeConsumer);
 
     }
