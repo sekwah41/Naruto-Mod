@@ -6,11 +6,13 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.RenderLevelLastEvent;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
 
 public class NarutoInGameGUI {
 
@@ -42,6 +44,14 @@ public class NarutoInGameGUI {
         MinecraftForge.EVENT_BUS.addListener(this::renderLevelLast);
     }
 
+    // TODO switch over to new renderer
+//    @SubscribeEvent
+//    public void registerOverlays(RegisterGuiOverlaysEvent event) {
+//        for (var overlay : this.overlays) {
+//            event.registerAboveAll("test", overlay);
+//        }
+//    }
+
 
     public static void registerEvents() {
     }
@@ -58,9 +68,17 @@ public class NarutoInGameGUI {
         }
     }
 
+    /**
+     * THIS SHOULD NOT BE DONE THIS WAY, TAKE A LOOK AT THE NEW RegisterGuiOverlaysEvent
+     *
+     * This was just a quick fix for now so I could focus on updating other parts.
+     *
+     * @deprecated
+     * @param event
+     */
     @SubscribeEvent
-    public void renderGameOverlay(RenderGameOverlayEvent.Pre event) {
-        if(event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
+    public void renderGameOverlay(RenderGuiOverlayEvent.Pre event) {
+        if(event.getOverlay() != VanillaGuiOverlay.HOTBAR.type()) {
             return;
         }
         if(!shouldRender) {

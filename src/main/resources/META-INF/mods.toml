@@ -17,7 +17,7 @@ A mod that adds new items and other features to the game that are from/based on 
 [[dependencies.narutomod]]
     modId="forge"
     mandatory=true
-    versionRange="[41,)"
+    versionRange="[41.0.69,)"
     ordering="NONE"
     side="BOTH"
 
