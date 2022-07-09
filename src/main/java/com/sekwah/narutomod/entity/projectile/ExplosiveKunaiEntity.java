@@ -1,6 +1,6 @@
 package com.sekwah.narutomod.entity.projectile;
 
-import com.sekwah.narutomod.client.renderer.entity.config.NarutoConfig;
+import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.sounds.NarutoSounds;

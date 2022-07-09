@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderNameplateEvent;
+import net.minecraftforge.client.event.RenderNameTagEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,7 +34,7 @@ public class RenderEvents {
     }
 
     @SubscribeEvent
-    public static void renderNameplateEvent(RenderNameplateEvent event) {
+    public static void renderNameplateEvent(RenderNameTagEvent event) {
         if (event.getResult() != Event.Result.DENY) {
             Entity entity = event.getEntity();
             if (entity instanceof Player player) {

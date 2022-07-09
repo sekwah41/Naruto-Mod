@@ -3,7 +3,7 @@ package com.sekwah.narutomod.capabilities;
 import com.mojang.logging.LogUtils;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
-import com.sekwah.narutomod.client.renderer.entity.config.NarutoConfig;
+import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.registries.NarutoRegistries;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.annotation.Sync;
 import net.minecraft.ChatFormatting;

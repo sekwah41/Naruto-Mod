@@ -1,7 +1,7 @@
 package com.sekwah.narutomod.entity.item;
 
 import com.sekwah.narutomod.block.NarutoBlocks;
-import com.sekwah.narutomod.client.renderer.entity.config.NarutoConfig;
+import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import net.minecraft.core.BlockPos;

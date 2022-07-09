@@ -4,7 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
-import com.sekwah.narutomod.client.renderer.entity.config.NarutoConfig;
+import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.network.c2s.ServerAbilityChannelPacket;
 import com.sekwah.narutomod.network.c2s.ServerJutsuCastingPacket;
@@ -12,7 +12,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ClientRegistry;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -54,11 +54,12 @@ public class NarutoKeyHandler {
     private static KeyBindingTickHeld JUTSU_V_KEY;
     private static KeyBindingTickHeld JUTSU_B_KEY;
 
-    public static void registerKeyBinds() {
-        LEAP_KEY = registerKeyBind("naruto.keys.leap", KeyEvent.VK_X);
-        JUTSU_C_KEY = registerKeyBind("naruto.keys.key1", KeyEvent.VK_C);
-        JUTSU_V_KEY = registerKeyBind("naruto.keys.key2", KeyEvent.VK_V);
-        JUTSU_B_KEY = registerKeyBind("naruto.keys.key3", KeyEvent.VK_B);
+    @SubscribeEvent
+    public static void registerKeyBinds(RegisterKeyMappingsEvent event) {
+        LEAP_KEY = registerKeyBind("naruto.keys.leap", KeyEvent.VK_X, event);
+        JUTSU_C_KEY = registerKeyBind("naruto.keys.key1", KeyEvent.VK_C, event);
+        JUTSU_V_KEY = registerKeyBind("naruto.keys.key2", KeyEvent.VK_V, event);
+        JUTSU_B_KEY = registerKeyBind("naruto.keys.key3", KeyEvent.VK_B, event);
 
         JUTSU_KEYS.add(LEAP_KEY);
         JUTSU_KEYS.add(JUTSU_C_KEY);
@@ -77,14 +78,14 @@ public class NarutoKeyHandler {
         JUTSU_B_KEY.registerClickConsumer(() -> handleJustuKey(3));
     }
 
-    public static KeyBindingTickHeld registerKeyBind(String name, int keyCode) {
+    public static KeyBindingTickHeld registerKeyBind(String name, int keyCode, RegisterKeyMappingsEvent event) {
         if (keys.containsKey(name)) {
             return keys.get(name);
         }
 
         KeyBindingTickHeld key = new KeyBindingTickHeld(name, keyCode, NARUTO_KEY_CATEGORY);
         keys.put(name, key);
-        ClientRegistry.registerKeyBinding(key);
+        event.register(key);
         return key;
     }
 
