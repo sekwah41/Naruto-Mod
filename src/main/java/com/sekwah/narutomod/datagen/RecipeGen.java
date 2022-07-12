@@ -149,7 +149,32 @@ public class RecipeGen extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(NarutoItems.ARMOR_PLATE_GREEN.get(), 1)
                 .requires(NarutoItems.ARMOR_PLATE.get())
                 .requires(Items.GREEN_DYE)
-                .unlockedBy("has_armor_plate", has(NarutoItems.ARMOR_PLATE.get()))
+                .unlockedBy("has_naruto_armor_plate", has(NarutoItems.ARMOR_PLATE.get()))
+                .save(recipeConsumer);
+
+        ShapedRecipeBuilder.shaped(NarutoItems.ANBU_ARMOR.get(), 1)
+                .define('B', NarutoItems.FABRIC_REINFORCED_BLACK.get())
+                .define('A', NarutoItems.ARMOR_PLATE.get())
+                .pattern("B B")
+                .pattern("AAA")
+                .pattern("AAA")
+                .unlockedBy("has_naruto_armor_plate", has(NarutoItems.ARMOR_PLATE.get()))
+                .save(recipeConsumer);
+
+        ShapedRecipeBuilder.shaped(NarutoItems.FLAK_JACKET_NEW.get(), 1)
+                .define('A', NarutoItems.ARMOR_PLATE_GREEN.get())
+                .pattern("A A")
+                .pattern("AAA")
+                .pattern("AAA")
+                .unlockedBy("has_naruto_armor_plate_green", has(NarutoItems.ARMOR_PLATE_GREEN.get()))
+                .save(recipeConsumer);
+
+        ShapedRecipeBuilder.shaped(NarutoItems.FLAK_JACKET.get(), 1)
+                .define('F', NarutoItems.FABRIC_REINFORCED_GREEN.get())
+                .pattern("F F")
+                .pattern("FFF")
+                .pattern("FFF")
+                .unlockedBy("has_fabric_reinforced_green", has(NarutoItems.FABRIC_REINFORCED_GREEN.get()))
                 .save(recipeConsumer);
 
     }
