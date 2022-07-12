@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.5.0](https://github.com/sekwah41/Naruto-Mod/compare/v1.4.0...v1.5.0) (2022-07-12)
+
+
+### Features ✨
+
+* add anbu armor ([dce00f2](https://github.com/sekwah41/Naruto-Mod/commit/dce00f25366232aaa554e0145a4f23101b6d0dc8))
+* add armor plates and fabric ([aa22965](https://github.com/sekwah41/Naruto-Mod/commit/aa229651f32eb8958874ce50d19e065f31ab0663))
+* add crafting recipes for anbu armour and flak jackets ([b2dde18](https://github.com/sekwah41/Naruto-Mod/commit/b2dde1864981fd530e96b1127fc82f312aa8eca2))
+* add flak jacket ([80bb626](https://github.com/sekwah41/Naruto-Mod/commit/80bb626a3504f88948caaa8b787a21bfb6d8ce7d))
+* add new flak jacket ([a61fb07](https://github.com/sekwah41/Naruto-Mod/commit/a61fb07386a146ed6a0e2bc483f6ee098db54b76))
+* add recipes for fabrics and armor plates ([aa54182](https://github.com/sekwah41/Naruto-Mod/commit/aa541822acb9c3561679fe71e4c46a0e19200e91))
+* akatsuki cloak added ([5d8c80e](https://github.com/sekwah41/Naruto-Mod/commit/5d8c80e0b4d373475a421e6b235980e98311b222))
+
+
+### Bug Fixes 🐛
+
+* switch keybinds to the correct mod bus ([c669e23](https://github.com/sekwah41/Naruto-Mod/commit/c669e233279483250e7df9f0df92c724d3130bde))
+* update class names to the latest forge renames ([140f473](https://github.com/sekwah41/Naruto-Mod/commit/140f4732820a3ccbb46322dfb95b106bd4d811f2))
+* update to renamed RenderLevelStageEvent ([cba1ae3](https://github.com/sekwah41/Naruto-Mod/commit/cba1ae3a45d8239366dacc7eccd248b1643ab6c9))
+
 ## [1.4.0](https://github.com/sekwah41/Naruto-Mod/compare/v1.3.0...v1.4.0) (2022-06-14)
 
 
