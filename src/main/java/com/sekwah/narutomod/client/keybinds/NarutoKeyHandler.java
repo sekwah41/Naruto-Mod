@@ -54,6 +54,10 @@ public class NarutoKeyHandler {
     private static KeyBindingTickHeld JUTSU_V_KEY;
     private static KeyBindingTickHeld JUTSU_B_KEY;
 
+    /**
+     * Attached on the main NarutoMod file to the mod bus as this isn't a forge bus event
+     * @param event
+     */
     @SubscribeEvent
     public static void registerKeyBinds(RegisterKeyMappingsEvent event) {
         LEAP_KEY = registerKeyBind("naruto.keys.leap", KeyEvent.VK_X, event);

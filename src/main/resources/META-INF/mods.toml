@@ -32,6 +32,6 @@ A mod that adds new items and other features to the game that are from/based on 
 [[dependencies.narutomod]]
     modId="sekclib"
     mandatory=true
-    versionRange="[0.4.0,)"
+    versionRange="[0.4.1,)"
     ordering="NONE"
     side="BOTH"

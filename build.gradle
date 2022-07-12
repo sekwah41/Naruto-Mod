@@ -160,7 +160,7 @@ dependencies {
     implementation 'org.spongepowered:mixin:0.8.5'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("com.sekwah:SekCLib:0.4.0")
+    implementation fg.deobf("com.sekwah:SekCLib:0.4.1")
     // Trick intellij to allow for better editing in here for the discord task
     // compile "org.apache.httpcomponents:httpmime:4.5.13"
     //implementation fg.deobf("curse.maven:torohealth-damage-indicators-245733:3556931")
