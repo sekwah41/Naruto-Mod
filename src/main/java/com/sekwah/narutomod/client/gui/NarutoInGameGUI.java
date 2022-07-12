@@ -7,7 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
-import net.minecraftforge.client.event.RenderLevelLastEvent;
+import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
@@ -91,7 +91,10 @@ public class NarutoInGameGUI {
     }
 
     @SubscribeEvent
-    public void renderLevelLast(RenderLevelLastEvent event) {
+    public void renderLevelLast(RenderLevelStageEvent event) {
+        if(event.getStage() != RenderLevelStageEvent.Stage.AFTER_SOLID_BLOCKS) {
+            return;
+        }
         Minecraft mc = Minecraft.getInstance();
         if(mc.options.hideGui || mc.level == null || mc.player == null) {
             return;
