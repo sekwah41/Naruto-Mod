@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 public class PlayerEvents {
 
     @SubscribeEvent
-    public static void onEntityUpdate(LivingEvent.LivingUpdateEvent event) {
+    public static void onEntityUpdate(LivingEvent.LivingTickEvent event) {
         // Do chakra updates and other stuff here unless handled in capabilities
     }
 

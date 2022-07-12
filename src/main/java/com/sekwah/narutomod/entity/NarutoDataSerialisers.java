@@ -43,7 +43,7 @@ public class NarutoDataSerialisers {
         }
     };
 
-    private static final DeferredRegister<EntityDataSerializer<?>> DATA_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.DATA_SERIALIZERS, NarutoMod.MOD_ID);
+    private static final DeferredRegister<EntityDataSerializer<?>> DATA_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.ENTITY_DATA_SERIALIZERS, NarutoMod.MOD_ID);
 
     public static final RegistryObject<EntityDataSerializer> ATTACH_FACE_ENTRY = DATA_SERIALIZERS.register("attach_face", () -> ATTACH_FACE);
 

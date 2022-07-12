@@ -66,7 +66,7 @@ public class NinjaCapabilityHandler {
     public static void playerClone(PlayerEvent.Clone event) {
         event.getOriginal().reviveCaps();
         event.getOriginal().getCapability(NINJA_DATA).ifPresent(original -> {
-            event.getPlayer().getCapability(NINJA_DATA).ifPresent(future -> {
+            event.getEntity().getCapability(NINJA_DATA).ifPresent(future -> {
                 future.deserializeNBT(original.serializeNBT());
             });
         });

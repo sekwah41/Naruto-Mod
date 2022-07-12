@@ -25,7 +25,7 @@ public class RenderEvents {
      */
     @SubscribeEvent
     public static void playerRenderEvent(RenderPlayerEvent.Pre event) {
-        event.getPlayer().getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
+        event.getEntity().getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
             if(ninjaData.getInvisible()) {
                 event.setCanceled(true);
             }
