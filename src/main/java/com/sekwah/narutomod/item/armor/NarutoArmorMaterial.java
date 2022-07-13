@@ -15,11 +15,11 @@ import java.util.function.Supplier;
  */
 public enum NarutoArmorMaterial implements ArmorMaterial {
 
-    ANBU_MAT("anbu", 35, new int[]{2, 7, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
-    FLAK_MAT("flak", 35, new int[]{2, 6, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
-    FLAK_STRONGER_MAT("flak_strong", 35, new int[]{2, 7, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
-    CHARACTER_CLOTHES("character_clothes", 35, new int[]{2, 7, 5, 2}, 8, null, 2.1F, 0.0F, () -> null),
-    FULL_CHARACTER_CLOTHES("full_character_clothes", 35, new int[]{2, 10, 5, 2}, 6, null, 2.1F, 0.0F, () -> null),
+    ANBU_MAT("anbu", 35, new int[]{2, 5, 7, 2}, 8, null, 2.1F, 0.0F, () -> null),
+    FLAK_MAT("flak", 35, new int[]{2, 5, 6, 2}, 8, null, 2.1F, 0.0F, () -> null),
+    FLAK_STRONGER_MAT("flak_strong", 35, new int[]{2, 7, 7, 2}, 8, null, 2.1F, 0.0F, () -> null),
+    CHARACTER_CLOTHES("character_clothes", 35, new int[]{2, 5, 7, 2}, 8, null, 2.1F, 0.0F, () -> null),
+    FULL_CHARACTER_CLOTHES("full_character_clothes", 35, new int[]{2, 5, 10, 2}, 6, null, 2.1F, 0.0F, () -> null),
     HEADBAND("headband", 35, new int[]{2, 5, 5, 2}, 6, null, 2.1F, 0.0F, () -> null),
     ;
 
