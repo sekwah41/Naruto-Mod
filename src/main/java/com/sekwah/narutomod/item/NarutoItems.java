@@ -88,10 +88,10 @@ public class NarutoItems {
             -> new NarutoArmorItem(NarutoArmorMaterial.FLAK_MAT, EquipmentSlot.CHEST, new Item.Properties().tab(NINJA_ARMOR)));
 
     public static final RegistryObject<Item> FLAK_JACKET = ITEMS.register("flak_jacket", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.FLAK_MAT, EquipmentSlot.CHEST, new Item.Properties().tab(NINJA_ARMOR)));
+            -> new NarutoArmorItem(NarutoArmorMaterial.FLAK_STRONGER_MAT, EquipmentSlot.CHEST, new Item.Properties().tab(NINJA_ARMOR)));
 
     public static final RegistryObject<Item> ANBU_ARMOR = ITEMS.register("anbu_armor", ()
-            -> new NarutoArmorItem(NarutoArmorMaterial.ANBU_MAT, EquipmentSlot.CHEST, new Item.Properties().tab(NINJA_ARMOR)));
+            -> new NarutoArmorItem(NarutoArmorMaterial.FLAK_STRONGER_MAT, EquipmentSlot.CHEST, new Item.Properties().tab(NINJA_ARMOR)));
 
     public static final RegistryObject<Item> AKATSUKI_CLOAK = ITEMS.register("akatsuki_cloak", ()
             -> new NarutoArmorItem(NarutoArmorMaterial.CHARACTER_CLOTHES, EquipmentSlot.CHEST, new Item.Properties().tab(NINJA_ARMOR)));
