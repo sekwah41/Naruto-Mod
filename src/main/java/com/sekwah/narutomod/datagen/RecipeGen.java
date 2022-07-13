@@ -161,7 +161,7 @@ public class RecipeGen extends RecipeProvider {
                 .unlockedBy("has_naruto_armor_plate", has(NarutoItems.ARMOR_PLATE.get()))
                 .save(recipeConsumer);
 
-        ShapedRecipeBuilder.shaped(NarutoItems.FLAK_JACKET_NEW.get(), 1)
+        ShapedRecipeBuilder.shaped(NarutoItems.FLAK_JACKET.get(), 1)
                 .define('A', NarutoItems.ARMOR_PLATE_GREEN.get())
                 .pattern("A A")
                 .pattern("AAA")
@@ -169,7 +169,7 @@ public class RecipeGen extends RecipeProvider {
                 .unlockedBy("has_naruto_armor_plate_green", has(NarutoItems.ARMOR_PLATE_GREEN.get()))
                 .save(recipeConsumer);
 
-        ShapedRecipeBuilder.shaped(NarutoItems.FLAK_JACKET.get(), 1)
+        ShapedRecipeBuilder.shaped(NarutoItems.FLAK_JACKET_NEW.get(), 1)
                 .define('F', NarutoItems.FABRIC_REINFORCED_GREEN.get())
                 .pattern("F F")
                 .pattern("FFF")
