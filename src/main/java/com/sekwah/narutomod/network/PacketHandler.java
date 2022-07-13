@@ -1,6 +1,5 @@
 package com.sekwah.narutomod.network;
 
-import com.mojang.logging.LogUtils;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.network.c2s.ServerAbilityActivatePacket;
 import com.sekwah.narutomod.network.c2s.ServerAbilityChannelPacket;
@@ -16,10 +15,11 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PacketHandler {
 
-    private static final Logger LOGGER = LogUtils.getLogger();
+    private static final Logger LOGGER = LoggerFactory.getLogger("NarutoMod:PacketHandler");
 
     /**
      * Forces the mod to have the same version as the server.
@@ -49,13 +49,24 @@ public class PacketHandler {
 
     public static void init() {
         // Server to client packs
-        NARUTO_CHANNEL.registerMessage(0, ClientTestPacket.class, ClientTestPacket::encode, ClientTestPacket::decode, ClientTestPacket.Handler::handle);
+        NARUTO_CHANNEL.registerMessage(getPacketID(), ClientTestPacket.class, ClientTestPacket::encode, ClientTestPacket::decode, ClientTestPacket.Handler::handle);
 
         // Client to server packets
-        NARUTO_CHANNEL.registerMessage(100, ServerTestPacket.class, ServerTestPacket::encode, ServerTestPacket::decode, ServerTestPacket.Handler::handle);
-        NARUTO_CHANNEL.registerMessage(101, ServerJutsuCastingPacket.class, ServerJutsuCastingPacket::encode, ServerJutsuCastingPacket::decode, ServerJutsuCastingPacket.Handler::handle);
-        NARUTO_CHANNEL.registerMessage(102, ServerAbilityActivatePacket.class, ServerAbilityActivatePacket::encode, ServerAbilityActivatePacket::decode, ServerAbilityActivatePacket.Handler::handle);
-        NARUTO_CHANNEL.registerMessage(103, ServerAbilityChannelPacket.class, ServerAbilityChannelPacket::encode, ServerAbilityChannelPacket::decode, ServerAbilityChannelPacket.Handler::handle);
+        NARUTO_CHANNEL.registerMessage(getPacketID(), ServerTestPacket.class, ServerTestPacket::encode, ServerTestPacket::decode, ServerTestPacket.Handler::handle);
+        NARUTO_CHANNEL.registerMessage(getPacketID(), ServerJutsuCastingPacket.class, ServerJutsuCastingPacket::encode, ServerJutsuCastingPacket::decode, ServerJutsuCastingPacket.Handler::handle);
+        NARUTO_CHANNEL.registerMessage(getPacketID(), ServerAbilityActivatePacket.class, ServerAbilityActivatePacket::encode, ServerAbilityActivatePacket::decode, ServerAbilityActivatePacket.Handler::handle);
+        NARUTO_CHANNEL.registerMessage(getPacketID(), ServerAbilityChannelPacket.class, ServerAbilityChannelPacket::encode, ServerAbilityChannelPacket::decode, ServerAbilityChannelPacket.Handler::handle);
+    }
+
+    private static int packetId = 0;
+    /**
+     * When called grabs a new packet id and increments.
+     *
+     * Only really usable because we force the mods to have to be the same version via PROTOCOL_VERSION
+     * @return
+     */
+    private static int getPacketID() {
+        return packetId++;
     }
 
 
