@@ -44,7 +44,7 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
     }
 
     public WaterBulletJutsuEntity(LivingEntity player, double xVel, double yVel, double zVel) {
-        this(NarutoEntities.WATER_BULLET_JUTSU.get(), player.getX(), player.getEyeY() - 0.6f, player.getZ(),  xVel, yVel, zVel, player.getLevel());
+        this(NarutoEntities.WATER_BULLET_JUTSU.get(), player.getX(), player.getEyeY() - 0.15f, player.getZ(),  xVel, yVel, zVel, player.getLevel());
         this.setOwner(player);
         this.setRot(player.getYRot(), player.getXRot());
     }
