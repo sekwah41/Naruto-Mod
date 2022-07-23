@@ -65,3 +65,20 @@ If this ability is activated while underwater, chakra will be drained quickly pr
 **Combo**: CBV
 
 **Cost:** 30 Chakra
+
+
+## Substitution
+
+**Combo**: CV
+
+**Cost:** 1 substitution charge (can stack up to 3 times)
+
+If a location is marked and close enough then you will teleport to the marked location. Otherwise you will be teleported somewhere randomly nearby.
+
+## Substitution (Mark)
+
+**Combo**: CV (Hold)
+
+**Cost:** free
+
+Mark a location for substitution. A visual marker will appear which will turn red when you are out of range.
