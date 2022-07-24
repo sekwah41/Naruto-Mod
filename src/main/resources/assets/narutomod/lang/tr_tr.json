@@ -74,7 +74,7 @@
   "jutsu.fail.notonground": "%s kullanmak için yerde olmalısın.",
   "jutsu.fail.notenoughstamina": "%s kullanmak için yeterli dayanıklılığın yok.",
   "jutsu.fail.notenoughchakra": "%s kullanmak için yeterli chakran yok.",
-  "jutsu.fail.notenoughcharges": "%s Kullanmak için yeterli enerjiniz yok.",
+  "jutsu.fail.notenoughcharges": "%s Kullanmak için yeterli enerjiniz yok",
   "ability.double_jump": "Çift Zıplama",
   "jutsu.leap": "Sıçrama",
   "jutsu.waterwalk": "Suda Yürüme",
