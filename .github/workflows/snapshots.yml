@@ -25,7 +25,7 @@ jobs:
           distribution: 'temurin'
           java-version: 17
       - name: Download MC assets
-        run: ./gradlew downloadAssets --debug || ./gradlew downloadAssets --debug || (sleep 30s && ./gradlew downloadAssets --debug)
+        run: ./gradlew downloadAssets || ./gradlew downloadAssets || (sleep 30s && ./gradlew downloadAssets)
       - name: Run DataGen
         run: ./gradlew runData
       - name: Build and upload preview (run for non-release builds)
