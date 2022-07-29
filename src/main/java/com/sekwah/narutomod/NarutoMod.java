@@ -31,6 +31,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 @Mod(NarutoMod.MOD_ID)
 @Mod.EventBusSubscriber(modid = NarutoMod.MOD_ID)
@@ -52,7 +53,9 @@ public class NarutoMod {
         eventBus.addListener(this::registerCapabilities);
         eventBus.addListener(this::registerCapabilitySync);
         eventBus.addListener(NarutoRegistries::init);
-        eventBus.addListener(NarutoKeyHandler::registerKeyBinds);
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            eventBus.addListener(NarutoKeyHandler::registerKeyBinds);
+        }
 
         NarutoSounds.register(eventBus);
         NarutoDataSerialisers.register(eventBus);
