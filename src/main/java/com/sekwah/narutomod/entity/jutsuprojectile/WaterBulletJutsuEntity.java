@@ -21,13 +21,15 @@ import net.minecraft.world.phys.Vec3;
 
 public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile {
 
-    public int time;
-    // Ticks in rain before destroying
-    public int lifeSpan = 70;
+    public int lifeSpan = 30;
+
+    /**
+     * This is roughly the max speed a projectile can have before going sideways or weird, if you go crazily faster it fixes again but that's too fast
+     */
+    private final double multiplier = 0.52D;
 
     public WaterBulletJutsuEntity(EntityType<WaterBulletJutsuEntity> entityConstructor, Level level) {
         super(entityConstructor, level);
-        this.time = 0;
     }
 
     public WaterBulletJutsuEntity(EntityType<? extends AbstractNonGlowingHurtingProjectile> entityType, double posX, double posY, double posZ, double velX, double velY, double velZ, Level p_36824_) {
@@ -36,9 +38,9 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
         this.reapplyPosition();
         double d0 = Math.sqrt(velX * velX + velY * velY + velZ * velZ);
         if (d0 != 0.0D) {
-            this.xPower = velX / d0 * 0.2D;
-            this.yPower = velY / d0 * 0.2D;
-            this.zPower = velZ / d0 * 0.2D;
+            this.xPower = velX / d0 * multiplier;
+            this.yPower = velY / d0 * multiplier;
+            this.zPower = velZ / d0 * multiplier;
         }
 
     }
@@ -52,7 +54,6 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
     @Override
     public void tick() {
         super.tick();
-        ++this.time;
 
         if (lifeSpan-- <= 0) {
 
@@ -184,9 +185,9 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
         double d2 = p_150128_.getZa();
         double d3 = Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
         if (d3 != 0.0D) {
-            this.xPower = d0 / d3 * 0.2D;
-            this.yPower = d1 / d3 * 0.2D;
-            this.zPower = d2 / d3 * 0.2D;
+            this.xPower = d0 / d3 * multiplier;
+            this.yPower = d1 / d3 * multiplier;
+            this.zPower = d2 / d3 * multiplier;
         }
     }
 }
