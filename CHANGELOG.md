@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.1](https://github.com/sekwah41/Naruto-Mod/compare/v1.5.0...v1.5.1) (2022-08-13)
+
+
+### Bug Fixes 🐛
+
+* stop client classes registering on server side ([77a80d6](https://github.com/sekwah41/Naruto-Mod/commit/77a80d623f0a7d16846031b23a8ec31ccd6d4764))
+* swap armor value order to properly apply ([03eb421](https://github.com/sekwah41/Naruto-Mod/commit/03eb4214afe8ad1cfc49c1292923ae7bfa32e704))
+* swap flak jacket recipes to match the old versions ([d8954e0](https://github.com/sekwah41/Naruto-Mod/commit/d8954e0b642bbae61555e0ee1204182a85f4b4b1))
+* water bullet shooting location ([b8d443a](https://github.com/sekwah41/Naruto-Mod/commit/b8d443a928b4057e1be4c3ffdf2b7958349c27f1))
+
+
+### Changes to Existing Features 🔧
+
+* buff anbu armor and more expensive flak jacket ([5b97dbf](https://github.com/sekwah41/Naruto-Mod/commit/5b97dbf2ed02bfd6658cf3706f500a7858f37bbf))
+* majorly buff the speed of the water bullet ([7c22f93](https://github.com/sekwah41/Naruto-Mod/commit/7c22f93821fd93d4ea5fab77bb36d3bd81145b64))
+
 ## [1.5.0](https://github.com/sekwah41/Naruto-Mod/compare/v1.4.0...v1.5.0) (2022-07-12)
 
 
