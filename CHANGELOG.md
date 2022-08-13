@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/sekwah41/Naruto-Mod/compare/v1.5.1...v1.5.2) (2022-08-13)
+
+
+### Bug Fixes 🐛
+
+* update to 1.19.1 and 1.19.2, support for 1.19 dropped ([45d3db8](https://github.com/sekwah41/Naruto-Mod/commit/45d3db8cc0848d370526972e5db35115a637bac7))
+
 ## [1.5.1](https://github.com/sekwah41/Naruto-Mod/compare/v1.5.0...v1.5.1) (2022-08-13)
 
 
