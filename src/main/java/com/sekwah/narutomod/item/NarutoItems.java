@@ -97,7 +97,7 @@ public class NarutoItems {
             -> new NarutoArmorItem(NarutoArmorMaterial.CHARACTER_CLOTHES, EquipmentSlot.CHEST, new Item.Properties().tab(NINJA_ARMOR)));
 
     public static final RegistryObject<Item> LONELY_MARCH = ITEMS.register("lonely_march", ()
-            -> new RecordItem(41, NarutoSounds.LONELY_MARCH, new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1).rarity(Rarity.RARE)));
+            -> new RecordItem(41, NarutoSounds.LONELY_MARCH, new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1).rarity(Rarity.RARE), 46 * 20));
 
     public static final RegistryObject<Item> FABRIC = ITEMS.register("fabric", ()
             -> new Item(new Item.Properties().tab(NINJA_MATERIALS)));
