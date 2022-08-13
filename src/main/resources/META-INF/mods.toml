@@ -1,4 +1,5 @@
 modLoader="javafml"
+# Should be higher but the error for this beign wrong is really poor and tied to the forge version.
 loaderVersion="[41,)"
 issueTrackerURL="https://github.com/sekwah41/Naruto-Mod/issues"
 license="All rights reserved"
@@ -17,7 +18,7 @@ A mod that adds new items and other features to the game that are from/based on 
 [[dependencies.narutomod]]
     modId="forge"
     mandatory=true
-    versionRange="[41.0.94,)"
+    versionRange="[42,44)"
     ordering="NONE"
     side="BOTH"
 
@@ -25,13 +26,13 @@ A mod that adds new items and other features to the game that are from/based on 
 [[dependencies.narutomod]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19]"
+    versionRange="[1.19.1,1.19.2]"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.narutomod]]
     modId="sekclib"
     mandatory=true
-    versionRange="[0.4.1,)"
+    versionRange="[0.4.2,)"
     ordering="NONE"
     side="BOTH"
