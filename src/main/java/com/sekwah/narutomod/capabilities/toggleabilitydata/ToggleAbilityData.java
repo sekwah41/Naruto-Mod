@@ -37,7 +37,7 @@ public class ToggleAbilityData {
 
     public boolean addAbilityStarted(Player player, INinjaData ninjaData, Ability ability) {
         if (ability.activationType() == Ability.ActivationType.TOGGLE && ability.logInChat()) {
-            player.displayClientMessage(Component.translatable("jutsu.toggle.enabled", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), false);
+            player.displayClientMessage(Component.translatable("jutsu.toggle.enabled", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), true);
         }
         var registryName = NarutoRegistries.ABILITIES.getResourceKey(ability).orElse(null);
         if (registryName != null) {
@@ -49,7 +49,7 @@ public class ToggleAbilityData {
     public boolean removeAbilityEnded(Player player, INinjaData ninjaData, Ability ability) {
         if(ability instanceof Ability.HandleEnded endedAbility) endedAbility.handleAbilityEnded(player, ninjaData, 0);
         if (ability.activationType() == Ability.ActivationType.TOGGLE && ability.logInChat()) {
-            player.displayClientMessage(Component.translatable("jutsu.toggle.disabled", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), false);
+            player.displayClientMessage(Component.translatable("jutsu.toggle.disabled", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED), true);
         }
         var registryName = NarutoRegistries.ABILITIES.getResourceKey(ability).orElse(null);
         if (registryName != null) {
