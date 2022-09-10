@@ -59,7 +59,7 @@ public class ServerAbilityActivatePacket {
 
                         if(canTriggerJutsu && ability.handleCost(player, ninjaData)) {
                             if (ability.logInChat()) {
-                                player.displayClientMessage(Component.translatable("jutsu.cast", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), false);
+                                player.displayClientMessage(Component.translatable("jutsu.cast", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), true);
                             }
                             if(ability.castingSound() != null) {
                                 player.getLevel().playSound(null,
