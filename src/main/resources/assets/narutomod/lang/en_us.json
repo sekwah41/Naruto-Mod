@@ -98,5 +98,7 @@
   "naruto.keys.key3": "Jutsu Key 3",
   "naruto.keys.leap": "Leap",
   "narutomod:substitution": "Substitution",
-  "narutomod:substitution.mark": "Substitution - Location Marked"
+  "narutomod:substitution.mark": "Substitution - Location Marked",
+  "naruto.gui.jutsu.placeholder": "Please type '/jutsu list'. We will be adding a new menu soon.",
+  "naruto.keys.jutsu_menu": "Jutsu Menu (Coming Soonish)"
 }
