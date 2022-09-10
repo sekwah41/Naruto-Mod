@@ -54,6 +54,8 @@ public class NarutoKeyHandler {
     private static KeyBindingTickHeld JUTSU_V_KEY;
     private static KeyBindingTickHeld JUTSU_B_KEY;
 
+    private static KeyBindingTickHeld JUTSU_MENU_KEY;
+
     /**
      * Attached on the main NarutoMod file to the mod bus as this isn't a forge bus event
      * @param event
@@ -64,16 +66,25 @@ public class NarutoKeyHandler {
         JUTSU_C_KEY = registerKeyBind("naruto.keys.key1", KeyEvent.VK_C, event);
         JUTSU_V_KEY = registerKeyBind("naruto.keys.key2", KeyEvent.VK_V, event);
         JUTSU_B_KEY = registerKeyBind("naruto.keys.key3", KeyEvent.VK_B, event);
+        JUTSU_MENU_KEY = registerKeyBind("naruto.keys.jutsu_menu", KeyEvent.VK_J, event);
 
         JUTSU_KEYS.add(LEAP_KEY);
         JUTSU_KEYS.add(JUTSU_C_KEY);
         JUTSU_KEYS.add(JUTSU_V_KEY);
         JUTSU_KEYS.add(JUTSU_B_KEY);
+        JUTSU_KEYS.add(JUTSU_MENU_KEY);
 
         LEAP_KEY.registerClickConsumer( () -> {
             Minecraft mc = Minecraft.getInstance();
             if(mc.player != null ) {
                 NarutoAbilities.triggerAbility(NarutoAbilities.LEAP.getId());
+            }
+        });
+
+        JUTSU_MENU_KEY.registerClickConsumer( () -> {
+            Minecraft mc = Minecraft.getInstance();
+            if(mc.player != null ) {
+                mc.player.displayClientMessage(Component.translatable("naruto.gui.jutsu.placeholder"), true);
             }
         });
 
@@ -189,7 +200,7 @@ public class NarutoKeyHandler {
             if(mc.player != null ) {
                 LOGGER.debug("Casting jutsu {}", currentJutsuCombo);
                 if(!NarutoAbilities.triggerAbility(currentJutsuCombo)) {
-                    mc.player.displayClientMessage((Component.translatable("jutsu.error.notfound", currentJutsuCombo)).withStyle(ChatFormatting.RED), false);
+                    mc.player.displayClientMessage((Component.translatable("jutsu.error.notfound", currentJutsuCombo)).withStyle(ChatFormatting.RED), true);
                 } else {
                     //mc.player.sendMessage(Component.translatable("trying.jutsu", currentJutsuCombo), true);
                 }
