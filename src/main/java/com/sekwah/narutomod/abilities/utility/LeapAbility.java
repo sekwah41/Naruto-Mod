@@ -2,6 +2,7 @@ package com.sekwah.narutomod.abilities.utility;
 
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
+import com.sekwah.narutomod.gameevents.NarutoGameEvents;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import com.sekwah.sekclib.util.PlayerUtil;
 import net.minecraft.ChatFormatting;
@@ -54,5 +55,6 @@ public class LeapAbility extends Ability {
                 , lookVector.z * horScale, true);
         player.getLevel().playSound(null,
                 player, NarutoSounds.LEAP.get(), SoundSource.PLAYERS, 0.5f, 1.0f);
+        player.getLevel().gameEvent(player, NarutoGameEvents.LEAP.get(), player.position());
     }
 }
