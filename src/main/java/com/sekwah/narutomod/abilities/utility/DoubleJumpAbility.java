@@ -2,6 +2,7 @@ package com.sekwah.narutomod.abilities.utility;
 
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.INinjaData;
+import com.sekwah.narutomod.gameevents.NarutoGameEvents;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -57,5 +58,7 @@ public class DoubleJumpAbility extends Ability {
 
         player.getLevel().playSound(null,
                 player, NarutoSounds.DOUBLE_JUMP.get(), SoundSource.PLAYERS, 1f, 1.0f);
+
+        player.getLevel().gameEvent(player, NarutoGameEvents.DOUBLE_JUMP.get(), player.position());
     }
 }

@@ -3,6 +3,7 @@ package com.sekwah.narutomod.network.c2s;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
+import com.sekwah.narutomod.gameevents.NarutoGameEvents;
 import com.sekwah.narutomod.registries.NarutoRegistries;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
@@ -64,6 +65,7 @@ public class ServerAbilityActivatePacket {
                             if(ability.castingSound() != null) {
                                 player.getLevel().playSound(null,
                                         player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
+                                player.getLevel().gameEvent(player, NarutoGameEvents.JUTSU_CASTING.get(), player.position().add(0, player.getEyeHeight() * 0.7, 0));
                             }
                             ability.performServer(player, ninjaData);
 

@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.toggleabilitydata.ToggleAbilityData;
 import com.sekwah.narutomod.config.NarutoConfig;
+import com.sekwah.narutomod.gameevents.NarutoGameEvents;
 import com.sekwah.narutomod.registries.NarutoRegistries;
 import com.sekwah.sekclib.capabilitysync.capabilitysync.annotation.Sync;
 import net.minecraft.ChatFormatting;
@@ -244,6 +245,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
         if (ability != null) {
             if (ability.castingSound() != null) {
                 player.getLevel().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
+                player.getLevel().gameEvent(player, NarutoGameEvents.JUTSU_CASTING.get(), player.position().add(0, player.getEyeHeight() * 0.7, 0));
             }
 
             if(!(ability instanceof Ability.Channeled channeled && channeled.hideChannelMessages())) {

@@ -1,5 +1,6 @@
 package com.sekwah.narutomod.network.c2s;
 
+import com.sekwah.narutomod.gameevents.NarutoGameEvents;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
@@ -48,6 +49,7 @@ public class ServerJutsuCastingPacket {
                         player.getCommandSenderWorld().playSound(null,
                                 player.getX(), player.getY(), player.getZ(),
                                 playSound, SoundSource.PLAYERS, 1.0f, 1.0f);
+                        player.getLevel().gameEvent(player, NarutoGameEvents.JUTSU_CASTING.get(), player.position().add(0, player.getEyeHeight() * 0.7, 0));
                     }
                 }
             });

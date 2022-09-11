@@ -3,6 +3,7 @@ package com.sekwah.narutomod.network.c2s;
 import com.mojang.logging.LogUtils;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
+import com.sekwah.narutomod.gameevents.NarutoGameEvents;
 import com.sekwah.narutomod.registries.NarutoRegistries;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
@@ -77,6 +78,8 @@ public class ServerAbilityChannelPacket {
                                 if(ability.handleCost(player, ninjaData, -1)) {
                                     if (ability.castingSound() != null) {
                                         player.getLevel().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
+
+                                        player.getLevel().gameEvent(player, NarutoGameEvents.JUTSU_CASTING.get(), player.position().add(0, player.getEyeHeight() * 0.7, 0));
                                     }
                                     player.displayClientMessage(Component.translatable("jutsu.cast", Component.translatable(ability.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GREEN), false);
                                     ability.performServer(player, ninjaData, -1);
