@@ -98,5 +98,7 @@
   "naruto.keys.key3": "Jutsu Anahtarı 3",
   "naruto.keys.leap": "Sıçrama",
   "narutomod:substitution": "Yer Değiştirme",
-  "narutomod:substitution.mark": "Yer Değiştirme Konumu İşaretlendi"
+  "narutomod:substitution.mark": "Yer Değiştirme Konumu İşaretlendi",
+  "naruto.gui.jutsu.placeholder": "Lütfen '/jutsu list' yazın. Yakında yeni bir menü ekleyeceğiz.",
+  "naruto.keys.jutsu_menu": "Jutsu Menüsü (Çok Yakında)"
 }
