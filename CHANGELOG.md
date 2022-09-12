@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.6.0](https://github.com/sekwah41/Naruto-Mod/compare/v1.5.2...v1.6.0) (2022-09-12)
+
+
+### Bug Fixes 🐛
+
+* jutsu sounds are now detected by the warden and skulk ([6376861](https://github.com/sekwah41/Naruto-Mod/commit/637686123830e6ca7510e7d2b5ef00a45fac67c9))
+
+
+### Features ✨
+
+* add keybind to inform users about the jutsu menu being missing ([1e34e22](https://github.com/sekwah41/Naruto-Mod/commit/1e34e22ca51b320983a10ef7b8cfb8f6b6d6b12d))
+
+
+### Changes to Existing Features 🔧
+
+* Jutsu related messages now all show in the action bar ([1028de9](https://github.com/sekwah41/Naruto-Mod/commit/1028de932ba3ccdba3d79ae19553ad8524d1bbea))
+
 ## [1.5.2](https://github.com/sekwah41/Naruto-Mod/compare/v1.5.1...v1.5.2) (2022-08-13)
 
 
