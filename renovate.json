@@ -31,8 +31,11 @@
         "minor",
         "patch"
       ],
-      "automerge": true,
-      "automergeType": "branch",
+      "excludePackageNames": [
+        "gradle",
+        "net.minecraftforge:forge",
+        "net.minecraftforge.gradle:ForgeGradle"
+      ],
       "groupName": "Deps",
       "schedule": [
         "every weekend"
