@@ -6,7 +6,6 @@ jobs:
   # This  is for when forge doesn't work or something screws up
   build:
     runs-on: ubuntu-latest
-    if: ${{ needs.release-please.outputs.release_created }}
     steps:
       - uses: actions/checkout@v3
       - name: Cache Gradle packages
