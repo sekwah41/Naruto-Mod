@@ -100,6 +100,8 @@ public class NarutoInGameGUI {
             return;
         }
         Camera camera = mc.getEntityRenderDispatcher().camera;
+        //noinspection ConstantConditions the IDE inspects this as not possible to be null. There has been at least one error report proving this to be false.
+        if(camera == null) return;
         PoseStack poseStack = event.getPoseStack();
         worldMatrix = event.getProjectionMatrix().copy();
         worldMatrix.multiply(poseStack.last().pose());
