@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/sekwah41/Naruto-Mod/compare/v1.6.0...v1.6.1) (2022-09-15)
+
+
+### Bug Fixes 🐛
+
+* null camera crash ([e4105a4](https://github.com/sekwah41/Naruto-Mod/commit/e4105a4a1b466c49e10ee9284a7bf19c73932826))
+
 ## [1.6.0](https://github.com/sekwah41/Naruto-Mod/compare/v1.5.2...v1.6.0) (2022-09-12)
 
 
