@@ -8,7 +8,9 @@
     "common.TripWireBlockMixin"
   ],
   "client": [
-    "client.LocalPlayerMixin"
+    "client.LocalPlayerMixin",
+    "client.PlayerModelMixin",
+    "client.PlayerRenderMixin"
   ],
   "injectors": {
     "defaultRequire": 1
