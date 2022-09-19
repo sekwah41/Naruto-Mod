@@ -19,8 +19,9 @@ public class PlayerModelMixin<T extends LivingEntity> extends HumanoidModel<T> {
         super(p_170677_, RenderType::entityTranslucent);
     }
 
-    @Inject(method = "setupAnim(Lnet/minecraft/world/entity/Entity;FFFFF)V", at = @At(value = "TAIL"))
-    public void setupAnim(Entity player, float par2, float par3, float par4, float par5, float par6, CallbackInfo ci) {
+    @Inject(method = "setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/client/model/HumanoidModel;setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V"))
+    public void setupAnim(T player, float par2, float par3, float par4, float par5, float par6, CallbackInfo ci) {
         PlayerAnimHandler.sprintingAnim(player, (PlayerModel) (Object) this);
+        this.hat.copyFrom(this.head);
     }
 }
