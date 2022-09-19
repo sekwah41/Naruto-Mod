@@ -57,6 +57,10 @@ public class ServerAbilityChannelPacket {
                     return;
                 }
                 player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
+                    if(!ninjaData.isNinjaModeEnabled()) {
+                        player.displayClientMessage(Component.translatable("jutsu.not_a_ninja").withStyle(ChatFormatting.RED), true);
+                        return;
+                    }
                     Ability ability = NarutoRegistries.ABILITIES.getValue(msg.abilityResource);
                     if(ability == null) {
                         LOGGER.error("Ability doesnt exist {}", msg.abilityResource);

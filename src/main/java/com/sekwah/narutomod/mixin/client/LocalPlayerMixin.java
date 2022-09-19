@@ -36,6 +36,9 @@ public class LocalPlayerMixin extends AbstractClientPlayer {
         ItemStack itemstack = this.getItemBySlot(EquipmentSlot.CHEST);
         if (!itemstack.canElytraFly(this) && !this.onGround && !this.isFallFlying() && !this.isInWater() && !this.hasEffect(MobEffects.LEVITATION)) {
             this.getCapability(NINJA_DATA).ifPresent(ninjaData -> {
+                if(!ninjaData.isNinjaModeEnabled()) {
+                    return;
+                }
                 DoubleJumpData doubleJumpData = ninjaData.getDoubleJumpData();
                 if(doubleJumpData != null) {
                     if(doubleJumpData.canDoubleJumpClient && doubleJumpData.diffUpdateTicksClient > 5) {

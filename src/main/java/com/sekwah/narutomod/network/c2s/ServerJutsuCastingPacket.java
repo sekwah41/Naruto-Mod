@@ -1,8 +1,11 @@
 package com.sekwah.narutomod.network.c2s;
 
+import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.gameevents.NarutoGameEvents;
 import com.sekwah.narutomod.sounds.NarutoSounds;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -36,21 +39,27 @@ public class ServerJutsuCastingPacket {
             ctx.get().enqueueWork(() -> {
                 ServerPlayer player = ctx.get().getSender();
                 if(player != null) {
-                    if(player.gameMode.getGameModeForPlayer() == GameType.SPECTATOR) {
-                        return;
-                    }
-                    SoundEvent playSound = switch (msg.jutsuKey) {
-                        case 1 -> NarutoSounds.SEAL_A.get();
-                        case 2 -> NarutoSounds.SEAL_B.get();
-                        case 3 -> NarutoSounds.SEAL_C.get();
-                        default -> null;
-                    };
-                    if(playSound != null) {
-                        player.getCommandSenderWorld().playSound(null,
-                                player.getX(), player.getY(), player.getZ(),
-                                playSound, SoundSource.PLAYERS, 1.0f, 1.0f);
-                        player.getLevel().gameEvent(player, NarutoGameEvents.JUTSU_CASTING.get(), player.position().add(0, player.getEyeHeight() * 0.7, 0));
-                    }
+                    player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
+                        if (!ninjaData.isNinjaModeEnabled()) {
+                            player.displayClientMessage(Component.translatable("jutsu.not_a_ninja").withStyle(ChatFormatting.RED), true);
+                            return;
+                        }
+                        if(player.gameMode.getGameModeForPlayer() == GameType.SPECTATOR) {
+                            return;
+                        }
+                        SoundEvent playSound = switch (msg.jutsuKey) {
+                            case 1 -> NarutoSounds.SEAL_A.get();
+                            case 2 -> NarutoSounds.SEAL_B.get();
+                            case 3 -> NarutoSounds.SEAL_C.get();
+                            default -> null;
+                        };
+                        if(playSound != null) {
+                            player.getCommandSenderWorld().playSound(null,
+                                    player.getX(), player.getY(), player.getZ(),
+                                    playSound, SoundSource.PLAYERS, 1.0f, 1.0f);
+                            player.getLevel().gameEvent(player, NarutoGameEvents.JUTSU_CASTING.get(), player.position().add(0, player.getEyeHeight() * 0.7, 0));
+                        }
+                    });
                 }
             });
             ctx.get().setPacketHandled(true);

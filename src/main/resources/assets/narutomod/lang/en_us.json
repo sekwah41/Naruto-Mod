@@ -99,6 +99,14 @@
   "naruto.keys.leap": "Leap",
   "narutomod:substitution": "Substitution",
   "narutomod:substitution.mark": "Substitution - Location Marked",
-  "naruto.gui.jutsu.placeholder": "Please type '/jutsu list'. We will be adding a new menu soon.",
-  "naruto.keys.jutsu_menu": "Jutsu Menu (Coming Soonish)"
+  "naruto.gui.jutsu.placeholder": "Please type '/jutsu list' for the list of abilities.",
+  "naruto.keys.jutsu_menu": "Jutsu Menu",
+  "naruto.gui.jutsu.title": "Jutsu Menu",
+  "naruto.gui.jutsu.notice": "A proper jutsu menu + way to unlock will be here eventually,",
+  "naruto.gui.jutsu.notice2": "press the buttons below to toggle being a ninja.",
+  "naruto.gui.jutsu.enable": "Become a ninja",
+  "naruto.gui.jutsu.disable": "I change my mind",
+  "naruto.gui.jutsu.done": "Done",
+  "jutsu.not_a_ninja": "You must become a ninja to do that (press j)"
+
 }

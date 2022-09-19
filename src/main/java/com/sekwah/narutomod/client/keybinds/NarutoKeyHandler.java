@@ -4,6 +4,8 @@ import com.mojang.logging.LogUtils;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.Ability;
 import com.sekwah.narutomod.abilities.NarutoAbilities;
+import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
+import com.sekwah.narutomod.client.gui.JutsuScreen;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.network.c2s.ServerAbilityChannelPacket;
@@ -84,7 +86,8 @@ public class NarutoKeyHandler {
         JUTSU_MENU_KEY.registerClickConsumer( () -> {
             Minecraft mc = Minecraft.getInstance();
             if(mc.player != null ) {
-                mc.player.displayClientMessage(Component.translatable("naruto.gui.jutsu.placeholder"), true);
+                mc.setScreen(new JutsuScreen());
+                //mc.player.displayClientMessage(Component.translatable("naruto.gui.jutsu.placeholder"), true);
             }
         });
 
@@ -113,15 +116,26 @@ public class NarutoKeyHandler {
         if(isCurrentlyChargingAbility) {
             return;
         }
-        PacketHandler.sendToServer(new ServerJutsuCastingPacket(i));
-        ticksSinceLastKey = 0;
-        if (currentJutsuCombo < MAX_JUTSU_VALUE) {
-            currentJutsuCombo *= 10;
-            currentJutsuCombo += i;
-            currentJutsuComboAbility = NarutoAbilities.getAbilityFromCombo(currentJutsuCombo);
-        } else {
-            LOGGER.info("Combo too long, ignoring keypress");
+        Minecraft mc = Minecraft.getInstance();
+        if(mc.player == null ) {
+            return;
         }
+        var player = mc.player;
+        player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
+            if (!ninjaData.isNinjaModeEnabled()) {
+                mc.player.displayClientMessage(Component.translatable("jutsu.not_a_ninja").withStyle(ChatFormatting.RED), true);
+                return;
+            }
+            PacketHandler.sendToServer(new ServerJutsuCastingPacket(i));
+            ticksSinceLastKey = 0;
+            if (currentJutsuCombo < MAX_JUTSU_VALUE) {
+                currentJutsuCombo *= 10;
+                currentJutsuCombo += i;
+                currentJutsuComboAbility = NarutoAbilities.getAbilityFromCombo(currentJutsuCombo);
+            } else {
+                LOGGER.info("Combo too long, ignoring keypress");
+            }
+        });
     }
 
     /**
