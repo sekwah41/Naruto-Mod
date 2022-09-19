@@ -9,6 +9,8 @@ import net.minecraft.world.entity.LivingEntity;
 public class PlayerAnimHandler {
 
     public static <T extends LivingEntity> void sprintingAnim(Entity entity, PlayerModel playerModel) {
+        playerModel.head.setPos(0F, 0F, 0F);
+        playerModel.body.setPos(0F, 0F, 0F);
         entity.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent((ninjaData -> {
             if(!ninjaData.isNinjaModeEnabled()) {
                 return;
@@ -30,10 +32,6 @@ public class PlayerAnimHandler {
 
                 playerModel.body.setRotation(0.5435722F, 0F, 0F);
                 playerModel.body.setPos(0F, 3F - 1F, -3.5F - 2F);
-            }
-            else {
-                playerModel.head.setPos(0F, 0F, 0F);
-                playerModel.body.setPos(0F, 0F, 0F);
             }
         }));
     }
