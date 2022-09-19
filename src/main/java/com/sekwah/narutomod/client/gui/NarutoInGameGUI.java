@@ -2,6 +2,7 @@ package com.sekwah.narutomod.client.gui;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Matrix4f;
+import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
@@ -59,7 +60,9 @@ public class NarutoInGameGUI {
     @SubscribeEvent
     public void clientTickEvent(TickEvent.ClientTickEvent event) {
         if(this.minecraft.getCameraEntity() instanceof Player player) {
-            shouldRender = true;
+            player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
+                shouldRender = ninjaData.isNinjaModeEnabled();
+            });
             for (PlayerGUI  overlay : overlays) {
                 overlay.tick(player);
             }

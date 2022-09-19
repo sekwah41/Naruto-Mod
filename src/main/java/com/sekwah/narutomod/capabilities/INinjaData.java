@@ -52,4 +52,8 @@ public interface INinjaData extends INBTSerializable<Tag> {
      * @param player
      */
     void updateDataClient(Player player);
+
+    void setIsNinja(boolean enableNinja);
+
+    boolean isNinjaModeEnabled();
 }

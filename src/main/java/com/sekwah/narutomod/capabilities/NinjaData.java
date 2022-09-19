@@ -44,6 +44,12 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     @Sync
     private float maxChakra;
 
+    /**
+     * If the player should have access to all the ninja shit
+     */
+    @Sync(syncGlobally = true)
+    private boolean ninjaModeEnabled;
+
     @Sync
     private float maxStamina;
 
@@ -87,9 +93,9 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
      * This will make the player truly invisible.
      */
     @Sync(minTicks = 1, syncGlobally = true)
-    private boolean isInvisible;
+    private boolean isInvisible = false;
 
-    private int invisibleTicks;
+    private int invisibleTicks = 0;
 
 
     private ArrayList<DelayedPlayerTickEvent> delayedTickEvents = new ArrayList<>();
@@ -131,6 +137,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
 
     private static final String CHAKRA_TAG = "chakra";
     private static final String STAMINA_TAG = "stamina";
+    private static final String NINJA_MODE_ENABLED = "ninjaModeEnabled";
     private static final String SAVE_TIME = "save_time";
     private static final String COOLDOWN_TAG = "cooldowns";
     private static final String SUBSTITUTION_TAG = "substitutions";
@@ -291,6 +298,10 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             this.isInvisible = false;
         }
 
+        if(!this.isNinjaModeEnabled()) {
+            return;
+        }
+
         this.getConfigData();
         Iterator<DelayedPlayerTickEvent> iterator = this.delayedTickEvents.iterator();
         while (iterator.hasNext()) {
@@ -366,10 +377,21 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     }
 
     @Override
+    public void setIsNinja(boolean enableNinja) {
+        this.ninjaModeEnabled = enableNinja;
+    }
+
+    @Override
+    public boolean isNinjaModeEnabled() {
+        return this.ninjaModeEnabled;
+    }
+
+    @Override
     public Tag serializeNBT() {
         final CompoundTag nbt = new CompoundTag();
         nbt.putFloat(CHAKRA_TAG, this.chakra);
         nbt.putFloat(STAMINA_TAG, this.stamina);
+        nbt.putBoolean(NINJA_MODE_ENABLED, this.ninjaModeEnabled);
         long currentTime = System.currentTimeMillis();
         nbt.putLong(SAVE_TIME, currentTime);
         final CompoundTag cooldownData = new CompoundTag();
@@ -390,6 +412,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             int ticksPassed = Math.max((int) ((currentTime - saveTime) / 1000 * 20), 0);
             this.chakra = compoundTag.getFloat(CHAKRA_TAG);
             this.stamina = compoundTag.getFloat(STAMINA_TAG);
+            this.ninjaModeEnabled = compoundTag.getBoolean(NINJA_MODE_ENABLED);
             CompoundTag cooldownData = compoundTag.getCompound(COOLDOWN_TAG);
             for (String key : cooldownData.getAllKeys()) {
                 this.cooldownTickEvents.put(key, new CooldownTickEvent(cooldownData.getInt(key) - ticksPassed));

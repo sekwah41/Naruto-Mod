@@ -49,7 +49,10 @@ public class ServerAbilityActivatePacket {
                     return;
                 }
                 player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
-
+                    if(!ninjaData.isNinjaModeEnabled()) {
+                        player.displayClientMessage(Component.translatable("jutsu.not_a_ninja").withStyle(ChatFormatting.RED), true);
+                        return;
+                    }
                     Ability ability = NarutoRegistries.ABILITIES.getValue(msg.abilityId);
                     if (ability.activationType() == Ability.ActivationType.INSTANT) {
 
