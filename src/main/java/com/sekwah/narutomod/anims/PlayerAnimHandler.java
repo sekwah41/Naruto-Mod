@@ -8,9 +8,17 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class PlayerAnimHandler {
 
-    public static <T extends LivingEntity> void sprintingAnim(Entity entity, PlayerModel playerModel) {
+    /**
+     * Cleans up parts that may be left over
+     * @param entity
+     * @param playerModel
+     * @param <T>
+     */
+    public static <T extends LivingEntity> void preSprintingAnim(Entity entity, PlayerModel playerModel) {
         playerModel.head.setPos(0F, 0F, 0F);
         playerModel.body.setPos(0F, 0F, 0F);
+    }
+    public static <T extends LivingEntity> void sprintingAnim(Entity entity, PlayerModel playerModel) {
         entity.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent((ninjaData -> {
             if(!ninjaData.isNinjaModeEnabled()) {
                 return;
@@ -20,7 +28,7 @@ public class PlayerAnimHandler {
                 playerModel.rightArm.setRotation(-1.375616F, -0.5948606F, 0F);
                 playerModel.leftArm.setRotation(-1.375616F, 0.5948606F, 0F);
             }
-            if(entity.isSprinting() && !entity.isVisuallySwimming()) {
+            if(entity.isSprinting() && !entity.isVisuallySwimming() && !entity.isCrouching()) {
                 playerModel.rightArm.setRotation(1.412787F, 0F, 0F);
                 playerModel.rightArm.setPos(-5F, 3.933333F, -3F - 2F);
 
