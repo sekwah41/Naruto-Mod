@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.7.0](https://github.com/sekwah41/Naruto-Mod/compare/v1.6.1...v1.7.0) (2022-09-20)
+
+
+### Features ✨
+
+* add naruto running ([085a87b](https://github.com/sekwah41/Naruto-Mod/commit/085a87b759819ae3fce2ba4ac1dda2efcc51bde8))
+* add the ability to toggle being a ninja ([00df488](https://github.com/sekwah41/Naruto-Mod/commit/00df488fafe1b88821d446f7106b91f2485aa8d6))
+* chakra charging animation ([301863b](https://github.com/sekwah41/Naruto-Mod/commit/301863b2c2fdca38091a1c363848dfa19f751d36))
+
+
+### Bug Fixes 🐛
+
+* arm displacement due to new anim code ([13f923d](https://github.com/sekwah41/Naruto-Mod/commit/13f923d0012174377e7eb57ccc9547930f37946a))
+* first person arm with new sprinting anim ([a9d5afc](https://github.com/sekwah41/Naruto-Mod/commit/a9d5afc001bc41b03e18152f6f55dd28b9155455))
+* running animation layers not aligning ([3f31f47](https://github.com/sekwah41/Naruto-Mod/commit/3f31f47ab495379a37f209bedcaee1bf98ad3a9e))
+* third person rendering when other users are sprinting ([ecd6b9d](https://github.com/sekwah41/Naruto-Mod/commit/ecd6b9dedec83fee04ae12caebcdb9251c864737))
+
 ## [1.6.1](https://github.com/sekwah41/Naruto-Mod/compare/v1.6.0...v1.6.1) (2022-09-15)
 
 
