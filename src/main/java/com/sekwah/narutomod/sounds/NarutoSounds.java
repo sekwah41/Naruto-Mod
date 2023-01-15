@@ -38,7 +38,7 @@ public class NarutoSounds {
     public static final RegistryObject<SoundEvent> DOUBLE_JUMP = register("double_jump");
 
     private static RegistryObject<SoundEvent> register(String key) {
-        return SOUNDS.register(key, () -> new SoundEvent(new ResourceLocation(MOD_ID, key)));
+        return SOUNDS.register(key, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MOD_ID, key)));
     }
 
     public static void register(IEventBus eventBus) {

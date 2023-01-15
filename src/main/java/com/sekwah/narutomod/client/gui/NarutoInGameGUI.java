@@ -1,7 +1,7 @@
 package com.sekwah.narutomod.client.gui;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -106,8 +106,8 @@ public class NarutoInGameGUI {
         //noinspection ConstantConditions the IDE inspects this as not possible to be null. There has been at least one error report proving this to be false.
         if(camera == null) return;
         PoseStack poseStack = event.getPoseStack();
-        worldMatrix = event.getProjectionMatrix().copy();
-        worldMatrix.multiply(poseStack.last().pose());
+        worldMatrix = new Matrix4f(event.getProjectionMatrix());
+        worldMatrix.mul(poseStack.last().pose());
         cameraPos = camera.getPosition();
         //float partialTicks = event.getPartialTick();
         //MultiBufferSource multiBufferSource = mc.renderBuffers().bufferSource();

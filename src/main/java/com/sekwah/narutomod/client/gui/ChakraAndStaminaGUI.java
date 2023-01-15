@@ -2,7 +2,7 @@ package com.sekwah.narutomod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.util.ColorUtil;

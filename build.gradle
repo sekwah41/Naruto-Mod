@@ -75,7 +75,7 @@ minecraft {
     // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'official', version: '1.19.2'
+    mappings channel: 'official', version: '1.19.3'
     //mappings channel: 'parchment', version: '2021.12.19-1.18.1'
     //mappings channel: 'parchment', version: '2021.07.21-1.17'
 
@@ -309,8 +309,7 @@ curseforge {
         changelog = "${project.github}/blob/${branch}/CHANGELOG.md"
         changelogType = 'markdown'
         releaseType = 'release'
-        addGameVersion '1.19.1'
-        addGameVersion '1.19.2'
+        addGameVersion '1.19.3'
 
         relations {
             requiredDependency 'sekclib'

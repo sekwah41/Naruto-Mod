@@ -13,6 +13,6 @@ public class NarutoDataGenerators {
         DataGenerator gen = event.getGenerator();
 
         gen.addProvider(event.includeServer(), new RecipeGen(gen));
-        gen.addProvider(event.includeServer(), new NarutoGameEventTagGen(gen, event.getExistingFileHelper()));
+        gen.addProvider(event.includeServer(), new NarutoGameEventTagGen(gen, event.getLookupProvider(), event.getExistingFileHelper()));
     }
 }

@@ -31,21 +31,23 @@ public class JutsuScreen extends Screen {
 
     public void addButtons() {
 
-        becomeANinja = this.addRenderableWidget(new Button(this.width / 2 - 102, this.height / 4 + 72 + -16, 98, 20, Component.translatable("naruto.gui.jutsu.enable"), (buttonRef) -> {
+        becomeANinja = this.addRenderableWidget(Button.builder(Component.translatable("naruto.gui.jutsu.disable"), (button) -> {
             PacketHandler.sendToServer(new ServerToggleNinjaPacket(true));
-        }));
+        }).pos(this.width / 2 - 102, this.height / 4 + 72 + -16).size(98, 20).build());
         renderables.add(becomeANinja);
         becomeANinja.active = false;
 
-        changeBack = this.addRenderableWidget(new Button(this.width / 2 + 4, this.height / 4 + 72 + -16, 98, 20, Component.translatable("naruto.gui.jutsu.disable"), (buttonRef) -> {
+        changeBack = this.addRenderableWidget(Button.builder(Component.translatable("naruto.gui.jutsu.disable"), (button) -> {
             PacketHandler.sendToServer(new ServerToggleNinjaPacket(false));
-        }));
+        }).pos(this.width / 2 + 4, this.height / 4 + 72 + -16).size(98, 20).build());
+
         renderables.add(changeBack);
         changeBack.active = false;
 
-        Button back = this.addRenderableWidget(new Button(this.width / 2 - 98 / 2, this.height / 4 + 72 + 7, 98, 20, Component.translatable("naruto.gui.jutsu.done"), (buttonRef) -> {
+        Button back = this.addRenderableWidget(Button.builder(Component.translatable("naruto.gui.jutsu.done"), (button) -> {
             this.minecraft.popGuiLayer();
-        }));
+        }).pos(this.width / 2 - 98 / 2, this.height / 4 + 72 + 7).size(98, 20).build());
+
         renderables.add(back);
     }
 
