@@ -1,6 +1,5 @@
 package com.sekwah.narutomod.item;
 
-import com.sekwah.narutomod.block.NarutoBlocks;
 import com.sekwah.narutomod.item.armor.NarutoArmorItem;
 import com.sekwah.narutomod.item.armor.NarutoArmorMaterial;
 import com.sekwah.narutomod.item.weapons.ExplosiveKunaiItem;
@@ -8,7 +7,6 @@ import com.sekwah.narutomod.item.weapons.KunaiItem;
 import com.sekwah.narutomod.item.weapons.SenbonItem;
 import com.sekwah.narutomod.item.weapons.ShurikenItem;
 import com.sekwah.narutomod.sounds.NarutoSounds;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -142,74 +140,6 @@ public class NarutoItems {
     public static final RegistryObject<Item> HEADBAND_YOUTUBE = createHeadband("headband_youtube");
     public static final RegistryObject<Item> HEADBAND_LAVA = createHeadband("headband_lava");
 
-
-    public static CreativeModeTab NINJA_WEAPONS = CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, 0)
-            .icon(() -> registryObjectToItemStack(KUNAI)).displayItems((features, output, hasPermissions) -> {
-                output.accept(KUNAI.get());
-                output.accept(SENBON.get());
-                output.accept(EXPLOSIVE_KUNAI.get());
-                output.accept(SHURIKEN.get());
-                output.accept(NarutoBlocks.ITEM_PAPER_BOMB.get());
-            }).title(Component.translatable("narutomod_weapons")).build();
-
-    public static CreativeModeTab NINJA_ARMOR = CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, 0)
-            .icon(() -> registryObjectToItemStack(RED_ANBU_MASK)).displayItems((features, output, hasPermissions) -> {
-                output.accept(RED_ANBU_MASK.get());
-                output.accept(YELLOW_ANBU_MASK.get());
-                output.accept(GREEN_ANBU_MASK.get());
-                output.accept(BLUE_ANBU_MASK.get());
-                output.accept(MIST_ANBU_MASK.get());
-                output.accept(FLAK_JACKET_NEW.get());
-                output.accept(FLAK_JACKET.get());
-                output.accept(ANBU_ARMOR.get());
-                output.accept(AKATSUKI_CLOAK.get());
-            }).title(Component.translatable("narutomod_armor")).build();
-
-    public static CreativeModeTab HEADBANDS = CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, 0)
-            .icon(() -> registryObjectToItemStack(HEADBAND_BLUE)).displayItems((features, output, hasPermissions) -> {
-                output.accept(HEADBAND_BLUE.get());
-                output.accept(HEADBAND_BLACK.get());
-                output.accept(HEADBAND_RED.get());
-                output.accept(HEADBAND_CUSTARD.get());
-                output.accept(HEADBAND_LEAF.get());
-                output.accept(HEADBAND_LEAF_SCRATCHED.get());
-                output.accept(HEADBAND_LEAF_BLACK.get());
-                output.accept(HEADBAND_LEAF_BLACK_SCRATCHED.get());
-                output.accept(HEADBAND_ROCK.get());
-                output.accept(HEADBAND_ROCK_SCRATCHED.get());
-                output.accept(HEADBAND_SAND.get());
-                output.accept(HEADBAND_SAND_SCRATCHED.get());
-                output.accept(HEADBAND_SOUND.get());
-                output.accept(HEADBAND_SOUND_SCRATCHED.get());
-                output.accept(HEADBAND_MIST.get());
-                output.accept(HEADBAND_MIST_SCRATCHED.get());
-                output.accept(HEADBAND_WATERFALL.get());
-                output.accept(HEADBAND_WATERFALL_SCRATCHED.get());
-                output.accept(HEADBAND_CLOUD.get());
-                output.accept(HEADBAND_CLOUD_SCRATCHED.get());
-                output.accept(HEADBAND_RAIN.get());
-                output.accept(HEADBAND_RAIN_SCRATCHED.get());
-                output.accept(HEADBAND_GRASS.get());
-                output.accept(HEADBAND_GRASS_SCRATCHED.get());
-                output.accept(HEADBAND_PRIDE.get());
-                output.accept(HEADBAND_YOUTUBE.get());
-                output.accept(HEADBAND_LAVA.get());
-            }).title(Component.translatable("narutomod_headbands")).build();
-
-    public static CreativeModeTab NINJA_MATERIALS = CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, 0)
-            .icon(() -> registryObjectToItemStack(FABRIC)).displayItems((features, output, hasPermissions) -> {
-                output.accept(FABRIC.get());
-                output.accept(FABRIC_REINFORCED.get());
-                output.accept(FABRIC_REINFORCED_GREEN.get());
-                output.accept(FABRIC_REINFORCED_BLACK.get());
-                output.accept(ARMOR_PLATE.get());
-                output.accept(ARMOR_PLATE_GREEN.get());
-            }).title(Component.translatable("narutomod_materials")).build();
-
-
-    private static ItemStack registryObjectToItemStack(RegistryObject<Item> item) {
-        return new ItemStack(item.get());
-    }
 
     // Materials
 

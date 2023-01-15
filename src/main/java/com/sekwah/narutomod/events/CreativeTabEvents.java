@@ -2,13 +2,11 @@ package com.sekwah.narutomod.events;
 
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.block.NarutoBlocks;
-import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
+import com.sekwah.narutomod.item.NarutoCreativeTabs;
 import com.sekwah.narutomod.item.NarutoItems;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.CreativeModeTabEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
