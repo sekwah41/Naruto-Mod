@@ -5,6 +5,7 @@ import com.sekwah.narutomod.block.NarutoBlocks;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -81,6 +82,16 @@ public class NarutoCreativeTabs {
             }).title(Component.translatable("narutomod_materials"));
         }));
 
+    }
+
+
+    @SubscribeEvent
+    public static void creativeModeBuildContent(CreativeModeTabEvent.BuildContents event) {
+        if(event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(NarutoItems.LONELY_MARCH.get());
+        } else if(event.getTab() == CreativeModeTabs.NATURAL_BLOCKS) {
+            event.accept(NarutoBlocks.ITEM_BONSAI_TREE.get());
+        }
     }
 
     public static CreativeModeTab NINJA_WEAPONS;

@@ -1,5 +1,6 @@
 package com.sekwah.narutomod.datagen;
 
+import com.sekwah.narutomod.NarutoMod;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,5 +15,6 @@ public class NarutoDataGenerators {
 
         gen.addProvider(event.includeServer(), new RecipeGen(gen));
         gen.addProvider(event.includeServer(), new NarutoGameEventTagGen(gen, event.getLookupProvider(), event.getExistingFileHelper()));
+        gen.addProvider(event.includeClient(), new NarutoSpriteSourceGen(gen.getPackOutput(), event.getExistingFileHelper(), NarutoMod.MOD_ID));
     }
 }
