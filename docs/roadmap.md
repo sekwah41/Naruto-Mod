@@ -19,8 +19,8 @@ These are not set in stone but this is the currently planned roadmap.
 9. ~~Double Jump~~
 10. ~~Substitution~~
 11. ~~Update to 1.19~~
-12. Port armour and weapons from 1.7.10
-13. Buff jutsu speed
+12. Port armour and weapons from 1.7.10 (in progress)
+13. --Buff jutsu speed--
 14. Leap rework (allow for charging a leap)
 15. Earth wall
 16. Finish lingering system (will allow for far more complex jutsu)
