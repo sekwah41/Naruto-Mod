@@ -2,8 +2,7 @@ package com.sekwah.narutomod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector4f;
+import org.joml.Matrix4f;
 import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.abilities.jutsus.SubstitutionJutsuAbility;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
@@ -15,6 +14,7 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector4f;
 
 import java.awt.*;
 
@@ -67,8 +67,12 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
 
         Vector4f vec = new Vector4f((float) (substitutionLoc.x - cameraPos.x), (float) (substitutionLoc.y - cameraPos.y), (float) (substitutionLoc.z - cameraPos.z), 1F);
         double distance = cameraPos.distanceTo(substitutionLoc);
-        vec.transform(worldMatrix);
-        vec.perspectiveDivide();
+
+        // Was vec.transform
+        vec.mul(worldMatrix);
+
+        // Perspective divide
+        vec.div(vec.w);
 
         xPos += vec.x() * halfWidth;
         yOffset -= (vec.y() * halfHeight);

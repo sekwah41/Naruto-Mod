@@ -26,8 +26,8 @@ import static com.sekwah.narutomod.capabilities.NinjaCapabilityHandler.NINJA_DAT
 @Mixin(LocalPlayer.class)
 public class LocalPlayerMixin extends AbstractClientPlayer {
 
-    public LocalPlayerMixin(ClientLevel p_234112_, GameProfile p_234113_, @Nullable ProfilePublicKey p_234114_) {
-        super(p_234112_, p_234113_, p_234114_);
+    public LocalPlayerMixin(ClientLevel p_234112_, GameProfile p_234113_) {
+        super(p_234112_, p_234113_);
     }
 
     @Inject(method = "aiStep", at = @At(value = "INVOKE", ordinal = 0,

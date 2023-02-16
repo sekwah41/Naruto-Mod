@@ -18,7 +18,7 @@ A mod that adds new items and other features to the game that are from/based on 
 [[dependencies.narutomod]]
     modId="forge"
     mandatory=true
-    versionRange="[42,44)"
+    versionRange="[44,45)"
     ordering="NONE"
     side="BOTH"
 
@@ -26,13 +26,13 @@ A mod that adds new items and other features to the game that are from/based on 
 [[dependencies.narutomod]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.1,1.19.2]"
+    versionRange="[1.19.3]"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.narutomod]]
     modId="sekclib"
     mandatory=true
-    versionRange="[0.4.2,)"
+    versionRange="[0.4.3,)"
     ordering="NONE"
     side="BOTH"

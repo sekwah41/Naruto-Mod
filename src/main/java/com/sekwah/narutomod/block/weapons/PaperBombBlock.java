@@ -57,7 +57,7 @@ public class PaperBombBlock extends FaceAttachedHorizontalDirectionalBlock {
 
     @Override
     public void wasExploded(Level levelIn, BlockPos pos, Explosion explosionIn) {
-        spawnPaperbomb(null, levelIn, pos, explosionIn.getSourceMob(), true);
+        spawnPaperbomb(null, levelIn, pos, explosionIn.getIndirectSourceEntity(), true);
     }
 
     @Override

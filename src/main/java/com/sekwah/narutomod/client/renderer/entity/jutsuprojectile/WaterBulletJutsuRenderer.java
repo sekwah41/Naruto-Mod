@@ -2,7 +2,8 @@ package com.sekwah.narutomod.client.renderer.entity.jutsuprojectile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
+import org.joml.Vector3f;
 import com.sekwah.narutomod.client.model.jutsu.WaterBulletModel;
 import com.sekwah.narutomod.entity.jutsuprojectile.WaterBulletJutsuEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -29,8 +30,8 @@ public class WaterBulletJutsuRenderer extends EntityRenderer<WaterBulletJutsuEnt
       VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RENDER_TYPE);
       poseStack.pushPose();
       poseStack.translate(0, 0.16F, 0);
-      poseStack.mulPose(Vector3f.YN.rotationDegrees(Mth.lerp(partialTicks, entity.yRotO, entity.getYRot())));
-      poseStack.mulPose(Vector3f.XN.rotationDegrees(Mth.lerp(partialTicks, entity.xRotO, entity.getXRot())));
+      poseStack.mulPose(Axis.YN.rotationDegrees(Mth.lerp(partialTicks, entity.yRotO, entity.getYRot())));
+      poseStack.mulPose(Axis.XN.rotationDegrees(Mth.lerp(partialTicks, entity.xRotO, entity.getXRot())));
       this.model.renderToBuffer(poseStack, vertexconsumer, p_114490_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
       poseStack.popPose();
       super.render(entity, p_114486_, partialTicks, poseStack, multiBufferSource, p_114490_);
