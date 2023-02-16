@@ -18,6 +18,9 @@ Make sure to check the [FAQ](./faq.md) on here and in `#naruto-faq` on the serve
 ## Update content info
 You can find a changelog about what has changed in each version and when they were released [here](https://github.com/sekwah41/Naruto-Mod/blob/master/CHANGELOG.md).
 
+## How to become a ninja
+To add the abiity to choose if you are a ninja you will now need to press J to then select to become a ninja. We will be modifying this in the future but this is a placeholder for now.
+
 ## Jutsus/Abilities
 To see a list of the currently available jutsus/abilities, type `/jutsu list`.
 This will show you a list containing the names of the abilities and their key combos.
