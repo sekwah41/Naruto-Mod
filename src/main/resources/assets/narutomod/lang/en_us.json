@@ -53,6 +53,7 @@
   "item.narutomod.armor_plate":"Armor Plate",
   "item.narutomod.armor_plate_green":"Green Armor Plate",
   "item.narutomod.akatsuki_cloak":"Akatsuki Cloak",
+  "item.narutomod.katana":"Katana",
   "narutomod.subtitle.kunai_thud": "Projectile Thud",
   "narutomod.subtitle.needle_hit": "Needle Hit",
   "narutomod.subtitle.jutsu_seal": "Jutsu Seal",
@@ -65,10 +66,10 @@
   "narutomod.subtitle.sizzle": "Paper Bomb Sizzle",
   "narutomod.subtitle.double_jump": "Double Jump",
   "narutomod.subtitle.leap": "Leap",
-  "itemGroup.narutomod_weapons": "Ninja Weapons",
-  "itemGroup.narutomod_armor": "Ninja Armor",
-  "itemGroup.narutomod_headbands": "Ninja Headbands",
-  "itemGroup.narutomod_materials": "Ninja Materials",
+  "narutomod_weapons": "Ninja Weapons",
+  "narutomod_armor": "Ninja Armor",
+  "narutomod_headbands": "Ninja Headbands",
+  "narutomod_materials": "Ninja Materials",
   "jutsu.fail.cooldown": "%1$s is on cooldown %2$ss",
   "jutsu.fail.riding": "You must dismount to use %s",
   "jutsu.fail.notonground": "You must be on the ground to use %s",
@@ -108,5 +109,4 @@
   "naruto.gui.jutsu.disable": "I change my mind",
   "naruto.gui.jutsu.done": "Done",
   "jutsu.not_a_ninja": "You must become a ninja to do that (press j)"
-
 }

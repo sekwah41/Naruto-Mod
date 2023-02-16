@@ -20,6 +20,9 @@ public class NarutoItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
+    public static final RegistryObject<Item> MODEL_TEST = ITEMS.register("model_test", ()
+            -> new Item(new Item.Properties()));
+
     // Weapons
     public static final RegistryObject<Item> KUNAI = ITEMS.register("kunai", ()
             -> new KunaiItem(new Item.Properties()));
@@ -88,6 +91,9 @@ public class NarutoItems {
 
     public static final RegistryObject<Item> ARMOR_PLATE_GREEN = ITEMS.register("armor_plate_green", ()
             -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> KATANA = ITEMS.register("katana", ()
+            -> new SwordItem(NinjaTier.KATANA, 3, -1.95F, new Item.Properties()));
 
     // Ninja Masks
 

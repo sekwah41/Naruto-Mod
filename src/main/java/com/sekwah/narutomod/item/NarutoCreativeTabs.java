@@ -22,6 +22,7 @@ public class NarutoCreativeTabs {
                 output.accept(NarutoItems.EXPLOSIVE_KUNAI.get());
                 output.accept(NarutoItems.SHURIKEN.get());
                 output.accept(NarutoBlocks.ITEM_PAPER_BOMB.get());
+                output.accept(NarutoItems.KATANA.get());
             }).title(Component.translatable("narutomod_weapons"));
         }));
 

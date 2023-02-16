@@ -174,5 +174,13 @@ public class RecipeGen extends RecipeProvider {
                 .unlockedBy("has_fabric_reinforced_green", has(NarutoItems.FABRIC_REINFORCED_GREEN.get()))
                 .save(recipeConsumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, NarutoItems.KATANA.get(), 1)
+                .define('I', Items.IRON_INGOT)
+                .define('S', Items.STICK)
+                .pattern("  I")
+                .pattern(" I ")
+                .pattern("S  ")
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .save(recipeConsumer);
     }
 }

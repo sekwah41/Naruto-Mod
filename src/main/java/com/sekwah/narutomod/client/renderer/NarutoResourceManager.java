@@ -1,19 +1,31 @@
 package com.sekwah.narutomod.client.renderer;
 
+import com.sekwah.narutomod.NarutoMod;
 import com.sekwah.narutomod.client.model.item.model.*;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.item.armor.NarutoArmorItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.RegistryObject;
 
 public class NarutoResourceManager extends BlockEntityWithoutLevelRenderer {
 
+    private static final ModelResourceLocation KATANA_ICON = new ModelResourceLocation(NarutoMod.MOD_ID, "katana", "inventory");
+    public static final ModelResourceLocation KATANA_MODEL = new ModelResourceLocation(NarutoMod.MOD_ID, "katana_model", "inventory");
+
     public NarutoResourceManager() {
         super(null, null);
+    }
+
+    public BakedModel transformationAwareModel(ItemStack itemStack, ItemTransforms.TransformType transformType) {
+        return null;
     }
 
     public void onResourceManagerReload(ResourceManager resourceManager) {
