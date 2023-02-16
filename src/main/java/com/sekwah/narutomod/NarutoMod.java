@@ -71,7 +71,7 @@ public class NarutoMod {
 
 
     private void clientSetup(FMLClientSetupEvent event) {
-        NarutoRenderEvents.registerRenderTypes();
+        //NarutoRenderEvents.registerRenderTypes();
         //NarutoWorldRenderEvents.registerEvents();
     }
 
