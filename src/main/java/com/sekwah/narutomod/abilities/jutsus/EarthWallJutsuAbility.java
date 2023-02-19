@@ -9,10 +9,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +31,9 @@ public class EarthWallJutsuAbility extends Ability implements Ability.Cooldown {
 
     @Override
     public boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount) {
-        if(ninjaData.getChakra() < 30) {
+        var blocksToPlace = calculateWall(player);
+        float chakraCost = blocksToPlace.size() * 0.7f;
+        if(ninjaData.getChakra() < chakraCost) {
             player.displayClientMessage(Component.translatable("jutsu.fail.notenoughchakra", Component.translatable(this.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)), true);
             return false;
         }
@@ -37,16 +41,20 @@ public class EarthWallJutsuAbility extends Ability implements Ability.Cooldown {
             player.displayClientMessage(Component.translatable("jutsu.fail.noblocktarget", Component.translatable(this.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)), true);
             return false;
         }
+        if(blocksToPlace.size() == 0) {
+            player.displayClientMessage(Component.translatable("jutsu.fail.noblocks", Component.translatable(this.getTranslationKey(ninjaData)).withStyle(ChatFormatting.YELLOW)), true);
+            return false;
+        }
         // TODO check if any entities would actually be placed!
-        ninjaData.useChakra(30, 30);
+        ninjaData.useChakra(chakraCost, 30);
         return true;
     }
 
-    @Override
-    public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
+    public ArrayList<BlockPlacement> calculateWall(Player player) {
+        ArrayList<BlockPlacement> placeBlocks = new ArrayList<>();
         var blockHit = blockHit(player);
         if(blockHit(player).getType() == HitResult.Type.MISS) {
-            return;
+            return placeBlocks;
         }
 
         WallDir walldir = getWallDirection(player.getYHeadRot());
@@ -69,13 +77,21 @@ public class EarthWallJutsuAbility extends Ability implements Ability.Cooldown {
             if(posOffset == -maxOffset) {
                 continue;
             }
-            pillar(player.level, offsetPos.above(posOffset), maxHeight - (int) Math.ceil(posOffset * 0.40));
+            var blockToPlace = pillar(player.level, offsetPos.above(posOffset), maxHeight - (int) Math.ceil(posOffset * 0.40));
+            placeBlocks.addAll(blockToPlace);
         }
-
-
+        return placeBlocks;
     }
 
-    private final List<Material> blockList = Arrays.asList(Material.DIRT, Material.STONE, Material.GRASS);
+    @Override
+    public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
+        var placeBlocks = calculateWall(player);
+        for (BlockPlacement blockPlacement : placeBlocks) {
+            player.level.setBlockAndUpdate(blockPlacement.pos, blockPlacement.state);
+        }
+    }
+
+    private final List<Material> blockList = Arrays.asList(Material.DIRT, Material.STONE, Material.GRASS, Material.SAND);
 
     private int getYOffset(Level level, BlockPos pos, int maxOffset) {
 
@@ -116,18 +132,31 @@ public class EarthWallJutsuAbility extends Ability implements Ability.Cooldown {
         return blockAtPos.getMaterial().isReplaceable();
     }
 
-    public void pillar(Level level, BlockPos pos, int height) {
+    public record BlockPlacement(BlockPos pos, BlockState state) {
+
+    }
+
+    public ArrayList<BlockPlacement> pillar(Level level, BlockPos pos, int height) {
+        ArrayList<BlockPlacement> placeBlocks = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             var newBlockPos = pos.above(i);
             if(canPlaceEarthBlock(level, newBlockPos)) {
                 var block = level.getBlockState(newBlockPos.below(height));
-                if(!blockList.contains(block.getMaterial())) {
+                if(block.is(Blocks.GRASS_BLOCK) && i != height - 1) {
                     block = Blocks.DIRT.defaultBlockState();
                 }
-                System.out.println(block);
-                level.setBlockAndUpdate(newBlockPos, block);
+                if(!blockList.contains(block.getMaterial())) {
+                    height--;
+                    i--;
+                    continue;
+                }
+                /*if(!blockList.contains(block.getMaterial())) {
+                    block = Blocks.DIRT.defaultBlockState();
+                }*/
+                placeBlocks.add(new BlockPlacement(newBlockPos, block));
             }
         }
+        return placeBlocks;
     }
 
     @Override
