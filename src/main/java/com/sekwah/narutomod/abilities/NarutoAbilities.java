@@ -2,6 +2,7 @@ package com.sekwah.narutomod.abilities;
 
 import com.mojang.logging.LogUtils;
 import com.sekwah.narutomod.NarutoMod;
+import com.sekwah.narutomod.abilities.jutsus.EarthWallJutsuAbility;
 import com.sekwah.narutomod.abilities.jutsus.FireballJutsuAbility;
 import com.sekwah.narutomod.abilities.jutsus.SubstitutionJutsuAbility;
 import com.sekwah.narutomod.abilities.jutsus.WaterBulletJutsuAbility;
@@ -52,6 +53,8 @@ public class NarutoAbilities {
     public static final RegistryObject<DoubleJumpAbility> DOUBLE_JUMP = ABILITY.register("double_jump", DoubleJumpAbility::new);
 
     public static final RegistryObject<SubstitutionJutsuAbility> SUBSTITUTION = ABILITY.register("substitution", SubstitutionJutsuAbility::new);
+
+    public static final RegistryObject<EarthWallJutsuAbility> EARTH_WALL = ABILITY.register("earth_wall", EarthWallJutsuAbility::new);
 
     public static void register(IEventBus eventBus) {
         ABILITY.register(eventBus);
