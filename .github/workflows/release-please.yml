@@ -55,4 +55,3 @@ jobs:
         run: |
           # Build
           ./gradlew build ${{ matrix.release-task }}
-
