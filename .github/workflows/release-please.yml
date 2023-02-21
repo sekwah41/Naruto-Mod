@@ -20,7 +20,12 @@ jobs:
           # See how to configure file https://github.com/googleapis/release-please/blob/main/docs/manifest-releaser.md
       # See output info at https://github.com/google-github-actions/release-please-action#configuration for variables
 
-  build:
+  # Possibly optimise this by building and then passing the folder across to these stages
+  release:
+    strategy:
+      fail-fast: false
+      matrix:
+        release-task: [curseforge, discordupload, modrinth]
     needs: release-please
     runs-on: ubuntu-latest
     if: ${{ needs.release-please.outputs.release_created }}
@@ -45,7 +50,9 @@ jobs:
         env:
           CURSE_API: ${{ secrets.CURSE_API }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           IS_RELEASE: true
         run: |
           # Build
-          ./gradlew build discordupload curseforge
+          ./gradlew build ${{ matrix.release-task }}
+
