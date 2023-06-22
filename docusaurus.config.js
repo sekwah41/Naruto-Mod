@@ -71,6 +71,10 @@ const config = {
             title: 'Downloads',
             items: [
               {
+                label: 'Modrinth',
+                href: 'https://modrinth.com/mod/narutomod',
+              },
+              {
                 label: 'CurseForge',
                 href: 'https://www.curseforge.com/minecraft/mc-mods/sekwah41s-naruto-mod',
               },
