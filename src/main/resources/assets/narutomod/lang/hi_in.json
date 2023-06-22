@@ -70,7 +70,7 @@
   "narutomod:water_walk": "Paanee Mein Chalana",
   "narutomod:chakra_charge": "Shakthi Badhaw",
   "narutomod:fireball": "Aag ki Shakthi - Aag ka Gola",
-  "death.attack.waterBullet": "%1$s was killed by %2$s using Paani ke Gole",
+  "death.attack.narutomod.water_bullet": "%1$s was killed by %2$s using Paani ke Gole",
   "narutomod:water_bullet": "Paani ki Shakthi, Paani ke gole",
   "jutsu.cast": "Aapne %s kiya!",
   "jutsu.charge.start": "Aag charge krte hai %s!",

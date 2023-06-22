@@ -40,8 +40,8 @@ public class FireballJutsuAbility extends Ability implements Ability.Cooldown {
         ninjaData.scheduleDelayedTickEvent((delayedPlayer) -> {
             Vec3 shootSpeed = player.getLookAngle();
             FireballJutsuEntity fireball = new FireballJutsuEntity(player, shootSpeed.x, shootSpeed.y, shootSpeed.z);
-            player.getLevel().addFreshEntity(fireball);
-            player.getLevel().playSound(null, player, NarutoSounds.FIREBALL_SHOOT.get(), SoundSource.PLAYERS, 1f, 1.0f);
+            player.level().addFreshEntity(fireball);
+            player.level().playSound(null, player, NarutoSounds.FIREBALL_SHOOT.get(), SoundSource.PLAYERS, 1f, 1.0f);
         }, 10);
     }
 

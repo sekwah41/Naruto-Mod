@@ -33,7 +33,7 @@ public class ChakraChargeAbility extends Ability implements Ability.Channeled {
 
     @Override
     public void handleChannelling(Player player, INinjaData ninjaData, int ticksChanneled) {
-       if(player.isSprinting() || !player.isOnGround()) {
+       if(player.isSprinting() || !player.onGround()) {
            ninjaData.addChakra(0.2f);
        } else {
            ninjaData.addChakra(1f);

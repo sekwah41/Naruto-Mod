@@ -13,6 +13,7 @@ import com.sekwah.narutomod.commands.NarutoCommands;
 import com.sekwah.narutomod.entity.NarutoDataSerialisers;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.gameevents.NarutoGameEvents;
+import com.sekwah.narutomod.item.NarutoCreativeTabs;
 import com.sekwah.narutomod.item.NarutoDispenseItemBehavior;
 import com.sekwah.narutomod.item.NarutoItems;
 import com.sekwah.narutomod.network.PacketHandler;
@@ -65,6 +66,7 @@ public class NarutoMod {
         NarutoEntities.register(eventBus);
         NarutoAbilities.register(eventBus);
         NarutoGameEvents.register(eventBus);
+        NarutoCreativeTabs.register(eventBus);
 
         DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> NarutoInGameGUI::new);
     }

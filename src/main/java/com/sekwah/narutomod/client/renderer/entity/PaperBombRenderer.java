@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.FaceAttachedHorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.properties.AttachFace;
@@ -47,12 +48,12 @@ public class PaperBombRenderer extends EntityRenderer<PaperBombEntity> {
                 break;
         }
 
-        BlockPos blockpos = new BlockPos(entityIn.getX(), entityIn.getBoundingBox().maxY, entityIn.getZ());
+        BlockPos blockpos = new BlockPos(entityIn.getBlockX(), Mth.floor(entityIn.getBoundingBox().maxY), entityIn.getBlockZ());
         BlockRenderDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
 
         RenderType rendertype = ItemBlockRenderTypes.getMovingBlockRenderType(entityIn.renderBlockState);
         VertexConsumer vertexconsumer = bufferIn.getBuffer(rendertype);
-        blockrendererdispatcher.getModelRenderer().tesselateBlock(entityIn.level,
+        blockrendererdispatcher.getModelRenderer().tesselateBlock(entityIn.level(),
                 blockrendererdispatcher.getBlockModel(entityIn.renderBlockState),
                 entityIn.renderBlockState, blockpos, matrixStackIn,
                 vertexconsumer,

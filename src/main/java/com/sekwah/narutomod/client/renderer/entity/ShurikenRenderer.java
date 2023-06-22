@@ -2,6 +2,7 @@ package com.sekwah.narutomod.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import net.minecraft.world.item.ItemDisplayContext;
 import org.joml.Vector3f;
 import com.sekwah.narutomod.entity.projectile.ShurikenEntity;
 import com.sekwah.narutomod.item.NarutoItems;
@@ -42,8 +43,8 @@ public class ShurikenRenderer extends ArrowRenderer<ShurikenEntity> {
       matrixStackIn.mulPose(Axis.XP.rotationDegrees(entityIn.getRotOffset()));
       matrixStackIn.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, entityIn.getPrevRotateTicks() * rotateSpeed, entityIn.getRotateTicks() * rotateSpeed)));
       matrixStackIn.scale(0.5f, 0.5f, 0.5f);
-      BakedModel ibakedmodel = itemRenderer.getModel(this.renderingItem, entityIn.level, null, entityIn.getId());
-      itemRenderer.render(this.renderingItem, ItemTransforms.TransformType.FIXED, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
+      BakedModel ibakedmodel = itemRenderer.getModel(this.renderingItem, entityIn.level(), null, entityIn.getId());
+      itemRenderer.render(this.renderingItem, ItemDisplayContext.FIXED, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
       matrixStackIn.popPose();
    }
 

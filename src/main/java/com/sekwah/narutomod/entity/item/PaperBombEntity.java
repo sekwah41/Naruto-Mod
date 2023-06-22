@@ -109,19 +109,19 @@ public class PaperBombEntity extends Entity {
 
         this.move(MoverType.SELF, this.getDeltaMovement());
         this.setDeltaMovement(this.getDeltaMovement().scale(0.98D));
-        if (this.onGround) {
+        if (this.onGround()) {
             this.setDeltaMovement(this.getDeltaMovement().multiply(0.7D, -0.5D, 0.7D));
         }
 
         --this.life;
         if (this.life <= 0) {
             this.discard();
-            if (!this.level.isClientSide) {
+            if (!this.level().isClientSide) {
                 this.explode();
             }
         } else {
             this.updateInWaterStateAndDoFluidPushing();
-            if (this.level.isClientSide) {
+            if (this.level().isClientSide) {
                 if(this.random.nextFloat() < 0.3f) {
                     Vec3i dir = this.renderBlockState.getValue(BlockStateProperties.HORIZONTAL_FACING).getNormal();
 
@@ -142,7 +142,7 @@ public class PaperBombEntity extends Entity {
                             yOffset = 0.5f;
                             break;
                     }
-                    this.level.addParticle(ParticleTypes.FLAME,
+                    this.level().addParticle(ParticleTypes.FLAME,
                             this.getX() + dir.getX() * dirMulti + dir.getZ() * randomOffset,
                             this.getY() + yOffset,
                             this.getZ() + dir.getZ() * dirMulti + dir.getX() * randomOffset, 0.0D, 0.0D, 0.0D);
@@ -150,7 +150,7 @@ public class PaperBombEntity extends Entity {
             }
         }
 
-        if(!level.isClientSide()) {
+        if(!this.level().isClientSide()) {
             if(anchorLoc != null) {
                 if (this.isAnchoredBlockAir()) {
                     this.setAnchored(false);
@@ -166,7 +166,7 @@ public class PaperBombEntity extends Entity {
     }
 
     public boolean isAnchoredBlockAir() {
-        BlockState state = this.level.getBlockState(anchorLoc);
+        BlockState state = this.level().getBlockState(anchorLoc);
         return state.isAir();
     }
 
@@ -183,7 +183,7 @@ public class PaperBombEntity extends Entity {
         if (DATA_FUSE_ID.equals(key)) {
             this.life = this.getFuse();
         }
-        else  if((ROTATION.equals(key) || VERT_ROT.equals(key)) && this.level.isClientSide) {
+        else  if((ROTATION.equals(key) || VERT_ROT.equals(key)) && this.level().isClientSide) {
             this.renderBlockState = NarutoBlocks.PAPER_BOMB.get().defaultBlockState()
                     .setValue(HorizontalDirectionalBlock.FACING, this.getRotation())
                     .setValue(HIDDEN, Boolean.FALSE)
@@ -215,7 +215,7 @@ public class PaperBombEntity extends Entity {
     }
 
     protected void explode() {
-        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(),
+        this.level().explode(this, this.getX(), this.getY(0.0625D), this.getZ(),
                 NarutoConfig.paperbombExplosionRadius,
                 NarutoConfig.paperbombBlockDamage ? Level.ExplosionInteraction.BLOCK : Level.ExplosionInteraction.NONE);
     }

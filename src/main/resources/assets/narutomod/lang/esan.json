@@ -83,7 +83,7 @@
   "narutomod:water_walk": "Caminâh en el Agua",
   "narutomod:chakra_charge": "Carga de Chakra",
   "narutomod:fireball": "Êttilo de Fuego - Jutsu de Bola de Fuego",
-  "death.attack.waterBullet": "%1$s a çido açeçinao por %2$s uçando bolâ de fuego",
+  "death.attack.narutomod.water_bullet": "%1$s a çido açeçinao por %2$s uçando bolâ de fuego",
   "narutomod:water_bullet": "Êttilo de Agua - Jutsu de Bala de Agua",
   "jutsu.cast": "Âh exiçao %s!",
   "jutsu.charge.start": "Empieçâ a cargâh %s!",

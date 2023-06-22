@@ -1,6 +1,6 @@
 package com.sekwah.narutomod.entity.jutsuprojectile;
 
-import com.sekwah.narutomod.damagesource.NarutoDamageSource;
+import com.sekwah.narutomod.damagetypes.NarutoDamageTypes;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.sounds.NarutoSounds;
 import net.minecraft.core.BlockPos;
@@ -48,7 +48,7 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
     }
 
     public FireballJutsuEntity(LivingEntity player, double xVel, double yVel, double zVel) {
-        this(NarutoEntities.FIREBALL_JUTSU.get(), player.getX(), player.getEyeY() - 0.2f, player.getZ(),  xVel, yVel, zVel, player.getLevel());
+        this(NarutoEntities.FIREBALL_JUTSU.get(), player.getX(), player.getEyeY() - 0.2f, player.getZ(),  xVel, yVel, zVel, player.level());
         this.setOwner(player);
         this.setRot(player.getYRot(), player.getXRot());
     }
@@ -74,7 +74,7 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
 
         if (this.isInWater() || lifeSpan-- <= 0) {
 
-            if(this.level instanceof ServerLevel serverLevel) {
+            if(this.level() instanceof ServerLevel serverLevel) {
                 serverLevel.sendParticles(ParticleTypes.CLOUD,
                         this.getX(),
                         this.getY() + this.getBbHeight() + 1,
@@ -91,7 +91,7 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
     protected void onHit(HitResult hitResult) {
         super.onHit(hitResult);
 
-        if(this.level instanceof ServerLevel serverLevel) {
+        if(this.level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.FLAME,
                     this.getX(),
                     this.getY(),
@@ -100,10 +100,10 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
                     this.getBbWidth(), this.getBbWidth(), this.getBbHeight(), 1);
         }
 
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
 
             int flameRadius = 8;
-            this.level.getEntities(this, this.getBoundingBox().inflate(flameRadius, flameRadius, flameRadius)).forEach(entity -> {
+            this.level().getEntities(this, this.getBoundingBox().inflate(flameRadius, flameRadius, flameRadius)).forEach(entity -> {
                 double distance = this.position().distanceToSqr(entity.position());
                 if(entity == this.getOwner()) {
                     distance += 16;
@@ -119,7 +119,7 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
                 if(fireDamage > 0) {
                     Entity entity1 = this.getOwner();
                     if(entity1 instanceof LivingEntity) {
-                        entity.hurt(NarutoDamageSource.fireball(this, entity1), fireDamage);
+                        entity.hurt(NarutoDamageTypes.getDamageSource(this.level(), NarutoDamageTypes.FIREBALL, this, entity1), fireDamage);
                     }
                     if (entity1 instanceof LivingEntity) {
                         this.doEnchantDamageEffects((LivingEntity)entity1, entity);
@@ -127,7 +127,7 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
                 }
             });
 
-            boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
+            boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(), this.getOwner());
 
             if(flag) {
                 int fireSpread = 2;
@@ -135,8 +135,8 @@ public class FireballJutsuEntity extends AbstractHurtingProjectile {
                     for (int y = (int) this.getY() - fireSpread + 1; y < (int) this.getY() + fireSpread; y++) {
                         for (int z = (int) this.getZ() - fireSpread + 1; z < (int) this.getZ() + fireSpread; z++) {
                             BlockPos blockPos = new BlockPos(x, y, z);
-                            if (this.random.nextInt(2) == 0 && this.level.getBlockState(blockPos).isAir()) {
-                                this.level.setBlockAndUpdate(blockPos, BaseFireBlock.getState(this.level, blockPos));
+                            if (this.random.nextInt(2) == 0 && this.level().getBlockState(blockPos).isAir()) {
+                                this.level().setBlockAndUpdate(blockPos, BaseFireBlock.getState(this.level(), blockPos));
                             }
                         }
                     }

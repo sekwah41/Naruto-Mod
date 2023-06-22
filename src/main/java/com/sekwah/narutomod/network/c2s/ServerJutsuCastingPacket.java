@@ -57,7 +57,7 @@ public class ServerJutsuCastingPacket {
                             player.getCommandSenderWorld().playSound(null,
                                     player.getX(), player.getY(), player.getZ(),
                                     playSound, SoundSource.PLAYERS, 1.0f, 1.0f);
-                            player.getLevel().gameEvent(player, NarutoGameEvents.JUTSU_CASTING.get(), player.position().add(0, player.getEyeHeight() * 0.7, 0));
+                            player.level().gameEvent(player, NarutoGameEvents.JUTSU_CASTING.get(), player.position().add(0, player.getEyeHeight() * 0.7, 0));
                         }
                     });
                 }

@@ -21,7 +21,7 @@ public class JutsuCommand {
                     Stream<Map.Entry<ResourceKey<Ability>, Ability>> abilities = NarutoRegistries.ABILITIES.getEntries().stream().filter(entry -> entry.getValue().defaultCombo() != -1);
                     CommandSourceStack source = ctx.getSource();
 
-                    source.sendSuccess(Component.translatable(""),false);
+                    source.sendSuccess(Component::empty,false);
 
                     abilities.forEach(entry -> {
                         var comboComponent = Component.literal("");
@@ -29,14 +29,14 @@ public class JutsuCommand {
                             comboComponent.append(" ").append(Component.keybind("naruto.keys.key" + comboKey));
                         }
 
-                        source.sendSuccess(Component.translatable(entry.getKey().location().toString())
+                        source.sendSuccess(() -> Component.translatable(entry.getKey().location().toString())
                                 .append(" -")
                                 .append(comboComponent), false);
                     });
-                    source.sendSuccess(Component.translatable("naruto.keys.leap")
+                    source.sendSuccess(() -> Component.translatable("naruto.keys.leap")
                             .append(" - ")
                             .append(Component.keybind("naruto.keys.leap")), false);
-                    source.sendSuccess(Component.translatable(""), false);
+                    source.sendSuccess(Component::empty, false);
 
                     return Command.SINGLE_SUCCESS;
                 }));

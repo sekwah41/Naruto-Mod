@@ -65,13 +65,13 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
         int blockX = (int)Math.floor(player.getX());
         int blockZ = (int)Math.floor(player.getZ());
         final int block1 = (int) Math.round(player.getY() - 0.56f);
-        boolean steadyCheck = triggerWaterWalk(player.level, new BlockPos(blockX, block1, blockZ));
+        boolean steadyCheck = triggerWaterWalk(player.level(), new BlockPos(blockX, block1, blockZ));
 
         int block2 = (int) Math.round(player.getY());
         int beforeBlock2 = (int) Math.round(player.yo);
-        boolean pushUpFast = triggerWaterWalk(player.level, new BlockPos(blockX, block2, blockZ));
-        if(player.level.isClientSide() && player.yo > player.getY()) {
-            boolean beforeYCheck = triggerWaterWalk(player.level, new BlockPos(blockX, beforeBlock2, blockZ));
+        boolean pushUpFast = triggerWaterWalk(player.level(), new BlockPos(blockX, block2, blockZ));
+        if(player.level().isClientSide() && player.yo > player.getY()) {
+            boolean beforeYCheck = triggerWaterWalk(player.level(), new BlockPos(blockX, beforeBlock2, blockZ));
             if(!beforeYCheck && steadyCheck && player.yo - player.getY() < 0.9f) {
                 Vec3 vec = player.getDeltaMovement();
                 player.lerpMotion(vec.x(), 0, vec.z());
@@ -82,7 +82,7 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
         }
 
         int block3 = (int) Math.round(player.getY() - 0.47f);
-        boolean pushUpNormal = triggerWaterWalk(player.level, new BlockPos(blockX, block3, blockZ));
+        boolean pushUpNormal = triggerWaterWalk(player.level(), new BlockPos(blockX, block3, blockZ));
 
         return new WaterChecks(steadyCheck, pushUpFast, pushUpNormal);
     }
@@ -127,7 +127,7 @@ public class WaterWalkAbility extends Ability implements Ability.Toggled {
     public boolean triggerWaterWalk(Level level, BlockPos blockPos) {
         FluidState fluidState = level.getFluidState(blockPos);
         BlockState blockState = level.getBlockState(blockPos);
-        return (fluidState.is(Fluids.WATER) || fluidState.is(Fluids.FLOWING_WATER)) && !blockState.getMaterial().blocksMotion();
+        return (fluidState.is(Fluids.WATER) || fluidState.is(Fluids.FLOWING_WATER)) && !blockState.blocksMotion();
     }
 
     @Override

@@ -1,15 +1,15 @@
 package com.sekwah.narutomod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import com.sekwah.narutomod.abilities.jutsus.SubstitutionJutsuAbility;
+import com.sekwah.narutomod.util.GuiUtils;
+import net.minecraft.client.gui.GuiGraphics;
 import org.joml.Matrix4f;
 import com.sekwah.narutomod.NarutoMod;
-import com.sekwah.narutomod.abilities.jutsus.SubstitutionJutsuAbility;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -21,7 +21,7 @@ import java.awt.*;
 /**
  * For now this will just render the subsitution locations but modify it to show more in the future.
  */
-public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
+public class WorldMarkerGUI implements PlayerGUI {
 
     public static final ResourceLocation LOG_TEXTURE = new ResourceLocation(NarutoMod.MOD_ID, "textures/gui/jutsu/jutsu_substiutution_marker.png");
 
@@ -44,7 +44,7 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
         this.intTextOutline = ColorUtil.toMCColor(textOutline).getValue();
     }
 
-    public void render(PoseStack matrixStack, Matrix4f worldMatrix, Vec3 cameraPos) {
+    public void render(GuiGraphics guiGraphics, Matrix4f worldMatrix, Vec3 cameraPos) {
         if(substitutionLoc == null) {
             return;
         }
@@ -82,32 +82,25 @@ public class WorldMarkerGUI extends GuiComponent implements PlayerGUI {
             float fadeOut = (float) Math.max(Math.min(0.6f, ((distance) / 8) - 0.5), 0);
             RenderSystem.setShaderColor(1, 1, 1, fadeOut);
             float scale = (float) (0.5 / Math.pow((distance + 30) / 80, 2));
-            matrixStack.pushPose();
-            matrixStack.translate(xPos, yOffset, 0);
-            matrixStack.scale(scale, scale, scale);
-            blit(matrixStack, -textureWidth/2, -textureHeight/2,
+            var poseStack = guiGraphics.pose();
+            poseStack.pushPose();
+            poseStack.translate(xPos, yOffset, 0);
+            poseStack.scale(scale, scale, scale);
+            guiGraphics.blit(LOG_TEXTURE, -textureWidth/2, -textureHeight/2,
                     0, 0,
                     32, 32,
                     32, 32);
             long roundedDistance = Math.round(distance);
-            centeredTextOutlined(matrixStack, roundedDistance + " M", 0, 11, roundedDistance <= SubstitutionJutsuAbility.MAX_MARKER_DISTANCE ? intTextColor : outOfRangeColor, intTextOutline);
-            matrixStack.popPose();
+            RenderSystem.setShaderColor(1, 1, 1, Math.min(fadeOut * 1.5f, 1));
+            GuiUtils.centeredTextOutlined(guiGraphics, this.getFont(), roundedDistance + " M", 0, 11, roundedDistance <= SubstitutionJutsuAbility.MAX_MARKER_DISTANCE ? intTextColor : outOfRangeColor, intTextOutline);
+            poseStack.popPose();
         }
 
     }
 
-    private void centeredTextOutlined(PoseStack matrixStack, String text, int x, int y, int color, int backgroundColor) {
-        int width = this.getFont().width(text) / 2;
-        this.getFont().draw(matrixStack, text, (float) x+1 - width, y, backgroundColor);
-        this.getFont().draw(matrixStack, text, (float) x-1 - width, y, backgroundColor);
-        this.getFont().draw(matrixStack, text, (float) x - width, (float) y+1, backgroundColor);
-        this.getFont().draw(matrixStack, text, (float) x - width, (float) y-1, backgroundColor);
-        this.getFont().draw(matrixStack, text, (float) x - width, y, color);
-    }
-
     public void tick(Player player) {
         player.getCapability(NinjaCapabilityHandler.NINJA_DATA).ifPresent(ninjaData -> {
-            if(player.level.dimension().location().equals(ninjaData.getSubstitutionDimension())) {
+            if(player.level().dimension().location().equals(ninjaData.getSubstitutionDimension())) {
                 this.substitutionLoc = ninjaData.getSubstitutionLoc();
             } else {
                 this.substitutionLoc = null;

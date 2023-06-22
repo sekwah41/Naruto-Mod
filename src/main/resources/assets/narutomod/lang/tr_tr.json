@@ -83,7 +83,7 @@
   "narutomod:water_walk": "Suda Yürüme",
   "narutomod:chakra_charge": "Chakra Şarjı",
   "narutomod:fireball": "Ateş Tarzı - Ateştopu Jutsusu!",
-  "death.attack.waterBullet": "%1$s %2$s tarafından Su Mermisi kullanılarak öldürüldü.",
+  "death.attack.narutomod.water_bullet": "%1$s %2$s tarafından Su Mermisi kullanılarak öldürüldü.",
   "narutomod:water_bullet": "Su Sitili - Su Mermisi Jutsusu!",
   "jutsu.cast": "%s kullanıldı!",
   "jutsu.charge.start": "%s kullanmaya başladın.",

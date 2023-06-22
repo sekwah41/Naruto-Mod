@@ -70,7 +70,7 @@
   "narutomod:water_walk": "Auf Wasser laufen",
   "narutomod:chakra_charge": "Chakra-Aufladung",
   "narutomod:fireball": "Feuerstil - Feuerball-Jutsu",
-  "death.attack.waterBullet": "%1$s wurde von %2$s mit Wassergeschossen getötet",
+  "death.attack.narutomod.water_bullet": "%1$s wurde von %2$s mit Wassergeschossen getötet",
   "narutomod:water_bullet": "Wasserstil - Wasserkugel-Jutsu!",
   "jutsu.cast": "Du wirfst %s!",
   "jutsu.charge.start": "Sie beginnen mit dem Aufladen von %s!",
