@@ -9,8 +9,8 @@ import net.minecraft.world.item.Items;
 
 import java.util.function.Consumer;
 
-public class RecipeGen extends RecipeProvider {
-    public RecipeGen(DataGenerator gen) {
+public class NarutoRecipeGen extends RecipeProvider {
+    public NarutoRecipeGen(DataGenerator gen) {
         super(gen.getPackOutput());
     }
 

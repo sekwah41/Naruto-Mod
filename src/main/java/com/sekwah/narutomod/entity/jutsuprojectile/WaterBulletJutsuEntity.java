@@ -1,6 +1,6 @@
 package com.sekwah.narutomod.entity.jutsuprojectile;
 
-import com.sekwah.narutomod.damagesource.NarutoDamageSource;
+import com.sekwah.narutomod.damagetypes.NarutoDamageTypes;
 import com.sekwah.narutomod.entity.NarutoEntities;
 import com.sekwah.narutomod.entity.projectile.AbstractNonGlowingHurtingProjectile;
 import com.sekwah.narutomod.sounds.NarutoSounds;
@@ -46,7 +46,7 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
     }
 
     public WaterBulletJutsuEntity(LivingEntity player, double xVel, double yVel, double zVel) {
-        this(NarutoEntities.WATER_BULLET_JUTSU.get(), player.getX(), player.getEyeY() - 0.15f, player.getZ(),  xVel, yVel, zVel, player.getLevel());
+        this(NarutoEntities.WATER_BULLET_JUTSU.get(), player.getX(), player.getEyeY() - 0.15f, player.getZ(),  xVel, yVel, zVel, player.level());
         this.setOwner(player);
         this.setRot(player.getYRot(), player.getXRot());
     }
@@ -57,7 +57,7 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
 
         if (lifeSpan-- <= 0) {
 
-            if(this.level instanceof ServerLevel serverLevel) {
+            if(this.level() instanceof ServerLevel serverLevel) {
                 serverLevel.sendParticles(ParticleTypes.SPLASH,
                         this.getX(),
                         this.getY(),
@@ -77,10 +77,11 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
 
     protected void onHitEntity(EntityHitResult p_37216_) {
         super.onHitEntity(p_37216_);
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
             Entity entity = p_37216_.getEntity();
             Entity entity1 = this.getOwner();
-            entity.hurt(NarutoDamageSource.causeWaterBullet(this, entity1), 7.0F);
+            //entity.hurt(NarutoDamageTypes.WATER_BULLET.causeWaterBullet(this, entity1), 7.0F);
+            entity.hurt(NarutoDamageTypes.getDamageSource(this.level(), NarutoDamageTypes.WATER_BULLET, this, entity1), 7.0F);
             if (entity1 instanceof LivingEntity) {
                 this.doEnchantDamageEffects((LivingEntity)entity1, entity);
             }
@@ -92,7 +93,7 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
     protected void onHit(HitResult hitResult) {
         super.onHit(hitResult);
 
-        if(this.level instanceof ServerLevel serverLevel) {
+        if(this.level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.SPLASH,
                     this.getX(),
                     this.getY(),
@@ -108,10 +109,10 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
                     3, 3, 3, 1);
         }
 
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
 
             int splashRadius = 8;
-            this.level.getEntities(this, this.getBoundingBox().inflate(splashRadius, splashRadius, splashRadius)).forEach(entity -> {
+            this.level().getEntities(this, this.getBoundingBox().inflate(splashRadius, splashRadius, splashRadius)).forEach(entity -> {
                 if(entity instanceof LivingEntity) {
                     double distance = this.position().distanceToSqr(entity.position());
                     // Remember increasing the division reduces the falloff (I keep accidentally moving it the wrong way)
@@ -119,7 +120,7 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
                         float damage = (float) (5f - (distance / 4f));
                         if(damage > 0) {
                             Entity entity1 = this.getOwner();
-                            entity.hurt(NarutoDamageSource.causeWaterBullet(this, entity1), damage);
+                            entity.hurt(NarutoDamageTypes.getDamageSource(this.level(), NarutoDamageTypes.WATER_BULLET, this, entity1), damage);
                             if (entity1 instanceof LivingEntity) {
                                 this.doEnchantDamageEffects((LivingEntity)entity1, entity);
                             }
@@ -129,7 +130,7 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
                 }
             });
 
-            boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
+            boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(), this.getOwner());
 
             if(flag) {
                 int extinguish = 4;
@@ -137,8 +138,8 @@ public class WaterBulletJutsuEntity extends AbstractNonGlowingHurtingProjectile 
                     for (int y = (int) this.getY() - extinguish + 1; y < (int) this.getY() + extinguish; y++) {
                         for (int z = (int) this.getZ() - extinguish + 1; z < (int) this.getZ() + extinguish; z++) {
                             BlockPos blockPos = new BlockPos(x, y, z);
-                            if (this.level.getBlockState(blockPos).getBlock() == Blocks.FIRE) {
-                                this.level.setBlockAndUpdate(blockPos, Blocks.AIR.defaultBlockState());
+                            if (this.level().getBlockState(blockPos).getBlock() == Blocks.FIRE) {
+                                this.level().setBlockAndUpdate(blockPos, Blocks.AIR.defaultBlockState());
                             }
                         }
                     }

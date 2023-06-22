@@ -27,7 +27,7 @@ public class ExplosiveKunaiItem extends KunaiItem {
             stack.shrink(1);
         }
 
-        if(!attacker.level.isClientSide) {
+        if(!attacker.level().isClientSide) {
             ExplosiveKunaiEntity.explodeKunai(attacker);
         }
 

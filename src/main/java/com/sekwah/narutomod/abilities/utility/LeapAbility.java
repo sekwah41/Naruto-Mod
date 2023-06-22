@@ -35,7 +35,7 @@ public class LeapAbility extends Ability {
 
     @Override
     public boolean handleCost(Player player, INinjaData ninjaData, int chargeAmount) {
-        if(!player.isOnGround()) {
+        if(!player.onGround()) {
             player.displayClientMessage(Component.translatable("jutsu.fail.notonground", Component.translatable("jutsu.leap").withStyle(ChatFormatting.YELLOW)), true);
             return false;
         }
@@ -53,8 +53,8 @@ public class LeapAbility extends Ability {
         float horScale = 2.41f;
         PlayerUtil.setVelocity(player, lookVector.x * horScale, (lookVector.y * 0.6 + 0.8F)
                 , lookVector.z * horScale, true);
-        player.getLevel().playSound(null,
+        player.level().playSound(null,
                 player, NarutoSounds.LEAP.get(), SoundSource.PLAYERS, 0.5f, 1.0f);
-        player.getLevel().gameEvent(player, NarutoGameEvents.LEAP.get(), player.position());
+        player.level().gameEvent(player, NarutoGameEvents.LEAP.get(), player.position());
     }
 }

@@ -45,7 +45,7 @@ public class DoubleJumpAbility extends Ability {
         ninjaData.useChakra(CHAKRA_COST, 30);
         ninjaData.useStamina(STAMINA_COST, 40);
 
-        if(player.level instanceof ServerLevel serverLevel) {
+        if(player.level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.CLOUD,
                     player.getX(),
                     player.getY() + 0.1f,
@@ -56,9 +56,9 @@ public class DoubleJumpAbility extends Ability {
         ninjaData.getDoubleJumpData().canDoubleJumpServer = false;
         player.fallDistance = 0;
 
-        player.getLevel().playSound(null,
+        player.level().playSound(null,
                 player, NarutoSounds.DOUBLE_JUMP.get(), SoundSource.PLAYERS, 1f, 1.0f);
 
-        player.getLevel().gameEvent(player, NarutoGameEvents.DOUBLE_JUMP.get(), player.position());
+        player.level().gameEvent(player, NarutoGameEvents.DOUBLE_JUMP.get(), player.position());
     }
 }

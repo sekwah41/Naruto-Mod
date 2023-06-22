@@ -251,8 +251,8 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
     public void setCurrentlyChanneledAbility(Player player, Ability ability) {
         if (ability != null) {
             if (ability.castingSound() != null) {
-                player.getLevel().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
-                player.getLevel().gameEvent(player, NarutoGameEvents.JUTSU_CASTING.get(), player.position().add(0, player.getEyeHeight() * 0.7, 0));
+                player.level().playSound(null, player, ability.castingSound(), SoundSource.PLAYERS, 0.5f, 1.0f);
+                player.level().gameEvent(player, NarutoGameEvents.JUTSU_CASTING.get(), player.position().add(0, player.getEyeHeight() * 0.7, 0));
             }
 
             if(!(ability instanceof Ability.Channeled channeled && channeled.hideChannelMessages())) {
@@ -355,7 +355,7 @@ public class NinjaData implements INinjaData, ICapabilityProvider {
             this.ticksChanneled++;
         }
 
-        if(player.isOnGround()) {
+        if(player.onGround()) {
             this.doubleJumpData.canDoubleJumpServer = true;
         }
     }

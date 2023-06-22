@@ -83,7 +83,7 @@
   "narutomod:water_walk": "Caminar en el Agua",
   "narutomod:chakra_charge": "Carga de Chakra",
   "narutomod:fireball": "Estilo de Fuego - Jutsu de Bola de Fuego",
-  "death.attack.waterBullet": "%1$s ha sido asesinado por %2$s usando bolas de fuego",
+  "death.attack.narutomod.water_bullet": "%1$s ha sido asesinado por %2$s usando bolas de fuego",
   "narutomod:water_bullet": "Estilo de Agua - Jutsu de Bala de Agua",
   "jutsu.cast": "Has hechizado %s!",
   "jutsu.charge.start": "Empiezas a cargar %s!",

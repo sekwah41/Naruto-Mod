@@ -34,7 +34,7 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
     @Override
     public void tick() {
         super.tick();
-        if(!this.level.isClientSide && this.inGroundTime >= 10) {
+        if(!this.level().isClientSide && this.inGroundTime >= 10) {
             explodeKunai(this);
             this.discard();
         }
@@ -45,14 +45,14 @@ public class ExplosiveKunaiEntity extends KunaiEntity {
     protected void onHitEntity(EntityHitResult rayTraceResult) {
         super.onHitEntity(rayTraceResult);
 
-        if(!this.level.isClientSide) {
+        if(!this.level().isClientSide) {
             explodeKunai(this);
             this.discard();
         }
     }
 
     public static void explodeKunai(Entity entity) {
-        entity.level.explode(null, entity.getX(), entity.getY(), entity.getZ(), NarutoConfig.kunaiExplosionRadius,
+        entity.level().explode(null, entity.getX(), entity.getY(), entity.getZ(), NarutoConfig.kunaiExplosionRadius,
                 NarutoConfig.kunaiBlockDamage ? Level.ExplosionInteraction.BLOCK : Level.ExplosionInteraction.NONE);
     }
 

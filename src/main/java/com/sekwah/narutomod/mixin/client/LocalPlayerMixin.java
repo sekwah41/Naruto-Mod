@@ -34,7 +34,7 @@ public class LocalPlayerMixin extends AbstractClientPlayer {
             target = "Lnet/minecraft/client/player/LocalPlayer;getItemBySlot(Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;"))
     public void aiStep(CallbackInfo ci) {
         ItemStack itemstack = this.getItemBySlot(EquipmentSlot.CHEST);
-        if (!itemstack.canElytraFly(this) && !this.onGround && !this.isFallFlying() && !this.isInWater() && !this.hasEffect(MobEffects.LEVITATION)) {
+        if (!itemstack.canElytraFly(this) && !this.onGround() && !this.isFallFlying() && !this.isInWater() && !this.hasEffect(MobEffects.LEVITATION)) {
             this.getCapability(NINJA_DATA).ifPresent(ninjaData -> {
                 if(!ninjaData.isNinjaModeEnabled()) {
                     return;

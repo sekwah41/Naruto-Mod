@@ -4,6 +4,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.network.PacketHandler;
 import com.sekwah.narutomod.network.c2s.ServerToggleNinjaPacket;
+import com.sekwah.narutomod.util.GuiUtils;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -31,7 +33,7 @@ public class JutsuScreen extends Screen {
 
     public void addButtons() {
 
-        becomeANinja = this.addRenderableWidget(Button.builder(Component.translatable("naruto.gui.jutsu.disable"), (button) -> {
+        becomeANinja = this.addRenderableWidget(Button.builder(Component.translatable("naruto.gui.jutsu.enable"), (button) -> {
             PacketHandler.sendToServer(new ServerToggleNinjaPacket(true));
         }).pos(this.width / 2 - 102, this.height / 4 + 72 + -16).size(98, 20).build());
         renderables.add(becomeANinja);
@@ -68,12 +70,12 @@ public class JutsuScreen extends Screen {
         return false;
     }
 
-    public void render(PoseStack poseStack, int p_96311_, int p_96312_, float p_96313_) {
-        this.renderBackground(poseStack);
-        drawCenteredString(poseStack, this.font, this.title, this.width / 2, 40, 16777215);
+    public void render(GuiGraphics guiGraphics, int p_96311_, int p_96312_, float p_96313_) {
+        this.renderBackground(guiGraphics);
+        GuiUtils.centeredText(guiGraphics, this.font, this.title, this.width / 2, 40);
         for (int i = 0; i < renderLines.length; i++) {
-            drawCenteredString(poseStack, this.font, renderLines[i], this.width / 2, 60 + 10 * i, 16777215);
+            GuiUtils.centeredText(guiGraphics, this.font, renderLines[i], this.width / 2, 60 + 10 * i);
         }
-        super.render(poseStack, p_96311_, p_96312_, p_96313_);
+        super.render(guiGraphics, p_96311_, p_96312_, p_96313_);
     }
 }

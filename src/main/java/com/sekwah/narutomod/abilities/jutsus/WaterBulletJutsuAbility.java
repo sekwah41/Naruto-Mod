@@ -42,8 +42,8 @@ public class WaterBulletJutsuAbility extends Ability implements Ability.Cooldown
                 Vec3 shootSpeed = player.getLookAngle();
                 WaterBulletJutsuEntity waterBullet = new WaterBulletJutsuEntity(player, shootSpeed.x, shootSpeed.y, shootSpeed.z);
                 waterBullet.setYRot(player.getYRot() - 180);
-                player.getLevel().addFreshEntity(waterBullet);
-                player.getLevel().playSound(null, player, NarutoSounds.WATER_BULLET_SHOOT.get(), SoundSource.PLAYERS, 1f, 1.0f);
+                player.level().addFreshEntity(waterBullet);
+                player.level().playSound(null, player, NarutoSounds.WATER_BULLET_SHOOT.get(), SoundSource.PLAYERS, 1f, 1.0f);
             }, 10 + i * 15);
         }
 

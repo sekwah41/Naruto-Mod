@@ -1,21 +1,21 @@
 package com.sekwah.narutomod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import com.sekwah.narutomod.util.GuiUtils;
+import net.minecraft.client.gui.GuiGraphics;
 import org.joml.Matrix4f;
 import com.sekwah.narutomod.capabilities.NinjaCapabilityHandler;
 import com.sekwah.narutomod.config.NarutoConfig;
 import com.sekwah.narutomod.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
 import java.awt.*;
 
-public class ChakraAndStaminaGUI extends GuiComponent implements PlayerGUI {
+public class ChakraAndStaminaGUI implements PlayerGUI {
 
 
     public static final BarDesigns.BarInfo[] barTypes = BarDesigns.BarInfo.values();
@@ -34,7 +34,7 @@ public class ChakraAndStaminaGUI extends GuiComponent implements PlayerGUI {
         this.minecraft = mc;
     }
 
-    public void render(PoseStack matrixStack, Matrix4f worldMatrix, Vec3 cameraPos) {
+    public void render(GuiGraphics guiGraphics, Matrix4f worldMatrix, Vec3 cameraPos) {
         this.screenWidth = this.minecraft.getWindow().getGuiScaledWidth();
         this.screenHeight = this.minecraft.getWindow().getGuiScaledHeight();
         int barDesign = NarutoConfig.chakraBarDesign;
@@ -74,7 +74,7 @@ public class ChakraAndStaminaGUI extends GuiComponent implements PlayerGUI {
         int chakraWidth = (int) (barWidth * currentChakraPercent);
         // stack, x, y, tx, ty, width, height, textureWidth, textureHeight
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(matrixStack, screenMid - width - offset, this.screenHeight - 22,
+        guiGraphics.blit(barTypes[barDesign].texture, screenMid - width - offset, this.screenHeight - 22,
                 0 , 22,
                 width, 22,
                 width, 44);
@@ -82,7 +82,7 @@ public class ChakraAndStaminaGUI extends GuiComponent implements PlayerGUI {
 
         // Stamina Bar underlay
         int staminaWidth = (int) (barWidth * currentStaminaPercent);
-        blit(matrixStack, screenMid + offset, this.screenHeight - 22,
+        guiGraphics.blit(barTypes[barDesign].texture, screenMid + offset, this.screenHeight - 22,
                 0, 22,
                 width, 22,
                 -width, 44);
@@ -90,20 +90,22 @@ public class ChakraAndStaminaGUI extends GuiComponent implements PlayerGUI {
 
         // Chakra Bar color
         this.setColor(chakraColor);
-        blit(matrixStack, screenMid - chakraWidth - offset - (width - xOffset - barWidth), this.screenHeight - 22,
+        guiGraphics.blit(barTypes[barDesign].texture, screenMid - chakraWidth - offset - (width - xOffset - barWidth), this.screenHeight - 22,
                 xOffset + (barWidth - chakraWidth), 0,
                 chakraWidth, 22,
                 width, 44);
 
         // Stamina Bar color
         this.setColor(staminaColor);
-        blit(matrixStack, screenMid + offset + (100 - barWidth - xOffset), this.screenHeight - 22,
+        guiGraphics.blit(barTypes[barDesign].texture, screenMid + offset + (100 - barWidth - xOffset), this.screenHeight - 22,
                 -barWidth - xOffset, 0,
                 staminaWidth, 22,
                 -width, 44);
 
+        this.setColor(Color.WHITE);
+
         String chakraText = (int) chakra + "/" + (int) maxChakra;
-        this.centeredTextOutlined(matrixStack,
+        GuiUtils.centeredTextOutlined(guiGraphics, this.getFont(),
                 chakraText,
                 screenMid - valuesOffset,
                 this.screenHeight - valuesHeight,
@@ -112,21 +114,12 @@ public class ChakraAndStaminaGUI extends GuiComponent implements PlayerGUI {
 
 
         String staminaText = (int) stamina + "/" + (int) maxStamina;
-        this.centeredTextOutlined(matrixStack,
+        GuiUtils.centeredTextOutlined(guiGraphics, this.getFont(),
                 staminaText,
                 screenMid + valuesOffset,
                 this.screenHeight - valuesHeight,
                 intStaminaColor,
                 intStaminaColorDarker);
-    }
-
-    private void centeredTextOutlined(PoseStack matrixStack, String text, int x, int y, int color, int backgroundColor) {
-        int width = this.getFont().width(text) / 2;
-        this.getFont().draw(matrixStack, text, (float) x+1 - width, y, backgroundColor);
-        this.getFont().draw(matrixStack, text, (float) x-1 - width, y, backgroundColor);
-        this.getFont().draw(matrixStack, text, (float) x - width, (float) y+1, backgroundColor);
-        this.getFont().draw(matrixStack, text, (float) x - width, (float) y-1, backgroundColor);
-        this.getFont().draw(matrixStack, text, (float) x - width, y, color);
     }
 
     public void tick(Player player) {

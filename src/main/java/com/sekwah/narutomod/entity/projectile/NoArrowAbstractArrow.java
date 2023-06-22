@@ -29,7 +29,7 @@ public abstract class NoArrowAbstractArrow extends AbstractArrow {
         // I want to write as little as possible, no point in re-implementing the hit behavior
         Entity entity = pResult.getEntity();
         if (entity instanceof LivingEntity livingentity) {
-            if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
+            if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
                 if(livingentity.getArrowCount() > 0) {
                     livingentity.setArrowCount(livingentity.getArrowCount() - 1);
                 }

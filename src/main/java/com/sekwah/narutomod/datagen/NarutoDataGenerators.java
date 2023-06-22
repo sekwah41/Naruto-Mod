@@ -13,7 +13,8 @@ public class NarutoDataGenerators {
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
 
-        gen.addProvider(event.includeServer(), new RecipeGen(gen));
+        gen.addProvider(event.includeServer(), new NarutoRecipeGen(gen));
+        NarutoDataGenerator.addProviders(event.includeServer(), gen, gen.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper());
         gen.addProvider(event.includeServer(), new NarutoGameEventTagGen(gen, event.getLookupProvider(), event.getExistingFileHelper()));
         gen.addProvider(event.includeClient(), new NarutoSpriteSourceGen(gen.getPackOutput(), event.getExistingFileHelper(), NarutoMod.MOD_ID));
     }

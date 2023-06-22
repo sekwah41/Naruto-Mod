@@ -60,7 +60,7 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
 
             Vec3 loc = ninjaData.getSubstitutionLoc();
             double distance = loc != null ? player.position().distanceTo(loc) : 0;
-            if(loc != null && Math.round(distance) <= MAX_MARKER_DISTANCE && player.level.dimension().location().equals(ninjaData.getSubstitutionDimension())) {
+            if(loc != null && Math.round(distance) <= MAX_MARKER_DISTANCE && player.level().dimension().location().equals(ninjaData.getSubstitutionDimension())) {
                 spawnLogAt(player, player.position(), ninjaData);
                 player.teleportTo(loc.x, loc.y - 2, loc.z);
                 ninjaData.setSubstitutionLoc(null, null);
@@ -71,7 +71,7 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
                 }
             }
         } else {
-            ninjaData.setSubstitutionLoc(player.position().add(0, 2, 0), player.level.dimension().location());
+            ninjaData.setSubstitutionLoc(player.position().add(0, 2, 0), player.level().dimension().location());
             // Mark
         }
     }
@@ -79,10 +79,10 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
     public void spawnLogAt(Player player, Vec3 pos, INinjaData ninjaData) {
         ninjaData.setInvisibleTicks(5);
         player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 5, 0, false, false));
-        SubstitutionLogEntity log = new SubstitutionLogEntity(player.level);
+        SubstitutionLogEntity log = new SubstitutionLogEntity(player.level());
         log.setPos(pos.add(0, 1, 0));
-        player.level.addFreshEntity(log);
-        if(player.level instanceof ServerLevel serverLevel) {
+        player.level().addFreshEntity(log);
+        if(player.level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.CLOUD,
                     pos.x,
                     pos.y + (player.getBbHeight() / 2),
@@ -95,7 +95,7 @@ public class SubstitutionJutsuAbility extends Ability implements Ability.Channel
     public boolean randomTeleportPlayer(Player player, INinjaData ninjaData) {
         for(int i = 0; i < 16; i++) {
             double x = player.getX() + (player.getRandom().nextDouble() - 0.5D) * 25.0D;
-            double y = Mth.clamp(player.getY() + (double)(player.getRandom().nextInt(16) - 8), player.level.getMinBuildHeight(), (player.level.getMinBuildHeight() + ((ServerLevel)player.level).getLogicalHeight() - 1));
+            double y = Mth.clamp(player.getY() + (double)(player.getRandom().nextInt(16) - 8), player.level().getMinBuildHeight(), (player.level().getMinBuildHeight() + ((ServerLevel)player.level()).getLogicalHeight() - 1));
             double z = player.getZ() + (player.getRandom().nextDouble() - 0.5D) * 25.0D;
             if(Math.sqrt(player.distanceToSqr(x, y, z)) >= 10 && player.randomTeleport(x, y, z, false)) {
                 return true;

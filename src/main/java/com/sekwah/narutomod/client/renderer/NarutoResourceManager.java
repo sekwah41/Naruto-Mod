@@ -24,10 +24,6 @@ public class NarutoResourceManager extends BlockEntityWithoutLevelRenderer {
         super(null, null);
     }
 
-    public BakedModel transformationAwareModel(ItemStack itemStack, ItemTransforms.TransformType transformType) {
-        return null;
-    }
-
     public void onResourceManagerReload(ResourceManager resourceManager) {
         EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();
 

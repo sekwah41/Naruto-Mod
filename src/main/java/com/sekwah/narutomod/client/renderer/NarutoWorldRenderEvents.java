@@ -5,14 +5,17 @@ import org.joml.Matrix4f;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraftforge.client.event.RenderLevelLastEvent;
+import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class NarutoWorldRenderEvents {
 
 
     @SubscribeEvent
-    public static void renderLevelLast(RenderLevelLastEvent event) {
+    public static void renderLevelLast(RenderLevelStageEvent event) {
+        if(event.getStage() != RenderLevelStageEvent.Stage.AFTER_LEVEL) {
+            return;
+        }
         Minecraft mc = Minecraft.getInstance();
         if(mc.options.hideGui || mc.level == null || mc.player == null) {
             return;
