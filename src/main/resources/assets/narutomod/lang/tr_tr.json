@@ -99,6 +99,13 @@
   "naruto.keys.leap": "Sıçrama",
   "narutomod:substitution": "Yer Değiştirme",
   "narutomod:substitution.mark": "Yer Değiştirme Konumu İşaretlendi",
-  "naruto.gui.jutsu.placeholder": "Lütfen '/jutsu list' yazın. Yakında yeni bir menü ekleyeceğiz.",
-  "naruto.keys.jutsu_menu": "Jutsu Menüsü (Çok Yakında)"
+  "naruto.gui.jutsu.placeholder": "Yetenek listesi için lütfen '/jutsu list' yazın.",
+  "naruto.keys.jutsu_menu": "Jutsu Menüsü",
+  "naruto.gui.jutsu.title": "Jutsu Menüsü",
+  "naruto.gui.jutsu.notice": "Uygun bir jutsu menüsü ve kilidi açma yolu elbet ekleneektir,",
+  "naruto.gui.jutsu.notice2": "ninja olmayı isteyip istemediğinize aşşağıdan karar verin.",
+  "naruto.gui.jutsu.enable": "Ninja ol",
+  "naruto.gui.jutsu.disable": "Fikrimi değiştirdim",
+  "naruto.gui.jutsu.done": "Tamam",
+  "jutsu.not_a_ninja": "Bunu yapmak için bir ninja olmalısınız. (J tuşuna basın)"
 }
