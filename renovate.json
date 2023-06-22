@@ -31,7 +31,7 @@
         "minor",
         "patch"
       ],
-      "automerge": true,
+      "automerge": false,
       "automergeType": "branch",
       "groupName": "Deps",
       "schedule": [
