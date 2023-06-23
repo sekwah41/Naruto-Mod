@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.0](https://github.com/sekwah41/Naruto-Mod/compare/v1.7.0...v1.8.0) (2023-06-23)
+
+
+### Features ✨
+
+* add katana ([623435d](https://github.com/sekwah41/Naruto-Mod/commit/623435d6203dfed1159a5f0bf3d3d39c87627064))
+* update to 1.20 ([cc523a0](https://github.com/sekwah41/Naruto-Mod/commit/cc523a0e5a6dcb3e4cafff835d91f8107681556a))
+
 ## [1.7.0](https://github.com/sekwah41/Naruto-Mod/compare/v1.6.1...v1.7.0) (2022-09-20)
 
 
