@@ -5,12 +5,14 @@ import com.sekwah.narutomod.capabilities.INinjaData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 
@@ -66,18 +68,18 @@ public class EarthWallJutsuAbility extends Ability implements Ability.Cooldown {
 
         BlockPos targetLocation = blockHit.getBlockPos();
 
-        int yOffset = getYOffset(player.level, targetLocation, maxOffset);
+        int yOffset = getYOffset(player.level(), targetLocation, maxOffset);
 
         for(int offset = -(wallWidth-1)/2; offset <= (wallWidth-1)/2; offset++) {
             BlockPos offsetPos = blockHit.getBlockPos().offset(walldir.xDir * offset, yOffset, walldir.zDir * offset);
-            int posOffset = getYOffset(player.level, offsetPos, maxOffset);
+            int posOffset = getYOffset(player.level(), offsetPos, maxOffset);
             if(posOffset == 0) {
-                posOffset = -getYOffsetNegative(player.level, offsetPos, maxOffset);
+                posOffset = -getYOffsetNegative(player.level(), offsetPos, maxOffset);
             }
             if(posOffset == -maxOffset) {
                 continue;
             }
-            var blockToPlace = pillar(player.level, offsetPos.above(posOffset), maxHeight - (int) Math.ceil(posOffset * 0.40));
+            var blockToPlace = pillar(player.level(), offsetPos.above(posOffset), maxHeight - (int) Math.ceil(posOffset * 0.40));
             placeBlocks.addAll(blockToPlace);
         }
         return placeBlocks;
@@ -87,11 +89,12 @@ public class EarthWallJutsuAbility extends Ability implements Ability.Cooldown {
     public void performServer(Player player, INinjaData ninjaData, int ticksActive) {
         var placeBlocks = calculateWall(player);
         for (BlockPlacement blockPlacement : placeBlocks) {
-            player.level.setBlockAndUpdate(blockPlacement.pos, blockPlacement.state);
+            player.level().setBlockAndUpdate(blockPlacement.pos, blockPlacement.state);
         }
     }
 
-    private final List<Material> blockList = Arrays.asList(Material.DIRT, Material.STONE, Material.GRASS, Material.SAND);
+    // See VanillaBlocksTagsProvider for more info :D
+    private final List<TagKey<Block>> tagList = Arrays.asList(BlockTags.DIRT, BlockTags.BASE_STONE_OVERWORLD, BlockTags.DIRT, BlockTags.SAND);
 
     private int getYOffset(Level level, BlockPos pos, int maxOffset) {
 
@@ -129,11 +132,20 @@ public class EarthWallJutsuAbility extends Ability implements Ability.Cooldown {
 
     private boolean canPlaceEarthBlock(Level level, BlockPos pos) {
         var blockAtPos = level.getBlockState(pos);
-        return blockAtPos.getMaterial().isReplaceable();
+        return blockAtPos.canBeReplaced();
     }
 
     public record BlockPlacement(BlockPos pos, BlockState state) {
 
+    }
+
+    private boolean isValidWallBlock(BlockState block) {
+        for(TagKey<Block> tag : tagList) {
+            if(block.is(tag)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<BlockPlacement> pillar(Level level, BlockPos pos, int height) {
@@ -145,7 +157,7 @@ public class EarthWallJutsuAbility extends Ability implements Ability.Cooldown {
                 if(block.is(Blocks.GRASS_BLOCK) && i != height - 1) {
                     block = Blocks.DIRT.defaultBlockState();
                 }
-                if(!blockList.contains(block.getMaterial())) {
+                if(!isValidWallBlock(block)) {
                     height--;
                     i--;
                     continue;
@@ -200,6 +212,6 @@ public class EarthWallJutsuAbility extends Ability implements Ability.Cooldown {
         var lookVec = player.getLookAngle();
         int range = 40;
 
-        return player.level.clip(new ClipContext(eyePos, eyePos.add(lookVec.multiply(range, range, range)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
+        return player.level().clip(new ClipContext(eyePos, eyePos.add(lookVec.multiply(range, range, range)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
     }
 }
