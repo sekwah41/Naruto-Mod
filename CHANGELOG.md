@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.1](https://github.com/sekwah41/Naruto-Mod/compare/v1.8.0...v1.8.1) (2023-08-05)
+
+
+### Bug Fixes 🐛
+
+* mixins properly apply again (double jump and running was broken) ([fd20d69](https://github.com/sekwah41/Naruto-Mod/commit/fd20d69d9733f819340775d0354cb34690a3416c))
+
 ## [1.8.0](https://github.com/sekwah41/Naruto-Mod/compare/v1.7.0...v1.8.0) (2023-06-23)
 
 
