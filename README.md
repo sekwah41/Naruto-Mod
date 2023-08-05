@@ -34,3 +34,6 @@ See the [Release please config](./release-please-config.json) for the types avai
 ## Using release-please-actions
 If you are wanting to use the same release configuration check out the [release-please-action](https://github.com/google-github-actions/release-please-action).
 You should be able to leave out the token part though if you also want testing snapshots to automatically post you will need to create a PAT and use that otherwise the actions will not trigger.
+
+## If you are using the jetbrains runtime
+For DCEVM -XX:+AllowEnhancedClassRedefinition
