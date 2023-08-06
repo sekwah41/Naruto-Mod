@@ -17,7 +17,6 @@ buildscript {
     dependencies {
         classpath "org.spongepowered:mixingradle:0.7+"
         classpath "org.apache.httpcomponents:httpmime:4.5.14"
-        classpath "org.parchmentmc:librarian:1.+"
     }
 }
 plugins {
@@ -28,7 +27,6 @@ plugins {
 
 apply plugin: "java"
 apply plugin: 'eclipse'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'maven-publish'
 
 apply plugin: "org.spongepowered.mixin"
@@ -315,6 +313,8 @@ curseforge {
         changelog = getReleaseChangelog()
         changelogType = 'markdown'
         releaseType = 'release'
+        addGameVersion 'Forge'
+        addGameVersion 'NeoForge'
         addGameVersion '1.20'
         addGameVersion '1.20.1'
 
@@ -335,6 +335,7 @@ modrinth {
     projectId = project.modrinth_slug
     versionType = "release"
     uploadFile = jar
+    loaders = ["forge", "neoforge"]
     additionalFiles = [srcJar, deobfJar]
     gameVersions = ["1.20", "1.20.1"]
     changelog = getReleaseChangelog()
