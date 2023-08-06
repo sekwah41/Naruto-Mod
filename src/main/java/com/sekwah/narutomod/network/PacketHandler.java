@@ -30,7 +30,6 @@ public class PacketHandler {
                 if (version.equals(PROTOCOL_VERSION)) {
                     return true;
                 } else {
-                    LOGGER.error("Client attempted to connect with a different version of the mod. Client Version: " + PROTOCOL_VERSION + " Server Version: " + version);
                     return false;
                 }
             })
@@ -38,7 +37,6 @@ public class PacketHandler {
                 if (version.equals(PROTOCOL_VERSION)) {
                     return true;
                 } else {
-                    LOGGER.error("Client attempted to connect with a different version of the mod. Server Version: " + PROTOCOL_VERSION + " Client Version: " + version);
                     return false;
                 }
             })
