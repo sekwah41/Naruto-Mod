@@ -81,11 +81,14 @@ public class NarutoInGameGUI {
      * @param event
      */
     @SubscribeEvent
-    public void renderGameOverlay(RenderGuiOverlayEvent.Pre event) {
+    public void renderGameOverlay(RenderGuiOverlayEvent.Post event) {
         if(event.getOverlay() != VanillaGuiOverlay.HOTBAR.type()) {
             return;
         }
         if(!shouldRender) {
+            return;
+        }
+        if(Minecraft.getInstance().options.hideGui) {
             return;
         }
         GuiGraphics guiGraphics = event.getGuiGraphics();
