@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.2](https://github.com/sekwah41/Naruto-Mod/compare/v1.8.1...v1.8.2) (2023-12-02)
+
+
+### Bug Fixes 🐛
+
+* hide gui when f1 is toggled and chat is opened ([28c6af5](https://github.com/sekwah41/Naruto-Mod/commit/28c6af5ceb43edcee1a673795c797c8a64c15170))
+* remove log that would spam the console "Client attempted to connect" ([29b7eac](https://github.com/sekwah41/Naruto-Mod/commit/29b7eac585f7d31cb041cffb969b55c14deac3c0))
+
 ## [1.8.1](https://github.com/sekwah41/Naruto-Mod/compare/v1.8.0...v1.8.1) (2023-08-05)
 
 
